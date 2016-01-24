@@ -33,3 +33,6 @@ captures/
 
 # Swap Files
 *~
+
+# Android Studio work workspace.xml file
+workspace.xml
