@@ -23,4 +23,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.facebook.fresco:fresco:0.8.1+'
+    compile files('libs/gson-2.5.jar')
 }
