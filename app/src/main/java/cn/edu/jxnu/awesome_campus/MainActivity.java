@@ -18,6 +18,8 @@ import android.os.Bundle;
  * Created by MummyDing on 16-1-24.
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
+ *
+ * Amended by KevinWu on 16-1-24
  */
 public class MainActivity extends AppCompatActivity {
 
