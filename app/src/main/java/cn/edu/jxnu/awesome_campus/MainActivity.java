@@ -20,7 +20,7 @@ import android.os.Bundle;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class MainActivity extends AppCompatActivity {
-
+//test Commit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
