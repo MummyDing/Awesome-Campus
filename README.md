@@ -8,11 +8,11 @@ Jiangxi Normal University Android App
 
 #### Version 1.0
 
-<img src="/img/home-v1.0.png" width="180" height="350"/> 
-<img src="/img/life-v1.0.png" width="180" height="350"/> 
-<img src="/img/leisure-v1.0.png" width="180" height="350"/> 
-<img src="/img/libary-v1.0.png" width="180" height="350"/> 
-<img src="/img/eduction-v1.0.png" width="180" height="350"/> 
+<img src="/img/home-v1.0.png" width="160" height="330"/> 
+<img src="/img/life-v1.0.png" width="160" height="330"/> 
+<img src="/img/leisure-v1.0.png" width="160" height="330"/> 
+<img src="/img/libary-v1.0.png" width="160" height="330"/> 
+<img src="/img/eduction-v1.0.png" width="160" height="330"/> 
 
 
 #### Version 1.1
