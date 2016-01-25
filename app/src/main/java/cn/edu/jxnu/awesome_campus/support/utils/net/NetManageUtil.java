@@ -15,6 +15,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostRequest;
  * Created by MummyDing on 16-1-24.
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
+ * @link https://github.com/MummyDing/Awesome-Campus/blob/dev/Doc/NetManageUtil%E8%AF%B4%E6%98%8E.md
  */
 public class NetManageUtil {
     public static OkHttpClient netClient;
