@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.support.utils.net;
+package cn.edu.jxnu.awesome_campus.support.utils.net.callback;
 
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
@@ -15,14 +15,9 @@ import java.io.InputStream;
 public abstract class NetCallback implements Callback {
 
     public abstract void onFailure(IOException e);
-    public abstract void onSuccess(String result, InputStream resultIS);
     @Override
     public void onFailure(Request request, IOException e) {
         onFailure(e);
     }
 
-    @Override
-    public void onResponse(Response response) throws IOException {
-        onSuccess(response.body().string(),response.body().byteStream());
-    }
 }

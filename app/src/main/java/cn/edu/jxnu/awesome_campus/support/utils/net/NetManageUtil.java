@@ -1,10 +1,15 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net;
 
+import android.os.Handler;
+
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
+
+import cn.edu.jxnu.awesome_campus.support.utils.net.request.GetRequest;
+import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostRequest;
 
 /**
  * Created by MummyDing on 16-1-24.
@@ -12,50 +17,46 @@ import java.net.CookiePolicy;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class NetManageUtil {
-    private static NetManageUtil mInstance;
-    private OkHttpClient netClient;
-    private Gson mGson;
+    public static OkHttpClient netClient;
+    private static Gson mGson;
 
-
-    private NetManageUtil(){
+    static {
         netClient = new OkHttpClient();
         //enable Cookie
         netClient.setCookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ORIGINAL_SERVER));
         mGson = new Gson();
     }
 
-    /***
-     * Singleton NetManageUtil
-     * @return NetManageUtil
-     */
-    public synchronized static NetManageUtil getInstance(){
-        if( mInstance == null){
-            mInstance = new NetManageUtil();
-        }
-        return mInstance;
+    private NetManageUtil(){
+
+    }
+
+    public static OkHttpClient getNetClient(){
+        return netClient;
     }
 
     /***
      * Build a get request object
      * @return
      */
-    public static GetRequest get(){
-        return new GetRequest();
+    public static GetRequest get(String url){
+        return new GetRequest(url);
     }
 
     /***
      * Build a post request object
      * @return
      */
-    public static PostRequest post(){
-        return new PostRequest();
+    public static PostRequest post(String url){
+        return new PostRequest(url);
     }
 
     /***
-     * cancel all requests
+     * cancel requests by tag
      */
-    public static void cancelAll(){
 
+    public static void cancelByTag(String tag){
+        netClient.cancel(tag);
     }
 
 }

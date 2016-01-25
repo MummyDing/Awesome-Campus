@@ -13,19 +13,12 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class InitApp extends Application{
-    public static NetManageUtil netClient;
     private static Context mContext;
     @Override
     public void onCreate() {
         super.onCreate();
-        netClient = NetManageUtil.getInstance();
-        Fresco.initialize(getAppContext());
-    }
+        mContext = getApplicationContext();
+        Fresco.initialize(mContext);
 
-    public static Context getAppContext(){
-        if(mContext == null){
-            mContext = getAppContext();
-        }
-        return mContext;
     }
 }
