@@ -2,6 +2,23 @@
 
 Jiangxi Normal University Android App   
 
+
+## 草图 Version 1.0
+
+
+<img src="/img/home-v1.0.png" width="200" height="380"/> 
+<img src="/img/life-v1.0.png" width="200" height="380"/> 
+<img src="/img/leisure-v1.0.png" width="200" height="380"/> 
+<img src="/img/libary-v1.0.png" width="200" height="380"/> 
+<img src="/img/eduction-v1.0.png" width="200" height="380"/> 
+
+
+## 草图 Version 1.1
+
+- 主要把 "自习室"单独分出一个模块: 查询空闲座位,选座,进出记录等
+- "天气" 放到 "生活" 中
+
+
 ## LICENSE
 
 Copyright (c) 2016.  MummyDing & KevinWu    

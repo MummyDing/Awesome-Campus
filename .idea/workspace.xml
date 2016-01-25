@@ -9,12 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a44549d8-fa70-4613-9481-82aa23e92277" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/NetManageUtil说明.md" afterPath="$PROJECT_DIR$/Doc/NetManageUtil说明.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/cn/edu/jxnu/awesome_campus/support/utils/net/NetManageUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/cn/edu/jxnu/awesome_campus/support/utils/net/NetManageUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/cn/edu/jxnu/awesome_campus/support/utils/net/callback/StringCallback.java" afterPath="$PROJECT_DIR$/app/src/main/java/cn/edu/jxnu/awesome_campus/support/utils/net/callback/StringCallback.java" />
-    </list>
+    <list default="true" id="a44549d8-fa70-4613-9481-82aa23e92277" name="Default" comment="" />
     <ignored path="Awesome-Campus.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
