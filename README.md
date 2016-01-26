@@ -25,6 +25,8 @@ Jiangxi Normal University Android App
 
 [NetManageUtil][0]
 
+[Database_Description](https://github.com/MummyDing/Awesome-Campus/blob/dev/Doc/Database_Description.md)
+
 ## LICENSE
 
 Copyright (c) 2016.  MummyDing & KevinWu    
