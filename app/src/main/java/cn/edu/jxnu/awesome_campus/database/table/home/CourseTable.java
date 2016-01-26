@@ -17,7 +17,7 @@ public class CourseTable {
      *  说明: 注销需清空此表 否则新账号登陆课程表信息将发生冲突
      */
     // 礼拜几 DayOfWeek
-    public static final String WEEK = "Week";
+    public static final String DAY_OF_WEEK = "DayOfWeek";
     // 第几学期
     public static final String TERM = "Term";
     // 每节课的课程信息
@@ -36,7 +36,7 @@ public class CourseTable {
      * 字段ID 数据库操作建立字段对应关系 从0开始
      */
 
-    public static final int ID_WEEK = 0;
+    public static final int ID_DAY_OF_WEEK = 0;
     public static final int ID_TREM = 1;
     public static final int ID_ONE_TWO = 2;
     public static final int ID_THREE = 3;
@@ -48,7 +48,7 @@ public class CourseTable {
 
 
     public static final String CREATE_TABLE = "create table "+NAME+"("+
-            WEEK+" integer "+
+            DAY_OF_WEEK +" integer "+
             TERM+" text, "+
             ONE_TWO+" text, "+
             THREE+" text, "+
