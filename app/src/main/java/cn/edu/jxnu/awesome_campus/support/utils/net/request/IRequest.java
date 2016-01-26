@@ -1,12 +1,9 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net.request;
 
-import android.os.Handler;
-
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.Map;
 
-import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.NetCallback;
 
 /**

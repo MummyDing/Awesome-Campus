@@ -2,10 +2,8 @@ package cn.edu.jxnu.awesome_campus.support.utils.net.callback;
 
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by MummyDing on 16-1-24.

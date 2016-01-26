@@ -1,7 +1,5 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net;
 
-import android.os.Handler;
-
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 

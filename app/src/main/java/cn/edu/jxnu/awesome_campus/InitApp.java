@@ -5,8 +5,6 @@ import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
-import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
-
 /**
  * Created by MummyDing on 16-1-25.
  * GitHub: https://github.com/MummyDing

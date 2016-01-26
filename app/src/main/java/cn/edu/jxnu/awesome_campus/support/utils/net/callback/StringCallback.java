@@ -1,11 +1,9 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net.callback;
 
-import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by MummyDing on 16-1-25.

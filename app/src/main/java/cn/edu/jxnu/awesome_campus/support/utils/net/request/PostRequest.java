@@ -1,13 +1,9 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net.request;
 
-import android.util.Log;
-
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
