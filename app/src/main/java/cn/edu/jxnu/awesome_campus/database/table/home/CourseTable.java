@@ -48,7 +48,7 @@ public class CourseTable {
 
 
     public static final String CREATE_TABLE = "create table "+NAME+"("+
-            DAY_OF_WEEK +" integer "+
+            DAY_OF_WEEK +" integer,"+
             TERM+" text, "+
             ONE_TWO+" text, "+
             THREE+" text, "+

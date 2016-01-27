@@ -59,26 +59,26 @@ StandardScore | float | 标准分
 ###天气信息表 WeatherInfo
 字段名|字段类型|字段说明
 ----------|----------|----------
-City | text | 天气对应城市
-Temperature | text | 实时温度
-Info | text | 具体天气情况描述信息
-Temp1 | text | 高温
-Temp2 | text | 低温
-UpdateTime | text | 更新时间
-WindDirect | text | 风向
-WindPower | text | 风力
-WindOffset | text | 风向偏移量
-WindSpeed | text | 风速
-CyS | text | 穿衣建议
-CyL | text | 穿衣建议详情
-YdS | text | 运动建议
-YdL | text | 运动建议详情
-GmS | text | 感冒说明
-GmL | text | 感冒说明详情
-ZwxS | text | 紫外线说明
-ZwxL | text | 紫外线详情
-WrS | text | 污染指数说明
-WrL | text | 污染详情
+city_name | text | 天气对应城市
+temperature | text | 实时温度
+info | text | 具体天气情况描述信息
+day_2 | text | 高温
+night_2 | text | 低温
+dataUptime | text | 更新时间
+direct | text | 风向
+power | text | 风力
+offset | text | 风向偏移量
+windspeed | text | 风速
+chuanyi_0 | text | 穿衣建议
+chuangyi_1 | text | 穿衣建议详情
+yundong_0 | text | 运动建议
+yundong_1 | text | 运动建议详情
+ganmao_0 | text | 感冒说明
+ganmao_1 | text | 感冒说明详情
+ziwaixian_0 | text | 紫外线说明
+ziwaixian_1 | text | 紫外线详情
+wuran_0 | text | 污染指数说明
+wuran_1 | text | 污染详情
 
 ###快递表 ExpressInfo
 待添加说明
