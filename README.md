@@ -27,6 +27,8 @@ Jiangxi Normal University Android App
 
 [Database_Description](https://github.com/MummyDing/Awesome-Campus/blob/dev/Doc/Database_Description.md)
 
+[Weather_api](https://github.com/MummyDing/Awesome-Campus/blob/dev/Doc/Weather_api.md)
+
 ## LICENSE
 
 Copyright (c) 2016.  MummyDing & KevinWu    
