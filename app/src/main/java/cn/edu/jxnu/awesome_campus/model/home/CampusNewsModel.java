@@ -50,6 +50,11 @@ public class CampusNewsModel implements IModel<CourseTableModel> {
         return false;
     }
 
+    @Override
+    public boolean cache() {
+        return false;
+    }
+
     public String getNewsTitle() {
         return NewsTitle;
     }

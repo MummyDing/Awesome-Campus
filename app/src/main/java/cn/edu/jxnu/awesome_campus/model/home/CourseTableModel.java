@@ -73,6 +73,11 @@ public class CourseTableModel implements IModel<CourseTableModel>{
         return false;
     }
 
+    @Override
+    public boolean cache() {
+        return false;
+    }
+
     public int getDayOfWeek() {
         return DayOfWeek;
     }

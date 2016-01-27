@@ -54,6 +54,11 @@ public class BorrowHistory implements IModel<BorrowHistory> {
         return false;
     }
 
+    @Override
+    public boolean cache() {
+        return false;
+    }
+
     public String getBookCode() {
         return BookCode;
     }

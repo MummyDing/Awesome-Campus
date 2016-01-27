@@ -55,8 +55,10 @@ public class CourseScoreModel implements IModel<CourseScoreModel> {
         return false;
     }
 
-
-
+    @Override
+    public boolean cache() {
+        return false;
+    }
 
 
     public String getTerm() {

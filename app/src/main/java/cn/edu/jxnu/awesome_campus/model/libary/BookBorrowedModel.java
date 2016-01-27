@@ -57,6 +57,11 @@ public class BookBorrowedModel implements IModel<BookBorrowedModel> {
         return false;
     }
 
+    @Override
+    public boolean cache() {
+        return false;
+    }
+
 
     public String getBookCode() {
         return BookCode;

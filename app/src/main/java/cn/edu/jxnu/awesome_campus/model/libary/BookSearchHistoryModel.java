@@ -46,6 +46,11 @@ public class BookSearchHistoryModel implements IModel<BookSearchHistoryModel> {
         return false;
     }
 
+    @Override
+    public boolean cache() {
+        return false;
+    }
+
     public String getSearchTime() {
         return SearchTime;
     }

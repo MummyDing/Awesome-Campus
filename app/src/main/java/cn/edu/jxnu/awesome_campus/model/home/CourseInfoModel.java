@@ -52,6 +52,11 @@ public class CourseInfoModel implements IModel<CourseInfoModel> {
         return false;
     }
 
+    @Override
+    public boolean cache() {
+        return false;
+    }
+
     public String getCourseName() {
         return CourseName;
     }

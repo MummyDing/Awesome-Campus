@@ -26,4 +26,11 @@ public interface IModel<T extends IModel> extends Serializable{
      * @return
      */
     boolean cleanCache();
+
+    /***
+     * 写入缓存
+     * @return
+     */
+    boolean cache();
+
 }

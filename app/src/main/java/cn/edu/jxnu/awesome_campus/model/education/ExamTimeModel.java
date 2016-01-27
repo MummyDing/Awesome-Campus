@@ -52,6 +52,11 @@ public class ExamTimeModel implements IModel<ExamTimeModel> {
         return false;
     }
 
+    @Override
+    public boolean cache() {
+        return false;
+    }
+
 
     public String getCourseID() {
         return CourseID;
