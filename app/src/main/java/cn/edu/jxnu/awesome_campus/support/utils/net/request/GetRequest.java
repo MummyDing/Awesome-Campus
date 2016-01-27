@@ -32,8 +32,7 @@ public class GetRequest extends IRequest {
     @Override
     public IRequest addParams(String key, String val) {
         if(TextUtil.isNull(url)){
-            new IllegalArgumentException("NETWORK : url can't be null !!!!");
-            return null;
+            throw new IllegalArgumentException("NETWORK : url can't be null !!!!");
         }
         if (isFirstParams){
             url += "?";

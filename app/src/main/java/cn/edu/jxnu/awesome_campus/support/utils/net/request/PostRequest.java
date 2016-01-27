@@ -86,8 +86,7 @@ public class PostRequest extends IRequest{
 */
     private Request buildRequest(){
         if (TextUtil.isNull(url)){
-            new IllegalArgumentException("NETWORK : url can't be null !!!!");
-            return null;
+            throw new IllegalArgumentException("NETWORK : url can't be null !!!!");
         }
 
         Request.Builder request = new Request.Builder();
