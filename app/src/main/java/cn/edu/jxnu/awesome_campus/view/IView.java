@@ -5,6 +5,9 @@ package cn.edu.jxnu.awesome_campus.view;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public interface IView<T> {
+public interface IView{
     void initView();
+    void displayLoading();
+    void hideLoading();
+    void displayNetworkError();
 }
