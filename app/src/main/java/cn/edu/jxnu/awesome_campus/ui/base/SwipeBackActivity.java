@@ -27,7 +27,7 @@ import cn.edu.jxnu.awesome_campus.R;
 /**
  * this file was written by @NashLegend {https://github.com/NashLegend}  -- MummyDing
  */
-public class SwipeBackActivity extends Activity {
+public class SwipeBackActivity extends BaseActivity {
 
     private SwipeLayout swipeLayout;
 

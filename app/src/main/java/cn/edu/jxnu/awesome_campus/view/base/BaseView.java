@@ -7,8 +7,8 @@ import cn.edu.jxnu.awesome_campus.view.IView;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public interface IListView extends IView{
-    boolean trySetupRefreshLayout();
-    boolean trySetupSmartTabLayout();
-    void cardViewTransition();
+public interface BaseView<V> extends IView<V>{
+    void displayLoading();
+    void hideLoading();
+    void displayNetworkError();
 }

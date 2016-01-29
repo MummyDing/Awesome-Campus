@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Awesome-Campus</string>
+    <string name="hint_click_to_login">点击头像登陆</string>
 </resources>

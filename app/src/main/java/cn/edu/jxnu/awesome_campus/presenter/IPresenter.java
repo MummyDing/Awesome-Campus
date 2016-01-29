@@ -14,5 +14,6 @@ public interface IPresenter<M extends IModel<M>,V extends IView<V>> {
     M getModel();
     void setView(V v);
     V getView();
+    void initlization();
 
 }
