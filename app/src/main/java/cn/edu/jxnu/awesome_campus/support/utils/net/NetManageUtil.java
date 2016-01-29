@@ -1,11 +1,15 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.support.utils.net.request.GetRequest;
 import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostRequest;
 
@@ -53,6 +57,26 @@ public class NetManageUtil {
 
     public static void cancelByTag(String tag){
         netClient.cancel(tag);
+    }
+
+
+
+    public static boolean isWIFI = false;
+
+    /**
+     * 读取网络状态
+     * @return
+     */
+    public static boolean readNetworkState() {
+
+        ConnectivityManager cm = (ConnectivityManager) InitApp.AppContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (cm != null && cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected()) {
+            isWIFI = (cm.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

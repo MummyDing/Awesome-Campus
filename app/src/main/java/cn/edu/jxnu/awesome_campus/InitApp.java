@@ -11,12 +11,12 @@ import com.facebook.drawee.backends.pipeline.Fresco;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class InitApp extends Application{
-    private static Context mContext;
+    public static Context AppContext;
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = getApplicationContext();
-        Fresco.initialize(mContext);
+        AppContext = getApplicationContext();
+        Fresco.initialize(AppContext);
 
     }
 }
