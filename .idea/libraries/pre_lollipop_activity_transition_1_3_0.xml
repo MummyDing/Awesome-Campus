@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="pre-lollipop-activity-transition-1.3.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kogitune/pre-lollipop-activity-transition/1.3.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kogitune/pre-lollipop-activity-transition/1.3.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kogitune/pre-lollipop-activity-transition/1.3.0/d4033372c5fc2fdff4c0607ddef70074699f9f2f/pre-lollipop-activity-transition-1.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
