@@ -18,12 +18,18 @@ public abstract class BaseFragment extends Fragment implements IView{
 
     protected View parentView = null;
 
+    private void loadConfig(){
+
+    }
+
+
     protected abstract int getLayoutID();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         parentView = View.inflate(getContext(),getLayoutID(),null);
         initView();
+        loadConfig();
         return parentView;
     }
 }

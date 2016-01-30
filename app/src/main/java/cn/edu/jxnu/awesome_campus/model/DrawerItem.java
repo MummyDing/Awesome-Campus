@@ -1,0 +1,39 @@
+package cn.edu.jxnu.awesome_campus.model;
+
+import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.R;
+
+/**
+ * Created by MummyDing on 16-1-29.
+ * GitHub: https://github.com/MummyDing
+ * Blog: http://blog.csdn.net/mummyding
+ */
+public enum DrawerItem {
+
+    HOME(R.string.home,R.mipmap.ic_home_black),LEISURE(R.string.leisure,R.mipmap.ic_leisure_black),
+    LIFE(R.string.life,R.mipmap.ic_life_black),STUDY(R.string.study,R.mipmap.ic_study_black),
+    LIBRARY(R.string.library,R.mipmap.ic_library_black), EDUCATION(R.string.education,R.mipmap.ic_edu_black),
+    THEME(R.string.theme,R.mipmap.ic_theme_black),SETTINGS(R.string.settings,R.mipmap.ic_settings_black),
+    LOGOUT(R.string.logout,R.mipmap.ic_logout_black);
+
+    private String itemName;
+    private int itemIconID;
+    private int id;
+    private DrawerItem(int stringID, int itemIconID) {
+        this.itemName = InitApp.AppContext.getString(stringID);
+        this.itemIconID = itemIconID;
+        this.id = stringID;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public int getItemIconID() {
+        return itemIconID;
+    }
+
+    public int getId() {
+        return id;
+    }
+}

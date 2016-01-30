@@ -13,7 +13,6 @@ package cn.edu.jxnu.awesome_campus;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
@@ -24,9 +23,8 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 
+import cn.edu.jxnu.awesome_campus.model.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
@@ -42,8 +40,6 @@ import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 public class MainActivity extends BaseActivity implements HomeView{
 
     private Toolbar toolbar;
-    private AccountHeader header;
-    private Drawer drawer ;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentTransaction fragmentTransaction;
     private HomePresenter presenter;
@@ -53,50 +49,42 @@ public class MainActivity extends BaseActivity implements HomeView{
         setContentView(R.layout.activity_main);
 
         presenter = new HomePresenterImpl(this);
-
         presenter.initlization();
+        presenter.buildDrawer(this,toolbar);
     }
 
     @Override
     public void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
 
+    @Override
+    public void setTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 
-        /***
-         * 测试用 非正式代码!!!!
-         */
-        header = new AccountHeaderBuilder().withActivity(this)
-                .addProfiles(new ProfileDrawerItem().withIcon(R.mipmap.ic_launcher)
-                .withName(getString(R.string.hint_click_to_login)))
-                .withHeaderBackground(R.drawable.header)
-                .build();
-        drawer = new DrawerBuilder().withActivity(this)
-                .withToolbar(toolbar)
-                .withActionBarDrawerToggleAnimated(true)
-                .withAccountHeader(header)
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("首页").withIcon(R.mipmap.ic_home_black_36dp))
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("课余").withIcon(R.mipmap.ic_explore_black_24dp))
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("生活").withIcon(R.mipmap.ic_store_black_36dp))
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("图书馆").withIcon(R.mipmap.ic_local_library_black_36dp))
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("教务处").withIcon(R.mipmap.ic_school_black))
-                .addDrawerItems(
-                        new DividerDrawerItem())
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("主题设置"))
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("夜间模式"))
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("设 置"))
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("注 销"))
-                        .build();
-
+    @Override
+    public void switchDrawerItem(int id) {
+        if(id == DrawerItem.HOME.getId()){
+            setTitle(DrawerItem.HOME.getItemName());
+        }else if(id == DrawerItem.LEISURE.getId()){
+            setTitle(DrawerItem.LEISURE.getItemName());
+        }else if(id == DrawerItem.LIFE.getId()){
+            setTitle(DrawerItem.LIFE.getItemName());
+        }else if(id == DrawerItem.STUDY.getId()){
+            setTitle(DrawerItem.STUDY.getItemName());
+        }else if(id == DrawerItem.LIBRARY.getId()){
+            setTitle(DrawerItem.LIBRARY.getItemName());
+        }else if(id == DrawerItem.EDUCATION.getId()){
+            setTitle(DrawerItem.EDUCATION.getItemName());
+        }else if(id == DrawerItem.THEME.getId()){
+            setTitle(DrawerItem.THEME.getItemName());
+        }else if(id == DrawerItem.SETTINGS.getId()){
+            setTitle(DrawerItem.SETTINGS.getItemName());
+        }else if(id == DrawerItem.LOGOUT.getId()){
+            setTitle(DrawerItem.LOGOUT.getItemName());
+        }
 
     }
 }

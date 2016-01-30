@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="draw_item_list">
+        <item>Home</item>
+        <item>Leisure</item>
+        <item>Library</item>
+        <item>Education</item>
+        <item>Life</item>
+    </array>
+
+
+
+</resources>

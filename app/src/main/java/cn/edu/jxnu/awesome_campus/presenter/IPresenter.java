@@ -8,12 +8,8 @@ import cn.edu.jxnu.awesome_campus.view.IView;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public interface IPresenter<M extends IModel<M>,V extends IView<V>> {
+public interface IPresenter {
 
-    void setModel(M m);
-    M getModel();
-    void setView(V v);
-    V getView();
     void initlization();
 
 }

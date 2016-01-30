@@ -1,15 +1,17 @@
 package cn.edu.jxnu.awesome_campus.presenter.home;
 
-import cn.edu.jxnu.awesome_campus.model.home.DrawerItemModel;
+import android.app.Activity;
+import android.content.Context;
+import android.support.v7.widget.Toolbar;
+
 import cn.edu.jxnu.awesome_campus.presenter.IPresenter;
-import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 
 /**
  * Created by MummyDing on 16-1-29.
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public interface HomePresenter extends IPresenter<DrawerItemModel,HomeView> {
-
-
+public interface HomePresenter extends IPresenter{
+    void buildDrawer(Activity activity, Toolbar toolbar);
+    void buildHeader(Activity activity,String avatarURL,String studentID,String name);
 }

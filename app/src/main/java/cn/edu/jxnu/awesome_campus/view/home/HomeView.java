@@ -8,4 +8,6 @@ import cn.edu.jxnu.awesome_campus.view.IView;
  * Blog: http://blog.csdn.net/mummyding
  */
 public interface HomeView extends IView<HomeView> {
+    void setTitle(String title);
+    void switchDrawerItem(int id);
 }
