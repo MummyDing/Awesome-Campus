@@ -43,11 +43,11 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Override
     public void buildDrawer(Activity activity,Toolbar toolbar) {
-        header = new AccountHeaderBuilder().withActivity(activity)
-                .addProfiles(new ProfileDrawerItem().withIcon(R.drawable.logo)
-                        .withName(activity.getString(R.string.hint_click_to_login)))
-                .withHeaderBackground(R.drawable.header)
-                .build();
+
+        if(header == null){
+            //buildHeader(activity,);
+            // login    待补全
+        }
         drawer = new DrawerBuilder().withActivity(activity).withAccountHeader(header)
                 .withToolbar(toolbar).withActionBarDrawerToggleAnimated(true).addDrawerItems(
                 buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
@@ -66,8 +66,7 @@ public class HomePresenterImpl implements HomePresenter {
                         homeView.switchDrawerItem(drawerItem.getIdentifier());
                         return false;
                     }
-                })
-                .build();
+                }).build();
         homeView.setTitle(activity.getString(R.string.home));
 
     }
@@ -78,7 +77,7 @@ public class HomePresenterImpl implements HomePresenter {
             drawer.removeHeader();
         }
         if(header == null){
-            header = new AccountHeaderBuilder().withActivity(activity).build();
+            header = new AccountHeaderBuilder().withActivity(activity).withHeaderBackground(R.drawable.header).build();
         }else {
             header.clear();
         }
