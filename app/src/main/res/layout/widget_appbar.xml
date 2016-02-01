@@ -12,7 +12,6 @@
         android:id="@+id/toolbar"
         android:titleTextColor="?attr/colorPrimary"
         android:layout_width="match_parent"
-
         app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
         app:layout_scrollFlags="scroll|enterAlways"
         android:layout_height="wrap_content" /><!--android:layout_height="@dimen/tab_height"-->
@@ -21,15 +20,16 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:stl_defaultTabTextColor="#fff"
+        app:stl_defaultTabTextMinWidth="80dp"
         app:stl_indicatorCornerRadius="1.5dp"
         app:stl_indicatorInterpolation="smart"
         app:stl_indicatorThickness="3dp"
-        app:stl_defaultTabTextMinWidth="0dp"
         app:stl_indicatorWithoutPadding="true"
         android:background="?attr/colorPrimary"
-        app:stl_indicatorColor="#fff"
-        app:stl_defaultTabTextColor="#fff"
+        app:stl_dividerColor="?attr/colorPrimary"
         app:stl_defaultTabTextSize="15sp"
         android:visibility="gone"
-        android:layout_height="wrap_content" /><!-- android:layout_height="@dimen/tab_height"-->
+         />
 </android.support.design.widget.AppBarLayout>

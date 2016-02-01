@@ -29,4 +29,9 @@ public class DailyFragment extends BaseListFragment {
     public void initView() {
 
     }
+
+    @Override
+    protected void onNetworkBtnClick() {
+
+    }
 }

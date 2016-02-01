@@ -29,4 +29,9 @@ public class BookBorrowedFragment extends BaseListFragment{
     public void initView() {
 
     }
+
+    @Override
+    protected void onNetworkBtnClick() {
+
+    }
 }

@@ -30,4 +30,9 @@ public class CourseTableFragment extends BaseListFragment{
     public void initView() {
 
     }
+
+    @Override
+    protected void onNetworkBtnClick() {
+
+    }
 }

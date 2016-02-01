@@ -45,7 +45,6 @@ public class MainActivity extends BaseActivity implements HomeView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         presenter = new HomePresenterImpl(this);
         presenter.initlization();
         presenter.buildDrawer(this,toolbar);

@@ -29,4 +29,9 @@ public class CampusNewsFragment extends BaseListFragment {
     public void initView() {
 
     }
+
+    @Override
+    protected void onNetworkBtnClick() {
+
+    }
 }

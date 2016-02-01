@@ -102,7 +102,7 @@ public class HomePresenterImpl implements HomePresenter {
         StudyFragment.clearChildFragments();
         LibraryFragment.clearChildFragments();
         EducationFragment.clearChildFragments();
-        
+
     }
 
 
