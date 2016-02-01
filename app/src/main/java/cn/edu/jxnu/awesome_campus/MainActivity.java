@@ -25,6 +25,7 @@ import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
+import cn.edu.jxnu.awesome_campus.ui.login.LoginFragment;
 import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 
@@ -92,6 +93,13 @@ public class MainActivity extends BaseActivity implements HomeView{
             setTitle(DrawerItem.LOGOUT.getItemName());
         }
         fragmentTransaction.commit();
+    }
 
+    @Override
+    public void switchToLogin() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        setTitle(getString(R.string.Login));
+        fragmentTransaction.replace(R.id.framelayout, LoginFragment.newInstance());
+        fragmentTransaction.commit();
     }
 }

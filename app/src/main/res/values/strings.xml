@@ -25,6 +25,9 @@
     <string name="my_seat">Me</string>
     <string name="exam">Exam</string>
     <string name="source">Source</string>
+    <string name="Login">Login</string>
+    <string name="studentid">StudentID</string>
+    <string name="password">Password</string>
 
 
 </resources>

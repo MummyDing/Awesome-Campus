@@ -10,4 +10,5 @@ import cn.edu.jxnu.awesome_campus.view.IView;
 public interface HomeView extends IView<HomeView> {
     void setTitle(String title);
     void switchDrawerItem(int id);
+    void switchToLogin();
 }
