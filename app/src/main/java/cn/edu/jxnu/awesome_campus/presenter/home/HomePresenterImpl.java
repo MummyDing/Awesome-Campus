@@ -15,8 +15,14 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import cn.edu.jxnu.awesome_campus.R;
-import cn.edu.jxnu.awesome_campus.model.DrawerItem;
+import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
+import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
+import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
+import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
+import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
+import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 
 /**
@@ -47,6 +53,7 @@ public class HomePresenterImpl implements HomePresenter {
         if(header == null){
             //buildHeader(activity,);
             // login    待补全
+            buildHeader(activity,"","","");
         }
         drawer = new DrawerBuilder().withActivity(activity).withAccountHeader(header)
                 .withToolbar(toolbar).withActionBarDrawerToggleAnimated(true).addDrawerItems(
@@ -85,6 +92,17 @@ public class HomePresenterImpl implements HomePresenter {
             header.addProfiles(new ProfileDrawerItem().withIcon(R.drawable.logo)
                     .withName(activity.getString(R.string.hint_click_to_login)));
         }
+    }
+
+    @Override
+    public void clearAllFragments() {
+        HomeFragment.clearChildFragments();
+        LeisureFragment.clearChildFragments();
+        LifeFragment.clearChildFragments();
+        StudyFragment.clearChildFragments();
+        LibraryFragment.clearChildFragments();
+        EducationFragment.clearChildFragments();
+        
     }
 
 

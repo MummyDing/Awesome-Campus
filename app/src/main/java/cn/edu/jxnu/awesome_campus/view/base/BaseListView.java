@@ -9,4 +9,5 @@ public interface BaseListView extends BaseView<BaseListView> {
     boolean trySetupRefreshLayout();
     boolean trySetupSmartTabLayout();
     void cardViewTransition();
+    void bindAdapter();
 }

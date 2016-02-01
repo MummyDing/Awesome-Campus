@@ -14,7 +14,7 @@ import cn.edu.jxnu.awesome_campus.view.IView;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public abstract class BaseFragment extends Fragment implements IView{
+public abstract class BaseFragment extends Fragment {
 
     protected View parentView = null;
 
@@ -22,13 +22,16 @@ public abstract class BaseFragment extends Fragment implements IView{
 
     }
 
+    protected abstract void init();
+    public abstract String getTitle();
+
 
     protected abstract int getLayoutID();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         parentView = View.inflate(getContext(),getLayoutID(),null);
-        initView();
+        init();
         loadConfig();
         return parentView;
     }

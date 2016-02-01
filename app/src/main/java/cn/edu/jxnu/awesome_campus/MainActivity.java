@@ -16,18 +16,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-
-import cn.edu.jxnu.awesome_campus.model.DrawerItem;
+import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
+import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
+import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
+import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
+import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
+import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 
 /**
@@ -51,6 +49,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         presenter = new HomePresenterImpl(this);
         presenter.initlization();
         presenter.buildDrawer(this,toolbar);
+        switchDrawerItem(DrawerItem.HOME.getId());
     }
 
     @Override
@@ -66,18 +65,26 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     public void switchDrawerItem(int id) {
+        presenter.clearAllFragments();
+        fragmentTransaction = fragmentManager.beginTransaction();
         if(id == DrawerItem.HOME.getId()){
             setTitle(DrawerItem.HOME.getItemName());
+            fragmentTransaction.replace(R.id.framelayout, HomeFragment.newInstance());
         }else if(id == DrawerItem.LEISURE.getId()){
             setTitle(DrawerItem.LEISURE.getItemName());
+            fragmentTransaction.replace(R.id.framelayout, LeisureFragment.newInstance());
         }else if(id == DrawerItem.LIFE.getId()){
             setTitle(DrawerItem.LIFE.getItemName());
+            fragmentTransaction.replace(R.id.framelayout, LifeFragment.newInstance());
         }else if(id == DrawerItem.STUDY.getId()){
             setTitle(DrawerItem.STUDY.getItemName());
+            fragmentTransaction.replace(R.id.framelayout, StudyFragment.newInstance());
         }else if(id == DrawerItem.LIBRARY.getId()){
             setTitle(DrawerItem.LIBRARY.getItemName());
+            fragmentTransaction.replace(R.id.framelayout, LibraryFragment.newInstance());
         }else if(id == DrawerItem.EDUCATION.getId()){
             setTitle(DrawerItem.EDUCATION.getItemName());
+            fragmentTransaction.replace(R.id.framelayout, EducationFragment.newInstance());
         }else if(id == DrawerItem.THEME.getId()){
             setTitle(DrawerItem.THEME.getItemName());
         }else if(id == DrawerItem.SETTINGS.getId()){
@@ -85,6 +92,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         }else if(id == DrawerItem.LOGOUT.getId()){
             setTitle(DrawerItem.LOGOUT.getItemName());
         }
+        fragmentTransaction.commit();
 
     }
 }

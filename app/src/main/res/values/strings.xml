@@ -10,6 +10,21 @@
     <string name="theme">Theme</string>
     <string name="settings">Settings</string>
     <string name="logout">Logout</string>
+    <string name="course_table">CourseTable</string>
+    <string name="compus_news">CampusNews</string>
+    <string name="daily">Daily</string>
+    <string name="film">Film</string>
+    <string name="science">Science</string>
+    <string name="campus">Campus</string>
+    <string name="search_books">Search</string>
+    <string name="book_borrowed">Borrowed</string>
+    <string name="reading">Reading</string>
+    <string name="atm">ATM</string>
+    <string name="express">Express</string>
+    <string name="seat">Seat</string>
+    <string name="my_seat">Me</string>
+    <string name="exam">Exam</string>
+    <string name="source">Source</string>
 
 
 </resources>

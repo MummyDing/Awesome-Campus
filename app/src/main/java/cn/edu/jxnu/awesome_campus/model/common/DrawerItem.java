@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.model;
+package cn.edu.jxnu.awesome_campus.model.common;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
