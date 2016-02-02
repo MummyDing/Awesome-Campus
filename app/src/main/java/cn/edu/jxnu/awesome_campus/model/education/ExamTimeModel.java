@@ -48,12 +48,12 @@ public class ExamTimeModel implements IModel<ExamTimeModel> {
     }
 
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 

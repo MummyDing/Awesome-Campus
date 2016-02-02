@@ -9,7 +9,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class BorrowHistory implements IModel<BorrowHistory> {
+public class BorrowHistoryModel implements IModel<BorrowHistoryModel> {
 
     /***
     * 借阅历史缓存表
@@ -26,10 +26,10 @@ public class BorrowHistory implements IModel<BorrowHistory> {
     // 馆藏地
     private String BookLocation;
 
-    public BorrowHistory() {
+    public BorrowHistoryModel() {
     }
 
-    public BorrowHistory(String bookCode, String bookTitle, String author, String borrowTime, String backTime, String bookLocation) {
+    public BorrowHistoryModel(String bookCode, String bookTitle, String author, String borrowTime, String backTime, String bookLocation) {
         BookCode = bookCode;
         BookTitle = bookTitle;
         Author = author;
@@ -40,22 +40,20 @@ public class BorrowHistory implements IModel<BorrowHistory> {
 
 
     @Override
-    public List<BorrowHistory> loadFromNet() {
-        return null;
+    public void loadFromNet() {
     }
 
     @Override
-    public List<BorrowHistory> loadFromCache() {
-        return null;
+    public void loadFromCache() {
     }
 
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 

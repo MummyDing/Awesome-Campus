@@ -32,22 +32,20 @@ public class BookSearchHistoryModel implements IModel<BookSearchHistoryModel> {
 
 
     @Override
-    public List<BookSearchHistoryModel> loadFromNet() {
-        return null;
+    public void loadFromNet() {
     }
 
     @Override
-    public List<BookSearchHistoryModel> loadFromCache() {
-        return null;
+    public void loadFromCache() {
     }
 
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 

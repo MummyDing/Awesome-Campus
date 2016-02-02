@@ -43,22 +43,22 @@ public class BookBorrowedModel implements IModel<BookBorrowedModel> {
 
 
     @Override
-    public List<BookBorrowedModel> loadFromNet() {
-        return null;
+    public void loadFromNet() {
+
     }
 
     @Override
-    public List<BookBorrowedModel> loadFromCache() {
-        return null;
+    public void loadFromCache() {
+
     }
 
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 

@@ -51,12 +51,12 @@ public class CourseScoreModel implements IModel<CourseScoreModel> {
     }
 
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 

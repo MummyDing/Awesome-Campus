@@ -13,24 +13,24 @@ public interface IModel<T extends IModel> extends Serializable{
      * 从网络拉取数据
      * @return
      */
-    List<T> loadFromNet();
+    void loadFromNet();
 
     /**
      * 从数据库获取数据
      * @return
      */
-    List<T> loadFromCache();
+    void loadFromCache();
 
     /***
      * 清除缓存
      * @return
      */
-    boolean cleanCache();
+    boolean clearCache();
 
     /***
      * 写入缓存
      * @return
      */
-    boolean cache();
+    boolean cacheAll();
 
 }

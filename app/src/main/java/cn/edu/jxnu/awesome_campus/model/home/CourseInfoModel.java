@@ -38,22 +38,21 @@ public class CourseInfoModel implements IModel<CourseInfoModel> {
     }
 
     @Override
-    public List<CourseInfoModel> loadFromNet() {
-        return null;
+    public void loadFromNet() {
+
     }
 
     @Override
-    public List<CourseInfoModel> loadFromCache() {
-        return null;
+    public void loadFromCache() {
     }
 
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 

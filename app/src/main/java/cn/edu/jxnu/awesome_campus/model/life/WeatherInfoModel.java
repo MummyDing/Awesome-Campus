@@ -64,22 +64,20 @@ public class WeatherInfoModel implements IModel<WeatherInfoModel> {
 
 
     @Override
-    public List<WeatherInfoModel> loadFromNet() {
-        return null;
+    public void loadFromNet() {
     }
 
     @Override
-    public List<WeatherInfoModel> loadFromCache() {
-        return null;
+    public void loadFromCache() {
     }
 
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 

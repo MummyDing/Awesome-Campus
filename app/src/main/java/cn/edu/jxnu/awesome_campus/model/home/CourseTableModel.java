@@ -50,8 +50,7 @@ public class CourseTableModel implements IModel<CourseTableModel>{
      * @return
      */
     @Override
-    public List<CourseTableModel> loadFromNet() {
-        return null;
+    public void loadFromNet() {
     }
 
     /***
@@ -60,8 +59,7 @@ public class CourseTableModel implements IModel<CourseTableModel>{
      */
 
     @Override
-    public List<CourseTableModel> loadFromCache() {
-        return null;
+    public void loadFromCache() {
     }
 
     /**
@@ -69,12 +67,12 @@ public class CourseTableModel implements IModel<CourseTableModel>{
      * @return
      */
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 

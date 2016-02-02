@@ -28,8 +28,8 @@ public class CampusNewsModel implements IModel<CourseTableModel> {
     }
 
     @Override
-    public List<CourseTableModel> loadFromNet() {
-        return null;
+    public void loadFromNet() {
+
     }
 
     public CampusNewsModel(String newsTitle, String newsTime, String newsURL, String newsPicURL, String updateTime) {
@@ -41,17 +41,17 @@ public class CampusNewsModel implements IModel<CourseTableModel> {
     }
 
     @Override
-    public List<CourseTableModel> loadFromCache() {
-        return null;
+    public void loadFromCache() {
+
     }
 
     @Override
-    public boolean cleanCache() {
+    public boolean clearCache() {
         return false;
     }
 
     @Override
-    public boolean cache() {
+    public boolean cacheAll() {
         return false;
     }
 
