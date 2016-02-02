@@ -20,6 +20,8 @@ import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
+import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
+import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
@@ -65,33 +67,37 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     public void switchDrawerItem(int id) {
-        presenter.clearAllFragments();
-        fragmentTransaction = fragmentManager.beginTransaction();
         if(id == DrawerItem.HOME.getId()){
-            setTitle(DrawerItem.HOME.getItemName());
-            fragmentTransaction.replace(R.id.framelayout, HomeFragment.newInstance());
+            presenter.clearAllFragments();
+            switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
         }else if(id == DrawerItem.LEISURE.getId()){
-            setTitle(DrawerItem.LEISURE.getItemName());
-            fragmentTransaction.replace(R.id.framelayout, LeisureFragment.newInstance());
+            presenter.clearAllFragments();
+            switchFragment(LeisureFragment.newInstance(),DrawerItem.LEISURE.getItemName());
         }else if(id == DrawerItem.LIFE.getId()){
-            setTitle(DrawerItem.LIFE.getItemName());
-            fragmentTransaction.replace(R.id.framelayout, LifeFragment.newInstance());
+            presenter.clearAllFragments();
+            switchFragment(LifeFragment.newInstance(),DrawerItem.LIFE.getItemName());
         }else if(id == DrawerItem.STUDY.getId()){
-            setTitle(DrawerItem.STUDY.getItemName());
-            fragmentTransaction.replace(R.id.framelayout, StudyFragment.newInstance());
+            presenter.clearAllFragments();
+            switchFragment(StudyFragment.newInstance(),DrawerItem.STUDY.getItemName());
         }else if(id == DrawerItem.LIBRARY.getId()){
-            setTitle(DrawerItem.LIBRARY.getItemName());
-            fragmentTransaction.replace(R.id.framelayout, LibraryFragment.newInstance());
+            presenter.clearAllFragments();
+            switchFragment(LibraryFragment.newInstance(),DrawerItem.LIBRARY.getItemName());
         }else if(id == DrawerItem.EDUCATION.getId()){
-            setTitle(DrawerItem.EDUCATION.getItemName());
-            fragmentTransaction.replace(R.id.framelayout, EducationFragment.newInstance());
+            presenter.clearAllFragments();
+            switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
         }else if(id == DrawerItem.THEME.getId()){
-            setTitle(DrawerItem.THEME.getItemName());
+            //setTitle(DrawerItem.THEME.getItemName());
         }else if(id == DrawerItem.SETTINGS.getId()){
-            setTitle(DrawerItem.SETTINGS.getItemName());
+            //setTitle(DrawerItem.SETTINGS.getItemName());
         }else if(id == DrawerItem.LOGOUT.getId()){
-            setTitle(DrawerItem.LOGOUT.getItemName());
+            //setTitle(DrawerItem.LOGOUT.getItemName());
         }
+    }
+
+    private void switchFragment(TopNavigationFragment fragment, String title){
+        setTitle(title);
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout, fragment);
         fragmentTransaction.commit();
     }
 
