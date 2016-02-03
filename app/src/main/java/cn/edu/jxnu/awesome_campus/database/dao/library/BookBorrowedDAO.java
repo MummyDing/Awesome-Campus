@@ -3,7 +3,7 @@ package cn.edu.jxnu.awesome_campus.database.dao.library;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
-import cn.edu.jxnu.awesome_campus.model.libary.BookBorrowedModel;
+import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
 
 /**
  * Created by MummyDing on 16-2-2.
