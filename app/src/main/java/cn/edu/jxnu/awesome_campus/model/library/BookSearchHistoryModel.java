@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.model.library;
 
+import java.util.List;
+
 import cn.edu.jxnu.awesome_campus.database.dao.library.BookSearchHistoryDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 

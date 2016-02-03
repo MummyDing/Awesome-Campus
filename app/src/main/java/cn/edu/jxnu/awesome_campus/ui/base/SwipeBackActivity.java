@@ -118,7 +118,7 @@ public class SwipeBackActivity extends BaseActivity {
         }
 
         public void replaceLayer(Activity activity) {
-            leftShadow = activity.getResources().getDrawable(R.drawable.left_shadow);
+            leftShadow = activity.getResources().getDrawable(R.drawable.left_shadow,null);
             touchSlop = (int) (touchSlopDP * activity.getResources().getDisplayMetrics().density);
             sideWidth = (int) (sideWidthInDP * activity.getResources().getDisplayMetrics().density);
             mActivity = activity;

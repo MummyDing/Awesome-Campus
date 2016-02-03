@@ -37,9 +37,9 @@ public class InitApp extends Application{
         Fresco.initialize(AppContext);
 
 
-        /***
+        /**
          * 此处用于加载头像 使用了Fresco --- By MummyDing
-          */
+         */
         DrawerImageLoader.init(new DrawerImageLoader.IDrawerImageLoader() {
             @Override
             public void set(final ImageView imageView, Uri uri, final Drawable placeholder) {
