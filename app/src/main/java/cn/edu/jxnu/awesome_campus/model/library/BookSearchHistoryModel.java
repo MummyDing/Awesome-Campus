@@ -10,7 +10,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class BookSearchHistoryModel implements IModel<BookSearchHistoryModel> {
+public class BookSearchHistoryModel  implements IModel<BookSearchHistoryModel> {
 
     private BookSearchHistoryDAO bookSearchHistoryDAO;
     /***

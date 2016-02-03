@@ -10,7 +10,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class CampusNewsModel implements IModel<CampusNewsModel> {
+public class CampusNewsModel  implements IModel<CampusNewsModel> {
 
 
     private CampusNewsDAO campusNewsDAO;
