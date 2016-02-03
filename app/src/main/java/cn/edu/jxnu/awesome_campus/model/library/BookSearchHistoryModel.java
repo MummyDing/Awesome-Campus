@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.model.library;
 
+import java.util.List;
+
 import cn.edu.jxnu.awesome_campus.database.dao.library.BookSearchHistoryDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
@@ -8,7 +10,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class BookSearchHistoryModel implements IModel<BookSearchHistoryModel> {
+public class BookSearchHistoryModel  implements IModel<BookSearchHistoryModel> {
 
     private BookSearchHistoryDAO bookSearchHistoryDAO;
     /***
