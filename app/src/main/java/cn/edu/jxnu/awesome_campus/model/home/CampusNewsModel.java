@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.model.home;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.dao.home.CampusNewsDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
@@ -9,9 +10,10 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class CampusNewsModel implements IModel<CourseTableModel> {
+public class CampusNewsModel implements IModel<CampusNewsModel> {
 
 
+    private CampusNewsDAO campusNewsDAO;
     /**
      * 校内新闻
      */
@@ -25,14 +27,12 @@ public class CampusNewsModel implements IModel<CourseTableModel> {
     private String UpdateTime;
 
     public CampusNewsModel() {
+        campusNewsDAO = new CampusNewsDAO();
     }
 
-    @Override
-    public void loadFromNet() {
-
-    }
 
     public CampusNewsModel(String newsTitle, String newsTime, String newsURL, String newsPicURL, String updateTime) {
+        this();
         NewsTitle = newsTitle;
         NewsTime = newsTime;
         NewsURL = newsURL;
@@ -40,19 +40,26 @@ public class CampusNewsModel implements IModel<CourseTableModel> {
         UpdateTime = updateTime;
     }
 
-    @Override
-    public void loadFromCache() {
 
-    }
 
     @Override
     public boolean clearCache() {
-        return false;
+        return campusNewsDAO.clearCache();
     }
 
     @Override
-    public boolean cacheAll() {
-        return false;
+    public void loadFromCache(List<CampusNewsModel> list) {
+        campusNewsDAO.loadFromCache(list);
+    }
+
+    @Override
+    public void loadFromNet(List<CampusNewsModel> list) {
+        campusNewsDAO.loadFromNet(list);
+    }
+
+    @Override
+    public boolean cacheAll(List<CampusNewsModel> list) {
+        return campusNewsDAO.cacheAll(list);
     }
 
     public String getNewsTitle() {

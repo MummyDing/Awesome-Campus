@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.model.libary;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.dao.library.BorrowHistoryDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
@@ -11,6 +12,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  */
 public class BorrowHistoryModel implements IModel<BorrowHistoryModel> {
 
+    private BorrowHistoryDAO borrowHistoryDAO;
     /***
     * 借阅历史缓存表
     */
@@ -27,9 +29,11 @@ public class BorrowHistoryModel implements IModel<BorrowHistoryModel> {
     private String BookLocation;
 
     public BorrowHistoryModel() {
+        borrowHistoryDAO = new BorrowHistoryDAO();
     }
 
     public BorrowHistoryModel(String bookCode, String bookTitle, String author, String borrowTime, String backTime, String bookLocation) {
+        this();
         BookCode = bookCode;
         BookTitle = bookTitle;
         Author = author;
@@ -38,23 +42,24 @@ public class BorrowHistoryModel implements IModel<BorrowHistoryModel> {
         BookLocation = bookLocation;
     }
 
-
     @Override
-    public void loadFromNet() {
+    public void loadFromCache(List<BorrowHistoryModel> list) {
+        borrowHistoryDAO.loadFromCache(list);
     }
 
     @Override
-    public void loadFromCache() {
+    public void loadFromNet(List<BorrowHistoryModel> list) {
+        borrowHistoryDAO.loadFromNet(list);
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        return borrowHistoryDAO.clearCache();
     }
 
     @Override
-    public boolean cacheAll() {
-        return false;
+    public boolean cacheAll(List<BorrowHistoryModel> list) {
+        return borrowHistoryDAO.cacheAll(list);
     }
 
     public String getBookCode() {

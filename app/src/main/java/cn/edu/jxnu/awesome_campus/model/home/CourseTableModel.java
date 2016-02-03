@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.model.home;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.dao.home.CourseTableDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
@@ -10,6 +11,8 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class CourseTableModel implements IModel<CourseTableModel>{
+
+    private CourseTableDAO courseTableDAO;
     /***
      * 课程表
      */
@@ -30,9 +33,11 @@ public class CourseTableModel implements IModel<CourseTableModel>{
 
 
     public CourseTableModel() {
+        courseTableDAO = new CourseTableDAO();
     }
 
     public CourseTableModel(int dayOfWeek, String term, String oneTwo, String three, String four, String five, String sixSeven, String eightNine, String night) {
+        this();
         DayOfWeek = dayOfWeek;
         Term = term;
         OneTwo = oneTwo;
@@ -45,35 +50,24 @@ public class CourseTableModel implements IModel<CourseTableModel>{
     }
 
 
-    /**
-     * 从网络拉取数据
-     * @return
-     */
     @Override
-    public void loadFromNet() {
+    public void loadFromCache(List<CourseTableModel> list) {
+        courseTableDAO.loadFromCache(list);
     }
 
-    /***
-     * 从数据库从获取数据
-     * @return
-     */
-
     @Override
-    public void loadFromCache() {
+    public void loadFromNet(List<CourseTableModel> list) {
+        courseTableDAO.loadFromNet(list);
     }
 
-    /**
-     * 清除缓存
-     * @return
-     */
     @Override
     public boolean clearCache() {
-        return false;
+        return courseTableDAO.clearCache();
     }
 
     @Override
-    public boolean cacheAll() {
-        return false;
+    public boolean cacheAll(List<CourseTableModel> list) {
+        return courseTableDAO.cacheAll(list);
     }
 
     public int getDayOfWeek() {

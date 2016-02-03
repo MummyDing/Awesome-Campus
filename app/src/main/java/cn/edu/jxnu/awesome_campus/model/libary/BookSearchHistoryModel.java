@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.model.libary;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.dao.library.BookSearchHistoryDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
@@ -11,6 +12,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  */
 public class BookSearchHistoryModel implements IModel<BookSearchHistoryModel> {
 
+    private BookSearchHistoryDAO bookSearchHistoryDAO;
     /***
      * 检索历史缓存表
      */
@@ -22,9 +24,11 @@ public class BookSearchHistoryModel implements IModel<BookSearchHistoryModel> {
     private String SearchKeyword;
 
     public BookSearchHistoryModel() {
+        bookSearchHistoryDAO = new BookSearchHistoryDAO();
     }
 
     public BookSearchHistoryModel(String searchTime, String searchCondition, String searchKeyword) {
+        this();
         SearchTime = searchTime;
         SearchCondition = searchCondition;
         SearchKeyword = searchKeyword;
@@ -32,21 +36,23 @@ public class BookSearchHistoryModel implements IModel<BookSearchHistoryModel> {
 
 
     @Override
-    public void loadFromNet() {
+    public void loadFromCache(List<BookSearchHistoryModel> list) {
+        bookSearchHistoryDAO.loadFromCache(list);
     }
 
     @Override
-    public void loadFromCache() {
+    public void loadFromNet(List<BookSearchHistoryModel> list) {
+        bookSearchHistoryDAO.loadFromNet(list);
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        return bookSearchHistoryDAO.clearCache();
     }
 
     @Override
-    public boolean cacheAll() {
-        return false;
+    public boolean cacheAll(List<BookSearchHistoryModel> list) {
+        return bookSearchHistoryDAO.cacheAll(list);
     }
 
     public String getSearchTime() {

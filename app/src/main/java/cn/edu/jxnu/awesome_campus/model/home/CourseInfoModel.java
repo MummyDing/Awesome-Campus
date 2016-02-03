@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.model.home;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.dao.home.CourseInfoDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
@@ -11,7 +12,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  */
 public class CourseInfoModel implements IModel<CourseInfoModel> {
 
-
+    private CourseInfoDAO courseInfoDAO;
     /**
      * 课程信息
      */
@@ -26,9 +27,11 @@ public class CourseInfoModel implements IModel<CourseInfoModel> {
     private String ClassForumLink;
 
     public CourseInfoModel() {
+        courseInfoDAO = new CourseInfoDAO();
     }
 
     public CourseInfoModel(String courseName, String courseID, String courseTeacher, String courseClass, String classmateListLink, String classForumLink) {
+        this();
         CourseName = courseName;
         CourseID = courseID;
         CourseTeacher = courseTeacher;
@@ -38,22 +41,23 @@ public class CourseInfoModel implements IModel<CourseInfoModel> {
     }
 
     @Override
-    public void loadFromNet() {
-
+    public void loadFromCache(List<CourseInfoModel> list) {
+        courseInfoDAO.loadFromCache(list);
     }
 
     @Override
-    public void loadFromCache() {
+    public void loadFromNet(List<CourseInfoModel> list) {
+        courseInfoDAO.loadFromNet(list);
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        return courseInfoDAO.clearCache();
     }
 
     @Override
-    public boolean cacheAll() {
-        return false;
+    public boolean cacheAll(List<CourseInfoModel> list) {
+        return courseInfoDAO.cacheAll(list);
     }
 
     public String getCourseName() {

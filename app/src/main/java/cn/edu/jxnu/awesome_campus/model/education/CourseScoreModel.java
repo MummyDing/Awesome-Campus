@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.model.education;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.dao.education.CourseScoreDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
@@ -11,6 +12,8 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  */
 public class CourseScoreModel implements IModel<CourseScoreModel> {
 
+
+    private CourseScoreDAO courseScoreDAO;
     /***
      * 考试成绩表
      */
@@ -27,9 +30,11 @@ public class CourseScoreModel implements IModel<CourseScoreModel> {
     private String StandardScore;
 
     public CourseScoreModel() {
+        courseScoreDAO = new CourseScoreDAO();
     }
 
     public CourseScoreModel(String term, String courseID, String courseName, String courseCredit, String courseScore, String againScore, String standardScore) {
+        this();
         Term = term;
         CourseID = courseID;
         CourseName = courseName;
@@ -41,25 +46,24 @@ public class CourseScoreModel implements IModel<CourseScoreModel> {
 
 
     @Override
-    public List<CourseScoreModel> loadFromNet() {
-        return null;
+    public void loadFromCache(List<CourseScoreModel> list) {
+        courseScoreDAO.loadFromCache(list);
     }
 
     @Override
-    public List<CourseScoreModel> loadFromCache() {
-        return null;
+    public void loadFromNet(List<CourseScoreModel> list) {
+        courseScoreDAO.loadFromNet(list);
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        return courseScoreDAO.clearCache();
     }
 
     @Override
-    public boolean cacheAll() {
-        return false;
+    public boolean cacheAll(List<CourseScoreModel> list) {
+        return courseScoreDAO.cacheAll(list);
     }
-
 
     public String getTerm() {
         return Term;

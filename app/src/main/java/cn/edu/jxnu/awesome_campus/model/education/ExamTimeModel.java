@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.model.education;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.dao.education.ExamTimeDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
@@ -11,7 +12,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  */
 public class ExamTimeModel implements IModel<ExamTimeModel> {
 
-
+    protected ExamTimeDAO examTimeDAO;
     /**
      * 考试安排表
      */
@@ -25,9 +26,11 @@ public class ExamTimeModel implements IModel<ExamTimeModel> {
     private String Remark;
 
     public ExamTimeModel() {
+        examTimeDAO = new ExamTimeDAO();
     }
 
     public ExamTimeModel(String courseID, String courseName, String examTime, String examRoom, String examSeat, String remark) {
+        this();
         CourseID = courseID;
         CourseName = courseName;
         ExamTime = examTime;
@@ -38,25 +41,24 @@ public class ExamTimeModel implements IModel<ExamTimeModel> {
 
 
     @Override
-    public List<ExamTimeModel> loadFromNet() {
-        return null;
+    public void loadFromCache(List<ExamTimeModel> list) {
+        examTimeDAO.loadFromCache(list);
     }
 
     @Override
-    public List<ExamTimeModel> loadFromCache() {
-        return null;
+    public void loadFromNet(List<ExamTimeModel> list) {
+        examTimeDAO.loadFromNet(list);
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        return examTimeDAO.clearCache();
     }
 
     @Override
-    public boolean cacheAll() {
-        return false;
+    public boolean cacheAll(List<ExamTimeModel> list) {
+        return examTimeDAO.cacheAll(list);
     }
-
 
     public String getCourseID() {
         return CourseID;

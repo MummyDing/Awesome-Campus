@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.model.life;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.dao.life.WeatherInfoDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
@@ -11,6 +12,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  */
 public class WeatherInfoModel implements IModel<WeatherInfoModel> {
 
+    private WeatherInfoDAO weatherInfoDAO;
     /**
      * 天气信息表
      * 当天气源返回的数据中有对应的名称时采用该名称命名字段，当没有对应名称时以数组名_对应下标命名
@@ -37,9 +39,11 @@ public class WeatherInfoModel implements IModel<WeatherInfoModel> {
     private String wuran_1;//污染指数长
 
     public WeatherInfoModel() {
+        weatherInfoDAO = new WeatherInfoDAO();
     }
 
     public WeatherInfoModel(String city_name, String temperature, String info, String day_2, String night_2, String dataUptime, String direct, String power, String offset, String windspeed, String chuanyi_0, String chuangyi_1, String yundong_0, String yundong_1, String ganmao_0, String ganmao_1, String ziwaixian_0, String ziwaixian_1, String wuran_0, String wuran_1) {
+        this();
         this.city_name = city_name;
         this.temperature = temperature;
         this.info = info;
@@ -64,23 +68,24 @@ public class WeatherInfoModel implements IModel<WeatherInfoModel> {
 
 
     @Override
-    public void loadFromNet() {
+    public void loadFromCache(List<WeatherInfoModel> list) {
+        weatherInfoDAO.loadFromCache(list);
     }
 
     @Override
-    public void loadFromCache() {
+    public void loadFromNet(List<WeatherInfoModel> list) {
+        weatherInfoDAO.loadFromNet(list);
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        return weatherInfoDAO.clearCache();
     }
 
     @Override
-    public boolean cacheAll() {
-        return false;
+    public boolean cacheAll(List<WeatherInfoModel> list) {
+        return weatherInfoDAO.cacheAll(list);
     }
-
 
     public String getCity_name() {
         return city_name;
