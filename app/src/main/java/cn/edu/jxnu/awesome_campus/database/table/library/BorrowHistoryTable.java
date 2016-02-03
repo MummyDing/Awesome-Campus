@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.database.table.libary;
+package cn.edu.jxnu.awesome_campus.database.table.library;
 
 /**
  * Created by MummyDing on 16-1-26.

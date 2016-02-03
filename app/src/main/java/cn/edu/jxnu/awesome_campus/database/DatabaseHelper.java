@@ -4,17 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import cn.edu.jxnu.awesome_campus.database.table.education.CourseScoreTable;
-import cn.edu.jxnu.awesome_campus.database.table.education.ExamTimeTable;
-import cn.edu.jxnu.awesome_campus.database.table.home.CampusNewsTable;
-import cn.edu.jxnu.awesome_campus.database.table.home.CourseInfoTable;
-import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
-import cn.edu.jxnu.awesome_campus.database.table.libary.BookBorrowedTable;
-import cn.edu.jxnu.awesome_campus.database.table.libary.BookSearchHistoryTable;
-import cn.edu.jxnu.awesome_campus.database.table.libary.BorrowHistoryTable;
-import cn.edu.jxnu.awesome_campus.database.table.life.ExpressInfoTable;
-import cn.edu.jxnu.awesome_campus.database.table.life.WeatherInfoTable;
-
 /**
  * Created by MummyDing on 16-2-2.
  * GitHub: https://github.com/MummyDing

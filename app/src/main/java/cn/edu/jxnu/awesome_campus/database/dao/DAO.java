@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface DAO<M> {
     /**
-     * 讲数据写入到数据库中
+     * 将数据写入到数据库中
      * @param list  数据源 需要写入的数据
      * @return
      */

@@ -1,6 +1,4 @@
-package cn.edu.jxnu.awesome_campus.model.libary;
-
-import java.util.List;
+package cn.edu.jxnu.awesome_campus.model.library;
 
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
@@ -9,42 +7,47 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class BorrowHistoryModel implements IModel<BorrowHistoryModel> {
+public class BookBorrowedModel implements IModel<BookBorrowedModel> {
 
-    /***
-    * 借阅历史缓存表
-    */
-
+    /**
+     * 已借图书缓存表
+     */
     // 图书条形号
     private String BookCode;
     private String BookTitle;
     private String Author;
-    // 借阅日期
+    // 借书日期
     private String BorrowTime;
-    // 归还日期
-    private String BackTime;
+    //
+    // 应还日期
+    private String ShouldBackTime;
+    // 续借次数
+    private String AgainTimes;
     // 馆藏地
     private String BookLocation;
 
-    public BorrowHistoryModel() {
+    public BookBorrowedModel() {
     }
 
-    public BorrowHistoryModel(String bookCode, String bookTitle, String author, String borrowTime, String backTime, String bookLocation) {
+    public BookBorrowedModel(String bookCode, String bookTitle, String author, String borrowTime, String shouldBackTime, String againTimes, String bookLocation) {
         BookCode = bookCode;
         BookTitle = bookTitle;
         Author = author;
         BorrowTime = borrowTime;
-        BackTime = backTime;
+        ShouldBackTime = shouldBackTime;
+        AgainTimes = againTimes;
         BookLocation = bookLocation;
     }
 
 
     @Override
     public void loadFromNet() {
+
     }
 
     @Override
     public void loadFromCache() {
+
     }
 
     @Override
@@ -56,6 +59,7 @@ public class BorrowHistoryModel implements IModel<BorrowHistoryModel> {
     public boolean cacheAll() {
         return false;
     }
+
 
     public String getBookCode() {
         return BookCode;
@@ -89,12 +93,20 @@ public class BorrowHistoryModel implements IModel<BorrowHistoryModel> {
         BorrowTime = borrowTime;
     }
 
-    public String getBackTime() {
-        return BackTime;
+    public String getShouldBackTime() {
+        return ShouldBackTime;
     }
 
-    public void setBackTime(String backTime) {
-        BackTime = backTime;
+    public void setShouldBackTime(String shouldBackTime) {
+        ShouldBackTime = shouldBackTime;
+    }
+
+    public String getAgainTimes() {
+        return AgainTimes;
+    }
+
+    public void setAgainTimes(String againTimes) {
+        AgainTimes = againTimes;
     }
 
     public String getBookLocation() {
