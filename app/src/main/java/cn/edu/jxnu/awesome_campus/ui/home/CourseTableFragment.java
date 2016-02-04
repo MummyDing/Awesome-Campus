@@ -31,13 +31,6 @@ public class CourseTableFragment extends BaseListFragment{
 
     @Override
     public void initView() {
-        final ColorButton colorButton = (ColorButton) parentView.findViewById(R.id.colorBtn);
-        colorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorButton.setChecked(!colorButton.isChecked());
-            }
-        });
     }
 
     @Override

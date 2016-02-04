@@ -17,7 +17,7 @@ import android.view.View;
 public class ColorButton extends View {
 
 
-    private int mRadius = 20;
+    private int mRadius = 40;
     private int mColor = Color.RED;
     private boolean isChecked = false;
 
@@ -26,8 +26,9 @@ public class ColorButton extends View {
     private int paddingRight;
     private int paddingTop;
     private int paddingBottom;
-    private int width = 50;
-    private int height = 50;
+    private int width;
+    private int height;
+    private int defaultWidth = 80;
 
     private int count = 0;
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -52,40 +53,39 @@ public class ColorButton extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+
+       // Log.d("size: Times","this is "+ count++ +"times");
+        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+        int widthSpec = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSpec = MeasureSpec.getSize(heightMeasureSpec);
+
+        if(widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(defaultWidth,defaultWidth);
+        }else if(widthSpecMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(defaultWidth,heightSpec);
+        }else if(heightSpecMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(widthSpec,defaultWidth);
+        }
+
+
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
         paddingLeft = getPaddingLeft();
         paddingRight = getPaddingRight();
         paddingTop = getPaddingTop();
         paddingBottom = getPaddingBottom();
-
-        /*Log.d("size: Times","this is "+ count++ +"times");
-        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        if(widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST){
-            setMeasuredDimension(20,20);
-            width = height = 20;
-            Log.d("size: 1",width+" "+height+" ");
-        }else if(widthSpecMode == MeasureSpec.AT_MOST){
-            height = getHeight();
-            setMeasuredDimension(width,height);
-            Log.d("size: 2",width+" "+height+" ");
-        }else if(heightSpecMode == MeasureSpec.AT_MOST){
-            width = getWidth();
-            setMeasuredDimension(getWidth(),height);
-            Log.d("size: 3",width+" "+height+" ");
-        }else {
-            width = getWidth();
-            height = getHeight();
-            Log.d("size: 4",width+" "+height+" ");
-        }*/
-
         width = getWidth() - paddingLeft - paddingRight;
         height = getHeight() - paddingTop - paddingBottom;
         int halfWidth = Math.min(width,height)/2;
         mRadius = halfWidth <= 0 ? mRadius : halfWidth;
-
-        Log.d("size: width height ",width+" "+height+" "+mRadius);
-        mPaint.setStrokeWidth(4);
+        paddingTop = (height - 2*mRadius)/2;
+        paddingLeft = (width - 2*mRadius)/2;
+        mPaint.setStrokeWidth(5);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class ColorButton extends View {
 
     private void drawCircle(Canvas canvas){
         mPaint.setColor(mColor);
-        canvas.drawCircle(paddingLeft+width/2,paddingTop+height/2,mRadius,mPaint);
+        canvas.drawCircle(width/2,height/2,mRadius,mPaint);
     }
 
     private void drawCheck(Canvas canvas){
@@ -111,9 +111,9 @@ public class ColorButton extends View {
             mPaint.setColor(Color.WHITE);
         }
 
-        Point p1 = new Point(paddingLeft + mRadius/2,paddingTop + mRadius);
-        Point p2 = new Point(paddingLeft + (int)(0.75 * (double) mRadius),paddingTop + (int)(1.4 * (double) mRadius));
-        Point p3 = new Point(paddingLeft + (int)(1.4 * (double)mRadius),paddingLeft +(int)(0.75 * (double) mRadius));
+        Point p1 = new Point(paddingLeft + (int)(0.3 * (double) mRadius),paddingTop + mRadius);
+        Point p2 = new Point(paddingLeft + (int)(0.8 * (double) mRadius),paddingTop + (int)(1.4 * (double) mRadius));
+        Point p3 = new Point(paddingLeft + (int)(1.4 * (double)mRadius),paddingTop +(int)(0.4 * (double) mRadius));
 
         canvas.drawLine(p1.x,p1.y,p2.x,p2.y,mPaint);
         canvas.drawLine(p2.x,p2.y,p3.x,p3.y,mPaint);
@@ -126,6 +126,7 @@ public class ColorButton extends View {
 
     public void setmRadius(int mRadius) {
         this.mRadius = mRadius;
+        mPaint.setStrokeWidth(5);
         invalidate();
     }
 

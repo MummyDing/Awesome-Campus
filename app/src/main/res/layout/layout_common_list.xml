@@ -26,12 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"/>
-    <cn.edu.jxnu.awesome_campus.view.widget.ColorButton
-        android:id="@+id/colorBtn"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="200dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp" />
     <!--<ImageButton
         android:background="@mipmap/ic_wifi_off_white"
         android:layout_centerInParent="true"
