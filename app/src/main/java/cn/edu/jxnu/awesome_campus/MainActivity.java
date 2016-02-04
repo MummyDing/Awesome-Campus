@@ -11,6 +11,7 @@
 
 package cn.edu.jxnu.awesome_campus;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
 import cn.edu.jxnu.awesome_campus.ui.login.LoginFragment;
 import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
+import cn.edu.jxnu.awesome_campus.view.widget.ColorPickerDialog;
 
 /**
  * Created by MummyDing on 16-1-24.
@@ -86,6 +88,10 @@ public class MainActivity extends BaseActivity implements HomeView{
             presenter.clearAllFragments();
             switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
         }else if(id == DrawerItem.THEME.getId()){
+
+            ColorPickerDialog dialog = new ColorPickerDialog(this,new int[]{Color.YELLOW,Color.BLACK,Color.BLUE,Color.GRAY,
+            Color.GREEN,Color.CYAN,Color.RED,Color.DKGRAY});
+            dialog.build().show();
             //setTitle(DrawerItem.THEME.getItemName());
         }else if(id == DrawerItem.SETTINGS.getId()){
             //setTitle(DrawerItem.SETTINGS.getItemName());
