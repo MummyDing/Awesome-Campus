@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.view.widget;
+package cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog;
 
 import android.content.Context;
 import android.graphics.Canvas;

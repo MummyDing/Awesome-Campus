@@ -1,10 +1,13 @@
-package cn.edu.jxnu.awesome_campus.view.widget;
+package cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplyUtil;
@@ -14,15 +17,20 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.DisplyUtil;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class ColorPickerDialog {
+public class ColorPickerDialog implements View.OnClickListener{
 
     private Context mContext;
     private View view;
+    private List<ColorButton> colorButtons = new ArrayList<>();
+    private ColorButton currentCheckedButton;
+    private AlertDialog dialog;
     private int [] colors;
     private int rowCount;
     private int colCount;
     private int width;
     private int defaultPadding;
+
+    private OnColorChangedListener listener;
     public ColorPickerDialog(Context context) {
         this.mContext = context;
         defaultPadding = DisplyUtil.dip2px(context,20);
@@ -50,7 +58,9 @@ public class ColorPickerDialog {
         for(int i=0 ; i<colors.length ; i++){
             ColorButton colorButton = new ColorButton(mContext,colors[i]);
             colorButton.setPadding(defaultPadding,defaultPadding,defaultPadding/2,0);
+            colorButton.setOnClickListener(this);
             linearLayouts[i/widthCount].addView(colorButton);
+            colorButtons.add(colorButton);
             width = colorButton.getMeasuredWidth() + defaultPadding;
         }
 
@@ -68,7 +78,7 @@ public class ColorPickerDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(R.string.theme);
         builder.setView(view);
-        AlertDialog dialog = builder.create();
+        dialog = builder.create();
         dialog.setIcon(R.mipmap.ic_theme_black);
         dialog.show();
         //dialog.getWindow().setLayout(width*rowCount,width*colCount);
@@ -79,5 +89,40 @@ public class ColorPickerDialog {
 
     public void setColors(int[] colors) {
         this.colors = colors;
+    }
+
+    public boolean setCheckedColor(int color){
+        boolean changed = false;
+        if(colorButtons.size() >0 ){
+            for(ColorButton colorButton:colorButtons){
+                if(colorButton.getmColor() == color){
+                    if(currentCheckedButton !=null){
+                        currentCheckedButton.setChecked(false);
+                    }
+                    changed = true;
+                    colorButton.setChecked(true);
+                    currentCheckedButton = colorButton;
+                    break;
+                }
+            }
+        }
+        return changed;
+    }
+
+    public void setOnColorChangedListener(OnColorChangedListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        ColorButton colorButton = (ColorButton) v;
+        if(setCheckedColor(colorButton.getmColor())){
+            if(listener !=null ){
+                listener.onColorChanged(colorButton.getmColor());
+                if(dialog !=null){
+                   // dialog.dismiss();
+                }
+            }
+        }
     }
 }
