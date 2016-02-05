@@ -7,7 +7,7 @@ import android.content.Context;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class DisplyUtil {
+public class DisplayUtil {
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import cn.edu.jxnu.awesome_campus.model.education.ExamTimeModel;
 import cn.edu.jxnu.awesome_campus.support.utils.html.HtmlUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
 
 /**
  * 解析考试时间
@@ -48,6 +49,8 @@ public class ExamTimePrase {
             resultList=hu.parseString(ITEM_CSS);
             fillEndList();
         } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (NullHtmlStringException e) {
             e.printStackTrace();
         }
     }
