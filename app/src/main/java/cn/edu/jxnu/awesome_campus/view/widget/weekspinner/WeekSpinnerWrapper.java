@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.view.widget.weekspinner;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SlidingPaneLayout;
@@ -25,23 +26,28 @@ public class WeekSpinnerWrapper{
 
     private Context mContext;
 
+    private int defaultPadding;
 
+    private int offSet = 60;
     private OnDayChangedListener listener;
 
     public WeekSpinnerWrapper(Context mContext) {
         this.mContext = mContext;
+        defaultPadding = DisplayUtil.dip2px(mContext,30);
     }
 
     public Spinner build(){
+
+        int spinnerWidth = DisplayUtil.getScreenWidth(mContext) - defaultPadding;
         // init spinner
         spinner = new Spinner(mContext);
-        spinner.setDropDownVerticalOffset(DisplayUtil.dip2px(mContext,50));
-        spinner.setDropDownWidth(DisplayUtil.dip2px(mContext,200));
-        int pd = DisplayUtil.dip2px(mContext,50);
-        spinner.setPadding(pd/2,pd/2,pd/2,pd);
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        spinner.setDropDownVerticalOffset(DisplayUtil.dip2px(mContext,offSet));
+        spinner.setDropDownHorizontalOffset(DisplayUtil.dip2px(mContext,offSet));
+        spinner.setDropDownWidth(spinnerWidth - defaultPadding);
+        spinner.setPadding(defaultPadding/2,defaultPadding,defaultPadding/2,defaultPadding/2);
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(spinnerWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
         spinner.setLayoutParams(lp);
-
+        //spinner.setBackground(ContextCompat.getDrawable(mContext,R.drawable.spinnerbg));
         // init adapter
         String [] daysOfWeek =
                 {mContext.getString(R.string.monday),mContext.getString(R.string.tuesday),

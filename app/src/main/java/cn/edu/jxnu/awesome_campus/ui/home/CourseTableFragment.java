@@ -36,7 +36,7 @@ public class CourseTableFragment extends BaseListFragment{
         spinnerWrapper.setOnDayChangedListener(new OnDayChangedListener() {
             @Override
             public void onDayChanged(int day) {
-                Toast.makeText(getContext(),day+"",Toast.LENGTH_SHORT);
+                Toast.makeText(getContext(),day+"",Toast.LENGTH_SHORT).show();
             }
         });
         headerLayout.addView(spinnerWrapper.build());
