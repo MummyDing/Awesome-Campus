@@ -11,16 +11,17 @@
 
 package cn.edu.jxnu.awesome_campus;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
-import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
@@ -30,6 +31,8 @@ import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
 import cn.edu.jxnu.awesome_campus.ui.login.LoginFragment;
 import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
+import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.ColorPickerDialog;
+import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.OnColorChangedListener;
 
 /**
  * Created by MummyDing on 16-1-24.
@@ -86,6 +89,21 @@ public class MainActivity extends BaseActivity implements HomeView{
             presenter.clearAllFragments();
             switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
         }else if(id == DrawerItem.THEME.getId()){
+
+            /***
+             * 测试用　非正式代码！！！！！！　－－－－By MummyDing
+             */
+            ColorPickerDialog dialog = new ColorPickerDialog(this,new int[]{Color.YELLOW,Color.BLACK,Color.BLUE,Color.GRAY,
+            Color.GREEN,Color.CYAN,Color.RED,Color.DKGRAY});
+
+            dialog.setOnColorChangedListener(new OnColorChangedListener() {
+                @Override
+                public void onColorChanged(int newColor) {
+                    Toast.makeText(getApplicationContext(),"Color "+newColor,Toast.LENGTH_SHORT).show();
+                }
+            });
+            dialog.build().show();
+            dialog.setCheckedColor(Color.YELLOW);
             //setTitle(DrawerItem.THEME.getItemName());
         }else if(id == DrawerItem.SETTINGS.getId()){
             //setTitle(DrawerItem.SETTINGS.getItemName());

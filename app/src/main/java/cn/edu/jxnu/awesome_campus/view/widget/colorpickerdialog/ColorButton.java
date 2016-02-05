@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.view.widget;
+package cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplyUtil;
+
 /**
  * Created by MummyDing on 16-2-3.
  * GitHub: https://github.com/MummyDing
@@ -17,7 +19,7 @@ import android.view.View;
 public class ColorButton extends View {
 
 
-    private int mRadius = 40;
+    private int mRadius;
     private int mColor = Color.RED;
     private boolean isChecked = false;
 
@@ -28,7 +30,7 @@ public class ColorButton extends View {
     private int paddingBottom;
     private int width;
     private int height;
-    private int defaultWidth = 80;
+    private int defaultWidth;
 
     private int count = 0;
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -36,6 +38,8 @@ public class ColorButton extends View {
     public ColorButton(Context context,int color) {
         super(context);
         this.mColor = color;
+        defaultWidth = DisplyUtil.dip2px(context,70);
+        mRadius = DisplyUtil.dip2px(context,20);
     }
 
     public ColorButton(Context context) {

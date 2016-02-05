@@ -1,11 +1,8 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
-import android.view.View;
-
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
-import cn.edu.jxnu.awesome_campus.view.widget.ColorButton;
 
 /**
  * Created by MummyDing on 16-1-31.
