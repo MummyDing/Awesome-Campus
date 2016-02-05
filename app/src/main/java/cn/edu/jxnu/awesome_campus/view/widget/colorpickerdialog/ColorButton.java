@@ -11,6 +11,7 @@ import android.view.View;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 
 /**
+ * https://github.com/MummyDing/ColorPickerDialog
  * Created by MummyDing on 16-2-4.
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding

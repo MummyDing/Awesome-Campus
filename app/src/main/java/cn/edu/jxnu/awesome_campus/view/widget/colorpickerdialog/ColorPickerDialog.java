@@ -13,6 +13,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 
 /**
+ * https://github.com/MummyDing/ColorPickerDialog
  * Created by MummyDing on 16-2-5.
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
@@ -132,6 +133,7 @@ public class ColorPickerDialog implements View.OnClickListener{
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
             lp.setMargins(0,0,defaultPadding,0);
             linearLayouts[i/widthCount].addView(colorButton,lp);
+            colorButtonList.add(colorButton);
         }
 
         return this;
@@ -152,10 +154,10 @@ public class ColorPickerDialog implements View.OnClickListener{
         dialog.getWindow().setLayout((DisplayUtil.dip2px(mContext,30)+defaultPadding)*colCount+defaultPadding*3,DisplayUtil.dip2px(mContext,100+30*rowCount)+defaultPadding*rowCount);
     }
 
-    public void setCheckedColor(int color){
+    public ColorPickerDialog setCheckedColor(int color){
 
         if(currentButton != null && color == currentButton.getmColor()){
-            return;
+            return this;
         }
         for(ColorButton colorButton: colorButtonList){
             if(color == colorButton.getmColor()){
@@ -167,14 +169,17 @@ public class ColorPickerDialog implements View.OnClickListener{
                 currentButton = colorButton;
             }
         }
+        return this;
     }
 
-    public void setOnColorChangedListener(OnColorChangedListener listener) {
+    public ColorPickerDialog setOnColorChangedListener(OnColorChangedListener listener) {
         this.listener = listener;
+        return this;
     }
 
-    public void setTitle(String title) {
+    public ColorPickerDialog setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public String getTitle() {
