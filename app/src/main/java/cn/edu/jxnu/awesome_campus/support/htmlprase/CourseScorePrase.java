@@ -6,6 +6,7 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.support.utils.html.HtmlUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
 
 /**
  * 使用：通过传进来html后，执行getEndList()即可获取模型对象集
@@ -78,6 +79,8 @@ public class CourseScorePrase {
             }
         } catch (UnsupportedEncodingException e) {
             System.out.println("解析失败");//JUnit调试用
+            e.printStackTrace();
+        } catch (NullHtmlStringException e) {
             e.printStackTrace();
         }
     }
