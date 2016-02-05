@@ -6,10 +6,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
-import cn.edu.jxnu.awesome_campus.support.utils.common.DisplyUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 
 /**
  * Created by MummyDing on 16-2-3.
@@ -38,8 +37,8 @@ public class ColorButton extends View {
     public ColorButton(Context context,int color) {
         super(context);
         this.mColor = color;
-        defaultWidth = DisplyUtil.dip2px(context,70);
-        mRadius = DisplyUtil.dip2px(context,20);
+        defaultWidth = DisplayUtil.dip2px(context,70);
+        mRadius = DisplayUtil.dip2px(context,20);
     }
 
     public ColorButton(Context context) {

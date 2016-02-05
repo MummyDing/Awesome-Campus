@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.R;
-import cn.edu.jxnu.awesome_campus.support.utils.common.DisplyUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 
 /**
  * Created by MummyDing on 16-2-3.
@@ -33,7 +33,7 @@ public class ColorPickerDialog implements View.OnClickListener{
     private OnColorChangedListener listener;
     public ColorPickerDialog(Context context) {
         this.mContext = context;
-        defaultPadding = DisplyUtil.dip2px(context,20);
+        defaultPadding = DisplayUtil.dip2px(context,20);
     }
 
     public ColorPickerDialog(Context context , int [] colors){
@@ -82,7 +82,7 @@ public class ColorPickerDialog implements View.OnClickListener{
         dialog.setIcon(R.mipmap.ic_theme_black);
         dialog.show();
         //dialog.getWindow().setLayout(width*rowCount,width*colCount);
-        dialog.getWindow().setLayout(DisplyUtil.dip2px(mContext,90)*colCount,DisplyUtil.dip2px(mContext,100)+DisplyUtil.dip2px(mContext,80)*rowCount);
+        dialog.getWindow().setLayout(DisplayUtil.dip2px(mContext,90)*colCount, DisplayUtil.dip2px(mContext,100)+ DisplayUtil.dip2px(mContext,80)*rowCount);
         Log.d("size width",width+" "+rowCount+" "+colCount);
 
     }
