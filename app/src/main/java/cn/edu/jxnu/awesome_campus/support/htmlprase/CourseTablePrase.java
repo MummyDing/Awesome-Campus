@@ -54,7 +54,7 @@ public class CourseTablePrase {
         //先对待解析数据进行划分，避免非有效数据干扰
         String endStr;
         String firstCut[]=praseStr.split(LEFT_SP_STR);
-        if(firstCut.length>=1){
+        if(firstCut.length>1){
             String secondCut[]=firstCut[1].split(RIGHT_SP_STR);
             endStr=secondCut[0];
         }
