@@ -24,7 +24,7 @@ public class HtmlUtil {
      * @author KevinWu
      * create at 2016/2/3 12:59
      */
-    public HtmlUtil(String htmlString, String... charsetName) throws UnsupportedEncodingException {
+    public HtmlUtil(String htmlString, String... charsetName) throws UnsupportedEncodingException, NullHtmlStringException {
         if (TextUtil.isNull(htmlString)!=true) {
             if (charsetName.length == 1) {
                 String ehtmlString = URLEncoder.encode(htmlString, charsetName[0]);
@@ -34,6 +34,7 @@ public class HtmlUtil {
             }
         } else {
             this.doc = null;
+            throw new NullHtmlStringException("html解析数据空异常");
         }
     }
 
