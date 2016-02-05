@@ -26,6 +26,11 @@ public class ReadingFragment extends BaseListFragment {
     }
 
     @Override
+    public void addHeader() {
+
+    }
+
+    @Override
     public void initView() {
 
     }

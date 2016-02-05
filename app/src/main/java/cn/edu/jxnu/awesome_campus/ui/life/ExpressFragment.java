@@ -26,6 +26,11 @@ public class ExpressFragment extends BaseListFragment{
     }
 
     @Override
+    public void addHeader() {
+
+    }
+
+    @Override
     public void initView() {
 
     }

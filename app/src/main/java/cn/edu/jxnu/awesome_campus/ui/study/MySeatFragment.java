@@ -26,6 +26,11 @@ public class MySeatFragment extends BaseListFragment {
     }
 
     @Override
+    public void addHeader() {
+
+    }
+
+    @Override
     public void initView() {
 
     }

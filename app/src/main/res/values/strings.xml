@@ -28,6 +28,13 @@
     <string name="Login">Login</string>
     <string name="studentid">StudentID</string>
     <string name="password">Password</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thusday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
 
 
 </resources>
