@@ -29,6 +29,7 @@ public class CourseScoreDAO implements DAO<CourseScoreModel> {
     @Override
     public void loadFromNet(List<CourseScoreModel> list) {
 
+
     }
 
 }
