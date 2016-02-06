@@ -5,7 +5,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
 import java.util.LinkedList;
 import java.util.List;
 
