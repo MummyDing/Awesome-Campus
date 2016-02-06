@@ -35,6 +35,7 @@
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
+    <string name="hint_search">Search Book</string>
 
 
 </resources>

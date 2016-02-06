@@ -32,6 +32,9 @@ public class CourseTableFragment extends BaseListFragment{
 
     @Override
     public void addHeader() {
+        /**
+         *非正式代码，待完善
+         */
         WeekSpinnerWrapper spinnerWrapper = new WeekSpinnerWrapper(getContext());
         spinnerWrapper.setOnDayChangedListener(new OnDayChangedListener() {
             @Override

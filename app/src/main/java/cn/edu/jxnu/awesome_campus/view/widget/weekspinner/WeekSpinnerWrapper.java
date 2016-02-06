@@ -33,7 +33,7 @@ public class WeekSpinnerWrapper{
 
     public WeekSpinnerWrapper(Context mContext) {
         this.mContext = mContext;
-        defaultPadding = DisplayUtil.dip2px(mContext,30);
+        defaultPadding = DisplayUtil.dip2px(mContext,20);
     }
 
     public Spinner build(){
@@ -42,12 +42,11 @@ public class WeekSpinnerWrapper{
         // init spinner
         spinner = new Spinner(mContext);
         spinner.setDropDownVerticalOffset(DisplayUtil.dip2px(mContext,offSet));
-        spinner.setDropDownHorizontalOffset(DisplayUtil.dip2px(mContext,offSet));
         spinner.setDropDownWidth(spinnerWidth - defaultPadding);
-        spinner.setPadding(defaultPadding/2,defaultPadding,defaultPadding/2,defaultPadding/2);
+        spinner.setPadding(defaultPadding,defaultPadding,defaultPadding,defaultPadding);
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(spinnerWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
         spinner.setLayoutParams(lp);
-        //spinner.setBackground(ContextCompat.getDrawable(mContext,R.drawable.spinnerbg));
+
         // init adapter
         String [] daysOfWeek =
                 {mContext.getString(R.string.monday),mContext.getString(R.string.tuesday),

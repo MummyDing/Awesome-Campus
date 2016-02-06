@@ -1,0 +1,8 @@
+<searchable
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="@string/app_name"
+    android:hint="@string/hint_search"
+    android:searchSuggestAuthority="cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider"
+    android:searchSuggestSelection=" ?">
+
+</searchable>
