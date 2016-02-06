@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.view.IView;
 
 /**
@@ -24,7 +25,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void init();
     public abstract String getTitle();
-
+    public abstract void onEventComing(EventModel eventModel);
 
     protected abstract int getLayoutID();
     @Nullable
@@ -34,5 +35,12 @@ public abstract class BaseFragment extends Fragment {
         init();
         loadConfig();
         return parentView;
+    }
+
+
+    public void onEventMainThread(EventModel eventModel){
+        if(eventModel != null){
+           onEventComing(eventModel);
+        }
     }
 }

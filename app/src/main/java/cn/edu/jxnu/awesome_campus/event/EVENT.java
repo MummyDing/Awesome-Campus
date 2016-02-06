@@ -1,0 +1,30 @@
+package cn.edu.jxnu.awesome_campus.event;
+
+/**
+ * Created by MummyDing on 16-2-6.
+ * GitHub: https://github.com/MummyDing
+ * Blog: http://blog.csdn.net/mummyding
+ */
+public class EVENT {
+    /**
+     * Event Code
+     */
+    // Course Table
+    public static final int COURSE_TABLE_REFRESH_SUCCESS = 1;
+    public static final int COURSE_TABLE_REFRESH_FAILURE = 2;
+
+    // Course Info
+    public static final int COURSE_INFO_REFRESH_SUCCESS = 3;
+    public static final int COURSE_INFO_REFRESH_FAILURE = 4;
+
+    // Campus News
+    public static final int CAMPUS_NEWS_REFRESH_SUCCESS = 5;
+    public static final int CAMPUS_NEWS_REFRESH_FAILURE = 6;
+
+    // Course Score
+    public static final int COURSE_SCORE_REFRESH_SUCCESS = 7;
+    public static final int COURSE_SCORE_REFRESH_FAILURE = 8;
+
+
+
+}

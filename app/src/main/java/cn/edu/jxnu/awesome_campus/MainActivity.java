@@ -33,6 +33,7 @@ import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.ColorPickerDialog;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.OnColorChangedListener;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by MummyDing on 16-1-24.
@@ -51,6 +52,9 @@ public class MainActivity extends BaseActivity implements HomeView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        EventBus.getDefault().register(this);
+
         presenter = new HomePresenterImpl(this);
         presenter.initlization();
         presenter.buildDrawer(this,toolbar);
@@ -125,5 +129,12 @@ public class MainActivity extends BaseActivity implements HomeView{
         setTitle(getString(R.string.Login));
         fragmentTransaction.replace(R.id.framelayout, LoginFragment.newInstance());
         fragmentTransaction.commit();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

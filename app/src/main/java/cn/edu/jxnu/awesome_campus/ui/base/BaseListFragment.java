@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.view.base.BaseListView;
 
 /**
@@ -80,6 +81,10 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     }
 
 
+    @Override
+    public void onEventComing(EventModel eventModel) {
+        // 暂时不重写子类
+        // 在这里就可以根据EventCode进行相应的处理
 
-
+    }
 }
