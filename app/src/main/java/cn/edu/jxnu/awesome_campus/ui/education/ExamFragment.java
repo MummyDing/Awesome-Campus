@@ -26,6 +26,11 @@ public class ExamFragment extends BaseListFragment {
     }
 
     @Override
+    public void addHeader() {
+
+    }
+
+    @Override
     public void initView() {
 
     }

@@ -4,6 +4,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
@@ -18,12 +19,14 @@ import cn.edu.jxnu.awesome_campus.view.base.BaseListView;
  */
 public abstract class BaseListFragment extends BaseFragment implements BaseListView {
 
+    protected FrameLayout headerLayout;
     protected RecyclerView recyclerView;
     protected RecyclerView.LayoutManager layoutManager;
     protected ProgressBar progressBar;
     protected ImageButton networkBtn;
     @Override
     protected void init() {
+        headerLayout = (FrameLayout) parentView.findViewById(R.id.headerLayout);
         layoutManager = new LinearLayoutManager(InitApp.AppContext);
         progressBar = (ProgressBar) parentView.findViewById(R.id.progressBar);
         networkBtn = (ImageButton) parentView.findViewById(R.id.networkBtn);
@@ -38,6 +41,8 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
                 onNetworkBtnClick();
             }
         });
+
+        addHeader();
         initView();
     }
 
