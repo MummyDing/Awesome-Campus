@@ -10,8 +10,14 @@ public class Urlconfig {
     public static final String CourseScore_URL="http://jwc.jxnu.edu.cn/MyControl/All_Display.aspx?UserControl=xfz_cj.ascx&Action=Personal";
     //考试安排获取url
     public static final String ExamTime_URL="http://jwc.jxnu.edu.cn/User/default.aspx?&code=129&&uctl=MyControl%5cxfz_test_schedule.ascx";
+
+    //校内新闻的url
+    public static final String CampusNews_URL="http://news.jxnu.edu.cn/s/271/t/910/p/12/list.htm";
+
+
     //图书馆登录url
     public static final String Library_Login_URL="http://219.229.250.138:8080/reader/redr_verify.php";
     //图书馆重定向url
     public static final String Library_Redirect_URL="http://219.229.250.138:8080/reader/redr_cust_result.php";
+
 }

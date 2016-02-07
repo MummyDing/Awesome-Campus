@@ -19,6 +19,11 @@ public class CampusNewsPrase {
     private final static String ITEM_CSS = "table[class=columnStyle]";//选择CSS
     private final static String REFERENCE_STR = "2015-12-24";//参考时间字符串
     private String praseStr;//待解析字符串
+
+    public List<CampusNewsModel> getEndList() {
+        return endList;
+    }
+
     private List<String> resultList;//结果列表
     private List<CampusNewsModel> endList;//最终返回列表
 

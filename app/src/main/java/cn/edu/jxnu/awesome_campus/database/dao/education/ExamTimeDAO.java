@@ -12,7 +12,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.education.ExamTimeModel;
-import cn.edu.jxnu.awesome_campus.support.htmlprase.CourseScorePrase;
+import cn.edu.jxnu.awesome_campus.support.htmlprase.ExamTimePrase;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
@@ -53,7 +53,7 @@ public class ExamTimeDAO implements DAO<ExamTimeModel> {
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
-                CourseScorePrase myPrase = new CourseScorePrase(result);
+                ExamTimePrase myPrase = new ExamTimePrase(result);
                 List list = myPrase.getEndList();
                 if (list != null) {
                     // 缓存数据
