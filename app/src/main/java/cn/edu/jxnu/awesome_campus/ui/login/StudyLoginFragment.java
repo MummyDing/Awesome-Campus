@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.login;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 
 /**
@@ -18,6 +19,11 @@ public class StudyLoginFragment extends BaseFragment {
     @Override
     public String getTitle() {
         return InitApp.AppContext.getString(R.string.study);
+    }
+
+    @Override
+    public void onEventComing(EventModel eventModel) {
+
     }
 
     @Override

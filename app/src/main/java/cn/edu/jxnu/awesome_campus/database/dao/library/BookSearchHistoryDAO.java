@@ -22,12 +22,12 @@ public class BookSearchHistoryDAO implements DAO<BookSearchHistoryModel> {
     }
 
     @Override
-    public void loadFromCache(List<BookSearchHistoryModel> list) {
+    public void loadFromCache() {
 
     }
 
     @Override
-    public void loadFromNet(List<BookSearchHistoryModel> list) {
+    public void loadFromNet() {
 
     }
 

@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.life;
 
 import java.util.ArrayList;
 
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 
@@ -25,5 +26,10 @@ public class LifeFragment extends TopNavigationFragment{
     public static LifeFragment newInstance(){
         addChildFragments();
         return new LifeFragment();
+    }
+
+    @Override
+    public void onEventComing(EventModel eventModel) {
+
     }
 }

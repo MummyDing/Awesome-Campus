@@ -36,13 +36,13 @@ public class BookSearchHistoryModel  implements IModel<BookSearchHistoryModel> {
 
 
     @Override
-    public void loadFromCache(List<BookSearchHistoryModel> list) {
-        bookSearchHistoryDAO.loadFromCache(list);
+    public void loadFromCache() {
+        bookSearchHistoryDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<BookSearchHistoryModel> list) {
-        bookSearchHistoryDAO.loadFromNet(list);
+    public void loadFromNet() {
+        bookSearchHistoryDAO.loadFromNet();
     }
 
     @Override

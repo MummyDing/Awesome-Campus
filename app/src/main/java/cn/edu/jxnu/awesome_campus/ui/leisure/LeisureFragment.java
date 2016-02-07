@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.leisure;
 
 import java.util.ArrayList;
 
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 
 /**
@@ -26,5 +27,10 @@ public class LeisureFragment extends TopNavigationFragment{
     public static LeisureFragment newInstance(){
         addChildFragments();
         return new LeisureFragment();
+    }
+
+    @Override
+    public void onEventComing(EventModel eventModel) {
+
     }
 }

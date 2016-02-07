@@ -41,13 +41,13 @@ public class ExamTimeModel implements IModel<ExamTimeModel> {
 
 
     @Override
-    public void loadFromCache(List<ExamTimeModel> list) {
-        examTimeDAO.loadFromCache(list);
+    public void loadFromCache() {
+        examTimeDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<ExamTimeModel> list) {
-        examTimeDAO.loadFromNet(list);
+    public void loadFromNet() {
+        examTimeDAO.loadFromNet();
     }
 
     @Override

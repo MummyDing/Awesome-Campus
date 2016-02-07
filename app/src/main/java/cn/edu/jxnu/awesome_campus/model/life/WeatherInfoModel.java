@@ -68,13 +68,13 @@ public class WeatherInfoModel implements IModel<WeatherInfoModel> {
 
 
     @Override
-    public void loadFromCache(List<WeatherInfoModel> list) {
-        weatherInfoDAO.loadFromCache(list);
+    public void loadFromCache() {
+        weatherInfoDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<WeatherInfoModel> list) {
-        weatherInfoDAO.loadFromNet(list);
+    public void loadFromNet() {
+        weatherInfoDAO.loadFromNet();
     }
 
     @Override

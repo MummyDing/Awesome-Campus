@@ -46,13 +46,13 @@ public class BookBorrowedModel implements IModel<BookBorrowedModel> {
     }
 
     @Override
-    public void loadFromCache(List<BookBorrowedModel> list) {
-        bookBorrowedDAO.loadFromCache(list);
+    public void loadFromCache() {
+        bookBorrowedDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<BookBorrowedModel> list) {
-        bookBorrowedDAO.loadFromNet(list);
+    public void loadFromNet() {
+        bookBorrowedDAO.loadFromNet();
     }
 
     @Override

@@ -22,12 +22,12 @@ public class ExamTimeDAO implements DAO<ExamTimeModel> {
     }
 
     @Override
-    public void loadFromCache(List<ExamTimeModel> list) {
+    public void loadFromCache() {
 
     }
 
     @Override
-    public void loadFromNet(List<ExamTimeModel> list) {
+    public void loadFromNet() {
 
     }
 

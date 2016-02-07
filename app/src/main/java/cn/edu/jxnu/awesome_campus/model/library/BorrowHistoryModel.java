@@ -43,13 +43,13 @@ public class BorrowHistoryModel  implements IModel<BorrowHistoryModel> {
     }
 
     @Override
-    public void loadFromCache(List<BorrowHistoryModel> list) {
-        borrowHistoryDAO.loadFromCache(list);
+    public void loadFromCache() {
+        borrowHistoryDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<BorrowHistoryModel> list) {
-        borrowHistoryDAO.loadFromNet(list);
+    public void loadFromNet() {
+        borrowHistoryDAO.loadFromNet();
     }
 
     @Override

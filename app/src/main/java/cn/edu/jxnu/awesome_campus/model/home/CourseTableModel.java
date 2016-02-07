@@ -51,13 +51,13 @@ public class CourseTableModel implements IModel<CourseTableModel>{
 
 
     @Override
-    public void loadFromCache(List<CourseTableModel> list) {
-        courseTableDAO.loadFromCache(list);
+    public void loadFromCache() {
+        courseTableDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<CourseTableModel> list) {
-        courseTableDAO.loadFromNet(list);
+    public void loadFromNet() {
+        courseTableDAO.loadFromNet();
     }
 
     @Override

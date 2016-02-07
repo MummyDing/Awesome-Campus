@@ -22,12 +22,12 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
     }
 
     @Override
-    public void loadFromCache(List<BookBorrowedModel> list) {
+    public void loadFromCache() {
 
     }
 
     @Override
-    public void loadFromNet(List<BookBorrowedModel> list) {
+    public void loadFromNet() {
 
     }
 }

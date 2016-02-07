@@ -25,13 +25,13 @@ public interface DAO<M> {
 
     /***
      * 从数据库中获取数据
-     * @param list 如果获取到数据则添加到list中(添加前先clear)   失败则发送失败消息(EventBus)
+     * 如果获取到数据则添加到list中　发送成功消息   没有获取到数据则发送失败消息(EventBus)
      */
-    void loadFromCache(List<M> list);
+    void loadFromCache();
 
     /**
      * 从网络拉取数据
-     * @param list 如果拉取成功则将拉取的数据添加到list中(添加前先clear)  失败则发送失败消息(EventBus)
+     * 如果拉取成功则将拉取的数据添加到list中发送成功消息 并缓存数据  失败则发送失败消息(EventBus)
      */
-    void loadFromNet(List<M> list);
+    void loadFromNet();
 }

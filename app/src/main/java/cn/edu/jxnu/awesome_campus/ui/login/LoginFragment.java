@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.login;
 
 import java.util.ArrayList;
 
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 
@@ -29,6 +30,8 @@ public class LoginFragment extends TopNavigationFragment{
     }
 
 
+    @Override
+    public void onEventComing(EventModel eventModel) {
 
-
+    }
 }

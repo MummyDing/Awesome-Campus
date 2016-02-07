@@ -22,12 +22,12 @@ public class CourseInfoDAO implements DAO<CourseInfoModel> {
     }
 
     @Override
-    public void loadFromCache(List<CourseInfoModel> list) {
+    public void loadFromCache() {
 
     }
 
     @Override
-    public void loadFromNet(List<CourseInfoModel> list) {
+    public void loadFromNet() {
 
     }
 }

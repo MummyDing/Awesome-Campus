@@ -22,12 +22,12 @@ public class BorrowHistoryDAO implements DAO<BorrowHistoryModel> {
     }
 
     @Override
-    public void loadFromCache(List<BorrowHistoryModel> list) {
+    public void loadFromCache() {
 
     }
 
     @Override
-    public void loadFromNet(List<BorrowHistoryModel> list) {
+    public void loadFromNet() {
 
     }
 }

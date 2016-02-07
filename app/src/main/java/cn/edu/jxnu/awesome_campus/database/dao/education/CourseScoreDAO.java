@@ -38,12 +38,12 @@ public class CourseScoreDAO implements DAO<CourseScoreModel> {
     }
 
     @Override
-    public void loadFromCache(List<CourseScoreModel> list) {
+    public void loadFromCache() {
 
     }
 
     @Override
-    public void loadFromNet(List<CourseScoreModel> list) {
+    public void loadFromNet() {
 
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String cookies = "ASP.NET_SessionId=" +
@@ -58,6 +58,8 @@ public class CourseScoreDAO implements DAO<CourseScoreModel> {
                 CourseScorePrase myPrase = new CourseScorePrase(result);
                 List list = myPrase.getEndList();
                 if (list != null) {
+                    // 缓存数据
+                    cacheAll(list);
                     //发送获取成功消息
                     EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_SCORE_REFRESH_SUCCESS, list));
                 } else {

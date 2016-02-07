@@ -46,13 +46,13 @@ public class CourseScoreModel implements IModel<CourseScoreModel> {
 
 
     @Override
-    public void loadFromCache(List<CourseScoreModel> list) {
-        courseScoreDAO.loadFromCache(list);
+    public void loadFromCache() {
+        courseScoreDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<CourseScoreModel> list) {
-        courseScoreDAO.loadFromNet(list);
+    public void loadFromNet() {
+        courseScoreDAO.loadFromNet();
     }
 
     @Override

@@ -22,12 +22,12 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
     }
 
     @Override
-    public void loadFromCache(List<CampusNewsModel> list) {
+    public void loadFromCache() {
 
     }
 
     @Override
-    public void loadFromNet(List<CampusNewsModel> list) {
+    public void loadFromNet() {
 
     }
 

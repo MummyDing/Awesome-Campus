@@ -48,13 +48,13 @@ public class CampusNewsModel  implements IModel<CampusNewsModel> {
     }
 
     @Override
-    public void loadFromCache(List<CampusNewsModel> list) {
-        campusNewsDAO.loadFromCache(list);
+    public void loadFromCache() {
+        campusNewsDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<CampusNewsModel> list) {
-        campusNewsDAO.loadFromNet(list);
+    public void loadFromNet() {
+        campusNewsDAO.loadFromNet();
     }
 
     @Override

@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.education;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -9,7 +10,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class SourceFragment extends BaseListFragment {
+public class CourseScoreFragment extends BaseListFragment {
     @Override
     public String getTitle() {
         return InitApp.AppContext.getString(R.string.source);
@@ -37,6 +38,11 @@ public class SourceFragment extends BaseListFragment {
 
     @Override
     protected void onNetworkBtnClick() {
+
+    }
+
+    @Override
+    public void onEventComing(EventModel eventModel) {
 
     }
 }

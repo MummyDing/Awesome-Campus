@@ -41,13 +41,13 @@ public class CourseInfoModel  implements IModel<CourseInfoModel> {
     }
 
     @Override
-    public void loadFromCache(List<CourseInfoModel> list) {
-        courseInfoDAO.loadFromCache(list);
+    public void loadFromCache() {
+        courseInfoDAO.loadFromCache();
     }
 
     @Override
-    public void loadFromNet(List<CourseInfoModel> list) {
-        courseInfoDAO.loadFromNet(list);
+    public void loadFromNet() {
+        courseInfoDAO.loadFromNet();
     }
 
     @Override

@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.home;
 
 import java.util.ArrayList;
 
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 
 /**
@@ -26,4 +27,8 @@ public class HomeFragment extends TopNavigationFragment {
         return new HomeFragment();
     }
 
+    @Override
+    public void onEventComing(EventModel eventModel) {
+
+    }
 }

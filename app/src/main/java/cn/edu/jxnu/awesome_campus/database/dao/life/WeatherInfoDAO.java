@@ -22,12 +22,12 @@ public class WeatherInfoDAO implements DAO<WeatherInfoModel> {
     }
 
     @Override
-    public void loadFromCache(List<WeatherInfoModel> list) {
+    public void loadFromCache() {
 
     }
 
     @Override
-    public void loadFromNet(List<WeatherInfoModel> list) {
+    public void loadFromNet() {
 
     }
 }
