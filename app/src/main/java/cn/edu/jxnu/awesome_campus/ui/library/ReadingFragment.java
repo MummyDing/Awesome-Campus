@@ -1,15 +1,5 @@
 package cn.edu.jxnu.awesome_campus.ui.library;
 
-import android.app.SearchManager;
-import android.content.Context;
-import android.view.TextureView;
-import android.view.View;
-import android.widget.SearchView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
@@ -41,7 +31,7 @@ public class ReadingFragment extends BaseListFragment {
         /**
          * 测使用　非正式代码！！！！！　－－－－By MummyDing
          */
-        final SearchView searchView = new SearchView(getContext());
+      /*  final SearchView searchView = new SearchView(getContext());
         searchView.setQueryHint("点击搜索");
         searchView.setFilterTouchesWhenObscured(true);
         searchView.setSubmitButtonEnabled(true);
@@ -55,7 +45,7 @@ public class ReadingFragment extends BaseListFragment {
         });
 
         headerLayout.addView(searchView);
-
+*/
     }
 
     @Override
