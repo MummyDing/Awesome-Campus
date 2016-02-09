@@ -12,6 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import org.angmarch.views.NiceSpinner;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 
@@ -22,42 +28,32 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
  */
 public class WeekSpinnerWrapper{
 
-    private Spinner spinner;
+    private NiceSpinner spinner;
 
     private Context mContext;
 
-    private int defaultPadding;
-
-    private int offSet = 60;
     private OnDayChangedListener listener;
+
+    private int index = 0;
 
     public WeekSpinnerWrapper(Context mContext) {
         this.mContext = mContext;
-        defaultPadding = DisplayUtil.dip2px(mContext,20);
     }
 
-    public Spinner build(){
-
-        int spinnerWidth = DisplayUtil.getScreenWidth(mContext) - defaultPadding;
+    public NiceSpinner build(){
         // init spinner
-        spinner = new Spinner(mContext);
-        spinner.setDropDownVerticalOffset(DisplayUtil.dip2px(mContext,offSet));
-        spinner.setDropDownWidth(spinnerWidth - defaultPadding);
-        spinner.setPadding(defaultPadding,defaultPadding,defaultPadding,defaultPadding);
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(spinnerWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
-        spinner.setLayoutParams(lp);
+        spinner = new NiceSpinner(mContext);
 
-        // init adapter
-        String [] daysOfWeek =
-                {mContext.getString(R.string.monday),mContext.getString(R.string.tuesday),
+        // init data
+        List<String> daysOfWeek =new LinkedList<String>(
+        Arrays.asList(mContext.getString(R.string.monday),mContext.getString(R.string.tuesday),
                         mContext.getString(R.string.wednesday), mContext.getString(R.string.thusday),
                         mContext.getString(R.string.friday),mContext.getString(R.string.saturday),
-                        mContext.getString(R.string.sunday)};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item,daysOfWeek);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        mContext.getString(R.string.sunday)));
 
-        spinner.setAdapter(adapter);
+        spinner.attachDataSource(daysOfWeek);
 
+        spinner.setSelectedIndex(index);
         if(listener != null) {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -71,12 +67,14 @@ public class WeekSpinnerWrapper{
                 }
             });
         }
-
-
         return spinner;
     }
 
     public void setOnDayChangedListener(OnDayChangedListener listener) {
         this.listener = listener;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

@@ -36,6 +36,7 @@ public class CourseTableFragment extends BaseListFragment{
          *非正式代码，待完善
          */
         WeekSpinnerWrapper spinnerWrapper = new WeekSpinnerWrapper(getContext());
+        spinnerWrapper.setIndex(3);
         spinnerWrapper.setOnDayChangedListener(new OnDayChangedListener() {
             @Override
             public void onDayChanged(int day) {

@@ -7,8 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.view.IView;
 
 /**
  * Created by MummyDing on 16-1-29.
@@ -37,7 +38,7 @@ public abstract class BaseFragment extends Fragment {
         return parentView;
     }
 
-
+    @Subscribe
     public void onEventMainThread(EventModel eventModel){
         if(eventModel != null){
            onEventComing(eventModel);

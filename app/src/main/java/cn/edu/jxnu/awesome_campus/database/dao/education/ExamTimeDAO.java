@@ -2,6 +2,8 @@ package cn.edu.jxnu.awesome_campus.database.dao.education;
 
 import com.squareup.okhttp.Headers;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -17,7 +19,6 @@ import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by MummyDing on 16-2-2.

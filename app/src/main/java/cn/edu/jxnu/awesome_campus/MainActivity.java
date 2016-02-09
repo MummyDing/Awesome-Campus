@@ -18,6 +18,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
@@ -33,7 +37,6 @@ import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.ColorPickerDialog;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.OnColorChangedListener;
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by MummyDing on 16-1-24.
@@ -134,7 +137,12 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    @Subscribe
+    public void onEventMainThread(EventModel eventModel){
+        
     }
 }
