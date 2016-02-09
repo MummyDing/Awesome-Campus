@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.support.htmlprase;
+package cn.edu.jxnu.awesome_campus.support.htmlparse;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
  * 使用：通过传进来html后，执行getEndList()即可获取模型对象集
  * Created by KevinWu on 2016/2/3.
  */
-public class CampusNewsPrase {
+public class CampusNewsParse {
     private final static int GROUPSIZE = 5;//信息分组大小
     private final static String ITEM_CSS = "table[class=columnStyle]";//选择CSS
     private final static String REFERENCE_STR = "2015-12-24";//参考时间字符串
-    private String praseStr;//待解析字符串
+    private String parseStr;//待解析字符串
 
     public List<CampusNewsModel> getEndList() {
         return endList;
@@ -33,12 +33,12 @@ public class CampusNewsPrase {
      * @author KevinWu
      * create at 2016/2/6 19:03
      */
-    public CampusNewsPrase(String praseStr) {
+    public CampusNewsParse(String parseStr) {
         super();
-        this.praseStr = praseStr;
+        this.parseStr = parseStr;
         resultList = new ArrayList<>();
         endList = new ArrayList<>();
-        praseData();
+        parseData();
     }
 
     /**
@@ -47,9 +47,9 @@ public class CampusNewsPrase {
      * @author KevinWu
      * create at 2016/2/6 19:06
      */
-    private void praseData() {
+    private void parseData() {
         try {
-            HtmlUtil hu = new HtmlUtil(praseStr);
+            HtmlUtil hu = new HtmlUtil(parseStr);
             List tempStrList = hu.parseString(ITEM_CSS);
             List tempRawStrList = hu.parseRawString(ITEM_CSS);
             for (int i = 0; i < tempStrList.size(); i++) {

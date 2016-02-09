@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.support.htmlprase;
+package cn.edu.jxnu.awesome_campus.support.htmlparse;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
  * 使用：通过传进来html后，执行getEndList()即可获取模型对象集
  * Created by KevinWu on 2016/2/3.
  */
-public class CourseScorePrase {
+public class CourseScoreParse {
     private final static int GROUPSIZE = 7;//每组数据大小
     private final static String TERM_CSS = "td[valign=middle]";//学期选择css
     private final static String ITEM_CSS = "font[color=#330099]";//每个item选择css
     private final static String BACKUP_ITEM_CSS = "font[size=9pt]";//备选标签选择css
-    private String praseStr;
+    private String parseStr;
     private List<String> resultList;
     private List<CourseScoreModel> endList;
 
@@ -33,12 +33,12 @@ public class CourseScorePrase {
     *@author KevinWu
     *create at 2016/2/4 18:30
     */
-    public CourseScorePrase(String praseStr) {
+    public CourseScoreParse(String parseStr) {
         super();
-        this.praseStr = praseStr;
+        this.parseStr = parseStr;
         resultList = new ArrayList<>();
         endList = new ArrayList<>();
-        praseData();
+        parseData();
     }
 
     /**
@@ -46,22 +46,22 @@ public class CourseScorePrase {
     *@author KevinWu
     *create at 2016/2/4 18:29
     */
-    private void praseData() {
+    private void parseData() {
         try {
-            HtmlUtil hu = new HtmlUtil(praseStr);
+            HtmlUtil hu = new HtmlUtil(parseStr);
             List termList = hu.parseString(TERM_CSS);
             for (int i = 0; i < termList.size(); i++) {
                 List aTermList = null;
                 if (i < termList.size() - 1) {
                     String nowTerm = termList.get(i).toString();//当前学期
                     String nextTerm = termList.get(i + 1).toString();//下学期
-                    String left[] = praseStr.split(nowTerm);//分割下边界
+                    String left[] = parseStr.split(nowTerm);//分割下边界
                     String right[] = left[1].split(nextTerm);//分割上边界
                     String aTerm = right[0];//一个学期的数据
                     aTermList = new HtmlUtil(aTerm).parseString(ITEM_CSS);
                 } else if (i == termList.size() - 1) {
                     String nowTerm = termList.get(i).toString();//当前学期
-                    String left[] = praseStr.split(nowTerm);
+                    String left[] = parseStr.split(nowTerm);
                     String aTerm = left[1];
                     aTermList = new HtmlUtil(aTerm).parseString(ITEM_CSS);
                 }

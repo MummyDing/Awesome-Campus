@@ -2,15 +2,6 @@ package cn.edu.jxnu.awesome_campus;
 
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
-
-import cn.edu.jxnu.awesome_campus.support.htmlprase.CourseScorePrase;
-
 import static org.junit.Assert.*;
 
 /**
@@ -26,7 +17,7 @@ public class ExampleUnitTest {
 //    public void testPrase(){
 //        String str=importStr();
 //        System.out.println(str);
-//        CourseScorePrase c=new CourseScorePrase(str);
+//        CourseScoreParse c=new CourseScoreParse(str);
 //        List testlist=c.getResultList();
 //        for(int i=0;i<testlist.size();i++){
 //            System.out.println(testlist.get(i).toString());

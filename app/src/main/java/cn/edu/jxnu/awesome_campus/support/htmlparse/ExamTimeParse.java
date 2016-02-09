@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.support.htmlprase;
+package cn.edu.jxnu.awesome_campus.support.htmlparse;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -11,10 +11,10 @@ import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
  * 解析考试时间
  * Created by KevinWu on 2016/2/3.
  */
-public class ExamTimePrase {
+public class ExamTimeParse {
     private final static int GROUPSIZE = 7;//每组数据大小
     private final static String ITEM_CSS = "font[color=#330099]";//每个item选择css
-    private String praseStr;
+    private String parseStr;
     private List<String> resultList;
     private List<ExamTimeModel> endList;
 
@@ -30,12 +30,12 @@ public class ExamTimePrase {
     *@author KevinWu
     *create at 2016/2/4 19:29
     */
-    public ExamTimePrase(String praseStr){
+    public ExamTimeParse(String parseStr){
         super();
-        this.praseStr=praseStr;
+        this.parseStr=parseStr;
         resultList = new ArrayList<>();
         endList = new ArrayList<>();
-        praseData();
+        parseData();
     }
 
     /**
@@ -43,9 +43,9 @@ public class ExamTimePrase {
     *@author KevinWu
     *create at 2016/2/4 19:29
     */
-    private void praseData() {
+    private void parseData() {
         try {
-            HtmlUtil hu=new HtmlUtil(praseStr);
+            HtmlUtil hu=new HtmlUtil(parseStr);
             resultList=hu.parseString(ITEM_CSS);
             fillEndList();
         } catch (UnsupportedEncodingException e) {

@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.support.htmlprase;
+package cn.edu.jxnu.awesome_campus.support.htmlparse;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -12,14 +12,14 @@ import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
  * 使用：通过传进来html后，执行getEndList()即可获取模型对象集
  * Created by KevinWu on 2016/2/3.
  */
-public class CourseTablePrase {
+public class CourseTableParse {
     private final static int GROUPSIZE=7;//数据每7个为一组，对应每个时间段课在一周的课表情况
     private final static String ITEM_CSS = "DIV[align=center]";//每个item选择css
     //html左边界分割字符串
     private final static String LEFT_SP_STR=">上午";
     //html右边界分割字符串
     private final static String RIGHT_SP_STR="课表说明：底色为深色部分表示的是有冲突的课程！";
-    private String praseStr;
+        private String parseStr;
     private List<String> resultList;
 
     public List<CourseTableModel> getEndList() {
@@ -37,12 +37,12 @@ public class CourseTablePrase {
     *@author KevinWu
     *create at 2016/2/5 12:05
     */
-    public CourseTablePrase(String praseStr){
+    public CourseTableParse(String parseStr){
         super();
-        this.praseStr=praseStr;
+        this.parseStr=parseStr;
         resultList=new ArrayList<>();
         endList=new ArrayList<>();
-        praseData();
+        parseData();
     }
 
     /**
@@ -50,10 +50,10 @@ public class CourseTablePrase {
     *@author KevinWu
     *create at 2016/2/5 12:05
     */
-    private void praseData() {
+    private void parseData() {
         //先对待解析数据进行划分，避免非有效数据干扰
         String endStr;
-        String firstCut[]=praseStr.split(LEFT_SP_STR);
+        String firstCut[]=parseStr.split(LEFT_SP_STR);
         if(firstCut.length>1){
             String secondCut[]=firstCut[1].split(RIGHT_SP_STR);
             endStr=secondCut[0];

@@ -8,7 +8,6 @@ import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.IOException;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
@@ -16,7 +15,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
-import cn.edu.jxnu.awesome_campus.support.htmlprase.CampusNewsPrase;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
@@ -51,7 +50,7 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
                 .enqueue(new StringCallback() {
                     @Override
                     public void onSuccess(String result, Headers headers) {
-                        CampusNewsPrase myPrase=new CampusNewsPrase(result);
+                        CampusNewsParse myPrase=new CampusNewsParse(result);
                         final List list = myPrase.getEndList();
                         handler.post(new Runnable() {
                             @Override

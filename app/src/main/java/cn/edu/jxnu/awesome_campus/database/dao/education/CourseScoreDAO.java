@@ -7,17 +7,15 @@ import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.IOException;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
-import cn.edu.jxnu.awesome_campus.MainActivity;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
 import cn.edu.jxnu.awesome_campus.database.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
-import cn.edu.jxnu.awesome_campus.support.htmlprase.CourseScorePrase;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.CourseScoreParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
@@ -59,7 +57,7 @@ public class CourseScoreDAO implements DAO<CourseScoreModel> {
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
-                CourseScorePrase myPrase = new CourseScorePrase(result);
+                CourseScoreParse myPrase = new CourseScoreParse(result);
                 final List list = myPrase.getEndList();
                 handler.post(new Runnable() {
                     @Override
