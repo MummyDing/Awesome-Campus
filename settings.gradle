@@ -1,1 +1,1 @@
-include ':app',':nice-spinner-master'
+include ':nice-spinner-master', ':app'
