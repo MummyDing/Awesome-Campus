@@ -1,5 +1,9 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net.callback;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.support.annotation.MainThread;
+
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Response;
 
@@ -12,9 +16,14 @@ import java.io.IOException;
  */
 public abstract class StringCallback extends NetCallback{
     public abstract void onSuccess(String result, Headers headers);
+    public abstract void onFailure(String error);
     @Override
-    public void onResponse(Response response) throws IOException {
+    public void onResponse(final Response response) throws IOException {
         onSuccess(response.body().string(),response.headers());
     }
 
+    @Override
+    public void onFailure(final IOException e) {
+        onFailure(e.toString());
+    }
 }

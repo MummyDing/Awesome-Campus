@@ -1,5 +1,9 @@
 package cn.edu.jxnu.awesome_campus.database.dao.home;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
 import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
@@ -41,27 +45,37 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
 
     @Override
     public void loadFromNet() {
+        final Handler handler = new Handler(Looper.getMainLooper());
         NetManageUtil.get(Urlconfig.CampusNews_URL)
                 .addTag(TAG)
                 .enqueue(new StringCallback() {
                     @Override
                     public void onSuccess(String result, Headers headers) {
                         CampusNewsPrase myPrase=new CampusNewsPrase(result);
-                        List list = myPrase.getEndList();
-                        if (list != null) {
-                            cacheAll(list);
-                            EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_SCORE_REFRESH_SUCCESS, list));
-                        } else {
-                            EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_SCORE_REFRESH_FAILURE));
-                        }
+                        final List list = myPrase.getEndList();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (list != null) {
+                                    Log.d("news ","count"+list.size());
+                                    EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_SUCCESS, list));
+                                } else {
+                                    EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
+                                }
+                            }
+                        });
+
                     }
                     @Override
-                    public void onFailure(IOException e) {
-                        EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_SCORE_REFRESH_FAILURE));
+                    public void onFailure(String error) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
+                            }
+                        });
                     }
                 });
-
-
 
     }
 

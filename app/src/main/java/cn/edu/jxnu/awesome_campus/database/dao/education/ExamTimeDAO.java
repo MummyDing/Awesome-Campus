@@ -68,7 +68,7 @@ public class ExamTimeDAO implements DAO<ExamTimeModel> {
             }
 
             @Override
-            public void onFailure(IOException e) {
+            public void onFailure(String error) {
                 EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_SCORE_REFRESH_FAILURE));
             }
         });

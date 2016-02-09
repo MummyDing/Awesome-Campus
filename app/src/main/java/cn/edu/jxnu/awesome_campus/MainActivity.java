@@ -54,6 +54,7 @@ import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.OnColorChangedLi
 public class MainActivity extends BaseActivity implements HomeView{
 
     private Toolbar toolbar;
+    private Menu menu;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentTransaction fragmentTransaction;
     private HomePresenter presenter;
@@ -83,10 +84,14 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     public void switchDrawerItem(int id) {
+        if( menu!= null) {
+            menu.clear();
+        }
         if(id == DrawerItem.HOME.getId()){
             presenter.clearAllFragments();
             switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
         }else if(id == DrawerItem.LEISURE.getId()){
+            // switch fragment
             presenter.clearAllFragments();
             switchFragment(LeisureFragment.newInstance(),DrawerItem.LEISURE.getItemName());
         }else if(id == DrawerItem.LIFE.getId()){
@@ -96,6 +101,15 @@ public class MainActivity extends BaseActivity implements HomeView{
             presenter.clearAllFragments();
             switchFragment(StudyFragment.newInstance(),DrawerItem.STUDY.getItemName());
         }else if(id == DrawerItem.LIBRARY.getId()){
+            // switch menu  搜索框 下拉主题还有点问题
+            if(menu != null) {
+                getMenuInflater().inflate(R.menu.menu_library, menu);
+                SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+                MenuItem searchItem = menu.findItem(R.id.menu_search);
+                SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+                searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            }
+            // switch fragment
             presenter.clearAllFragments();
             switchFragment(LibraryFragment.newInstance(),DrawerItem.LIBRARY.getItemName());
         }else if(id == DrawerItem.EDUCATION.getId()){
@@ -155,12 +169,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-         getMenuInflater().inflate(R.menu.menu_library,menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        MenuItem searchItem = menu.findItem(R.id.menu_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        this.menu = menu;
         return true;
     }
 }

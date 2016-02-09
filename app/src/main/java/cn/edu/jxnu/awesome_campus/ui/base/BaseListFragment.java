@@ -1,16 +1,22 @@
 package cn.edu.jxnu.awesome_campus.ui.base;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.view.base.BaseListView;
 
 /**
@@ -25,6 +31,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     protected RecyclerView.LayoutManager layoutManager;
     protected ProgressBar progressBar;
     protected ImageButton networkBtn;
+    protected BaseListAdapter adapter;
     @Override
     protected void init() {
         headerLayout = (FrameLayout) parentView.findViewById(R.id.headerLayout);
@@ -34,7 +41,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         recyclerView = (RecyclerView) parentView.findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(layoutManager);
-
+        bindAdapter();
         networkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,11 +87,22 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         networkBtn.setVisibility(View.VISIBLE);
     }
 
+   /* @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }*/
 
     @Override
     public void onEventComing(EventModel eventModel) {
         // 暂时不重写子类
         // 在这里就可以根据EventCode进行相应的处理
-
+        Log.d("baselist","got");
     }
 }
