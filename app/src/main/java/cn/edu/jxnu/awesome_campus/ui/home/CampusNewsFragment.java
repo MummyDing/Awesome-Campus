@@ -59,18 +59,6 @@ public class CampusNewsFragment extends BaseListFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
-        Log.d("register","create");
-    }
-
-    @Override
-    public void onDestroy() {
-        EventBus.getDefault().unregister(this);
-        super.onDestroy();
-    }
-    @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
         List list = eventModel.getDataList();

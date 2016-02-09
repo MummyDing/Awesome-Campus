@@ -87,7 +87,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         networkBtn.setVisibility(View.VISIBLE);
     }
 
-   /* @Override
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
@@ -97,12 +97,11 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     public void onDestroy() {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
-    }*/
+    }
 
     @Override
     public void onEventComing(EventModel eventModel) {
         // 暂时不重写子类
         // 在这里就可以根据EventCode进行相应的处理
-        Log.d("baselist","got");
     }
 }
