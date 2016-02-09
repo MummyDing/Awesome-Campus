@@ -27,25 +27,6 @@ public class ReadingFragment extends BaseListFragment {
 
     @Override
     public void addHeader() {
-
-        /**
-         * 测使用　非正式代码！！！！！　－－－－By MummyDing
-         */
-      /*  final SearchView searchView = new SearchView(getContext());
-        searchView.setQueryHint("点击搜索");
-        searchView.setFilterTouchesWhenObscured(true);
-        searchView.setSubmitButtonEnabled(true);
-        SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchView.setIconified(false);
-            }
-        });
-
-        headerLayout.addView(searchView);
-*/
     }
 
     @Override

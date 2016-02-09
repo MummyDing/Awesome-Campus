@@ -54,6 +54,7 @@ public class WeekSpinnerWrapper{
         spinner.attachDataSource(daysOfWeek);
 
         spinner.setSelectedIndex(index);
+        listener.onDayChanged(index);
         if(listener != null) {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
