@@ -26,5 +26,21 @@ public class EVENT {
     public static final int COURSE_SCORE_REFRESH_FAILURE = 8;
 
 
+    // Exam Time
+    public static final int COURSE_TIME_REFRESH_SUCCESS = 9;
+    public static final int COURSE_TIME_REFRESH_FAILURE = 10;
+
+    // Book Borrowed
+    public static final int BOOK_BORROWED_REFRESH_SUCCESS = 11;
+    public static final int BOOK_BORROWED_REFRESH_FAILURE = 12;
+
+    //Borrow History
+    public static final int BORROWED_HISTORY_REFRESH_SUCCESS = 13;
+    public static final int BORROWED_HISTORY_REFRESH_FAILURE = 14;
+
+    //Weather Info
+    public static final int WEATHER_INFO_REFRESH_SUCCESS = 15;
+    public static final int WEATHER_INFO_REFRESH_FAILURE = 16;
 
 }
+
