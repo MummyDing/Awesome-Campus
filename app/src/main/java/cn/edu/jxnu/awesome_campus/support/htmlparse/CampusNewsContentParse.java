@@ -7,7 +7,7 @@ import android.util.Log;
  * 使用，传入html字符串，自动提取出内容，调用getEndStr获取截取后内容
  * Created by KevinWu on 2016/2/10.
  */
-public class CampusNewsContentPrase {
+public class CampusNewsContentParse {
     private static final String STR_CUT_LEFT="<div class=\"bottom\">";//分割左边界
     private static final String STR_CUT_RIGHT="<script>";//分割右边界
     private String praseStr=null;//待解析字符串
@@ -18,7 +18,7 @@ public class CampusNewsContentPrase {
 
     private String endStr=null;//解析后字符串
 
-    public CampusNewsContentPrase(String praseStr){
+    public CampusNewsContentParse(String praseStr){
         super();
         this.praseStr=praseStr;
         praseData();

@@ -1,8 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebView;
@@ -66,6 +64,5 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
          */
         contentTitle.setText("江西师大广东校友会2015年会暨2016“遇见青春”众筹演唱会羊城首演");
         contentView.loadUrl("http://news.163.com/16/0210/10/BFF3C8HI0001124J.html");
-
     }
 }
