@@ -13,11 +13,13 @@ package cn.edu.jxnu.awesome_campus;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -31,6 +33,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
+import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
@@ -116,12 +119,20 @@ public class MainActivity extends BaseActivity implements HomeView{
             presenter.clearAllFragments();
             switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
         }else if(id == DrawerItem.THEME.getId()){
+            Bitmap bitmap = ImageUtil.GetLocalOrNetBitmap("http://smallsoho.com/img/2015-7-22/test.jpg");
+            Palette palette = Palette.from(bitmap).generate();
 
             /***
              * 测试用　非正式代码！！！！！！　－－－－By MummyDing
              */
+            ColorPickerDialog dialog = new ColorPickerDialog(this,new int[]{palette.getDarkMutedSwatch().getRgb(),
+            palette.getLightMutedSwatch().getRgb(),palette.getDarkVibrantSwatch().getRgb(),palette.getLightVibrantSwatch().getRgb()});
+
+/*
+
             ColorPickerDialog dialog = new ColorPickerDialog(this,new int[]{Color.YELLOW,Color.BLACK,Color.BLUE,Color.GRAY,
             Color.GREEN,Color.CYAN,Color.RED,Color.DKGRAY});
+*/
 
             dialog.setOnColorChangedListener(new OnColorChangedListener() {
                 @Override
