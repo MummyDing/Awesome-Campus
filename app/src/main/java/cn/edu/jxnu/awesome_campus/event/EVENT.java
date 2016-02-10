@@ -42,5 +42,13 @@ public class EVENT {
     public static final int WEATHER_INFO_REFRESH_SUCCESS = 15;
     public static final int WEATHER_INFO_REFRESH_FAILURE = 16;
 
+    // Daily
+    public static final int DAILY_REFRESH_SUCCESS = 17;
+    public static final int DAILY_REFRESH_FAILURE = 18;
+
+    //Daily Detail
+    public static final int DAILY_DETAIL_SUCCESS = 19;
+    public static final int DAILY_DETAIL_FAILURE = 20;
+
 }
 

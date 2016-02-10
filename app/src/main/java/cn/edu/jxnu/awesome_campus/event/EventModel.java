@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class EventModel<T> {
     private List<T> dataList;
+    private T data;
 
     private int eventCode = 0;
 
@@ -17,8 +18,17 @@ public class EventModel<T> {
         this.eventCode = eventCode;
     }
 
+    public EventModel(int eventCode, T data) {
+        this.eventCode = eventCode;
+        this.data = data;
+    }
+
     public EventModel(int eventCode) {
         this.eventCode = eventCode;
+    }
+
+    public T getData() {
+        return data;
     }
 
     public List<T> getDataList() {

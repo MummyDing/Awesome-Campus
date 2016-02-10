@@ -56,7 +56,6 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
                             @Override
                             public void run() {
                                 if (list != null) {
-                                    Log.d("news ","count"+list.size());
                                     EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_SUCCESS, list));
                                 } else {
                                     EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));

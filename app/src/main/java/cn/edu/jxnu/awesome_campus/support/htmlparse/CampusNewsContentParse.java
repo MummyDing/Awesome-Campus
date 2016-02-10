@@ -7,10 +7,10 @@ import android.util.Log;
  * 使用，传入html字符串，自动提取出内容，调用getEndStr获取截取后内容
  * Created by KevinWu on 2016/2/10.
  */
-public class CampusNewsContentPrase {
+public class CampusNewsContentParse {
     private static final String STR_CUT_LEFT="<div class=\"bottom\">";//分割左边界
     private static final String STR_CUT_RIGHT="<script>";//分割右边界
-    private String praseStr=null;//待解析字符串
+    private String parseStr=null;//待解析字符串
 
     public String getEndStr() {
         return endStr;
@@ -18,10 +18,10 @@ public class CampusNewsContentPrase {
 
     private String endStr=null;//解析后字符串
 
-    public CampusNewsContentPrase(String praseStr){
+    public CampusNewsContentParse(String parseStr){
         super();
-        this.praseStr=praseStr;
-        praseData();
+        this.parseStr=parseStr;
+        parseData();
     }
 
     /**
@@ -29,8 +29,8 @@ public class CampusNewsContentPrase {
     *@author KevinWu
     *create at 2016/2/10 13:43
     */
-    private void praseData() {
-        String first_cut[]=praseStr.split(STR_CUT_LEFT);
+    private void parseData() {
+        String first_cut[]=parseStr.split(STR_CUT_LEFT);
         if(first_cut.length>1){
             String second_cut[]=first_cut[1].split(STR_CUT_RIGHT);
             if(second_cut.length>1){
