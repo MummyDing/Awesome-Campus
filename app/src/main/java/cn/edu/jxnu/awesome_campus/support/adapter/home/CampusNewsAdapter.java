@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.ui.home.CampusNewsDetailsActivity;
 
 /**
  * Created by MummyDing on 16-2-9.
@@ -32,6 +34,17 @@ public class CampusNewsAdapter extends BaseListAdapter<CampusNewsModel,CampusNew
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_compus_news, parent, false);
         VH vh = new VH(itemView);
+
+        /**
+         * 测试用 非正式代码 ！！！！
+         */
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, CampusNewsDetailsActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
         return vh;
     }
 

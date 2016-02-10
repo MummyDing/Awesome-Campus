@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
         app:layout_scrollFlags="scroll|enterAlways"
-        android:layout_height="wrap_content" /><!--android:layout_height="@dimen/tab_height"-->
+        android:layout_height="wrap_content" />
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/tab_layout"
         xmlns:android="http://schemas.android.com/apk/res/android"

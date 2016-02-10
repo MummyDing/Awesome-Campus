@@ -21,18 +21,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data android:name="android.app.default_searchable"
-                android:value=".ui.base.SearchActivity"/>
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".ui.base.SearchActivity" />
         </activity>
         <activity
-            android:launchMode="singleInstance"
-            android:name=".ui.base.SearchActivity">
+            android:name=".ui.base.SearchActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
+        <activity android:name=".ui.home.CampusNewsDetailsActivity"></activity>
     </application>
 
 </manifest>
