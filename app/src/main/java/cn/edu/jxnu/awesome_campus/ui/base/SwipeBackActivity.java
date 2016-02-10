@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -119,7 +120,8 @@ public class SwipeBackActivity extends BaseActivity {
 
         public void replaceLayer(Activity activity) {
 //            leftShadow = activity.getResources().getDrawable(R.drawable.left_shadow,null);
-            leftShadow=activity.getResources().getDrawable(R.drawable.left_shadow);//兼容21以下api做法
+          //  leftShadow=activity.getResources().getDrawable(R.drawable.left_shadow);//兼容21以下api做法
+            leftShadow = ContextCompat.getDrawable(getContext(),R.drawable.left_shadow); //使用ContextCompat访问资源
             touchSlop = (int) (touchSlopDP * activity.getResources().getDisplayMetrics().density);
             sideWidth = (int) (sideWidthInDP * activity.getResources().getDisplayMetrics().density);
             mActivity = activity;
