@@ -63,6 +63,8 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
          * 测试用 非正式代码 ---By MummyDing
          */
         contentTitle.setText("江西师大广东校友会2015年会暨2016“遇见青春”众筹演唱会羊城首演");
-        contentView.loadUrl("http://news.163.com/16/0210/10/BFF3C8HI0001124J.html");
+        String data = "<h2>Html</h2>"; //这里放html代码
+        contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNew.css\" />"+data, "text/html", "utf-8", null);
+
     }
 }
