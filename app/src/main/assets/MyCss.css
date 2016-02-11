@@ -1,0 +1,42 @@
+body,h1{
+    margin:0;
+    padding:0
+    }
+img{
+    max-width:100%;
+    display:block;
+    margin:0 auto;
+    }
+.readinfo{
+    margin:0 1em 2em;
+    word-wrap:break-word;
+    background:#fff none repeat scroll 0 0;
+    color:#3e3e3e;
+    font-size:17px;
+    line-height:1.5em;
+    overflow:auto;
+    }
+p{
+    margin:0 0 10px;
+    }
+div{
+    margin:0 0 10px;
+    }
+.atitle{
+    font-size:26px;
+    height:auto;
+    line-height:130%;
+    padding-left:3.5%;
+    padding-right:3%;
+    padding-top:1em;
+    text-align:left;
+    }
+.postmeta{
+    color:#828282;
+    font-size:12px;
+    line-height:130%;
+    padding-bottom:10px;
+    padding-left:3.5%;
+    padding-top:10px;
+    text-align:left;
+    }

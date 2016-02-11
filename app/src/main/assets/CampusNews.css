@@ -47,7 +47,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: 16px;
+  font-size: 20px;
 }
 abbr[title] {
   border-bottom: 1px dotted;
@@ -229,10 +229,13 @@ ol {
 .content a:hover {
   text-decoration: underline;
 }
+
+
+
+
 .readinfo {
   color: #444;
-  line-height: 1.6em;
-  font-size: 17px;
+  line-height: 1.7em;
   margin: 10px 0 20px;
 }
 .readinfo img {
@@ -250,6 +253,23 @@ ol {
 .readinfo a:hover {
   text-decoration: underline;
 }
+
+
+
+.postmeta{
+      font-size: 0.8em;
+}
+h1 .atitle{
+      font-size: 2em;
+}
+
+
+
+
+
+
+
+
 .view-more {
   margin-bottom: 25px;
   text-align: center;
