@@ -8,6 +8,7 @@ import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
@@ -42,39 +43,107 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
 
     }
 
+    private int count = 1;
+    private Handler handler = new Handler(Looper.getMainLooper());
     @Override
     public void loadFromNet() {
-        final Handler handler = new Handler(Looper.getMainLooper());
+
+        final List<CampusNewsModel> resultList = new ArrayList<CampusNewsModel>();
+        
         NetManageUtil.get(Urlconfig.CampusNews_YW_URL)
                 .addTag(TAG)
                 .enqueue(new StringCallback() {
                     @Override
                     public void onSuccess(String result, Headers headers) {
-                        CampusNewsParse myPrase=new CampusNewsParse(result);
-                        final List list = myPrase.getEndList();
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (list != null) {
-                                    EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_SUCCESS, list));
-                                } else {
-                                    EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
-                                }
-                            }
-                        });
-
+                        Log.d("net exe","1111"+"count "+count);
+                        CampusNewsParse myParse=new CampusNewsParse(result);
+                        resultList.addAll(myParse.getEndList());
+                        if(count == 3 && resultList.size()>0){
+                            sendSuccess(resultList);
+                            Log.d("net exe","1111Success");
+                        }
+                        count++;
                     }
                     @Override
                     public void onFailure(String error) {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
-                            }
-                        });
+                        if(count == 3 && resultList.size() == 0){
+                            sendFailure();
+                        }else if(count == 3){
+                            sendSuccess(resultList);
+                        }
+                        count++;
                     }
                 });
 
+        NetManageUtil.get(Urlconfig.CampusNews_DT_URL)
+                .addTag(TAG)
+                .enqueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result, Headers headers) {
+                        Log.d("net exe","2222 "+count);
+                        CampusNewsParse myParse=new CampusNewsParse(result);
+                        resultList.addAll(myParse.getEndList());
+                        if(count == 3 && resultList.size()>0){
+                            sendSuccess(resultList);
+                            Log.d("net exe","2222Success");
+                        }
+                        count++;
+                    }
+                    @Override
+                    public void onFailure(String error) {
+                        if(count == 3 && resultList.size() == 0){
+                            sendFailure();
+                        }else if(count == 3){
+                            sendSuccess(resultList);
+                        }
+                        count++;
+                    }
+                });
+
+        NetManageUtil.get(Urlconfig.CampusNews_MT_URL)
+                .addTag(TAG)
+                .enqueue(new StringCallback() {
+                    @Override
+                    public  void onSuccess(String result, Headers headers) {
+                        Log.d("net exe","3333 "+count);
+                        CampusNewsParse myParse=new CampusNewsParse(result);
+                        resultList.addAll(myParse.getEndList());
+                        if(count == 3 && resultList.size()>0){
+                            sendSuccess(resultList);
+                            Log.d("net exe","1111Successs");
+                        }
+                        count++;
+                    }
+
+                    @Override
+                    public  void onFailure(String error) {
+                        if(count == 3 && resultList.size() == 0){
+                            sendFailure();
+                        }else if(count == 3){
+                            sendSuccess(resultList);
+                        }
+                        count++;
+                    }
+                });
+    }
+
+    private void sendSuccess(final List<CampusNewsModel> result){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("net exe","size "+result.size()+": count"+count);
+                EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_REFRESH_SUCCESS, result));
+            }
+        });
+    }
+
+    private void sendFailure(){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
+            }
+        });
     }
 
 }

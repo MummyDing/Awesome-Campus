@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.model.home;
 
+import java.util.Collection;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.home.CampusNewsDAO;
@@ -10,7 +11,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class CampusNewsModel  implements IModel<CampusNewsModel> {
+public class CampusNewsModel  implements IModel<CampusNewsModel>,Comparable<CampusNewsModel>{
 
 
     private CampusNewsDAO campusNewsDAO;
@@ -100,5 +101,13 @@ public class CampusNewsModel  implements IModel<CampusNewsModel> {
 
     public void setUpdateTime(String updateTime) {
         UpdateTime = updateTime;
+    }
+
+    @Override
+    public int compareTo(CampusNewsModel model) {
+        int result = model.getUpdateTime().compareTo(this.getNewsTime());
+        if(result>0) return 1;
+        else if(result < 0) return -1;
+        return 0;
     }
 }
