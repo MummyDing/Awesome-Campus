@@ -86,11 +86,12 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         contentView.getSettings().setJavaScriptEnabled(true);
 
 
-        
+
         contentView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 contentView.loadUrl("javascript:MyApp.resize(document.body.getBoundingClientRect().height)");
+                contentView.loadUrl("javascript:document.body.style.margin=\"7%\"; void 0");
                 super.onPageFinished(view, url);
             }
         });
@@ -139,7 +140,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                contentView.setLayoutParams(new LinearLayout.LayoutParams(getResources().getDisplayMetrics().widthPixels, (int) (height * getResources().getDisplayMetrics().density)));
+                contentView.setLayoutParams(new LinearLayout.LayoutParams(DisplayUtil.getScreenWidth(getBaseContext()) - DisplayUtil.dip2px(getBaseContext(),20), (int) (height * getResources().getDisplayMetrics().density)));
             }
         });
     }
