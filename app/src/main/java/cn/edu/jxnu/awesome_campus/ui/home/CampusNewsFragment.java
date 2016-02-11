@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.Collections;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -62,6 +63,7 @@ public class CampusNewsFragment extends BaseListFragment {
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
         List list = eventModel.getDataList();
+        Collections.sort(list);
         switch (eventModel.getEventCode()){
             case EVENT.CAMPUS_NEWS_REFRESH_SUCCESS:
                 adapter.newList(list);
