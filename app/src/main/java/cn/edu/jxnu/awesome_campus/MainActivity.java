@@ -119,20 +119,14 @@ public class MainActivity extends BaseActivity implements HomeView{
             presenter.clearAllFragments();
             switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
         }else if(id == DrawerItem.THEME.getId()){
-            Bitmap bitmap = ImageUtil.GetLocalOrNetBitmap("http://smallsoho.com/img/2015-7-22/test.jpg");
-            Palette palette = Palette.from(bitmap).generate();
 
             /***
              * 测试用　非正式代码！！！！！！　－－－－By MummyDing
              */
-            ColorPickerDialog dialog = new ColorPickerDialog(this,new int[]{palette.getDarkMutedSwatch().getRgb(),
-            palette.getLightMutedSwatch().getRgb(),palette.getDarkVibrantSwatch().getRgb(),palette.getLightVibrantSwatch().getRgb()});
-
-/*
 
             ColorPickerDialog dialog = new ColorPickerDialog(this,new int[]{Color.YELLOW,Color.BLACK,Color.BLUE,Color.GRAY,
             Color.GREEN,Color.CYAN,Color.RED,Color.DKGRAY});
-*/
+
 
             dialog.setOnColorChangedListener(new OnColorChangedListener() {
                 @Override

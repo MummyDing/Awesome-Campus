@@ -1,20 +1,27 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
 
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,8 +29,13 @@ import java.io.InputStreamReader;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 
@@ -38,7 +50,11 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
     private Toolbar toolbar;
     private WebView contentView;
-
+    private CampusNewsModel model;
+    private SimpleDraweeView topImage;
+    private NestedScrollView scrollView;
+    private FrameLayout mainContent;
+    private Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -47,6 +63,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_news_details);
+        EventBus.getDefault().register(this);
         initView();
     }
 
@@ -81,9 +98,9 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         }
 
 
-        NestedScrollView scrollView = (NestedScrollView) findViewById(R.id.scrollView);
-        final CardView cardView = (CardView) findViewById(R.id.content_card);
-        final ImageView imageView = (ImageView) findViewById(R.id.image);
+        mainContent = (FrameLayout) findViewById(R.id.main_content);
+        scrollView = (NestedScrollView) findViewById(R.id.scrollView);
+        topImage = (SimpleDraweeView) findViewById(R.id.topImage);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -98,23 +115,26 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         contentView = (WebView) findViewById(R.id.content_view);
         contentView.getSettings().setJavaScriptEnabled(true);
 
-
-//        contentView.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                contentView.loadUrl("javascript:MyApp.resize(document.body.getBoundingClientRect().height)");
-//                contentView.loadUrl("javascript:document.body.style.margin=\"7%\"; void 0");
-//                super.onPageFinished(view, url);
-//            }
-//        });
-//        contentView.addJavascriptInterface(this, "MyApp");
-
-
+        /**
+         * 根据主色调设置背景色
+         */
+        setMainContentBg();
+        if(TextUtil.isNull(model.getNewsPicURL()) == false){
+            topImage.setImageURI(Uri.parse(model.getNewsPicURL()));
+            for(int i=1 ; i<= 5 ; i+=2) {
+                handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setMainContentBg();
+                    }
+                }, i*1000);
+            }
+        }
         scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Log.d("layout: ", scrollX + " " + scrollY + " " + oldScrollX + " " + oldScrollY + " scroll " + oldScrollY + " " + scrollY);
-                imageView.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
+                topImage.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
             }
         });
 
@@ -146,13 +166,24 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         return null;
     }
 
-   /* @JavascriptInterface
-    public void resize(final float height) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                contentView.setLayoutParams(new LinearLayout.LayoutParams(DisplayUtil.getScreenWidth(getBaseContext()) - DisplayUtil.dip2px(getBaseContext(), 20), (int) (height * getResources().getDisplayMetrics().density)));
-            }
-        });
-    }*/
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    @Subscribe (threadMode = ThreadMode.MAIN, sticky = true, priority = 1)
+    public void onEventMainThread(EventModel eventModel){
+        if(eventModel.getEventCode() == EVENT.SEND_MODEL_DETAIL) {
+            model = (CampusNewsModel) eventModel.getData();
+            initView();
+        }
+    }
+
+    private void setMainContentBg(){
+        mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable)topImage.getBackground()).getBitmap()));
+    }
+
+
 }
