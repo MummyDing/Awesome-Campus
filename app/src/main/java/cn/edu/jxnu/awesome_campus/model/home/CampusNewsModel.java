@@ -122,7 +122,7 @@ public class CampusNewsModel  implements IModel<CampusNewsModel>,Comparable<Camp
         for(int i=0 ; i<len; i++){
             if(str1.charAt(i)>str2.charAt(i)){
                 return 1;
-            }else if(str1.charAt(i)>str2.charAt(i)){
+            }else if(str1.charAt(i)<str2.charAt(i)){
                 return -1;
             }
         }
