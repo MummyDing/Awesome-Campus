@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 
@@ -79,9 +80,6 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         /**
          * 测试用 非正式代码 ---By MummyDing
          */
-        String data = importStr(); //这里放html代码
-        contentView.getSettings().setJavaScriptEnabled(true);
-        contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNews.css\" />" + data, "text/html", "utf-8", null);
 
         scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -104,6 +102,10 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
             }
         });
 */
+        String data = importStr(); //这里放html代码
+        CampusNewsContentParse myParse=new CampusNewsContentParse(data);
+        data=myParse.getEndStr();
+        contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNews.css\" />" + data, "text/html", "utf-8", null);
     }
 
     /**

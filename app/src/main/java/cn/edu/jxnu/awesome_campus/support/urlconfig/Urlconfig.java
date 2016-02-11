@@ -11,8 +11,16 @@ public class Urlconfig {
     //考试安排获取url
     public static final String ExamTime_URL="http://jwc.jxnu.edu.cn/User/default.aspx?&code=129&&uctl=MyControl%5cxfz_test_schedule.ascx";
 
-    //校内新闻的url
-    public static final String CampusNews_URL="http://news.jxnu.edu.cn/s/271/t/910/p/12/list.htm";
+
+    //江西师大新闻网基础URL
+    public static final String CampusNews_Base_URL="http://news.jxnu.edu.cn";
+    //校内新闻（校内要闻）的url
+    public static final String CampusNews_YW_URL="http://news.jxnu.edu.cn/s/271/t/910/p/12/list.htm";
+    //校内新闻（媒体师大）的url
+    public static final String CampusNews_MT_URL="http://news.jxnu.edu.cn/s/271/t/910/p/16/list.htm";
+    //校内新闻（校园动态）的url
+    public static final String CampusNews_DT_URL="http://news.jxnu.edu.cn/s/271/t/910/p/17/list.htm";
+
 
 
     //图书馆登录url

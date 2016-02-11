@@ -45,7 +45,7 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
     @Override
     public void loadFromNet() {
         final Handler handler = new Handler(Looper.getMainLooper());
-        NetManageUtil.get(Urlconfig.CampusNews_URL)
+        NetManageUtil.get(Urlconfig.CampusNews_YW_URL)
                 .addTag(TAG)
                 .enqueue(new StringCallback() {
                     @Override

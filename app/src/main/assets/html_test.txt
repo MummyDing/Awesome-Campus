@@ -1,15 +1,84 @@
-<div class="inner">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>二〇一五年学校十大新闻</title>
+<link rel="stylesheet" href="/page/main910/style.css" type="text/css" />
+</head>
+<body>
+<div class="topnav">
+  <div class="inner">
+    <div class="left"></div>
+    <div class="right">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" height="27" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align="right" class="linnk"><a href="http://www.jxnu.edu.cn/">返回学校主页</a></td>
+          <td align="right">&nbsp;</td>
+          <td width="97" align="right"><table border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td><script language='javascript'>   function getHttpObj(){       var xmlHttp = false;       try {           xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");       }catch (e) {           try {               xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");           }catch (e2) {               xmlHttp = false;           }       }       if (!xmlHttp && typeof XMLHttpRequest != 'undefined'){           xmlHttp = new XMLHttpRequest();       }       return xmlHttp;   }   function P(pltId,url){       this.portletId=pltId;       this.url=url;       this.kind=0;   }   function T(pltId,url){       this.portletId=pltId;       this.url=url;       this.kind=1;   }   function I(pltId, url, fun){       this.portletId=pltId;       this.url=url;       this.kind=2;       this.nextFunc=fun;   }   var PLTS=new Array();   var cur1=0;   var Loader1= getHttpObj();   function loadps(){       if(cur1<PLTS.length){           Loader1.open('GET',PLTS[cur1].url+'?'+new Date().getTime()+(10000+parseInt(Math.random()*10000)));           Loader1.onreadystatechange=endloadps;           Loader1.send(null);       }   };   function endloadps(){       if(Loader1.readyState==4){           if(Loader1.status==200){               var response=Loader1.responseText;               if(PLTS[cur1].kind==2) {                   _listArticleCount =response.replace(/(^\s*)|(\s*$)/g, "");                   try {                       eval(PLTS[cur1].nextFunc);                   }catch(e){                       alert('高效分页初始化失败！');                   }               }               try{                   if(window.execScript){                       document.getElementById(PLTS[cur1].portletId).outerHTML='<body>'+response+'</body>';                   } else{                       document.getElementById(PLTS[cur1].portletId).innerHTML=response;                   }               } catch(e){}               var regx=new RegExp('<scr'+'ipt[^>]*?>([\\s\\S]*?)<\\/scr'+'ipt\\s*>|<scr'+'ipt[^>]*?\\/>','img');               var arr;               while((arr = regx.exec(response)) != null){                   if(arr.length){                       if(arr.length >=2){                           var regx2 = new RegExp("<scr"+"ipt[^>]*?\\bsrc=\\s*('[^>]*'|\"[^>]*\"|[\\S]*)\\s*\\/?>",'im');                           var srcArr=regx2.exec(arr[0]);                           if(srcArr!=null){                               var src= srcArr[1];                               if(src){                                   if((src.charAt(0)=='"') || (src.charAt(0)=="'")){                                       src=src.substr(1,src.length-2);                                   }                                   loadScript(src);                               }                           } else{                               execJavaScript(arr[1]);                           }                       }                   }               }           }           cur1++;           loadps();       }   }   function loadScript(s){       try{           var sc=document.createElement('script');           sc.type='text/javascript';           sc.language='javascript';           sc.src=s;           document.body.appendChild(sc);       }catch(e){}   }   function execJavaScript(s){       try{           var sc=document.createElement('script');           sc.type='text/javascript';           sc.language='javascript';           sc.text=s;           document.body.appendChild(sc);       }catch(e){}   }   window.onload=loadps;</script><div id='_p_1'></div><script language='javascript'>PLTS[PLTS.length]=new P('_p_1','/s/271/t/910/p/10/p.htm');</script></td>
+              </tr>
+          </table></td>
+          <td width="10" align="right">&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="lbanner">
+  <div class="inner">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="196" background="/page/main910/images/list_06.jpg">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center" background="/page/main910/images/main_07.jpg"><img src="/page/main910/images/main_08.jpg" width="959" height="52" border="0" usemap="#Map" /> 
+          <map name="Map" id="Map">
+              <area shape="rect" coords="888,3,970,27" href="/s/271/t/910/p/1/c/4586/list.htm" />
+              <area shape="rect" coords="81,26,153,51" href="/s/271/t/910/p/1/c/4587/list.htm" />
+              <area shape="rect" coords="179,26,250,51" href="/s/271/t/910/p/1/c/4588/list.htm" />
+              <area shape="rect" coords="278,28,348,52" href="/s/271/t/910/p/1/c/4589/list.htm" />
+              <area shape="rect" coords="379,28,450,57" href="/s/271/t/910/p/1/c/4590/list.htm" />
+              <area shape="rect" coords="482,27,552,56" href="/s/271/t/910/p/1/c/4591/list.htm" />
+              <area shape="rect" coords="586,27,654,51" href="/s/271/t/910/p/1/c/4592/list.htm" />
+              
+            <area shape="rect" coords="683,26,759,50" href="http://t.qq.com/jxnu1940" target="_blank" />
+              <area shape="rect" coords="786,1,861,25" href="/s/271/t/910/p/1/c/4585/list.htm" />
+              <area shape="rect" coords="279,-8,351,25" href="/s/271/t/910/p/1/c/4580/list.htm" />
+              <area shape="rect" coords="179,-12,252,25" href="/s/271/t/910/p/1/c/4579/list.htm" />
+              
+            <area shape="rect" coords="477,-2,561,26" href="http://newsvod.jxnu.edu.cn/" />
+              <area shape="rect" coords="683,-4,768,24" href="/s/271/t/910/p/1/c/4584/list.htm" />
+              <area shape="rect" coords="377,-4,458,26" href="/s/271/t/910/p/1/c/4581/list.htm" />
+              <area shape="rect" coords="576,2,665,26" href="/s/271/t/910/p/1/c/4583/list.htm" />
+              <area shape="rect" coords="82,-8,153,26" href="/s/271/t/910/p/1/c/4578/list.htm" />
+              <area shape="rect" coords="785,27,889,54" href="/s/271/t/910/p/1/c/4599/list.htm" />
+            <area shape="rect" coords="5,6,69,49" href="/s/271/t/910/main.htm" />
+            </map>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="bottom">
+ <div class="inner">
   <h1 class="atitle">二〇一五年学校十大新闻<br></h1>
     <div class="postmeta">&nbsp;来源：江西师范大学&nbsp;&nbsp;&nbsp;&nbsp;更新时间：2016-01-29</div>
   <div class="cr"></div>
     <div class="readinfo"><div><font size="4" face="宋体"><strong>&nbsp;&nbsp;&nbsp; 一、中共中央政治局常委刘云山，中央政治局委员、中央组织部部长赵乐际莅临学校创新创业基地视察;中央政治局委员、中央政法委书记孟建柱莅校视察；省委书记强卫、省长鹿心社等多次莅校视察。各级领导充分肯定我校改革与发展成就。</strong></font></div>
-<div align="center"><font size="4" face="宋体">&nbsp;<img border="0" alt="" width="650" src="http://news.jxnu.edu.cn/picture/article/2/a5/a3/dd53f9484a3b92a33acd6096dabd/6a59a73b-02ca-4555-bfa0-f2141de51345.png" /></font></div>
+<div align="center"><font size="4" face="宋体">&nbsp;<img border="0" alt="" width="650" src="/picture/article/2/a5/a3/dd53f9484a3b92a33acd6096dabd/6a59a73b-02ca-4555-bfa0-f2141de51345.png" /></font></div>
 <div><font size="4" face="宋体">&nbsp;&nbsp;&nbsp; 12月2日至4日，中共中央政治局常委、中央书记处书记刘云山，中央政治局委员、中央组织部部长赵乐际在江西调研期间，到我校创新创业示范基地视察指导，询问了解我校基本校情、人才培养及创新创业教育等情况，勉励我校学生要珍惜大学时光，刻苦学习，积极实践，努力成才。10月20日，中共中央政治局委员、中央政法委书记孟建柱到我校视察，对我校近年来建设发展取得的成绩给予充分肯定。11月3日、9日，省委书记强卫等分别莅临我校创新创业示范基地和我校教师创办的江西佳因光电材料有限公司调研指导。6月1日，省长鹿心社莅临我校看望慰问中小学生并向全省少年儿童表达节日问候。</font></div>
 <div><font size="4" face="宋体"><strong>&nbsp;&nbsp;&nbsp; 二、《江西师范大学章程》获批颁布，学校依法治校工作步入新的历史阶段。</strong></font></div>
 <div><font size="4" face="宋体">&nbsp;</font></div>
 <div align="center"><font size="4" face="宋体">&nbsp;<img border="0" alt="" width="650" src="/picture/article/2/a5/a3/dd53f9484a3b92a33acd6096dabd/42d8b278-f69e-41e8-99be-666e02930839.png" /></font></div>
 <div><font size="4" face="宋体">&nbsp;&nbsp;&nbsp; 11月5日，学校召开《江西师范大学章程》发布会，正式对外颁布经上级教育主管部门核准批复的《江西师范大学章程》。11月18日，学校印发《中共江西师范大学委员会贯彻落实〈关于坚持和完善党委领导下的校长负责制的实施意见〉的实施办法》。11月19日，学校成立依法治校工作领导小组，全面部署依法治校工作。</font></div>
-<div><font size="4" face="宋体"><strong>&nbsp;&nbsp;&nbsp; 三、学校深入开展“综合改革?重点建设年”主题活动，全面启动综合改革。</strong></font></div>
+<div><font size="4" face="宋体"><strong>&nbsp;&nbsp;&nbsp; 三、学校深入开展“综合改革•重点建设年”主题活动，全面启动综合改革。</strong></font></div>
 <div align="center"><font size="4" face="宋体">&nbsp;<img border="0" alt="" width="650" src="/picture/article/2/a5/a3/dd53f9484a3b92a33acd6096dabd/26df9751-fd50-4eb2-b384-f0c06186dfce.png" /></font></div>
 <div><font size="4" face="宋体">&nbsp;&nbsp;&nbsp; 11月30日，学校出台《江西师范大学综合改革方案》，全面部署学校深化综合改革工作。学校将从深化人才培养体系改革、深化分类评价体系改革、深化内部治理体系改革和深化资产与后勤管理体系改革等4个方面着手，以27项具体改革举措为抓手，全面推进综合改革。12月10日，省委常委、省委秘书长朱虹对我校综合改革方案作出重要批示，要求学校紧紧扭住建设接近全国百强大学和一流师范大学的办学目标，“加强优势学科和特色专业建设，打造高素质的教师队伍，培育出一流的学生，在‘十三五’时期再上新台阶”。</font></div>
 <div><font size="4" face="宋体"><strong>&nbsp;&nbsp;&nbsp; 四、学校扎实开展“三严三实”专题教育，全面推进从严治党，党的建设工作不断加强。</strong></font></div>
@@ -32,6 +101,15 @@
 <div><font size="4" face="宋体">&nbsp;&nbsp;&nbsp; 12月6日，我校塔那那利佛大学孔子学院荣获第十届全球“示范孔子学院”称号;&nbsp;6月25日，学校成立马达加斯加研究中心；学校成立创新创业教育研究与指导中心，印发《推进创新创业教育实施意见和竞赛奖励办法》，我校大学生创业基地建设及以创业带动就业等方面成绩得到各级领导的充分肯定；9月，在全省“互联网+”大学生创新创业大赛等赛事上，软件学院曾恕杰等5名同学创作的“基于LBS的废旧物品回收平台”项目成功获批“2015Google支持教育部高教司国家大学生创新创业训练计划联合基金项目”；5月15日，我校十名优秀创业学生在全省首届大学生创业公开课上被授予“创业之星”荣誉证书。</font></div>
 <div><font size="4" face="宋体"><strong>&nbsp;&nbsp;&nbsp; 十、学校校园文化建设成果丰硕，首获全国高校校园文化建设优秀成果一等奖，2015年暑期“三下乡”社会实践活动再创佳绩，纪念抗战胜利70周年暨姚名达烈士诞辰110周年系列活动社会反响良好。</strong></font></div>
 <div align="center"><font size="4" face="宋体">&nbsp;<img border="0" alt="" width="650" src="/picture/article/2/a5/a3/dd53f9484a3b92a33acd6096dabd/728ed305-21f7-44d7-8bc4-17b24e4e4216.png" /></font></div>
-<div><font size="4" face="宋体">&nbsp;&nbsp;&nbsp; 在第八届全国高校校园文化建设优秀成果评选中，我校报送的“纯洁?朝气?责任——努力培育青年精气神&nbsp;塑造青年新形象”喜获一等奖，实现学校该奖项的历史性突破；音乐学院合唱团在第四届全国大学生艺术展演中斩获专业组声乐类金奖；美术学院获评第七届全国高校美育工作先进单位，卢世主被评为全国高校美育先进工作者；国际教育学院郭瑞兰被评为全国大中专学生志愿者暑期文化科技卫生“三下乡”社会实践先进个人（江西省高校仅1人），学校“丝路新世界?青春中国梦”暑期社会实践专队荣获团中央3项团体奖，李艳萍荣获优秀首席专家称号，学校再次被评为2015年江西省暑期社会实践先进单位；8月31日，学校举行纪念抗战胜利70周年暨姚名达烈士诞辰110周年系列活动，在社会产生良好反响；6月，教育部网站以《江西师范大学着力打造师德文化&nbsp;推进立德树人》为题，刊发了我校加强师德师风建设的经验文章，推介我校的成功做法；我校学生刘维天等摄制的纪录片《郭庆棻》在第22届北京大学生电影节、第16届大学生原创影片大赛上入围参加终评的22部影片之一，是全省高校唯一入围参展影片；7月上旬，我校教师邹志刚参与庆祝世界反法西斯战争胜利70周年暨联合国教科文组织成立70周年的“让世界充满爱”纪念晚会，受聘“中法文化和平大使”。</font></div></div>
+<div><font size="4" face="宋体">&nbsp;&nbsp;&nbsp; 在第八届全国高校校园文化建设优秀成果评选中，我校报送的“纯洁•朝气•责任——努力培育青年精气神&nbsp;塑造青年新形象”喜获一等奖，实现学校该奖项的历史性突破；音乐学院合唱团在第四届全国大学生艺术展演中斩获专业组声乐类金奖；美术学院获评第七届全国高校美育工作先进单位，卢世主被评为全国高校美育先进工作者；国际教育学院郭瑞兰被评为全国大中专学生志愿者暑期文化科技卫生“三下乡”社会实践先进个人（江西省高校仅1人），学校“丝路新世界•青春中国梦”暑期社会实践专队荣获团中央3项团体奖，李艳萍荣获优秀首席专家称号，学校再次被评为2015年江西省暑期社会实践先进单位；8月31日，学校举行纪念抗战胜利70周年暨姚名达烈士诞辰110周年系列活动，在社会产生良好反响；6月，教育部网站以《江西师范大学着力打造师德文化&nbsp;推进立德树人》为题，刊发了我校加强师德师风建设的经验文章，推介我校的成功做法；我校学生刘维天等摄制的纪录片《郭庆棻》在第22届北京大学生电影节、第16届大学生原创影片大赛上入围参加终评的22部影片之一，是全省高校唯一入围参展影片；7月上旬，我校教师邹志刚参与庆祝世界反法西斯战争胜利70周年暨联合国教科文组织成立70周年的“让世界充满爱”纪念晚会，受聘“中法文化和平大使”。</font></div></div>
  </div>
 </div>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ ga('create', 'UA-46995581-9', 'jxnu.edu.cn');ga('send', 'pageview');</script>
+<div class="footer">
+  <p class="copyright">版权:江西师范大学(Jiangxi Normal University) ICP备案编号：赣洪备 2-4-3-2002018<br />
+学校地址：［瑶湖校区］江西省南昌市紫阳大道99号 邮政编码：330022 ［青山湖校区］江西省南昌市北京西路437号 邮政编码：330027</p>
+</div>
+</body>
+</html><image src="/sitecount/addarticlecount?siteId=271&pageId=910&articleId=71127" style="display:none" width="0" height="0"></image>
