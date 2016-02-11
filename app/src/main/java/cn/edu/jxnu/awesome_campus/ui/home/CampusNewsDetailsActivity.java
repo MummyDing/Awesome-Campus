@@ -10,6 +10,7 @@ import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,6 +38,7 @@ import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.html.GetNewsFirstPic;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 
@@ -115,12 +118,24 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         contentView = (WebView) findViewById(R.id.content_view);
         contentView.getSettings().setJavaScriptEnabled(true);
 
+        /***
+         测试代码
+         */
+        String data = importStr(); //这里放html代码
+        CampusNewsContentParse myParse = new CampusNewsContentParse(data);
+        data = myParse.getEndStr();
+
+        //测试取第一张图片url
+        String myPicUrl= GetNewsFirstPic.getPicURL(data);
+        if(myPicUrl!=null)
+            Log.d("取得第一张url为：",myPicUrl);
+
         /**
-         * 根据主色调设置背景色
+         * 根据主色调设置背景色  Fresco 有坑，，等下还是换成 ImageView...
          */
         setMainContentBg();
         if(TextUtil.isNull(model.getNewsPicURL()) == false){
-            topImage.setImageURI(Uri.parse(model.getNewsPicURL()));
+            topImage.setImageURI(/*Uri.parse(model.getNewsPicURL())*/ Uri.parse(myPicUrl));
             for(int i=1 ; i<= 5 ; i+=2) {
                 handler = new Handler(Looper.getMainLooper());
                 handler.postDelayed(new Runnable() {
@@ -138,9 +153,8 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
             }
         });
 
-        String data = importStr(); //这里放html代码
-        CampusNewsContentParse myParse = new CampusNewsContentParse(data);
-        data = myParse.getEndStr();
+
+
         contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNews.css\" />" + data, "text/html", "utf-8", null);
     }
 
@@ -173,7 +187,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         super.onDestroy();
     }
 
-    @Subscribe (threadMode = ThreadMode.MAIN, sticky = true, priority = 1)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true, priority = 1)
     public void onEventMainThread(EventModel eventModel){
         if(eventModel.getEventCode() == EVENT.SEND_MODEL_DETAIL) {
             model = (CampusNewsModel) eventModel.getData();
