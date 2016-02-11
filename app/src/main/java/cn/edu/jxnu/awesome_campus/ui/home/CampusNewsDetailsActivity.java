@@ -11,9 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -22,6 +26,7 @@ import java.io.InputStreamReader;
 
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 
@@ -61,13 +66,13 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
     @Override
     public void initView() {
+        /**
+         * 测试用 非正式代码 ---By MummyDing
+         */
         NestedScrollView scrollView = (NestedScrollView) findViewById(R.id.scrollView);
         final CardView cardView = (CardView) findViewById(R.id.content_card);
         final ImageView imageView = (ImageView) findViewById(R.id.image);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        contentView = (WebView) findViewById(R.id.content_view);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -77,31 +82,30 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
             }
         });
         getSupportActionBar().setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.top_gradient));
-        /**
-         * 测试用 非正式代码 ---By MummyDing
-         */
+        contentView = (WebView) findViewById(R.id.content_view);
+        contentView.getSettings().setJavaScriptEnabled(true);
+
+
+        
+        contentView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                contentView.loadUrl("javascript:MyApp.resize(document.body.getBoundingClientRect().height)");
+                super.onPageFinished(view, url);
+            }
+        });
+        contentView.addJavascriptInterface(this, "MyApp");
+
+
 
         scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Log.d("layout: ",scrollX+" "+scrollY+" "+oldScrollX+" "+oldScrollY+" scroll "+oldScrollY+" "+scrollY);
-                imageView.setTranslationY(-scrollY/2);
+                imageView.setTranslationY(Math.max(-scrollY/2,-DisplayUtil.dip2px(getBaseContext(),170)));
+            }
+        });
 
-                ViewGroup.MarginLayoutParams paramsCompat = (ViewGroup.MarginLayoutParams) cardView.getLayoutParams();
-                paramsCompat.height+=(oldScrollY-scrollY);
-                paramsCompat.topMargin+=(oldScrollY-scrollY);
-                cardView.requestLayout();
-                //cardView.setTranslationY(-scrollY);
-            }
-        });
-        contentView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-       /* contentView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                imageView.setPadding(0,-scrollY,0,0);
-            }
-        });
-*/
         String data = importStr(); //这里放html代码
         CampusNewsContentParse myParse=new CampusNewsContentParse(data);
         data=myParse.getEndStr();
@@ -128,5 +132,15 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
             e.printStackTrace();
         }
         return null;
+    }
+
+    @JavascriptInterface
+    public void resize(final float height) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                contentView.setLayoutParams(new LinearLayout.LayoutParams(getResources().getDisplayMetrics().widthPixels, (int) (height * getResources().getDisplayMetrics().density)));
+            }
+        });
     }
 }
