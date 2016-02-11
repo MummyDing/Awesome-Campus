@@ -2,8 +2,12 @@ package cn.edu.jxnu.awesome_campus.support.utils.common;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.graphics.Palette;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Headers;
 
 import java.io.BufferedInputStream;
@@ -27,5 +31,18 @@ public class ImageUtil {
     public static int getImageColor(Bitmap bitmap){
         Palette palette = Palette.from(bitmap).generate();
         return palette.getDarkMutedSwatch().getRgb();
+    }
+
+    public static Bitmap getBitmap(SimpleDraweeView imageView){
+        Bitmap bitmap;
+        if (imageView.getDrawable() instanceof BitmapDrawable) {
+            bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        } else {
+            Drawable d = imageView.getDrawable();
+            bitmap = Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            d.draw(canvas);
+        }
+        return bitmap;
     }
 }

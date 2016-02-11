@@ -1,7 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.squareup.okhttp.Headers;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,6 +31,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -39,6 +44,8 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.GetNewsFirstPic;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.InputStreamCallback;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 
@@ -131,30 +138,17 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
             Log.d("取得第一张url为：",myPicUrl);
 
         /**
-         * 根据主色调设置背景色  Fresco 有坑，，等下还是换成 ImageView...
+         * 根据主色调设置背景色
          */
-        setMainContentBg();
-        if(TextUtil.isNull(model.getNewsPicURL()) == false){
-            topImage.setImageURI(/*Uri.parse(model.getNewsPicURL())*/ Uri.parse(myPicUrl));
-            for(int i=1 ; i<= 5 ; i+=2) {
-                handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setMainContentBg();
-                    }
-                }, i*1000);
-            }
-        }
+        setMainContentBg(myPicUrl);
+
         scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 topImage.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
             }
         });
-
-
-
+        
         contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNews.css\" />" + data, "text/html", "utf-8", null);
     }
 
@@ -195,8 +189,27 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         }
     }
 
-    private void setMainContentBg(){
-        mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable)topImage.getBackground()).getBitmap()));
+    private void setMainContentBg(String url){
+
+        NetManageUtil.get(url)
+                .enqueue(new InputStreamCallback() {
+                    @Override
+                    public void onSuccess(InputStream result, Headers headers) {
+                        final Bitmap bitmap = BitmapFactory.decodeStream(result);
+                       new Handler(Looper.getMainLooper()).post(new Runnable() {
+                           @Override
+                           public void run() {
+                               topImage.setBackground(new BitmapDrawable(getResources(),bitmap));
+                               mainContent.setBackgroundColor(ImageUtil.getImageColor(bitmap));
+                           }
+                       });
+                    }
+
+                    @Override
+                    public void onFailure(IOException e) {
+
+                    }
+                });
     }
 
 
