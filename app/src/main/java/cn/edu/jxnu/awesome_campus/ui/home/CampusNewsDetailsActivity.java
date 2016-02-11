@@ -1,29 +1,26 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Color;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
@@ -44,6 +41,10 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_news_details);
         initView();
@@ -69,22 +70,33 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         /**
          * 测试用 非正式代码 ---By MummyDing
          */
+
+        //对toolbar进行下移
+        int height = DisplayUtil.getScreenHeight(InitApp.AppContext);
+        LinearLayout ll = (LinearLayout) findViewById(R.id.stbar);
+        LinearLayout.LayoutParams llp = (LinearLayout.LayoutParams) ll.getLayoutParams();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            llp.height = (int) (height * 0.03);
+            ll.setLayoutParams(llp);
+        }
+
+
         NestedScrollView scrollView = (NestedScrollView) findViewById(R.id.scrollView);
         final CardView cardView = (CardView) findViewById(R.id.content_card);
         final ImageView imageView = (ImageView) findViewById(R.id.image);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        getSupportActionBar().setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.top_gradient));
+        getSupportActionBar().setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.top_gradient));
         contentView = (WebView) findViewById(R.id.content_view);
         contentView.getSettings().setJavaScriptEnabled(true);
-
 
 
 //        contentView.setWebViewClient(new WebViewClient() {
@@ -98,18 +110,17 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 //        contentView.addJavascriptInterface(this, "MyApp");
 
 
-
         scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Log.d("layout: ",scrollX+" "+scrollY+" "+oldScrollX+" "+oldScrollY+" scroll "+oldScrollY+" "+scrollY);
-                imageView.setTranslationY(Math.max(-scrollY/2,-DisplayUtil.dip2px(getBaseContext(),170)));
+                Log.d("layout: ", scrollX + " " + scrollY + " " + oldScrollX + " " + oldScrollY + " scroll " + oldScrollY + " " + scrollY);
+                imageView.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
             }
         });
 
         String data = importStr(); //这里放html代码
-        CampusNewsContentParse myParse=new CampusNewsContentParse(data);
-        data=myParse.getEndStr();
+        CampusNewsContentParse myParse = new CampusNewsContentParse(data);
+        data = myParse.getEndStr();
         contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNews.css\" />" + data, "text/html", "utf-8", null);
     }
 
@@ -140,7 +151,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                contentView.setLayoutParams(new LinearLayout.LayoutParams(DisplayUtil.getScreenWidth(getBaseContext()) - DisplayUtil.dip2px(getBaseContext(),20), (int) (height * getResources().getDisplayMetrics().density)));
+                contentView.setLayoutParams(new LinearLayout.LayoutParams(DisplayUtil.getScreenWidth(getBaseContext()) - DisplayUtil.dip2px(getBaseContext(), 20), (int) (height * getResources().getDisplayMetrics().density)));
             }
         });
     }
