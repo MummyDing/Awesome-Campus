@@ -1,9 +1,19 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
+import android.animation.ObjectAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MarginLayoutParamsCompat;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -24,7 +34,6 @@ import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 public class CampusNewsDetailsActivity extends SwipeBackActivity implements BaseView {
 
     private Toolbar toolbar;
-    private TextView contentTitle;
     private WebView contentView;
 
     @Override
@@ -51,8 +60,11 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
     @Override
     public void initView() {
+        NestedScrollView scrollView = (NestedScrollView) findViewById(R.id.scrollView);
+        final CardView cardView = (CardView) findViewById(R.id.content_card);
+        final ImageView imageView = (ImageView) findViewById(R.id.image);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        contentTitle = (TextView) findViewById(R.id.content_title);
+
         contentView = (WebView) findViewById(R.id.content_view);
 
         setSupportActionBar(toolbar);
@@ -63,14 +75,35 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
                 onBackPressed();
             }
         });
-
+        getSupportActionBar().setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.top_gradient));
         /**
          * 测试用 非正式代码 ---By MummyDing
          */
-        contentTitle.setText("江西师大广东校友会2015年会暨2016“遇见青春”众筹演唱会羊城首演");
         String data = importStr(); //这里放html代码
-        contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNew.css\" />" + data, "text/html", "utf-8", null);
+        contentView.getSettings().setJavaScriptEnabled(true);
+        contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNews.css\" />" + data, "text/html", "utf-8", null);
 
+        scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Log.d("layout: ",scrollX+" "+scrollY+" "+oldScrollX+" "+oldScrollY+" scroll "+oldScrollY+" "+scrollY);
+                imageView.setTranslationY(-scrollY/2);
+
+                ViewGroup.MarginLayoutParams paramsCompat = (ViewGroup.MarginLayoutParams) cardView.getLayoutParams();
+                paramsCompat.height+=(oldScrollY-scrollY);
+                paramsCompat.topMargin+=(oldScrollY-scrollY);
+                cardView.requestLayout();
+                //cardView.setTranslationY(-scrollY);
+            }
+        });
+        contentView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+       /* contentView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                imageView.setPadding(0,-scrollY,0,0);
+            }
+        });
+*/
     }
 
     /**
