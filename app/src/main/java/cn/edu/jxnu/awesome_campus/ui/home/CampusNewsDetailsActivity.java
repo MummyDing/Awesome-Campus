@@ -87,15 +87,15 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
 
 
-        contentView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                contentView.loadUrl("javascript:MyApp.resize(document.body.getBoundingClientRect().height)");
-                contentView.loadUrl("javascript:document.body.style.margin=\"7%\"; void 0");
-                super.onPageFinished(view, url);
-            }
-        });
-        contentView.addJavascriptInterface(this, "MyApp");
+//        contentView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                contentView.loadUrl("javascript:MyApp.resize(document.body.getBoundingClientRect().height)");
+//                contentView.loadUrl("javascript:document.body.style.margin=\"7%\"; void 0");
+//                super.onPageFinished(view, url);
+//            }
+//        });
+//        contentView.addJavascriptInterface(this, "MyApp");
 
 
 
