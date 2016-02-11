@@ -24,6 +24,7 @@ import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.html.GetNewsFirstPic;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 
@@ -121,6 +122,12 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         String data = importStr(); //这里放html代码
         CampusNewsContentParse myParse = new CampusNewsContentParse(data);
         data = myParse.getEndStr();
+
+        //测试取第一张图片url
+        String myPicUrl= GetNewsFirstPic.getPicURL(data);
+        if(myPicUrl!=null)
+        Log.d("取得第一张url为：",myPicUrl);
+
         contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNews.css\" />" + data, "text/html", "utf-8", null);
     }
 
