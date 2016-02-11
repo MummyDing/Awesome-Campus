@@ -8,6 +8,7 @@ import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
@@ -45,35 +46,68 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
     @Override
     public void loadFromNet() {
         final Handler handler = new Handler(Looper.getMainLooper());
+        final List<CampusNewsModel> resultList = new ArrayList<>();
+        
         NetManageUtil.get(Urlconfig.CampusNews_YW_URL)
                 .addTag(TAG)
                 .enqueue(new StringCallback() {
                     @Override
                     public void onSuccess(String result, Headers headers) {
-                        CampusNewsParse myPrase=new CampusNewsParse(result);
-                        final List list = myPrase.getEndList();
+                        Log.d("net exe","1111");
+                        CampusNewsParse myParse=new CampusNewsParse(result);
+                        resultList.addAll(myParse.getEndList());
+                    }
+                    @Override
+                    public void onFailure(String error) {
+                    }
+                });
+
+        NetManageUtil.get(Urlconfig.CampusNews_DT_URL)
+                .addTag(TAG)
+                .enqueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result, Headers headers) {
+                        Log.d("net exe","2222");
+                        CampusNewsParse myParse=new CampusNewsParse(result);
+                        resultList.addAll(myParse.getEndList());
+                    }
+                    @Override
+                    public void onFailure(String error) {
+                    }
+                });
+
+        NetManageUtil.get(Urlconfig.CampusNews_MT_URL)
+                .addTag(TAG)
+                .enqueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result, Headers headers) {
+                        Log.d("net exe","3333");
+                        CampusNewsParse myParse=new CampusNewsParse(result);
+                        resultList.addAll(myParse.getEndList());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                if (list != null) {
-                                    EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_SUCCESS, list));
+                                if (resultList.size()>0) {
+                                    EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_REFRESH_SUCCESS, resultList));
+                                    cacheAll(resultList);
                                 } else {
-                                    EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
+                                    EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
                                 }
                             }
                         });
-
                     }
+
                     @Override
                     public void onFailure(String error) {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
+                                EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
                             }
                         });
                     }
                 });
+
 
     }
 

@@ -135,7 +135,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         return null;
     }
 
-    @JavascriptInterface
+   /* @JavascriptInterface
     public void resize(final float height) {
         this.runOnUiThread(new Runnable() {
             @Override
@@ -143,5 +143,5 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
                 contentView.setLayoutParams(new LinearLayout.LayoutParams(DisplayUtil.getScreenWidth(getBaseContext()) - DisplayUtil.dip2px(getBaseContext(),20), (int) (height * getResources().getDisplayMetrics().density)));
             }
         });
-    }
+    }*/
 }
