@@ -5,7 +5,7 @@ package cn.edu.jxnu.awesome_campus.support.utils.html;
  * Created by KevinWu on 2016/2/11.
  */
 public class GetNewsFirstPic {
-    private static String URL_CUT_LEFT="alt=\"\" src=\"";
+    private static String URL_CUT_LEFT="src=\"";
     private static String URL_CUT_RIGHT="\" />";
     /**
     *如果获取到则返回真实url，如果未获取到则返回null
