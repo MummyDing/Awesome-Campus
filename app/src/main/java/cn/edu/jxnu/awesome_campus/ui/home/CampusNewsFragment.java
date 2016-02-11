@@ -62,10 +62,11 @@ public class CampusNewsFragment extends BaseListFragment {
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
-        List list = eventModel.getDataList();
-        Collections.sort(list);
+
         switch (eventModel.getEventCode()){
             case EVENT.CAMPUS_NEWS_REFRESH_SUCCESS:
+                List list = eventModel.getDataList();
+                Collections.sort(list);
                 adapter.newList(list);
                 hideLoading();
                 Log.d("fragment","success");

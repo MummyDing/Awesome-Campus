@@ -50,5 +50,8 @@ public class EVENT {
     public static final int DAILY_DETAIL_SUCCESS = 19;
     public static final int DAILY_DETAIL_FAILURE = 20;
 
+
+    // send common Model Detail
+    public static final int SEND_MODEL_DETAIL = 21;
 }
 

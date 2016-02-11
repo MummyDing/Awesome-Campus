@@ -2,6 +2,13 @@ package cn.edu.jxnu.awesome_campus.support.utils.common;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.v7.graphics.Palette;
+
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.squareup.okhttp.Headers;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -12,6 +19,8 @@ import java.io.OutputStream;
 import java.net.URL;
 
 import cn.edu.jxnu.awesome_campus.support.CONSTANT;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.InputStreamCallback;
 
 /**
  * Created by MummyDing on 16-2-10.
@@ -19,56 +28,21 @@ import cn.edu.jxnu.awesome_campus.support.CONSTANT;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class ImageUtil {
-
-    /**
-     * Get Bitmap From image url
-     *
-     * @param url
-     * @return
-     */
-    private static Bitmap bitmap = null;
-    public static Bitmap GetLocalOrNetBitmap(final String url)
-    {
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                InputStream in = null;
-                BufferedOutputStream out = null;
-                try
-                {
-                    in = new BufferedInputStream(new URL(url).openStream(), CONSTANT.IO_BUFFER_SIZE);
-                    final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-                    out = new BufferedOutputStream(dataStream, CONSTANT.IO_BUFFER_SIZE);
-                    copy(in, out);
-                    out.flush();
-                    byte[] data = dataStream.toByteArray();
-                    bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                    data = null;
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                    bitmap =  null;
-                }
-            }
-        });
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return bitmap;
+    public static int getImageColor(Bitmap bitmap){
+        Palette palette = Palette.from(bitmap).generate();
+        return palette.getDarkMutedSwatch().getRgb();
     }
 
-    private static void copy(InputStream in, OutputStream out)
-            throws IOException {
-        byte[] b = new byte[CONSTANT.IO_BUFFER_SIZE];
-        int read;
-        while ((read = in.read(b)) != -1) {
-            out.write(b, 0, read);
+    public static Bitmap getBitmap(SimpleDraweeView imageView){
+        Bitmap bitmap;
+        if (imageView.getDrawable() instanceof BitmapDrawable) {
+            bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        } else {
+            Drawable d = imageView.getDrawable();
+            bitmap = Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            d.draw(canvas);
         }
+        return bitmap;
     }
 }

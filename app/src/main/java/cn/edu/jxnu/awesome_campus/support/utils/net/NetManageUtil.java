@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 
 import com.google.gson.Gson;
+import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.net.CookieManager;
@@ -24,12 +25,14 @@ public class NetManageUtil {
     private static Gson mGson;
 
     static {
+        mGson = new Gson();
+        Cache responseCache = new Cache(InitApp.AppContext.getCacheDir(), 1024*2024*10);
+
         netClient = new OkHttpClient();
         //enable Cookie
         netClient.setCookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ORIGINAL_SERVER));
-        mGson = new Gson();
+        netClient.setCache(responseCache);
     }
-
     private NetManageUtil(){
 
     }

@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.database.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -8,7 +9,7 @@ import java.util.List;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public interface DAO<M> {
+public interface DAO<M> extends Serializable{
     /**
      * 将数据写入到数据库中
      * @param list  数据源 需要写入的数据
