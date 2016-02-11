@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.model.home;
 
+import android.util.Log;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -105,9 +107,25 @@ public class CampusNewsModel  implements IModel<CampusNewsModel>,Comparable<Camp
 
     @Override
     public int compareTo(CampusNewsModel model) {
-        int result = model.getUpdateTime().compareTo(this.getNewsTime());
-        if(result>0) return 1;
-        else if(result < 0) return -1;
+        String str1 = model.getNewsTime();
+        String str2 = this.getNewsTime();
+
+        if(str1.length() != str2.length()){
+            Log.d("!!","有问题！！");
+        }
+        if(str1.equals(str2)){
+            return 0;
+        }
+
+        int len = str1.length();
+        Log.d("len",len+"");
+        for(int i=0 ; i<len; i++){
+            if(str1.charAt(i)>str2.charAt(i)){
+                return 1;
+            }else if(str1.charAt(i)>str2.charAt(i)){
+                return -1;
+            }
+        }
         return 0;
     }
 }
