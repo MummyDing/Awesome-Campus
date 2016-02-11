@@ -148,7 +148,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
                 topImage.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
             }
         });
-        
+
         contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"CampusNews.css\" />" + data, "text/html", "utf-8", null);
     }
 
