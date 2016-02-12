@@ -7,8 +7,7 @@ package cn.edu.jxnu.awesome_campus.view.base;
  */
 public interface BaseListView extends BaseView<BaseListView> {
     boolean trySetupRefreshLayout();
-    boolean trySetupSmartTabLayout();
-    void cardViewTransition();
+    void onDataRefresh();
     void bindAdapter();
     void addHeader();
 }

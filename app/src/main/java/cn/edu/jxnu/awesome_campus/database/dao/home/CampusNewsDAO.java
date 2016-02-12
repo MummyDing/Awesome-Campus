@@ -55,12 +55,10 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
                 .enqueue(new StringCallback() {
                     @Override
                     public void onSuccess(String result, Headers headers) {
-                        Log.d("net exe","1111"+"count "+count);
                         CampusNewsParse myParse=new CampusNewsParse(result);
                         resultList.addAll(myParse.getEndList());
                         if(count == 3 && resultList.size()>0){
                             sendSuccess(resultList);
-                            Log.d("net exe","1111Success");
                         }
                         count++;
                     }
@@ -80,12 +78,10 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
                 .enqueue(new StringCallback() {
                     @Override
                     public void onSuccess(String result, Headers headers) {
-                        Log.d("net exe","2222 "+count);
                         CampusNewsParse myParse=new CampusNewsParse(result);
                         resultList.addAll(myParse.getEndList());
                         if(count == 3 && resultList.size()>0){
                             sendSuccess(resultList);
-                            Log.d("net exe","2222Success");
                         }
                         count++;
                     }
@@ -105,12 +101,10 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
                 .enqueue(new StringCallback() {
                     @Override
                     public  void onSuccess(String result, Headers headers) {
-                        Log.d("net exe","3333 "+count);
                         CampusNewsParse myParse=new CampusNewsParse(result);
                         resultList.addAll(myParse.getEndList());
                         if(count == 3 && resultList.size()>0){
                             sendSuccess(resultList);
-                            Log.d("net exe","1111Successs");
                         }
                         count++;
                     }
@@ -131,7 +125,7 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Log.d("net exe","size "+result.size()+": count"+count);
+                count = 1;
                 EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_REFRESH_SUCCESS, result));
             }
         });
@@ -141,6 +135,7 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                count = 1;
                 EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_REFRESH_FAILURE));
             }
         });

@@ -16,7 +16,7 @@ public class ReadingFragment extends BaseListFragment {
     }
 
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -34,8 +34,4 @@ public class ReadingFragment extends BaseListFragment {
 
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
-
-    }
 }

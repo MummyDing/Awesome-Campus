@@ -20,8 +20,9 @@ public class CourseTableFragment extends BaseListFragment{
         return InitApp.AppContext.getString(R.string.course_table);
     }
 
+
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -50,8 +51,5 @@ public class CourseTableFragment extends BaseListFragment{
     public void initView() {
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
 
-    }
 }

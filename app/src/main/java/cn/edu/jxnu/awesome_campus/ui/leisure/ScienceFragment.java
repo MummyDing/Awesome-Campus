@@ -16,7 +16,7 @@ public class ScienceFragment extends BaseListFragment {
     }
 
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -35,8 +35,5 @@ public class ScienceFragment extends BaseListFragment {
 
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
 
-    }
 }

@@ -15,8 +15,9 @@ public class BookSearchFragment extends BaseListFragment {
         return InitApp.AppContext.getString(R.string.search_books);
     }
 
+
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -35,8 +36,4 @@ public class BookSearchFragment extends BaseListFragment {
 
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
-
-    }
 }

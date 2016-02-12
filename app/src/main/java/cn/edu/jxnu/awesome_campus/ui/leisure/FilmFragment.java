@@ -15,8 +15,9 @@ public class FilmFragment extends BaseListFragment {
         return InitApp.AppContext.getString(R.string.film);
     }
 
+
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -35,8 +36,4 @@ public class FilmFragment extends BaseListFragment {
 
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
-
-    }
 }

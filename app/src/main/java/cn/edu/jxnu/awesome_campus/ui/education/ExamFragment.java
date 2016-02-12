@@ -15,8 +15,9 @@ public class ExamFragment extends BaseListFragment {
         return InitApp.AppContext.getString(R.string.exam);
     }
 
+
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -35,8 +36,4 @@ public class ExamFragment extends BaseListFragment {
 
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
-
-    }
 }

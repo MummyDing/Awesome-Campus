@@ -32,9 +32,10 @@ public class CampusNewsFragment extends BaseListFragment {
     }
 
     @Override
-    public void cardViewTransition() {
-
+    public void onDataRefresh() {
+        model.loadFromNet();
     }
+
 
     @Override
     public void bindAdapter() {
@@ -54,10 +55,7 @@ public class CampusNewsFragment extends BaseListFragment {
     public void initView() {
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
 
-    }
 
     @Override
     public void onEventComing(EventModel eventModel) {
@@ -72,6 +70,8 @@ public class CampusNewsFragment extends BaseListFragment {
                 Log.d("fragment","success");
                 break;
             case EVENT.CAMPUS_NEWS_REFRESH_FAILURE:
+                hideLoading();
+                displayNetworkError();
                 Log.d("fragment","fail");
                 break;
         }

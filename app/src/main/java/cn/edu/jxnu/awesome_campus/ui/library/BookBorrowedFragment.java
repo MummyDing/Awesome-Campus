@@ -15,8 +15,9 @@ public class BookBorrowedFragment extends BaseListFragment{
         return InitApp.AppContext.getString(R.string.book_borrowed);
     }
 
+
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -35,8 +36,5 @@ public class BookBorrowedFragment extends BaseListFragment{
 
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
 
-    }
 }

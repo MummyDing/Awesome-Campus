@@ -16,8 +16,9 @@ public class CourseScoreFragment extends BaseListFragment {
         return InitApp.AppContext.getString(R.string.source);
     }
 
+
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -36,10 +37,6 @@ public class CourseScoreFragment extends BaseListFragment {
 
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
-
-    }
 
     @Override
     public void onEventComing(EventModel eventModel) {

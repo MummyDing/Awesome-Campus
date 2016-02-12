@@ -16,7 +16,7 @@ public class MySeatFragment extends BaseListFragment {
     }
 
     @Override
-    public void cardViewTransition() {
+    public void onDataRefresh() {
 
     }
 
@@ -35,8 +35,4 @@ public class MySeatFragment extends BaseListFragment {
 
     }
 
-    @Override
-    protected void onNetworkBtnClick() {
-
-    }
 }

@@ -14,7 +14,7 @@
         android:id="@+id/topImage"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:background="@drawable/bg"
+        android:background="@drawable/default_top_bg"
         card_view:adjustViewBounds="true"
         card_view:cropToPadding="true" />
 

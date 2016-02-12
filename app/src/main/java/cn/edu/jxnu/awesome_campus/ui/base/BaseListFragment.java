@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +33,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     protected ProgressBar progressBar;
     protected ImageButton networkBtn;
     protected BaseListAdapter adapter;
+    protected SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void init() {
         headerLayout = (FrameLayout) parentView.findViewById(R.id.headerLayout);
@@ -41,21 +43,21 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         recyclerView = (RecyclerView) parentView.findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(layoutManager);
-        bindAdapter();
         networkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 networkBtn.setVisibility(View.GONE);
-                onNetworkBtnClick();
+                progressBar.setVisibility(View.VISIBLE);
+                onDataRefresh();
             }
         });
-
+        bindAdapter();
+        trySetupRefreshLayout();
         addHeader();
         initView();
     }
 
 
-    protected abstract void onNetworkBtnClick();
     @Override
     protected int getLayoutID() {
         return R.layout.layout_common_list;
@@ -63,23 +65,34 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
 
     @Override
     public boolean trySetupRefreshLayout() {
-        return false;
+        swipeRefreshLayout = (SwipeRefreshLayout) parentView.findViewById(R.id.refreshLayout);
+        if(swipeRefreshLayout == null){
+            return false;
+        }
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                networkBtn.setVisibility(View.GONE);
+                onDataRefresh();
+            }
+        });
+        return true;
     }
 
-    @Override
-    public boolean trySetupSmartTabLayout() {
-        return false;
-    }
 
     @Override
     public void displayLoading() {
         progressBar.setVisibility(View.VISIBLE);
-
     }
 
     @Override
     public void hideLoading() {
         progressBar.setVisibility(View.GONE);
+
+        if(swipeRefreshLayout != null){
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
