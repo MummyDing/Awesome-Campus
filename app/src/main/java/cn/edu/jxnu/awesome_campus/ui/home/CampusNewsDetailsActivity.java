@@ -4,8 +4,6 @@ package cn.edu.jxnu.awesome_campus.ui.home;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.LayerDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,7 +43,6 @@ import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.GetNewsFirstPic;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.InputStreamCallback;
@@ -141,7 +138,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
             public void onClick(View v) {
                 if (networkBtn.getVisibility() == View.VISIBLE) {
                     networkBtn.setVisibility(View.GONE);
-                    getNewsDetials();
+                    getNewsDetails();
                 }
             }
         });
@@ -171,7 +168,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
          * 根据主色调设置背景色
          */
 //        setMainContentBg(model.getNewsPicURL());
-        getNewsDetials();
+        getNewsDetails();
     }
 
     /**
@@ -196,7 +193,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         return null;
     }
 
-    private void getNewsDetials() {
+    private void getNewsDetails() {
         NetManageUtil.get(Urlconfig.CampusNews_Base_URL + model.getNewsURL())
                 .addTag("")
                 .enqueue(new StringCallback() {
@@ -279,6 +276,10 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
                     @Override
                     public void onSuccess(InputStream result, Headers headers) {
                         final Bitmap bitmap = BitmapFactory.decodeStream(result);
+                        if(bitmap == null){
+                            mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable) topImage.getBackground()).getBitmap()));
+                            return;
+                        }
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {

@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.support.utils.common;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.graphics.Palette;
@@ -30,6 +31,9 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.InputStreamCallback
 public class ImageUtil {
     public static int getImageColor(Bitmap bitmap){
         Palette palette = Palette.from(bitmap).generate();
+        if(palette == null || palette.getDarkMutedSwatch() == null){
+            return Color.LTGRAY;
+        }
         return palette.getDarkMutedSwatch().getRgb();
     }
 
