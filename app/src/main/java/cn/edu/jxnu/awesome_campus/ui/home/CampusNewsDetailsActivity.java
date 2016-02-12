@@ -43,6 +43,7 @@ import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.GetNewsFirstPic;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.InputStreamCallback;
@@ -70,6 +71,18 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
     private FrameLayout mainContent;
     private ProgressBar progressBar;
     private ImageButton networkBtn;
+    private static int imgID[]={
+            R.drawable.default_news_top_bg_0,
+            R.drawable.default_news_top_bg_1,
+            R.drawable.default_news_top_bg_2,
+            R.drawable.default_news_top_bg_3,
+            R.drawable.default_news_top_bg_4,
+            R.drawable.default_news_top_bg_5,
+            R.drawable.default_news_top_bg_6,
+            R.drawable.default_news_top_bg_7,
+            R.drawable.default_news_top_bg_8,
+            R.drawable.default_news_top_bg_9
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -280,7 +293,11 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
                 });
     }
 
+
     private void setDefaultColor(){
+        int pic_num=(int)(TimeUtil.getTimestamp()%10);
+        Log.d("当前数字",pic_num+"");
+        topImage.setBackground(ContextCompat.getDrawable(this,imgID[pic_num]));
         mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable) topImage.getBackground()).getBitmap()));
     }
 
