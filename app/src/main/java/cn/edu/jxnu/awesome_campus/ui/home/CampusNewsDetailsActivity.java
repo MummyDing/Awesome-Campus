@@ -70,6 +70,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
     private NestedScrollView scrollView;
     private FrameLayout mainContent;
     private ProgressBar progressBar;
+    private ProgressBar progressBarTopPic;
     private ImageButton networkBtn;
     private static int imgID[]={
             R.drawable.default_news_top_bg_0,
@@ -106,6 +107,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
     public void hideLoading() {
         if(progressBar != null){
             progressBar.setVisibility(View.GONE);
+            progressBarTopPic.setVisibility(View.VISIBLE);
         }
     }
 
@@ -135,6 +137,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         mainContent = (FrameLayout) findViewById(R.id.main_content);
         scrollView = (NestedScrollView) findViewById(R.id.scrollView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBarTopPic=(ProgressBar) findViewById(R.id.progressBarTopPic);
         networkBtn = (ImageButton) findViewById(R.id.networkBtn);
         topImage = (SimpleDraweeView) findViewById(R.id.topImage);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -235,6 +238,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
                 }
                 break;
             case EVENT.CAMPUS_NEWS_DETAILS_REFRESH_SUCCESS:
+                scrollView.setVisibility(View.VISIBLE);
                 scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
                     @Override
                     public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -277,6 +281,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
                             public void run() {
                                 topImage.setBackground(new BitmapDrawable(getResources(), bitmap));
                                 mainContent.setBackgroundColor(ImageUtil.getImageColor(bitmap));
+                                progressBarTopPic.setVisibility(View.GONE);
                             }
                         });
                     }
@@ -297,8 +302,9 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
     private void setDefaultColor(){
         int pic_num=(int)(TimeUtil.getTimestamp()%10);
         Log.d("当前数字",pic_num+"");
-        topImage.setBackground(ContextCompat.getDrawable(this,imgID[pic_num]));
+        topImage.setBackground(ContextCompat.getDrawable(this, imgID[pic_num]));
         mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable) topImage.getBackground()).getBitmap()));
+        progressBarTopPic.setVisibility(View.GONE);
     }
 
 
