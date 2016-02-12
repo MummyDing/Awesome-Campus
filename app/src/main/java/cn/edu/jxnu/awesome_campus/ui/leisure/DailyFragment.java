@@ -28,7 +28,7 @@ public class DailyFragment extends BaseListFragment {
 
     @Override
     public void onDataRefresh() {
-
+        model.loadFromNet();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DailyFragment extends BaseListFragment {
         model = new DailyModel();
         adapter = new DailyAdapter(getActivity(),model);
         recyclerView.setAdapter(adapter);
-        model.loadFromNet();
+        onDataRefresh();
         displayLoading();
     }
 
