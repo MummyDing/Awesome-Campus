@@ -25,19 +25,19 @@ public class DailyModel implements IModel<DailyModel> {
     private int id;
 
     private String body;
-    private String largepic;
+    //private String largepic;
+    private String [] images;
 
 
     public DailyModel() {
         dailyDAO = new DailyDAO();
     }
 
-    public DailyModel(String title, int id, String body, String largepic) {
-        this();
+    public DailyModel(String title, int id, String body, String[] images) {
         this.title = title;
         this.id = id;
         this.body = body;
-        this.largepic = largepic;
+        this.images = images;
     }
 
     @Override
@@ -84,11 +84,19 @@ public class DailyModel implements IModel<DailyModel> {
         this.body = body;
     }
 
-    public String getLargepic() {
+    /*public String getLargepic() {
         return largepic;
     }
 
     public void setLargepic(String largepic) {
         this.largepic = largepic;
+    }*/
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
     }
 }

@@ -45,7 +45,7 @@ public class DailyAdapter extends BaseListAdapter<DailyModel,DailyAdapter.VH> {
     public void onBindViewHolder(VH holder, int position) {
         DailyModel model = getItem(position);
         holder.dailyTitle.setText(model.getTitle());
-        holder.dailyImage.setImageURI(Uri.parse(model.getLargepic()));
+        holder.dailyImage.setImageURI(Uri.parse(model.getImages()[0]));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
