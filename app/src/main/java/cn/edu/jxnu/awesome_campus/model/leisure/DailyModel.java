@@ -1,9 +1,16 @@
 package cn.edu.jxnu.awesome_campus.model.leisure;
 
+import com.squareup.okhttp.Headers;
+
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.api.DailyApi;
 import cn.edu.jxnu.awesome_campus.database.dao.leisure.DailyDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 
 /**
  * Created by MummyDing on 16-2-10.
@@ -12,18 +19,25 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  */
 public class DailyModel implements IModel<DailyModel> {
 
+
     private DailyDAO dailyDAO;
-    private String date;
-    private StoryBean[] stories;
+    private String title;
+    private int id;
+
+    private String body;
+    private String largepic;
+
 
     public DailyModel() {
         dailyDAO = new DailyDAO();
     }
 
-    public DailyModel(String date, StoryBean[] stories) {
+    public DailyModel(String title, int id, String body, String largepic) {
         this();
-        this.date = date;
-        this.stories = stories;
+        this.title = title;
+        this.id = id;
+        this.body = body;
+        this.largepic = largepic;
     }
 
     @Override
@@ -46,19 +60,35 @@ public class DailyModel implements IModel<DailyModel> {
         dailyDAO.loadFromNet();
     }
 
-    public String getDate() {
-        return date;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public StoryBean[] getStories() {
-        return stories;
+    public int getId() {
+        return id;
     }
 
-    public void setStories(StoryBean[] stories) {
-        this.stories = stories;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getLargepic() {
+        return largepic;
+    }
+
+    public void setLargepic(String largepic) {
+        this.largepic = largepic;
     }
 }

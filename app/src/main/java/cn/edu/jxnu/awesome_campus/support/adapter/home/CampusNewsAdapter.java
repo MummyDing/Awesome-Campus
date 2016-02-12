@@ -40,8 +40,6 @@ public class CampusNewsAdapter extends BaseListAdapter<CampusNewsModel,CampusNew
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_compus_news, parent, false);
         VH vh = new VH(itemView);
-
-
         return vh;
     }
 
@@ -60,7 +58,6 @@ public class CampusNewsAdapter extends BaseListAdapter<CampusNewsModel,CampusNew
                 Intent intent = new Intent(mContext, CampusNewsDetailsActivity.class);
                 mContext.startActivity(intent);
                 EventBus.getDefault().postSticky(new EventModel<CampusNewsModel>(EVENT.SEND_MODEL_DETAIL,getItem(position)));
-                Log.d("getInfo","go"+Thread.currentThread());
             }
         });
     }
