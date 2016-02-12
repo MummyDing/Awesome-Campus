@@ -103,7 +103,7 @@ public class CampusNewsParse {
                     resultList.get(i + 1).toString(),
                     resultList.get(i + 2).toString(),
                     resultList.get(i + 3).toString(),
-                    resultList.get(i + 4).toString()
+                    resultList.get(i + 4).toString(),""
             ));
         }
     }

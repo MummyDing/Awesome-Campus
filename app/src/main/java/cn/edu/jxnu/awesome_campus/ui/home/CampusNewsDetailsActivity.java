@@ -42,12 +42,14 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
+import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.GetNewsFirstPic;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.InputStreamCallback;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 
@@ -68,6 +70,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
     private FrameLayout mainContent;
     private ProgressBar progressBar;
     private ImageButton networkBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -136,7 +139,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         networkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(networkBtn.getVisibility() == View.VISIBLE){
+                if (networkBtn.getVisibility() == View.VISIBLE) {
                     networkBtn.setVisibility(View.GONE);
                     getNewsDetials();
                 }
@@ -145,7 +148,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         /***
          测试代码
          */
-        String data = importStr(); //这里放html代码
+//        String data = importStr(); //这里放html代码
 
 
         // 使用方法 getNewsDetails() 在后边定义了 请求html代码
@@ -155,21 +158,21 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         // Event Code 都已经定义好了  注意EventModel 这个泛型类型不要写错了！！！ 这里就就是一个String
         //        progressBar.setVisibility(View.GONE);
 
-        CampusNewsContentParse myParse = new CampusNewsContentParse(data);
-        data = myParse.getEndStr();
+
+//        data = myParse.getEndStr();
 
         //  这个也放到getNewsDetails里边 获取后model.setNewsPicURL(); 不用判断是否null了，这个我用的时候有判断的
         //测试取第一张图片url
-        String myPicUrl= GetNewsFirstPic.getPicURL(data);
-        if(myPicUrl!=null)
-            Log.d("取得第一张url为：",myPicUrl);
+//        String myPicUrl= GetNewsFirstPic.getPicURL(data);
+//        if(myPicUrl!=null)
+//            Log.d("取得第一张url为：",myPicUrl);
 
         /**
          * 根据主色调设置背景色
          */
-        setMainContentBg(model.getNewsPicURL());
-
-      }
+//        setMainContentBg(model.getNewsPicURL());
+        getNewsDetials();
+    }
 
     /**
      * 测试用：导入数据
@@ -193,8 +196,37 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         return null;
     }
 
-    private void getNewsDetials(){
-        // 这里是需要填的坑
+    private void getNewsDetials() {
+        NetManageUtil.get(Urlconfig.CampusNews_Base_URL + model.getNewsURL())
+                .addTag("")
+                .enqueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result, Headers headers) {
+                        CampusNewsContentParse myParse = new CampusNewsContentParse(result);
+                        model.setNewsPicURL(GetNewsFirstPic.getPicURL(myParse.getEndStr()));
+                        model.setNewsDetails(myParse.getEndStr());
+                        if (model.getNewsPicURL() != null)
+                            Log.d("获取到的图片地址", model.getNewsPicURL());
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                onEventMainThread(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_DETAILS_REFRESH_SUCCESS));
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        Log.e("错误1", "11");
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                onEventMainThread(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_DETAILS_REFRESH_FAILURE));
+                            }
+                        });
+                    }
+                });
+
     }
 
     @Override
@@ -204,11 +236,11 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true, priority = 1)
-    public void onEventMainThread(EventModel eventModel){
+    public void onEventMainThread(EventModel eventModel) {
 
-        switch (eventModel.getEventCode()){
+        switch (eventModel.getEventCode()) {
             case EVENT.SEND_MODEL_DETAIL:
-                if(eventModel.getEventCode() == EVENT.SEND_MODEL_DETAIL) {
+                if (eventModel.getEventCode() == EVENT.SEND_MODEL_DETAIL) {
                     model = (CampusNewsModel) eventModel.getData();
                     initView();
                 }
@@ -234,11 +266,12 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
     /**
      * 设置布局背景，其实就是边缘空隙的颜色，颜色取自顶部图片的主色调
+     *
      * @param url
      */
-    private void setMainContentBg(String url){
-        if(url == null) {
-            mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable)topImage.getBackground()).getBitmap()));
+    private void setMainContentBg(String url) {
+        if (url == null) {
+            mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable) topImage.getBackground()).getBitmap()));
             return;
         }
         NetManageUtil.get(url)
@@ -249,7 +282,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
-                                topImage.setBackground(new BitmapDrawable(getResources(),bitmap));
+                                topImage.setBackground(new BitmapDrawable(getResources(), bitmap));
                                 mainContent.setBackgroundColor(ImageUtil.getImageColor(bitmap));
                             }
                         });
@@ -257,7 +290,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
                     @Override
                     public void onFailure(IOException e) {
-                        mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable)topImage.getBackground()).getBitmap()));
+                        mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable) topImage.getBackground()).getBitmap()));
                     }
                 });
     }
