@@ -19,7 +19,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Headers;
@@ -64,7 +66,8 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
     private SimpleDraweeView topImage;
     private NestedScrollView scrollView;
     private FrameLayout mainContent;
-    private Handler handler;
+    private ProgressBar progressBar;
+    private ImageButton networkBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -110,6 +113,8 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
         mainContent = (FrameLayout) findViewById(R.id.main_content);
         scrollView = (NestedScrollView) findViewById(R.id.scrollView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        networkBtn = (ImageButton) findViewById(R.id.networkBtn);
         topImage = (SimpleDraweeView) findViewById(R.id.topImage);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -125,13 +130,35 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         contentView = (WebView) findViewById(R.id.content_view);
         contentView.getSettings().setJavaScriptEnabled(true);
 
+        /**
+         * 网络异常就显示
+         */
+        networkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(networkBtn.getVisibility() == View.VISIBLE){
+                    networkBtn.setVisibility(View.GONE);
+                    getNewsDetials();
+                }
+            }
+        });
         /***
          测试代码
          */
         String data = importStr(); //这里放html代码
+
+
+        // 使用方法 getNewsDetails() 在后边定义了 请求html代码
+        // 请求前判断之前是否已经有了，有了就不用请求了: if TextUtil.isNull(model.getNewsDetails()) return;
+        // 请求到数据后就 model.setNewsDetails("解析后的数据");
+        //  使用EventBus发送消息 在onMainEvent中接收到消息后处理ui，比如 progressbar隐藏 加载数据
+        // Event Code 都已经定义好了  注意EventModel 这个泛型类型不要写错了！！！ 这里就就是一个String
+        //        progressBar.setVisibility(View.GONE);
+
         CampusNewsContentParse myParse = new CampusNewsContentParse(data);
         data = myParse.getEndStr();
 
+        //  这个也放到getNewsDetails里边 获取后model.setNewsPicURL(); 不用判断是否null了，这个我用的时候有判断的
         //测试取第一张图片url
         String myPicUrl= GetNewsFirstPic.getPicURL(data);
         if(myPicUrl!=null)
@@ -140,17 +167,9 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         /**
          * 根据主色调设置背景色
          */
-        setMainContentBg(myPicUrl);
+        setMainContentBg(model.getNewsPicURL());
 
-        scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                topImage.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
-            }
-        });
-
-        contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"MyCss.css\" />" + data, "text/html", "utf-8", null);
-    }
+      }
 
     /**
      * 测试用：导入数据
@@ -174,6 +193,9 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
         return null;
     }
 
+    private void getNewsDetials(){
+        // 这里是需要填的坑
+    }
 
     @Override
     protected void onDestroy() {
@@ -183,14 +205,38 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true, priority = 1)
     public void onEventMainThread(EventModel eventModel){
-        if(eventModel.getEventCode() == EVENT.SEND_MODEL_DETAIL) {
-            model = (CampusNewsModel) eventModel.getData();
-            initView();
+
+        switch (eventModel.getEventCode()){
+            case EVENT.SEND_MODEL_DETAIL:
+                if(eventModel.getEventCode() == EVENT.SEND_MODEL_DETAIL) {
+                    model = (CampusNewsModel) eventModel.getData();
+                    initView();
+                }
+                break;
+            case EVENT.CAMPUS_NEWS_DETAILS_REFRESH_SUCCESS:
+                scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+                    @Override
+                    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                        topImage.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
+                    }
+                });
+                contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"MyCss.css\" />" + model.getNewsDetails(), "text/html", "utf-8", null);
+                setMainContentBg(model.getNewsPicURL());
+                progressBar.setVisibility(View.GONE);
+                break;
+            case EVENT.CAMPUS_NEWS_DETAILS_REFRESH_FAILURE:
+                progressBar.setVisibility(View.GONE);
+                networkBtn.setVisibility(View.VISIBLE);
+                break;
         }
+
     }
 
+    /**
+     * 设置布局背景，其实就是边缘空隙的颜色，颜色取自顶部图片的主色调
+     * @param url
+     */
     private void setMainContentBg(String url){
-
         if(url == null) {
             mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable)topImage.getBackground()).getBitmap()));
             return;
@@ -211,7 +257,7 @@ public class CampusNewsDetailsActivity extends SwipeBackActivity implements Base
 
                     @Override
                     public void onFailure(IOException e) {
-
+                        mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable)topImage.getBackground()).getBitmap()));
                     }
                 });
     }

@@ -57,6 +57,19 @@
                 </View>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+        <ImageButton
+            android:id="@+id/networkBtn"
+            android:background="@mipmap/ic_wifi_off_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
     </FrameLayout>
     <!--toolbar容器-->
     <FrameLayout

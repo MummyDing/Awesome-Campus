@@ -29,21 +29,22 @@ public class CampusNewsModel  implements IModel<CampusNewsModel>,Comparable<Camp
     // 新闻拉取到本地的时间
     private String UpdateTime;
 
+    // 新闻详情
+    private String NewsDetails;
+
     public CampusNewsModel() {
         campusNewsDAO = new CampusNewsDAO();
     }
 
 
-    public CampusNewsModel(String newsTitle, String newsTime, String newsURL, String newsPicURL, String updateTime) {
-        this();
+    public CampusNewsModel(String newsTitle, String newsTime, String newsURL, String newsPicURL, String updateTime, String newsDetails) {
         NewsTitle = newsTitle;
         NewsTime = newsTime;
         NewsURL = newsURL;
         NewsPicURL = newsPicURL;
         UpdateTime = updateTime;
+        NewsDetails = newsDetails;
     }
-
-
 
     @Override
     public boolean clearCache() {
@@ -121,5 +122,13 @@ public class CampusNewsModel  implements IModel<CampusNewsModel>,Comparable<Camp
             }
         }
         return 0;
+    }
+
+    public String getNewsDetails() {
+        return NewsDetails;
+    }
+
+    public void setNewsDetails(String newsDetails) {
+        NewsDetails = newsDetails;
     }
 }

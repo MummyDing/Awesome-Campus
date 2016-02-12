@@ -53,5 +53,10 @@ public class EVENT {
 
     // send common Model Detail
     public static final int SEND_MODEL_DETAIL = 21;
+
+    // Campus News Details
+    public static final int CAMPUS_NEWS_DETAILS_REFRESH_SUCCESS = 22;
+    public static final int CAMPUS_NEWS_DETAILS_REFRESH_FAILURE = 23;
+
 }
 
