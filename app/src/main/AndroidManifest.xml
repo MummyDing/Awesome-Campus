@@ -38,6 +38,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".ui.home.CampusNewsDetailsActivity"></activity>
+        <activity android:name=".ui.leisure.DailyDetailsActivity"></activity>
     </application>
 
 </manifest>

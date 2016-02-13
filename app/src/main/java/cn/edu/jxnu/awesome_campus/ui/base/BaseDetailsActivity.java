@@ -69,7 +69,7 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
     };
 
     protected abstract void onDataRefresh();
-    protected abstract void onEventComing(EventModel model);
+    protected abstract void onEventComing(EventModel eventModel);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

@@ -67,12 +67,10 @@ public class CampusNewsFragment extends BaseListFragment {
                 Collections.sort(list);
                 adapter.newList(list);
                 hideLoading();
-                Log.d("fragment","success");
                 break;
             case EVENT.CAMPUS_NEWS_REFRESH_FAILURE:
                 hideLoading();
                 displayNetworkError();
-                Log.d("fragment","fail");
                 break;
         }
     }

@@ -20,17 +20,19 @@ public class DailyDetailsModel implements IModel<DailyDetailsModel> {
     private String body;
     private String image;
     private String title;
+    private String share_url;
 
     // 文章url 需要根据id拼接
     private String url;
 
 
-    public DailyDetailsModel(DailyDetailsDAO dailyDetailsDAO, String body, String image, String title, int id) {
+    public DailyDetailsModel(DailyDetailsDAO dailyDetailsDAO, String body, String image, String title, String id,String share_url) {
         this();
         this.dailyDetailsDAO = dailyDetailsDAO;
         this.body = body;
         this.image = image;
         this.title = title;
+        this.share_url = share_url;
         setUrl(id);
     }
 
@@ -89,7 +91,15 @@ public class DailyDetailsModel implements IModel<DailyDetailsModel> {
         return url;
     }
 
-    public void setUrl(int id) {
+    public void setUrl(String id) {
         this.url = DailyApi.daily_details_url+id;
+    }
+
+    public String getShare_url() {
+        return share_url;
+    }
+
+    public void setShare_url(String share_url) {
+        this.share_url = share_url;
     }
 }

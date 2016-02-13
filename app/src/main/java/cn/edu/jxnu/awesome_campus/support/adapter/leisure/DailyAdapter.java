@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.leisure;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,11 +10,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.components.DraweeEventTracker;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.leisure.DailyDetailsModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.DailyModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.ui.leisure.DailyDetailsActivity;
 
 /**
  * Created by MummyDing on 16-2-12.
@@ -43,14 +51,16 @@ public class DailyAdapter extends BaseListAdapter<DailyModel,DailyAdapter.VH> {
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        DailyModel model = getItem(position);
+        final DailyModel model = getItem(position);
         holder.dailyTitle.setText(model.getTitle());
         holder.dailyImage.setImageURI(Uri.parse(model.getImages()[0]));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //跳转到日报
+                Intent intent = new Intent(mContext, DailyDetailsActivity.class);
+                EventBus.getDefault().postSticky(new EventModel<String>(EVENT.SEND_MODEL_DETAIL,model.getId()+""));
+                mContext.startActivity(intent);
                 // 这里要加动画
             }
         });
