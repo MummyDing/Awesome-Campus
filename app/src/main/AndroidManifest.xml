@@ -39,6 +39,7 @@
         </activity>
         <activity android:name=".ui.home.CampusNewsDetailsActivity"></activity>
         <activity android:name=".ui.leisure.DailyDetailsActivity"></activity>
+        <activity android:name=".ui.leisure.ScienceDetailsActivity"></activity>
     </application>
 
 </manifest>

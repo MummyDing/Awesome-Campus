@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.leisure;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +12,15 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.leisure.ScienceDAO;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.ScienceModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.ui.leisure.ScienceDetailsActivity;
 
 /**
  * Created by MummyDing on 16-2-12.
@@ -41,11 +48,20 @@ public class ScienceAdapter extends BaseListAdapter<ScienceModel,ScienceAdapter.
     }
 
     @Override
-    public void onBindViewHolder(VH holder, int position) {
+    public void onBindViewHolder(VH holder, final int position) {
         ScienceModel model = getItem(position);
         holder.scienceTitle.setText(model.getTitle());
         holder.comment.setText(model.getReplies_count()+"");
         holder.scienceImage.setImageURI(Uri.parse(model.getImage_info().getUrl()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ScienceDetailsActivity.class);
+                EventBus.getDefault().postSticky(new EventModel<ScienceModel>(EVENT.SEND_MODEL_DETAIL,getItem(position)));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     class VH extends RecyclerView.ViewHolder{
