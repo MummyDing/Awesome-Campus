@@ -11,11 +11,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class DailyDetailsModel implements IModel<DailyDetailsModel> {
-
-
-
-    private DailyDetailsDAO dailyDetailsDAO;
+public class DailyDetailsBean {
 
     private String body;
     private String image;
@@ -25,42 +21,15 @@ public class DailyDetailsModel implements IModel<DailyDetailsModel> {
     // 文章url 需要根据id拼接
     private String url;
 
+    public DailyDetailsBean() {
+    }
 
-    public DailyDetailsModel(DailyDetailsDAO dailyDetailsDAO, String body, String image, String title, String id,String share_url) {
-        this();
-        this.dailyDetailsDAO = dailyDetailsDAO;
+    public DailyDetailsBean(String body, String image, String title, String share_url, String url) {
         this.body = body;
         this.image = image;
         this.title = title;
         this.share_url = share_url;
-        setUrl(id);
-    }
-
-    public DailyDetailsModel() {
-        dailyDetailsDAO = new DailyDetailsDAO();
-    }
-
-    @Override
-    public boolean cacheAll(List<DailyDetailsModel> list) {
-        return dailyDetailsDAO.cacheAll(list);
-    }
-
-    @Override
-    public boolean clearCache() {
-        return dailyDetailsDAO.clearCache();
-    }
-
-    @Override
-    public void loadFromCache() {
-        dailyDetailsDAO.loadFromCache();
-    }
-
-    @Override
-    public void loadFromNet() {
-
-        if(url == null) return;
-        dailyDetailsDAO.setUrl(url);
-        dailyDetailsDAO.loadFromNet();
+        this.url = url;
     }
 
     public String getBody() {
@@ -87,19 +56,19 @@ public class DailyDetailsModel implements IModel<DailyDetailsModel> {
         this.title = title;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String id) {
-        this.url = DailyApi.daily_details_url+id;
-    }
-
     public String getShare_url() {
         return share_url;
     }
 
     public void setShare_url(String share_url) {
         this.share_url = share_url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

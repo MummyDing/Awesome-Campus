@@ -1,6 +1,5 @@
 package cn.edu.jxnu.awesome_campus.database.dao.leisure;
 
-import android.nfc.cardemulation.HostApduService;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -14,7 +13,7 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.model.leisure.DailyDetailsModel;
+import cn.edu.jxnu.awesome_campus.model.leisure.DailyDetailsBean;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 
@@ -23,11 +22,11 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class DailyDetailsDAO implements DAO<DailyDetailsModel> {
+public class DailyDetailsDAO implements DAO<DailyDetailsBean> {
 
     private String url;
     @Override
-    public boolean cacheAll(List<DailyDetailsModel> list) {
+    public boolean cacheAll(List<DailyDetailsBean> list) {
         return false;
     }
 
@@ -46,26 +45,26 @@ public class DailyDetailsDAO implements DAO<DailyDetailsModel> {
     @Override
     public void loadFromNet() {
         final Handler handler = new Handler(Looper.getMainLooper());
-        NetManageUtil.post(url).enqueue(new JsonEntityCallback<DailyDetailsModel>() {
+        NetManageUtil.post(url).enqueue(new JsonEntityCallback<DailyDetailsBean>() {
             @Override
             public void onFailure(IOException e) {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        EventBus.getDefault().post(new EventModel<DailyDetailsModel>(EVENT.DAILY_DETAIL_FAILURE));
+                        EventBus.getDefault().post(new EventModel<DailyDetailsBean>(EVENT.DAILY_DETAIL_FAILURE));
                     }
                 });
             }
 
             @Override
-            public void onSuccess(final DailyDetailsModel entity, Headers headers) {
+            public void onSuccess(final DailyDetailsBean entity, Headers headers) {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(entity == null){
-                            EventBus.getDefault().post(new EventModel<DailyDetailsModel>(EVENT.DAILY_DETAIL_FAILURE));
+                            EventBus.getDefault().post(new EventModel<DailyDetailsBean>(EVENT.DAILY_DETAIL_FAILURE));
                         }else {
-                            EventBus.getDefault().post(new EventModel<DailyDetailsModel>(EVENT.DAILY_DETAIL_SUCCESS,entity));
+                            EventBus.getDefault().post(new EventModel<DailyDetailsBean>(EVENT.DAILY_DETAIL_SUCCESS,entity));
                         }
                     }
                 });

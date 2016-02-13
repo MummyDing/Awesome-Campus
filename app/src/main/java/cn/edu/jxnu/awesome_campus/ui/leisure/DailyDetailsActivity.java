@@ -12,9 +12,10 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.IOException;
 
 import cn.edu.jxnu.awesome_campus.api.DailyApi;
+import cn.edu.jxnu.awesome_campus.database.dao.leisure.DailyDetailsDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.model.leisure.DailyDetailsModel;
+import cn.edu.jxnu.awesome_campus.model.leisure.DailyDetailsBean;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
@@ -28,35 +29,12 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseDetailsActivity;
 public class DailyDetailsActivity extends BaseDetailsActivity{
 
     public static final String TAG = "DailyDetailsActivity";
-    private DailyDetailsModel model;
+    private DailyDetailsBean model;
     private String url;
-
+    private DailyDetailsDAO dao = new DailyDetailsDAO();
     @Override
     protected void onDataRefresh() {
-        NetManageUtil.get(url)
-                .addTag(TAG)
-                .enqueue(new JsonEntityCallback<DailyDetailsModel>() {
-                    @Override
-                    public void onFailure(IOException e) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                EventBus.getDefault().post(new EventModel<DailyDetailsModel>(EVENT.DAILY_DETAIL_FAILURE));
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onSuccess(final DailyDetailsModel entity, Headers headers) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                model = entity;
-                                EventBus.getDefault().post(new EventModel<DailyDetailsModel>(EVENT.DAILY_DETAIL_SUCCESS));
-                            }
-                        });
-                    }
-                });
+        dao.loadFromNet();
     }
 
     @Override
@@ -65,9 +43,11 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
         switch (eventModel.getEventCode()){
             case EVENT.SEND_MODEL_DETAIL:
                 url = DailyApi.daily_details_url+eventModel.getData();
+                dao.setUrl(url);
                 initView();
                 break;
             case EVENT.DAILY_DETAIL_SUCCESS:
+                model = (DailyDetailsBean) eventModel.getData();
                 scrollView.setVisibility(View.VISIBLE);
                 scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
                     @Override

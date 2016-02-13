@@ -55,8 +55,6 @@ public class CampusNewsFragment extends BaseListFragment {
     public void initView() {
     }
 
-
-
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
