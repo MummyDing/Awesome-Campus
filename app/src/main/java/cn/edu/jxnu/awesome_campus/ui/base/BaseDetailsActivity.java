@@ -10,6 +10,7 @@ import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -247,6 +248,13 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
         topImage.setBackground(ContextCompat.getDrawable(this, imgID[pic_num]));
         mainContent.setBackgroundColor(ImageUtil.getImageColor(((BitmapDrawable) topImage.getBackground()).getBitmap()));
         progressBarTopPic.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_share,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 

@@ -38,6 +38,7 @@
     <string name="hint_search">Search Book</string>
     <string name="search">Search</string>
     <string name="id_campusnews">id_campusnews</string>
+    <string name="menu_share">share</string>
 
 
 </resources>
