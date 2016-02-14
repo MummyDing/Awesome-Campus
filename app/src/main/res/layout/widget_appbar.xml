@@ -14,21 +14,41 @@
         app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
         app:layout_scrollFlags="scroll|enterAlways"
         android:layout_height="wrap_content" />
+    <!--<com.ogaclejapan.smarttablayout.SmartTabLayout-->
+        <!--android:id="@+id/tab_layout"-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--app:stl_defaultTabTextColor="#fff"-->
+        <!--app:stl_defaultTabTextMinWidth="80dp"-->
+        <!--app:stl_indicatorCornerRadius="1.5dp"-->
+        <!--app:stl_indicatorInterpolation="smart"-->
+        <!--app:stl_indicatorThickness="3dp"-->
+        <!--app:stl_indicatorWithoutPadding="true"-->
+        <!--android:background="?attr/colorPrimary"-->
+        <!--app:stl_dividerColor="?attr/colorPrimary"-->
+        <!--app:stl_defaultTabTextSize="15sp"-->
+        <!--android:visibility="gone"-->
+         <!--/>-->
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/tab_layout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
         app:stl_defaultTabTextColor="#fff"
-        app:stl_defaultTabTextMinWidth="80dp"
-        app:stl_indicatorCornerRadius="1.5dp"
+        app:stl_defaultTabTextHorizontalPadding="18dp"
+        app:stl_dividerColor="#00000000"
+        app:stl_dividerThickness="0dp"
+        app:stl_indicatorColor="#33000000"
+        app:stl_indicatorCornerRadius="18dp"
         app:stl_indicatorInterpolation="smart"
-        app:stl_indicatorThickness="3dp"
-        app:stl_indicatorWithoutPadding="true"
-        android:background="?attr/colorPrimary"
-        app:stl_dividerColor="?attr/colorPrimary"
-        app:stl_defaultTabTextSize="15sp"
+        app:stl_indicatorGravity="center"
+        app:stl_indicatorThickness="36dp"
+        app:stl_underlineColor="#00000000"
+        app:stl_underlineThickness="0dp"
         android:visibility="gone"
-         />
+        />
 </android.support.design.widget.AppBarLayout>

@@ -4,6 +4,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E0E5EA"
     android:fitsSystemWindows="true">
 
     <include layout="@layout/widget_appbar"/>
