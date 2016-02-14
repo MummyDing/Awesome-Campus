@@ -18,6 +18,15 @@ public class ScienceModel implements IModel<ScienceModel>{
     private Image_info image_info = new Image_info();
     private String url;
     private String title;
+
+    public void setScienceDetails(String scienceDetails) {
+        this.scienceDetails = scienceDetails;
+    }
+
+    public String getScienceDetails() {
+        return scienceDetails;
+    }
+
     private String scienceDetails;
 
     public ScienceModel() {

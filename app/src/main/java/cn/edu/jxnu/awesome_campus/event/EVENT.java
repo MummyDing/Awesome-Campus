@@ -62,5 +62,9 @@ public class EVENT {
     public static final int SCIENCE_REFRESH_SUCCESS = 24;
     public static final int SCIENCE_REFRESH_FAILURE = 25;
 
+    // Science Details
+    public static final int SCIENCE_DETAILS_REFRESH_SUCCESS = 26;
+    public static final int SCIENCE_DETAILS_REFRESH_FAILURE = 27;
+
 }
 
