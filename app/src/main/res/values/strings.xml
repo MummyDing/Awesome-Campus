@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Awesome-Campus</string>
+    <!--<string name="app_name">Awesome-Campus</string>-->
+    <!--暂时这么命名-->
+    <string name="app_name">师大+</string>
     <string name="hint_click_to_login">Click to Login</string>
     <string name="home">Home</string>
     <string name="leisure">Leisure</string>
