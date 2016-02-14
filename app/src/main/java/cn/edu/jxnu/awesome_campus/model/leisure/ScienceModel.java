@@ -18,19 +18,19 @@ public class ScienceModel implements IModel<ScienceModel>{
     private Image_info image_info = new Image_info();
     private String url;
     private String title;
-    private String summary;
+    private String scienceDetails;
 
     public ScienceModel() {
         scienceDAO = new ScienceDAO();
     }
 
-    public ScienceModel(int replies_count, Image_info image_info, String url, String title, String summary) {
+    public ScienceModel(int replies_count, Image_info image_info, String url, String title, String scienceDetails) {
         this();
         this.replies_count = replies_count;
         this.image_info = image_info;
         this.url = url;
         this.title = title;
-        this.summary = summary;
+        this.scienceDetails = scienceDetails;
     }
 
     @Override
@@ -96,11 +96,4 @@ public class ScienceModel implements IModel<ScienceModel>{
         this.title = title;
     }
 
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
 }
