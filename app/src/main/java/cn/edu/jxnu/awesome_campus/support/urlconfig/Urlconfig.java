@@ -8,6 +8,10 @@ public class Urlconfig {
 
     //教务在线登录的url
     public static final String Education_Login_URL="http://jwc.jxnu.edu.cn/Default_Login.aspx?preurl=";
+    // 课程表URL
+    public static final String CourseTable_URL="http://jwc.jxnu.edu.cn/User/default.aspx?&&code=111&uctl=MyControl\\xfz_kcb.ascx&MyAction=Personal";
+    //课程信息url（其实和课程表一样）
+    public static final String CourseInfo_URL="http://jwc.jxnu.edu.cn/User/default.aspx?&&code=111&uctl=MyControl\\xfz_kcb.ascx&MyAction=Personal";
     //课程成绩的基础url
     public static final String CourseScore_URL="http://jwc.jxnu.edu.cn/MyControl/All_Display.aspx?UserControl=xfz_cj.ascx&Action=Personal";
     //考试安排获取url

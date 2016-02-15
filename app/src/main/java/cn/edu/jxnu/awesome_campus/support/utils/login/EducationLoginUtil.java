@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.support.utils.login;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.squareup.okhttp.Headers;
@@ -98,12 +99,18 @@ public class EducationLoginUtil {
                                     } else if (endList.get(0).toString().equals(EducationalSysLoginParse.LOGIN_FAIL_PASSWORD_INCORRECT_STR)) {
                                         EventBus.getDefault().post(new EventModel<String>(EVENT.EDUCATION_LOGIN_FAILURE_PASSWORD_INCORRECT));
                                     } else {
-                                        String userNum=getUsername(usernameET);
-                                        String userName=endList.get(0).toString();
-                                        String nowTerm= TermUtil.getNowTerm();
-                                        String baseCookie=headers.get("ASP.NET_SessionId");
-                                        String specialCookie=headers.get("JwOAUserSettingNew");
-                                        saveToSP(userNum,userName,nowTerm,baseCookie,specialCookie);
+                                        String userNum = getUsername(usernameET);
+                                        String userName = endList.get(0).toString();
+                                        String nowTerm = TermUtil.getNowTerm();
+                                        String baseCookie=null,specialCookie=null;
+                                        for (int i = 0; i < headers.size(); i++) {
+                                            if(headers.name(i).equals("Set-Cookie")){
+                                                baseCookie=cutBaseCookie(headers.value(i));
+                                                specialCookie=cutSpecialCookie(headers.value(i+1));
+                                                break;
+                                            }
+                                        }
+                                        saveToSP(userNum, userName, nowTerm, baseCookie, specialCookie);
                                         EventBus.getDefault().post(new EventModel<String>(EVENT.EDUCATION_LOGIN_SUCCESS));
                                     }
                                 }
@@ -120,7 +127,6 @@ public class EducationLoginUtil {
                             });
                         }
                     });
-
         }
 
     }
@@ -132,13 +138,16 @@ public class EducationLoginUtil {
      */
 
     public static boolean isLogin() {
-        SPUtil sp=new SPUtil(InitApp.AppContext);
-        String cookie=sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.BASE_COOKIE);
+        Log.d("执行到判断是否登录的方法","--");
+        SPUtil sp = new SPUtil(InitApp.AppContext);
+        String cookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);
         if (TextUtil.isNull(cookie) == false) {
+            Log.d("已登录","--");
             return true;
         }
-        baseCookie=cookie;
-        specialCookies=sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.SPECIAL_COOKIE);
+        Log.d("未登录","--");
+        baseCookie = cookie;
+        specialCookies = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
         return false;
     }
 
@@ -148,15 +157,16 @@ public class EducationLoginUtil {
      * @author KevinWu
      * create at 2016/2/15 17:22
      */
-    private static void saveToSP(String userNum,String userName, String nowTerm, String baseCookie, String specialCookie) {
-        SPUtil mysp=new SPUtil(InitApp.AppContext);
-        EducationLoginUtil.baseCookie=baseCookie;
-        EducationLoginUtil.specialCookies=specialCookie;
-        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NUM,userNum);
-        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NAME,userName);
-        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.NOW_TERM,nowTerm);
-        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.BASE_COOKIE,baseCookie);
-        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.SPECIAL_COOKIE,specialCookie);
+    private static void saveToSP(String userNum, String userName, String nowTerm, String baseCookie, String specialCookie) {
+        SPUtil mysp = new SPUtil(InitApp.AppContext);
+        Log.d("取到的cookie:",""+baseCookie);
+        EducationLoginUtil.baseCookie = baseCookie;
+        EducationLoginUtil.specialCookies = specialCookie;
+        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.STUDENT_NUM, userNum);
+        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.STUDENT_NAME, userName);
+        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.NOW_TERM, nowTerm);
+        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE, baseCookie);
+        mysp.putStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE, specialCookie);
     }
 
     /**
@@ -165,6 +175,38 @@ public class EducationLoginUtil {
      * 2. 当前cookie失效
      */
     public static void clearCookie() {
-
+        SPUtil sp=new SPUtil(InitApp.AppContext);
+        sp.clearSP(EducationStaticKey.SP_FILE_NAME);
+    }
+    
+    /**
+    *分割baseCookie
+    *@author KevinWu
+    *create at 2016/2/15 20:57
+    */
+    private static String cutBaseCookie(String baseCookie){
+        String first_cut[]=baseCookie.split("SessionId=");
+        if(first_cut.length>1){
+            String second_cut[]=first_cut[1].split("; path");
+            if(second_cut.length>1){
+                return second_cut[0];
+            }
+        }
+        return null;
+    }
+    /**
+    *分割specialCookie
+    *@author KevinWu
+    *create at 2016/2/15 21:16
+    */
+    private static String cutSpecialCookie(String specialCookie){
+        String first_cut[]=specialCookie.split("SettingNew=");
+        if(first_cut.length>1){
+            String second_cut[]=first_cut[1].split("; expires=");
+            if(second_cut.length>1){
+                return second_cut[0];
+            }
+        }
+        return null;
     }
 }

@@ -57,8 +57,8 @@ public class CourseScoreDAO implements DAO<CourseScoreModel> {
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
-                CourseScoreParse myPrase = new CourseScoreParse(result);
-                final List list = myPrase.getEndList();
+                CourseScoreParse myParse = new CourseScoreParse(result);
+                final List list = myParse.getEndList();
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
