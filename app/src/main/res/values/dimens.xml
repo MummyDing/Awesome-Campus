@@ -5,4 +5,5 @@
     <dimen name="card_margin">5dp</dimen>
     <dimen name="content_title">20sp</dimen>
     <dimen name="item_image_height">200dp</dimen>
+    <dimen name="width_course_icon">20dp</dimen>
 </resources>

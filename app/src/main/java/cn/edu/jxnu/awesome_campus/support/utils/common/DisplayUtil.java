@@ -1,7 +1,9 @@
 package cn.edu.jxnu.awesome_campus.support.utils.common;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.WindowManager;
 
 /**
@@ -56,5 +58,9 @@ public class DisplayUtil {
         return screenHeight;
     }
 
+
+    public static void Snack(View view, String str){
+        Snackbar.make(view,str,Snackbar.LENGTH_SHORT).show();
+    }
 
 }

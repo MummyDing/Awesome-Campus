@@ -50,13 +50,6 @@ public class EducationLoginUtil {
             throw new IllegalArgumentException("args cannot be null");
         }
         username = usernameET.getText().toString();
-        if (TextUtil.isNull(username)) {
-            Snackbar.make(usernameET, "student number cannot be null !", Snackbar.LENGTH_SHORT).show();
-            return null;
-        } else if (username.length() != 10) {
-            Snackbar.make(usernameET, "wrong student number !", Snackbar.LENGTH_SHORT).show();
-            return null;
-        }
         return username;
     }
 
@@ -65,10 +58,6 @@ public class EducationLoginUtil {
             throw new IllegalArgumentException("args cannot be null");
         }
         password = passwordET.getText().toString();
-        if (TextUtil.isNull(password)) {
-            Snackbar.make(passwordET, "password cannot be null !", Snackbar.LENGTH_SHORT).show();
-            return null;
-        }
         return password;
     }
 

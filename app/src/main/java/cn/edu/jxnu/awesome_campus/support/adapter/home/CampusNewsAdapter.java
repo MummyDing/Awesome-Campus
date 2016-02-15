@@ -2,9 +2,7 @@ package cn.edu.jxnu.awesome_campus.support.adapter.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +36,7 @@ public class CampusNewsAdapter extends BaseListAdapter<CampusNewsModel,CampusNew
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_compus_news, parent, false);
+                .inflate(R.layout.card_campus_news, parent, false);
         VH vh = new VH(itemView);
         return vh;
     }
