@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -96,6 +97,7 @@ public class EducationLoginFragment extends BaseFragment{
     }
 
     private void setOnLineLayout(boolean flag){
+        Log.d("Is OnLine",flag+"");
         if(flag){
             loginLayout.setVisibility(View.GONE);
             onLineLayout.setVisibility(View.VISIBLE);

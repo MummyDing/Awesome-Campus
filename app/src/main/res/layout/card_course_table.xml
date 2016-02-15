@@ -19,19 +19,74 @@
         android:padding="10dp">
        <LinearLayout
            android:layout_width="match_parent"
-           android:layout_height="wrap_content">
+           android:layout_height="wrap_content"
+           android:padding="10dp">
            <ImageView
-               android:src="@mipmap/ic_time_grey"
+               android:src="@drawable/ic_time"
                android:layout_width="@dimen/width_course_icon"
                android:layout_height="@dimen/width_course_icon" />
            <TextView
                android:id="@+id/timeArea"
-               android:text="20:00 -- 21:00"
+               android:text="20:00 ~ 21:00"
+               android:textSize="20sp"
                android:gravity="center"
                android:layout_marginLeft="5dp"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content" />
        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <ImageView
+                android:src="@drawable/ic_location"
+                android:layout_width="@dimen/width_course_icon"
+                android:layout_height="@dimen/width_course_icon" />
+            <TextView
+                android:id="@+id/roomNum"
+                android:text="X4313"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <ImageView
+                android:src="@drawable/ic_course"
+                android:layout_width="@dimen/width_course_icon"
+                android:layout_height="@dimen/width_course_icon" />
+            <TextView
+                android:id="@+id/courseName"
+                android:text="操作系统"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <ImageView
+                android:src="@drawable/ic_teacher"
+                android:layout_width="@dimen/width_course_icon"
+                android:layout_height="@dimen/width_course_icon" />
+            <TextView
+                android:id="@+id/teacherName"
+                android:text="谢旭升"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
