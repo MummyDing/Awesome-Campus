@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.base;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -257,5 +259,18 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.menu_share) {
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getShareInfo());
+            startActivity(Intent.createChooser(sharingIntent, getString(R.string.hint_share_to)));
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    protected abstract String getShareInfo();
 
 }

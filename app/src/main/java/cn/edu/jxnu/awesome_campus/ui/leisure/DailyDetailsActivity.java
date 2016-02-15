@@ -4,7 +4,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 
 
-
+import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.api.DailyApi;
 import cn.edu.jxnu.awesome_campus.database.dao.leisure.DailyDetailsDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -57,5 +57,10 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
                 break;
         }
 
+    }
+
+    @Override
+    protected String getShareInfo() {
+        return "["+model.getTitle()+"]:"+model.getShare_url()+"(share from "+getString(R.string.app_name)+")";
     }
 }

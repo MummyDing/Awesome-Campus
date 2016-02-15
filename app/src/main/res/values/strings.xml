@@ -41,6 +41,7 @@
     <string name="search">Search</string>
     <string name="id_campusnews">id_campusnews</string>
     <string name="menu_share">share</string>
+    <string name="hint_share_to">Share to ...</string>
 
 
 </resources>

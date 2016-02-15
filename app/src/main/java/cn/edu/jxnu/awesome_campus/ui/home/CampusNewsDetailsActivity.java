@@ -1,14 +1,16 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.widget.NestedScrollView;
+import android.view.MenuItem;
 import android.view.View;
 import com.squareup.okhttp.Headers;
 
 
-
+import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
@@ -94,7 +96,8 @@ public class CampusNewsDetailsActivity extends BaseDetailsActivity{
         }
     }
 
-
-
-
+    @Override
+    protected String getShareInfo() {
+        return "["+model.getNewsTitle()+"]:"+ Urlconfig.CampusNews_Base_URL+model.getNewsURL()+" ( share from "+getString(R.string.app_name)+")";
+    }
 }

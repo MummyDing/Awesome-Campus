@@ -11,10 +11,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.ScienceModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.ScienceContentParse;
+import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
@@ -85,7 +87,7 @@ public class ScienceDetailsActivity extends BaseDetailsActivity {
         }
     }
 
-    private String importStr() {
+   /* private String importStr() {
         InputStreamReader inputReader = null;
         try {
             inputReader = new InputStreamReader(getResources().getAssets().open("html_test.txt"));
@@ -99,6 +101,11 @@ public class ScienceDetailsActivity extends BaseDetailsActivity {
             e.printStackTrace();
         }
         return null;
+    }*/
+
+    @Override
+    protected String getShareInfo() {
+        return "["+model.getTitle()+"]:"+model.getUrl()+"(share from "+getString(R.string.app_name)+")";
     }
 }
 
