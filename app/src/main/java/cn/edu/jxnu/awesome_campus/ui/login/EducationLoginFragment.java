@@ -39,6 +39,7 @@ public class EducationLoginFragment extends BaseFragment{
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 这里还要加点登录时的效果 progressbar 或是其他动画什么的
                 setInputAreaEnable(false);
                 EducationLoginUtil.onLogin(usernameET,passwordET);
             }
@@ -56,9 +57,11 @@ public class EducationLoginFragment extends BaseFragment{
         switch (eventModel.getEventCode()){
             case EVENT.LOGIN_SUCCESS:
                 setOnLineLayout(true);
+                setInputAreaEnable(true);
                 break;
             case EVENT.LOGIN_FAILURE:
                 setOnLineLayout(false);
+                setInputAreaEnable(true);
                 break;
         }
     }
