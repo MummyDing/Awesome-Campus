@@ -66,9 +66,12 @@ public class EVENT {
     public static final int SCIENCE_DETAILS_REFRESH_SUCCESS = 26;
     public static final int SCIENCE_DETAILS_REFRESH_FAILURE = 27;
 
-    // Login
-    public static final int LOGIN_SUCCESS = 28;
-    public static final int LOGIN_FAILURE = 29;
+    // Education Login
+    public static final int EDUCATION_LOGIN_SUCCESS = 28;
+    public static final int EDUCATION_LOGIN_FAILURE_NO_ID = 29;
+    public static final int EDUCATION_LOGIN_FAILURE_PASSWORD_INCORRECT=30;
+    public static final int EDUCATION_LOGIN_FAILURE_NULL_INPUT=31;
+    public static final int EDUCATION_LOGIN_FAILURE_NETWORK_ERROR=32;
 
 }
 
