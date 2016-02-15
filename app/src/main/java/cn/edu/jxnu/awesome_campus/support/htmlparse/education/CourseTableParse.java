@@ -67,9 +67,12 @@ public class CourseTableParse {
         try {
             HtmlUtil hu=new HtmlUtil(endStr);
             List tempList=hu.parseString(ITEM_CSS);
+            Log.d("临时列表大小", tempList.size() + "");
+
             //细分工作，虽然耗时，但是灵活
             for(int i=0;i<tempList.size();i++){
                 String tempStr=tempList.get(i).toString();
+                System.out.println("结果：" + tempStr);
                 if(tempStr.equals("1 2")
                         ||tempStr.equals("3")
                         ||tempStr.equals("4")
@@ -80,8 +83,8 @@ public class CourseTableParse {
                         ||tempStr.equals("下午")
                         ||tempStr.equals("晚上")
                         ||tempStr.equals("晚 上"))continue;
-                if(tempStr.equals("")){
-                    resultList.add(tempStr);
+                if(tempStr.equals(" ")){
+                    resultList.add("");
                 }else{
                     String cutPosLeft[]=tempStr.split("\\(");
                     if(cutPosLeft.length>1){
@@ -89,6 +92,10 @@ public class CourseTableParse {
                         resultList.add(cutPosLeft[0]+"@"+cutPosRight[0]);
                     }
                 }
+            }
+            Log.d("resultlist大小为",resultList.size()+"--");
+            for(int i=0;i<resultList.size();i++){
+                System.out.println("结果："+resultList.get(i).toString());
             }
             fillEndList();
         } catch (UnsupportedEncodingException e) {
@@ -106,9 +113,8 @@ public class CourseTableParse {
     private void fillEndList() {
         int week=1;//初始数据为周一
         String term="";//学期数据暂时留空
-        for(int i=0;i<resultList.size()-GROUPSIZE;i=i+GROUPSIZE){
-            int nowWeek=week%7;
-            week++;
+        for(int i=0;i<7;i++){
+            int nowWeek=i+1;
             if(nowWeek==0)nowWeek=7;
             endList.add(new CourseTableModel(
                     nowWeek,
