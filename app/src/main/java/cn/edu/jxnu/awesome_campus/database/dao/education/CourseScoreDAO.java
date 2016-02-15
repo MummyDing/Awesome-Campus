@@ -15,7 +15,7 @@ import cn.edu.jxnu.awesome_campus.database.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
-import cn.edu.jxnu.awesome_campus.support.htmlparse.CourseScoreParse;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseScoreParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;

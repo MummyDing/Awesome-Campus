@@ -13,7 +13,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.education.ExamTimeModel;
-import cn.edu.jxnu.awesome_campus.support.htmlparse.ExamTimeParse;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.education.ExamTimeParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
