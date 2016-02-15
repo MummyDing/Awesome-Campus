@@ -64,7 +64,12 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
-                CourseTableParse myParse = new CourseTableParse(result);
+                Log.d("result len: ",result.length()+" ");
+                Log.d("result ",result.substring(10,100));
+                Log.d("result ",result.substring(100,200));
+                Log.d("result ",result.substring(200,300));
+                Log.d("result ",result.substring(100,200));
+               /* CourseTableParse myParse = new CourseTableParse(result);
                 final List list = myParse.getEndList();
                 System.out.println("列表大小：" + list.size());
                 for (int i = 0; i < list.size(); i++)
@@ -79,7 +84,7 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                             EventBus.getDefault().post(new EventModel<CourseTableModel>(EVENT.COURSE_TABLE_REFRESH_FAILURE));
                         }
                     }
-                });
+                });*/
             }
 
             @Override

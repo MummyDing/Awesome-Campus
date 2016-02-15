@@ -12,6 +12,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.home.CourseTableAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.OnDayChangedListener;
 import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.WeekSpinnerWrapper;
@@ -68,6 +69,7 @@ public class CourseTableFragment extends BaseListFragment{
 
     @Override
     public void initView() {
+        setOnLineLayout(EducationLoginUtil.isLogin());
     }
 
     @Override

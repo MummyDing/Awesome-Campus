@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -27,6 +28,8 @@ import cn.edu.jxnu.awesome_campus.view.base.BaseListView;
  */
 public abstract class BaseListFragment extends BaseFragment implements BaseListView {
 
+    protected RelativeLayout onLineLayout;
+    protected RelativeLayout offLineLayout;
     protected FrameLayout headerLayout;
     protected RecyclerView recyclerView;
     protected RecyclerView.LayoutManager layoutManager;
@@ -36,6 +39,8 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     protected SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void init() {
+        onLineLayout = (RelativeLayout) parentView.findViewById(R.id.onLineLayout);
+        offLineLayout = (RelativeLayout) parentView.findViewById(R.id.offLineLayout);
         headerLayout = (FrameLayout) parentView.findViewById(R.id.headerLayout);
         layoutManager = new LinearLayoutManager(InitApp.AppContext);
         progressBar = (ProgressBar) parentView.findViewById(R.id.progressBar);
@@ -105,5 +110,15 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     public void onEventComing(EventModel eventModel) {
         // 暂时不重写子类
         // 在这里就可以根据EventCode进行相应的处理
+    }
+
+    protected void setOnLineLayout(boolean flag){
+        if(flag){
+            onLineLayout.setVisibility(View.VISIBLE);
+            offLineLayout.setVisibility(View.GONE);
+        }else{
+            onLineLayout.setVisibility(View.GONE);
+            offLineLayout.setVisibility(View.VISIBLE);
+        }
     }
 }
