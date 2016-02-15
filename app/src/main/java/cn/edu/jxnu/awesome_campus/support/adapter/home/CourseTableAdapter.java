@@ -8,9 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.model.home.CourseBean;
 import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
+import cn.edu.jxnu.awesome_campus.ui.home.CourseTableFragment;
 
 /**
  * Created by MummyDing on 16-2-3.
@@ -20,6 +26,7 @@ import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseTableAdapter.VH> {
 
 
+    private List<CourseBean> listCourse;
     public CourseTableAdapter(Context mContext, CourseTableModel model) {
         super(mContext, model);
     }
@@ -38,7 +45,10 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        CourseTableModel model = getItem(position);
+        CourseBean courseBean = listCourse.get(position);
+        holder.timeArea.setText(TimeUtil.getCourseArea(courseBean.getCourseOfDay()));
+        holder.courseName.setText(courseBean.getCourseName());
+        holder.roomNumber.setText(courseBean.getCourseRoom());
     }
 
     class VH extends RecyclerView.ViewHolder{
@@ -60,6 +70,29 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
 
     @Override
     public int getItemCount() {
-        return 10;
+        if(listCourse == null){
+            return 0;
+        }
+        return listCourse.size();
     }
+
+    private void addCourseList(List<CourseBean> list) {
+        if(listCourse != null){
+            listCourse.clear();
+        }
+        listCourse = new ArrayList<>();
+        listCourse.addAll(list);
+    }
+
+    @Override
+    public void newList(List<CourseTableModel> list) {
+        if(list != null && list.size()>0){
+            if(CourseTableFragment.currentSelectedDay == -1){
+                CourseTableFragment.currentSelectedDay = TimeUtil.getDayOfWeek()-1;
+            }
+            addCourseList(list.get(CourseTableFragment.currentSelectedDay).getCourseList());
+        }
+    }
+
+
 }

@@ -133,4 +133,33 @@ public class TimeUtil {
         if(dayOfWeek==0)dayOfWeek=7;
         return dayOfWeek;
     }
+
+
+    public static String getCourseArea(int i){
+        String time = null;
+        switch (i) {
+            case 0:
+                time = "08:00~09:30";
+                break;
+            case 1:
+                time = "09:40~10:20";
+                break;
+            case 2:
+                time = "10:30~11:10";
+                break;
+            case 3:
+                time = "11:20~12:00";
+                break;
+            case 4:
+                time = "14:00~15:30";
+                break;
+            case 5:
+                time = "15:40~17:00";
+                break;
+            case 6:
+                time = "19:00";
+                break;
+        }
+        return time;
+    }
 }

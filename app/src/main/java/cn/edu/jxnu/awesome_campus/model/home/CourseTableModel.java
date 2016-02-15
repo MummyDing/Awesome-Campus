@@ -1,9 +1,11 @@
 package cn.edu.jxnu.awesome_campus.model.home;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.home.CourseTableDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 
 /**
  * Created by MummyDing on 16-1-27.
@@ -31,6 +33,8 @@ public class CourseTableModel implements IModel<CourseTableModel>{
     // 晚上的课
     private  String Night;
 
+
+    private List<CourseBean> courseList;
 
     public CourseTableModel() {
         courseTableDAO = new CourseTableDAO();
@@ -142,4 +146,45 @@ public class CourseTableModel implements IModel<CourseTableModel>{
         Night = night;
     }
 
+
+    public List<CourseBean> getCourseList() {
+        if(courseList != null){
+            return courseList;
+        }
+        courseList = new ArrayList<>();
+        if(TextUtil.isNull(getOneTwo()) == false){
+            String [] str = getOneTwo().split("@");
+            courseList.add(new CourseBean(0,str[0],str[1]));
+        }
+        if(TextUtil.isNull(getThree()) == false){
+            String [] str = getOneTwo().split("@");
+            courseList.add(new CourseBean(1,str[0],str[1]));
+        }
+        if(TextUtil.isNull(getFour()) == false){
+            String [] str = getOneTwo().split("@");
+            courseList.add(new CourseBean(2,str[0],str[1]));
+        }
+        if(TextUtil.isNull(getFive()) == false){
+            String [] str = getOneTwo().split("@");
+            courseList.add(new CourseBean(3,str[0],str[1]));
+        }
+        if(TextUtil.isNull(getSixSeven()) == false){
+            String [] str = getOneTwo().split("@");
+            courseList.add(new CourseBean(4,str[0],str[1]));
+        }
+        if(TextUtil.isNull(getEightNine()) == false){
+            String [] str = getOneTwo().split("@");
+            courseList.add(new CourseBean(5,str[0],str[1]));
+        }
+        if(TextUtil.isNull(getEightNine()) == false){
+            String [] str = getOneTwo().split("@");
+            courseList.add(new CourseBean(6,str[0],str[1]));
+        }
+
+        if(TextUtil.isNull(getNight()) == false){
+            String [] str = getOneTwo().split("@");
+            courseList.add(new CourseBean(7,str[0],str[1]));
+        }
+        return courseList;
+    }
 }
