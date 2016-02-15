@@ -61,6 +61,6 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
 
     @Override
     protected String getShareInfo() {
-        return "["+model.getTitle()+"]:"+model.getShare_url()+"(share from "+getString(R.string.app_name)+")";
+        return "["+model.getTitle()+"]:"+model.getShare_url()+" ( "+"share from "+getString(R.string.app_name)+")";
     }
 }

@@ -46,13 +46,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="热度："
+                    android:text="@string/hot"
                     android:layout_marginLeft="5dp"/>
                 <TextView
                     android:id="@+id/comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:gravity="center_vertical" />
             </LinearLayout>
 
