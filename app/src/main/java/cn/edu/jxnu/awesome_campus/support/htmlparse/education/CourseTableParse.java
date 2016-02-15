@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.htmlparse.education;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class CourseTableParse {
     private final static int GROUPSIZE=7;//数据每7个为一组，对应每个时间段课在一周的课表情况
     private final static String ITEM_CSS = "DIV[align=center]";//每个item选择css
     //html左边界分割字符串
-    private final static String LEFT_SP_STR=">上午";
+    private final static String LEFT_SP_STR=">上午</TD>";
     //html右边界分割字符串
     private final static String RIGHT_SP_STR="课表说明：底色为深色部分表示的是有冲突的课程！";
         private String parseStr;
@@ -40,6 +42,7 @@ public class CourseTableParse {
     public CourseTableParse(String parseStr){
         super();
         this.parseStr=parseStr;
+        Log.d("待解析字符串为","--"+parseStr);
         resultList=new ArrayList<>();
         endList=new ArrayList<>();
         parseData();

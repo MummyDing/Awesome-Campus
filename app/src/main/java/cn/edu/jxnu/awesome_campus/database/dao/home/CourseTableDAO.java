@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.database.dao.home;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.squareup.okhttp.Headers;
 
@@ -48,7 +49,7 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
     public void loadFromNet() {
         final Handler handler = new Handler(Looper.getMainLooper());
         SPUtil spu = new SPUtil(InitApp.AppContext);
-        String cookies = "ASP.NET_SessionId=" +
+        String cookies = "_ga=GA1.3.609810117.1451115712; ASP.NET_SessionId=" +
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE) +
                 ";JwOAUserSettingNew=" +
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
@@ -63,8 +64,11 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
-                CourseTableParse myParse=new CourseTableParse(result);
+                CourseTableParse myParse = new CourseTableParse(result);
                 final List list = myParse.getEndList();
+                System.out.println("列表大小：" + list.size());
+                for (int i = 0; i < list.size(); i++)
+                    System.out.println("列表数据：" + list.get(i).toString());
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -80,6 +84,7 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
 
             @Override
             public void onFailure(String error) {
+                Log.d("课程表获取失败", error);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
