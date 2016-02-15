@@ -151,5 +151,16 @@ public class SPUtil {
         ed.commit();
     }
 
+    /**
+    *清空sp文件
+    *@author KevinWu
+    *create at 2016/2/15 22:25
+    */
+    public void clearSP(String spName){
+        SharedPreferences sp = initSP(spName);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.clear();
+        ed.commit();
+    }
 
 }

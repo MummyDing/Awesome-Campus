@@ -175,7 +175,8 @@ public class EducationLoginUtil {
      * 2. 当前cookie失效
      */
     public static void clearCookie() {
-
+        SPUtil sp=new SPUtil(InitApp.AppContext);
+        sp.clearSP(EducationStaticKey.SP_FILE_NAME);
     }
     
     /**
