@@ -100,17 +100,6 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         networkBtn.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        EventBus.getDefault().unregister(this);
-        super.onDestroy();
-    }
 
     @Override
     public void onEventComing(EventModel eventModel) {
