@@ -4,6 +4,8 @@ import android.widget.Toast;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
+import cn.edu.jxnu.awesome_campus.support.adapter.home.CourseTableAdapter;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.OnDayChangedListener;
 import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.WeekSpinnerWrapper;
@@ -15,6 +17,7 @@ import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.WeekSpinnerWrapper;
  */
 public class CourseTableFragment extends BaseListFragment{
 
+    private CourseTableModel model;
     @Override
     public String getTitle() {
         return InitApp.AppContext.getString(R.string.course_table);
@@ -28,7 +31,9 @@ public class CourseTableFragment extends BaseListFragment{
 
     @Override
     public void bindAdapter() {
-
+        model = new CourseTableModel();
+        adapter = new CourseTableAdapter(getActivity(),model);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
