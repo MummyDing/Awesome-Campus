@@ -57,14 +57,12 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
         TextView timeArea;
         TextView roomNumber;
         TextView courseName;
-        TextView teacherName;
         public VH(View itemView) {
             super(itemView);
             this.itemView = itemView;
             timeArea = (TextView) itemView.findViewById(R.id.timeArea);
             roomNumber = (TextView) itemView.findViewById(R.id.roomNum);
             courseName = (TextView) itemView.findViewById(R.id.courseName);
-            teacherName = (TextView) itemView.findViewById(R.id.teacherName);
         }
     }
 
