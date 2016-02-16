@@ -1,21 +1,30 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseBean;
+import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
+import cn.edu.jxnu.awesome_campus.ui.home.CourseDetailsDialog;
 import cn.edu.jxnu.awesome_campus.ui.home.CourseTableFragment;
 
 /**
@@ -27,9 +36,12 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
 
 
     private List<CourseBean> listCourse;
-    public CourseTableAdapter(Context mContext, CourseTableModel model) {
-        super(mContext, model);
+    private List<CourseInfoModel> courseInfoList = new ArrayList<>();
+
+    public CourseTableAdapter(Context mContext, CourseTableModel courseTableModel) {
+        super(mContext, courseTableModel);
     }
+
 
     @Override
     protected void updateView() {
@@ -45,7 +57,7 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        CourseBean courseBean = listCourse.get(position);
+        final CourseBean courseBean = listCourse.get(position);
         holder.timeArea.setText(TimeUtil.getCourseArea(courseBean.getCourseOfDay()));
         holder.courseName.setText(courseBean.getCourseName());
         holder.roomNumber.setText(courseBean.getCourseRoom());
@@ -53,10 +65,28 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 待完善
+                CourseInfoModel model = getCourseInfoModel(courseBean.getCourseName());
+                if(model != null){
+                    Intent intent = new Intent(mContext, CourseDetailsDialog.class);
+                    EventBus.getDefault().postSticky(new EventModel<CourseInfoModel>(EVENT.SEND_MODEL_DETAIL,model));
+                    mContext.startActivity(intent);
+                }
             }
         });
     }
+
+    private CourseInfoModel getCourseInfoModel(String courseName){
+        Log.d("查询",courseName+" 大小"+courseInfoList.size());
+        for(CourseInfoModel model: courseInfoList){
+            Log.d("课程名",model.getCourseName());
+            if(model.getCourseName().trim().equals(courseName.trim())){
+                return model;
+            }
+        }
+        Log.d("没有查到",courseName);
+        return null;
+    }
+
 
     class VH extends RecyclerView.ViewHolder{
 
@@ -98,6 +128,13 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
             }
             addCourseList(list.get(CourseTableFragment.currentSelectedDay).getCourseList());
         }
+
+
+    }
+
+    public void addCourseInfoList(List<CourseInfoModel> list){
+        courseInfoList.clear();
+        courseInfoList.addAll(list);
     }
 
 

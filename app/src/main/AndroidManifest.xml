@@ -37,9 +37,11 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".ui.home.CampusNewsDetailsActivity"></activity>
-        <activity android:name=".ui.leisure.DailyDetailsActivity"></activity>
-        <activity android:name=".ui.leisure.ScienceDetailsActivity"></activity>
+        <activity android:name=".ui.home.CampusNewsDetailsActivity" />
+        <activity android:name=".ui.leisure.DailyDetailsActivity" />
+        <activity android:name=".ui.leisure.ScienceDetailsActivity" />
+        <activity android:name=".ui.home.CourseDetailsDialog"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"></activity>
     </application>
 
 </manifest>

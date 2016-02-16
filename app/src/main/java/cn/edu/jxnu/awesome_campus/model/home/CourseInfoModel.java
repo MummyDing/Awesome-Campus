@@ -30,7 +30,7 @@ public class CourseInfoModel  implements IModel<CourseInfoModel> {
         courseInfoDAO = new CourseInfoDAO();
     }
 
-    public CourseInfoModel(String courseName, String courseID, String courseTeacher, String courseClass, String classmateListLink, String classForumLink) {
+    public CourseInfoModel(String courseID,String courseName, String courseTeacher, String courseClass, String classmateListLink, String classForumLink) {
         this();
         CourseName = courseName;
         CourseID = courseID;
