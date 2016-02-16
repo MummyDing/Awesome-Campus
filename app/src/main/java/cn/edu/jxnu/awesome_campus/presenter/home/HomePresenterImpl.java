@@ -89,9 +89,6 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Override
     public void buildHeader(Activity activity, String avatarURL,String studentID, String name) {
-       /* if(drawer != null){
-            drawer.removeHeader();
-        }*/
         if(header == null){
             header = new AccountHeaderBuilder().withActivity(activity)
                     .withHeaderBackground(R.drawable.header)
@@ -111,7 +108,7 @@ public class HomePresenterImpl implements HomePresenter {
                     .withName(activity.getString(R.string.hint_click_to_login)));
         }else{
             header.addProfiles(new ProfileDrawerItem().withIcon(avatarURL)
-                    .withName(name));
+                    .withName(name.length() == 2 ?"    "+name :"  "+name));
         }
     }
 

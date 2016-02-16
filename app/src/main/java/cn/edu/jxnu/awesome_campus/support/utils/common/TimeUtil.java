@@ -154,10 +154,10 @@ public class TimeUtil {
                 time = "14:00~15:30";
                 break;
             case 5:
-                time = "15:40~17:00";
+                time = "15:40~17:10";
                 break;
             case 6:
-                time = "19:00";
+                time = "19:00~20:30";
                 break;
         }
         return time;
