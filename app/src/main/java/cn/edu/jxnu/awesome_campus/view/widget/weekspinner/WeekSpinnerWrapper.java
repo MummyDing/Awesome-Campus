@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.view.widget.weekspinner;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MarginLayoutParamsCompat;
@@ -18,8 +19,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 
 /**
  * Created by MummyDing on 16-2-5.
@@ -28,31 +31,30 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
  */
 public class WeekSpinnerWrapper{
 
-    private NiceSpinner spinner;
 
-    private Context mContext;
+    private Context mContext = InitApp.AppContext;
 
     private OnDayChangedListener listener;
 
     private int index = 0;
 
-    public WeekSpinnerWrapper(Context mContext) {
-        this.mContext = mContext;
+
+    public WeekSpinnerWrapper() {
     }
 
-    public NiceSpinner build(){
+    public NiceSpinner build(NiceSpinner spinner){
         // init spinner
-        spinner = new NiceSpinner(mContext);
-
+        spinner.setVisibility(View.VISIBLE);
         // init data
         List<String> daysOfWeek =new LinkedList<String>(
         Arrays.asList(mContext.getString(R.string.monday),mContext.getString(R.string.tuesday),
-                        mContext.getString(R.string.wednesday), mContext.getString(R.string.thusday),
-                        mContext.getString(R.string.friday),mContext.getString(R.string.saturday),
-                        mContext.getString(R.string.sunday)));
+                mContext.getString(R.string.wednesday), mContext.getString(R.string.thusday),
+                mContext.getString(R.string.friday),mContext.getString(R.string.saturday),
+                mContext.getString(R.string.sunday)));
 
         spinner.attachDataSource(daysOfWeek);
 
+        index = TimeUtil.getDayOfWeek() - 1;
         spinner.setSelectedIndex(index);
         listener.onDayChanged(index);
         if(listener != null) {

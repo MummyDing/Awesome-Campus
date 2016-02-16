@@ -12,9 +12,15 @@
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <org.angmarch.views.NiceSpinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@+id/headerLayout"/>
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
-            android:layout_below="@+id/headerLayout"
+            android:layout_below="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

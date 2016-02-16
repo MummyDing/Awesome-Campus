@@ -3,6 +3,8 @@ package cn.edu.jxnu.awesome_campus.ui.home;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.angmarch.views.NiceSpinner;
+
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -53,8 +55,7 @@ public class CourseTableFragment extends BaseListFragment{
         /**
          *非正式代码，待完善
          */
-        WeekSpinnerWrapper spinnerWrapper = new WeekSpinnerWrapper(getContext());
-        spinnerWrapper.setIndex(TimeUtil.getDayOfWeek()-1);
+        WeekSpinnerWrapper spinnerWrapper = new WeekSpinnerWrapper();
         spinnerWrapper.setOnDayChangedListener(new OnDayChangedListener() {
             @Override
             public void onDayChanged(int day) {
@@ -64,7 +65,7 @@ public class CourseTableFragment extends BaseListFragment{
                 }
             }
         });
-        headerLayout.addView(spinnerWrapper.build());
+        spinnerWrapper.build((NiceSpinner) parentView.findViewById(R.id.spinner));
     }
 
     @Override

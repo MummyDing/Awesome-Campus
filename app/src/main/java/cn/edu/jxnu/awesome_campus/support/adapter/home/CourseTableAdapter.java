@@ -49,6 +49,13 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
         holder.timeArea.setText(TimeUtil.getCourseArea(courseBean.getCourseOfDay()));
         holder.courseName.setText(courseBean.getCourseName());
         holder.roomNumber.setText(courseBean.getCourseRoom());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 待完善
+            }
+        });
     }
 
     class VH extends RecyclerView.ViewHolder{
