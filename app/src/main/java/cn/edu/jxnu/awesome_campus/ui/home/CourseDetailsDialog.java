@@ -65,9 +65,9 @@ public class CourseDetailsDialog extends Activity {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Urlconfig.Education_Classmate_Base_URL+model.getClassmateListLink()));
                 Bundle bundle = new Bundle();
                 SPUtil sp=new SPUtil(CourseDetailsDialog.this);
-                bundle.putString("_ga", "GA1.3.609810117.1451115712");
-                bundle.putString("ASP.NET_SessionId", sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE));
-                bundle.putString("JwOAUserSettingNew", sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE));
+                bundle.putString("Cookie", "_ga=GA1.3.609810117.1451115712;ASP.NET_SessionId=" +
+                        sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE)
+                        + ";JwOAUserSettingNew="+sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE));
                 i.putExtra(Browser.EXTRA_HEADERS, bundle);
                 startActivity(i);
             }
