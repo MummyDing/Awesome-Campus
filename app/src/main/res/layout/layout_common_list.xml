@@ -25,6 +25,7 @@
             android:layout_marginBottom="@dimen/card_margin"
             card_view:cardCornerRadius="4dp"
             card_view:cardElevation="8dp"
+            android:visibility="gone"
             card_view:cardPreventCornerOverlap="true"
             card_view:contentPadding="10dp">
         <org.angmarch.views.NiceSpinner
