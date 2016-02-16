@@ -1,8 +1,12 @@
 package cn.edu.jxnu.awesome_campus.ui.education;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import org.angmarch.views.NiceSpinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
@@ -24,7 +28,8 @@ import cn.edu.jxnu.awesome_campus.view.widget.termspinner.TermSpinnerWrapper;
 public class CourseScoreFragment extends BaseListFragment {
 
     private CourseScoreModel model;
-
+    private List<CourseScoreModel> courseScoreList;
+    private TermSpinnerWrapper spinnerWrapper;
     @Override
     public String getTitle() {
         return InitApp.AppContext.getString(R.string.source);
@@ -48,23 +53,22 @@ public class CourseScoreFragment extends BaseListFragment {
     @Override
     public void addHeader() {
         if(EducationLoginUtil.isLogin()){
-            TermSpinnerWrapper spinnerWrapper = new TermSpinnerWrapper();
+            setOnLineLayout(true);
+            spinnerWrapper = new TermSpinnerWrapper();
             spinnerWrapper.setOnTermChangedListener(new OnTermChangedListener() {
                 @Override
-                public void onTermChanged(int term) {
-                    Toast.makeText(getContext(),"学期"+term,Toast.LENGTH_SHORT).show();
+                public void onTermChanged(int termID, String termName) {
+                    adapter.newList(getCourseScoreByTerm(termID));
+                    Log.d("学期",termName);
                 }
             });
             spinnerWrapper.build((NiceSpinner) parentView.findViewById(R.id.spinner));
-            setOnLineLayout(true);
-        }else {
-            setOnLineLayout(false);
         }
     }
 
     @Override
     public void initView() {
-
+        setOnLineLayout(EducationLoginUtil.isLogin());
     }
 
 
@@ -72,13 +76,33 @@ public class CourseScoreFragment extends BaseListFragment {
     public void onEventComing(EventModel eventModel) {
         switch (eventModel.getEventCode()){
             case EVENT.COURSE_SCORE_REFRESH_SUCCESS:
-                addHeader();
+                courseScoreList = eventModel.getDataList();
+                spinnerWrapper.updateAttachList();
+                adapter.newList(getCourseScoreByTerm(spinnerWrapper.getIndex()));
                 hideLoading();
-                // 这里还需要处理数据
                 break;
             case EVENT.COURSE_SCORE_REFRESH_FAILURE:
                 hideLoading();
                 break;
         }
     }
+
+
+    private List<CourseScoreModel> getCourseScoreByTerm(int term){
+        return getCourseScoreByTerm(TermUtil.getTermList().get(term));
+    }
+    private List<CourseScoreModel> getCourseScoreByTerm(String term){
+        if( courseScoreList == null){
+            return null;
+        }
+        List<CourseScoreModel> tempList = new ArrayList<>();
+        for(CourseScoreModel model : courseScoreList){
+            if(model.getTerm().equals(term)){
+                tempList.add(model);
+            }
+        }
+        return tempList;
+    }
+
+
 }

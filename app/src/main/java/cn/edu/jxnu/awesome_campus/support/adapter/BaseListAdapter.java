@@ -33,6 +33,9 @@ public abstract class BaseListAdapter<M extends IModel,VH extends RecyclerView.V
     }
 
     public void newList(List<M> list){
+        if(list == null){
+            return;
+        }
         if(mItems == null){
             mItems = new ArrayList<>();
         }else {

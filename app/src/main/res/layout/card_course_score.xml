@@ -20,24 +20,24 @@
         <TextView
             android:text="教师专业发展"
             android:id="@+id/courseName"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:layout_weight="7"/>
+            android:paddingRight="10dp"
+            android:textSize="25sp"/>
         <TextView
             android:text="98"
             android:id="@+id/courseScore"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            android:layout_weight="3"/>
         <TextView
             android:text="(2分)"
             android:id="@+id/courseCredit"
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="2"/>
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

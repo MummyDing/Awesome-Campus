@@ -6,5 +6,5 @@ package cn.edu.jxnu.awesome_campus.view.widget.termspinner;
  * Blog: http://blog.csdn.net/mummyding
  */
 public abstract class OnTermChangedListener {
-    public abstract void onTermChanged(int term);
+    public abstract void onTermChanged(int termID,String termName);
 }

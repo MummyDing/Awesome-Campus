@@ -2,11 +2,14 @@ package cn.edu.jxnu.awesome_campus.view.widget.termspinner;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import org.angmarch.views.NiceSpinner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +18,7 @@ import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.spkey.TermStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TermUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 
 /**
@@ -28,32 +32,25 @@ public class TermSpinnerWrapper {
 
     private int index = 0;
 
+    private NiceSpinner mSpinner;
+
+    private List<String> termList;
     public TermSpinnerWrapper() {
     }
 
     public NiceSpinner build(NiceSpinner spinner){
+
+        mSpinner = spinner;
         // init spinner
         spinner.setVisibility(View.VISIBLE);
-        
-        // 获取学期
-        SPUtil sp=new SPUtil(InitApp.AppContext);
-        String terms = sp.getStringSP(TermStaticKey.SP_FILE_NAME,TermStaticKey.ALL_TERM_LIST);
 
-        if(TextUtil.isNull(terms)){
-            return null;
-        }
-        // init data
-        List<String> termList = Arrays.asList(terms.split("@"));
-
-        spinner.attachDataSource(termList);
-        index = termList.size()-1;
-        spinner.setSelectedIndex(index);
-        listener.onTermChanged(index);
+        updateAttachList();
         if(listener != null) {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    listener.onTermChanged(position);
+                    if(termList != null)
+                    listener.onTermChanged(position,termList.get(position));
                 }
 
                 @Override
@@ -71,5 +68,22 @@ public class TermSpinnerWrapper {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void updateAttachList(){
+        termList = TermUtil.getTermList();
+        if(mSpinner== null && termList == null){
+            return;
+        }
+        // init data
+
+        mSpinner.attachDataSource(termList);
+        index = termList.size()-1;
+        mSpinner.setSelectedIndex(index);
+        listener.onTermChanged(index,termList.get(index));
     }
 }
