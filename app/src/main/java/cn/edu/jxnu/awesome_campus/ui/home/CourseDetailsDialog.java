@@ -3,6 +3,9 @@ package cn.edu.jxnu.awesome_campus.ui.home;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -13,6 +16,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
+import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 
 public class CourseDetailsDialog extends Activity {
 
@@ -44,8 +48,16 @@ public class CourseDetailsDialog extends Activity {
         courseID.setText(model.getCourseID());
         courseTeacher.setText(model.getCourseTeacher());
         courseClass.setText(model.getCourseClass());
-        classmateLink.setText(model.getClassmateListLink());
-        classForumLink.setText(model.getClassForumLink());
+        classmateLink.setText(buildHtmlLink("Classmates", Urlconfig.Education_Classmate_Base_URL+model.getClassmateListLink()));
+        classForumLink.setText(buildHtmlLink("Forum",Urlconfig.Education_CourseForum_Base_URL+model.getClassForumLink()));
+
+        classmateLink.setMovementMethod(LinkMovementMethod.getInstance());
+        classForumLink.setMovementMethod(LinkMovementMethod.getInstance());
+
+    }
+
+    private Spanned buildHtmlLink(String text, String link){
+        return Html.fromHtml("<a href='"+link+"'>"+text+"</a>");
     }
 
     @Override
