@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script type="text/javascript">window.BWEUM||(BWEUM={});BWEUM.info={"beacon":"bi-collector.oneapm.com/beacon/rum/ruby","errorBeacon":"bi-collector.oneapm.com/beacon/error/ruby","licenseKey":"JAb~enriQzVIVYfB","applicationID":1987,"transactionName":"FRIgBzBRBT4nUkEMXSxYITwuXA4uMlhaC0FtGS0nJ0M=","queueTime":1,"applicationTime":101,"agent":"//bi-collector.oneapm.com/static/js/bw-send-411.4.5.js"}</script>
+<script type="text/javascript" src="//bi-collector.oneapm.com/static/js/bw-loader-411.4.5.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta property="wb:webmaster" content="294ec9de89e7fadb" />
+  <meta property="qc:admins" content="104102651453316562112116375" />
+  <meta property="qc:admins" content="11635613706305617" />
+  <meta property="qc:admins" content="1163561616621163056375" />
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4" />
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI" />
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/collections/21/notes?order_by=added_at&amp;page=1">
+
+  <title>简书</title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="AthZJ0HRh8Pk07Q69qO4nFuR9kLEEdZU80gQTNFqu+Eb2X3PZwupOwdXMneEpidTkJHtv34aK+hHTT4wRTBq8w==" />
+  <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="stylesheet" media="all" href="http://cdn0.jianshu.io/assets/base-b831e2f3f4a1307ff86f71cbabc3085b.css" />
+
+    <link rel="stylesheet" media="all" href="http://cdn0.jianshu.io/assets/reading-cac623ff0936d736a1329844a420bb21.css" />
+  <link rel="stylesheet" media="all" href="http://cdn0.jianshu.io/assets/base-read-mode-83b416e1e492c342436a80881ae09e0f.css" />
+  <script src="http://cdn0.jianshu.io/assets/modernizr-b24c000b09feb5c7177d4db960f050bd.js"></script>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if IE 8]><link rel="stylesheet" media="all" href="http://cdn0.jianshu.io/assets/scaffolding/for_ie-c23c43d96bfba1567a1a0b22bc83ad3d.css" /><![endif]-->
+  <!--[if lt IE 9]><link rel="stylesheet" media="all" href="http://cdn0.jianshu.io/assets/scaffolding/for_ie-c23c43d96bfba1567a1a0b22bc83ad3d.css" /><![endif]-->
+  <link href="http://baijii-common.b0.upaiyun.com/icons/favicon.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn0.jianshu.io/assets/apple-touch-icons/57-7597f1cff93b0f41cd16ca7641e477eb.png" sizes="57x57" />
+      <link rel="apple-touch-icon-precomposed" href="http://cdn0.jianshu.io/assets/apple-touch-icons/72-e02c647005f01e2d24778ac8e7f9dc45.png" sizes="72x72" />
+      <link rel="apple-touch-icon-precomposed" href="http://cdn0.jianshu.io/assets/apple-touch-icons/76-4788ffdcd445555b5b93bfb4d1f4747c.png" sizes="76x76" />
+      <link rel="apple-touch-icon-precomposed" href="http://cdn0.jianshu.io/assets/apple-touch-icons/114-e89d888a7bce6222606e46082dcab634.png" sizes="114x114" />
+      <link rel="apple-touch-icon-precomposed" href="http://cdn0.jianshu.io/assets/apple-touch-icons/120-c7cdad6dd50db5a93175a6e015d6dc08.png" sizes="120x120" />
+      <link rel="apple-touch-icon-precomposed" href="http://cdn0.jianshu.io/assets/apple-touch-icons/152-21fa4ed7968f6503816524e90dcb3d91.png" sizes="152x152" />
+  <!-- Baidu stats -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</head>
+
+  <body class="output fluid zh cn win mozilla reader-day-mode reader-font2" data-js-module="collection-index" data-locale="zh-CN">
+
+    <div class="navbar navbar-jianshu shrink">
+  <div class="dropdown">
+    <a class="dropdown-toggle logo" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="javascript:void(0)">
+      简
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+      <li><a href="/collections"><i class="fa fa-th"></i> 专题</a></li>
+      <li><a href="/user_invitations"><i class="fa fa-money"></i> 发钱啦</a></li>
+    </ul>
+  </div>
+</div>
+<div class="navbar-user">
+    <a class="login" data-signup-link="true" data-toggle="modal" href="/sign_up">
+      <i class="fa fa-user"></i> 注册
+</a>    <a class="login" data-signin-link="true" data-toggle="modal" href="/sign_in">
+      <i class="fa fa-sign-in"></i> 登录
+</a>    <a class="daytime set-view-mode pull-right" href="javascript:void(0)"><i class="fa fa-moon-o"></i></a>
+</div>
+<div class="navbar navbar-jianshu expanded">
+  <div class="dropdown">
+      <a class="logo" role="button" data-original-title="个人主页" data-container="div.expanded" href="/">
+        <b>简</b><i class="fa fa-home"></i><span class="title">首页</span>
+</a>      <a data-toggle="tooltip" data-placement="right" data-original-title="专题" data-container="div.expanded" class="active" href="/collections">
+        <i class="fa fa-th"></i><span class="title">专题</span>
+</a>    <a data-toggle="tooltip" data-placement="right" data-original-title="下载手机应用" data-container="body" href="/apps">
+      <i class="fa fa-mobile"></i><span class="title">下载手机应用</span>
+</a>  </div>
+  <div class="nav-user">
+      <a href='#view-mode-modal' data-toggle='modal'><i class="fa fa-font"></i><span class="title">显示模式</span></a>
+
+      <a class="signin" data-signin-link="true" data-toggle="modal" data-placement="right" data-original-title="登录" data-container="div.expanded" href="/sign_in">
+        <i class="fa fa-sign-in"></i><span class="title">登录</span>
+</a>    </div>
+  </div>
+
+
+    <div class="row-fluid">
+
+  <div class="collections">
+    <!-- aside -->
+      <div class="span3 left-aside">
+    <div class="cover-img" style="background-image: url(http://upload.jianshu.io/daily_images/images/71XtWAYqvnMfzQxtwaXW.jpg)"></div>
+    <div class="bottom-block">
+
+      <h1>专题</h1>
+      <h3>让思想汇聚、流传</h3>
+      <p>专题的内容由多位写作者提供</p>
+      <a data-pjax="list-container" class="btn btn-large btn-success" href="/collections/new">新建专题</a>
+
+    </div>
+      <div class="img-info">
+        <i class="fa fa-info"></i>
+        <div class="info">
+           Photo by <a target="_blank" href="http://www.touchstudio.net/">River</a>
+        </div>
+      </div>
+  </div>
+    <div class="offset3 span7">
+      <div class="page-title">
+        <ul class="clearfix collections-nav navigation" data-container='#list-container' data-loader=".loader-tiny">
+          <li class="search">
+            <form class="search-form" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+              <input type="hidden" name="type" id="type" value="collections" />
+              <input type="text" name="q" id="q" placeholder="搜索" class="input-medium search-query" />
+</form>          </li>
+        </ul>
+      </div>
+      <div id="list-container" class="tab-pane active">
+        <ul class="article-list" infiscroll-url="/collections/21/notes?order_by=added_at">
+
+  <li class=have-img>
+      <a class="wrap-img" href="/p/098d03b5af51"><img src="http://upload-images.jianshu.io/upload_images/1211570-b67f064d5729580c?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300" /></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/4b9ff86a7af4">毒舌电影</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-16T11:14:54+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/098d03b5af51">「三打」不烂，但离我们想要的「西游」还很远</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/098d03b5af51">
+          阅读 23
+</a>        <a target="_blank" href="/p/098d03b5af51#comments">
+           · 评论 0
+</a>        <span> · 喜欢 0</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1010928" data-url="/collection_notes/1010928" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+  <li class=have-img>
+      <a class="wrap-img" href="/p/b2975557184e"><img src="http://upload-images.jianshu.io/upload_images/1211570-8343d40404048805?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300" /></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/4b9ff86a7af4">毒舌电影</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-16T11:18:03+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/b2975557184e">「美人鱼」这些片段被星爷删了，但我想说，删得好</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/b2975557184e">
+          阅读 59
+</a>        <a target="_blank" href="/p/b2975557184e#comments">
+           · 评论 0
+</a>        <span> · 喜欢 4</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1010927" data-url="/collection_notes/1010927" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+  <li >
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/e3fecdfe2e6f">海明威的海</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-16T11:33:39+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/4cc2d1752c7a">如何快速简单地写出一篇影评</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/4cc2d1752c7a">
+          阅读 6
+</a>        <a target="_blank" href="/p/4cc2d1752c7a#comments">
+           · 评论 0
+</a>        <span> · 喜欢 0</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1010926" data-url="/collection_notes/1010926" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+  <li class=have-img>
+      <a class="wrap-img" href="/p/6c0132bff04d"><img src="http://upload-images.jianshu.io/upload_images/898478-944da89b20fa1c7a.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300" /></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/8fc7a48a3130">白叔</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-16T10:32:01+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/6c0132bff04d">《美人鱼》一部柏拉图爱情动作片</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/6c0132bff04d">
+          阅读 18
+</a>        <a target="_blank" href="/p/6c0132bff04d#comments">
+           · 评论 0
+</a>        <span> · 喜欢 2</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1010430" data-url="/collection_notes/1010430" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+  <li class=have-img>
+      <a class="wrap-img" href="/p/b10393a29a51"><img src="http://upload-images.jianshu.io/upload_images/1350226-d8537b8626edc30a?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300" /></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/a1cc4be5b0f1">电影天堂</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-16T09:33:19+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/b10393a29a51">看完这部电影 我仿佛在世外桃源走了一遭。。。</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/b10393a29a51">
+          阅读 36
+</a>        <a target="_blank" href="/p/b10393a29a51#comments">
+           · 评论 1
+</a>        <span> · 喜欢 2</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1010321" data-url="/collection_notes/1010321" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+  <li class=have-img>
+      <a class="wrap-img" href="/p/45b4811e4b47"><img src="http://upload-images.jianshu.io/upload_images/1350226-c5ada999ba158d61?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300" /></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/a1cc4be5b0f1">电影天堂</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-16T09:30:28+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/45b4811e4b47">一个清新可人，一个胸器逼人。她们都是我的一眼美人！</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/45b4811e4b47">
+          阅读 47
+</a>        <a target="_blank" href="/p/45b4811e4b47#comments">
+           · 评论 0
+</a>        <span> · 喜欢 1</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1010320" data-url="/collection_notes/1010320" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+  <li class=have-img>
+      <a class="wrap-img" href="/p/dbf7a7126497"><img src="http://upload-images.jianshu.io/upload_images/1586909-3fabc9bdcc05229f.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300" /></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/bc8f0056ee51">肆不像花儿一样</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-15T23:14:20+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/dbf7a7126497">诺丁山爱情故事</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/dbf7a7126497">
+          阅读 11
+</a>        <a target="_blank" href="/p/dbf7a7126497#comments">
+           · 评论 0
+</a>        <span> · 喜欢 2</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1010087" data-url="/collection_notes/1010087" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+  <li class=have-img>
+      <a class="wrap-img" href="/p/104a374d00df"><img src="http://upload-images.jianshu.io/upload_images/23852-b039cd9a34b21e3c.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300" /></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/680ea2b754fc">魔鬼的赞歌</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-15T23:01:42+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/104a374d00df">《美人鱼》：都是同行的衬托</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/104a374d00df">
+          阅读 55
+</a>        <a target="_blank" href="/p/104a374d00df#comments">
+           · 评论 0
+</a>        <span> · 喜欢 2</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1010085" data-url="/collection_notes/1010085" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+  <li class=have-img>
+      <a class="wrap-img" href="/p/c602cccb334d"><img src="http://upload-images.jianshu.io/upload_images/538416-9581967879b59018.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300" /></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/148e4bc6b314">果儿是伪stan</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-02-15T20:50:28+08:00"></span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/c602cccb334d">《美人鱼》就是在致敬《海豚湾》</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/c602cccb334d">
+          阅读 49
+</a>        <a target="_blank" href="/p/c602cccb334d#comments">
+           · 评论 0
+</a>        <span> · 喜欢 0</span>
+         ·  <a class="info" title="&lt;img alt=&#39;Tiny&#39; class=&#39;loader-tiny&#39; src=&#39;http://baijii-common.b0.upaiyun.com/loaders/tiny.gif&#39;&gt;" data-html="true" data-collection-note-id="1008931" data-url="/collection_notes/1008931" href="javascript:void(null)"><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <footer>
+  <div class="footer-l">
+    <p>
+      <a href="http://www.jianshu.com/collection/jppzD2" target="_blank">关于简书</a> |
+      <a target="_blank" href="/contact">联系我们</a> |
+      <a href="http://www.jianshu.com/collection/fc488cd78374" target="_blank">作者成书计划</a> |
+      <a href="http://www.jianshu.com/notebooks/547/latest" target="_blank">帮助中心</a> |
+      <a href="http://jianshucom.taobao.com/" target="_blank">简书周边</a> |
+      <a href="http://www.jianshu.com/p/cabc8fa39830">合作伙伴</a> |
+      <a href="/all/collections">专题</a> |
+      <a href="/all/notes">文章</a>
+    </p>
+    <p>©2012-2015 <a href="/" target="_blank">简书</a> / 沪ICP备11018329号-5 /<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010602000064"><img style="width: 18px; height: 18px" src="http://cdn0.jianshu.io/assets/beianbgs-ea3e6ea57717ad91bafaaac341445ae3.png" alt="Beianbgs" /> 沪公网安备31010602000064号</a> <a key ="549264633b05a3da0fbd5c99" logo_size="83x30" logo_type="realname" href="http://www.anquan.org"><script src="http://static.anquan.org/static/outer/js/aq_auth.js"></script></a></p>
+  </div>
+
+  <div class="footer-r pull-right">
+    <div class="app-download-btn">
+      <a href="/apps">
+        <img src="http://cdn0.jianshu.io/assets/app-page/ios-b665abfbac32b23a3d44befce2603e35.png" alt="Ios" />
+</a>      <a href="/apps">
+        <img src="http://cdn0.jianshu.io/assets/app-page/android-0e3e2c8c4ed45f51dd225d65b4ec9bc5.png" alt="Android" />
+</a>    </div>
+    <div>
+      关注我们:
+      <a href="http://weibo.com/jianshuio" target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+      <a class="weixin" href="#share-weixin-modal" data-toggle="modal">
+        <i class="fa fa-weixin"></i>
+      </a>
+      <a href="https://twitter.com/jianshucom" target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <br><a href="http://windows.microsoft.com/zh-CN/internet-explorer/download-ie" class="upgrade-ie">本网站不支持 IE6/IE7，如果您希望继续使用 IE 浏览器，请升级至IE8及以上版本</a>
+    </div>
+  </div>
+
+  <!--modal-->
+  <div class="modal hide fade share-weixin-modal" id="share-weixin-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>关注我们的微信公众号，获得每日好文推荐。微信中搜索「简书」或者扫一扫下方二维码：</p>
+          <img src="http://baijii-common.b0.upaiyun.com/logos/jianshu_wechat_qrcode.jpg" alt="Jianshu wechat qrcode" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+    <div id="flash" class="hide"></div>
+
+  <div id="view-mode-modal" tabindex="-1" class="modal hide read-modal" aria-hidden="false" data-js-module='view-mode-modal'>
+    <div class="btn-group change-background" data-toggle="buttons-radio">
+      <a class="btn btn-daytime active" data-mode="day" href="javascript:void(null);">
+        <i class="fa fa-sun-o"></i>
+</a>      <a class="btn btn-nighttime " data-mode="night" href="javascript:void(null);">
+        <i class="fa fa-moon-o"></i>
+</a>    </div>
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+      <a class="btn font " data-font="font1" href="javascript:void(null);">宋体</a>
+      <a class="btn font hei active" data-font="font2" href="javascript:void(null);">黑体</a>
+    </div>
+    <div class="btn-group change-locale" data-toggle="buttons-radio">
+      <a class="btn font active" data-locale="zh-CN" href="javascript:void(null);">简</a>
+      <a class="btn font hei " data-locale="zh-TW" href="javascript:void(null);">繁</a>
+    </div>
+  </div>
+
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://cdn0.jianshu.io/assets/base-73cea4d745b4ee6617c3da2a1a8bcb4f.js"></script>
+
+    <script src="http://cdn0.jianshu.io/assets/reading-base-10a1300669d1fe119a5b133a09d026c0.js"></script>
+      <script src="http://cdn0.jianshu.io/assets/reading/module_sets/collection-f1c71c3202351aca72e7a52b08924263.js"></script>
+
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35169517-1']);
+  _gaq.push(['_setCustomVar', 2, 'User Type', 'Visitor', 1 ]);
+  _gaq.push(['_trackPageview']);
+
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  </body>
+</html>
