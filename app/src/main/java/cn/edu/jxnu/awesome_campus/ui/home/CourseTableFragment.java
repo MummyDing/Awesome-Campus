@@ -1,8 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import org.angmarch.views.NiceSpinner;
 
@@ -12,9 +10,9 @@ import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.home.CourseTableAdapter;
-import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.OnDayChangedListener;
@@ -28,8 +26,8 @@ import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.WeekSpinnerWrapper;
 public class CourseTableFragment extends BaseListFragment{
 
     public static int currentSelectedDay = -1;
-    private CourseTableModel model;
-
+    private CourseTableModel courseTableModel;
+    private CourseInfoModel courseInfoModel;
     private List<CourseTableModel> weekCourse;
     @Override
     public String getTitle() {
@@ -39,15 +37,16 @@ public class CourseTableFragment extends BaseListFragment{
 
     @Override
     public void onDataRefresh() {
-        model.loadFromNet();
+        courseTableModel.loadFromNet();
     }
 
     @Override
     public void bindAdapter() {
-        model = new CourseTableModel();
-        adapter = new CourseTableAdapter(getActivity(),model);
+        courseTableModel = new CourseTableModel();
+        courseInfoModel = new CourseInfoModel();
+        adapter = new CourseTableAdapter(getActivity(), courseTableModel);
         recyclerView.setAdapter(adapter);
-        model.loadFromNet();
+        courseTableModel.loadFromNet();
         displayLoading();
     }
 
@@ -83,6 +82,12 @@ public class CourseTableFragment extends BaseListFragment{
                 break;
             case EVENT.COURSE_TABLE_REFRESH_FAILURE:
                 displayNetworkError();
+                break;
+            case EVENT.COURSE_INFO_REFRESH_FAILURE:
+                displayNetworkError();
+                break;
+            case EVENT.COURSE_INFO_REFRESH_SUCCESS:
+                adapter.addCourseInfoList(eventModel.getDataList());
                 break;
         }
     }

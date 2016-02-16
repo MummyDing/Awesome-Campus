@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.model.IModel;
+import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
 
 /**
  * Created by MummyDing on 16-2-3.
@@ -46,5 +47,11 @@ public abstract class BaseListAdapter<M extends IModel,VH extends RecyclerView.V
         updateView();
     }
 
+    /**
+     * 专门给CourseTableAdapter用的...
+     * @param list
+     */
+    public void addCourseInfoList(List<CourseInfoModel> list){
+    }
 
 }
