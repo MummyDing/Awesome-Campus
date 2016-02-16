@@ -10,6 +10,7 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -33,6 +34,8 @@ public class CourseDetailsDialog extends Activity {
     private TextView classmateLink;
     private TextView classForumLink;
 
+    private Button closeBtn;
+
 
     private CourseInfoModel model;
     @Override
@@ -49,17 +52,27 @@ public class CourseDetailsDialog extends Activity {
         courseClass = (TextView) findViewById(R.id.course_class);
         classmateLink = (TextView) findViewById(R.id.classmate_list_link);
         classForumLink = (TextView) findViewById(R.id.class_forum_link);
+        closeBtn = findViewById(R.id.btn_close);
 
         courseName.setText(model.getCourseName());
         courseID.setText(model.getCourseID());
         courseTeacher.setText(model.getCourseTeacher());
         courseClass.setText(model.getCourseClass());
+
+
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 //        classmateLink.setText(buildHtmlLink("Classmates", Urlconfig.Education_Classmate_Base_URL+model.getClassmateListLink()));
 //        classForumLink.setText(buildHtmlLink("Forum",Urlconfig.Education_CourseForum_Base_URL+model.getClassForumLink()));
 //        classmateLink.setMovementMethod(LinkMovementMethod.getInstance());
 //        classForumLink.setMovementMethod(LinkMovementMethod.getInstance());
 
-        classmateLink.setOnClickListener(new View.OnClickListener() {
+   /*     classmateLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Urlconfig.Education_Classmate_Base_URL+model.getClassmateListLink()));
@@ -71,7 +84,7 @@ public class CourseDetailsDialog extends Activity {
                 i.putExtra(Browser.EXTRA_HEADERS, bundle);
                 startActivity(i);
             }
-        });
+        });*/
     }
 
     private Spanned buildHtmlLink(String text, String link){
