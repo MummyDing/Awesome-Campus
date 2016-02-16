@@ -53,7 +53,6 @@ public class CourseScoreFragment extends BaseListFragment {
     @Override
     public void addHeader() {
         if(EducationLoginUtil.isLogin() && spinnerWrapper == null){
-            setOnLineLayout(true);
             spinnerWrapper = new TermSpinnerWrapper();
             spinnerWrapper.setOnTermChangedListener(new OnTermChangedListener() {
                 @Override
