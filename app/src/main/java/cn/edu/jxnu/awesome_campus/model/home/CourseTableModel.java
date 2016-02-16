@@ -157,33 +157,29 @@ public class CourseTableModel implements IModel<CourseTableModel>{
             courseList.add(new CourseBean(0,str[0],str[1]));
         }
         if(TextUtil.isNull(getThree()) == false){
-            String [] str = getOneTwo().split("@");
+            String [] str = getThree().split("@");
             courseList.add(new CourseBean(1,str[0],str[1]));
         }
         if(TextUtil.isNull(getFour()) == false){
-            String [] str = getOneTwo().split("@");
+            String [] str = getFour().split("@");
             courseList.add(new CourseBean(2,str[0],str[1]));
         }
         if(TextUtil.isNull(getFive()) == false){
-            String [] str = getOneTwo().split("@");
+            String [] str = getFive().split("@");
             courseList.add(new CourseBean(3,str[0],str[1]));
         }
         if(TextUtil.isNull(getSixSeven()) == false){
-            String [] str = getOneTwo().split("@");
+            String [] str = getSixSeven().split("@");
             courseList.add(new CourseBean(4,str[0],str[1]));
         }
         if(TextUtil.isNull(getEightNine()) == false){
-            String [] str = getOneTwo().split("@");
+            String [] str = getEightNine().split("@");
             courseList.add(new CourseBean(5,str[0],str[1]));
-        }
-        if(TextUtil.isNull(getEightNine()) == false){
-            String [] str = getOneTwo().split("@");
-            courseList.add(new CourseBean(6,str[0],str[1]));
         }
 
         if(TextUtil.isNull(getNight()) == false){
             String [] str = getOneTwo().split("@");
-            courseList.add(new CourseBean(7,str[0],str[1]));
+            courseList.add(new CourseBean(6,str[0],str[1]));
         }
         return courseList;
     }

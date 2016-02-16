@@ -82,6 +82,7 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
         }
         listCourse = new ArrayList<>();
         listCourse.addAll(list);
+        notifyDataSetChanged();
     }
 
     @Override
