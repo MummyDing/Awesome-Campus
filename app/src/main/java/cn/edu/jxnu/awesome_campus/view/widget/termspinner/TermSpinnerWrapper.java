@@ -2,6 +2,8 @@ package cn.edu.jxnu.awesome_campus.view.widget.termspinner;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -82,6 +84,7 @@ public class TermSpinnerWrapper {
         // init data
 
         mSpinner.attachDataSource(termList);
+//        mSpinner.setBackgroundColor(ContextCompat.getColor(InitApp.AppContext,R.color.colorAccent));
         index = termList.size()-1;
         mSpinner.setSelectedIndex(index);
         listener.onTermChanged(index,termList.get(index));

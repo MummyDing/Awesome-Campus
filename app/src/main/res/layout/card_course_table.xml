@@ -1,74 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
-    android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/card_margin"
-    android:layout_marginLeft="@dimen/card_margin"
-    android:layout_marginRight="@dimen/card_margin"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="8dp"
-    card_view:contentPadding="10dp"
-    card_view:cardPreventCornerOverlap="true">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:padding="10dp">
-           <ImageView
-               android:src="@drawable/ic_time"
-               android:layout_width="@dimen/width_course_icon"
-               android:layout_height="@dimen/width_course_icon" />
-           <TextView
-               android:id="@+id/timeArea"
-               android:text="20:00 ~ 21:00"
-               android:textSize="20sp"
-               android:gravity="center"
-               android:layout_marginLeft="5dp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" />
-       </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-            <ImageView
-                android:src="@drawable/ic_location"
-                android:layout_width="@dimen/width_course_icon"
-                android:layout_height="@dimen/width_course_icon" />
-            <TextView
-                android:id="@+id/roomNum"
-                android:text="X4313"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-            <ImageView
-                android:src="@drawable/ic_course"
-                android:layout_width="@dimen/width_course_icon"
-                android:layout_height="@dimen/width_course_icon" />
-            <TextView
-                android:id="@+id/courseName"
-                android:text="操作系统"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+    android:orientation="horizontal">
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/circle" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorPrimary"></View>
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_weight="9"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/timeArea"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="20:00 ~ 21:00"
+            android:textSize="18sp" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:layout_marginTop="@dimen/card_margin"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="8dp"
+            card_view:cardPreventCornerOverlap="true"
+            card_view:contentPadding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/width_course_icon"
+                        android:layout_height="@dimen/width_course_icon"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_course" />
+
+                    <TextView
+                        android:id="@+id/courseName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:text="操作系统"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_course_icon"
+                        android:layout_height="@dimen/width_course_icon"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_location" />
+
+                    <TextView
+                        android:id="@+id/roomNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:text="X4313"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</LinearLayout>

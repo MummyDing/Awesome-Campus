@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/onLineLayout">
@@ -12,15 +14,29 @@
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/spinner_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:layout_marginTop="@dimen/card_margin"
+            android:layout_marginBottom="@dimen/card_margin"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="8dp"
+            card_view:cardPreventCornerOverlap="true"
+            card_view:contentPadding="10dp">
         <org.angmarch.views.NiceSpinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:layout_below="@+id/headerLayout"/>
+            android:layout_below="@+id/headerLayout" />
+        </android.support.v7.widget.CardView>
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
-            android:layout_below="@+id/spinner"
+            android:layout_below="@+id/spinner_card_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
