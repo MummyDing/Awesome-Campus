@@ -23,6 +23,9 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 
+import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+
 /**
  * Created by MummyDing on 16-1-25.
  * GitHub: https://github.com/MummyDing
@@ -50,7 +53,7 @@ public class InitApp extends Application{
                                          public void onNewResultImpl(@Nullable final Bitmap bitmap) {
                                              imageView.post(new Runnable() {
                                                  public void run() {
-                                                     imageView.setImageBitmap(bitmap);
+                                                     imageView.setImageBitmap(ImageUtil.bitmapToCircle(bitmap));
                                                  }
                                              });
                                          }
@@ -65,6 +68,25 @@ public class InitApp extends Application{
 
             @Override
             public void cancel(final ImageView imageView) {
+                if(EducationLoginUtil.getAvatorUrl() != null){
+                    DataSource<CloseableReference<CloseableImage>> dataSource = Fresco.getImagePipeline().fetchDecodedImage(ImageRequest.fromUri(EducationLoginUtil.getAvatorUrl()),getApplicationContext());
+                    dataSource.subscribe(new BaseBitmapDataSubscriber() {
+                                             @Override
+                                             public void onNewResultImpl(@Nullable final Bitmap bitmap) {
+                                                 imageView.post(new Runnable() {
+                                                     public void run() {
+                                                         imageView.setImageBitmap(ImageUtil.bitmapToCircle(bitmap));
+                                                     }
+                                                 });
+                                             }
+
+                                             @Override
+                                             public void onFailureImpl(DataSource dataSource) {
+                                                 imageView.setImageDrawable( ContextCompat.getDrawable(InitApp.AppContext,R.drawable.logo));
+                                             }
+                                         },
+                            CallerThreadExecutor.getInstance());
+                }
             }
 
             @Override

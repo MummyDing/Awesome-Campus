@@ -14,5 +14,6 @@ import cn.edu.jxnu.awesome_campus.presenter.IPresenter;
 public interface HomePresenter extends IPresenter{
     void buildDrawer(Activity activity, Toolbar toolbar);
     void buildHeader(Activity activity,String avatarURL,String studentID,String name);
+    void updateHeader(Activity activity);
     void clearAllFragments();
 }
