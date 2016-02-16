@@ -4,7 +4,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.database.spkey.TermStaticKey;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.HtmlUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
 
@@ -56,7 +59,14 @@ public class CourseScoreParse {
         try {
             HtmlUtil hu = new HtmlUtil(parseStr);
             termList = hu.parseString(TERM_CSS);
+            String all_term="";
             for (int i = 0; i < termList.size(); i++) {
+                if(i==0){
+                    all_term=termList.get(i).toString();
+                }
+                else{
+                    all_term=all_term+"@"+termList.get(i).toString();
+                }
                 List aTermList = null;
                 if (i < termList.size() - 1) {
                     String nowTerm = termList.get(i).toString();//当前学期
@@ -81,6 +91,10 @@ public class CourseScoreParse {
                     resultList.add(aTermList.get(j + 5).toString());
 //                        resultList.add(aTermList.get(j+6).toString());
                 }
+                SPUtil sp=new SPUtil(InitApp.AppContext);
+                sp.putStringSP(TermStaticKey.SP_FILE_NAME,TermStaticKey.ALL_TERM_LIST,all_term);
+//               通过以下方法获取String，再进行分割
+//               String temp= sp.getStringSP(TermStaticKey.SP_FILE_NAME,TermStaticKey.ALL_TERM_LIST);
                 fillEndList();
             }
         } catch (UnsupportedEncodingException e) {
