@@ -76,7 +76,7 @@ public class TermSpinnerWrapper {
 
     public void updateAttachList(){
         termList = TermUtil.getTermList();
-        if(mSpinner== null && termList == null){
+        if(mSpinner== null || termList == null){
             return;
         }
         // init data
