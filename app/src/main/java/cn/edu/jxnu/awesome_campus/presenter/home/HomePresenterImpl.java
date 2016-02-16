@@ -89,9 +89,9 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Override
     public void buildHeader(Activity activity, String avatarURL,String studentID, String name) {
-        if(drawer != null){
+       /* if(drawer != null){
             drawer.removeHeader();
-        }
+        }*/
         if(header == null){
             header = new AccountHeaderBuilder().withActivity(activity)
                     .withHeaderBackground(R.drawable.header)

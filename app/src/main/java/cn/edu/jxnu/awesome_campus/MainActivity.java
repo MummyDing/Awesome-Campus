@@ -34,6 +34,7 @@ import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
@@ -60,7 +61,7 @@ public class MainActivity extends BaseActivity implements HomeView{
     private Menu menu;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentTransaction fragmentTransaction;
-    private HomePresenter presenter;
+    public static HomePresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +142,8 @@ public class MainActivity extends BaseActivity implements HomeView{
             //setTitle(DrawerItem.SETTINGS.getItemName());
         }else if(id == DrawerItem.LOGOUT.getId()){
             //setTitle(DrawerItem.LOGOUT.getItemName());
+            EducationLoginUtil.clearCookie();
+            presenter.updateHeader(this);
         }
     }
 

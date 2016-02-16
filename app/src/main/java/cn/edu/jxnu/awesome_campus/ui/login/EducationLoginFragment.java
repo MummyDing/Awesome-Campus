@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.MainActivity;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -61,6 +62,7 @@ public class EducationLoginFragment extends BaseFragment{
                 setOnLineLayout(true);
                 setInputAreaEnable(true);
                 DisplayUtil.Snack(getView(),"Login Successful!!!");
+                MainActivity.presenter.updateHeader(getActivity());
                 break;
             case EVENT.EDUCATION_LOGIN_FAILURE_NETWORK_ERROR:
                 setLoginFailureLayout();
