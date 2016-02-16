@@ -21,6 +21,7 @@ import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
@@ -55,9 +56,7 @@ public class HomePresenterImpl implements HomePresenter {
     public void buildDrawer(Activity activity,Toolbar toolbar) {
 
         if(header == null){
-            //buildHeader(activity,);
-            // login    待补全
-            buildHeader(activity,"","","");
+            updateHeader(activity);
         }
         drawer = new DrawerBuilder().withActivity(activity).withAccountHeader(header)
                 .withToolbar(toolbar).withActionBarDrawerToggleAnimated(true).addDrawerItems(
@@ -82,6 +81,12 @@ public class HomePresenterImpl implements HomePresenter {
 
     }
 
+
+    public void updateHeader(Activity activity){
+        EducationLoginUtil.isLogin();
+        buildHeader(activity, EducationLoginUtil.getAvatorUrl(),EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
+    }
+
     @Override
     public void buildHeader(Activity activity, String avatarURL,String studentID, String name) {
         if(drawer != null){
@@ -93,15 +98,7 @@ public class HomePresenterImpl implements HomePresenter {
                     .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                         @Override
                         public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-
-
-                            /***
-                             * 此处需完善 验证是否登陆
-                             */
-
                             homeView.switchToLogin();
-
-
                             return false;
                         }
                     })
@@ -112,8 +109,13 @@ public class HomePresenterImpl implements HomePresenter {
         if(TextUtil.isNull(studentID) || TextUtil.isNull(name) || TextUtil.isNull(avatarURL)){
             header.addProfiles(new ProfileDrawerItem().withIcon(R.drawable.logo)
                     .withName(activity.getString(R.string.hint_click_to_login)));
+        }else{
+            header.addProfiles(new ProfileDrawerItem().withIcon(avatarURL)
+                    .withName(name));
         }
     }
+
+
 
     @Override
     public void clearAllFragments() {

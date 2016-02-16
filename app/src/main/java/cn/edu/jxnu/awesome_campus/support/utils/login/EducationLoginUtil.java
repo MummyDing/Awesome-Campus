@@ -31,8 +31,8 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
  */
 public class EducationLoginUtil {
     public static final String TAG = "EducationLoginUtil";
-    private static String username;
-    private static String password;
+    private static String studentName;
+    private static String studentID;
 
     public static String getBaseCookie() {
         return baseCookie;
@@ -50,16 +50,14 @@ public class EducationLoginUtil {
         if (usernameET == null) {
             throw new IllegalArgumentException("args cannot be null");
         }
-        username = usernameET.getText().toString();
-        return username;
+        return usernameET.getText().toString();
     }
 
     private static String getPassword(EditText passwordET) {
         if (passwordET == null) {
             throw new IllegalArgumentException("args cannot be null");
         }
-        password = passwordET.getText().toString();
-        return password;
+        return passwordET.getText().toString();
     }
 
     /**
@@ -145,6 +143,8 @@ public class EducationLoginUtil {
             Log.d("已登录","--");
             baseCookie = cookie;
             specialCookies = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
+            studentID = sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NUM);
+            studentName = sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NAME);
             return true;
         }
         Log.d("未登录","--");
@@ -208,5 +208,20 @@ public class EducationLoginUtil {
             }
         }
         return null;
+    }
+
+    public static String getStudentName() {
+        return studentName;
+    }
+
+    public static String getStudentID() {
+        return studentID;
+    }
+
+    public static String getAvatorUrl(){
+        if(TextUtil.isNull(getStudentID())){
+            return null;
+        }
+        return "http://jwc.jxnu.edu.cn/StudentPhoto/"+getStudentID()+".jpg";
     }
 }
