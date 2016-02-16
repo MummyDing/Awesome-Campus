@@ -21,6 +21,12 @@ public class CourseScoreParse {
     private List<String> resultList;
     private List<CourseScoreModel> endList;
 
+    public List<String> getTermList() {
+        return termList;
+    }
+
+    private List<String> termList;
+
     public List<String> getResultList() {
         return resultList;
     }
@@ -49,7 +55,7 @@ public class CourseScoreParse {
     private void parseData() {
         try {
             HtmlUtil hu = new HtmlUtil(parseStr);
-            List termList = hu.parseString(TERM_CSS);
+            termList = hu.parseString(TERM_CSS);
             for (int i = 0; i < termList.size(); i++) {
                 List aTermList = null;
                 if (i < termList.size() - 1) {
