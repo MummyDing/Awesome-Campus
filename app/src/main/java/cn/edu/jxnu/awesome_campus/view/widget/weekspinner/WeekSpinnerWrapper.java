@@ -43,8 +43,6 @@ public class WeekSpinnerWrapper{
     }
 
     public NiceSpinner build(NiceSpinner spinner){
-        // init spinner
-        spinner.setVisibility(View.VISIBLE);
         // init data
         List<String> daysOfWeek =new LinkedList<String>(
         Arrays.asList(mContext.getString(R.string.monday),mContext.getString(R.string.tuesday),

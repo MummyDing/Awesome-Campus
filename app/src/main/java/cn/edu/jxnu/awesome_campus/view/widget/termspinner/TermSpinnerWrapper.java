@@ -43,8 +43,6 @@ public class TermSpinnerWrapper {
     public NiceSpinner build(NiceSpinner spinner){
 
         mSpinner = spinner;
-        // init spinner
-        spinner.setVisibility(View.VISIBLE);
 
         updateAttachList();
         if(listener != null) {

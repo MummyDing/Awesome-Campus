@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.education;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.angmarch.views.NiceSpinner;
@@ -53,6 +54,7 @@ public class CourseScoreFragment extends BaseListFragment {
     @Override
     public void addHeader() {
         if(EducationLoginUtil.isLogin() && spinnerWrapper == null){
+            spinnerCard.setVisibility(View.VISIBLE);
             spinnerWrapper = new TermSpinnerWrapper();
             spinnerWrapper.setOnTermChangedListener(new OnTermChangedListener() {
                 @Override

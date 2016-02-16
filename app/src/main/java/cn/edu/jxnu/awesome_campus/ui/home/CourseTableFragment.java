@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.angmarch.views.NiceSpinner;
@@ -52,9 +53,7 @@ public class CourseTableFragment extends BaseListFragment{
 
     @Override
     public void addHeader() {
-        /**
-         *非正式代码，待完善
-         */
+        spinnerCard.setVisibility(View.VISIBLE);
         WeekSpinnerWrapper spinnerWrapper = new WeekSpinnerWrapper();
         spinnerWrapper.setOnDayChangedListener(new OnDayChangedListener() {
             @Override

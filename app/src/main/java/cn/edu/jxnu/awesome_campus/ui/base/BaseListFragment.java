@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +37,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     protected ProgressBar progressBar;
     protected ImageButton networkBtn;
     protected BaseListAdapter adapter;
+    protected CardView spinnerCard;
     protected SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void init() {
@@ -45,6 +47,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         layoutManager = new LinearLayoutManager(InitApp.AppContext);
         progressBar = (ProgressBar) parentView.findViewById(R.id.progressBar);
         networkBtn = (ImageButton) parentView.findViewById(R.id.networkBtn);
+        spinnerCard = (CardView) parentView.findViewById(R.id.spinner_card_view);
         recyclerView = (RecyclerView) parentView.findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(layoutManager);
