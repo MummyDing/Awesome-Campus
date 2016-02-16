@@ -102,6 +102,7 @@ public class EducationLoginUtil {
                                         String nowTerm = TermUtil.getNowTerm();
                                         String baseCookie=null,specialCookie=null;
                                         for (int i = 0; i < headers.size(); i++) {
+//                                            System.out.println(headers.name(i)+"::::"+headers.value(i));
                                             if(headers.name(i).equals("Set-Cookie")){
                                                 baseCookie=cutBaseCookie(headers.value(i));
                                                 specialCookie=cutSpecialCookie(headers.value(i+1));
@@ -141,7 +142,7 @@ public class EducationLoginUtil {
         String cookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);
         if (TextUtil.isNull(cookie) == false) {
             Log.d("已登录","--");
-            baseCookie = cookie;
+            baseCookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);;
             specialCookies = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
             studentID = sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NUM);
             studentName = sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NAME);
@@ -187,6 +188,7 @@ public class EducationLoginUtil {
     *create at 2016/2/15 20:57
     */
     private static String cutBaseCookie(String baseCookie){
+        Log.d("待分割的cookie","-"+baseCookie);
         String first_cut[]=baseCookie.split("SessionId=");
         if(first_cut.length>1){
             String second_cut[]=first_cut[1].split("; path");

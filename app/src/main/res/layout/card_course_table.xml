@@ -34,8 +34,7 @@
         <TextView
             android:id="@+id/timeArea"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
             android:text="20:00 ~ 21:00"
             android:textSize="18sp" />
 

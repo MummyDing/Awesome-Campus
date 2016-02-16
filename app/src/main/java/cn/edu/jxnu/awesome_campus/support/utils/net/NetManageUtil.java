@@ -25,8 +25,6 @@ public class NetManageUtil {
 
     static {
         netClient = new OkHttpClient();
-        //enable Cookie
-        netClient.setCookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ORIGINAL_SERVER));
         mGson = new Gson();
     }
 
