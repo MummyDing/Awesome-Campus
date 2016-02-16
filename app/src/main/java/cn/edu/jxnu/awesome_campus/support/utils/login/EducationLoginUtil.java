@@ -143,11 +143,11 @@ public class EducationLoginUtil {
         String cookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);
         if (TextUtil.isNull(cookie) == false) {
             Log.d("已登录","--");
+            baseCookie = cookie;
+            specialCookies = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
             return true;
         }
         Log.d("未登录","--");
-        baseCookie = cookie;
-        specialCookies = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
         return false;
     }
 
