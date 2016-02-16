@@ -52,7 +52,7 @@ public class CourseScoreFragment extends BaseListFragment {
 
     @Override
     public void addHeader() {
-        if(EducationLoginUtil.isLogin()){
+        if(EducationLoginUtil.isLogin() && spinnerWrapper == null){
             setOnLineLayout(true);
             spinnerWrapper = new TermSpinnerWrapper();
             spinnerWrapper.setOnTermChangedListener(new OnTermChangedListener() {
@@ -77,7 +77,11 @@ public class CourseScoreFragment extends BaseListFragment {
         switch (eventModel.getEventCode()){
             case EVENT.COURSE_SCORE_REFRESH_SUCCESS:
                 courseScoreList = eventModel.getDataList();
-                spinnerWrapper.updateAttachList();
+                if(spinnerWrapper == null){
+                    addHeader();
+                }else {
+                    spinnerWrapper.updateAttachList();
+                }
                 adapter.newList(getCourseScoreByTerm(spinnerWrapper.getIndex()));
                 hideLoading();
                 break;
