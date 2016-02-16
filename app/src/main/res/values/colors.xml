@@ -6,4 +6,7 @@
     <color name="colorPrimary">#A52F2F</color>
     <color name="colorPrimaryDark">#8c2222</color>
     <color name="colorAccent">#d7aa36</color>
+
+    <color name="Float_add_btn_color_nomal">#d7aa36</color>
+    <color name="Float_add_btn_color_pressed">#d7d436</color>
 </resources>
