@@ -133,5 +133,6 @@
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:src="@mipmap/ic_close"
+        android:id="@+id/btn_close"
         android:background="@drawable/floataddbtn"/>
     </LinearLayout>
