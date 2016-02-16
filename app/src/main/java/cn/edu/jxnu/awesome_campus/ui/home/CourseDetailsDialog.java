@@ -33,11 +33,12 @@ public class CourseDetailsDialog extends Activity {
     }
 
     private void initView(){
-        courseName = findViewById(R.id.course_name);
-        courseTeacher = findViewById(R.id.course_id);
-        courseClass = findViewById(R.id.course_teacher);
-        classmateLink = findViewById(R.id.classmate_list_link);
-        classForumLink = findViewById(R.id.class_forum_link);
+        courseName = (TextView) findViewById(R.id.course_name);
+        courseID = (TextView) findViewById(R.id.course_id);
+        courseTeacher = (TextView) findViewById(R.id.course_teacher);
+        courseClass = (TextView) findViewById(R.id.course_class);
+        classmateLink = (TextView) findViewById(R.id.classmate_list_link);
+        classForumLink = (TextView) findViewById(R.id.class_forum_link);
 
         courseName.setText(model.getCourseName());
         courseID.setText(model.getCourseID());

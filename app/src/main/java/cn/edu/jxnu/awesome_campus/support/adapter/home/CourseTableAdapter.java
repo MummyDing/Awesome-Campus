@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,11 +76,14 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
     }
 
     private CourseInfoModel getCourseInfoModel(String courseName){
+        Log.d("查询",courseName+" 大小"+courseInfoList.size());
         for(CourseInfoModel model: courseInfoList){
-            if(model.getCourseName().equals(courseName)){
+            Log.d("课程名",model.getCourseName());
+            if(model.getCourseName().trim().equals(courseName.trim())){
                 return model;
             }
         }
+        Log.d("没有查到",courseName);
         return null;
     }
 

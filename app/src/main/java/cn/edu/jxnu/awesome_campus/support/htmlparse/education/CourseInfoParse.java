@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
+import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.utils.html.HtmlUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
 
@@ -20,6 +21,10 @@ public class CourseInfoParse {
     private String parseStr;
     private List<String> resultList;
     private List<CourseInfoModel> endList;
+
+    public List<CourseInfoModel> getEndList() {
+        return endList;
+    }
 
     /**
     *构造时执行解析，解析后自动填充结果

@@ -10,6 +10,7 @@ public class CourseBean {
     private String courseName;
     private String courseRoom;
 
+
     public CourseBean(int courseOfDay, String courseName, String courseRoom) {
         this.courseOfDay = courseOfDay;
         this.courseName = courseName;

@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
+import android.util.Log;
 import android.view.View;
 
 import org.angmarch.views.NiceSpinner;
@@ -76,9 +77,9 @@ public class CourseTableFragment extends BaseListFragment{
         super.onEventComing(eventModel);
         switch (eventModel.getEventCode()){
             case EVENT.COURSE_TABLE_REFRESH_SUCCESS:
+                courseInfoModel.loadFromNet();
                 weekCourse = eventModel.getDataList();
                 adapter.newList(eventModel.getDataList());
-                hideLoading();
                 break;
             case EVENT.COURSE_TABLE_REFRESH_FAILURE:
                 displayNetworkError();
@@ -87,7 +88,9 @@ public class CourseTableFragment extends BaseListFragment{
                 displayNetworkError();
                 break;
             case EVENT.COURSE_INFO_REFRESH_SUCCESS:
+                Log.d("获取到了","课程信息");
                 adapter.addCourseInfoList(eventModel.getDataList());
+                hideLoading();
                 break;
         }
     }
