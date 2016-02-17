@@ -53,7 +53,6 @@ import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 public abstract class BaseDetailsActivity extends SwipeBackActivity implements BaseView {
 
 
-    protected LinearLayout contentLayout;
     protected Toolbar toolbar;
     protected WebView contentView;
     protected SimpleDraweeView topImage;
@@ -131,7 +130,6 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
             ll.setLayoutParams(llp);
         }
 
-        contentLayout = (LinearLayout) findViewById(R.id.content_layout);
         mainContent = (FrameLayout) findViewById(R.id.main_content);
         scrollView = (NestedScrollView) findViewById(R.id.scrollView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

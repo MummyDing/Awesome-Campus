@@ -6,6 +6,8 @@ import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.squareup.okhttp.Headers;
@@ -31,7 +33,7 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
     @Override
     protected void onDataRefresh() {
         // 这里请求详情
-        NetManageUtil.get(model.getUrl())
+     /*   NetManageUtil.get(model.getUrl())
                 .addTag(TAG)
                 .enqueue(new StringCallback() {
                     @Override
@@ -55,7 +57,7 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
                             }
                         });
                     }
-                });
+                });*/
     }
 
     @Override
@@ -65,6 +67,13 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
         /*LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) contentLayout.getLayoutParams();
         layoutParams.setMargins(0,0,0,0);
         contentLayout.setLayoutParams(layoutParams);*/
+
+        contentView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return true;
+            }
+        });
     }
 
     @Override
