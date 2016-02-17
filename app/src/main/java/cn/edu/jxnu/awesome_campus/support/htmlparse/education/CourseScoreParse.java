@@ -95,8 +95,9 @@ public class CourseScoreParse {
                 sp.putStringSP(TermStaticKey.SP_FILE_NAME,TermStaticKey.ALL_TERM_LIST,all_term);
 //               通过以下方法获取String，再进行分割
 //               String temp= sp.getStringSP(TermStaticKey.SP_FILE_NAME,TermStaticKey.ALL_TERM_LIST);
-                fillEndList();
+
             }
+            fillEndList();
         } catch (UnsupportedEncodingException e) {
             System.out.println("解析失败");//JUnit调试用
             e.printStackTrace();

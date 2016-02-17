@@ -2,7 +2,6 @@ package cn.edu.jxnu.awesome_campus.database.dao.home;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import com.squareup.okhttp.Headers;
 
@@ -14,9 +13,8 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
-import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsParse;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.home.CampusNewsParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;

@@ -1,11 +1,9 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
 
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.widget.NestedScrollView;
-import android.view.MenuItem;
 import android.view.View;
 import com.squareup.okhttp.Headers;
 
@@ -14,7 +12,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
-import cn.edu.jxnu.awesome_campus.support.htmlparse.CampusNewsContentParse;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.home.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.GetNewsFirstPic;
