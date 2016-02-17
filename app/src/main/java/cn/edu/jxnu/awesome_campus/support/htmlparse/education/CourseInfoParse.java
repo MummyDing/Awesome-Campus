@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.htmlparse.education;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +60,7 @@ public class CourseInfoParse {
             HtmlUtil hu=new HtmlUtil(endStr);
             List tempStrList=hu.parseString(ITEM_CSS);
             List tempLinkList=hu.parseRawString(ITEM_CSS);
-            for(int i=0;i<tempStrList.size()-GROUPSIZE;i=i+GROUPSIZE){
+            for(int i=0;i<=tempStrList.size()-GROUPSIZE;i=i+GROUPSIZE){
                 resultList.add(tempStrList.get(i).toString());
                 resultList.add(tempStrList.get(i+1).toString());
                 resultList.add(tempStrList.get(i+2).toString());
@@ -94,7 +96,7 @@ public class CourseInfoParse {
     *create at 2016/2/5 17:10
     */
     private void fillEndList() {
-        for(int i=0;i<resultList.size()-GROUPSIZE;i=i+GROUPSIZE){
+        for(int i=0;i<=resultList.size()-GROUPSIZE;i=i+GROUPSIZE){
             endList.add(new CourseInfoModel(
                             resultList.get(i).toString(),
                             resultList.get(i+1).toString(),

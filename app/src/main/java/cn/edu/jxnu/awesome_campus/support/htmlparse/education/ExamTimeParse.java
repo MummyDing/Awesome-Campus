@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.htmlparse.education;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +63,8 @@ public class ExamTimeParse {
     *create at 2016/2/4 19:32
     */
     private void fillEndList() {
-        for(int i=0;i<resultList.size()-GROUPSIZE;i=i+GROUPSIZE){
+        Log.d("结果集大小", "--" + resultList.size());
+        for(int i=0;i<=resultList.size()-GROUPSIZE;i=i+GROUPSIZE){
             endList.add(new ExamTimeModel(
                     resultList.get(i).toString(),
                     resultList.get(i+1).toString(),

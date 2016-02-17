@@ -81,7 +81,7 @@ public class CourseScoreParse {
                     String aTerm = left[1];
                     aTermList = new HtmlUtil(aTerm).parseString(ITEM_CSS);
                 }
-                for (int j = 0; j < aTermList.size() - GROUPSIZE; j = j + GROUPSIZE) {
+                for (int j = 0; j <=aTermList.size() - GROUPSIZE; j = j + GROUPSIZE) {
                     resultList.add(termList.get(i).toString());
                     resultList.add(aTermList.get(j).toString());
                     resultList.add(aTermList.get(j + 1).toString());
@@ -112,7 +112,7 @@ public class CourseScoreParse {
      * create at 2016/2/4 18:23
      */
     private void fillEndList() {
-        for (int i = 0; i < resultList.size() - GROUPSIZE; i = i + GROUPSIZE) {
+        for (int i = 0; i <= resultList.size() - GROUPSIZE; i = i + GROUPSIZE) {
             endList.add(new CourseScoreModel(resultList.get(i).toString()
                     , resultList.get(i + 1).toString(),
                     resultList.get(i + 2).toString()

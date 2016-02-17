@@ -97,7 +97,7 @@ public class CampusNewsParse {
      */
     private void fillEndList() {
         Log.d("结果填充列表大小：",resultList.size()+"");
-        for (int i = 0; i < resultList.size() - GROUPSIZE; i = i + GROUPSIZE) {
+        for (int i = 0; i <= resultList.size() - GROUPSIZE; i = i + GROUPSIZE) {
             endList.add(new CampusNewsModel(
                     resultList.get(i).toString(),
                     resultList.get(i + 1).toString(),
