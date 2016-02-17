@@ -40,6 +40,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.InputStreamCallback;
@@ -196,7 +197,7 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
      * @param url
      */
     protected void setMainContentBg(String url) {
-        if (url == null) {
+        if (TextUtil.isNull(url)) {
             setDefaultColor();
             return;
         }

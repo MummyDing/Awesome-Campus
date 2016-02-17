@@ -29,7 +29,6 @@ public class EducationLoginFragment extends BaseFragment{
     private RelativeLayout onLineLayout;
     @Override
     protected void init() {
-
         usernameET = (EditText) parentView.findViewById(R.id.et_studentID);
         passwordET = (EditText) parentView.findViewById(R.id.et_password);
         loginBtn = (Button) parentView.findViewById(R.id.loginBtn);
