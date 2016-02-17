@@ -38,7 +38,7 @@ public class JianshuContentParse {
                     "\n" +
                     "    <link rel=\"stylesheet\" media=\"all\" href=\"http://cdn0.jianshu.io/assets/reading-note-537cd03df12ad2bbd35bd01d34cdc095.css\" />\n" +
                     "  <link rel=\"stylesheet\" media=\"all\" href=\"http://cdn0.jianshu.io/assets/base-read-mode-bbb4b1a780c5883d30bdc237f80aba01.css\" />\n" +
-                    "  <script src=\"http://cdn0.jianshu.io/assets/modernizr-b24c000b09feb5c7177d4db960f050bd.js\"></script>"+STR_CUT_LEFT+second_cut[0]).replaceAll(OTHER_STR,"");
+                    "  <script src=\"http://cdn0.jianshu.io/assets/modernizr-b24c000b09feb5c7177d4db960f050bd.js\"></script>"+STR_CUT_LEFT+second_cut[0]).replaceAll(OTHER_STR,"<span></span>");
         }else{
             endStr=null;
         }

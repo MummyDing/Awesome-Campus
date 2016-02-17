@@ -82,8 +82,8 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
                         topImage.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
                     }
                 });
-                contentView.loadDataWithBaseURL("file:///android_asset/",  model.getDetail(), "text/html", "utf-8", null);
-//                contentView.loadUrl(model.getUrl());
+//                contentView.loadDataWithBaseURL("file:///android_asset/",  model.getDetail(), "text/html", "utf-8", null);
+                contentView.loadUrl(model.getUrl());
                 setMainContentBg(model.getTopPic());
 
                 hideLoading();
