@@ -40,6 +40,7 @@
         <activity android:name=".ui.home.CampusNewsDetailsActivity" />
         <activity android:name=".ui.leisure.DailyDetailsActivity" />
         <activity android:name=".ui.leisure.ScienceDetailsActivity" />
+        <activity android:name=".ui.leisure.FilmDetailsActivity" />
         <activity
             android:name=".ui.home.CourseDetailsDialog"
             android:theme="@style/DialogTheme" />
