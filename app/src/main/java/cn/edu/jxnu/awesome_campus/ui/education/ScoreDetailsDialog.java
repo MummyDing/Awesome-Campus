@@ -1,8 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.education;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,7 +19,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
 
-public class ScoreDetailsDialog extends AppCompatActivity {
+public class ScoreDetailsDialog extends Activity {
 
 /*
     course_id

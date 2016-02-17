@@ -42,9 +42,9 @@
         <activity android:name=".ui.leisure.ScienceDetailsActivity" />
         <activity
             android:name=".ui.home.CourseDetailsDialog"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar" />
+            android:theme="@style/DialogTheme" />
         <activity android:name=".ui.education.ScoreDetailsDialog"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+            android:theme="@style/DialogTheme">
         </activity>
     </application>
 

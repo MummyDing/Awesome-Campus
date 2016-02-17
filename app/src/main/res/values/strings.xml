@@ -50,5 +50,7 @@
     <string name="course_class">CourseClass</string>
     <string name="classmate_list">ClassMate</string>
     <string name="course_forum">CourseForum</string>
-
+    <string name="course_credit">CourseCredit</string>
+    <string name="course_score">CourseScore</string>
+    <string name="standard_score">StandardScore</string>
 </resources>
