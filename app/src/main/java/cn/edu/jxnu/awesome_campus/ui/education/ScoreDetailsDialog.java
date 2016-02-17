@@ -18,23 +18,10 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TermUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 
 public class ScoreDetailsDialog extends Activity {
-
-/*
-    course_id
-
-    13-物二-吴启东 2016-2-17 13:30:26
-    course_name
-
-    13-物二-吴启东 2016-2-17 13:30:35
-    course_credit
-
-    13-物二-吴启东 2016-2-17 13:30:43
-    course_score
-
-    13-物二-吴启东 2016-2-17 13:30:54
-    standard_score*/
 
     private TextView courseName;
     private TextView courseCredit;
@@ -59,7 +46,11 @@ public class ScoreDetailsDialog extends Activity {
 
         courseName.setText(model.getCourseName());
         courseCredit.setText(model.getCourseCredit());
-        courseScore.setText(model.getCourseScore()+"("+model.getAgainScore()+")");
+        if(TextUtil.isNull(model.getAgainScore())){
+            courseScore.setText(model.getCourseScore());
+        }else {
+            courseScore.setText(model.getCourseScore() + "(" + model.getAgainScore() + ")");
+        }
         standardScore.setText(model.getStandardScore());
 
         closeBtn.setOnClickListener(new View.OnClickListener() {

@@ -36,6 +36,7 @@ public class ExamFragment extends BaseListFragment {
         adapter = new ExamTimeAdapter(getContext(),model);
         recyclerView.setAdapter(adapter);
         model.loadFromNet();
+        displayLoading();
     }
 
     @Override
