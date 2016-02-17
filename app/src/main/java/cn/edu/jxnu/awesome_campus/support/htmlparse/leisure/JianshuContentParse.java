@@ -34,7 +34,11 @@ public class JianshuContentParse {
         String first_cut[]=parseStr.split(STR_CUT_LEFT);
         if(first_cut.length>1){
             String second_cut[]=first_cut[1].split(STR_CUT_RIGHT);
-            endStr=(STR_CUT_LEFT+second_cut[0]).replaceAll(OTHER_STR,"");
+            endStr=(" <link rel=\"stylesheet\" media=\"all\" href=\"http://cdn0.jianshu.io/assets/base-e3bc3201b4c1ecbe0b50fbb515013655.css\" />\n" +
+                    "\n" +
+                    "    <link rel=\"stylesheet\" media=\"all\" href=\"http://cdn0.jianshu.io/assets/reading-note-537cd03df12ad2bbd35bd01d34cdc095.css\" />\n" +
+                    "  <link rel=\"stylesheet\" media=\"all\" href=\"http://cdn0.jianshu.io/assets/base-read-mode-bbb4b1a780c5883d30bdc237f80aba01.css\" />\n" +
+                    "  <script src=\"http://cdn0.jianshu.io/assets/modernizr-b24c000b09feb5c7177d4db960f050bd.js\"></script>"+STR_CUT_LEFT+second_cut[0]).replaceAll(OTHER_STR,"");
         }else{
             endStr=null;
         }
