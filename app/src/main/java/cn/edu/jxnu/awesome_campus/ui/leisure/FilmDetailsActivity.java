@@ -82,8 +82,8 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
             case EVENT.SEND_MODEL_DETAIL:
                 model = (FilmModel) eventModel.getData();
                 initView();
-                break;
-            case EVENT.FILM_DETAILS_REFRESH_SUCCESS:
+//                break;
+//            case EVENT.FILM_DETAILS_REFRESH_SUCCESS:
                 scrollView.setVisibility(View.VISIBLE);
                 scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
                     @Override
