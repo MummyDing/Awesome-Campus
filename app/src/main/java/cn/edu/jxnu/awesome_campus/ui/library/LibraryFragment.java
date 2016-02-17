@@ -20,7 +20,6 @@ public class LibraryFragment extends TopNavigationFragment{
         }
         fragments.add(new ReadingFragment());
         fragments.add(new BookBorrowedFragment());
-        fragments.add(new BookBorrowedFragment());
     }
 
     public static LibraryFragment newInstance(){

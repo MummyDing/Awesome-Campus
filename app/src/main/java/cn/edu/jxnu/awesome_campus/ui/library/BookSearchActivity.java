@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.ui.base;
+package cn.edu.jxnu.awesome_campus.ui.library;
 
 import android.app.SearchManager;
 import android.content.Intent;
@@ -11,8 +11,9 @@ import android.widget.Toast;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider;
 
-public class SearchActivity extends AppCompatActivity {
+public class BookSearchActivity extends AppCompatActivity {
 
+    private String keyword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +25,12 @@ public class SearchActivity extends AppCompatActivity {
          */
         Intent intent = getIntent();
         if( intent.ACTION_SEARCH.equals(intent.getAction())){
-            String query = intent.getStringExtra(SearchManager.QUERY);
+            keyword = intent.getStringExtra(SearchManager.QUERY);
             SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, SuggestionProvider.AUTHORITY,SuggestionProvider.MODE);
-            suggestions.saveRecentQuery(query,null);
-            Log.d("got",query);
+            suggestions.saveRecentQuery(keyword,null);
+            Log.d("got",keyword);
         }
+
+
     }
 }

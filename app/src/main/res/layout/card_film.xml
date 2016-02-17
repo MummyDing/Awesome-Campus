@@ -45,17 +45,18 @@
                     android:layout_gravity="bottom"
                     android:src="@drawable/ic_note"
                     />
+                <!--阅读量-->
+                <TextView
+                    android:id="@+id/reading_count"
+                    android:paddingLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/readingCount"
                     android:layout_marginLeft="5dp"/>
-                <!--阅读量-->
-                <TextView
-                    android:id="@+id/reading_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical" />
             </LinearLayout>
 
 

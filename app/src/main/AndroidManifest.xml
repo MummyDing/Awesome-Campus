@@ -27,7 +27,7 @@
                 android:value=".ui.base.SearchActivity" />
         </activity>
         <activity
-            android:name=".ui.base.SearchActivity"
+            android:name=".ui.library.BookSearchActivity"
             android:launchMode="singleInstance" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />

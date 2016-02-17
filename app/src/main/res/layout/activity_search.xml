@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cn.edu.jxnu.awesome_campus.ui.base.SearchActivity">
+    tools:context=".ui.library.BookSearchActivity">
 
     <TextView
         android:text="SearchResult"
