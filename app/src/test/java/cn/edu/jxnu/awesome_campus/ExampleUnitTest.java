@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.model.leisure.FilmModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.leisure.JianshuListParse;
 
 import static org.junit.Assert.*;
@@ -28,9 +29,9 @@ public class ExampleUnitTest {
         String str=importStr();
         System.out.println(str);
         JianshuListParse myparse=new JianshuListParse(str);
-        List l=myparse.getEndList();
+        List<FilmModel> l=myparse.getEndList();
         for(int i=0;i<l.size();i++){
-            System.out.println(l.get(i).toString());
+            System.out.println(l.get(i).getUrl());
         }
 
     }
