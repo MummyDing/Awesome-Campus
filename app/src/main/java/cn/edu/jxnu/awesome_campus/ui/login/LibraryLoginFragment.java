@@ -10,24 +10,19 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class LibraryLoginFragment extends BaseFragment{
+public class LibraryLoginFragment extends BaseLoginFragment{
     @Override
-    protected void init() {
-
+    protected String getUsernameHint() {
+        return "Username";
     }
 
     @Override
     public String getTitle() {
-        return InitApp.AppContext.getString(R.string.library);
+        return getString(R.string.library);
     }
 
     @Override
     public void onEventComing(EventModel eventModel) {
 
-    }
-
-    @Override
-    protected int getLayoutID() {
-        return R.layout.layout_login_library;
     }
 }

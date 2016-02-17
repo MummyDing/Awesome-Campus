@@ -10,7 +10,12 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class StudyLoginFragment extends BaseFragment {
+public class StudyLoginFragment extends BaseLoginFragment {
+    @Override
+    protected String getUsernameHint() {
+        return "Username";
+    }
+
     @Override
     protected void init() {
 
@@ -26,8 +31,4 @@ public class StudyLoginFragment extends BaseFragment {
 
     }
 
-    @Override
-    protected int getLayoutID() {
-        return R.layout.layout_login_study;
-    }
 }
