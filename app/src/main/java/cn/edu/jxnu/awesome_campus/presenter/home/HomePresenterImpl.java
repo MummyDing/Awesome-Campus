@@ -41,6 +41,8 @@ public class HomePresenterImpl implements HomePresenter {
     private AccountHeader header;
     private Drawer drawer;
 
+    private SecondaryDrawerItem LogItem;
+
     public HomePresenterImpl(HomeView view) {
         this.homeView = view;
     }
@@ -54,10 +56,12 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Override
     public void buildDrawer(Activity activity,Toolbar toolbar) {
+        LogItem = buildSecondaryItem(DrawerItem.LOGOUT.getItemName(),DrawerItem.LOGOUT.getItemIconID(),DrawerItem.LOGOUT.getId());
 
         if(header == null){
             updateHeader(activity);
         }
+
         drawer = new DrawerBuilder().withActivity(activity).withAccountHeader(header)
                 .withToolbar(toolbar).withActionBarDrawerToggleAnimated(true).addDrawerItems(
                 buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
@@ -78,7 +82,7 @@ public class HomePresenterImpl implements HomePresenter {
                     }
                 }).build();
         homeView.setTitle(activity.getString(R.string.home));
-
+        updateHeader(activity);
     }
 
 
@@ -106,9 +110,20 @@ public class HomePresenterImpl implements HomePresenter {
         if(TextUtil.isNull(studentID) || TextUtil.isNull(name) || TextUtil.isNull(avatarURL)){
             header.addProfiles(new ProfileDrawerItem().withIcon(R.drawable.logo)
                     .withName(activity.getString(R.string.hint_click_to_login)));
+            if(drawer !=null) {
+                LogItem.withName("");
+                LogItem.withIcon(R.drawable.ic_blank);
+                drawer.updateItem(LogItem);
+            }
         }else{
             header.addProfiles(new ProfileDrawerItem().withIcon(avatarURL)
                     .withName(name.length() == 2 ?"    "+name :"  "+name));
+
+            if(drawer !=null) {
+                LogItem.withName(DrawerItem.LOGOUT.getItemName());
+                LogItem.withIcon(DrawerItem.LOGOUT.getItemIconID());
+                drawer.updateItem(LogItem);
+            }
         }
     }
 
