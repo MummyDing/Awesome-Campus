@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.support.htmlparse;
+package cn.edu.jxnu.awesome_campus.support.htmlparse.leisure;
 
 import android.util.Log;
 
