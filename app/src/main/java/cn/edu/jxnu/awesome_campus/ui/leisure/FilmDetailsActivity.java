@@ -6,6 +6,8 @@ import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -73,6 +75,12 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return true;
             }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                onEventMainThread(new EventModel<FilmModel>(EVENT.FILM_DETAILS_REFRESH_FAILURE));
+            }
         });
     }
 
@@ -82,8 +90,6 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
             case EVENT.SEND_MODEL_DETAIL:
                 model = (FilmModel) eventModel.getData();
                 initView();
-                break;
-            case EVENT.FILM_DETAILS_REFRESH_SUCCESS:
                 scrollView.setVisibility(View.VISIBLE);
                 scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
                     @Override
@@ -94,7 +100,6 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
 //                contentView.loadDataWithBaseURL("file:///android_asset/",  model.getDetail(), "text/html", "utf-8", null);
                 contentView.loadUrl(model.getUrl());
                 setMainContentBg(model.getTopPic());
-
                 hideLoading();
                 break;
             case EVENT.FILM_DETAILS_REFRESH_FAILURE:
