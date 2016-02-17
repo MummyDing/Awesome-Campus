@@ -1,8 +1,11 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
+import android.view.View;
+
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 
 /**
@@ -11,6 +14,22 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class LibraryLoginFragment extends BaseLoginFragment{
+
+    @Override
+    protected void init() {
+        super.init();
+        setOnLineLayout(LibraryLoginUtil.isLogin());
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 这里还要加点登录时的效果 progressbar 或是其他动画什么的
+                setInputAreaEnable(false);
+                LibraryLoginUtil.onLogin(usernameET,passwordET);
+            }
+        });
+    }
+
     @Override
     protected String getUsernameHint() {
         return "Username";
