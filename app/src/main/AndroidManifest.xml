@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.edu.jxnu.awesome_campus">
+    package="cn.edu.jxnu.awesome_campus" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,12 +10,12 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <provider
             android:name=".support.provider.SuggestionProvider"
             android:authorities="cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name=".ui.base.SearchActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -40,8 +40,12 @@
         <activity android:name=".ui.home.CampusNewsDetailsActivity" />
         <activity android:name=".ui.leisure.DailyDetailsActivity" />
         <activity android:name=".ui.leisure.ScienceDetailsActivity" />
-        <activity android:name=".ui.home.CourseDetailsDialog"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"></activity>
+        <activity
+            android:name=".ui.home.CourseDetailsDialog"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar" />
+        <activity android:name=".ui.education.ScoreDetailsDialog"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

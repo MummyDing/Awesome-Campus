@@ -1,15 +1,21 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.education;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.ui.education.ScoreDetailsDialog;
 
 /**
  * Created by MummyDing on 16-2-16.
@@ -36,13 +42,15 @@ public class CourseScoreAdapter extends BaseListAdapter<CourseScoreModel,CourseS
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        CourseScoreModel model = getItem(position);
+        final CourseScoreModel model = getItem(position);
         holder.courseName.setText(model.getCourseName());
         holder.courseScore.setText(model.getCourseScore());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 待完善
+                Intent intent = new Intent(mContext, ScoreDetailsDialog.class);
+                EventBus.getDefault().postSticky(new EventModel<CourseScoreModel>(EVENT.SEND_MODEL_DETAIL,model));
+                mContext.startActivity(intent);
             }
         });
     }
