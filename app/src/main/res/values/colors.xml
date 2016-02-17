@@ -9,4 +9,6 @@
 
     <color name="Float_add_btn_color_nomal">#d7aa36</color>
     <color name="Float_add_btn_color_pressed">#d7d436</color>
+
+    <color name="Card_View_Color">#fff</color>
 </resources>

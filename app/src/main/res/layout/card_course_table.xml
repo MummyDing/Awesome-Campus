@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -46,6 +47,7 @@
             android:layout_marginLeft="@dimen/card_margin"
             android:layout_marginRight="@dimen/card_margin"
             android:layout_marginTop="@dimen/card_margin"
+            app:cardBackgroundColor="@color/Card_View_Color"
             card_view:cardCornerRadius="4dp"
             card_view:cardElevation="8dp"
             card_view:cardPreventCornerOverlap="true"
@@ -56,10 +58,10 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="10dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="@dimen/width_course_icon"
@@ -76,6 +78,7 @@
                         android:text="操作系统"
                         android:textSize="16sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -96,7 +99,6 @@
                         android:text="X4313"
                         android:textSize="16sp" />
                 </LinearLayout>
-
 
 
             </LinearLayout>
