@@ -110,7 +110,7 @@
             <!-- Blue button pressed -->
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/Float_add_btn_color_pressed"/>
+                    <solid android:color="@color/colorPrimaryDark"/>
                 </shape>
             </item>
         </layer-list>
@@ -228,7 +228,7 @@
 
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/Float_add_btn_color_nomal"/>
+                    <solid android:color="@color/colorAccent"/>
                 </shape>
             </item>
         </layer-list>

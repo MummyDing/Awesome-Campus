@@ -5,10 +5,10 @@
     <!--<color name="colorAccent">#FF4081</color>-->
     <color name="colorPrimary">#A52F2F</color>
     <color name="colorPrimaryDark">#8c2222</color>
-    <color name="colorAccent">#d7aa36</color>
+    <color name="colorAccent">#FFC107</color>
 
-    <color name="Float_add_btn_color_nomal">#d7aa36</color>
-    <color name="Float_add_btn_color_pressed">#d7d436</color>
+    <color name="Float_add_btn_color_nomal">#A5712F</color>
+    <color name="Float_add_btn_color_pressed">#BC8E54</color>
 
     <color name="Card_View_Color">#fff</color>
 </resources>

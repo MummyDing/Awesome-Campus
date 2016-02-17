@@ -45,11 +45,11 @@
     <string name="hot">hot ：</string>
     <string name="readingCount"> views</string>
     <string name="id_course_info">courseInfo</string>
-    <string name="course_name">CourseName</string>
-    <string name="course_id">CourseID</string>
-    <string name="course_teacher">CourseTeacher</string>
-    <string name="course_class">CourseClass</string>
-    <string name="classmate_list">ClassMate</string>
+    <string name="course_name">Course:</string>
+    <string name="course_id">ID:</string>
+    <string name="course_teacher">Teacher:</string>
+    <string name="course_class">Class:</string>
+    <string name="classmate_list">ClassMate:</string>
     <string name="course_forum">CourseForum</string>
     <string name="course_credit">CourseCredit</string>
     <string name="course_score">CourseScore</string>
