@@ -20,22 +20,16 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class EducationLoginFragment extends BaseFragment{
+public class EducationLoginFragment extends BaseLoginFragment{
 
-    private EditText usernameET;
-    private EditText passwordET;
-    private Button loginBtn;
-    private RelativeLayout loginLayout;
-    private RelativeLayout onLineLayout;
+    @Override
+    protected String getUsernameHint() {
+        return getString(R.string.studentid);
+    }
+
     @Override
     protected void init() {
-        usernameET = (EditText) parentView.findViewById(R.id.et_studentID);
-        passwordET = (EditText) parentView.findViewById(R.id.et_password);
-        loginBtn = (Button) parentView.findViewById(R.id.loginBtn);
-
-        loginLayout = (RelativeLayout) parentView.findViewById(R.id.loginLayout);
-        onLineLayout = (RelativeLayout) parentView.findViewById(R.id.onLineLayout);
-
+        super.init();
         setOnLineLayout(EducationLoginUtil.isLogin());
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -82,30 +76,6 @@ public class EducationLoginFragment extends BaseFragment{
         }
     }
 
-    @Override
-    protected int getLayoutID() {
-        return R.layout.layout_login_education;
-    }
 
-    private void setInputAreaEnable(boolean flag){
-        usernameET.setEnabled(flag);
-        passwordET.setEnabled(flag);
-    }
-
-    private void setLoginFailureLayout(){
-        setOnLineLayout(false);
-        setInputAreaEnable(true);
-    }
-
-    private void setOnLineLayout(boolean flag){
-        Log.d("Is OnLine",flag+"");
-        if(flag){
-            loginLayout.setVisibility(View.GONE);
-            onLineLayout.setVisibility(View.VISIBLE);
-        }else {
-            loginLayout.setVisibility(View.VISIBLE);
-            onLineLayout.setVisibility(View.GONE);
-        }
-    }
 
 }
