@@ -73,5 +73,10 @@ public class EVENT {
     public static final int EDUCATION_LOGIN_FAILURE_NULL_INPUT=31;
     public static final int EDUCATION_LOGIN_FAILURE_NETWORK_ERROR=32;
 
+
+    // Exam Time
+    public static final int EXAM_TIME_REFRESH_SUCCESS = 33;
+    public static final int EXAM_TIME_REFRESH_FAILURE = 34;
+
 }
 
