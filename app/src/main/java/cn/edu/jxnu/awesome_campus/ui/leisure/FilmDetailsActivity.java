@@ -2,8 +2,11 @@ package cn.edu.jxnu.awesome_campus.ui.leisure;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.squareup.okhttp.Headers;
 
@@ -53,6 +56,15 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
                         });
                     }
                 });
+    }
+
+    @Override
+    public void initView() {
+        super.initView();
+
+        /*LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) contentLayout.getLayoutParams();
+        layoutParams.setMargins(0,0,0,0);
+        contentLayout.setLayoutParams(layoutParams);*/
     }
 
     @Override

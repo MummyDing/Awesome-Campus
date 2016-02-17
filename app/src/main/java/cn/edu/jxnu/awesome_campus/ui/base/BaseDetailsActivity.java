@@ -53,6 +53,7 @@ import cn.edu.jxnu.awesome_campus.view.base.BaseView;
 public abstract class BaseDetailsActivity extends SwipeBackActivity implements BaseView {
 
 
+    protected LinearLayout contentLayout;
     protected Toolbar toolbar;
     protected WebView contentView;
     protected SimpleDraweeView topImage;
@@ -61,6 +62,7 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
     protected ProgressBar progressBar;
     protected ProgressBar progressBarTopPic;
     protected ImageButton networkBtn;
+
     private static int imgID[]={
             R.drawable.default_news_top_bg_0,
             R.drawable.default_news_top_bg_1,
@@ -129,7 +131,7 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
             ll.setLayoutParams(llp);
         }
 
-
+        contentLayout = (LinearLayout) findViewById(R.id.content_layout);
         mainContent = (FrameLayout) findViewById(R.id.main_content);
         scrollView = (NestedScrollView) findViewById(R.id.scrollView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
