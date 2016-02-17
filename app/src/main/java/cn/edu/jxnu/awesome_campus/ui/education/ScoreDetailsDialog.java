@@ -54,6 +54,12 @@ public class ScoreDetailsDialog extends AppCompatActivity {
         courseScore = (TextView)findViewById(R.id.course_score);
         standardScore = (TextView)findViewById(R.id.standard_score);
         closeBtn = (ImageButton) findViewById(R.id.btn_close);
+
+        courseName.setText(model.getCourseName());
+        courseCredit.setText(model.getCourseCredit());
+        courseScore.setText(model.getCourseScore()+"("+model.getAgainScore()+")");
+        standardScore.setText(model.getStandardScore());
+
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
