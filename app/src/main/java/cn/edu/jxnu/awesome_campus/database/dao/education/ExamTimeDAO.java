@@ -1,5 +1,8 @@
 package cn.edu.jxnu.awesome_campus.database.dao.education;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,6 +46,7 @@ public class ExamTimeDAO implements DAO<ExamTimeModel> {
 
     @Override
     public void loadFromNet() {
+        final Handler handler = new Handler(Looper.getMainLooper());
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String cookies = "ASP.NET_SessionId=" +
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE) +
@@ -54,22 +58,32 @@ public class ExamTimeDAO implements DAO<ExamTimeModel> {
             @Override
             public void onSuccess(String result, Headers headers) {
                 ExamTimeParse myPrase = new ExamTimeParse(result);
-                List list = myPrase.getEndList();
-                if (list != null) {
-                    // 缓存数据
-                    cacheAll(list);
-                    //发送获取成功消息
-                    EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_SCORE_REFRESH_SUCCESS, list));
-                } else {
-                    //发送获取失败消息
-                    EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_SCORE_REFRESH_FAILURE));
-                }
+                final List list = myPrase.getEndList();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (list != null) {
+                            // 缓存数据
+                            cacheAll(list);
+                            //发送获取成功消息
+                            EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.EXAM_TIME_REFRESH_SUCCESS, list));
+                        } else {
+                            //发送获取失败消息
+                            EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.EXAM_TIME_REFRESH_FAILURE));
+                        }
+                    }
+                });
             }
 
             @Override
             public void onFailure(String error) {
-                EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_SCORE_REFRESH_FAILURE));
-            }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.EXAM_TIME_REFRESH_FAILURE));
+                    }
+                });
+              }
         });
 
     }
