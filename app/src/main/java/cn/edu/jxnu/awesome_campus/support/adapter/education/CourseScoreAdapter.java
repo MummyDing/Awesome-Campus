@@ -39,7 +39,6 @@ public class CourseScoreAdapter extends BaseListAdapter<CourseScoreModel,CourseS
         CourseScoreModel model = getItem(position);
         holder.courseName.setText(model.getCourseName());
         holder.courseScore.setText(model.getCourseScore());
-        holder.courseCredit.setText("("+model.getCourseCredit()+"分)");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,13 +52,11 @@ public class CourseScoreAdapter extends BaseListAdapter<CourseScoreModel,CourseS
         View itemView;
         TextView courseName;
         TextView courseScore;
-        TextView courseCredit;
         public VH(View itemView) {
             super(itemView);
             this.itemView = itemView;
             courseName = (TextView) itemView.findViewById(R.id.courseName);
             courseScore = (TextView) itemView.findViewById(R.id.courseScore);
-            courseCredit = (TextView) itemView.findViewById(R.id.courseCredit);
         }
     }
 }
