@@ -43,6 +43,7 @@
     <string name="menu_share">share</string>
     <string name="hint_share_to">Share to ...</string>
     <string name="hot">hot ：</string>
+    <string name="readingCount">reading</string>
     <string name="id_course_info">courseInfo</string>
     <string name="course_name">CourseName</string>
     <string name="course_id">CourseID</string>
