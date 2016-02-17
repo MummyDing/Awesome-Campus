@@ -78,5 +78,14 @@ public class EVENT {
     public static final int EXAM_TIME_REFRESH_SUCCESS = 33;
     public static final int EXAM_TIME_REFRESH_FAILURE = 34;
 
+    // Film
+    public static final int FILM_REFRESH_SUCCESS = 35;
+    public static final int FILM_REFRESH_FAILURE = 36;
+
+    // Film Details
+    public static final int FILM_DETAILS_REFRESH_SUCCESS = 37;
+    public static final int FILM_DETAILS_REFRESH_FAILURE = 38;
+
+
 }
 

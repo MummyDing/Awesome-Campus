@@ -54,4 +54,5 @@
     <string name="course_credit">CourseCredit</string>
     <string name="course_score">CourseScore</string>
     <string name="standard_score">StandardScore</string>
+    <string name="text_share_from">"share from "</string>
 </resources>
