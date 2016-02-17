@@ -1,13 +1,20 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
+
+import com.squareup.okhttp.Headers;
 
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.FilmModel;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.leisure.JianshuContentParse;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseDetailsActivity;
 
 /**
@@ -21,6 +28,31 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
     @Override
     protected void onDataRefresh() {
         // 这里请求详情
+        NetManageUtil.get(model.getUrl())
+                .addTag(TAG)
+                .enqueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result, Headers headers) {
+                        JianshuContentParse myParse = new JianshuContentParse(result);
+                        model.setDetail(myParse.getEndStr());
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                onEventMainThread(new EventModel<FilmModel>(EVENT.FILM_DETAILS_REFRESH_SUCCESS));
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                onEventMainThread(new EventModel<FilmModel>(EVENT.FILM_DETAILS_REFRESH_FAILURE));
+                            }
+                        });
+                    }
+                });
     }
 
     @Override
@@ -38,7 +70,7 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
                         topImage.setTranslationY(Math.max(-scrollY / 2, -DisplayUtil.dip2px(getBaseContext(), 170)));
                     }
                 });
-                contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"guokr.css\" />" + model.getDetail(), "text/html", "utf-8", null);
+                contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"JianShu.css\" />" + model.getDetail(), "text/html", "utf-8", null);
                 setMainContentBg(model.getTopPic());
 
                 hideLoading();

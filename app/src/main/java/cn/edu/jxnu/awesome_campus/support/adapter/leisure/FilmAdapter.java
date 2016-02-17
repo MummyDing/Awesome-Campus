@@ -10,10 +10,15 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.FilmModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
+import cn.edu.jxnu.awesome_campus.ui.leisure.FilmDetailsActivity;
 
 /**
  * Created by MummyDing on 16-2-17.
@@ -39,7 +44,7 @@ public class FilmAdapter extends BaseListAdapter<FilmModel,FilmAdapter.VH> {
     }
 
     @Override
-    public void onBindViewHolder(VH holder, int position) {
+    public void onBindViewHolder(VH holder, final int position) {
         final FilmModel model = getItem(position);
         if(TextUtil.isNull(model.getTopPic())){
             holder.fileImage.setVisibility(View.GONE);
@@ -52,6 +57,9 @@ public class FilmAdapter extends BaseListAdapter<FilmModel,FilmAdapter.VH> {
             @Override
             public void onClick(View v) {
                 //Intent intent = new Intent(mContext,);
+                Intent intent = new Intent(mContext, FilmDetailsActivity.class);
+                EventBus.getDefault().postSticky(new EventModel<FilmModel>(EVENT.SEND_MODEL_DETAIL,getItem(position)));
+                mContext.startActivity(intent);
             }
         });
     }
