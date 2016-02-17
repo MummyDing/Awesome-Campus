@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
+import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,9 +22,13 @@ public abstract class BaseLoginFragment extends BaseFragment{
     protected Button loginBtn;
     protected RelativeLayout loginLayout;
     protected RelativeLayout onLineLayout;
+
+    protected TextInputLayout userNameLayout;
     protected abstract String getUsernameHint();
     @Override
     protected void init() {
+
+        userNameLayout = (TextInputLayout) parentView.findViewById(R.id.usernameLayout);
         usernameET = (EditText) parentView.findViewById(R.id.et_username);
         passwordET = (EditText) parentView.findViewById(R.id.et_password);
         loginBtn = (Button) parentView.findViewById(R.id.loginBtn);
@@ -31,7 +36,7 @@ public abstract class BaseLoginFragment extends BaseFragment{
         loginLayout = (RelativeLayout) parentView.findViewById(R.id.loginLayout);
         onLineLayout = (RelativeLayout) parentView.findViewById(R.id.onLineLayout);
 
-        usernameET.setHint(getUsernameHint());
+        userNameLayout.setHint(getUsernameHint());
     }
 
 

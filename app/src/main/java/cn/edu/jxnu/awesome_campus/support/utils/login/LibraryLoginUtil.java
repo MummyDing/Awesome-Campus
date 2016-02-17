@@ -56,8 +56,9 @@ public class LibraryLoginUtil {
      */
 
     public static boolean isLogin() {
+
         Log.d("执行到判断是否登录的方法","--");
-        SPUtil sp = new SPUtil(InitApp.AppContext);
+       /* SPUtil sp = new SPUtil(InitApp.AppContext);
         // 这里改成Library的
         String cookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);
         if (TextUtil.isNull(cookie) == false) {
@@ -66,7 +67,7 @@ public class LibraryLoginUtil {
             // 获取cookie
             return true;
         }
-        Log.d("未登录","--");
+        Log.d("未登录","--");*/
         return false;
     }
 

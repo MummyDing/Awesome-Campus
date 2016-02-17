@@ -37,7 +37,7 @@ public class LibraryLoginFragment extends BaseLoginFragment{
 
     @Override
     public String getTitle() {
-        return getString(R.string.library);
+        return InitApp.AppContext.getString(R.string.library);
     }
 
     @Override
