@@ -22,6 +22,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
@@ -110,18 +111,21 @@ public class HomePresenterImpl implements HomePresenter {
         if(TextUtil.isNull(studentID) || TextUtil.isNull(name) || TextUtil.isNull(avatarURL)){
             header.addProfiles(new ProfileDrawerItem().withIcon(R.drawable.logo)
                     .withName(activity.getString(R.string.hint_click_to_login)));
-            if(drawer !=null) {
-                LogItem.withName("");
-                LogItem.withIcon(R.drawable.ic_blank);
-                drawer.updateItem(LogItem);
-            }
         }else{
             header.addProfiles(new ProfileDrawerItem().withIcon(avatarURL)
                     .withName(name.length() == 2 ?"    "+name :"  "+name));
+        }
 
+        if(EducationLoginUtil.isLogin() || LibraryLoginUtil.isLogin()){
             if(drawer !=null) {
                 LogItem.withName(DrawerItem.LOGOUT.getItemName());
                 LogItem.withIcon(DrawerItem.LOGOUT.getItemIconID());
+                drawer.updateItem(LogItem);
+            }
+        }else{
+            if(drawer !=null) {
+                LogItem.withName("");
+                LogItem.withIcon(R.drawable.ic_blank);
                 drawer.updateItem(LogItem);
             }
         }

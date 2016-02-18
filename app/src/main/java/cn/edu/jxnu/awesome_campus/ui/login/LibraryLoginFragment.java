@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.login;
 import android.view.View;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.MainActivity;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -28,6 +29,7 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 // 这里还要加点登录时的效果 progressbar 或是其他动画什么的
                 setInputAreaEnable(false);
                 LibraryLoginUtil.onLogin(usernameET,passwordET);
+                MainActivity.presenter.updateHeader(getActivity());
             }
         });
     }
@@ -63,7 +65,5 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 DisplayUtil.Snack(getView(),"Login Successful!!!");
                 break;
         }
-
-
     }
 }

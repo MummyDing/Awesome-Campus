@@ -39,8 +39,11 @@ public class Urlconfig {
 
 
     //图书馆登录url
-    public static final String Library_Login_URL="http://219.229.250.138:8080/reader/redr_verify.php";
+    //public static final String Library_Login_URL="http://219.229.250.138:8080/reader/redr_verify.php";
+    public static final String Library_Login_URL="http://tsg.jxnu.edu.cn:8080/reader/redr_verify.php";
+
     //图书馆重定向url
-    public static final String Library_Redirect_URL="http://219.229.250.138:8080/reader/redr_cust_result.php";
+    //public static final String Library_Redirect_URL="http://219.229.250.138:8080/reader/redr_cust_result.php";
+    public static final String Library_Redirect_URL="http://tsg.jxnu.edu.cn:8080/reader/redr_cust_result.php";
 
 }
