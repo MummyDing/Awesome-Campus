@@ -7,7 +7,7 @@ package cn.edu.jxnu.awesome_campus.support.utils.common;
  */
 public class TextUtil {
     public static boolean isNull(String str){
-        if(str == null || str.equals("")){
+        if(str == null || str.replaceAll("\\s*", "").equals("")){
             return true;
         }
         return false;

@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.education;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -46,6 +47,7 @@ public class ScoreDetailsDialog extends Activity {
 
         courseName.setText(model.getCourseName());
         courseCredit.setText(model.getCourseCredit());
+        // 这里补考成绩有大坑，没有的时候是返回一个空格！！而不是空字符串
         if(TextUtil.isNull(model.getAgainScore())){
             courseScore.setText(model.getCourseScore());
         }else {
