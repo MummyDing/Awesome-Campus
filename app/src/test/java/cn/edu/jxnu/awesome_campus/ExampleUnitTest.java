@@ -1,6 +1,5 @@
 package cn.edu.jxnu.awesome_campus;
 
-import org.json.JSONArray;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -10,8 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-import cn.edu.jxnu.awesome_campus.model.leisure.FilmModel;
-import cn.edu.jxnu.awesome_campus.support.htmlparse.leisure.JianshuListParse;
+
+import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
+import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.BookSearchResultParse;
 
 import static org.junit.Assert.*;
 
@@ -28,17 +29,17 @@ public class ExampleUnitTest {
     public void testPrase(){
         String str=importStr();
         System.out.println(str);
-        JianshuListParse myparse=new JianshuListParse(str);
-        List<FilmModel> l=myparse.getEndList();
+        BookSearchResultParse parse=new BookSearchResultParse(str);
+        List<BookSearchResultModel> l=parse.getEndList();
         for(int i=0;i<l.size();i++){
-            System.out.println(l.get(i).getUrl());
+            System.out.println(l.get(i).getBookClass());
         }
 
     }
 
     private String importStr(){
         String str="";
-        File myFile=new File("./jianshu.txt");
+        File myFile=new File("./htmlTest.txt");
         try {
             FileReader myFileReader=new FileReader(myFile);
             BufferedReader myBufferedReader=new BufferedReader(myFileReader);

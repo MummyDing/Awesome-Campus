@@ -28,7 +28,7 @@ public class BookSearchResultModel implements IModel<BookSearchResultModel>{
         dao = new BookSearchResultDAO();
     }
 
-    public BookSearchResultModel(BookSearchResultDAO dao, String bookTitle, String bookNumber, String bookClass, String bookAuthor, String bookPublisher, String bookLeft, String bookCount) {
+    public BookSearchResultModel(String bookTitle, String bookNumber, String bookClass, String bookAuthor, String bookPublisher, String bookLeft, String bookCount) {
         this();
         this.dao = dao;
         this.bookTitle = bookTitle;
