@@ -39,7 +39,6 @@ public class BookBorrowedFragment extends BaseListFragment{
         recyclerView.setAdapter(adapter);
         onDataRefresh();
         displayLoading();
-        Log.d("Onrefresh","gogo");
     }
 
     @Override
@@ -59,11 +58,9 @@ public class BookBorrowedFragment extends BaseListFragment{
             case EVENT.BOOK_BORROWED_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());
                 hideLoading();
-                Log.d("Success","好了"+eventModel.getDataList().size());
                 break;
             case EVENT.BOOK_BORROWED_REFRESH_FAILURE:
                 hideLoading();
-                Log.d("Failed","好了");
                 break;
         }
     }
