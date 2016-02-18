@@ -92,6 +92,10 @@ public class EVENT {
     public static final int LIBRARY_LOGIN_FAILURE_NETWORKERROR=41;
     public static final int LIBRARY__LOGIN_FAILURE_NULL_INPUT=42;
 
+    //BookBorrowed
+    public static final int BOOKBORROWED_REFRESH_SUCCESS = 43;
+    public static final int BOOKBORROWED_REFRESH_FAILURE = 44;
+
 
 }
 
