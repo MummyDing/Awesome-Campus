@@ -49,4 +49,6 @@ public class Urlconfig {
     //图书馆借书url
     public static final String Library_Book_Borrowed_URL="http://tsg.jxnu.edu.cn:8080/reader/book_lst.php";
 
+    //图书馆搜索url
+    public static final String Library_Book_Search_URL="http://tsg.jxnu.edu.cn:8080/opac/openlink.php";
 }

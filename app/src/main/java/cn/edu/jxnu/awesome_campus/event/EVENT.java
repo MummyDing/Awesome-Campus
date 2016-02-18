@@ -97,5 +97,10 @@ public class EVENT {
     public static final int BOOKBORROWED_REFRESH_FAILURE = 44;
 
 
+    //search result
+    public static final int BOOK_SEARCH_REFRESH_SUCCESS = 45;
+    public static final int BOOK_SEARCH_REFRESH_FAILURE = 46;
+
+
 }
 
