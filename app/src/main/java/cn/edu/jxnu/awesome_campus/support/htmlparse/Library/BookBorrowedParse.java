@@ -18,6 +18,11 @@ public class BookBorrowedParse {
     private static final String ITEM_CSS="td[class=whitetext]";//选择css
     private String parseStr;//待解析字符串
     private List<String> resultList;//结果列表
+
+    public List<BookBorrowedModel> getEndList() {
+        return endList;
+    }
+
     private List<BookBorrowedModel> endList;//最终模型列表
 
     public BookBorrowedParse(String parseStr){
