@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.spkey.EducationStaticKey;
+import cn.edu.jxnu.awesome_campus.database.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
@@ -26,6 +27,8 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
  */
 public class LibraryLoginUtil {
     private static final String TAG = "LibraryLoginUtil";
+    public static String cookies;
+    public static String userName;
 
     private static String getUsername(EditText usernameET) {
         if (usernameET == null) {
@@ -98,7 +101,7 @@ public class LibraryLoginUtil {
 
     }
 
-    private static void toFollowRedirects(String cookies) {
+    private static void toFollowRedirects(final String cookies) {
         Log.d("调用到这里", "------");
         NetManageUtil.get(Urlconfig.Library_Redirect_URL)
                 .addHeader("Cookie", cookies)
@@ -115,6 +118,7 @@ public class LibraryLoginUtil {
 //                            }
 //                            System.out.print(a[i]);
 //                        }
+                        saveToSP("",cookies);
                         EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_LOGIN_SUCCESS));
                     }
 
@@ -131,6 +135,14 @@ public class LibraryLoginUtil {
                 });
     }
 
+    private static void saveToSP(String userName, String cookies) {
+        SPUtil mysp = new SPUtil(InitApp.AppContext);
+        LibraryLoginUtil.cookies=cookies;
+        //用户名还需存入sp文件
+
+        mysp.putStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE, cookies);
+    }
+
 
     /**
      * 这个方法是根据当前cookie是否存在来判断当前是否处于登陆状态【查询本地sp即可】
@@ -141,16 +153,15 @@ public class LibraryLoginUtil {
     public static boolean isLogin() {
 
         Log.d("执行到判断是否登录的方法", "--");
-       /* SPUtil sp = new SPUtil(InitApp.AppContext);
-        // 这里改成Library的
-        String cookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);
+       SPUtil sp = new SPUtil(InitApp.AppContext);
+        String cookie = sp.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
         if (TextUtil.isNull(cookie) == false) {
             Log.d("已登录","--");
-
+            cookies=sp.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
             // 获取cookie
             return true;
         }
-        Log.d("未登录","--");*/
+        Log.d("未登录","--");
         return false;
     }
 
@@ -160,6 +171,10 @@ public class LibraryLoginUtil {
      * 2. 当前cookie失效
      */
     public static void clearCookie() {
+        SPUtil sp=new SPUtil(InitApp.AppContext);
+        sp.clearSP(LibraryStaticKey.SP_FILE_NAME);
+        userName=null;
+        cookies=null;
     }
 
 
