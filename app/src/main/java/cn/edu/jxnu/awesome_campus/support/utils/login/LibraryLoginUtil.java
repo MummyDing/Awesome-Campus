@@ -119,8 +119,13 @@ public class LibraryLoginUtil {
 //                            System.out.print(a[i]);
 //                        }
                         saveToSP("",cookies);
-                        EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_LOGIN_SUCCESS));
-                    }
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_LOGIN_SUCCESS));
+                            }
+                        });
+                     }
 
                     @Override
                     public void onFailure(String error) {

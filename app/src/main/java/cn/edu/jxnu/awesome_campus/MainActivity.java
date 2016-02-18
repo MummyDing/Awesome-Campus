@@ -35,6 +35,7 @@ import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
@@ -143,6 +144,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         }else if(id == DrawerItem.LOGOUT.getId()){
             //setTitle(DrawerItem.LOGOUT.getItemName());
             EducationLoginUtil.clearCookie();
+            LibraryLoginUtil.clearCookie();
             presenter.updateHeader(this);
         }
     }
