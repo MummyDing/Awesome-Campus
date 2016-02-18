@@ -206,13 +206,13 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
                     @Override
                     public void onSuccess(InputStream result, Headers headers) {
                         final Bitmap bitmap = BitmapFactory.decodeStream(result);
-                        if(bitmap == null){
-                            setDefaultColor();
-                            return;
-                        }
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
+                                if(bitmap == null){
+                                    setDefaultColor();
+                                    return;
+                                }
                                 topImage.setBackground(new BitmapDrawable(getResources(), bitmap));
                                 mainContent.setBackgroundColor(ImageUtil.getImageColor(bitmap));
                                 progressBarTopPic.setVisibility(View.GONE);
