@@ -48,7 +48,7 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
         final Handler handler = new Handler(Looper.getMainLooper());
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String cookies = spu.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
-        NetManageUtil.get(Urlconfig.ExamTime_URL)
+        NetManageUtil.get(Urlconfig.Library_Book_Borrowed_URL)
                 .addHeader("Cookie", cookies)
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override

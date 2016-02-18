@@ -46,4 +46,7 @@ public class Urlconfig {
     //public static final String Library_Redirect_URL="http://219.229.250.138:8080/reader/redr_cust_result.php";
     public static final String Library_Redirect_URL="http://tsg.jxnu.edu.cn:8080/reader/redr_cust_result.php";
 
+    //图书馆借书url
+    public static final String Library_Book_Borrowed_URL="http://tsg.jxnu.edu.cn:8080/reader/book_lst.php";
+
 }
