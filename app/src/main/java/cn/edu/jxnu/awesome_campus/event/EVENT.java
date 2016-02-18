@@ -86,6 +86,12 @@ public class EVENT {
     public static final int FILM_DETAILS_REFRESH_SUCCESS = 37;
     public static final int FILM_DETAILS_REFRESH_FAILURE = 38;
 
+    //Library Login
+    public static final int LIBRARY_LOGIN_SUCCESS=39;
+    public static final int LIBRARY_LOGIN_FAILURE=40;
+    public static final int LIBRARY_LOGIN_FAILURE_NETWORKERROR=41;
+    public static final int LIBRARY__LOGIN_FAILURE_NULL_INPUT=42;
+
 
 }
 

@@ -25,6 +25,7 @@ public class NetManageUtil {
 
     static {
         netClient = new OkHttpClient();
+        netClient.setFollowRedirects(false);
         mGson = new Gson();
     }
 
