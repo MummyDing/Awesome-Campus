@@ -4,7 +4,9 @@ import android.view.View;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 
@@ -42,6 +44,26 @@ public class LibraryLoginFragment extends BaseLoginFragment{
 
     @Override
     public void onEventComing(EventModel eventModel) {
+        switch (eventModel.getEventCode()){
+            case EVENT.LIBRARY__LOGIN_FAILURE_NULL_INPUT:
+                setLoginFailureLayout();
+                DisplayUtil.Snack(usernameET,"Input cannot be null");
+                break;
+            case EVENT.LIBRARY_LOGIN_FAILURE:
+                setLoginFailureLayout();
+                DisplayUtil.Snack(usernameET,"Login Failed!!!");
+                break;
+            case EVENT.LIBRARY_LOGIN_FAILURE_NETWORKERROR:
+                setLoginFailureLayout();
+                DisplayUtil.Snack(getView(),"Network Error!!!");
+                break;
+            case EVENT.LIBRARY_LOGIN_SUCCESS:
+                setOnLineLayout(true);
+                setInputAreaEnable(true);
+                DisplayUtil.Snack(getView(),"Login Successful!!!");
+                break;
+        }
+
 
     }
 }
