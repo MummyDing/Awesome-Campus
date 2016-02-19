@@ -24,7 +24,7 @@
 
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".ui.base.SearchActivity" />
+                android:value=".ui.library.BookSearchActivity" />
         </activity>
         <activity
             android:name=".ui.library.BookSearchActivity"

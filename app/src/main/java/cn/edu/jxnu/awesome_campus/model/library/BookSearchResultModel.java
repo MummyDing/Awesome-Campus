@@ -24,12 +24,12 @@ public class BookSearchResultModel implements IModel<BookSearchResultModel>{
     private String bookCount;
 
 
-    public BookSearchResultModel() {
-        dao = new BookSearchResultDAO();
+    public BookSearchResultModel(String keyword) {
+        dao = new BookSearchResultDAO(keyword);
     }
 
     public BookSearchResultModel(String bookTitle, String bookNumber, String bookClass, String bookAuthor, String bookPublisher, String bookLeft, String bookCount) {
-        this();
+        this("");
         this.dao = dao;
         this.bookTitle = bookTitle;
         this.bookNumber = bookNumber;
