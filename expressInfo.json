@@ -1,0 +1,132 @@
+[
+ {
+    "expTextName": "韵达快递",
+    "expSpellName": "",
+    "expTel":"15879116040",
+    "expLoc":"13栋美园超市旁(联通店内)",
+    "workTime":"9:00-20:00",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "中通速递",
+    "expSpellName": "",
+    "expTel":"13970929281",
+    "expLoc":"1栋(靠近15栋校园卡充值处)",
+    "workTime":"9:00-18:30",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "京东",
+    "expSpellName": "yunda",
+    "expTel":"15070958727",
+    "expLoc":"四食堂后门(转角靠近五食堂)",
+    "workTime":"9:00-19:00",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "全峰快递",
+    "expSpellName": "",
+    "expTel":"18779162772",
+    "expLoc":"四食堂西门(移动营业厅旁)",
+    "workTime":"9:00-19:00",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "天天快递",
+    "expSpellName": "",
+    "expTel":"18662686568",
+    "expLoc":"一栋进门右手旁(原圆通快递)",
+    "workTime":"8:00-19:00",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "圆通快递",
+    "expSpellName": "",
+    "expTel":"13672220783",
+    "expLoc":"7栋和8栋之间",
+    "workTime":"8:00-19:00",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "韵达",
+    "expSpellName": "yunda",
+    "expTel":"",
+    "expLoc":"",
+    "workTime":"",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "快捷快递(天猫)",
+    "expSpellName": "",
+    "expTel":"18507050760",
+    "expLoc":"7栋和8栋之间(招牌写着\"信息日报\"",
+    "workTime":"9:30-18:30",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "百世汇通",
+    "expSpellName": "",
+    "expTel":"13767090125",
+    "expLoc":"三食堂精品店内",
+    "workTime":"9:00-20:30",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "国通快递",
+    "expSpellName": "",
+    "expTel":"13970024476",
+    "expLoc":"三食堂精品店内",
+    "workTime":"9:00-21:30",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "申通",
+    "expSpellName": "",
+    "expTel":"13065117411",
+    "expLoc":"图书馆西侧(邮政旁)",
+    "workTime":"8:30-20:00",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "EMS&亚马逊自提",
+    "expSpellName": "",
+    "expTel":"图书馆东侧(天扬咖啡旁)",
+    "expLoc":"",
+    "workTime":"8:30-17:30",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ },
+{
+    "expTextName": "中国邮政",
+    "expSpellName": "",
+    "expTel":"",
+    "expLoc":"图书馆西侧",
+    "workTime":"9:30-17:30(周日休息)",
+    "itemImage":"",
+    "topImage":"",
+    "body":""
+ }
+]
