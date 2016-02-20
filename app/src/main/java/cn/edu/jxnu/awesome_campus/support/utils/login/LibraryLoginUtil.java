@@ -19,6 +19,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCodeCallback;
 
 /**
  * Created by MummyDing on 16-2-17.
@@ -62,10 +63,10 @@ public class LibraryLoginUtil {
                     .addParams("passwd", getPassword(passwordET))
                     .addParams("select", "cert_no")
                     .addParams("returnUrl", "")
-                    .enqueue(new StringCallback() {
+                    .enqueue(new StringCodeCallback() {
                         @Override
-                        public void onSuccess(String result, Headers headers) {
-                            System.out.println("获取到的头部信息：" + headers.toString());
+                        public void onSuccess(String result,int code, Headers headers) {
+                            System.out.println("获取到的状态码为：" + code);
 //                            System.out.println("页面内容："+result);
 //                            char a[]=result.toCharArray();
 //                            for (int i=0;i<a.length;i++){
@@ -83,7 +84,19 @@ public class LibraryLoginUtil {
                                 }
                             }
                             System.out.println(cookies);
-                            toFollowRedirects(cookies);
+                            //账号密码正确，执行重定向
+                            if(code==302){
+                                toFollowRedirects(cookies);
+                            }else{
+                                //密码错误
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_LOGIN_FAILURE));
+                                    }
+                                });
+                            }
+
                         }
 
                         @Override
