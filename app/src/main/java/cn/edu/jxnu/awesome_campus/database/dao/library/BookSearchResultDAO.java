@@ -64,7 +64,7 @@ public class BookSearchResultDAO implements DAO<BookSearchResultModel> {
 
         NetManageUtil.get(Urlconfig.Library_Book_Search_URL)
                 .addHeader("Cookie", cookies)
-                .addParams("strSearchType","Title")
+                .addParams("strSearchType","title")
                 .addParams("historyCount","1")
                 .addParams("strText", keyword)
                 .addParams("x","0")
