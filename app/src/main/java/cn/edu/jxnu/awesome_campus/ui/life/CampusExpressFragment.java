@@ -1,7 +1,11 @@
 package cn.edu.jxnu.awesome_campus.ui.life;
 
+import android.util.Log;
+
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.life.CampusExpressModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.life.CampusExpressAdapter;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
@@ -43,4 +47,19 @@ public class CampusExpressFragment extends BaseListFragment{
 
     }
 
+    @Override
+    public void onEventComing(EventModel eventModel) {
+        super.onEventComing(eventModel);
+        switch (eventModel.getEventCode()){
+            case EVENT.CAMPUS_EXPRESS_SUCCESS:
+                Log.d("Express",eventModel.getDataList().size()+"");
+                adapter.newList(eventModel.getDataList());
+                hideLoading();
+                break;
+            case EVENT.CAMPUS_EXPRESS_FAILURE:
+                hideLoading();
+                displayNetworkError();
+                break;
+        }
+    }
 }

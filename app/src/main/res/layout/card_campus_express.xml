@@ -81,7 +81,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_place" />
+                    android:src="@drawable/ic_location" />
 
                 <TextView
                     android:id="@+id/expressLoc"
@@ -109,6 +109,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
+                    android:autoLink="phone"
                     android:gravity="left|center_vertical"
                     android:text="Tel:11111123"
                     android:textSize="16sp" />

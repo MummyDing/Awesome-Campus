@@ -101,6 +101,10 @@ public class EVENT {
     public static final int BOOK_SEARCH_REFRESH_SUCCESS = 45;
     public static final int BOOK_SEARCH_REFRESH_FAILURE = 46;
 
+    // Campus Express
+    public static final int CAMPUS_EXPRESS_SUCCESS = 47;
+    public static final int CAMPUS_EXPRESS_FAILURE = 48;
+
 
 }
 
