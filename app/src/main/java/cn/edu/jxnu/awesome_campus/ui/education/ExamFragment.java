@@ -8,6 +8,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.ExamTimeModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.education.ExamTimeAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -35,8 +36,6 @@ public class ExamFragment extends BaseListFragment {
         model = new ExamTimeModel();
         adapter = new ExamTimeAdapter(getContext(),model);
         recyclerView.setAdapter(adapter);
-        model.loadFromNet();
-        displayLoading();
     }
 
     @Override
@@ -46,7 +45,7 @@ public class ExamFragment extends BaseListFragment {
 
     @Override
     public void initView() {
-
+        setOnLineLayout(EducationLoginUtil.isLogin());
     }
 
     @Override

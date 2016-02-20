@@ -47,8 +47,7 @@ public class CourseScoreFragment extends BaseListFragment {
         model = new CourseScoreModel();
         adapter = new CourseScoreAdapter(getActivity(),model);
         recyclerView.setAdapter(adapter);
-        model.loadFromNet();
-        displayLoading();
+
     }
 
     @Override

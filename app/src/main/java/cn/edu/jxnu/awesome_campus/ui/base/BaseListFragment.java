@@ -119,6 +119,8 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         if(flag){
             onLineLayout.setVisibility(View.VISIBLE);
             offLineLayout.setVisibility(View.GONE);
+            onDataRefresh();
+            displayLoading();
         }else{
             onLineLayout.setVisibility(View.GONE);
             offLineLayout.setVisibility(View.VISIBLE);

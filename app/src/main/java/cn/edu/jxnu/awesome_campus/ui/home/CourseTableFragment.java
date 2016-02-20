@@ -47,8 +47,6 @@ public class CourseTableFragment extends BaseListFragment{
         courseInfoModel = new CourseInfoModel();
         adapter = new CourseTableAdapter(getActivity(), courseTableModel);
         recyclerView.setAdapter(adapter);
-        courseTableModel.loadFromNet();
-        displayLoading();
     }
 
     @Override

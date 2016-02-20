@@ -15,18 +15,17 @@
     card_view:contentPadding="10dp"
     card_view:cardPreventCornerOverlap="true">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ksap_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="#fff"
         android:orientation="horizontal">
-        <!--考试安排-->
+        <!--校内快递-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <!-- 课程显示view，imageview加textview-->
+            <!-- 快递名称显示view，imageview加textview-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -40,16 +39,16 @@
                     android:src="@drawable/ic_flag" />
 
                 <TextView
-                    android:id="@+id/courseName"
+                    android:id="@+id/expressName"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="left|center_vertical"
-                    android:text="课程：测试课程"
+                    android:text="中通快递"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
-            <!--考试时间-->
+            <!--营业时间-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -63,7 +62,7 @@
                     android:src="@drawable/ic_timer" />
 
                 <TextView
-                    android:id="@+id/examTime"
+                    android:id="@+id/workTime"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
@@ -71,7 +70,7 @@
                     android:text="时间：2016-01-12 14:30:00"
                     android:textSize="16sp" />
             </LinearLayout>
-            <!--考试考场-->
+            <!--快递地点-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -82,15 +81,15 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_room" />
+                    android:src="@mipmap/ic_place" />
 
                 <TextView
-                    android:id="@+id/examRoom"
+                    android:id="@+id/expressLoc"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="left|center_vertical"
-                    android:text="考场：W7203"
+                    android:text="四食堂后门"
                     android:textSize="16sp" />
             </LinearLayout>
             <LinearLayout
@@ -103,37 +102,15 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_seat" />
+                    android:src="@mipmap/ic_phone_grey" />
 
                 <TextView
-                    android:id="@+id/examSeat"
+                    android:id="@+id/expressTel"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="left|center_vertical"
-                    android:text="座位：23"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_note" />
-
-                <TextView
-                    android:id="@+id/examRemark"
-                    android:layout_width="fill_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="left|center_vertical"
-                    android:text="备注：预排"
+                    android:text="Tel:11111123"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
