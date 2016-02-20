@@ -12,12 +12,10 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.NetCallback;
  * Blog: http://blog.csdn.net/mummyding
  */
 public abstract class IRequest {
-    protected OkHttpClient client = null;
     protected Map<String,String> headers = null;
     protected boolean isFirstParams = true;
     protected String url = null;
     protected String tag = null;
-    public static Thread childThread;
 
     public abstract IRequest addHeader(String key,String val);
     public abstract IRequest addParams(String key,String val);
