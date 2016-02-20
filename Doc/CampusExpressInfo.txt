@@ -1,0 +1,122 @@
+[
+ {
+    "expTextName": "韵达快递",
+    "expSpellName": "yunda",
+    "expTel":"15879116040",
+    "expLoc":"13栋美园超市旁(联通店内)",
+    "workTime":"9:00-20:00",
+    "itemImage":"http://app2.showapi.com/img/expImg/yunda.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/yunda_img.jpg",
+    "body":""
+ },
+{
+    "expTextName": "中通速递",
+    "expSpellName": "zhongtong",
+    "expTel":"13970929281",
+    "expLoc":"1栋(靠近15栋校园卡充值处)",
+    "workTime":"9:00-18:30",
+    "itemImage":"http://app2.showapi.com/img/expImg/zto.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/zhongtong_img.jpg",
+    "body":""
+ },
+{
+    "expTextName": "京东",
+    "expSpellName": "jingdong",
+    "expTel":"15070958727",
+    "expLoc":"四食堂后门(转角靠近五食堂)",
+    "workTime":"9:00-19:00",
+    "itemImage":"http://app2.showapi.com/img/expImg/jingdong.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/jingdong.jpg",
+    "body":""
+ },
+{
+    "expTextName": "全峰快递",
+    "expSpellName": "quanfeng",
+    "expTel":"18779162772",
+    "expLoc":"四食堂西门(移动营业厅旁)",
+    "workTime":"9:00-19:00",
+    "itemImage":"http://app2.showapi.com/img/expImg/quanfeng.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/quanfeng_img.jpg",
+    "body":""
+ },
+{
+    "expTextName": "天天快递",
+    "expSpellName": "tiantian",
+    "expTel":"18662686568",
+    "expLoc":"一栋进门右手旁(原圆通快递)",
+    "workTime":"8:00-19:00",
+    "itemImage":"http://app2.showapi.com/img/expImg/tt.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/tiantian_img2.jpg",
+    "body":""
+ },
+{
+    "expTextName": "圆通快递",
+    "expSpellName": "yuantong",
+    "expTel":"13672220783",
+    "expLoc":"7栋和8栋之间",
+    "workTime":"8:00-19:00",
+    "itemImage":"http://app2.showapi.com/img/expImg/yuantong.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/yuantong_img.jpg",
+    "body":""
+ },
+{
+    "expTextName": "快捷快递(天猫)",
+    "expSpellName": "kuaijie",
+    "expTel":"18507050760",
+    "expLoc":"7栋和8栋之间(招牌写着\"信息日报\"",
+    "workTime":"9:30-18:30",
+    "itemImage":"http://app2.showapi.com/img/expImg/kuaijie.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/kuaijie_img.jpg",
+    "body":""
+ },
+{
+    "expTextName": "百世汇通",
+    "expSpellName": "huitong",
+    "expTel":"13767090125",
+    "expLoc":"三食堂精品店内",
+    "workTime":"9:00-20:30",
+    "itemImage":"http://app2.showapi.com/img/expImg/ht.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/huitong_img.jpg",
+    "body":""
+ },
+{
+    "expTextName": "国通快递",
+    "expSpellName": "guotong",
+    "expTel":"13970024476",
+    "expLoc":"三食堂精品店内",
+    "workTime":"9:00-21:30",
+    "itemImage":"http://app2.showapi.com/img/expImg/guotong.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/guotong_img2.jpg",
+    "body":""
+ },
+{
+    "expTextName": "申通",
+    "expSpellName": "shentong",
+    "expTel":"13065117411",
+    "expLoc":"图书馆西侧(邮政旁)",
+    "workTime":"8:30-20:00",
+    "itemImage":"http://app2.showapi.com/img/expImg/shentong.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/shentong_img.jpg",
+    "body":""
+ },
+{
+    "expTextName": "EMS&亚马逊自提",
+    "expSpellName": "",
+    "expTel":"",
+    "expLoc":"图书馆东侧(天扬咖啡旁)",
+    "workTime":"8:30-17:30",
+    "itemImage":"http://app2.showapi.com/img/expImg/ems.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/express_image/amazon_img.jpg",
+    "body":""
+ },
+{
+    "expTextName": "中国邮政",
+    "expSpellName": "",
+    "expTel":"11185",
+    "expLoc":"图书馆西侧",
+    "workTime":"9:30-17:30(周日休息)",
+    "itemImage":"http://app2.showapi.com/img/expImg/pingyou.jpg",
+    "topImage":"https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/blob/master/express_image/china_post.jpg",
+    "body":""
+ }
+]

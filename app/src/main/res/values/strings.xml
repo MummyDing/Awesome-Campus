@@ -56,4 +56,10 @@
     <string name="standard_score">StandardScore</string>
     <string name="text_share_from">"share from "</string>
     <string name="campus_express">CampusExpress</string>
+    <string name="hint_login_successful">Login Successful!!!</string>
+    <string name="hint_network_error">Network Error!!!</string>
+    <string name="hint_login_failed">Login Failed!!!</string>
+    <string name="hint_null_input">Input cannot be null</string>
+    <string name="hint_wrong_studentid">Wrong Student ID!!!</string>
+    <string name="hint_wrong_password">Wrong Password!!!</string>
 </resources>

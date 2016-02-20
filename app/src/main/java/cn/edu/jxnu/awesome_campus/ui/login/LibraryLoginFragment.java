@@ -29,7 +29,6 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 // 这里还要加点登录时的效果 progressbar 或是其他动画什么的
                 setInputAreaEnable(false);
                 LibraryLoginUtil.onLogin(usernameET,passwordET);
-                MainActivity.presenter.updateHeader(getActivity());
             }
         });
     }
@@ -49,20 +48,21 @@ public class LibraryLoginFragment extends BaseLoginFragment{
         switch (eventModel.getEventCode()){
             case EVENT.LIBRARY__LOGIN_FAILURE_NULL_INPUT:
                 setLoginFailureLayout();
-                DisplayUtil.Snack(usernameET,"Input cannot be null");
+                DisplayUtil.Snack(usernameET,InitApp.AppContext.getString(R.string.hint_null_input));
                 break;
             case EVENT.LIBRARY_LOGIN_FAILURE:
                 setLoginFailureLayout();
-                DisplayUtil.Snack(usernameET,"Login Failed!!!");
+                DisplayUtil.Snack(usernameET,InitApp.AppContext.getString(R.string.hint_login_failed));
                 break;
             case EVENT.LIBRARY_LOGIN_FAILURE_NETWORKERROR:
                 setLoginFailureLayout();
-                DisplayUtil.Snack(getView(),"Network Error!!!");
+                DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_network_error));
                 break;
             case EVENT.LIBRARY_LOGIN_SUCCESS:
                 setOnLineLayout(true);
                 setInputAreaEnable(true);
-                DisplayUtil.Snack(getView(),"Login Successful!!!");
+                MainActivity.presenter.updateHeader(getActivity());
+                DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_login_successful));
                 break;
         }
     }

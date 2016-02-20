@@ -54,24 +54,24 @@ public class EducationLoginFragment extends BaseLoginFragment{
             case EVENT.EDUCATION_LOGIN_SUCCESS:
                 setOnLineLayout(true);
                 setInputAreaEnable(true);
-                DisplayUtil.Snack(getView(),"Login Successful!!!");
+                DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_login_successful));
                 MainActivity.presenter.updateHeader(getActivity());
                 break;
             case EVENT.EDUCATION_LOGIN_FAILURE_NETWORK_ERROR:
                 setLoginFailureLayout();
-                DisplayUtil.Snack(getView(),"Network Error!!!");
+                DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_network_error));
                 break;
             case EVENT.EDUCATION_LOGIN_FAILURE_NO_ID:
                 setLoginFailureLayout();
-                DisplayUtil.Snack(usernameET,"Wrong Student ID!!!");
+                DisplayUtil.Snack(usernameET,InitApp.AppContext.getString(R.string.hint_wrong_studentid));
                 break;
             case EVENT.EDUCATION_LOGIN_FAILURE_NULL_INPUT:
                 setLoginFailureLayout();
-                DisplayUtil.Snack(usernameET,"Input cannot be null");
+                DisplayUtil.Snack(usernameET,InitApp.AppContext.getString(R.string.hint_null_input));
                 break;
             case EVENT.EDUCATION_LOGIN_FAILURE_PASSWORD_INCORRECT:
                 setLoginFailureLayout();
-                DisplayUtil.Snack(passwordET,"Wrong Password!!!");
+                DisplayUtil.Snack(passwordET,InitApp.AppContext.getString(R.string.hint_wrong_password));
                 break;
         }
     }
