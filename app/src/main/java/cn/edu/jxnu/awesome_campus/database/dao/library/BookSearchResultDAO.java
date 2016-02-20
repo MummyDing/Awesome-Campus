@@ -16,6 +16,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.BookBorrowedParse;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.BookSearchResultParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
@@ -64,10 +65,10 @@ public class BookSearchResultDAO implements DAO<BookSearchResultModel> {
 
         NetManageUtil.get(Urlconfig.Library_Book_Search_URL)
                 .addHeader("Cookie", cookies)
-                .addParams("strSearchType","Title")
+                .addParams("strSearchType","title")
                 .addParams("historyCount","1")
                 .addParams("strText", keyword)
-                .addParams("x","0")
+                .addParams("x", "0")
                 .addParams("y","0")
                 .addParams("doctype","ALL")
                 .addParams("match_flag","forward")
@@ -79,7 +80,7 @@ public class BookSearchResultDAO implements DAO<BookSearchResultModel> {
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
-                BookBorrowedParse myParse = new BookBorrowedParse(result);
+                BookSearchResultParse myParse = new BookSearchResultParse(result);
                 final List list = myParse.getEndList();
                 handler.post(new Runnable() {
                     @Override
