@@ -2,6 +2,8 @@ package cn.edu.jxnu.awesome_campus.ui.life;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.model.life.CampusExpressModel;
+import cn.edu.jxnu.awesome_campus.support.adapter.life.CampusExpressAdapter;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -9,20 +11,26 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class ExpressFragment extends BaseListFragment{
+public class CampusExpressFragment extends BaseListFragment{
+
+    private CampusExpressModel model;
     @Override
     public String getTitle() {
-        return InitApp.AppContext.getString(R.string.express);
+        return InitApp.AppContext.getString(R.string.campus_express);
     }
 
     @Override
     public void onDataRefresh() {
-
+        model.loadFromNet();
     }
 
     @Override
     public void bindAdapter() {
-
+        model = new CampusExpressModel();
+        adapter = new CampusExpressAdapter(getActivity(),model);
+        recyclerView.setAdapter(adapter);
+        model.loadFromNet();
+        displayLoading();
     }
 
     @Override

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
-import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 
 /**
  * Created by MummyDing on 16-2-1.
@@ -19,7 +18,7 @@ public class LifeFragment extends TopNavigationFragment{
         }else if(fragments.size()>0){
             fragments.clear();
         }
-        fragments.add(new ExpressFragment());
+        fragments.add(new CampusExpressFragment());
         fragments.add(new ATMFragment());
     }
 

@@ -55,4 +55,5 @@
     <string name="course_score">CourseScore</string>
     <string name="standard_score">StandardScore</string>
     <string name="text_share_from">"share from "</string>
+    <string name="campus_express">CampusExpress</string>
 </resources>
