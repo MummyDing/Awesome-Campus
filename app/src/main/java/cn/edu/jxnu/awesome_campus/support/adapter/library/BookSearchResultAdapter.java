@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.support.adapter.library;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultModel,BookSearchResultAdapter.VH> {
+
+
+    private String keyword;
 
     public BookSearchResultAdapter(Context mContext, BookSearchResultModel model) {
         super(mContext, model);
@@ -36,8 +40,10 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        BookSearchResultModel model = new BookSearchResultModel("");
-        holder.bookTitle.setText(model.getBookTitle());
+        BookSearchResultModel model =getItem(position); //new BookSearchResultModel("");
+
+        String titleHtml = model.getBookTitle().replaceAll(keyword,"<font color=\"red\">"+keyword+"</font>");
+        holder.bookTitle.setText(Html.fromHtml(titleHtml));
     }
 
     class VH extends RecyclerView.ViewHolder{
@@ -48,5 +54,10 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
             this.itemView = itemView;
             bookTitle = (TextView) itemView.findViewById(R.id.bookTitle);
         }
+    }
+
+    @Override
+    public void addKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

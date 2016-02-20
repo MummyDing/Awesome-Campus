@@ -72,7 +72,7 @@ public class BookSearchResultDAO implements DAO<BookSearchResultModel> {
                 .addParams("y","0")
                 .addParams("doctype","ALL")
                 .addParams("match_flag","forward")
-                .addParams("displaypg","20")
+                .addParams("displaypg","200000")
                 .addParams("sort","CATA_DATE")
                 .addParams("orderby","desc")
                 .addParams("showmode","list")

@@ -65,6 +65,7 @@ public class BookSearchActivity extends SwipeBackActivity {
 
         if(model !=null){
             adapter = new BookSearchResultAdapter(this,model);
+            adapter.addKeyword(keyword);
             recyclerView.setAdapter(adapter);
         }
         onDataRefresh();

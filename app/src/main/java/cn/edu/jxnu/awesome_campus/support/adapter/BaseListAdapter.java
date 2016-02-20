@@ -54,4 +54,12 @@ public abstract class BaseListAdapter<M extends IModel,VH extends RecyclerView.V
     public void addCourseInfoList(List<CourseInfoModel> list){
     }
 
+    /**
+     * 专门给BookSearchAdapter 用的
+     * @param keyword
+     */
+    public void addKeyword(String keyword){
+
+    }
+
 }
