@@ -54,7 +54,7 @@ public class LibraryLoginUtil {
      */
     public static void onLogin(final EditText usernameET, EditText passwordET) {
         if (TextUtil.isNull(getUsername(usernameET)) || TextUtil.isNull(getPassword(passwordET))) {
-            EventBus.getDefault().post(new EventModel<String>(EVENT.EDUCATION_LOGIN_FAILURE_NULL_INPUT));
+            EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY__LOGIN_FAILURE_NULL_INPUT));
             return;
         } else {
 

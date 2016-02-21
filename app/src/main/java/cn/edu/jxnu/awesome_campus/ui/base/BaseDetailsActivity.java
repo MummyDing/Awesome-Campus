@@ -90,7 +90,7 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
     }
 
     protected int getLayoutID(){
-        return R.layout.activity_campus_details;
+        return R.layout.activity_base_details;
     }
 
 
