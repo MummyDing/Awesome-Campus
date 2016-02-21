@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.htmlparse.libary;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,29 +53,31 @@ public class BookSearchResultParse {
             for(int i=0;i<rawList.size();i++){
                 String type_firsr_cut[]=rawList.get(i).toString().split("\"doc_type_class\">");
                 String type_secont_cut[]=type_firsr_cut[1].split("</span><");
-                String type=type_secont_cut[0];
+                String type=type_secont_cut[0];//书的类别
                 HtmlUtil hu2=new HtmlUtil(rawList.get(i).toString());
-                String title=hu2.parseString(A_ITEM_CSS).get(0).toString();
+                String title=hu2.parseString(A_ITEM_CSS).get(0).toString();//标题
                 String no_first_cut[]=rawList.get(i).toString().split("</a>");
                 String no_second_cut[]=no_first_cut[1].split("</h3>");
-                String no=no_second_cut[0];
-//                String bookcount_first_cut[]=no_second_cut[1].split("馆藏复本：</strong>");
-//                String bookcount_second_cut[]=bookcount_first_cut[1].split("<br />\n" +
-//                        "            <strong>");
-//                String bookcount=bookcount_second_cut[0];
-//                String left_first_cut[]=bookcount_second_cut[1].split("</strong>");
-//                String left_second_cut[]=left_first_cut[1].split("</span>");
-//                String left=left_second_cut[0];
-//                String author=left_second_cut[1].split("<br />")[0];
-//                String publisher=left_second_cut[1].split("<br />")[1].split("</p>")[0];
+                String no=no_second_cut[0];//书号
+
+                List rawOneSpanList=new HtmlUtil(rawList.get(i).toString()).parseRawString("span");
+                List oneSpanList=new HtmlUtil(rawList.get(i).toString()).parseString("span");
+                Log.d("取得的原生单一列表大小为：","-- "+rawOneSpanList.size());
+                Log.d("原生单一列表第一个元素为：", "-- " + oneSpanList.get(1).toString());
+                String bookLeft=oneSpanList.get(1).toString().split("馆藏复本：")[1].split("可借复本：")[1];
+                String bookCount=oneSpanList.get(1).toString().split("馆藏复本：")[1].split("可借复本：")[0];
+                List rawOnePList=new HtmlUtil(rawList.get(i).toString()).parseRawString("p");
+                String tempParseStr=rawOnePList.get(0).toString().split("</span>")[1];
+                String bookAuthor=tempParseStr.split("<br>")[0];
+                String bookPublisher=tempParseStr.split("<br>")[1].replace("</p>","").replace("&nbsp;","");
                 endList.add(new BookSearchResultModel(
                         title,
                         no,
                         type,
-                        "",
-                        "",
-                        "",
-                        ""
+                        bookAuthor,
+                        bookPublisher,
+                        bookLeft,
+                        bookCount
                 ));
             }
             fillEndList();
