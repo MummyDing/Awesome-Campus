@@ -158,7 +158,7 @@ public class LibraryLoginUtil {
         SPUtil mysp = new SPUtil(InitApp.AppContext);
         LibraryLoginUtil.cookies=cookies;
         //用户名还需存入sp文件
-
+        mysp.putStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.USER_NAME,userName);
         mysp.putStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE, cookies);
     }
 
