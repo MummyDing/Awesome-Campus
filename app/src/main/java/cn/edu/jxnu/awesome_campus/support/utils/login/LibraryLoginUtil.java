@@ -14,6 +14,7 @@ import cn.edu.jxnu.awesome_campus.database.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.database.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.LibraryLoginInfoParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
@@ -110,8 +111,6 @@ public class LibraryLoginUtil {
                         }
                     });
         }
-
-
     }
 
     private static void toFollowRedirects(final String cookies) {
@@ -123,6 +122,7 @@ public class LibraryLoginUtil {
                     @Override
                     public void onSuccess(String result, Headers headers) {
                         Log.d("第二次访问成功", "---");
+                        LibraryLoginInfoParse myParse=new LibraryLoginInfoParse(result);
 //                        System.out.println(result);
 //                        char a[] = result.toCharArray();
 //                        for (int i = 0; i < a.length; i++) {
@@ -131,7 +131,7 @@ public class LibraryLoginUtil {
 //                            }
 //                            System.out.print(a[i]);
 //                        }
-                        saveToSP("",cookies);
+                        saveToSP("", cookies);
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
