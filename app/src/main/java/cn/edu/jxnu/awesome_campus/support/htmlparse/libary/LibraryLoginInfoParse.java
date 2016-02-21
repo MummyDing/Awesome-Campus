@@ -19,6 +19,11 @@ public class LibraryLoginInfoParse {
     private static final String CUT_LEFT="我的图书馆";
     private static final String CUT_RIGHT="注销";
     private String parseStr = null;//待解析字符串
+
+    public List<String> getEndList() {
+        return endList;
+    }
+
     private List<String> endList = null;//解析后的列表
 
 
