@@ -43,7 +43,6 @@ public class TermSpinnerWrapper {
     public MaterialSpinner build(MaterialSpinner spinner){
 
         mSpinner = spinner;
-        spinner.setBackgroundColor(ContextCompat.getColor(InitApp.AppContext,R.color.colorAccent));
         updateAttachList();
         if(listener != null) {
             spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {

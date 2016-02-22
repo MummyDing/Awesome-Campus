@@ -33,6 +33,9 @@
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:ms_background_color="?attr/cardViewColor"
+                app:ms_arrow_tint="?attr/textColor"
+                app:ms_text_color="?attr/textColor"
                 android:layout_below="@+id/headerLayout" />
         </android.support.v7.widget.CardView>
         <android.support.v4.widget.SwipeRefreshLayout
