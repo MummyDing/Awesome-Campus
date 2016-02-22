@@ -67,7 +67,6 @@ public class MainActivity extends BaseActivity implements HomeView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         EventBus.getDefault().register(this);
 
         presenter = new HomePresenterImpl(this);

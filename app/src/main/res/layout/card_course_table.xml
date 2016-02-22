@@ -22,7 +22,7 @@
             android:layout_width="1dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:background="?attr/colorPrimary"></View>
+            android:background="?attr/colorAccent"></View>
     </LinearLayout>
 
     <LinearLayout
@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="20:00 ~ 21:00"
+            android:textColor="?attr/textColor"
             android:textSize="18sp" />
 
         <android.support.v7.widget.CardView

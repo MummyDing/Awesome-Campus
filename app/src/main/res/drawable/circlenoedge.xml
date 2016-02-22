@@ -7,7 +7,7 @@
     <solid android:color="#44000000"/>
     <stroke
         android:width="0dp"
-        android:color="#ffffff"/>
+        android:color="?attr/cardViewColor"/>
     <size android:width="20dp"
     android:height="20dp"/>
 </shape>

@@ -29,6 +29,7 @@
                 android:id="@+id/film_title"
                 android:textSize="20sp"
                 android:layout_weight="1"
+                android:textColor="?attr/textColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <LinearLayout
@@ -49,6 +50,7 @@
                 <TextView
                     android:id="@+id/reading_count"
                     android:paddingLeft="5dp"
+                    android:textColor="?attr/textColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical" />
@@ -56,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/readingCount"
+                    android:textColor="?attr/textColor"
                     android:layout_marginLeft="5dp"/>
             </LinearLayout>
 

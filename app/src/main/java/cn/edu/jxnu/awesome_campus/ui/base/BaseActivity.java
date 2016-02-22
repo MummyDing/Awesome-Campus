@@ -5,6 +5,8 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import cn.edu.jxnu.awesome_campus.R;
+
 /**
  * Created by MummyDing on 16-1-29.
  * GitHub: https://github.com/MummyDing
@@ -13,7 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
 
     protected void loadConfig(){
-
+        this.setTheme(R.style.DarkTheme);
     }
 
     @Override
