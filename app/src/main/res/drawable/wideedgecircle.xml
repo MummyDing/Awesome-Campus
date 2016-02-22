@@ -4,10 +4,10 @@
     android:shape="oval"
     android:useLevel="false">
 
-    <solid android:color="?attr/colorAccent"/>
+    <solid android:color="@color/colorAccent"/>
     <stroke
         android:width="5dp"
-        android:color="?attr/cardViewColor"/>
+        android:color="#44ffffff"/>
     <size android:width="20dp"
     android:height="20dp"/>
 </shape>
