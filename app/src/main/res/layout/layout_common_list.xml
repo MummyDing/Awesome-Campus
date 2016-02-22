@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,6 +31,8 @@
             card_view:contentPadding="10dp">
         <org.angmarch.views.NiceSpinner
             android:id="@+id/spinner"
+            app:textTint="#fff"
+            app:backgroundSelector="@drawable/selector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/headerLayout" />

@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.view.widget.weekspinner;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewPager;
@@ -51,6 +52,8 @@ public class WeekSpinnerWrapper{
                 mContext.getString(R.string.sunday)));
 
         spinner.attachDataSource(daysOfWeek);
+
+        spinner.setBackgroundResource(R.drawable.selector);
 
         index = TimeUtil.getDayOfWeek() - 1;
         spinner.setSelectedIndex(index);
