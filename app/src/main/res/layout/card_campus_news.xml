@@ -4,7 +4,7 @@ xmlns:card_view="http://schemas.android.com/tools"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:id="@+id/card_view"
 android:layout_gravity="center"
-app:cardBackgroundColor="@color/Card_View_Color"
+app:cardBackgroundColor="?attr/cardViewColor"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:layout_marginTop="@dimen/card_margin"
@@ -22,10 +22,12 @@ card_view:cardPreventCornerOverlap="true">
     <TextView
         android:id="@+id/news_title"
         android:textSize="20dp"
+        android:textColor="?attr/textColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/news_date"
+        android:textColor="?attr/textColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

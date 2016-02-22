@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:cardBackgroundColor="@color/Card_View_Color"
+            app:cardBackgroundColor="?attr/cardViewColor"
             android:layout_marginLeft="@dimen/card_margin"
             android:layout_marginRight="@dimen/card_margin"
             android:layout_marginTop="@dimen/card_margin"
@@ -75,6 +75,7 @@
         android:visibility="gone">
         <TextView
             android:text="Need Login"
+            android:textColor="?attr/textColor"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

@@ -12,7 +12,7 @@
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="8dp"
     card_view:contentPadding="10dp"
-    app:cardBackgroundColor="@color/Card_View_Color"
+    app:cardBackgroundColor="?attr/cardViewColor"
     card_view:cardPreventCornerOverlap="true">
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,6 +23,7 @@
             android:id="@+id/bookTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
             android:textSize="20sp" />
     </LinearLayout>
 

@@ -1,34 +1,34 @@
 <resources>
 
-    <!-- Base application theme. -->
+<!--默认主题-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
         <item name="windowActionBarOverlay">true</item>-->
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:actionBarStyle">@style/MyActionBar</item>
-
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
-
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="BlankTheme" parent="AppTheme">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
-    </style>
+
 
 
     <style name="DialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
         <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
         <item name="android:windowBackground">@drawable/transparent_pic</item>
-        <!--<item name="android:windowActionBar">false</item>-->
-        <!--<item name="android:windowNoTitle">true</item>-->
-        <!--<item name="android:actionBarStyle">@android:style/Theme.NoTitleBar.Fullscreen</item>-->
-        <!--<item name="android:dialogTheme">@android:style/Theme.NoTitleBar.Fullscreen</item>-->
+        <item name="dialogCardColor">@color/colorPrimary</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
         </style>
 
 
@@ -47,8 +47,15 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
 
+
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
     </style>
 
+    <!--<style name="BlankTheme" parent="AppTheme">-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+    <!--</style>-->
 </resources>

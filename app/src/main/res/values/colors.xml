@@ -3,12 +3,23 @@
     <!--<color name="colorPrimary">#3F51B5</color>-->
     <!--<color name="colorPrimaryDark">#303F9F</color>-->
     <!--<color name="colorAccent">#FF4081</color>-->
+
+    <!--默认主题-->
     <color name="colorPrimary">#A52F2F</color>
     <color name="colorPrimaryDark">#8c2222</color>
     <color name="colorAccent">#FFC107</color>
+    <color name="cardViewColor">#fff</color>
+    <color name="textColor">#75787B</color>
+    <color name="textColorHighlight">#000</color>
+    <color name="backgroundColor">#E0E5EA</color>
 
-    <color name="Float_add_btn_color_nomal">#A5712F</color>
-    <color name="Float_add_btn_color_pressed">#BC8E54</color>
+    <!--夜间模式-->
+    <color name="nightColorPrimary">#343434</color>
+    <color name="nightColorPrimaryDark">#010101</color>
+    <color name="nightColorAccent">#A52F2F</color>
+    <color name="nightCardViewColor">#404040</color>
+    <color name="nightTextColor">#ECECEC</color>
+    <color name="nightTextColorHighlight">#fff</color>
+    <color name="nightBackgroundColor">#343434</color>
 
-    <color name="Card_View_Color">#fff</color>
 </resources>

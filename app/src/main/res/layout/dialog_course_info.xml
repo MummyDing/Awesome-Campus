@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="330dp"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
@@ -21,7 +20,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="?attr/dialogCardColor"
             app:cardCornerRadius="9dp"
             app:cardElevation="6dp"
             app:cardPreventCornerOverlap="true">

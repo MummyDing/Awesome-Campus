@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_gravity="center"
-    app:cardBackgroundColor="@color/Card_View_Color"
+    app:cardBackgroundColor="?attr/cardViewColor"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/card_margin"
@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:background="#fff"
         android:orientation="horizontal">
         <!--考试安排-->
         <LinearLayout
@@ -44,6 +43,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
+                    android:textColor="?attr/textColor"
                     android:gravity="left|center_vertical"
                     android:text="课程：测试课程"
                     android:textSize="16sp"
@@ -59,6 +59,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:textColor="?attr/textColor"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_timer" />
 
@@ -66,6 +67,7 @@
                     android:id="@+id/examTime"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
+                    android:textColor="?attr/textColor"
                     android:layout_marginLeft="10dp"
                     android:gravity="left|center_vertical"
                     android:text="时间：2016-01-12 14:30:00"
@@ -88,6 +90,7 @@
                     android:id="@+id/examRoom"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
+                    android:textColor="?attr/textColor"
                     android:layout_marginLeft="10dp"
                     android:gravity="left|center_vertical"
                     android:text="考场：W7203"
@@ -108,6 +111,7 @@
                 <TextView
                     android:id="@+id/examSeat"
                     android:layout_width="fill_parent"
+                    android:textColor="?attr/textColor"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:gravity="left|center_vertical"
@@ -131,6 +135,7 @@
                     android:id="@+id/examRemark"
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
+                    android:textColor="?attr/textColor"
                     android:layout_marginLeft="10dp"
                     android:gravity="left|center_vertical"
                     android:text="备注：预排"

@@ -22,7 +22,7 @@
             android:layout_width="1dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimary"></View>
+            android:background="?attr/colorPrimary"></View>
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +47,7 @@
             android:layout_marginLeft="@dimen/card_margin"
             android:layout_marginRight="@dimen/card_margin"
             android:layout_marginTop="@dimen/card_margin"
-            app:cardBackgroundColor="@color/Card_View_Color"
+            app:cardBackgroundColor="?attr/cardViewColor"
             card_view:cardCornerRadius="4dp"
             card_view:cardElevation="8dp"
             card_view:cardPreventCornerOverlap="true"
@@ -74,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
+                        android:textColor="?attr/textColor"
                         android:gravity="center_vertical"
                         android:text="操作系统"
                         android:textSize="16sp" />
@@ -95,6 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
+                        android:textColor="?attr/textColor"
                         android:gravity="center"
                         android:text="X4313"
                         android:textSize="16sp" />
