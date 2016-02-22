@@ -3,7 +3,8 @@ package cn.edu.jxnu.awesome_campus.ui.home;
 import android.util.Log;
 import android.view.View;
 
-import org.angmarch.views.NiceSpinner;
+import com.jaredrummler.materialspinner.MaterialSpinner;
+
 
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class CourseTableFragment extends BaseListFragment{
                 }
             }
         });
-        spinnerWrapper.build((NiceSpinner) parentView.findViewById(R.id.spinner));
+        spinnerWrapper.build((MaterialSpinner) parentView.findViewById(R.id.spinner));
     }
 
     @Override

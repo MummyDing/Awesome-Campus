@@ -15,7 +15,7 @@ import cn.edu.jxnu.awesome_campus.R;
 public class BaseActivity extends AppCompatActivity {
 
     protected void loadConfig(){
-        this.setTheme(R.style.DarkTheme);
+        this.setTheme(R.style.LightgreenTheme);
     }
 
     @Override

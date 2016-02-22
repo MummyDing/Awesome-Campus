@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import org.angmarch.views.NiceSpinner;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,28 +34,22 @@ public class TermSpinnerWrapper {
 
     private int index = 0;
 
-    private NiceSpinner mSpinner;
+    private MaterialSpinner mSpinner;
 
     private List<String> termList;
     public TermSpinnerWrapper() {
     }
 
-    public NiceSpinner build(NiceSpinner spinner){
+    public MaterialSpinner build(MaterialSpinner spinner){
 
         mSpinner = spinner;
-
+        spinner.setBackgroundColor(ContextCompat.getColor(InitApp.AppContext,R.color.colorAccent));
         updateAttachList();
         if(listener != null) {
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if(termList != null)
+            spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+
+                @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                     listener.onTermChanged(position,termList.get(position));
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
                 }
             });
         }
@@ -81,7 +75,7 @@ public class TermSpinnerWrapper {
         }
         // init data
 
-        mSpinner.attachDataSource(termList);
+        mSpinner.setItems(termList);
 //        mSpinner.setBackgroundColor(ContextCompat.getColor(InitApp.AppContext,R.color.colorAccent));
         index = termList.size()-1;
         mSpinner.setSelectedIndex(index);

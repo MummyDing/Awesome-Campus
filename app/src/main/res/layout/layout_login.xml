@@ -53,7 +53,7 @@
             android:text="@string/Login"
             android:layout_below="@id/inputArea"
             android:textColor="@color/md_white_1000"
-            android:background="?attr/colorAccent"
+            android:background="?attr/colorPrimary"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:layout_width="240dp"

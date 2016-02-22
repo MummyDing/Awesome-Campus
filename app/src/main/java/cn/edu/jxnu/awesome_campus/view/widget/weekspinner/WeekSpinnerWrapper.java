@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import org.angmarch.views.NiceSpinner;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -43,7 +43,7 @@ public class WeekSpinnerWrapper{
     public WeekSpinnerWrapper() {
     }
 
-    public NiceSpinner build(NiceSpinner spinner){
+    public MaterialSpinner build(MaterialSpinner spinner){
         // init data
         List<String> daysOfWeek =new LinkedList<String>(
         Arrays.asList(mContext.getString(R.string.monday),mContext.getString(R.string.tuesday),
@@ -51,23 +51,17 @@ public class WeekSpinnerWrapper{
                 mContext.getString(R.string.friday),mContext.getString(R.string.saturday),
                 mContext.getString(R.string.sunday)));
 
-        spinner.attachDataSource(daysOfWeek);
+        spinner.setItems(daysOfWeek);
 
-        spinner.setBackgroundResource(R.drawable.selector);
 
         index = TimeUtil.getDayOfWeek() - 1;
-        spinner.setSelectedIndex(index);
+        spinner.setSelectedIndex(index);  ;
         listener.onDayChanged(index);
         if(listener != null) {
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    listener.onDayChanged(position);
-                }
+            spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
+                @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                            listener.onDayChanged(position);
                 }
             });
         }

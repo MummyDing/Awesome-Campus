@@ -2,9 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.education;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
-import org.angmarch.views.NiceSpinner;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +60,7 @@ public class CourseScoreFragment extends BaseListFragment {
                     Log.d("学期",termName);
                 }
             });
-            spinnerWrapper.build((NiceSpinner) parentView.findViewById(R.id.spinner));
+            spinnerWrapper.build((MaterialSpinner) parentView.findViewById(R.id.spinner));
         }
     }
 

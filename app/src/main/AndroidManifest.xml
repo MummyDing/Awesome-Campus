@@ -43,7 +43,7 @@
         <activity android:name=".ui.leisure.FilmDetailsActivity" />
         <activity
             android:name=".ui.home.CourseDetailsDialog"
-            android:theme="@style/DialogTheme" />
+            android:theme="@style/BlueDialogTheme" />
         <activity
             android:name=".ui.education.ScoreDetailsDialog"
             android:theme="@style/DialogTheme"></activity>
