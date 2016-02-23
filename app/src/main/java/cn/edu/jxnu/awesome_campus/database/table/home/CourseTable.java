@@ -37,7 +37,7 @@ public class CourseTable {
      */
 
     public static final int ID_DAY_OF_WEEK = 0;
-    public static final int ID_TREM = 1;
+    public static final int ID_TERM = 1;
     public static final int ID_ONE_TWO = 2;
     public static final int ID_THREE = 3;
     public static final int ID_FOUR = 4;

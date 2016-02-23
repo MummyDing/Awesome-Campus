@@ -106,5 +106,17 @@ public class EVENT {
     public static final int CAMPUS_EXPRESS_FAILURE = 48;
 
 
+    /**
+     * Cache Event Code
+     */
+
+    // Course Table
+    public static final int COURSE_TABLE_LOAD_CACHE_SUCCESS = 1000;
+    public static final int COURSE_TABLE_LOAD_CACHE_FAILURE = 1001;
+
+    // Course Info
+    public static final int COURSE_INFO_LOAD_CACHE_SUCCESS = 1002;
+    public static final int COURSE_INFO_LOAD_CACHE_FAILURE = 1003;
+
 }
 
