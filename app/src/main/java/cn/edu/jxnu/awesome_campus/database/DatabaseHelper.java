@@ -1,8 +1,21 @@
 package cn.edu.jxnu.awesome_campus.database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.database.table.education.CourseScoreTable;
+import cn.edu.jxnu.awesome_campus.database.table.education.ExamTimeTable;
+import cn.edu.jxnu.awesome_campus.database.table.home.CampusNewsTable;
+import cn.edu.jxnu.awesome_campus.database.table.home.CourseInfoTable;
+import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
+import cn.edu.jxnu.awesome_campus.database.table.library.BookBorrowedTable;
+import cn.edu.jxnu.awesome_campus.database.table.library.BookSearchHistoryTable;
+import cn.edu.jxnu.awesome_campus.database.table.library.BorrowHistoryTable;
+import cn.edu.jxnu.awesome_campus.database.table.life.WeatherInfoTable;
 
 /**
  * Created by MummyDing on 16-2-2.
@@ -13,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "Awesome_Campus";
     private static DatabaseHelper instance = null;
+    private static SQLiteDatabase db = null;
     private static final int DB_VERSION = 1;
     public static final String CLEAR_TABLE_DATA = "delete from ";
     public static final String DROP_TABLE = "drop table if exists ";
@@ -22,48 +36,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-/*
-        *//**
+        /*
          * Home
-         *//*
-        db.execSQL(CampusNewsTable.CREATE_TIME);
+         */
+        db.execSQL(CampusNewsTable.CREATE_TABLE);
         db.execSQL(CourseInfoTable.CREATE_TABLE);
         db.execSQL(CourseTable.CREATE_TABLE);
 
 
-        *//**
+        /*
          * Leisure
-         *//*
+         */
 
 
-        *//**
+        /*
          * Life
-         *//*
+                */
 
         db.execSQL(WeatherInfoTable.CREATE_TABLE);
 
 
-        *//**
+        /*
          * Study
-         *//*
+         */
 
 
-        *//**
+        /*
          * Library
-         *//*
+         */
 
         db.execSQL(BookBorrowedTable.CREATE_TABLE);
         db.execSQL(BookSearchHistoryTable.CREATE_TABLE);
         db.execSQL(BorrowHistoryTable.CREATE_TIME);
 
-        *//**
+        /*
          * Education
-         *//*
+         */
 
         db.execSQL(CourseScoreTable.CREATE_TABLE);
         db.execSQL(ExamTimeTable.CREATE_TABLE);
 
-        */
 
 
 
@@ -74,10 +86,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    public static synchronized DatabaseHelper instance(Context context){
+    public static synchronized DatabaseHelper getInstance(){
         if(instance == null){
-            instance = new DatabaseHelper(context,DB_NAME,null,DB_VERSION);
+            instance = new DatabaseHelper(InitApp.AppContext,DB_NAME,null,DB_VERSION);
         }
         return instance;
     }
+
+    public static synchronized SQLiteDatabase getDatabase(){
+        if (db == null){
+            db = getInstance().getWritableDatabase();
+        }
+        return db;
+    }
+
+
+    public static void exeSQL(String sql,String ... params){
+        getDatabase().execSQL(sql,params);
+    }
+
+    public static void exeSQL(String sql){
+        getDatabase().execSQL(sql);
+    }
+
+
+    public static void insert(String table, ContentValues cv){
+        getDatabase().insert(table,null,cv);
+    }
+
+
+    public static Cursor selectAll(String table){
+        return getDatabase().query(table,null,null,null,null,null,null);
+    }
+
+    public static void clearTable(String table){
+        exeSQL(CLEAR_TABLE_DATA+table);
+    }
+
+
+
 }

@@ -6,6 +6,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jaredrummler/material-spinner/1.0.4/7b338591a013798b057bf15cf8d62744818986d2/material-spinner-1.0.4-sources.jar!/" />
       <root url="jar://$USER_HOME$/Android/sdk/gradle-2.8/caches/modules-2/files-2.1/com.jaredrummler/material-spinner/1.0.4/7b338591a013798b057bf15cf8d62744818986d2/material-spinner-1.0.4-sources.jar!/" />
     </SOURCES>
   </library>

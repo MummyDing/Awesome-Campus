@@ -41,7 +41,7 @@ public class BookBorrowedTable {
             BOOK_TITLE+" text, "+
             AUTHOR+" text, "+
             BORROW_TIME+" text, "+
-            SHOULD_BACK_TIME+" text "+
+            SHOULD_BACK_TIME+" text, "+
             AGAIN_TIMES+" text, "+
-            BOOK_CODE+" text)";
+            BOOK_LOCATION+" text)";
 }

@@ -36,7 +36,7 @@ public class CampusNewsTable {
 
 
 
-    public static final String CREATE_TIME = "create table "+NAME+"("+
+    public static final String CREATE_TABLE = "create table "+NAME+"("+
             NEWS_TITLE+" text primary key, "+
             NEWS_TIME+" text, "+
             NEWS_URL+" text, "+

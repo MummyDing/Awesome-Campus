@@ -69,6 +69,7 @@ public class CourseTableFragment extends BaseListFragment{
     @Override
     public void initView() {
         setOnLineLayout(EducationLoginUtil.isLogin());
+        courseTableModel.loadFromCache();
     }
 
     @Override
@@ -81,15 +82,29 @@ public class CourseTableFragment extends BaseListFragment{
                 adapter.newList(eventModel.getDataList());
                 break;
             case EVENT.COURSE_TABLE_REFRESH_FAILURE:
-                displayNetworkError();
+                hideLoading();
                 break;
+
+            case EVENT.COURSE_TABLE_LOAD_CACHE_SUCCESS:
+                weekCourse = eventModel.getDataList();
+                adapter.newList(eventModel.getDataList());
+                courseInfoModel.loadFromCache();
+                break;
+
+            case EVENT.COURSE_TABLE_LOAD_CACHE_FAILURE:
+                onDataRefresh();
+                break;
+
             case EVENT.COURSE_INFO_REFRESH_FAILURE:
                 displayNetworkError();
                 break;
             case EVENT.COURSE_INFO_REFRESH_SUCCESS:
-                Log.d("获取到了","课程信息");
+            case EVENT.COURSE_INFO_LOAD_CACHE_SUCCESS:
                 adapter.addCourseInfoList(eventModel.getDataList());
                 hideLoading();
+                break;
+            case EVENT.COURSE_INFO_LOAD_CACHE_FAILURE:
+                courseInfoModel.loadFromNet();
                 break;
         }
     }
