@@ -32,4 +32,17 @@ public class ThemeConfig {
             R.style.PurpleTheme,
             R.style.OrangeTheme
     };
+    //主题对话框样式值
+    public static final int themeDialogStyle[]={
+            R.style.DialogTheme,
+            R.style.DarkDialogTheme,
+            R.style.BrownDialogTheme,
+            R.style.CyanDialogTheme,
+            R.style.TealDialogTheme,
+            R.style.LightgreenDialogTheme,
+            R.style.BlueDialogTheme,
+            R.style.BlueGreyDialogTheme,
+            R.style.PurpleDialogTheme,
+            R.style.OrangeDialogTheme
+    };
 }

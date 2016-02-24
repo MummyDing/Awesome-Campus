@@ -12,10 +12,13 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import cn.edu.jxnu.awesome_campus.Config;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
+import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 
 public class CourseDetailsDialog extends Activity {
 
@@ -33,6 +36,7 @@ public class CourseDetailsDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(ThemeConfig.themeDialogStyle[Config.themeSelected]);
         setContentView(R.layout.dialog_course_info);
         EventBus.getDefault().register(this);
     }

@@ -20,8 +20,8 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void loadConfig() {
         SPUtil sp=new SPUtil(InitApp.AppContext);
-        int selected=sp.getIntSP(Config.SP_FILE_NAME,Config.THEME_SELECTED);
-        this.setTheme(ThemeConfig.themeStyle[selected]);
+        Config.themeSelected=sp.getIntSP(Config.SP_FILE_NAME,Config.THEME_SELECTED);
+        this.setTheme(ThemeConfig.themeStyle[Config.themeSelected]);
     }
 
     @Override
