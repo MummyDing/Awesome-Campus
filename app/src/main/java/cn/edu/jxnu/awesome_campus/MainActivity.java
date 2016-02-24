@@ -13,6 +13,7 @@ package cn.edu.jxnu.awesome_campus;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
@@ -33,7 +34,9 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
+import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
@@ -121,18 +124,25 @@ public class MainActivity extends BaseActivity implements HomeView{
             switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
         }else if(id == DrawerItem.THEME.getId()){
 
-            /***
-             * 测试用　非正式代码！！！！！！　－－－－By MummyDing
-             */
-
-            ColorPickerDialog dialog = new ColorPickerDialog(this,new int[]{Color.YELLOW,Color.BLACK,Color.BLUE,Color.GRAY,
-            Color.GREEN,Color.CYAN,Color.RED,Color.DKGRAY});
+            ColorPickerDialog dialog = new ColorPickerDialog(this, ThemeConfig.themeColor);
 
 
             dialog.setOnColorChangedListener(new OnColorChangedListener() {
                 @Override
                 public void onColorChanged(int newColor) {
-                    Toast.makeText(getApplicationContext(),"Color "+newColor,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),"Color "+newColor,Toast.LENGTH_SHORT).show();
+                    SPUtil sp=new SPUtil(MainActivity.this);
+                    int selectColor=0;
+                    for(int i=0;i<ThemeConfig.themeColor.length;i++){
+                        if(ThemeConfig.themeColor[i]==newColor){
+                            selectColor=i;
+                            break;
+                        }
+                    }
+                    sp.putIntSP(Config.SP_FILE_NAME,Config.THEME_SELECTED,selectColor);
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
                 }
             });
             dialog.build().show();

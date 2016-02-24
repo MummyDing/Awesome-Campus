@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.database.spkey;
+package cn.edu.jxnu.awesome_campus.support.spkey;
 
 /**
  * Created by KevinWu on 2016/2/7.

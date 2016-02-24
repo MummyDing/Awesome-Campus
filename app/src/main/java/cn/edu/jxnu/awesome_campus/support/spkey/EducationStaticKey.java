@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.database.spkey;
+package cn.edu.jxnu.awesome_campus.support.spkey;
 
 /**
  * 用于记录教务在线的SharedPreferences文件静态key

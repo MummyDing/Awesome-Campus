@@ -2,7 +2,6 @@ package cn.edu.jxnu.awesome_campus.support.utils.login;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.widget.EditText;
 
@@ -13,7 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
-import cn.edu.jxnu.awesome_campus.database.spkey.EducationStaticKey;
+import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.EducationalSysLoginParse;

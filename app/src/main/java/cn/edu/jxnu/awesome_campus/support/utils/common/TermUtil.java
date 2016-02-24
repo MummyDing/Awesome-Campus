@@ -1,12 +1,10 @@
 package cn.edu.jxnu.awesome_campus.support.utils.common;
 
-import android.util.Log;
-
 import java.util.Arrays;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
-import cn.edu.jxnu.awesome_campus.database.spkey.TermStaticKey;
+import cn.edu.jxnu.awesome_campus.support.spkey.TermStaticKey;
 
 /**
  * 获取当前学期类

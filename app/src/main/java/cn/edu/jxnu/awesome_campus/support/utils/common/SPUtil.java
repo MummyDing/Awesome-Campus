@@ -34,7 +34,7 @@ public class SPUtil {
      */
     public int getIntSP(String spName, String spKey) {
         SharedPreferences sp = initSP(spName);
-        int spGet = sp.getInt(spKey, 0x000001);
+        int spGet = sp.getInt(spKey, 0);
         return spGet;
     }
 
@@ -46,7 +46,7 @@ public class SPUtil {
      */
     public long getLongSP(String spName, String spKey) {
         SharedPreferences sp = initSP(spName);
-        long spGet = sp.getLong(spKey, 0x000001);
+        long spGet = sp.getLong(spKey, 0);
         return spGet;
     }
 
@@ -58,7 +58,7 @@ public class SPUtil {
      */
     public float getFloatSP(String spName, String spKey) {
         SharedPreferences sp = initSP(spName);
-        float spGet = sp.getFloat(spKey, -0.000001f);
+        float spGet = sp.getFloat(spKey, 0);
         return spGet;
     }
 

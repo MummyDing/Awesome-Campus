@@ -1,16 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.provider.Browser;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -19,12 +13,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import cn.edu.jxnu.awesome_campus.R;
-import cn.edu.jxnu.awesome_campus.database.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
-import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 
 public class CourseDetailsDialog extends Activity {
 

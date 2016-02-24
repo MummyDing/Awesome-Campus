@@ -10,8 +10,7 @@ import com.squareup.okhttp.Headers;
 import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
-import cn.edu.jxnu.awesome_campus.database.spkey.EducationStaticKey;
-import cn.edu.jxnu.awesome_campus.database.spkey.LibraryStaticKey;
+import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.LibraryLoginInfoParse;

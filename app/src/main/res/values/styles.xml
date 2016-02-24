@@ -182,6 +182,33 @@
         <item name="backgroundColor">@color/backgroundColor</item>
     </style>
 
+
+    <!--Teal主题-->
+    <style name="TealTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/tealColorPrimary</item>
+        <item name="colorPrimaryDark">@color/tealColorPrimaryDark</item>
+        <item name="colorAccent">@color/tealColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="TealDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/tealColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
     <!--Lightgreen主题-->
     <style name="LightgreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->

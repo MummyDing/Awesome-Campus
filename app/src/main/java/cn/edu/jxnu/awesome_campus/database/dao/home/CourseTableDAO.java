@@ -15,7 +15,7 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
-import cn.edu.jxnu.awesome_campus.database.spkey.EducationStaticKey;
+import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;

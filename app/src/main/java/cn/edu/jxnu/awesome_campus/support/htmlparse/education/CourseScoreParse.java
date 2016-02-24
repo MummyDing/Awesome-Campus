@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
-import cn.edu.jxnu.awesome_campus.database.spkey.TermStaticKey;
+import cn.edu.jxnu.awesome_campus.support.spkey.TermStaticKey;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.HtmlUtil;
