@@ -9,12 +9,15 @@ import com.squareup.okhttp.Headers;
 
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
+import cn.edu.jxnu.awesome_campus.database.table.home.CampusNewsTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.home.CampusNewsContentParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.GetNewsFirstPic;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
@@ -33,36 +36,50 @@ public class CampusNewsDetailsActivity extends BaseDetailsActivity{
     public static final String TAG = "CampusNewsDetailsActivity";
 
     private CampusNewsModel model;
-
+    private Handler handler = new Handler(Looper.getMainLooper());
     @Override
     protected void onDataRefresh() {
-        NetManageUtil.get(Urlconfig.CampusNews_Base_URL + model.getNewsURL())
-                .addTag(TAG)
-                .enqueue(new StringCallback() {
-                    @Override
-                    public void onSuccess(String result, Headers headers) {
-                        CampusNewsContentParse myParse = new CampusNewsContentParse(result);
-                        model.setNewsPicURL(GetNewsFirstPic.getPicURL(myParse.getEndStr()));
-                        model.setNewsDetails(myParse.getEndStr());
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                onEventMainThread(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_DETAILS_REFRESH_SUCCESS));
-                            }
-                        });
-                    }
+        if (TextUtil.isNull(model.getNewsDetails())){
+            NetManageUtil.get(Urlconfig.CampusNews_Base_URL + model.getNewsURL())
+                    .addTag(TAG)
+                    .enqueue(new StringCallback() {
+                        @Override
+                        public void onSuccess(String result, Headers headers) {
+                            CampusNewsContentParse myParse = new CampusNewsContentParse(result);
+                            model.setNewsPicURL(GetNewsFirstPic.getPicURL(myParse.getEndStr()));
+                            model.setNewsDetails(myParse.getEndStr());
+                            // 存入数据库
+                            DatabaseHelper.exeSQL(CampusNewsTable.UPDATE_DETAILS,model.getNewsDetails(),model.getNewsTitle());
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    onEventMainThread(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_DETAILS_REFRESH_SUCCESS));
+                                }
+                            });
 
-                    @Override
-                    public void onFailure(String error) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                onEventMainThread(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_DETAILS_REFRESH_FAILURE));
-                            }
-                        });
-                    }
-                });
+                        }
 
+                        @Override
+                        public void onFailure(String error) {
+
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    onEventMainThread(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_DETAILS_REFRESH_FAILURE));
+                                }
+                            });
+
+                        }
+                    });
+        }else{
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    onEventMainThread(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_DETAILS_REFRESH_SUCCESS));
+                }
+            });
+
+        }
     }
 
 

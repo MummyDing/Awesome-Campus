@@ -118,5 +118,9 @@ public class EVENT {
     public static final int COURSE_INFO_LOAD_CACHE_SUCCESS = 1002;
     public static final int COURSE_INFO_LOAD_CACHE_FAILURE = 1003;
 
+    // CampusNews
+    public static final int CAMPUS_NEWS_LOAD_CACHE_SUCCESS = 1004;
+    public static final int CAMPUS_NEWS_LOAD_CACHE_FAILURE = 1005;
+
 }
 

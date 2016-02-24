@@ -24,6 +24,9 @@ public class CampusNewsTable {
     // 新闻拉取到本地的时间
     public static final String UPDATE_TIME = "UpdateTime";
 
+    // 新闻详情
+    public static final String NEWS_DETAILS = "NewsDetails";
+
     /**
      * 字段ID 数据库操作建立字段对应关系 从0开始
      */
@@ -33,6 +36,7 @@ public class CampusNewsTable {
     public static final int ID_NEWS_URL = 2;
     public static final int ID_NEWS_PIC_URL = 3;
     public static final int ID_UPDATE_TIME = 4;
+    public static final int ID_NEWS_DETAILS = 5;
 
 
 
@@ -41,6 +45,10 @@ public class CampusNewsTable {
             NEWS_TIME+" text, "+
             NEWS_URL+" text, "+
             NEWS_PIC_URL+" text, "+
-            UPDATE_TIME+" text)";
+            UPDATE_TIME+" text, "+
+            NEWS_DETAILS+" text)";
+
+    public static final String UPDATE_DETAILS = "update "+NAME+" set "+NEWS_DETAILS
+            +"= ?"+" where "+NEWS_TITLE+" =? ";
 
 }

@@ -1,5 +1,8 @@
 package cn.edu.jxnu.awesome_campus.database.dao.home;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.media.midi.MidiOutputPort;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -10,7 +13,9 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.database.table.home.CampusNewsTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
@@ -28,17 +33,59 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
     public static final String TAG="CampusNewsDAO";
     @Override
     public boolean cacheAll(List<CampusNewsModel> list) {
-        return false;
+
+        if (list == null || list.size() == 0){
+            return false;
+        }
+        clearCache();
+
+        for (int i=0 ; i<list.size() ; i++){
+            CampusNewsModel model = list.get(i);
+            ContentValues values = new ContentValues();
+            values.put(CampusNewsTable.NEWS_TITLE,model.getNewsTitle());
+            values.put(CampusNewsTable.NEWS_TIME,model.getNewsTime());
+            values.put(CampusNewsTable.NEWS_URL,model.getNewsURL());
+            values.put(CampusNewsTable.NEWS_PIC_URL,model.getNewsPicURL());
+            values.put(CampusNewsTable.UPDATE_TIME,model.getUpdateTime());
+            DatabaseHelper.insert(CampusNewsTable.NAME,values);
+        }
+        return true;
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        DatabaseHelper.clearTable(CampusNewsTable.NAME);
+        return true;
     }
 
     @Override
     public void loadFromCache() {
+        Cursor cursor = DatabaseHelper.selectAll(CampusNewsTable.NAME);
+        final List<CampusNewsModel> list = new ArrayList<>();
 
+        while (cursor.moveToNext()){
+            CampusNewsModel model = new CampusNewsModel();
+            model.setNewsTitle(cursor.getString(CampusNewsTable.ID_NEWS_TITLE));
+            model.setNewsTime(cursor.getString(CampusNewsTable.ID_NEWS_TIME));
+            model.setNewsURL(cursor.getString(CampusNewsTable.ID_NEWS_URL));
+            model.setNewsPicURL(cursor.getString(CampusNewsTable.ID_NEWS_PIC_URL));
+            model.setUpdateTime(cursor.getString(CampusNewsTable.ID_UPDATE_TIME));
+            model.setNewsDetails(cursor.getString(CampusNewsTable.ID_NEWS_DETAILS));
+            list.add(model);
+        }
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (list.size() != 0){
+                    // 从缓存获取成功 发送消息
+                    EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_LOAD_CACHE_SUCCESS,list));
+                }else{
+                    //从缓存获取失败
+                    EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_LOAD_CACHE_FAILURE));
+                }
+            }
+        });
     }
 
     private int count = 1;
@@ -124,6 +171,7 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
             @Override
             public void run() {
                 count = 1;
+                cacheAll(result);
                 EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_REFRESH_SUCCESS, result));
             }
         });

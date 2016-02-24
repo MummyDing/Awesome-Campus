@@ -42,7 +42,6 @@ public class CampusNewsFragment extends BaseListFragment {
         model = new CampusNewsModel();
         adapter = new CampusNewsAdapter(getContext(),model);
         recyclerView.setAdapter(adapter);
-        model.loadFromNet();
         displayLoading();
     }
 
@@ -53,6 +52,7 @@ public class CampusNewsFragment extends BaseListFragment {
 
     @Override
     public void initView() {
+        model.loadFromCache();
     }
 
     @Override
@@ -61,6 +61,7 @@ public class CampusNewsFragment extends BaseListFragment {
 
         switch (eventModel.getEventCode()){
             case EVENT.CAMPUS_NEWS_REFRESH_SUCCESS:
+            case EVENT.CAMPUS_NEWS_LOAD_CACHE_SUCCESS:
                 List list = eventModel.getDataList();
                 Collections.sort(list);
                 adapter.newList(list);
@@ -68,7 +69,9 @@ public class CampusNewsFragment extends BaseListFragment {
                 break;
             case EVENT.CAMPUS_NEWS_REFRESH_FAILURE:
                 hideLoading();
-                displayNetworkError();
+                break;
+            case EVENT.CAMPUS_NEWS_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }
