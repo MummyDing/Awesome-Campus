@@ -56,7 +56,7 @@ public class DailyAdapter extends BaseListAdapter<DailyModel,DailyAdapter.VH> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DailyDetailsActivity.class);
-                EventBus.getDefault().postSticky(new EventModel<String>(EVENT.SEND_MODEL_DETAIL,model.getId()+""));
+                EventBus.getDefault().postSticky(new EventModel<DailyModel>(EVENT.SEND_MODEL_DETAIL,model));
                 mContext.startActivity(intent);
                 // 这里要加动画
             }

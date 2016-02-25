@@ -12,6 +12,7 @@ import cn.edu.jxnu.awesome_campus.database.table.education.ExamTimeTable;
 import cn.edu.jxnu.awesome_campus.database.table.home.CampusNewsTable;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseInfoTable;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
+import cn.edu.jxnu.awesome_campus.database.table.home.DailyTable;
 import cn.edu.jxnu.awesome_campus.database.table.library.BookBorrowedTable;
 import cn.edu.jxnu.awesome_campus.database.table.library.BookSearchHistoryTable;
 import cn.edu.jxnu.awesome_campus.database.table.library.BorrowHistoryTable;
@@ -47,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         /*
          * Leisure
          */
-
+        db.execSQL(DailyTable.CREATE_TABLE);
 
         /*
          * Life

@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -139,7 +138,7 @@ public class ColorButton extends View {
     }
 
     private void drawCircle(Canvas canvas){
-        mPaint.setColor(ContextCompat.getColor(mContext,mColor));
+        mPaint.setColor(mColor);
         canvas.drawCircle(paddingHorizontal + width/2,paddingVertical + height/2,mRadius,mPaint);
     }
     private void drawCheck(Canvas canvas){

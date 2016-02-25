@@ -1,5 +1,8 @@
 package cn.edu.jxnu.awesome_campus.support.theme;
 
+import android.support.v4.content.ContextCompat;
+
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 
 /**
@@ -8,16 +11,16 @@ import cn.edu.jxnu.awesome_campus.R;
 public class ThemeConfig {
     //颜色选择器颜色值
     public static final int themeColor[]={
-            R.color.colorPrimary,
-            R.color.nightColorPrimary,
-            R.color.brownColorPrimary,
-            R.color.cyanColorPrimary,
-            R.color.tealColorPrimary,
-            R.color.lightGreenColorPrimary,
-            R.color.blueColorPrimary,
-            R.color.blueGreyColorPrimary,
-            R.color.purpleColorPrimary,
-            R.color.orangeColorPrimary
+            ContextCompat.getColor(InitApp.AppContext,R.color.colorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.nightColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.brownColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.cyanColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.tealColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.lightGreenColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.blueColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.blueGreyColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.purpleColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.orangeColorPrimary)
     };
     //主题样式值
     public static final int themeStyle[]={

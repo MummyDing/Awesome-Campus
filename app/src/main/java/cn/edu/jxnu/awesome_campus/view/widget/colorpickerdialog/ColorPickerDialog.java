@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;

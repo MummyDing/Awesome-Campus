@@ -1,16 +1,28 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 
 
+import com.squareup.okhttp.Headers;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.IOException;
+
 import cn.edu.jxnu.awesome_campus.R;
-import cn.edu.jxnu.awesome_campus.api.DailyApi;
-import cn.edu.jxnu.awesome_campus.database.dao.leisure.DailyDetailsDAO;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
+import cn.edu.jxnu.awesome_campus.database.table.home.DailyTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.DailyDetailsBean;
+import cn.edu.jxnu.awesome_campus.model.leisure.DailyModel;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseDetailsActivity;
 
 /**
@@ -21,12 +33,50 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseDetailsActivity;
 public class DailyDetailsActivity extends BaseDetailsActivity{
 
     public static final String TAG = "DailyDetailsActivity";
-    private DailyDetailsBean model;
-    private String url;
-    private DailyDetailsDAO dao = new DailyDetailsDAO();
+    private DailyModel model;
+    private Handler handler = new Handler(Looper.getMainLooper());
     @Override
     protected void onDataRefresh() {
-        dao.loadFromNet();
+
+        if (TextUtil.isNull(model.getBody())) {
+            NetManageUtil.post(model.getUrl()).enqueue(new JsonEntityCallback<DailyDetailsBean>() {
+                @Override
+                public void onFailure(IOException e) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            EventBus.getDefault().post(new EventModel<DailyDetailsBean>(EVENT.DAILY_DETAIL_FAILURE));
+                        }
+                    });
+                }
+
+                @Override
+                public void onSuccess(final DailyDetailsBean entity, Headers headers) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (entity == null) {
+                                EventBus.getDefault().post(new EventModel<DailyDetailsBean>(EVENT.DAILY_DETAIL_FAILURE));
+                            } else {
+                                model.setBody(entity.getBody());
+                                model.setLargePic(entity.getImage());
+                                //更新数据库
+                                DatabaseHelper.exeSQL(DailyTable.UPDATE_DETAILS,entity.getBody(),entity.getImage(),model.getTitle());
+                                EventBus.getDefault().post(new EventModel<DailyDetailsBean>(EVENT.DAILY_DETAIL_SUCCESS));
+                            }
+                        }
+                    });
+                }
+            });
+        }else {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new EventModel<DailyDetailsBean>(EVENT.DAILY_DETAIL_SUCCESS));
+                }
+            });
+        }
+
     }
 
     @Override
@@ -34,12 +84,10 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
 
         switch (eventModel.getEventCode()){
             case EVENT.SEND_MODEL_DETAIL:
-                url = DailyApi.daily_details_url+eventModel.getData();
-                dao.setUrl(url);
+                model = (DailyModel) eventModel.getData();
                 initView();
                 break;
             case EVENT.DAILY_DETAIL_SUCCESS:
-                model = (DailyDetailsBean) eventModel.getData();
                 scrollView.setVisibility(View.VISIBLE);
                 scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
                     @Override
@@ -48,7 +96,7 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
                     }
                 });
                 contentView.loadDataWithBaseURL("file:///android_asset/", "<link rel=\"stylesheet\" type=\"text/css\" href=\"Daily.css\" />" + model.getBody(), "text/html", "utf-8", null);
-                setMainContentBg(model.getImage());
+                setMainContentBg(model.getLargePic());
                 hideLoading();
                 break;
             case EVENT.DAILY_DETAIL_FAILURE:
@@ -61,6 +109,6 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
 
     @Override
     protected String getShareInfo() {
-        return "["+model.getTitle()+"]:"+model.getShare_url()+" ( "+"share from "+getString(R.string.app_name)+")";
+        return "["+model.getTitle()+"]:"+model.getUrl()+" ( "+"share from "+getString(R.string.app_name)+")";
     }
 }

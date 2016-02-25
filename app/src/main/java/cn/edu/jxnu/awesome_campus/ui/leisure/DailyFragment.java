@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
+import android.media.midi.MidiOutputPort;
 import android.util.Log;
 
 import java.util.List;
@@ -36,7 +37,6 @@ public class DailyFragment extends BaseListFragment {
         model = new DailyModel();
         adapter = new DailyAdapter(getActivity(),model);
         recyclerView.setAdapter(adapter);
-        onDataRefresh();
         displayLoading();
     }
 
@@ -47,7 +47,7 @@ public class DailyFragment extends BaseListFragment {
 
     @Override
     public void initView() {
-
+        model.loadFromCache();
     }
 
     @Override
@@ -55,6 +55,7 @@ public class DailyFragment extends BaseListFragment {
         super.onEventComing(eventModel);
 
         switch (eventModel.getEventCode()){
+            case EVENT.DAILY_LOAD_CACHE_SUCCESS:
             case EVENT.DAILY_REFRESH_SUCCESS:
                 List list = eventModel.getDataList();
                 adapter.newList(list);
@@ -62,7 +63,10 @@ public class DailyFragment extends BaseListFragment {
                 break;
             case EVENT.DAILY_REFRESH_FAILURE:
                 hideLoading();
-                displayNetworkError();
+                break;
+
+            case EVENT.DAILY_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }

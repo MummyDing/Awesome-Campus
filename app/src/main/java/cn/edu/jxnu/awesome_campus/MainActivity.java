@@ -130,7 +130,9 @@ public class MainActivity extends BaseActivity implements HomeView{
             dialog.setOnColorChangedListener(new OnColorChangedListener() {
                 @Override
                 public void onColorChanged(int newColor) {
-//                    Toast.makeText(getApplicationContext(),"Color "+newColor,Toast.LENGTH_SHORT).show();
+                    if (newColor == ThemeConfig.themeColor[Config.themeSelected]){
+                        return;
+                    }
                     SPUtil sp=new SPUtil(MainActivity.this);
                     int selectColor=0;
                     for(int i=0;i<ThemeConfig.themeColor.length;i++){
@@ -140,14 +142,11 @@ public class MainActivity extends BaseActivity implements HomeView{
                         }
                     }
                     sp.putIntSP(Config.SP_FILE_NAME,Config.THEME_SELECTED,selectColor);
-                    Intent intent = getIntent();
-                    finish();
-                    startActivity(intent);
+                    recreate();
                 }
             });
             dialog.build().show();
-            dialog.setCheckedColor(Color.YELLOW);
-            //setTitle(DrawerItem.THEME.getItemName());
+            dialog.setCheckedColor(ThemeConfig.themeColor[Config.themeSelected]);
         }else if(id == DrawerItem.SETTINGS.getId()){
             //setTitle(DrawerItem.SETTINGS.getItemName());
         }else if(id == DrawerItem.LOGOUT.getId()){

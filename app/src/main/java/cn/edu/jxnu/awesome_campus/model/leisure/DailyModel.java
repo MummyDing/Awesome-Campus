@@ -1,16 +1,10 @@
 package cn.edu.jxnu.awesome_campus.model.leisure;
 
-import com.squareup.okhttp.Headers;
-
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.api.DailyApi;
 import cn.edu.jxnu.awesome_campus.database.dao.leisure.DailyDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
-import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 
 /**
  * Created by MummyDing on 16-2-10.
@@ -22,10 +16,13 @@ public class DailyModel implements IModel<DailyModel> {
 
     private DailyDAO dailyDAO;
     private String title;
+
     private int id;
 
     private String body;
-    //private String largepic;
+
+    private String largePic;
+
     private String [] images;
 
 
@@ -33,10 +30,12 @@ public class DailyModel implements IModel<DailyModel> {
         dailyDAO = new DailyDAO();
     }
 
-    public DailyModel(String title, int id, String body, String[] images) {
+
+    public DailyModel(String title, int id, String body, String largePic, String[] images) {
         this.title = title;
         this.id = id;
         this.body = body;
+        this.largePic = largePic;
         this.images = images;
     }
 
@@ -84,13 +83,13 @@ public class DailyModel implements IModel<DailyModel> {
         this.body = body;
     }
 
-    /*public String getLargepic() {
-        return largepic;
+    public String getLargePic() {
+        return largePic;
     }
 
-    public void setLargepic(String largepic) {
-        this.largepic = largepic;
-    }*/
+    public void setLargePic(String largePic) {
+        this.largePic = largePic;
+    }
 
     public String[] getImages() {
         return images;
@@ -98,5 +97,10 @@ public class DailyModel implements IModel<DailyModel> {
 
     public void setImages(String[] images) {
         this.images = images;
+    }
+
+
+    public String getUrl(){
+        return DailyApi.daily_details_url+id;
     }
 }

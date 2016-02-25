@@ -1,11 +1,5 @@
 package cn.edu.jxnu.awesome_campus.model.leisure;
 
-import java.util.List;
-
-import cn.edu.jxnu.awesome_campus.api.DailyApi;
-import cn.edu.jxnu.awesome_campus.database.dao.leisure.DailyDetailsDAO;
-import cn.edu.jxnu.awesome_campus.model.IModel;
-
 /**
  * Created by MummyDing on 16-2-10.
  * GitHub: https://github.com/MummyDing

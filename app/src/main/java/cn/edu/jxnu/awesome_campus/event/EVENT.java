@@ -122,5 +122,9 @@ public class EVENT {
     public static final int CAMPUS_NEWS_LOAD_CACHE_SUCCESS = 1004;
     public static final int CAMPUS_NEWS_LOAD_CACHE_FAILURE = 1005;
 
+
+    // Daily
+    public static final int DAILY_LOAD_CACHE_SUCCESS = 1006;
+    public static final int DAILY_LOAD_CACHE_FAILURE = 1007;
 }
 

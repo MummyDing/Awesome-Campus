@@ -10,7 +10,7 @@ import cn.edu.jxnu.awesome_campus.database.dao.DAO;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public interface IModel<M extends IModel> extends Serializable{
+public interface IModel<M extends IModel> {
 
 
     /**

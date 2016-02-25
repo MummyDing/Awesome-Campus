@@ -1,6 +1,8 @@
 package cn.edu.jxnu.awesome_campus.presenter.home;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -15,8 +17,10 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
+import cn.edu.jxnu.awesome_campus.Config;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
+import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
@@ -126,6 +130,8 @@ public class HomePresenterImpl implements HomePresenter {
                 drawer.updateItem(LogItem);
             }
         }
+
+        header.getHeaderBackgroundView().setBackgroundColor(ThemeConfig.themeColor[Config.themeSelected]);
     }
 
 
