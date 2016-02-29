@@ -6,8 +6,9 @@ Jiangxi Normal University Android App
 
 <p>
 师大+是江西师大Android客户端,包含课表、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块。它采用卡片式设计遵循Material Design，支持主题切换等功能。
-该项目由@MummyDing & @KevinWu1993 合作开发完成。截止目前(2016.02.29)已完成的功能有 课表，校内新闻，课程成绩，考试安排，咨询阅读，校内快递，主题切换。已借图书和图
-书查询完成最基本的列表展示。课表 新闻 部分资讯支持自动缓存。后续还将添加的功能有 自习室空位查询，自习室选座，天气&课程表桌面小部件，快递跟踪等。
+该项目由@[MummyDing](https://github.com/MummyDing/) & @[KevinWu](https://github.com/KevinWu1993) 合作开发完成。截至目前(2016.02.29)已完成的功能有 
+课表，校内新闻，课程成绩，考试安排，咨询阅读，校内快递，主题切换。已借图书和图书查询完成最基本的列表展示。课表 新闻 部分资讯支持自动缓存。后续还将添加的功能有 自习室空位
+查询，自习室选座，天气&课程表桌面小部件，快递跟踪等。
 </p>
 
 ## 草图 
@@ -47,6 +48,10 @@ Jiangxi Normal University Android App
 
 [Weather_api](https://github.com/MummyDing/Awesome-Campus/blob/dev/Doc/Weather_api.md)
 
+ColorPickerDialog 已单独打包发布，详见 (ColorPickerDialog)[https://github.com/MummyDing/ColorPickerDialog]
+
+
+## 
 ## LICENSE
 
 Copyright (c) 2016.  MummyDing & KevinWu    
