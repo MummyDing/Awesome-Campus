@@ -2,6 +2,13 @@
 
 Jiangxi Normal University Android App   
 
+## 简介
+
+<p>
+师大+是江西师大Android客户端,包含课表、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块。它采用卡片式设计遵循Material Design，支持主题切换等功能。
+该项目由@MummyDing & @KevinWu1993 合作开发完成。截止目前(2016.02.29)已完成的功能有 课表，校内新闻，课程成绩，考试安排，咨询阅读，校内快递，主题切换。已借图书和图
+书查询完成最基本的列表展示。课表 新闻 部分资讯支持自动缓存。后续还将添加的功能有 自习室空位查询，自习室选座，天气&课程表桌面小部件，快递跟踪等。
+</p>
 
 ## 草图 
 
@@ -21,11 +28,11 @@ Jiangxi Normal University Android App
   - "天气" 放到 "生活" 中
 
 
-# 应用截图
+## 应用截图
 
 <img src="/img/ScreenShots/ScreenShot_Drawer.jpg" width="200" height="380"/> 
 <img src="/img/ScreenShots/ScreenShot_ScoreDetails.png" width="200" height="380"/> 
-<img src="/img/ScreenShots/ScreenShot_CampusNews" width="200" height="380"/> 
+<img src="/img/ScreenShots/ScreenShot_CampusNews.png" width="200" height="380"/> 
 <img src="/img/ScreenShots/ScreenShot_CourseTable.png" width="200" height="380"/> 
 <img src="/img/ScreenShots/ScreenShot_NewsDetails.png" width="200" height="380"/> 
 <img src="/img/ScreenShots/ScreenShot_Daily.png" width="200" height="380"/> 
