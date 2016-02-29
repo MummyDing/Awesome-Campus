@@ -31,7 +31,7 @@ public class CourseScoreFragment extends BaseListFragment {
     private TermSpinnerWrapper spinnerWrapper;
     @Override
     public String getTitle() {
-        return InitApp.AppContext.getString(R.string.source);
+        return InitApp.AppContext.getString(R.string.Score);
     }
 
 

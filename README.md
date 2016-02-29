@@ -21,6 +21,17 @@ Jiangxi Normal University Android App
   - "天气" 放到 "生活" 中
 
 
+# 应用截图
+
+<img src="/img/ScreenShots/ScreenShot_Drawer.jpg" width="200" height="380"/> 
+<img src="/img/ScreenShots/ScreenShot_ScoreDetails.png" width="200" height="380"/> 
+<img src="/img/ScreenShots/ScreenShot_CampusNews" width="200" height="380"/> 
+<img src="/img/ScreenShots/ScreenShot_CourseTable.png" width="200" height="380"/> 
+<img src="/img/ScreenShots/ScreenShot_NewsDetails.png" width="200" height="380"/> 
+<img src="/img/ScreenShots/ScreenShot_Daily.png" width="200" height="380"/> 
+<img src="/img/ScreenShots/ScreenShot_Film.png" width="200" height="380"/> 
+<img src="/img/ScreenShots/ScreenShot_BookBorrowed.png" width="200" height="380"/> 
+
 ## 文档
 
 [NetManageUtil][0]
