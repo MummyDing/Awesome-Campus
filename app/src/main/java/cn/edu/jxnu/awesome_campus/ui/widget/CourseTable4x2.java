@@ -6,7 +6,10 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.opengl.Visibility;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 
 import org.greenrobot.eventbus.EventBus;
@@ -15,6 +18,7 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.home.CourseBean;
 import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseWidgetActivity;
@@ -70,9 +74,37 @@ public class CourseTable4x2 extends BaseWidgetActivity {
 
     private void updateView() {
         RemoteViews rviews = new RemoteViews(mContext.getPackageName(), R.layout.widget_4x2_course_table);
-        rviews.setTextViewText(R.id.courseTime, TimeUtil.getCourseArea(weekCourse.get(0).getCourseList().get(0).getCourseOfDay()));
-        rviews.setTextViewText(R.id.courseName,weekCourse.get(0).getCourseList().get(0).getCourseName());
-        rviews.setTextViewText(R.id.roomNum,weekCourse.get(0).getCourseList().get(0).getCourseRoom());
+        rviews.setTextViewText(R.id.week,TimeUtil.getWeekString());
+
+        List<CourseBean> courseList=weekCourse.get(TimeUtil.getDayOfWeek()).getCourseList();
+        if(courseList.size()==0){
+            //当天没课
+            rviews.setViewVisibility(R.id.nowCourse,View.GONE);
+            rviews.setViewVisibility(R.id.noCourse,View.VISIBLE);
+            rviews.setTextViewText(R.id.noCourseInfo,mContext.getString(R.string.no_course_today));
+        }else{
+            int nowPos=10;
+            for(int i=0;i<courseList.size();i++){
+                int nowCourseTime=Integer.parseInt(TimeUtil.getCourseArea(courseList.get(i).getCourseOfDay()).substring(0,2));
+                if(TimeUtil.getHour()<=nowCourseTime){
+                    nowPos=i;//显示下一节要上的课
+                    break;
+                }
+            }
+            if(nowPos==10){
+                //当天的课全部上完了
+                rviews.setViewVisibility(R.id.nowCourse,View.GONE);
+                rviews.setViewVisibility(R.id.noCourse,View.VISIBLE);
+                rviews.setTextViewText(R.id.noCourseInfo,mContext.getString(R.string.all_courses_are_over));
+            }
+            else{
+                rviews.setViewVisibility(R.id.nowCourse,View.VISIBLE);
+                rviews.setViewVisibility(R.id.noCourse,View.GONE);
+                rviews.setTextViewText(R.id.courseTime, TimeUtil.getCourseArea(weekCourse.get(TimeUtil.getDayOfWeek()).getCourseList().get(nowPos).getCourseOfDay()));
+                rviews.setTextViewText(R.id.courseName,weekCourse.get(TimeUtil.getDayOfWeek()).getCourseList().get(nowPos).getCourseName());
+                rviews.setTextViewText(R.id.roomNum,weekCourse.get(TimeUtil.getDayOfWeek()).getCourseList().get(nowPos).getCourseRoom());
+            }
+        }
         AppWidgetManager.getInstance(mContext).updateAppWidget(new ComponentName(mContext, CourseTable4x2.class), rviews);
     }
 

@@ -62,4 +62,6 @@
     <string name="hint_null_input">Input cannot be null</string>
     <string name="hint_wrong_studentid">Wrong Student ID!!!</string>
     <string name="hint_wrong_password">Wrong Password!!!</string>
+    <string name="all_courses_are_over">All course are over</string>
+    <string name="no_course_today">No course today!</string>
 </resources>

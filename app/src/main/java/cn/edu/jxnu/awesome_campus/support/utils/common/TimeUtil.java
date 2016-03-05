@@ -1,9 +1,14 @@
 package cn.edu.jxnu.awesome_campus.support.utils.common;
 
+import android.support.v4.content.ContextCompat;
+
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.R;
 
 /**
  * 格式化获取时间
@@ -134,6 +139,46 @@ public class TimeUtil {
         return dayOfWeek;
     }
 
+    /**
+     * 返回当前星期几的字符串
+     * @return
+     */
+    public static String getWeekString(){
+        String time=null;
+        setTime();
+        int dayOfWeek=calendar.get(Calendar.DAY_OF_WEEK)-1;
+        if(dayOfWeek==0)dayOfWeek=7;
+        switch (dayOfWeek){
+            case 1:
+                time= InitApp.AppContext.getResources().getString(R.string.monday);
+                break;
+            case 2:
+                time= InitApp.AppContext.getResources().getString(R.string.tuesday);
+                break;
+            case 3:
+                time= InitApp.AppContext.getResources().getString(R.string.wednesday);
+                break;
+            case 4:
+                time= InitApp.AppContext.getResources().getString(R.string.tuesday);
+                break;
+            case 5:
+                time= InitApp.AppContext.getResources().getString(R.string.friday);
+                break;
+            case 6:
+                time= InitApp.AppContext.getResources().getString(R.string.saturday);
+                break;
+            case 7:
+                time= InitApp.AppContext.getResources().getString(R.string.sunday);
+                break;
+        }
+        return time;
+    }
+
+    public static int getHour(){
+        setTime();
+        int hour=calendar.get(Calendar.HOUR_OF_DAY);
+        return hour;
+    }
 
     public static String getCourseArea(int i){
         String time = null;
