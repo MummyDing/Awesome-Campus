@@ -16,7 +16,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:src="@android:drawable/arrow_up_float" />
+            android:background="@drawable/ic_arrow_up" />
 
         <TextView
             android:id="@+id/week"
@@ -34,7 +34,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:src="@android:drawable/arrow_down_float" />
+            android:src="@drawable/ic_arrow_down" />
     </LinearLayout>
 
 
