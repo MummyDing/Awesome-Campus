@@ -65,4 +65,5 @@
     <string name="all_courses_are_over">All course are over</string>
     <string name="no_course_today">No course today!</string>
     <string name="initializing">Initializing...</string>
+    <string name="need_login_education_first">Please login educational system first!</string>
 </resources>

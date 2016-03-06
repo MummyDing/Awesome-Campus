@@ -122,12 +122,21 @@ public class CourseTable4x2Service extends BaseWidgetService {
     protected void onEventComing(EventModel eventModel) {
         switch (eventModel.getEventCode()) {
             case EVENT.COURSE_TABLE_REFRESH_FAILURE:
+                //给出先登录提示
+                needLoginInfo();
                 break;
             case EVENT.COURSE_TABLE_LOAD_CACHE_SUCCESS:
                 weekCourse = eventModel.getDataList();
                 updateWidget();
                 break;
         }
+    }
+
+    private void needLoginInfo() {
+        RemoteViews rviews = new RemoteViews(context.getPackageName(), R.layout.widget_4x2_course_table);
+        rviews.setViewVisibility(R.id.noCourse, View.VISIBLE);
+        rviews.setTextViewText(R.id.noCourseInfo, context.getString(R.string.all_courses_are_over));
+        AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, CourseTable4x2Privider.class), rviews);
     }
 
     BroadcastReceiver myReceiver=new BroadcastReceiver() {
