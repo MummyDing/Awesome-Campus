@@ -12,6 +12,7 @@
        >
 
         <ImageButton
+            android:id="@+id/arrow_up"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
@@ -23,12 +24,13 @@
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
-            android:text="Sunday"
+            android:text="--"
             android:textColor="#fff"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <ImageButton
+            android:id="@+id/arrow_down"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"

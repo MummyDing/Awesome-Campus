@@ -8,10 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 
 /**
