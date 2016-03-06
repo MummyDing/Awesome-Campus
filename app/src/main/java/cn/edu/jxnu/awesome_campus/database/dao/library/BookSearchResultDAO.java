@@ -48,8 +48,8 @@ public class BookSearchResultDAO implements DAO<BookSearchResultModel> {
     }
 
 
-    public BookSearchResultDAO(String keword) {
-        this.keyword = keword;
+    public BookSearchResultDAO(String keyword) {
+        this.keyword = keyword;
     }
 
     @Override
