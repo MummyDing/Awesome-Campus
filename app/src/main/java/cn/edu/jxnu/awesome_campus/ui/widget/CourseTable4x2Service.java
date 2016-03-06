@@ -135,7 +135,7 @@ public class CourseTable4x2Service extends BaseWidgetService {
     private void needLoginInfo() {
         RemoteViews rviews = new RemoteViews(context.getPackageName(), R.layout.widget_4x2_course_table);
         rviews.setViewVisibility(R.id.noCourse, View.VISIBLE);
-        rviews.setTextViewText(R.id.noCourseInfo, context.getString(R.string.all_courses_are_over));
+        rviews.setTextViewText(R.id.noCourseInfo, context.getString(R.string.need_login_education_first));
         AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, CourseTable4x2Privider.class), rviews);
     }
 
