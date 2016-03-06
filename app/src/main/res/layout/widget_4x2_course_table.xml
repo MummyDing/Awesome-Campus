@@ -16,7 +16,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_arrow_up" />
+            android:background="@mipmap/ic_arrow_up" />
 
         <TextView
             android:id="@+id/week"
@@ -34,7 +34,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_arrow_down" />
+            android:src="@mipmap/ic_arrow_down" />
     </LinearLayout>
 
 
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="#fff"
+        android:background="@drawable/card"
         android:visibility="gone"
         android:orientation="vertical"
         android:padding="10dp">
@@ -121,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="#fff"
+        android:background="@drawable/card"
         android:orientation="horizontal"
         android:padding="10dp"
         android:id="@+id/noCourse">

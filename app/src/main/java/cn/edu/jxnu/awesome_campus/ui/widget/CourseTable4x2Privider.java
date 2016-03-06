@@ -18,7 +18,7 @@ public class CourseTable4x2Privider extends BaseWidgetPrivider {
     @Override
     protected void init() {
         Log.d("初始化控件，类为","--"+this.getClass());
-        super.reFreshTime=10000;
+        super.reFreshTime=10000;//10秒刷新
         super.object=CourseTable4x2Service.class;
     }
 }
