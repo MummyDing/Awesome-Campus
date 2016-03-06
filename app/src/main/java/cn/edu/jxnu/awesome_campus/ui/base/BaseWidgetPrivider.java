@@ -10,6 +10,9 @@ import android.util.Log;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 
 /**
  * Created by KevinWu on 16-3-5.
@@ -20,16 +23,12 @@ public abstract class BaseWidgetPrivider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         init();
-        Calendar calendar = Calendar.getInstance();
-        Date date = new Date();
-        calendar.setTime(date);
-
         Intent intent = new Intent();
         intent.setClass(context, (Class<BaseWidgetService>) object);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
         //定时更新
         AlarmManager alarm = (AlarmManager)context.getSystemService(context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), reFreshTime, pendingIntent);
+        alarm.setRepeating(AlarmManager.RTC, TimeUtil.getTimestamp(), reFreshTime, pendingIntent);
         Log.d("测试","--"+this.getClass());
     }
 
