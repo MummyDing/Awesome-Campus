@@ -6,10 +6,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.opengl.Visibility;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 
 import org.greenrobot.eventbus.EventBus;
@@ -66,7 +64,7 @@ public class CourseTable4x2 extends BaseWidgetActivity {
                 break;
             case EVENT.COURSE_TABLE_LOAD_CACHE_SUCCESS:
                 weekCourse = eventModel.getDataList();
-                Log.d("ceshi", "--" + weekCourse.get(0).getCourseList().size());
+//                Log.d("ceshi", "--" + weekCourse.get(0).getCourseList().size());
                 updateView();
                 break;
         }
@@ -75,8 +73,10 @@ public class CourseTable4x2 extends BaseWidgetActivity {
     private void updateView() {
         RemoteViews rviews = new RemoteViews(mContext.getPackageName(), R.layout.widget_4x2_course_table);
         rviews.setTextViewText(R.id.week,TimeUtil.getWeekString());
+        int nowWeek=TimeUtil.getDayOfWeek();
+        nowWeek=nowWeek-1;
 
-        List<CourseBean> courseList=weekCourse.get(TimeUtil.getDayOfWeek()).getCourseList();
+        List<CourseBean> courseList=weekCourse.get(nowWeek).getCourseList();
         if(courseList.size()==0){
             //当天没课
             rviews.setViewVisibility(R.id.nowCourse,View.GONE);
@@ -100,9 +100,9 @@ public class CourseTable4x2 extends BaseWidgetActivity {
             else{
                 rviews.setViewVisibility(R.id.nowCourse,View.VISIBLE);
                 rviews.setViewVisibility(R.id.noCourse,View.GONE);
-                rviews.setTextViewText(R.id.courseTime, TimeUtil.getCourseArea(weekCourse.get(TimeUtil.getDayOfWeek()).getCourseList().get(nowPos).getCourseOfDay()));
-                rviews.setTextViewText(R.id.courseName,weekCourse.get(TimeUtil.getDayOfWeek()).getCourseList().get(nowPos).getCourseName());
-                rviews.setTextViewText(R.id.roomNum,weekCourse.get(TimeUtil.getDayOfWeek()).getCourseList().get(nowPos).getCourseRoom());
+                rviews.setTextViewText(R.id.courseTime, TimeUtil.getCourseArea(weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseOfDay()));
+                rviews.setTextViewText(R.id.courseName,weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseName());
+                rviews.setTextViewText(R.id.roomNum,weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseRoom());
             }
         }
         AppWidgetManager.getInstance(mContext).updateAppWidget(new ComponentName(mContext, CourseTable4x2.class), rviews);
