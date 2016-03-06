@@ -49,18 +49,14 @@
             android:theme="@style/DialogTheme"></activity>
         <activity android:name=".ui.life.CampusExpressDetailsActivity"></activity>
 
-        <receiver android:name=".ui.widget.CourseTable4x2">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/course_table4x2">
-            </meta-data>
+        <receiver android:name=".ui.widget.CourseTable4x2Privider" android:label="课程表4x2">
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/course_table4x2"/>
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="CourseTable4x2Reflash" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
         </receiver>
+        <service android:name=".ui.widget.CourseTable4x2Service"/>
     </application>
 
 </manifest>
