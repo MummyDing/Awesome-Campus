@@ -144,7 +144,7 @@ public class CourseTable4x2Service extends BaseWidgetService {
         public void onReceive(Context context, Intent intent) {
             String action=intent.getAction();
             Log.d("动作为：","--"+action);
-            if(action.equals("CourseUp")&&posChange>=0){
+            if(action.equals("CourseUp")&&posChange>0){
                 posChange--;
                 updateWidget();
             }else if(action.equals("CourseDown")&&posChange>=0){
