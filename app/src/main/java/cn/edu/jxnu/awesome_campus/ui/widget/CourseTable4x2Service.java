@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.R;
@@ -29,26 +30,31 @@ public class CourseTable4x2Service extends BaseWidgetService {
     private CourseTableModel courseTableModel = null;
     private List<CourseTableModel> weekCourse;
     private Context context;
-    private int posChange = 0;
+    private int pos = 0;
+    private boolean allClassOver = false;//用来控制所有的课都上完了显示的变量
+    RemoteViews rviews;
+    List<CourseBean> courseList;
+    private int nowWeek;
 
     @Override
     protected void init() {
         context = this;
         courseTableModel = new CourseTableModel();
         courseTableModel.loadFromCache();
+        courseList=new ArrayList<>();
+        rviews = new RemoteViews(context.getPackageName(), R.layout.widget_4x2_course_table);
         Log.d("初始化服务，类为：", "--" + this.getClass());
     }
 
     @Override
     protected void updateWidget() {
         Log.d("更新控件", "--课程表4x2");
-        RemoteViews rviews = new RemoteViews(context.getPackageName(), R.layout.widget_4x2_course_table);
-        setListener(rviews);
-        rviews.setTextViewText(R.id.week, TimeUtil.getWeekString());
-        int nowWeek = TimeUtil.getDayOfWeek();
-        nowWeek = nowWeek - 1;
 
-        List<CourseBean> courseList = weekCourse.get(nowWeek).getCourseList();
+        courseList.clear();
+        rviews.setTextViewText(R.id.week, TimeUtil.getWeekString());
+        nowWeek = TimeUtil.getDayOfWeek();
+        nowWeek = nowWeek - 1;
+        courseList = weekCourse.get(nowWeek).getCourseList();
         if (courseList.size() == 0) {
             //当天没课
             rviews.setViewVisibility(R.id.arrow_up, View.GONE);
@@ -56,49 +62,46 @@ public class CourseTable4x2Service extends BaseWidgetService {
             rviews.setViewVisibility(R.id.nowCourse, View.GONE);
             rviews.setViewVisibility(R.id.noCourse, View.VISIBLE);
             rviews.setTextViewText(R.id.noCourseInfo, context.getString(R.string.no_course_today));
+            AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, CourseTable4x2Privider.class), rviews);
         } else {
-            if (posChange != 0) {
-                int nowPos = posChange;
-                if (nowPos == 0) {
-                    rviews.setViewVisibility(R.id.arrow_up, View.INVISIBLE);
-                }
-                if (nowPos == courseList.size() - 1) {
-                    rviews.setViewVisibility(R.id.arrow_down, View.INVISIBLE);
-                }
-                rviews.setViewVisibility(R.id.nowCourse, View.VISIBLE);
-                rviews.setViewVisibility(R.id.noCourse, View.GONE);
-                rviews.setTextViewText(R.id.courseTime, TimeUtil.getCourseArea(weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseOfDay()));
-                rviews.setTextViewText(R.id.courseName, weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseName());
-                rviews.setTextViewText(R.id.roomNum, weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseRoom());
-            } else {
-                int nowPos = -1000;
-                for (int i = 0; i < courseList.size(); i++) {
-                    int nowCourseTime = Integer.parseInt(TimeUtil.getCourseArea(courseList.get(i).getCourseOfDay()).substring(0, 2));
-                    if (TimeUtil.getHour() <= nowCourseTime) {
-                        nowPos = i;//显示下一节要上的课
-                        break;
-                    }
-                }
-                if (nowPos == 0) {
-                    rviews.setViewVisibility(R.id.arrow_up, View.INVISIBLE);
-                }
-                if (nowPos == courseList.size() - 1) {
-                    rviews.setViewVisibility(R.id.arrow_down, View.INVISIBLE);
-                }
-
-                if (nowPos == -1000) {
-                    //当天的课全部上完了
-                    rviews.setViewVisibility(R.id.nowCourse, View.GONE);
-                    rviews.setViewVisibility(R.id.noCourse, View.VISIBLE);
-                    rviews.setTextViewText(R.id.noCourseInfo, context.getString(R.string.all_courses_are_over));
+            for (int i = 0; i < courseList.size(); i++) {
+                int nowCourseHour = Integer.parseInt(TimeUtil.getCourseArea(courseList.get(i).getCourseOfDay()).substring(0, 2) + TimeUtil.getCourseArea(courseList.get(i).getCourseOfDay()).substring(3, 5));
+                Log.d("取到的课程时间","-- "+nowCourseHour);
+                Log.d("当前时间","-- "+TimeUtil.getHourMinute());
+                if (TimeUtil.getHourMinute() <= nowCourseHour) {
+                    pos = i;//显示下一节要上的课
+                    break;
                 } else {
-                    rviews.setViewVisibility(R.id.nowCourse, View.VISIBLE);
-                    rviews.setViewVisibility(R.id.noCourse, View.GONE);
-                    rviews.setTextViewText(R.id.courseTime, TimeUtil.getCourseArea(weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseOfDay()));
-                    rviews.setTextViewText(R.id.courseName, weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseName());
-                    rviews.setTextViewText(R.id.roomNum, weekCourse.get(nowWeek).getCourseList().get(nowPos).getCourseRoom());
+                    pos = courseList.size();
                 }
             }
+            changeWidget();
+        }
+
+    }
+
+    private void changeWidget() {
+        setListener(rviews);
+        Log.d("CourseList大小：","-- "+courseList.size());
+        if (pos == 0) {
+            rviews.setViewVisibility(R.id.arrow_up, View.INVISIBLE);
+        }
+        if (pos == courseList.size() - 1) {
+            rviews.setViewVisibility(R.id.arrow_down, View.INVISIBLE);
+        }
+        if (pos == courseList.size()) {
+            //当天的课全部上完了
+            allClassOver = true;
+            rviews.setViewVisibility(R.id.nowCourse, View.GONE);
+            rviews.setViewVisibility(R.id.arrow_down, View.INVISIBLE);
+            rviews.setViewVisibility(R.id.noCourse, View.VISIBLE);
+            rviews.setTextViewText(R.id.noCourseInfo, context.getString(R.string.all_courses_are_over));
+        } else {
+            rviews.setViewVisibility(R.id.nowCourse, View.VISIBLE);
+            rviews.setViewVisibility(R.id.noCourse, View.GONE);
+            rviews.setTextViewText(R.id.courseTime, TimeUtil.getCourseArea(weekCourse.get(nowWeek).getCourseList().get(pos).getCourseOfDay()));
+            rviews.setTextViewText(R.id.courseName, weekCourse.get(nowWeek).getCourseList().get(pos).getCourseName());
+            rviews.setTextViewText(R.id.roomNum, weekCourse.get(nowWeek).getCourseList().get(pos).getCourseRoom());
         }
         AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, CourseTable4x2Privider.class), rviews);
     }
@@ -112,7 +115,7 @@ public class CourseTable4x2Service extends BaseWidgetService {
         PendingIntent downPIntent = PendingIntent.getBroadcast(this, 0, downIntent, 0);
         rviews.setOnClickPendingIntent(R.id.arrow_up, upPIntent);
         rviews.setOnClickPendingIntent(R.id.arrow_down, downPIntent);
-        IntentFilter filter=new IntentFilter();
+        IntentFilter filter = new IntentFilter();
         filter.addAction("CourseUp");
         filter.addAction("CourseDown");
         registerReceiver(myReceiver, filter);
@@ -139,18 +142,21 @@ public class CourseTable4x2Service extends BaseWidgetService {
         AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, CourseTable4x2Privider.class), rviews);
     }
 
-    BroadcastReceiver myReceiver=new BroadcastReceiver() {
+    BroadcastReceiver myReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action=intent.getAction();
-            Log.d("动作为：","--"+action);
-            if(action.equals("CourseUp")&&posChange>0){
-                posChange--;
-                updateWidget();
-            }else if(action.equals("CourseDown")&&posChange>=0){
-                posChange++;
-                updateWidget();
+            String action = intent.getAction();
+            Log.d("动作为：", "--" + action);
+
+            if (action.equals("CourseUp") && pos >= 0) {
+                if (pos != 0)
+                    pos--;
+                changeWidget();
+            } else if (action.equals("CourseDown") && pos >= 0) {
+                pos++;
+                changeWidget();
             }
+            Log.d("pos的值：", "--" + pos);
         }
     };
 }

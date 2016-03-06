@@ -174,10 +174,11 @@ public class TimeUtil {
         return time;
     }
 
-    public static int getHour(){
+    public static int getHourMinute(){
         setTime();
         int hour=calendar.get(Calendar.HOUR_OF_DAY);
-        return hour;
+        int minute=calendar.get(Calendar.MINUTE);
+        return hour*100+minute;
     }
 
     public static String getCourseArea(int i){
