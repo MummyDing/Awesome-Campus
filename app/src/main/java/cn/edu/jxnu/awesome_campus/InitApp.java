@@ -24,6 +24,7 @@ import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.ProcessUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 
 /**
@@ -33,69 +34,77 @@ import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
  */
 public class InitApp extends Application{
     public static Context AppContext;
+    public static final String PACK_NAME="cn.edu.jxnu.awesome_campus";
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d("Application创建","--");
         AppContext = getApplicationContext();
-        Fresco.initialize(AppContext);
+        String processName= ProcessUtil.getProcessName(AppContext,android.os.Process.myPid());
+        Log.d("--", "进程名称"+processName);
+        if(processName!=null){
+            boolean defaultProcess = processName
+                    .equals(PACK_NAME);
+            if (defaultProcess) {
+                Fresco.initialize(AppContext);
 
 
-        /**
-         * 此处用于加载头像 使用了Fresco --- By MummyDing
-         */
-        DrawerImageLoader.init(new DrawerImageLoader.IDrawerImageLoader() {
-            @Override
-            public void set(final ImageView imageView, Uri uri, final Drawable placeholder) {
-                DataSource<CloseableReference<CloseableImage>> dataSource = Fresco.getImagePipeline().fetchDecodedImage(ImageRequest.fromUri(uri),getApplicationContext());
+                /**
+                 * 此处用于加载头像 使用了Fresco --- By MummyDing
+                 */
+                DrawerImageLoader.init(new DrawerImageLoader.IDrawerImageLoader() {
+                    @Override
+                    public void set(final ImageView imageView, Uri uri, final Drawable placeholder) {
+                        DataSource<CloseableReference<CloseableImage>> dataSource = Fresco.getImagePipeline().fetchDecodedImage(ImageRequest.fromUri(uri), getApplicationContext());
 
-                dataSource.subscribe(new BaseBitmapDataSubscriber() {
-                                         @Override
-                                         public void onNewResultImpl(@Nullable final Bitmap bitmap) {
-                                             imageView.post(new Runnable() {
-                                                 public void run() {
-                                                     imageView.setImageBitmap(ImageUtil.bitmapToCircle(bitmap));
+                        dataSource.subscribe(new BaseBitmapDataSubscriber() {
+                                                 @Override
+                                                 public void onNewResultImpl(@Nullable final Bitmap bitmap) {
+                                                     imageView.post(new Runnable() {
+                                                         public void run() {
+                                                             imageView.setImageBitmap(ImageUtil.bitmapToCircle(bitmap));
+                                                         }
+                                                     });
                                                  }
-                                             });
-                                         }
 
-                                         @Override
-                                         public void onFailureImpl(DataSource dataSource) {
-                                             imageView.setImageDrawable(placeholder);
-                                         }
-                                     },
-                        CallerThreadExecutor.getInstance());
-            }
+                                                 @Override
+                                                 public void onFailureImpl(DataSource dataSource) {
+                                                     imageView.setImageDrawable(placeholder);
+                                                 }
+                                             },
+                                CallerThreadExecutor.getInstance());
+                    }
 
-            @Override
-            public void cancel(final ImageView imageView) {
-                if(EducationLoginUtil.getAvatorUrl() != null){
-                    DataSource<CloseableReference<CloseableImage>> dataSource = Fresco.getImagePipeline().fetchDecodedImage(ImageRequest.fromUri(EducationLoginUtil.getAvatorUrl()),getApplicationContext());
-                    dataSource.subscribe(new BaseBitmapDataSubscriber() {
-                                             @Override
-                                             public void onNewResultImpl(@Nullable final Bitmap bitmap) {
-                                                 imageView.post(new Runnable() {
-                                                     public void run() {
-                                                         imageView.setImageBitmap(ImageUtil.bitmapToCircle(bitmap));
+                    @Override
+                    public void cancel(final ImageView imageView) {
+                        if (EducationLoginUtil.getAvatorUrl() != null) {
+                            DataSource<CloseableReference<CloseableImage>> dataSource = Fresco.getImagePipeline().fetchDecodedImage(ImageRequest.fromUri(EducationLoginUtil.getAvatorUrl()), getApplicationContext());
+                            dataSource.subscribe(new BaseBitmapDataSubscriber() {
+                                                     @Override
+                                                     public void onNewResultImpl(@Nullable final Bitmap bitmap) {
+                                                         imageView.post(new Runnable() {
+                                                             public void run() {
+                                                                 imageView.setImageBitmap(ImageUtil.bitmapToCircle(bitmap));
+                                                             }
+                                                         });
                                                      }
-                                                 });
-                                             }
 
-                                             @Override
-                                             public void onFailureImpl(DataSource dataSource) {
-                                                 imageView.setImageDrawable( ContextCompat.getDrawable(InitApp.AppContext,R.drawable.logo));
-                                             }
-                                         },
-                            CallerThreadExecutor.getInstance());
-                }
-            }
+                                                     @Override
+                                                     public void onFailureImpl(DataSource dataSource) {
+                                                         imageView.setImageDrawable(ContextCompat.getDrawable(InitApp.AppContext, R.drawable.logo));
+                                                     }
+                                                 },
+                                    CallerThreadExecutor.getInstance());
+                        }
+                    }
 
-            @Override
-            public Drawable placeholder(Context ctx) {
-                return ContextCompat.getDrawable(ctx,R.drawable.logo);
-            }
+                    @Override
+                    public Drawable placeholder(Context ctx) {
+                        return ContextCompat.getDrawable(ctx, R.drawable.logo);
+                    }
 
-            @Override
-            public Drawable placeholder(Context ctx, String tag) {
+                    @Override
+                    public Drawable placeholder(Context ctx, String tag) {
                 /*if (DrawerImageLoader.Tags.PROFILE.name().equals(tag)) {
                     return DrawerUIUtils.getPlaceHolder(ctx);
                 } else if (DrawerImageLoader.Tags.ACCOUNT_HEADER.name().equals(tag)) {
@@ -103,8 +112,11 @@ public class InitApp extends Application{
                 } else if ("customUrlItem".equals(tag)) {
                     return new IconicsDrawable(ctx).iconText(" ").backgroundColorRes(R.color.md_red_500).sizeDp(56);
                 }*/
-                return ContextCompat.getDrawable(ctx,R.drawable.logo);
+                        return ContextCompat.getDrawable(ctx, R.drawable.logo);
+                    }
+                });
             }
-        });
+        }
+
     }
 }
