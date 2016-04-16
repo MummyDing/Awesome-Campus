@@ -46,12 +46,16 @@ public class ExamFragment extends BaseListFragment {
     @Override
     public void initView() {
         setOnLineLayout(EducationLoginUtil.isLogin());
+        if (EducationLoginUtil.isLogin()){
+            model.loadFromCache();
+        }
     }
 
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
         switch (eventModel.getEventCode()){
+            case EVENT.EXAM_TIME_LOAD_CACHE_SUCCESS:
             case EVENT.EXAM_TIME_REFRESH_SUCCESS:
                 Log.d("size: ",eventModel.getDataList().size()+" ");
                 adapter.newList(eventModel.getDataList());
@@ -60,6 +64,9 @@ public class ExamFragment extends BaseListFragment {
             case EVENT.EXAM_TIME_REFRESH_FAILURE:
                 hideLoading();
                 displayNetworkError();
+                break;
+            case EVENT.EXAM_TIME_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }

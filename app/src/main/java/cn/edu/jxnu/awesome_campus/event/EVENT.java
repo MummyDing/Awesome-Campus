@@ -143,5 +143,9 @@ public class EVENT {
     public static final int COURSE_SCORE_LOAD_CACHE_SUCCESS = 1014;
     public static final int COURSE_SCORE_LOAD_CACHE_FAILURE = 1015;
 
+    // Exam Time
+    public static final int EXAM_TIME_LOAD_CACHE_SUCCESS = 1016;
+    public static final int EXAM_TIME_LOAD_CACHE_FAILURE = 1017;
+
 }
 

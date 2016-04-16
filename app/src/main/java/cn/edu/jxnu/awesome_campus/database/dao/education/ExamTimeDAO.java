@@ -1,5 +1,8 @@
 package cn.edu.jxnu.awesome_campus.database.dao.education;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.opengl.ETC1Util;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -7,10 +10,13 @@ import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.database.table.education.ExamTimeTable;
 import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -31,17 +37,61 @@ public class ExamTimeDAO implements DAO<ExamTimeModel> {
     public static final String TAG="ExamTimeDAO";
     @Override
     public boolean cacheAll(List<ExamTimeModel> list) {
-        return false;
+
+        if (list == null || list.isEmpty()){
+            return false;
+        }
+        clearCache();
+        for (int i=0 ; i<list.size() ; i++){
+            ExamTimeModel model = list.get(i);
+            ContentValues values = new ContentValues();
+            values.put(ExamTimeTable.COURSE_ID,model.getCourseID());
+            values.put(ExamTimeTable.COURSE_NAME,model.getCourseName());
+            values.put(ExamTimeTable.EXAM_TIME,model.getExamTime());
+            values.put(ExamTimeTable.EXAM_ROOM,model.getExamRoom());
+            values.put(ExamTimeTable.EXAM_SEAT,model.getExamSeat());
+            values.put(ExamTimeTable.REMARK,model.getRemark());
+            DatabaseHelper.insert(ExamTimeTable.NAME,values);
+        }
+        return true;
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        DatabaseHelper.clearTable(ExamTimeTable.NAME);
+        return true;
     }
 
     @Override
     public void loadFromCache() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        Cursor cursor = DatabaseHelper.selectAll(ExamTimeTable.NAME);
 
+        final List<ExamTimeModel> list = new ArrayList<>();
+
+        while (cursor.moveToNext()){
+            ExamTimeModel model = new ExamTimeModel();
+            model.setCourseID(cursor.getString(ExamTimeTable.ID_COURSE_ID));
+            model.setCourseName(cursor.getString(ExamTimeTable.ID_COURSE_NAME));
+            model.setExamTime(cursor.getString(ExamTimeTable.ID_EXAM_TIME));
+            model.setExamRoom(cursor.getString(ExamTimeTable.ID_EXAM_ROOM));
+            model.setExamSeat(cursor.getString(ExamTimeTable.ID_EXAM_SEAT));
+            model.setRemark(cursor.getString(ExamTimeTable.ID_REMARK));
+            list.add(model);
+        }
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (!list.isEmpty()){
+                    // 从缓存获取成功
+                    EventBus.getDefault().post(new EventModel<ExamTimeModel>(EVENT.EXAM_TIME_LOAD_CACHE_SUCCESS,list));
+                }else {
+                    //从缓存获取失败
+                    EventBus.getDefault().post(new EventModel<ExamTimeModel>(EVENT.EXAM_TIME_LOAD_CACHE_FAILURE));
+                }
+            }
+        });
     }
 
     @Override
