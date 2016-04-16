@@ -39,7 +39,9 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
     protected void onDataRefresh() {
 
         if (TextUtil.isNull(model.getBody())) {
-            NetManageUtil.post(model.getUrl()).enqueue(new JsonEntityCallback<DailyDetailsBean>() {
+            NetManageUtil.post(model.getUrl())
+                    .addTag(TAG)
+                    .enqueue(new JsonEntityCallback<DailyDetailsBean>() {
                 @Override
                 public void onFailure(IOException e) {
                     handler.post(new Runnable() {
@@ -81,7 +83,6 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
 
     @Override
     protected void onEventComing(EventModel eventModel) {
-
         switch (eventModel.getEventCode()){
             case EVENT.SEND_MODEL_DETAIL:
                 model = (DailyModel) eventModel.getData();

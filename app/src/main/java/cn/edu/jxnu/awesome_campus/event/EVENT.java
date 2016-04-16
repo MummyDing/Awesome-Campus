@@ -131,6 +131,10 @@ public class EVENT {
     public static final int FILM_LOAD_CACHE_SUCCESS = 1008;
     public static final int FILM_LOAD_CACHE_FAILURE = 1009;
 
+    // Science
+    public static final int SCIENCE_LOAD_CACHE_SUCCESS = 1010;
+    public static final int SCIENCE_LOAD_CACHE_FAILURE = 1011;
+
 
 }
 

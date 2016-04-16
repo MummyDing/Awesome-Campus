@@ -49,6 +49,7 @@ public class FilmDAO implements DAO<FilmModel> {
             values.put(FilmTable.READING_COUNT,filmModel.getReadingCount());
             values.put(FilmTable.DETAIL,filmModel.getDetail());
             values.put(FilmTable.TOP_PIC,filmModel.getTopPic());
+            DatabaseHelper.insert(FilmTable.NAME,values);
         }
         return true;
     }

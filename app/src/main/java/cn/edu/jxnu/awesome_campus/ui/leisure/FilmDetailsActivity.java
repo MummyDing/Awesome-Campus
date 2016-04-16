@@ -60,6 +60,7 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
                         });
                     }
                 });*/
+
     }
 
     @Override

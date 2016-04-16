@@ -34,7 +34,7 @@ public class FilmFragment extends BaseListFragment {
         model = new FilmModel();
         adapter = new FilmAdapter(getActivity(),model);
         recyclerView.setAdapter(adapter);
-        onDataRefresh();
+       // onDataRefresh();
         displayLoading();
     }
 
@@ -45,7 +45,7 @@ public class FilmFragment extends BaseListFragment {
 
     @Override
     public void initView() {
-
+        model.loadFromCache();
     }
 
     @Override
@@ -53,6 +53,7 @@ public class FilmFragment extends BaseListFragment {
         super.onEventComing(eventModel);
 
         switch (eventModel.getEventCode()){
+            case EVENT.FILM_LOAD_CACHE_SUCCESS:
             case EVENT.FILM_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());
                 hideLoading();
@@ -60,6 +61,9 @@ public class FilmFragment extends BaseListFragment {
             case EVENT.FILM_REFRESH_FAILURE:
                 hideLoading();
                 displayNetworkError();
+                break;
+            case EVENT.FILM_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }

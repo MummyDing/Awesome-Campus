@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.database.dao.leisure;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.ArrayAdapter;
@@ -9,11 +11,14 @@ import com.squareup.okhttp.Headers;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.api.ScienceApi;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.database.table.leisure.ScienceTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.DailyModel;
@@ -31,17 +36,61 @@ public class ScienceDAO implements DAO<ScienceModel> {
     public final String TAG = "ScienceDAO";
     @Override
     public boolean cacheAll(List<ScienceModel> list) {
-        return false;
+
+        if (list == null || list.isEmpty()){
+            return false;
+        }
+
+        clearCache();
+
+        for (int i=0 ;i<list.size() ; i++){
+            ScienceModel scienceModel = list.get(i);
+            ContentValues values = new ContentValues();
+            values.put(ScienceTable.REPLIES_COUNT,scienceModel.getReplies_count());
+            values.put(ScienceTable.IMAGE_URL,scienceModel.getImage_info().getUrl());
+            values.put(ScienceTable.URL,scienceModel.getUrl());
+            values.put(ScienceTable.TITLE,scienceModel.getTitle());
+            values.put(ScienceTable.SCIENCE_DETAILS,scienceModel.getScienceDetails());
+            DatabaseHelper.insert(ScienceTable.NAME,values);
+        }
+        return true;
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        DatabaseHelper.clearTable(ScienceTable.NAME);
+        return true;
     }
 
     @Override
     public void loadFromCache() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        Cursor cursor = DatabaseHelper.selectAll(ScienceTable.NAME);
 
+        final List<ScienceModel> list = new ArrayList<>();
+
+        while (cursor.moveToNext()){
+            ScienceModel model = new ScienceModel();
+            model.setReplies_count(cursor.getInt(ScienceTable.ID_REPLIES_COUNT));
+            model.getImage_info().setUrl(cursor.getString(ScienceTable.ID_IMAGE_URL));
+            model.setUrl(cursor.getString(ScienceTable.ID_URL));
+            model.setTitle(cursor.getString(ScienceTable.ID_TITLE));
+            model.setScienceDetails(cursor.getString(ScienceTable.ID_SCIENCE_DETAILS));
+            list.add(model);
+        }
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (!list.isEmpty()){
+                    // 从缓存获取成功　发送消息
+                    EventBus.getDefault().post(new EventModel<ScienceModel>(EVENT.SCIENCE_LOAD_CACHE_SUCCESS,list));
+                }else {
+                    // 从缓存获取失败
+                    EventBus.getDefault().post(new EventModel<ScienceModel>(EVENT.SCIENCE_LOAD_CACHE_FAILURE));
+                }
+            }
+        });
     }
 
     @Override

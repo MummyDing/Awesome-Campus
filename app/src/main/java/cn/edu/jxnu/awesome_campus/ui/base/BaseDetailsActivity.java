@@ -18,6 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -149,7 +150,13 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
         });
         getSupportActionBar().setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.top_gradient));
         contentView = (WebView) findViewById(R.id.content_view);
+
         contentView.getSettings().setJavaScriptEnabled(true);
+
+        // 开启缓存
+        contentView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        contentView.getSettings().setDomStorageEnabled(true);
+        contentView.getSettings().setDatabaseEnabled(true);
 
         contentView.setWebViewClient(new WebViewClient(){
             @Override

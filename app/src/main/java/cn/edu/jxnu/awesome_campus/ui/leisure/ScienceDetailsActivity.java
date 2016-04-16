@@ -4,15 +4,26 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.squareup.okhttp.Headers;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
+import cn.edu.jxnu.awesome_campus.database.table.leisure.ScienceTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.leisure.DailyDetailsBean;
+import cn.edu.jxnu.awesome_campus.model.leisure.FilmModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.ScienceModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.leisure.ScienceContentParse;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseDetailsActivity;
@@ -26,34 +37,65 @@ public class ScienceDetailsActivity extends BaseDetailsActivity {
     public static final String TAG = "ScienceDetailsActivity";
     private ScienceModel model;
 
+    private Handler handler = new Handler(Looper.getMainLooper());
+
     @Override
     protected void onDataRefresh() {
-        NetManageUtil.get(model.getUrl())
-                .addTag(TAG)
-                .enqueue(new StringCallback() {
-                    @Override
-                    public void onSuccess(String result, Headers headers) {
-                        ScienceContentParse myParse = new ScienceContentParse(result);
-                        model.setScienceDetails(myParse.getEndStr());
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                onEventMainThread(new EventModel<ScienceModel>(EVENT.SCIENCE_DETAILS_REFRESH_SUCCESS));
-                            }
-                        });
-                    }
 
-                    @Override
-                    public void onFailure(String error) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                onEventMainThread(new EventModel<ScienceModel>(EVENT.SCIENCE_DETAILS_REFRESH_FAILURE));
-                            }
-                        });
-                    }
-                });
+        if (TextUtil.isNull(model.getScienceDetails())) {
+            NetManageUtil.get(model.getUrl())
+                    .addTag(TAG)
+                    .enqueue(new StringCallback() {
+                        @Override
+                        public void onSuccess(String result, Headers headers) {
+                            ScienceContentParse myParse = new ScienceContentParse(result);
+                            model.setScienceDetails(myParse.getEndStr());
+                            DatabaseHelper.exeSQL(ScienceTable.UPDATE_DETAILS, model.getScienceDetails(), model.getTitle());
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    onEventMainThread(new EventModel<ScienceModel>(EVENT.SCIENCE_DETAILS_REFRESH_SUCCESS));
+                                }
+                            });
+                        }
 
+                        @Override
+                        public void onFailure(String error) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    onEventMainThread(new EventModel<ScienceModel>(EVENT.SCIENCE_DETAILS_REFRESH_FAILURE));
+                                }
+                            });
+                        }
+                    });
+        }else {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new EventModel<DailyDetailsBean>(EVENT.SCIENCE_DETAILS_REFRESH_SUCCESS));
+                }
+            });
+        }
+    }
+
+
+    @Override
+    public void initView() {
+        super.initView();
+
+        contentView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return true;
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                onEventMainThread(new EventModel<FilmModel>(EVENT.SCIENCE_DETAILS_REFRESH_FAILURE));
+            }
+        });
     }
 
     @Override

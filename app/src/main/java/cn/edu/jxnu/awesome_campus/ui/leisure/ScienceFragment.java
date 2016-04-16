@@ -33,7 +33,6 @@ public class ScienceFragment extends BaseListFragment {
         model = new ScienceModel();
         adapter = new ScienceAdapter(getActivity(),model);
         recyclerView.setAdapter(adapter);
-        onDataRefresh();
         displayLoading();
     }
 
@@ -44,7 +43,7 @@ public class ScienceFragment extends BaseListFragment {
 
     @Override
     public void initView() {
-
+        model.loadFromCache();
     }
 
     @Override
@@ -52,6 +51,7 @@ public class ScienceFragment extends BaseListFragment {
         super.onEventComing(eventModel);
 
         switch (eventModel.getEventCode()){
+            case EVENT.SCIENCE_LOAD_CACHE_SUCCESS:
             case EVENT.SCIENCE_REFRESH_SUCCESS:
                 List list = eventModel.getDataList();
                 adapter.newList(list);
@@ -60,6 +60,9 @@ public class ScienceFragment extends BaseListFragment {
             case EVENT.SCIENCE_REFRESH_FAILURE:
                 hideLoading();
                 displayNetworkError();
+                break;
+            case EVENT.SCIENCE_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }

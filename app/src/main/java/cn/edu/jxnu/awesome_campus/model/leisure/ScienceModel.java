@@ -18,6 +18,7 @@ public class ScienceModel implements IModel<ScienceModel>{
     private Image_info image_info = new Image_info();
     private String url;
     private String title;
+    private String scienceDetails;
 
     public void setScienceDetails(String scienceDetails) {
         this.scienceDetails = scienceDetails;
@@ -27,7 +28,7 @@ public class ScienceModel implements IModel<ScienceModel>{
         return scienceDetails;
     }
 
-    private String scienceDetails;
+
 
     public ScienceModel() {
         scienceDAO = new ScienceDAO();
