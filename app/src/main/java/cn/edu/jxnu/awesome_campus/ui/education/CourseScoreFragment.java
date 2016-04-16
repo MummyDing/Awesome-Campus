@@ -67,12 +67,16 @@ public class CourseScoreFragment extends BaseListFragment {
     @Override
     public void initView() {
         setOnLineLayout(EducationLoginUtil.isLogin());
+        if (EducationLoginUtil.isLogin()){
+            model.loadFromCache();
+        }
     }
 
 
     @Override
     public void onEventComing(EventModel eventModel) {
         switch (eventModel.getEventCode()){
+            case EVENT.COURSE_SCORE_LOAD_CACHE_SUCCESS:
             case EVENT.COURSE_SCORE_REFRESH_SUCCESS:
                 courseScoreList = eventModel.getDataList();
                 if(spinnerWrapper == null){
@@ -85,6 +89,9 @@ public class CourseScoreFragment extends BaseListFragment {
                 break;
             case EVENT.COURSE_SCORE_REFRESH_FAILURE:
                 hideLoading();
+                break;
+            case EVENT.COURSE_SCORE_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }

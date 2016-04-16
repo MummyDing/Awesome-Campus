@@ -135,6 +135,13 @@ public class EVENT {
     public static final int SCIENCE_LOAD_CACHE_SUCCESS = 1010;
     public static final int SCIENCE_LOAD_CACHE_FAILURE = 1011;
 
+    // Campus Express
+    public static final int CAMPUS_EXPRESS_LOAD_CACHE_SUCCESS = 1012;
+    public static final int CAMPUS_EXPRESS_LOAD_CACHE_FAILURE = 1013;
+
+    // Course Score
+    public static final int COURSE_SCORE_LOAD_CACHE_SUCCESS = 1014;
+    public static final int COURSE_SCORE_LOAD_CACHE_FAILURE = 1015;
 
 }
 

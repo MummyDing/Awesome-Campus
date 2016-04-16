@@ -33,7 +33,6 @@ public class CampusExpressFragment extends BaseListFragment{
         model = new CampusExpressModel();
         adapter = new CampusExpressAdapter(getActivity(),model);
         recyclerView.setAdapter(adapter);
-        model.loadFromNet();
         displayLoading();
     }
 
@@ -44,13 +43,14 @@ public class CampusExpressFragment extends BaseListFragment{
 
     @Override
     public void initView() {
-
+        model.loadFromCache();
     }
 
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
         switch (eventModel.getEventCode()){
+            case EVENT.CAMPUS_EXPRESS_LOAD_CACHE_SUCCESS:
             case EVENT.CAMPUS_EXPRESS_SUCCESS:
                 Log.d("Express",eventModel.getDataList().size()+"");
                 adapter.newList(eventModel.getDataList());
@@ -59,6 +59,9 @@ public class CampusExpressFragment extends BaseListFragment{
             case EVENT.CAMPUS_EXPRESS_FAILURE:
                 hideLoading();
                 displayNetworkError();
+                break;
+            case EVENT.CAMPUS_EXPRESS_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }

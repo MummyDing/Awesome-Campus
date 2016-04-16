@@ -36,7 +36,7 @@ public class DailyDAO implements DAO<DailyModel>{
 
     @Override
     public boolean cacheAll(List<DailyModel> list) {
-        if (list == null || list.size() == 0){
+        if (list == null || list.isEmpty()){
             return false;
         }
         clearCache();

@@ -105,7 +105,9 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
 
     @Override
     public void displayNetworkError() {
-        networkBtn.setVisibility(View.VISIBLE);
+        if (adapter.getItemCount() == 0) {
+            networkBtn.setVisibility(View.VISIBLE);
+        }
     }
 
 

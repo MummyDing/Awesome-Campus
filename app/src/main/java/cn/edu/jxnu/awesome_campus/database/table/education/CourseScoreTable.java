@@ -35,8 +35,9 @@ public class CourseScoreTable {
     public static final int ID_COURSE_ID = 1;
     public static final int ID_COURSE_NAME = 2;
     public static final int ID_COURSE_CREDIT = 3;
-    public static final int ID_AGAIN_SCORE = 4;
-    public static final int ID_STANDRD_SCORE = 5;
+    public static final int ID_COURSE_SCORE = 4;
+    public static final int ID_AGAIN_SCORE = 5;
+    public static final int ID_STANDRD_SCORE = 6;
 
 
 
@@ -44,8 +45,8 @@ public class CourseScoreTable {
             TERM+" text, "+
             COURSE_ID+" text, "+
             COURSE_NAME+" text, "+
-            COURSE_CREDIT+" integer, "+
-            COURSE_SCORE+" float, "+
-            AGAIN_SCORE+" float, "+
-            STANDARD_SCORE+" float)";
+            COURSE_CREDIT+" text, "+
+            COURSE_SCORE+" text, "+
+            AGAIN_SCORE+" text, "+
+            STANDARD_SCORE+" text)";
 }

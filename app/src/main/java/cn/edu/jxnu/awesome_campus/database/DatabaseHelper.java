@@ -18,6 +18,7 @@ import cn.edu.jxnu.awesome_campus.database.table.leisure.ScienceTable;
 import cn.edu.jxnu.awesome_campus.database.table.library.BookBorrowedTable;
 import cn.edu.jxnu.awesome_campus.database.table.library.BookSearchHistoryTable;
 import cn.edu.jxnu.awesome_campus.database.table.library.BorrowHistoryTable;
+import cn.edu.jxnu.awesome_campus.database.table.life.CampusExpressTable;
 import cn.edu.jxnu.awesome_campus.database.table.life.WeatherInfoTable;
 
 /**
@@ -59,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 */
 
         db.execSQL(WeatherInfoTable.CREATE_TABLE);
-
+        db.execSQL(CampusExpressTable.CREATE_TABLE);
 
         /*
          * Study
