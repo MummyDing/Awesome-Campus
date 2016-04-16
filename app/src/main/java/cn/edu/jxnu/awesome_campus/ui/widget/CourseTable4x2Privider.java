@@ -10,6 +10,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseWidgetPrivider;
 public class CourseTable4x2Privider extends BaseWidgetPrivider {
     public static final String TAG = "CourseTable4x2Privider";
 
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
