@@ -18,7 +18,7 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.api.DailyApi;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
-import cn.edu.jxnu.awesome_campus.database.table.home.DailyTable;
+import cn.edu.jxnu.awesome_campus.database.table.leisure.DailyTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.DailyBean;

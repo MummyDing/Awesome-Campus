@@ -14,7 +14,7 @@ import java.io.IOException;
 
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
-import cn.edu.jxnu.awesome_campus.database.table.home.DailyTable;
+import cn.edu.jxnu.awesome_campus.database.table.leisure.DailyTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.DailyDetailsBean;

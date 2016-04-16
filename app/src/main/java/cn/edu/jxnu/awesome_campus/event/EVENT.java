@@ -126,5 +126,11 @@ public class EVENT {
     // Daily
     public static final int DAILY_LOAD_CACHE_SUCCESS = 1006;
     public static final int DAILY_LOAD_CACHE_FAILURE = 1007;
+
+    // Film
+    public static final int FILM_LOAD_CACHE_SUCCESS = 1008;
+    public static final int FILM_LOAD_CACHE_FAILURE = 1009;
+
+
 }
 

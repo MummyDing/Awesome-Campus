@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.database.table.home;
+package cn.edu.jxnu.awesome_campus.database.table.leisure;
 
 /**
  * Created by MummyDing on 16-2-24.
