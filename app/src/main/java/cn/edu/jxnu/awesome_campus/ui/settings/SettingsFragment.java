@@ -85,7 +85,9 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Log.d("lang",which+"");
                                 if (which != SettingsUtil.getCurrentLanguage()) {
+                                    Log.d("lang",which+"");
                                     mSettings.putInt(Settings.LANGUAGE, which);
                                     Settings.needRecreate = true;
                                 }

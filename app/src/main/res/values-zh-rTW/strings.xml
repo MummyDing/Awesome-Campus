@@ -1,0 +1,98 @@
+<resources>
+    <!--<string name="app_name">Awesome-Campus</string>-->
+    <!--暂时这么命名-->
+    <string name="app_name">师大+</string>
+    <string name="hint_click_to_login">點擊登陸</string>
+    <string name="home">主頁</string>
+    <string name="leisure">課餘</string>
+    <string name="life">生活</string>
+    <string name="study">自習</string>
+    <string name="library">圖書</string>
+    <string name="education">教務</string>
+    <string name="theme">主題</string>
+    <string name="settings">設定</string>
+    <string name="logout">注銷</string>
+    <string name="course_table">課表</string>
+    <string name="compus_news">資訊</string>
+    <string name="daily">日報</string>
+    <string name="film">電影</string>
+    <string name="science">科學</string>
+    <string name="campus">校內</string>
+    <string name="search_books">查找</string>
+    <string name="book_borrowed">已借</string>
+    <string name="reading">閱讀</string>
+    <string name="atm">ATM</string>
+    <string name="express">宅配</string>
+    <string name="seat">座位</string>
+    <string name="my_seat">我</string>
+    <string name="exam">考試</string>
+    <string name="Login">登陸</string>
+    <string name="studentid">學號</string>
+    <string name="password">密碼</string>
+    <string name="monday">周一</string>
+    <string name="tuesday">周二</string>
+    <string name="wednesday">周三</string>
+    <string name="thusday">周四</string>
+    <string name="friday">周五</string>
+    <string name="saturday">周六</string>
+    <string name="sunday">周日</string>
+    <string name="hint_search">查找圖書</string>
+    <string name="search">查找</string>
+    <string name="id_campusnews">id_campusnews</string>
+    <string name="menu_share">分享</string>
+    <string name="hint_share_to">分享到 ...</string>
+    <string name="hot">熱度 ：</string>
+    <string name="readingCount">瀏覽</string>
+    <string name="id_course_info">courseInfo</string>
+    <string name="course_name">課程名:</string>
+    <string name="course_id">課程號:</string>
+    <string name="course_teacher">老師:</string>
+    <string name="course_class">班級:</string>
+    <string name="classmate_list">同學:</string>
+    <string name="course_forum">討論區</string>
+    <string name="course_credit">學分</string>
+    <string name="course_score">分數</string>
+    <string name="standard_score">標準分</string>
+    <string name="text_share_from">"分享自 "</string>
+    <string name="campus_express">校内宅配</string>
+    <string name="hint_login_successful">成功登陸!!!</string>
+    <string name="hint_network_error">網路錯誤!!!</string>
+    <string name="hint_login_failed">登陸失敗!!</string>
+    <string name="hint_null_input">輸入不能爲空</string>
+    <string name="hint_wrong_studentid">學號錯誤!!!</string>
+    <string name="hint_wrong_password">密碼錯誤!!!</string>
+    <string name="all_courses_are_over">沒有課了！</string>
+    <string name="no_course_today">今天沒課喔~</string>
+    <string name="initializing">初始化...</string>
+    <string name="need_login_education_first">請先登陸教務在線!</string>
+    <string name="text_preference">偏好</string>
+    <string name="id_language">language</string>
+    <string name="text_language">語言</string>
+    <string name="id_swipe_back">swipe_back</string>
+    <string name="text_swipe_to_return">滑動返回</string>
+    <string name="id_exit_confirm">exit_confirm</string>
+    <string name="text_exit_confirm">退出確認</string>
+    <string name="id_clear_cache">clear_cache</string>
+    <string name="text_clear_cache">清空緩存</string>
+    <string name="text_clear_cache_summary">清理"師大＋"的緩存</string>
+    <string name="text_anywhere">任意位置有效</string>
+    <string name="text_left_only">僅左部有效</string>
+    <string name="text_clear_cache_successful">緩存清理成功!</string>
+    <string name="setting">設定</string>
+    <string name="notify_exit_confirm">再按一次退出</string>
+
+    <string-array name="langs" translatable="false">
+        <item>English</item>
+        <item>简体中文</item>
+        <item>繁體中文</item>
+    </string-array>
+
+    <string-array name="swipe_back">
+        <item>@string/text_anywhere</item>
+        <item>@string/text_left_only</item>
+    </string-array>
+    <string name="notify_press_twice_to_exit">按兩次返回退出</string>
+    <string name="text_storage">存儲</string>
+    <string name="notify_need_login">需要登陸</string>
+    <string name="Score">分數</string>
+</resources>

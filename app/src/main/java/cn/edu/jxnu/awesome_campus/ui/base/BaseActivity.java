@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import cn.edu.jxnu.awesome_campus.Config;
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -33,7 +34,8 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         loadConfig();
+        super.onCreate(savedInstanceState);
+
     }
 }

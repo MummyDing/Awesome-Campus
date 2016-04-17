@@ -73,7 +73,7 @@
     <string name="text_swipe_to_return">Swipe to Return</string>
     <string name="id_exit_confirm">exit_confirm</string>
     <string name="text_exit_confirm">Exit Confirm</string>
-    <string name="clear_cache">clear_cache</string>
+    <string name="id_clear_cache">clear_cache</string>
     <string name="text_clear_cache">Clear Cache</string>
     <string name="text_clear_cache_summary">Clear Awesome Campus\'s Cache</string>
     <string name="text_anywhere">Anywhere</string>
@@ -81,6 +81,9 @@
     <string name="text_clear_cache_successful">Cache Clear Successfully!</string>
     <string name="setting">Setting</string>
     <string name="notify_exit_confirm">press again to exit</string>
+    <string name="notify_press_twice_to_exit">Press back key twice to exit</string>
+    <string name="text_storage">Storage</string>
+    <string name="notify_need_login">Need Login</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

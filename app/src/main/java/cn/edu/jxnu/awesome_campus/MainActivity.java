@@ -226,4 +226,13 @@ public class MainActivity extends BaseActivity implements HomeView{
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(Settings.needRecreate) {
+            Settings.needRecreate = false;
+            this.recreate();
+        }
+    }
 }

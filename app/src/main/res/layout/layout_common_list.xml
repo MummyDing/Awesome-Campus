@@ -76,7 +76,7 @@
         android:layout_height="match_parent"
         android:visibility="gone">
         <TextView
-            android:text="Need Login"
+            android:text="@string/notify_need_login"
             android:textColor="?attr/textColor"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"

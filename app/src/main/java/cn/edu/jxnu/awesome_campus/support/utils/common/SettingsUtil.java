@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.utils.common;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.webkit.WebView;
 
@@ -43,6 +44,11 @@ public class SettingsUtil {
                 country = "US";
                 break;
         }
+        Locale locale = new Locale(language, country);
+        Configuration conf = context.getResources().getConfiguration();
+        conf.locale = locale;
+        context.getApplicationContext().getResources().updateConfiguration(conf, context.getResources().getDisplayMetrics());
+
     }
 
 

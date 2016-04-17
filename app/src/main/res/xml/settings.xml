@@ -11,13 +11,13 @@
         <CheckBoxPreference
             android:key="@string/id_exit_confirm"
             android:title="@string/text_exit_confirm"
-            android:summary="Press back key twice to exit"
+            android:summary="@string/notify_press_twice_to_exit"
             android:checked="true"/>
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="Storage">
+        android:title="@string/text_storage">
         <Preference
-            android:key="@string/clear_cache"
+            android:key="@string/id_clear_cache"
             android:title="@string/text_clear_cache"
             android:summary="@string/text_clear_cache_summary"/>
 
