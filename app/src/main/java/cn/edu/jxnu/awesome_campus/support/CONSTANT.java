@@ -7,4 +7,6 @@ package cn.edu.jxnu.awesome_campus.support;
  */
 public class CONSTANT{
     public static final int IO_BUFFER_SIZE = 200 * 100;
+
+    public static final int exitConfirmTime = 2000;
 }

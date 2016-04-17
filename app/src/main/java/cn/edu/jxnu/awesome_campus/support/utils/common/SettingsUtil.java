@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.support.utils.common;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.webkit.WebView;
 
@@ -21,6 +22,29 @@ import cn.edu.jxnu.awesome_campus.support.Settings;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class SettingsUtil {
+
+
+    // Must be called before setContentView()
+    public static void changeLanguage(Context context, int lang) {
+        String language = null;
+        String country = null;
+
+        switch (lang) {
+            case 1:
+                language = "zh";
+                country = "CN";
+                break;
+            case 2:
+                language = "zh";
+                country = "TW";
+                break;
+            default:
+                language = "en";
+                country = "US";
+                break;
+        }
+    }
+
 
     public static int getCurrentLanguage() {
         int lang = Settings.getsInstance().getInt(Settings.LANGUAGE, -1);

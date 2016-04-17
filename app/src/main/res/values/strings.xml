@@ -80,6 +80,7 @@
     <string name="text_left_only">Left Only</string>
     <string name="text_clear_cache_successful">Cache Clear Successfully!</string>
     <string name="setting">Setting</string>
+    <string name="notify_exit_confirm">press again to exit</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

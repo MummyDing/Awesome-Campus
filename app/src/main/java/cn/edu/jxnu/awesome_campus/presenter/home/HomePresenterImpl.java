@@ -134,7 +134,13 @@ public class HomePresenterImpl implements HomePresenter {
         header.getHeaderBackgroundView().setBackgroundColor(ThemeConfig.themeColor[Config.themeSelected]);
     }
 
+    public boolean isDrawerOpen(){
+        return drawer.isDrawerOpen();
+    }
 
+    public void closeDrawer(){
+        drawer.closeDrawer();
+    }
 
     @Override
     public void clearAllFragments() {

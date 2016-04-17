@@ -3,8 +3,6 @@ package cn.edu.jxnu.awesome_campus.support;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.Locale;
-
 import cn.edu.jxnu.awesome_campus.InitApp;
 
 /**
@@ -20,7 +18,7 @@ public class Settings {
 
     public static int swipeID = 0;
 
-    public static final String XML_NAEM = "settings";
+    public static final String XML_NAME = "settings";
 
     public static final String LANGUAGE = "language";
 
@@ -42,7 +40,7 @@ public class Settings {
     }
 
     private Settings(Context context){
-        mPrefs = context.getSharedPreferences(XML_NAEM,Context.MODE_PRIVATE);
+        mPrefs = context.getSharedPreferences(XML_NAME,Context.MODE_PRIVATE);
     }
 
     public Settings putBoolean(String key,boolean value){

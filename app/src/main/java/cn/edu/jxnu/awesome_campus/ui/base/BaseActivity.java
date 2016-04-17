@@ -10,6 +10,7 @@ import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SettingsUtil;
 
 /**
  * Created by MummyDing on 16-1-29.
@@ -17,11 +18,17 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class BaseActivity extends AppCompatActivity {
-
+    private int mLang = -1;
     protected void loadConfig() {
         SPUtil sp=new SPUtil(InitApp.AppContext);
         Config.themeSelected=sp.getIntSP(Config.SP_FILE_NAME,Config.THEME_SELECTED);
         this.setTheme(ThemeConfig.themeStyle[Config.themeSelected]);
+        // Language
+        mLang = SettingsUtil.getCurrentLanguage();
+        if (mLang > -1) {
+            SettingsUtil.changeLanguage(this, mLang);
+        }
+
     }
 
     @Override

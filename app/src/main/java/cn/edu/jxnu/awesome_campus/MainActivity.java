@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -34,10 +35,12 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
+import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SettingsUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
@@ -63,13 +66,21 @@ import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.OnColorChangedLi
  */
 public class MainActivity extends BaseActivity implements HomeView{
 
+    private long lastPressTime = 0;
+
     private Toolbar toolbar;
     private Menu menu;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentTransaction fragmentTransaction;
     public static HomePresenter presenter;
+    private Settings mSettings = Settings.getsInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        mSettings.swipeID = mSettings.getInt(Settings.SWIPE_BACK,0);
+        mSettings.isExitConfirm = mSettings.getBoolean(Settings.EXIT_CONFIRM,true);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EventBus.getDefault().register(this);
@@ -194,4 +205,25 @@ public class MainActivity extends BaseActivity implements HomeView{
         this.menu = menu;
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        if(presenter.isDrawerOpen()){
+            presenter.closeDrawer();
+        }else if(canExit()){
+            super.onBackPressed();
+        }
+    }
+
+    private boolean canExit(){
+        if(Settings.isExitConfirm){
+            if(System.currentTimeMillis() - lastPressTime > CONSTANT.exitConfirmTime){
+                lastPressTime = System.currentTimeMillis();
+                Snackbar.make(getCurrentFocus(), R.string.notify_exit_confirm,Snackbar.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

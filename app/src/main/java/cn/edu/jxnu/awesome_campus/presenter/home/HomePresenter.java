@@ -16,4 +16,6 @@ public interface HomePresenter extends IPresenter{
     void buildHeader(Activity activity,String avatarURL,String studentID,String name);
     void updateHeader(Activity activity);
     void clearAllFragments();
+    boolean isDrawerOpen();
+    void closeDrawer();
 }

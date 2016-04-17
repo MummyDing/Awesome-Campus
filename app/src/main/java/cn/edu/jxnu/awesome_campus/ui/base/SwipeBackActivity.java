@@ -20,6 +20,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 
 /**
  * 滑动关闭页面基类，使用时继承此类并使用BlankTheme主题即可
@@ -43,7 +44,7 @@ public class SwipeBackActivity extends BaseActivity {
     protected boolean swipeAnyWhere = false;
 
     public SwipeBackActivity() {
-
+        setSwipeAnyWhere(Settings.swipeID == 0 ? true:false );
     }
 
     @Override
