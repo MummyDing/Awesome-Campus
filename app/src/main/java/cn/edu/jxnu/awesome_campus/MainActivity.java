@@ -34,6 +34,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
@@ -47,6 +48,7 @@ import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
 import cn.edu.jxnu.awesome_campus.ui.login.LoginFragment;
+import cn.edu.jxnu.awesome_campus.ui.settings.SettingsActivity;
 import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.ColorPickerDialog;
@@ -149,6 +151,8 @@ public class MainActivity extends BaseActivity implements HomeView{
             dialog.setCheckedColor(ThemeConfig.themeColor[Config.themeSelected]);
         }else if(id == DrawerItem.SETTINGS.getId()){
             //setTitle(DrawerItem.SETTINGS.getItemName());
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }else if(id == DrawerItem.LOGOUT.getId()){
             //setTitle(DrawerItem.LOGOUT.getItemName());
             EducationLoginUtil.clearCookie();

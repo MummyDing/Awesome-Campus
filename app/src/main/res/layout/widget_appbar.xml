@@ -8,13 +8,7 @@
     android:fitsSystemWindows="true"
     android:focusable="false"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:titleTextColor="?attr/colorPrimary"
-        android:layout_width="match_parent"
-        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/widget_toolbar"/>
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/tab_layout"

@@ -66,4 +66,29 @@
     <string name="no_course_today">No course today!</string>
     <string name="initializing">Initializing...</string>
     <string name="need_login_education_first">Please login educational system first!</string>
+    <string name="text_preference">Preference</string>
+    <string name="id_language">language</string>
+    <string name="text_language">Language</string>
+    <string name="id_swipe_back">swipe_back</string>
+    <string name="text_swipe_to_return">Swipe to Return</string>
+    <string name="id_exit_confirm">exit_confirm</string>
+    <string name="text_exit_confirm">Exit Confirm</string>
+    <string name="clear_cache">clear_cache</string>
+    <string name="text_clear_cache">Clear Cache</string>
+    <string name="text_clear_cache_summary">Clear Awesome Campus\'s Cache</string>
+    <string name="text_anywhere">Anywhere</string>
+    <string name="text_left_only">Left Only</string>
+    <string name="text_clear_cache_successful">Cache Clear Successfully!</string>
+    <string name="setting">Setting</string>
+
+    <string-array name="langs" translatable="false">
+        <item>English</item>
+        <item>简体中文</item>
+        <item>繁體中文</item>
+    </string-array>
+
+    <string-array name="swipe_back">
+        <item>@string/text_anywhere</item>
+        <item>@string/text_left_only</item>
+    </string-array>
 </resources>
