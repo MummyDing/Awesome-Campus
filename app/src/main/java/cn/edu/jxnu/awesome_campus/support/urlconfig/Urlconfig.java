@@ -6,7 +6,7 @@ package cn.edu.jxnu.awesome_campus.support.urlconfig;
  */
 public class Urlconfig {
     //简书基础url
-    public static final String JianShu_Base_URL="http://www.jianshu.com/";
+    public static final String JianShu_Base_URL="http://www.jianshu.com";
     //简书基础list的url
     public static final String JianShu_List_URL="http://www.jianshu.com/collections/21/notes?order_by=added_at&page=1";
 //    public static final String JianShu_List_URL="http://www.jianshu.com/collections/12142/notes?order_by=added_at&page=1";

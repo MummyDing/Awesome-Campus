@@ -1,9 +1,11 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.widget.NestedScrollView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebResourceError;
@@ -34,32 +36,6 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
     private FilmModel model = new FilmModel();
     @Override
     protected void onDataRefresh() {
-        // 这里请求详情
-     /*   NetManageUtil.get(model.getUrl())
-                .addTag(TAG)
-                .enqueue(new StringCallback() {
-                    @Override
-                    public void onSuccess(String result, Headers headers) {
-                        JianshuContentParse myParse = new JianshuContentParse(result);
-                        model.setDetail(myParse.getEndStr());
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                onEventMainThread(new EventModel<FilmModel>(EVENT.FILM_DETAILS_REFRESH_SUCCESS));
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailure(String error) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                onEventMainThread(new EventModel<FilmModel>(EVENT.FILM_DETAILS_REFRESH_FAILURE));
-                            }
-                        });
-                    }
-                });*/
 
     }
 
@@ -79,8 +55,12 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
 
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                super.onReceivedError(view, request, error);
-                onEventMainThread(new EventModel<FilmModel>(EVENT.FILM_DETAILS_REFRESH_FAILURE));
+                //super.onReceivedError(view, request, error);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Log.d(TAG,"网络错误信息"+error.getDescription().toString());
+                    Log.d(TAG,"网络请求信息"+request.getUrl());
+                }
+                //onEventMainThread(new EventModel<FilmModel>(EVENT.FILM_DETAILS_REFRESH_FAILURE));
             }
         });
     }
@@ -105,6 +85,7 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
                 break;
             case EVENT.FILM_DETAILS_REFRESH_FAILURE:
                 hideLoading();
+                Log.d(TAG,"电影页信息获取失败");
                 displayNetworkError();
                 break;
         }

@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,7 +55,7 @@ import cn.edu.jxnu.awesome_campus.view.base.BaseView;
  */
 public abstract class BaseDetailsActivity extends SwipeBackActivity implements BaseView {
 
-
+    private static final String TAG="BaseDetailsActivity";
     protected Toolbar toolbar;
     protected WebView contentView;
     protected SimpleDraweeView topImage;
@@ -113,6 +114,7 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
     @Override
     public void displayNetworkError() {
         if(networkBtn != null){
+            Log.d(TAG,"显示网络错误提示");
             networkBtn.setVisibility(View.VISIBLE);
         }
     }
@@ -170,10 +172,10 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
                 displayNetworkError();
             }
 
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-               displayNetworkError();
-            }
+//            @Override
+//            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+//               displayNetworkError();
+//            }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

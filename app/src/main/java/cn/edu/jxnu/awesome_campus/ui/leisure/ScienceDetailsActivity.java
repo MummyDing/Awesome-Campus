@@ -93,7 +93,7 @@ public class ScienceDetailsActivity extends BaseDetailsActivity {
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
-                onEventMainThread(new EventModel<FilmModel>(EVENT.SCIENCE_DETAILS_REFRESH_FAILURE));
+                onEventMainThread(new EventModel<ScienceModel>(EVENT.SCIENCE_DETAILS_REFRESH_FAILURE));
             }
         });
     }
