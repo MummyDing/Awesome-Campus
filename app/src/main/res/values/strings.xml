@@ -84,6 +84,14 @@
     <string name="notify_press_twice_to_exit">Press back key twice to exit</string>
     <string name="text_storage">Storage</string>
     <string name="notify_need_login">Need Login</string>
+    <string name="notify_already_login">Already Login!</string>
+    <string name="text_username">Username</string>
+    <string name="text_course_name">"Course Name: "</string>
+    <string name="text_exam_time">"Exam Time : "</string>
+    <string name="text_exam_room">"Exam Room : "</string>
+    <string name="text_exam_seat">"Exam Seat :  "</string>
+    <string name="text_remark">"Remark :   "</string>
+    <string name="about">About</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

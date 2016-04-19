@@ -35,7 +35,7 @@ public class LibraryLoginFragment extends BaseLoginFragment{
 
     @Override
     protected String getUsernameHint() {
-        return "Username";
+        return this.getString(R.string.text_username);
     }
 
     @Override

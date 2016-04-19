@@ -38,11 +38,11 @@ public class ExamTimeAdapter extends BaseListAdapter<ExamTimeModel,ExamTimeAdapt
     @Override
     public void onBindViewHolder(VH holder, int position) {
         ExamTimeModel model = getItem(position);
-        holder.courseName.setText("Course Name: "+model.getCourseName());
-        holder.examTime.setText("Exam Time : "+model.getExamTime());
-        holder.examRoom.setText("Exam Room : "+model.getExamRoom());
-        holder.examSeat.setText("Exam Seat :  "+model.getExamSeat());
-        holder.examRemark.setText("Remark :   "+model.getRemark());
+        holder.courseName.setText(mContext.getString(R.string.text_course_name)+model.getCourseName());
+        holder.examTime.setText(mContext.getString(R.string.text_exam_time)+model.getExamTime());
+        holder.examRoom.setText(mContext.getString(R.string.text_exam_room)+model.getExamRoom());
+        holder.examSeat.setText(mContext.getString(R.string.text_exam_seat)+model.getExamSeat());
+        holder.examRemark.setText(mContext.getString(R.string.text_remark)+model.getRemark());
     }
 
     class VH extends RecyclerView.ViewHolder{

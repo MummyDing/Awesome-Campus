@@ -95,4 +95,11 @@
     <string name="text_storage">存儲</string>
     <string name="notify_need_login">需要登陸</string>
     <string name="Score">分數</string>
+    <string name="notify_already_login">已經登陸</string>
+    <string name="text_username">用戶名</string>
+    <string name="text_course_name">課程名:</string>
+    <string name="text_exam_room">考場號:</string>
+    <string name="text_exam_seat">座位號:</string>
+    <string name="text_exam_time">時 間:</string>
+    <string name="text_remark">備 注:</string>
 </resources>

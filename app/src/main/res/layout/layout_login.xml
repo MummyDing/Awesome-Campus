@@ -66,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:text="Already Login!"
+            android:text="@string/notify_already_login"
             android:textColor="?attr/textColor"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"

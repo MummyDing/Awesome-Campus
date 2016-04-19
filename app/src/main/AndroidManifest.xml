@@ -65,7 +65,8 @@
             android:name=".ui.widget.CourseTable4x2Service"
             android:process=":service" />
 
-        <activity android:name=".ui.settings.SettingsActivity"></activity>
+        <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name=".ui.about.AboutActivity"></activity>
     </application>
 
 </manifest>

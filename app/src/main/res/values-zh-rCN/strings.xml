@@ -95,4 +95,11 @@
     <string name="notify_press_twice_to_exit">按两次返回退出</string>
     <string name="text_storage">存储</string>
     <string name="notify_need_login">需要登陆</string>
+    <string name="notify_already_login">已经登陆</string>
+    <string name="text_username">用户名</string>
+    <string name="text_course_name">课程名:</string>
+    <string name="text_exam_room">考场号:</string>
+    <string name="text_exam_seat">座位号:</string>
+    <string name="text_exam_time">时 间:</string>
+    <string name="text_remark">备 注:</string>
 </resources>
