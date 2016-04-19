@@ -75,6 +75,7 @@ public class HomePresenterImpl implements HomePresenter {
                 new DividerDrawerItem(),
                         buildSecondaryItem(DrawerItem.THEME.getItemName(),DrawerItem.THEME.getItemIconID(),DrawerItem.THEME.getId()),
                         buildSecondaryItem(DrawerItem.SETTINGS.getItemName(),DrawerItem.SETTINGS.getItemIconID(),DrawerItem.SETTINGS.getId()),
+                        buildSecondaryItem(DrawerItem.ABOUT.getItemName(),DrawerItem.ABOUT.getItemIconID(),DrawerItem.ABOUT.getId()),
                         buildSecondaryItem(DrawerItem.LOGOUT.getItemName(),DrawerItem.LOGOUT.getItemIconID(),DrawerItem.LOGOUT.getId())
                ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override

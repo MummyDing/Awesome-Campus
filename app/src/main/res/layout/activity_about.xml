@@ -2,27 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background"
+    android:background="?attr/backgroundColor"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/widget_toolbar"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:background="?attr/backgroundColor">
-        <android.support.v4.widget.CircleImageView
-            android:src="@drawable/mummy"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical">
+            <cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView
+                android:src="@drawable/mummy"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+            <TextView
+                android:text="MummyDing"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        <android.support.v4.widget.CircleImageView
-            android:src="@drawable/kevin"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true">
+            <cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView
+                android:src="@drawable/kevin"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+            <TextView
+                android:text="KevinWu"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -37,5 +66,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
-
 </LinearLayout>

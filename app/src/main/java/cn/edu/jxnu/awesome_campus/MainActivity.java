@@ -43,6 +43,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SettingsUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
+import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
@@ -164,7 +165,11 @@ public class MainActivity extends BaseActivity implements HomeView{
             //setTitle(DrawerItem.SETTINGS.getItemName());
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
-        }else if(id == DrawerItem.LOGOUT.getId()){
+        }else if(id == DrawerItem.ABOUT.getId()){
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
+        }
+        else if(id == DrawerItem.LOGOUT.getId()){
             //setTitle(DrawerItem.LOGOUT.getItemName());
             EducationLoginUtil.clearCookie();
             LibraryLoginUtil.clearCookie();

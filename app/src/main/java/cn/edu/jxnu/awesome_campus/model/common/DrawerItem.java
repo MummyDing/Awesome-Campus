@@ -14,7 +14,7 @@ public enum DrawerItem {
     LIFE(R.string.life,R.mipmap.ic_life_black),STUDY(R.string.study,R.mipmap.ic_study_black),
     LIBRARY(R.string.library,R.mipmap.ic_library_black), EDUCATION(R.string.education,R.mipmap.ic_edu_black),
     THEME(R.string.theme,R.mipmap.ic_theme_black),SETTINGS(R.string.settings,R.mipmap.ic_settings_black),
-    LOGOUT(R.string.logout,R.mipmap.ic_logout_black);
+    ABOUT(R.string.about,R.mipmap.ic_about_black), LOGOUT(R.string.logout,R.mipmap.ic_logout_black);
 
     private String itemName;
     private int itemIconID;

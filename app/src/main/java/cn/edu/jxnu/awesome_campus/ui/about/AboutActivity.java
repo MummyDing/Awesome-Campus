@@ -1,6 +1,5 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
