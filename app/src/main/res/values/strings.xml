@@ -93,6 +93,45 @@
     <string name="text_remark">"Remark :   "</string>
     <string name="about">About</string>
 
+    <string name="text_copyright">Copyright</string>
+    <string name="text_data">Data</string>
+    <string name="text_email">E-Mail</string>
+    <string name="text_data_summary">Some data are from public API,all rights belong to original author</string>
+    <string name="text_attention">Attention</string>
+    <string name="text_attention_summary">This app is not allowed for COMMERCIAL Purposes</string>
+    <string name="text_license">License</string>
+    <string name="id_app_intro">app_intro</string>
+    <string name="text_app_intro">App Introduction</string>
+    <string name="id_current_version">current_version</string>
+    <string name="text_current_version">Current Version</string>
+    <string name="summary_version">Awesome Campus 1.0</string>
+    <string name="id_check_update">check_update</string>
+    <string name="text_check_update">Check Update</string>
+    <string name="id_demo_video">demo_video</string>
+    <string name="text_demo_video">Demo Video</string>
+    <string name="id_star_project">star_project</string>
+    <string name="text_good_job">Good Job</string>
+    <string name="summary_good_job">Give me a star at https://github.com/MummyDing/Awesome-Campus</string>
+    <string name="id_share">share</string>
+    <string name="text_share_app">Share Awesome Campus</string>
+    <string name="text_mummyding">MummyDing</string>
+    <string name="id_mummy_blog">mummy_blog</string>
+    <string name="text_blog">Blog</string>
+    <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
+    <string name="id_github_mummy">mummy_github</string>
+    <string name="text_github">GitHub</string>
+    <string name="mummyding_github">https://github.com/MummyDing</string>
+    <string name="id_mummy_email">mummy_email</string>
+    <string name="mummy_email">MummyDing@outlook.com</string>
+    <string name="id_mummy_app">mummy_app</string>
+    <string name="text_leisure">Leisure</string>
+    <string name="summary_leisure">An Android app for reading</string>
+    <string name="text_kevinwu">KevinWu</string>
+    <string name="id_kevin_blog">kevin_blog</string>
+    <string name="text_thanks">Thanks</string>
+    <string name="summary_yingzi">Awesome Campus\'s Photographer(Express Image)\nWeChat Subscription Account:ershisuizhihou</string>
+    <string name="summary_datou">Awesome Campus\'s Photographer(Background Image)\nE-Mail:dfc3333@outlook.com</string>
+
     <string-array name="langs" translatable="false">
         <item>English</item>
         <item>简体中文</item>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceCategory
+    android:title="@string/app_name">
+    <Preference
+        android:key="@string/id_app_intro"
+        android:title="@string/text_app_intro"/>
+    <Preference
+        android:key="@string/id_current_version"
+        android:title="@string/text_current_version"
+        android:summary="@string/summary_version"/>
+    <Preference
+        android:key="@string/id_check_update"
+        android:title="@string/text_check_update" />
+    <Preference
+        android:key="@string/id_demo_video"
+        android:title="@string/text_demo_video"/>
+    <Preference
+        android:key="@string/id_star_project"
+        android:title="@string/text_good_job"
+        android:summary="@string/summary_good_job"/>
+    <Preference
+        android:key="@string/id_share"
+        android:title="@string/text_share_app"/>
+</PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/text_mummyding">
+        <Preference
+            android:key="@string/id_mummy_blog"
+            android:title="@string/text_blog"
+            android:summary="@string/mummyding_blog"/>
+        <Preference
+            android:key="@string/id_github_mummy"
+            android:title="@string/text_github"
+            android:summary="@string/mummyding_github"/>
+        <Preference
+            android:key="@string/id_mummy_email"
+            android:title="@string/text_email"
+            android:summary="@string/mummy_email"/>
+        <Preference
+            android:key="@string/id_mummy_app"
+            android:title="@string/text_leisure"
+            android:summary="@string/summary_leisure"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/text_kevinwu">
+        <Preference
+            android:key="@string/id_kevin_blog"
+            android:title="@string/text_blog"
+            android:summary="http://"/>
+        <Preference
+            android:key="kevin_github"
+            android:title="GitHub"
+            android:summary="https://github.com/kevinwu1993"/>
+        <Preference
+            android:key="kevin_email"
+            android:title="E-Mail"
+            android:summary=".....com"/>
+        <Preference
+            android:key="kevin_app"
+            android:title="...."
+            android:summary="....."/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/text_thanks">
+        <Preference
+            android:title="英子酱"
+            android:summary="@string/summary_yingzi"/>
+        <Preference
+            android:title="大头"
+            android:summary="@string/summary_datou"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/text_copyright">
+        <Preference
+            android:title="@string/text_data"
+            android:summary="@string/text_data_summary" />
+        <Preference
+            android:title="@string/text_attention"
+            android:summary="@string/text_attention_summary"/>
+        <Preference
+            android:title="@string/text_license"
+            android:summary="   Awesome Campus(师大+) is free software: you can redistribute it and/or modify　it under the terms of the GNU General
+Public License as published by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.\nAwesome Campus(师大+) is distributed in the hope that it will be useful,but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+    \n\n\n" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
