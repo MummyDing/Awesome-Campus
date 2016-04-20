@@ -106,6 +106,7 @@
     <string name="summary_datou">师大+摄影(负责背景图片)\n邮箱:dfc3333@outlook.com</string>
     <string name="summary_good_job">去GitHub( https://github.com/MummyDing/Awesome-Campus)上给颗star吧</string>
     <string name="summary_leisure">一款阅读类Android应用</string>
+    <string name="summary_ytweather">老人机专用天气</string>
     <string name="summary_yingzi">师大+摄影(负责快递图片)\n个人微信订阅号:ershisuizhihou</string>
     <string name="text_app_intro">应用简介</string>
     <string name="text_check_update">检查更新</string>
@@ -121,6 +122,7 @@
     <string name="text_good_job">点个赞</string>
     <string name="text_kevinwu">KevinWu</string>
     <string name="text_leisure">闲暇</string>
+    <string name="text_ytweather">芋头天气</string>
     <string name="text_license">开源协议</string>
     <string name="text_mummyding">MummyDing</string>
     <string name="text_share_app">分享"师大+"</string>

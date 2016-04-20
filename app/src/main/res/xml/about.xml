@@ -48,19 +48,19 @@
         <Preference
             android:key="@string/id_kevin_blog"
             android:title="@string/text_blog"
-            android:summary="http://"/>
+            android:summary="@string/kevin_blog"/>
         <Preference
             android:key="kevin_github"
             android:title="GitHub"
-            android:summary="https://github.com/kevinwu1993"/>
+            android:summary="@string/kevin_github"/>
         <Preference
             android:key="kevin_email"
             android:title="E-Mail"
-            android:summary=".....com"/>
+            android:summary="@string/kevin_email"/>
         <Preference
             android:key="kevin_app"
-            android:title="...."
-            android:summary="....."/>
+            android:title="@string/text_ytweather"
+            android:summary="@string/summary_ytweather"/>
     </PreferenceCategory>
 
 

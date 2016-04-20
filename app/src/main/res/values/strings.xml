@@ -125,9 +125,14 @@
     <string name="mummy_email">MummyDing@outlook.com</string>
     <string name="id_mummy_app">mummy_app</string>
     <string name="text_leisure">Leisure</string>
+    <string name="text_ytweather">YTWeather</string>
     <string name="summary_leisure">An Android app for reading</string>
+    <string name="summary_ytweather">An Weather app for Old people</string>
     <string name="text_kevinwu">KevinWu</string>
     <string name="id_kevin_blog">kevin_blog</string>
+    <string name="kevin_blog">http://kevinwu1993.github.io</string>
+    <string name="kevin_github">https://github.com/KevinWu1993</string>
+    <string name="kevin_email">wqd1993@qq.com</string>
     <string name="text_thanks">Thanks</string>
     <string name="summary_yingzi">Awesome Campus\'s Photographer(Express Image)\nWeChat Subscription Account:ershisuizhihou</string>
     <string name="summary_datou">Awesome Campus\'s Photographer(Background Image)\nE-Mail:dfc3333@outlook.com</string>
