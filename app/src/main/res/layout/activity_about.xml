@@ -26,7 +26,7 @@
             <TextView
                 android:text="MummyDing"
                 android:textSize="15sp"
-                android:textColor="#000"
+                android:textColor="?attr/textColor"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -45,7 +45,7 @@
             <TextView
                 android:text="KevinWu"
                 android:textSize="15sp"
-                android:textColor="#000"
+                android:textColor="?attr/textColor"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

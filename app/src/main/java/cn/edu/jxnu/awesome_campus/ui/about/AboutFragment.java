@@ -6,6 +6,7 @@ import android.preference.PreferenceFragment;
 import android.support.v4.app.Fragment;
 import android.widget.ProgressBar;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 
 /**
@@ -25,14 +26,14 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private Preference mMummyGitHub;
     private Preference mMummyEmail;
 
-    private final String APP_INTRO = getString(R.string.id_app_intro);
-    private final String DEMO_VIDEO = getString(R.string.id_demo_video);
-    private final String CHECK_UPDATE = getString(R.string.id_check_update);
-    private final String STAR_PROJECT = getString(R.string.id_star_project);
-    private final String SHARE = getString(R.string.id_share);
-    private final String MUMMY_BLOG = getString(R.string.id_mummy_blog);
-    private final String MUMMY_GITHUB = getString(R.string.id_github_mummy);
-    private final String MUMMY_EMAIL = getString(R.string.id_mummy_email);
+    private final String APP_INTRO = InitApp.AppContext.getString(R.string.id_app_intro);
+    private final String DEMO_VIDEO = InitApp.AppContext.getString(R.string.id_demo_video);
+    private final String CHECK_UPDATE = InitApp.AppContext.getString(R.string.id_check_update);
+    private final String STAR_PROJECT = InitApp.AppContext.getString(R.string.id_star_project);
+    private final String SHARE = InitApp.AppContext.getString(R.string.id_share);
+    private final String MUMMY_BLOG = InitApp.AppContext.getString(R.string.id_mummy_blog);
+    private final String MUMMY_GITHUB = InitApp.AppContext.getString(R.string.id_github_mummy);
+    private final String MUMMY_EMAIL = InitApp.AppContext.getString(R.string.id_mummy_email);
 
     private ProgressBar progressBar;
 
