@@ -159,7 +159,7 @@ public class TimeUtil {
                 time= InitApp.AppContext.getResources().getString(R.string.wednesday);
                 break;
             case 4:
-                time= InitApp.AppContext.getResources().getString(R.string.tuesday);
+                time= InitApp.AppContext.getResources().getString(R.string.thusday);
                 break;
             case 5:
                 time= InitApp.AppContext.getResources().getString(R.string.friday);
