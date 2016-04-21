@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.htmlparse.libary;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
  * Created by KevinWu on 2016/2/19.
  */
 public class BookBorrowedParse {
+    private static final String TAG="BookBorrowedParse";
     private static final int GROUP_SIZE=8;
     private static final String ITEM_CSS="td[class=whitetext]";//选择css
     private String parseStr;//待解析字符串
@@ -58,18 +61,18 @@ public class BookBorrowedParse {
     *create at 2016/2/19 1:31
     */
     private void fillEndList() {
-        for(int i=0;i<resultList.size()-GROUP_SIZE;i=i+GROUP_SIZE){
+        Log.d(TAG,"获取到的结果列表的大小为："+resultList.size()/GROUP_SIZE);
+        for(int i=0;i<=resultList.size()-GROUP_SIZE;i=i+GROUP_SIZE){
             String first_cut[]=resultList.get(i+1).toString().split(" / ");
             String bookTitle=first_cut[0];
             String bookAuthor="";
             if (first_cut.length>1){
                 bookAuthor=first_cut[1];
             }
-
             endList.add(
                     new BookBorrowedModel(
                             resultList.get(i).toString(),
-                           bookTitle,
+                            bookTitle,
                             bookAuthor,
                             resultList.get(i+2).toString(),
                             resultList.get(i+3).toString(),
@@ -78,5 +81,6 @@ public class BookBorrowedParse {
                     )
             );
         }
+        Log.d(TAG,"获取到最终的结果列表的大小为："+endList.size());
     }
 }
