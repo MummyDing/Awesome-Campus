@@ -13,6 +13,7 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.BookSearchResultParse;
+import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 
 import static org.junit.Assert.*;
 
@@ -55,5 +56,9 @@ public class ExampleUnitTest {
             e.printStackTrace();
         }
         return str;
+    }
+    @Test
+    public void testSelfStudyRoom(){
+        SelfStudyRoomLoginUtil.onLogin(null,null);
     }
 }

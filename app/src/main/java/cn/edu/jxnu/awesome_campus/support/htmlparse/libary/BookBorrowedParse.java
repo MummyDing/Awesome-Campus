@@ -80,6 +80,7 @@ public class BookBorrowedParse {
                             resultList.get(i+5).toString()
                     )
             );
+            Log.d(TAG,"应该归还时间为："+resultList.get(i+3).toString());
         }
         Log.d(TAG,"获取到最终的结果列表的大小为："+endList.size());
     }

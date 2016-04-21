@@ -92,6 +92,8 @@ public class EVENT {
     public static final int LIBRARY_LOGIN_FAILURE_NETWORKERROR=41;
     public static final int LIBRARY__LOGIN_FAILURE_NULL_INPUT=42;
 
+
+
     //BookBorrowed
     public static final int BOOKBORROWED_REFRESH_SUCCESS = 43;
     public static final int BOOKBORROWED_REFRESH_FAILURE = 44;
@@ -105,6 +107,11 @@ public class EVENT {
     public static final int CAMPUS_EXPRESS_SUCCESS = 47;
     public static final int CAMPUS_EXPRESS_FAILURE = 48;
 
+    //SelfStudyRoom Login
+    public static final int SELFSTUDYROOM_LOGIN_SUCCESS=49;
+    public static final int SELFSTUDYROOM_LOGIN_FAILURE=50;
+    public static final int SELFSTUDYROOM_LOGIN_FAILURE_NETWORKERROR=51;
+    public static final int SELFSTUDYROOM_LOGIN_FAILURE_NULL_INPUT=52;
 
     /**
      * Cache Event Code
