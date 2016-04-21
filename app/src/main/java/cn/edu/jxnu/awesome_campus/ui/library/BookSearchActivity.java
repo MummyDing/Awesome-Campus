@@ -25,10 +25,10 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.library.BookSearchResultAdapter;
 import cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider;
+import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 
-public class BookSearchActivity extends SwipeBackActivity {
-    private Toolbar toolbar;
+public class BookSearchActivity extends BaseToolbarActivity {
     private String keyword;
     private BookSearchResultModel model;
 //    private SwipeRefreshLayout refreshLayout;
@@ -41,22 +41,8 @@ public class BookSearchActivity extends SwipeBackActivity {
         setContentView(R.layout.activity_search);
         EventBus.getDefault().register(this);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.search_result);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        TypedArray array = getTheme().obtainStyledAttributes(new int[] {
-                android.R.attr.colorPrimary,
-        });
-        toolbar.setBackgroundColor(array.getColor(0,0xFFFFFF));
-        array.recycle();
-
+        initToolbar();
+        setToolbarTitle(InitApp.AppContext.getString(R.string.search_result));
 
         /**
          * 测使用　非正式代码　　---- By MummyDing
