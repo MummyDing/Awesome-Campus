@@ -58,9 +58,8 @@ public class BookSearchResultDAO implements DAO<BookSearchResultModel> {
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String cookies = spu.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
 
-        //下面这个url备用，先不用管
-//        String myurl=Urlconfig.Library_Book_Search_URL+"?strSearchType=title&historyCount=1&strText="+这里放搜索的字符串+"&x=0&y=0&doctype=ALL&match_flag=forward&displaypg=20&sort=CATA_DATE&orderby=desc&showmode=list&dept=ALL"""
-
+        //未登录的情况，防止cookies为空报错
+        if(cookies==null)cookies="---";
 
         NetManageUtil.get(Urlconfig.Library_Book_Search_URL)
                 .addHeader("Cookie", cookies)

@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.library;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -25,7 +28,7 @@ import cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 
 public class BookSearchActivity extends SwipeBackActivity {
-
+    private Toolbar toolbar;
     private String keyword;
     private BookSearchResultModel model;
     private SwipeRefreshLayout refreshLayout;
@@ -37,6 +40,24 @@ public class BookSearchActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         EventBus.getDefault().register(this);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.search_result);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        TypedArray array = getTheme().obtainStyledAttributes(new int[] {
+                android.R.attr.colorPrimary,
+        });
+        toolbar.setBackgroundColor(array.getColor(0,0xFFFFFF));
+        array.recycle();
+
+
         /**
          * 测使用　非正式代码　　---- By MummyDing
          */

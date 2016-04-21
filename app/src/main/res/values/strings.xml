@@ -1,7 +1,7 @@
 <resources>
     <!--<string name="app_name">Awesome-Campus</string>-->
     <!--暂时这么命名-->
-    <string name="app_name">师大+</string>
+    <string name="app_name">Awesome Campus</string>
     <string name="hint_click_to_login">Click to Login</string>
     <string name="home">Home</string>
     <string name="leisure">Leisure</string>
@@ -39,11 +39,13 @@
     <string name="sunday">Sunday</string>
     <string name="hint_search">Search Book</string>
     <string name="search">Search</string>
+    <string name="search_result">Search Result</string>
     <string name="id_campusnews">id_campusnews</string>
     <string name="menu_share">share</string>
     <string name="hint_share_to">Share to ...</string>
     <string name="hot">hot ：</string>
     <string name="readingCount"> views</string>
+
     <string name="id_course_info">courseInfo</string>
     <string name="course_name">Course:</string>
     <string name="course_id">ID:</string>

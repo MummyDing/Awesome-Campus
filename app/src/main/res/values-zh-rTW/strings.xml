@@ -38,6 +38,7 @@
     <string name="sunday">周日</string>
     <string name="hint_search">查找圖書</string>
     <string name="search">查找</string>
+    <string name="search_result">查找結果</string>
     <string name="id_campusnews">id_campusnews</string>
     <string name="menu_share">分享</string>
     <string name="hint_share_to">分享到 ...</string>
