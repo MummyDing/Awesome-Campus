@@ -31,7 +31,7 @@ public class BookSearchActivity extends SwipeBackActivity {
     private Toolbar toolbar;
     private String keyword;
     private BookSearchResultModel model;
-    private SwipeRefreshLayout refreshLayout;
+//    private SwipeRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private BookSearchResultAdapter adapter;
@@ -75,14 +75,14 @@ public class BookSearchActivity extends SwipeBackActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(layoutManager);
-        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);
-
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                onDataRefresh();
-            }
-        });
+//        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);
+//
+//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                onDataRefresh();
+//            }
+//        });
 
         if(model !=null){
             adapter = new BookSearchResultAdapter(this,model);
@@ -94,9 +94,9 @@ public class BookSearchActivity extends SwipeBackActivity {
 
     private void onDataRefresh(){
         if(model !=null){
-            if(refreshLayout.isRefreshing() == false){
-                refreshLayout.setRefreshing(true);
-            }
+//            if(refreshLayout.isRefreshing() == false){
+//                refreshLayout.setRefreshing(true);
+//            }
             model.loadFromNet();
         }
     }
@@ -114,7 +114,7 @@ public class BookSearchActivity extends SwipeBackActivity {
             case EVENT.BOOK_SEARCH_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());
                 Log.d("size",eventModel.getDataList().size()+"");
-                refreshLayout.setRefreshing(false);
+//                refreshLayout.setRefreshing(false);
                 break;
             case EVENT.BOOK_BORROWED_REFRESH_FAILURE:
                 Log.d("没有找到","");
