@@ -1,8 +1,11 @@
 package cn.edu.jxnu.awesome_campus.support.utils.common;
 
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -137,6 +140,32 @@ public class TimeUtil {
         int dayOfWeek=calendar.get(Calendar.DAY_OF_WEEK)-1;
         if(dayOfWeek==0)dayOfWeek=7;
         return dayOfWeek;
+    }
+
+    /***
+     * 计算时间差，精确到天
+     * 时间格式 yyyy-mm-dd
+     * Created by MummyDing on 16-4-22.
+     */
+
+    public static String getTimeDiff(String dateStart,String dateEnd){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        boolean flag = true;
+        try {
+            Date d1 = df.parse(dateStart);
+            Date d2 = df.parse(dateEnd);
+            long diff = Math.abs(d2.getTime()-d1.getTime())/(1000*60*60*24);
+            if (d2.getTime() < d1.getTime()){
+                flag = false;
+            }
+            if (!flag){
+                diff = (-diff);
+            }
+            return Long.toString(diff);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

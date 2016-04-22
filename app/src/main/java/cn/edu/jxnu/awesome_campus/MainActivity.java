@@ -41,6 +41,7 @@ import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SettingsUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
@@ -80,7 +81,6 @@ public class MainActivity extends BaseActivity implements HomeView{
 
         mSettings.swipeID = mSettings.getInt(Settings.SWIPE_BACK,0);
         mSettings.isExitConfirm = mSettings.getBoolean(Settings.EXIT_CONFIRM,true);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
