@@ -55,8 +55,8 @@ public class TimeUtil {
         String day = "";
         DecimalFormat df = new DecimalFormat("00");
         year = df.format(calendar.get(Calendar.YEAR));
-        month = df.format(calendar.get(Calendar.MONTH));
-        day = df.format(calendar.get(Calendar.DAY_OF_MONTH) + 1);
+        month = df.format(calendar.get(Calendar.MONTH)+1);
+        day = df.format(calendar.get(Calendar.DAY_OF_MONTH));
         return year + "-" + month + "-" + day;
     }
 

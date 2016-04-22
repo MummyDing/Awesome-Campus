@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.support.adapter.library;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,6 @@ public class BookBorrowedAdapter extends BaseListAdapter<BookBorrowedModel,BookB
     public void onBindViewHolder(VH holder, int position) {
         BookBorrowedModel model = getItem(position);
         holder.bookTitle.setText(model.getBookTitle());
-        // 测试用
         holder.restDays.setText(TimeUtil.getTimeDiff(TimeUtil.getYearMonthDay(),model.getShouldBackTime()));
     }
 
