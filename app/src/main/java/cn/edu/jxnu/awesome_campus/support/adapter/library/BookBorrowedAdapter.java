@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.library;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,10 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
+import cn.edu.jxnu.awesome_campus.ui.library.BookBorrowedDialog;
 
 /**
  * Created by MummyDing on 16-2-19.
@@ -39,9 +45,17 @@ public class BookBorrowedAdapter extends BaseListAdapter<BookBorrowedModel,BookB
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        BookBorrowedModel model = getItem(position);
+        final BookBorrowedModel model = getItem(position);
         holder.bookTitle.setText(model.getBookTitle());
         holder.restDays.setText(TimeUtil.getTimeDiff(TimeUtil.getYearMonthDay(),model.getShouldBackTime()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, BookBorrowedDialog.class);
+                EventBus.getDefault().postSticky(new EventModel<BookBorrowedModel>(EVENT.SEND_MODEL_DETAIL,model));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
 

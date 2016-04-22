@@ -128,4 +128,11 @@
     <string name="text_mummyding">MummyDing</string>
     <string name="text_share_app">分享"师大+"</string>
     <string name="text_thanks">致谢</string>
+    <string name="author">作者:</string>
+    <string name="book_code">书号:</string>
+    <string name="book_location">馆藏地:</string>
+    <string name="borrow_date">借阅日期:</string>
+    <string name="due_date">应还日期:</string>
+    <string name="renew_count">续借状态:</string>
+    <string name="renew">续借</string>
 </resources>

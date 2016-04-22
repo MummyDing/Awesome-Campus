@@ -128,4 +128,11 @@
     <string name="text_data_summary">部分數據來自公開API,版權屬於原作者</string>
     <string name="text_kevinwu">KevinWu</string>
     <string name="text_mummyding">MummyDing</string>
+    <string name="due_date">應還日期:</string>
+    <string name="borrow_date">借閱日期:</string>
+    <string name="book_location">館藏地:</string>
+    <string name="book_code">書號:</string>
+    <string name="author">作者:</string>
+    <string name="renew_count">續借狀態:</string>
+    <string name="renew">續借</string>
 </resources>

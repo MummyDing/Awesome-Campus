@@ -138,6 +138,13 @@
     <string name="text_thanks">Thanks</string>
     <string name="summary_yingzi">Awesome Campus\'s Photographer(Express Image)\nWeChat Subscription Account:ershisuizhihou</string>
     <string name="summary_datou">Awesome Campus\'s Photographer(Background Image)\nE-Mail:dfc3333@outlook.com</string>
+    <string name="book_code">Book Code:</string>
+    <string name="borrow_date">Borrow Date:</string>
+    <string name="due_date">Due Date:</string>
+    <string name="renew_count">Renew State:</string>
+    <string name="book_location">Book Location:</string>
+    <string name="author">Author:</string>
+    <string name="renew">Renew</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>
