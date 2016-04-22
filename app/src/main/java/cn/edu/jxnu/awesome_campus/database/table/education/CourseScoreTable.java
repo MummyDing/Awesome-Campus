@@ -37,7 +37,7 @@ public class CourseScoreTable {
     public static final int ID_COURSE_CREDIT = 3;
     public static final int ID_COURSE_SCORE = 4;
     public static final int ID_AGAIN_SCORE = 5;
-    public static final int ID_STANDRD_SCORE = 6;
+    public static final int ID_STANDARD_SCORE = 6;
 
 
 

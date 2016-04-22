@@ -74,7 +74,7 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
             model.setBookCode(cursor.getString(BookBorrowedTable.ID_BOOK_CODE));
             model.setBookTitle(cursor.getString(BookBorrowedTable.ID_BOOK_TITLE));
             model.setAuthor(cursor.getString(BookBorrowedTable.ID_AUTHOR));
-            model.setBookTitle(cursor.getString(BookBorrowedTable.ID_BOOK_TITLE));
+            model.setBorrowTime(cursor.getString(BookBorrowedTable.ID_BORROW_TIME));
             model.setShouldBackTime(cursor.getString(BookBorrowedTable.ID_SHOULD_BACK_TIME));
             model.setAgainTimes(cursor.getString(BookBorrowedTable.ID_AGAIN_TIMES));
             model.setBookLocation(cursor.getString(BookBorrowedTable.ID_BOOK_LOCATION));

@@ -75,9 +75,10 @@ public class CourseScoreDAO implements DAO<CourseScoreModel> {
             model.setTerm(cursor.getString(CourseScoreTable.ID_TERM));
             model.setCourseID(cursor.getString(CourseScoreTable.ID_COURSE_ID));
             model.setCourseName(cursor.getString(CourseScoreTable.ID_COURSE_NAME));
+            model.setCourseCredit(cursor.getString(CourseScoreTable.ID_COURSE_CREDIT));
             model.setCourseScore(cursor.getString(CourseScoreTable.ID_COURSE_SCORE));
             model.setAgainScore(cursor.getString(CourseScoreTable.ID_AGAIN_SCORE));
-            model.setStandardScore(cursor.getString(CourseScoreTable.ID_COURSE_SCORE));
+            model.setStandardScore(cursor.getString(CourseScoreTable.ID_STANDARD_SCORE));
             list.add(model);
         }
 

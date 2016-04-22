@@ -89,4 +89,10 @@ public class BookBorrowedDialog extends Activity {
             initView();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
 }

@@ -13,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,10 +33,12 @@ import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 public class BookSearchActivity extends BaseToolbarActivity {
     private String keyword;
     private BookSearchResultModel model;
-//    private SwipeRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private BookSearchResultAdapter adapter;
+
+    private ProgressBar progressBar;
+    private TextView notify;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,16 +63,11 @@ public class BookSearchActivity extends BaseToolbarActivity {
         Log.d("keyword",keyword);
         layoutManager = new LinearLayoutManager(InitApp.AppContext);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        notify = (TextView) findViewById(R.id.notify);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(layoutManager);
-//        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);
-//
-//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                onDataRefresh();
-//            }
-//        });
+
 
         if(model !=null){
             adapter = new BookSearchResultAdapter(this,model);
@@ -80,9 +79,6 @@ public class BookSearchActivity extends BaseToolbarActivity {
 
     private void onDataRefresh(){
         if(model !=null){
-//            if(refreshLayout.isRefreshing() == false){
-//                refreshLayout.setRefreshing(true);
-//            }
             model.loadFromNet();
         }
     }
@@ -100,10 +96,11 @@ public class BookSearchActivity extends BaseToolbarActivity {
             case EVENT.BOOK_SEARCH_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());
                 Log.d("size",eventModel.getDataList().size()+"");
-//                refreshLayout.setRefreshing(false);
+                progressBar.setVisibility(View.GONE);
                 break;
-            case EVENT.BOOK_BORROWED_REFRESH_FAILURE:
-                Log.d("没有找到","");
+            case EVENT.BOOK_SEARCH_REFRESH_FAILURE:
+                progressBar.setVisibility(View.GONE);
+                notify.setVisibility(View.VISIBLE);
                 break;
         }
     }

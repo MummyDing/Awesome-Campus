@@ -145,6 +145,7 @@
     <string name="book_location">Book Location:</string>
     <string name="author">Author:</string>
     <string name="renew">Renew</string>
+    <string name="no_result">No Result</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>
