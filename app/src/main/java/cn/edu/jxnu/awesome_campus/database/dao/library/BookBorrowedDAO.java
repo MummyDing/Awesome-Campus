@@ -111,7 +111,7 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if (list != null) {
+                        if (list != null && !list.isEmpty()) {
                             // 缓存数据
                             cacheAll(list);
                             //发送获取成功消息

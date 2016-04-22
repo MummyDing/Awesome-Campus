@@ -151,6 +151,8 @@
     <string name="publisher">Publisher:</string>
     <string name="book_left">Book Left:</string>
     <string name="book_count">Book Count:</string>
+    <string name="location">Location:</string>
+    <string name="bank">Bank:</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

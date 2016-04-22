@@ -60,7 +60,7 @@ public class CampusExpressAdapter extends BaseListAdapter<CampusExpressModel,Cam
         });
     }
 
-    class VH extends RecyclerView.ViewHolder{
+    static class VH extends RecyclerView.ViewHolder{
         View itemView;
         TextView expressName;
         TextView workTime;

@@ -139,4 +139,7 @@
     <string name="book_count">館藏:</string>
     <string name="book_class">類別:</string>
     <string name="book_number">條形號:</string>
+    <string name="bank">銀行:</string>
+    <string name="book_left">可借:</string>
+    <string name="location">位置:</string>
 </resources>

@@ -160,5 +160,13 @@ public class EVENT {
 
     // Book Result
     public static final int BOOK_RESULT_DETAILS = 1020;
+
+    // Campus ATM
+    public static final int CAMPUS_ATM_REFRESH_SUCCESS = 1021;
+    public static final int CAMPUS_ATM_REFRESH_FAILURE = 1022;
+
+    // Campus ATM cache
+    public static final int CAMPUS_ATM_LOAD_CACHE_SUCCESS = 1023;
+    public static final int CAMPUS_ATM_LOAD_CACHE_FAILURE = 1024;
 }
 
