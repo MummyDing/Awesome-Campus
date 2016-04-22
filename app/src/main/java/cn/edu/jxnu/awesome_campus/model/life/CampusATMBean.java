@@ -8,13 +8,13 @@ import java.util.List;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class CampusATMBean {
-    private List<CampusATMModel> CampusATM;
-
-    public List<CampusATMModel> getCampusATM() {
+    public CampusATMModel[] getCampusATM() {
         return CampusATM;
     }
 
-    public void setCampusATM(List<CampusATMModel> campusATM) {
+    public void setCampusATM(CampusATMModel[] campusATM) {
         CampusATM = campusATM;
     }
+
+    private  CampusATMModel [] CampusATM;
 }

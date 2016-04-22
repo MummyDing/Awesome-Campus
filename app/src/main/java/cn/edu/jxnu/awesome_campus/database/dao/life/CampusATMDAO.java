@@ -8,6 +8,7 @@ import com.squareup.okhttp.Headers;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.api.ATMApi;
@@ -61,7 +62,7 @@ public class CampusATMDAO implements DAO<CampusATMModel> {
 
                     @Override
                     public void onSuccess(CampusATMBean entity, Headers headers) {
-                        final List<CampusATMModel> list = entity.getCampusATM();
+                        final List<CampusATMModel> list = Arrays.asList(entity.getCampusATM());
                         cacheAll(list);
                         handler.post(new Runnable() {
                             @Override
