@@ -10,6 +10,7 @@ import android.widget.TextView;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 
 /**
  * Created by MummyDing on 16-2-19.
@@ -40,7 +41,7 @@ public class BookBorrowedAdapter extends BaseListAdapter<BookBorrowedModel,BookB
         BookBorrowedModel model = getItem(position);
         holder.bookTitle.setText(model.getBookTitle());
         // 测试用
-        holder.restDays.setText("32");
+        holder.restDays.setText(TimeUtil.getTimeDiff(TimeUtil.getYearMonthDay(),model.getShouldBackTime()));
     }
 
 
