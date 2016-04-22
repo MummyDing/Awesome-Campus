@@ -135,4 +135,9 @@
     <string name="due_date">应还日期:</string>
     <string name="renew_count">续借状态:</string>
     <string name="renew">续借</string>
+    <string name="book_class">类别:</string>
+    <string name="book_count">馆藏:</string>
+    <string name="book_left">可借:</string>
+    <string name="book_number">条形号:</string>
+    <string name="publisher">出版社:</string>
 </resources>

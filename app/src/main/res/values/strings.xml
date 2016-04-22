@@ -146,6 +146,11 @@
     <string name="author">Author:</string>
     <string name="renew">Renew</string>
     <string name="no_result">No Result</string>
+    <string name="book_number">Book Number:</string>
+    <string name="book_class">Book Class:</string>
+    <string name="publisher">Publisher:</string>
+    <string name="book_left">Book Left:</string>
+    <string name="book_count">Book Count:</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

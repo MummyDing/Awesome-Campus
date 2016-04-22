@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.library;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -8,9 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.ui.library.SearchResultDialog;
 
 /**
  * Created by MummyDing on 16-2-19.
@@ -40,10 +46,19 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        BookSearchResultModel model =getItem(position); //new BookSearchResultModel("");
+        final BookSearchResultModel model =getItem(position); //new BookSearchResultModel("");
 
         String titleHtml = model.getBookTitle().replaceAll(keyword,"<font color=\"red\">"+keyword+"</font>");
         holder.bookTitle.setText(Html.fromHtml(titleHtml));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, SearchResultDialog.class);
+                EventBus.getDefault().postSticky(new EventModel<BookSearchResultModel>(EVENT.BOOK_RESULT_DETAILS,model));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     class VH extends RecyclerView.ViewHolder{

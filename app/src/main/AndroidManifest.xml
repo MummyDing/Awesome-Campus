@@ -47,7 +47,11 @@
         <activity
             android:name=".ui.education.ScoreDetailsDialog"
             android:theme="@style/DialogTheme" />
-        <activity android:name=".ui.library.BookBorrowedDialog"
+        <activity
+            android:name=".ui.library.BookBorrowedDialog"
+            android:theme="@style/DialogTheme" />
+
+        <activity android:name=".ui.library.SearchResultDialog"
             android:theme="@style/DialogTheme"/>
 
         <activity android:name=".ui.life.CampusExpressDetailsActivity" />

@@ -158,5 +158,7 @@ public class EVENT {
     public static final int BOOK_BORROWED_LOAD_CACHE_SUCCESS = 1018;
     public static final int BOOK_BORROWED_LOAD_CACHE_FAILURE = 1019;
 
+    // Book Result
+    public static final int BOOK_RESULT_DETAILS = 1020;
 }
 
