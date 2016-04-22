@@ -47,12 +47,16 @@ public class BookBorrowedFragment extends BaseListFragment{
     @Override
     public void initView() {
         setOnLineLayout(LibraryLoginUtil.isLogin());
+        if (LibraryLoginUtil.isLogin()) {
+            model.loadFromCache();
+        }
     }
 
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
         switch (eventModel.getEventCode()){
+            case EVENT.BOOK_BORROWED_LOAD_CACHE_SUCCESS:
             case EVENT.BOOK_BORROWED_REFRESH_SUCCESS:
                 Log.d("sis000e",eventModel.getDataList().size()+"");
                 adapter.newList(eventModel.getDataList());
@@ -60,6 +64,9 @@ public class BookBorrowedFragment extends BaseListFragment{
                 break;
             case EVENT.BOOK_BORROWED_REFRESH_FAILURE:
                 hideLoading();
+                break;
+            case EVENT.BOOK_BORROWED_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }

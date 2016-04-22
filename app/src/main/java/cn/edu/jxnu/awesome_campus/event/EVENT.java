@@ -154,5 +154,9 @@ public class EVENT {
     public static final int EXAM_TIME_LOAD_CACHE_SUCCESS = 1016;
     public static final int EXAM_TIME_LOAD_CACHE_FAILURE = 1017;
 
+    // Book Borrowed
+    public static final int BOOK_BORROWED_LOAD_CACHE_SUCCESS = 1018;
+    public static final int BOOK_BORROWED_LOAD_CACHE_FAILURE = 1019;
+
 }
 

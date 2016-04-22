@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.database.dao.library;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -7,10 +9,13 @@ import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.database.table.library.BookBorrowedTable;
 import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -30,17 +35,65 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
     public static final String TAG="BookBorrowedDAO";
     @Override
     public boolean cacheAll(List<BookBorrowedModel> list) {
-        return false;
+
+        if (list == null || list.isEmpty()){
+            return false;
+        }
+
+        clearCache();
+
+        for (int i=0 ; i<list.size() ; i++){
+            BookBorrowedModel borrowedModel = list.get(i);
+            ContentValues values = new ContentValues();
+            values.put(BookBorrowedTable.BOOK_CODE,borrowedModel.getBookCode());
+            values.put(BookBorrowedTable.BOOK_TITLE,borrowedModel.getBookTitle());
+            values.put(BookBorrowedTable.AUTHOR,borrowedModel.getAuthor());
+            values.put(BookBorrowedTable.BORROW_TIME,borrowedModel.getBorrowTime());
+            values.put(BookBorrowedTable.SHOULD_BACK_TIME,borrowedModel.getShouldBackTime());
+            values.put(BookBorrowedTable.AGAIN_TIMES,borrowedModel.getAgainTimes());
+            values.put(BookBorrowedTable.BOOK_LOCATION,borrowedModel.getBookLocation());
+            DatabaseHelper.insert(BookBorrowedTable.NAME,values);
+        }
+        return true;
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        DatabaseHelper.clearTable(BookBorrowedTable.NAME);
+        return true;
     }
 
     @Override
     public void loadFromCache() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        Cursor cursor = DatabaseHelper.selectAll(BookBorrowedTable.NAME);
 
+        final List<BookBorrowedModel> list = new ArrayList<>();
+        while (cursor.moveToNext()){
+            BookBorrowedModel model = new BookBorrowedModel();
+            model.setBookCode(cursor.getString(BookBorrowedTable.ID_BOOK_CODE));
+            model.setBookTitle(cursor.getString(BookBorrowedTable.ID_BOOK_TITLE));
+            model.setAuthor(cursor.getString(BookBorrowedTable.ID_AUTHOR));
+            model.setBookTitle(cursor.getString(BookBorrowedTable.ID_BOOK_TITLE));
+            model.setShouldBackTime(cursor.getString(BookBorrowedTable.ID_SHOULD_BACK_TIME));
+            model.setAgainTimes(cursor.getString(BookBorrowedTable.ID_AGAIN_TIMES));
+            model.setBookLocation(cursor.getString(BookBorrowedTable.ID_BOOK_LOCATION));
+            list.add(model);
+        }
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (!list.isEmpty()){
+                    // 从缓存获取成功　发送消息
+                    EventBus.getDefault().post(new EventModel<BookBorrowedModel>(EVENT.BOOK_BORROWED_LOAD_CACHE_SUCCESS,list));
+
+                }else {
+                    //从缓存获取失败
+                    EventBus.getDefault().post(new EventModel<BookBorrowedModel>(EVENT.BOOK_BORROWED_LOAD_CACHE_FAILURE));
+                }
+            }
+        });
     }
 
     @Override
