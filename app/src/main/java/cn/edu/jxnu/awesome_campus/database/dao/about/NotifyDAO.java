@@ -80,7 +80,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             public void run() {
                 if (!list.isEmpty()){
                     // 发送成功消息
-                    EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_SUCCESS,list));
+                    EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_SUCCESS,list.get(0)));
                 }else {
                     //发送失败消息
                     EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_FAILURE));
