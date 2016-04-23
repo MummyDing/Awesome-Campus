@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.support.adapter.library;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -9,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ramotion.foldingcell.FoldingCell;
+
 import org.greenrobot.eventbus.EventBus;
+import org.w3c.dom.Text;
 
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -45,18 +49,25 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
     }
 
     @Override
-    public void onBindViewHolder(VH holder, int position) {
+    public void onBindViewHolder(final VH holder, int position) {
         final BookSearchResultModel model =getItem(position); //new BookSearchResultModel("");
 
         String titleHtml = model.getBookTitle().replaceAll(keyword,"<font color=\"red\">"+keyword+"</font>");
         holder.bookTitle.setText(Html.fromHtml(titleHtml));
-
+        holder.bookTitleContent.setText(model.getBookTitle());
+        holder.publisher.setText(model.getBookPublisher());
+        holder.bookClass.setText(model.getBookClass());
+        holder.author.setText(model.getBookAuthor());
+        holder.bookCount.setText(model.getBookCount());
+        holder.bookLeft.setText(model.getBookLeft());
+        holder.bookNumber.setText(model.getBookNumber());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, SearchResultDialog.class);
-                EventBus.getDefault().postSticky(new EventModel<BookSearchResultModel>(EVENT.BOOK_RESULT_DETAILS,model));
-                mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext, SearchResultDialog.class);
+//                EventBus.getDefault().postSticky(new EventModel<BookSearchResultModel>(EVENT.BOOK_RESULT_DETAILS,model));
+//                mContext.startActivity(intent);
+                holder.fc.toggle(false);
             }
         });
     }
@@ -64,10 +75,28 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
     class VH extends RecyclerView.ViewHolder{
         View itemView;
         TextView bookTitle;
+        TextView bookTitleContent;
+        TextView bookNumber;//条形码
+        TextView author;
+        TextView bookClass;//书类别
+        TextView publisher;//出版社
+        TextView bookLeft;
+        TextView bookCount;
+        FoldingCell fc;
         public VH(View itemView) {
             super(itemView);
             this.itemView = itemView;
             bookTitle = (TextView) itemView.findViewById(R.id.bookTitle);
+            bookTitleContent=(TextView)itemView.findViewById(R.id.bookTitleContent);
+            bookNumber=(TextView)itemView.findViewById(R.id.bookNumber);
+            author=(TextView)itemView.findViewById(R.id.author);
+            bookClass=(TextView)itemView.findViewById(R.id.bookClass);
+            publisher=(TextView)itemView.findViewById(R.id.publisher);
+            bookLeft=(TextView)itemView.findViewById(R.id.bookLeft);
+            bookCount=(TextView)itemView.findViewById(R.id.bookCount);
+            fc=(FoldingCell)itemView.findViewById(R.id.folding_cell);
+            fc.initialize(10, Color.TRANSPARENT, 0);
+
         }
     }
 
