@@ -51,7 +51,7 @@ public class Urlconfig {
 
     //图书馆藏详情url
     //使用时将part1和part2接起来，中间是图书的url信息
-    public static final String Library_Book_Search_DETAIL_URL_PART1="http://tsg.jxnu.edu.cn:8080/search?d=http%3a%2f%2f192.168.210.110%3a8080%2fopac%2fitem.php%3f";
+    public static final String Library_Book_Search_DETAIL_URL_PART1="http://tsg.jxnu.edu.cn:8090/search?d=http%3a%2f%2f192.168.210.110%3a8080%2fopac%2fitem.php";
     public static final String Library_Book_Search_DETAIL_URL_PART2="&xc=4";
     //图书馆搜索url
     public static final String Library_Book_Search_URL="http://tsg.jxnu.edu.cn:8080/opac/openlink.php";

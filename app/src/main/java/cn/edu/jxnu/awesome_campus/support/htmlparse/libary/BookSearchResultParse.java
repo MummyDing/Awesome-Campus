@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
+import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.html.HtmlUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
 
@@ -57,6 +58,7 @@ public class BookSearchResultParse {
                 String type_firsr_cut[] = rawList.get(i).toString().split("\"doc_type_class\">");
                 String type_secont_cut[] = type_firsr_cut[1].split("</span><");
                 String url=type_firsr_cut[1].split("</span><")[1].split("item.php?")[1].split("\">")[0];
+                url= Urlconfig.Library_Book_Search_DETAIL_URL_PART1+url+Urlconfig.Library_Book_Search_DETAIL_URL_PART2;
                 String type = type_secont_cut[0];//书的类别
                 HtmlUtil hu2 = new HtmlUtil(rawList.get(i).toString());
                 String title = hu2.parseString(A_ITEM_CSS).get(0).toString();//标题
