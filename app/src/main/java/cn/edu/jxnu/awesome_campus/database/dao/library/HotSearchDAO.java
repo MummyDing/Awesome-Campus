@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.database.dao.library;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.squareup.okhttp.Headers;
 
@@ -40,6 +41,7 @@ public class HotSearchDAO implements DAO<HotSearchModel> {
 
     @Override
     public void loadFromNet() {
+        Log.d("HotSearch","联网拉取数据");
         final Handler handler = new Handler(Looper.getMainLooper());
         NetManageUtil.get(Urlconfig.Library_Book_HOT_Search)
                 .addTag(TAG)
@@ -48,6 +50,7 @@ public class HotSearchDAO implements DAO<HotSearchModel> {
                     public void onSuccess(String result, Headers headers) {
                         HotSearchParse parse=new HotSearchParse(result);
                         final List list = parse.getEndList();
+                        Log.d(TAG,"标签数据获取完毕，结果列表大小为："+list.size());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
@@ -66,6 +69,7 @@ public class HotSearchDAO implements DAO<HotSearchModel> {
 
                     @Override
                     public void onFailure(String error) {
+                        Log.d(TAG,"标签数据获取失败，网络错误"+error);
                         handler.post(new Runnable() {
                             @Override
                             public void run() {

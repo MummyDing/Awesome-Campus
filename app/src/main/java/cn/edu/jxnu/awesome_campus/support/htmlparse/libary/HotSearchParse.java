@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.htmlparse.libary;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +45,7 @@ public class HotSearchParse {
                 endList.add(new HotSearchModel(tempStr));
             }
 
-
+            Log.d("解析出标签个数为：","--"+endList.size());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (NullHtmlStringException e) {

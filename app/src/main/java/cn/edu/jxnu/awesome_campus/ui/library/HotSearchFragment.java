@@ -1,15 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.library;
 
-import android.os.Handler;
+
 import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-
 import com.moxun.tagcloudlib.view.TagCloudView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -36,6 +31,8 @@ public class HotSearchFragment extends BaseListFragment {
 
     @Override
     protected void init() {
+        model=new HotSearchModel();
+        model.loadFromNet();
         tagCloudView = (TagCloudView) parentView.findViewById(R.id.tagView);
 
     }
@@ -54,6 +51,13 @@ public class HotSearchFragment extends BaseListFragment {
     @Override
     public void bindAdapter() {
 
+        Log.d("绑定adapter","--");
+        List<String> tags = new ArrayList<>();
+        for (int i = 0; i < modelList.size(); i++) {
+            tags.add(modelList.get(i).getTag());
+        }
+        HotSearchAdapter adapter = new HotSearchAdapter(tags, getActivity());
+        tagCloudView.setAdapter(adapter);
     }
 
     @Override
@@ -62,13 +66,7 @@ public class HotSearchFragment extends BaseListFragment {
 
     @Override
     public void initView() {
-        model.loadFromCache();
-        List<String> tags = new ArrayList<>();
-        for (int i = 0; i < modelList.size(); i++) {
-            tags.add(modelList.get(i).getTag());
-        }
-        HotSearchAdapter adapter = new HotSearchAdapter(tags, getActivity());
-        tagCloudView.setAdapter(adapter);
+
     }
 
     @Override
