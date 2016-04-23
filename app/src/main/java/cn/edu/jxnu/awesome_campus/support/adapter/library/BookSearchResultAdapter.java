@@ -3,8 +3,10 @@ package cn.edu.jxnu.awesome_campus.support.adapter.library;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
-import cn.edu.jxnu.awesome_campus.ui.library.SearchResultDialog;
+import cn.edu.jxnu.awesome_campus.ui.library.BookSearchDetailsActivity;
 
 /**
  * Created by MummyDing on 16-2-19.
@@ -70,6 +72,15 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
                 holder.fc.toggle(false);
             }
         });
+        holder.moreDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, BookSearchDetailsActivity.class);
+                Log.d("--","URL为"+model.getUrl());
+                intent.putExtra("URL",model.getUrl());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     class VH extends RecyclerView.ViewHolder{
@@ -82,6 +93,7 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
         TextView publisher;//出版社
         TextView bookLeft;
         TextView bookCount;
+        AppCompatButton moreDetail;
         FoldingCell fc;
         public VH(View itemView) {
             super(itemView);
@@ -94,6 +106,7 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
             publisher=(TextView)itemView.findViewById(R.id.publisher);
             bookLeft=(TextView)itemView.findViewById(R.id.bookLeft);
             bookCount=(TextView)itemView.findViewById(R.id.bookCount);
+            moreDetail=(AppCompatButton)itemView.findViewById(R.id.moreDetail);
             fc=(FoldingCell)itemView.findViewById(R.id.folding_cell);
             fc.initialize(10, Color.TRANSPARENT, 0);
 

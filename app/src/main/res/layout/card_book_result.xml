@@ -181,6 +181,16 @@
                         android:textColor="?attr/textColor"
                         android:textSize="16sp" />
                 </LinearLayout>
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/moreDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="?attr/colorAccent"
+                    android:textColor="?attr/textColor"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:text="查看馆藏详情"/>
             </LinearLayout>
         </FrameLayout>
 
