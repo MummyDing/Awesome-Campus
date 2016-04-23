@@ -168,5 +168,14 @@ public class EVENT {
     // Campus ATM cache
     public static final int CAMPUS_ATM_LOAD_CACHE_SUCCESS = 1023;
     public static final int CAMPUS_ATM_LOAD_CACHE_FAILURE = 1024;
+
+    // Notify
+    public static final int NOTIFY_REFRESH_SUCCESS = 1025;
+    public static final int NOTIFY_REFRESH_FAILURE = 1026;
+
+    // Notify Cache
+    public static final int NOTIFY_LOAD_CACHE_SUCCESS = 1027;
+    public static final int NOTIFY_LOAD_CACHE_FAILURE = 1028;
+
 }
 
