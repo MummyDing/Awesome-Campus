@@ -142,4 +142,7 @@
     <string name="bank">銀行:</string>
     <string name="book_left">可借:</string>
     <string name="location">位置:</string>
+    <string name="courseinfo">課程信息</string>
+    <string name="coursescore">分數</string>
+    <string name="no_result">無結果</string>
 </resources>
