@@ -10,7 +10,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class BookSearchResultModel implements IModel<BookSearchResultModel>{
+public class BookSearchResultModel implements IModel<BookSearchResultModel> {
 
     private BookSearchResultDAO dao;
     private String bookTitle;
@@ -24,11 +24,14 @@ public class BookSearchResultModel implements IModel<BookSearchResultModel>{
     private String bookCount;
 
 
+    private String url;
+
+
     public BookSearchResultModel(String keyword) {
         dao = new BookSearchResultDAO(keyword);
     }
 
-    public BookSearchResultModel(String bookTitle, String bookNumber, String bookClass, String bookAuthor, String bookPublisher, String bookLeft, String bookCount) {
+    public BookSearchResultModel(String bookTitle, String bookNumber, String bookClass, String bookAuthor, String bookPublisher, String bookLeft, String bookCount, String url) {
         this("");
         this.dao = dao;
         this.bookTitle = bookTitle;
@@ -38,6 +41,7 @@ public class BookSearchResultModel implements IModel<BookSearchResultModel>{
         this.bookPublisher = bookPublisher;
         this.bookLeft = bookLeft;
         this.bookCount = bookCount;
+        this.url = url;
     }
 
     @Override
@@ -114,5 +118,13 @@ public class BookSearchResultModel implements IModel<BookSearchResultModel>{
 
     public void setBookCount(String bookCount) {
         this.bookCount = bookCount;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
