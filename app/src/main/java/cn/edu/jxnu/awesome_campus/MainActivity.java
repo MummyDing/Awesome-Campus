@@ -54,7 +54,6 @@ import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
 import cn.edu.jxnu.awesome_campus.ui.login.LoginFragment;
 import cn.edu.jxnu.awesome_campus.ui.settings.SettingsActivity;
-import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.ColorPickerDialog;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.OnColorChangedListener;
@@ -118,9 +117,6 @@ public class MainActivity extends BaseActivity implements HomeView{
         }else if(id == DrawerItem.LIFE.getId()){
             presenter.clearAllFragments();
             switchFragment(LifeFragment.newInstance(),DrawerItem.LIFE.getItemName());
-        }else if(id == DrawerItem.STUDY.getId()){
-            presenter.clearAllFragments();
-            switchFragment(StudyFragment.newInstance(),DrawerItem.STUDY.getItemName());
         }else if(id == DrawerItem.LIBRARY.getId()){
             // switch menu  搜索框 下拉主题还有点问题
             if(menu != null) {

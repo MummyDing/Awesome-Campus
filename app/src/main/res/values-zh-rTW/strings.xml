@@ -145,4 +145,5 @@
     <string name="courseinfo">課程信息</string>
     <string name="coursescore">分數</string>
     <string name="no_result">無結果</string>
+    <string name="hot_search">熱門</string>
 </resources>

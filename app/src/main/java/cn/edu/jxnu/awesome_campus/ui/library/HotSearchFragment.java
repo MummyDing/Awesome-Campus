@@ -41,7 +41,7 @@ public class HotSearchFragment extends BaseListFragment {
 
     @Override
     public String getTitle() {
-        return InitApp.AppContext.getString(R.string.reading);
+        return InitApp.AppContext.getString(R.string.hot_search);
     }
 
 

@@ -7,7 +7,7 @@
         android:id="@+id/tagView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
         app:autoScrollMode="uniform"
         app:darkColor="#7A67EE"
         app:lightColor="#00B2EE"
