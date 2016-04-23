@@ -101,7 +101,6 @@ public class EducationLoginUtil {
                                         String nowTerm = TermUtil.getNowTerm();
                                         String baseCookie=null,specialCookie=null;
                                         for (int i = 0; i < headers.size(); i++) {
-//                                            System.out.println(headers.name(i)+"::::"+headers.value(i));
                                             if(headers.name(i).equals("Set-Cookie")){
                                                 baseCookie=cutBaseCookie(headers.value(i));
                                                 specialCookie=cutSpecialCookie(headers.value(i+1));
