@@ -31,9 +31,11 @@ public class HotSearchFragment extends BaseListFragment {
 
     @Override
     protected void init() {
+
         model=new HotSearchModel();
         model.loadFromNet();
         tagCloudView = (TagCloudView) parentView.findViewById(R.id.tagView);
+
 
     }
 
@@ -50,14 +52,13 @@ public class HotSearchFragment extends BaseListFragment {
 
     @Override
     public void bindAdapter() {
-
-        Log.d("绑定adapter","--");
         List<String> tags = new ArrayList<>();
         for (int i = 0; i < modelList.size(); i++) {
             tags.add(modelList.get(i).getTag());
         }
         HotSearchAdapter adapter = new HotSearchAdapter(tags, getActivity());
         tagCloudView.setAdapter(adapter);
+
     }
 
     @Override
@@ -76,7 +77,8 @@ public class HotSearchFragment extends BaseListFragment {
             case EVENT.BOOK_HOT_SEARCH_REFRESH_SUCCESS:
                 Log.d("标签列表大小", eventModel.getDataList().size() + "");
                 modelList = eventModel.getDataList();
-                hideLoading();
+                bindAdapter();
+//                hideLoading();
                 break;
             case EVENT.BOOK_HOT_SEARCH_REFRESH_FAILURE:
                 hideLoading();

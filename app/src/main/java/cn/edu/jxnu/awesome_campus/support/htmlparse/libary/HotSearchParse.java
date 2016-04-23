@@ -14,7 +14,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
  * Created by KevinWu on 16-4-23.
  */
 public class HotSearchParse {
-    private static final String ITEM_CSS = "td[class=blue]";//数据解析css
+    private static final String ITEM_CSS = "a[class=blue]";//数据解析css
     private String parseStr;//待解析字符串
 
     public List<HotSearchModel> getEndList() {
@@ -38,10 +38,13 @@ public class HotSearchParse {
      */
     private void parseData() {
         try {
+            System.out.println(parseStr);
             HtmlUtil hu = new HtmlUtil(parseStr);
             List tempList = hu.parseString(ITEM_CSS);
+            Log.d("标签结果个数为个数为：","--"+tempList.size());
             for (int i = 0; i < tempList.size(); i++) {
-                String tempStr= tempList.get(i).toString().split("([0-9]+)")[0];
+                String tempStr= tempList.get(i).toString().split("[([0-9]+)]")[0];
+                //tempStr=tempStr.substring(0,tempStr.length()-1);
                 endList.add(new HotSearchModel(tempStr));
             }
 

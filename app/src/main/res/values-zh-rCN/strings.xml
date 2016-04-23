@@ -82,6 +82,7 @@
     <string name="text_clear_cache_successful">缓存清理成功!</string>
     <string name="setting">设置</string>
     <string name="notify_exit_confirm">再按一次退出</string>
+    <string name="hot_search_title">大家都在搜</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

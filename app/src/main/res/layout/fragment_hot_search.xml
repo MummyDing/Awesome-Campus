@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <com.moxun.tagcloudlib.view.TagCloudView
-        android:id="@+id/tagView"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:autoScrollMode="uniform"
-        app:darkColor="#7A67EE"
-        app:lightColor="#00B2EE"
-        app:radiusPercent="0.6"/>
-</FrameLayout>
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="@string/hot_search_title"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.moxun.tagcloudlib.view.TagCloudView
+            android:id="@+id/tagView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:autoScrollMode="uniform"
+            app:darkColor="?attr/textColor"
+            app:lightColor="?attr/colorAccent"
+            app:radiusPercent="0.8" />
+    </LinearLayout>
+
+</LinearLayout>

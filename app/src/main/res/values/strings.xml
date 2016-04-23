@@ -45,6 +45,7 @@
     <string name="hint_share_to">Share to ...</string>
     <string name="hot">hot ：</string>
     <string name="readingCount"> views</string>
+    <string name="hot_search_title">Hot Tag</string>
 
     <string name="id_course_info">courseInfo</string>
     <string name="course_name">Course:</string>
@@ -98,6 +99,7 @@
     <string name="text_copyright">Copyright</string>
     <string name="text_data">Data</string>
     <string name="text_email">E-Mail</string>
+
     <string name="text_data_summary">Some data are from public API,all rights belong to original author</string>
     <string name="text_attention">Attention</string>
     <string name="text_attention_summary">This app is not allowed for COMMERCIAL Purposes</string>
