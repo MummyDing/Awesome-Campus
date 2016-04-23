@@ -14,7 +14,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 
-public class AboutActivity extends BaseToolbarActivity {
+public class    AboutActivity extends BaseToolbarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,6 @@ public class AboutActivity extends BaseToolbarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_notify){
             Intent intent = new Intent(this,NotifyActivity.class);
-            intent.putExtra(getString(R.string.id_type),getString(R.string.link));
-            intent.putExtra(getString(R.string.id_data),"http://blog.csdn.net/mummyding");
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

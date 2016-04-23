@@ -11,19 +11,25 @@
 
 package cn.edu.jxnu.awesome_campus;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -31,7 +37,9 @@ import android.widget.Toast;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
@@ -45,6 +53,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
+import cn.edu.jxnu.awesome_campus.ui.about.NotifyActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
@@ -75,6 +84,9 @@ public class MainActivity extends BaseActivity implements HomeView{
     private FragmentTransaction fragmentTransaction;
     public static HomePresenter presenter;
     private Settings mSettings = Settings.getsInstance();
+
+    // Notify
+    private NotifyModel notifyModel = new NotifyModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -89,6 +101,9 @@ public class MainActivity extends BaseActivity implements HomeView{
         presenter.initlization();
         presenter.buildDrawer(this,toolbar);
         switchDrawerItem(DrawerItem.HOME.getId());
+
+
+        notifyModel.loadFromCache();
     }
 
     @Override
@@ -194,12 +209,52 @@ public class MainActivity extends BaseActivity implements HomeView{
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
-
+    private NotifyModel model;
     @Subscribe
     public void onEventMainThread(EventModel eventModel){
+        switch (eventModel.getEventCode()){
+            case EVENT.NOTIFY_LOAD_CACHE_SUCCESS:
+                model = (NotifyModel) eventModel.getData();
+                model.loadFromNet();
+                break;
+            case EVENT.NOTIFY_LOAD_CACHE_FAILURE:
+
+                notifyModel.loadFromNet();
+                Log.d("net","not");
+
+                break;
+            case EVENT.NOTIFY_REFRESH_SUCCESS:
+                NotifyModel tmpModel = (NotifyModel) eventModel.getData();
+                if (model == null || model.getNotifyCode().equals(tmpModel.getNotifyCode()) == false){
+                    // 通知到了=_+
+                    model = tmpModel;
+                    showNotify();
+                }
+                break;
+            case EVENT.NOTIFY_REFRESH_FAILURE:
+                break;
+        }
 
     }
 
+
+    private void showNotify(){
+        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.drawable.logo);
+        builder.setContentTitle(model.getTitle());
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
+
+        builder.setAutoCancel(true);
+        Intent intent = new Intent(this, NotifyActivity.class);
+        intent.putExtra(getString(R.string.id_type),model.getType());
+        intent.putExtra(getString(R.string.id_data),model.getData());
+        PendingIntent pIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pIntent);
+        nm.cancel(0);
+        nm.notify(0,builder.build());
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

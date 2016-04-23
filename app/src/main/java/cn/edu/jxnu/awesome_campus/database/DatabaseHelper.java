@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.database.table.about.NotifyTable;
 import cn.edu.jxnu.awesome_campus.database.table.education.CourseScoreTable;
 import cn.edu.jxnu.awesome_campus.database.table.education.ExamTimeTable;
 import cn.edu.jxnu.awesome_campus.database.table.home.CampusNewsTable;
@@ -84,6 +85,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CourseScoreTable.CREATE_TABLE);
         db.execSQL(ExamTimeTable.CREATE_TABLE);
 
+        /**
+         * Notify
+         */
+        db.execSQL(NotifyTable.CREATE_TABLE);
 
 
 

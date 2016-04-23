@@ -27,7 +27,6 @@ public class NotifyActivity extends BaseWebViewActivity {
             type = getIntent().getStringExtra(getString(R.string.id_type));
             data = getIntent().getStringExtra(getString(R.string.id_data));
         }
-        Log.d("type",type+"  "+data);
         if (type.equals(getString(R.string.link)))
         return data;
         return null;
