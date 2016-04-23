@@ -9,11 +9,30 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class ReadingFragment extends BaseListFragment {
+public class HotSearchFragment extends BaseListFragment {
+
+    @Override
+    protected int getLayoutID() {
+        return super.getLayoutID();
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+    }
+
     @Override
     public String getTitle() {
         return InitApp.AppContext.getString(R.string.reading);
     }
+
+
+
+
+
+
+
+
 
     @Override
     public void onDataRefresh() {
