@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -68,6 +69,10 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
+        if(mAppIntro == preference){
+            Intent toIntro = new Intent(getActivity(),AppIntroActivity.class);
+            startActivity(toIntro);
+        }
         return false;
     }
 }
