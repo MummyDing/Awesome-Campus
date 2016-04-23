@@ -74,7 +74,7 @@
         <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".ui.about.AppIntroActivity"/>
-        <activity android:name=".ui.library.BookSearchDetailsActivity"/>
+        <activity android:name=".ui.about.NotifyActivity"/>
     </application>
 
 </manifest>
