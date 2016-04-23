@@ -46,7 +46,7 @@ public class BookSearchActivity extends BaseToolbarActivity {
         EventBus.getDefault().register(this);
 
         initToolbar();
-        setToolbarTitle(InitApp.AppContext.getString(R.string.search_result));
+
 
         /**
          * 测使用　非正式代码　　---- By MummyDing
@@ -54,13 +54,13 @@ public class BookSearchActivity extends BaseToolbarActivity {
         Intent intent = getIntent();
         if( intent.ACTION_SEARCH.equals(intent.getAction())){
             keyword = intent.getStringExtra(SearchManager.QUERY);
-            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, SuggestionProvider.AUTHORITY,SuggestionProvider.MODE);
-            suggestions.saveRecentQuery(keyword,null);
-            model = new BookSearchResultModel(keyword);
-            setTitle(keyword);
+        }else {
+            keyword = intent.getStringExtra(getString(R.string.id_search));
         }
-
-        Log.d("keyword",keyword);
+        setToolbarTitle(InitApp.AppContext.getString(R.string.search_result)+":"+keyword);
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, SuggestionProvider.AUTHORITY,SuggestionProvider.MODE);
+        suggestions.saveRecentQuery(keyword,null);
+        model = new BookSearchResultModel(keyword);
         layoutManager = new LinearLayoutManager(InitApp.AppContext);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -95,7 +95,6 @@ public class BookSearchActivity extends BaseToolbarActivity {
         switch (eventModel.getEventCode()){
             case EVENT.BOOK_SEARCH_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());
-                Log.d("size",eventModel.getDataList().size()+"");
                 progressBar.setVisibility(View.GONE);
                 break;
             case EVENT.BOOK_SEARCH_REFRESH_FAILURE:

@@ -144,5 +144,5 @@
     <string name="location">位置:</string>
     <string name="courseinfo">课程信息</string>
     <string name="coursescore">分数</string>
-    <string name="no_result"></string>
+    <string name="no_result">无结果</string>
 </resources>

@@ -1,43 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/layout"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <me.next.tagview.TagCloudView
-                android:id="@+id/tag_top"
-                android:layout_marginTop="300dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tcvItemBorderHorizontal="8dp"
-                app:tcvItemBorderVertical="6dp"
-                app:tcvBorder="8dp"
-                app:tcvTextColor="#123455"
-                app:tcvCanTagClick="true"
-                />
-            <me.next.tagview.TagCloudView
-                android:id="@+id/tag_bottom"
-                android:layout_marginTop="200dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tcvItemBorderHorizontal="8dp"
-                app:tcvItemBorderVertical="6dp"
-                app:tcvBorder="8dp"
-                app:tcvTextColor="#123455"
-                app:tcvCanTagClick="true"
-                android:layout_marginBottom="300dp"
-                />
-
-        </LinearLayout>
-
-    </ScrollView>
-</LinearLayout>
+    <com.moxun.tagcloudlib.view.TagCloudView
+        android:id="@+id/tagView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:autoScrollMode="uniform"
+        app:darkColor="#7A67EE"
+        app:lightColor="#00B2EE"
+        app:radiusPercent="0.6"/>
+</FrameLayout>
