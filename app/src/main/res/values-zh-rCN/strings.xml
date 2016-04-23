@@ -146,4 +146,5 @@
     <string name="coursescore">分数</string>
     <string name="no_result">无结果</string>
     <string name="hot_search">热门</string>
+    <string name="menu_notify">通知</string>
 </resources>

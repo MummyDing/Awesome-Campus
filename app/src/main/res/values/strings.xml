@@ -160,6 +160,11 @@
     <string name="coursescore">CourseScore</string>
     <string name="id_search">Search</string>
     <string name="hot_search">Hot</string>
+    <string name="menu_notify">Notify</string>
+    <string name="id_type">type</string>
+    <string name="id_data">data</string>
+    <string name="link">link</string>
+    <string name="data">data</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>
