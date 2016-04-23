@@ -218,10 +218,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                 model.loadFromNet();
                 break;
             case EVENT.NOTIFY_LOAD_CACHE_FAILURE:
-
                 notifyModel.loadFromNet();
-                Log.d("net","not");
-
                 break;
             case EVENT.NOTIFY_REFRESH_SUCCESS:
                 NotifyModel tmpModel = (NotifyModel) eventModel.getData();

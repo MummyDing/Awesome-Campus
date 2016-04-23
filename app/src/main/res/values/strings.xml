@@ -165,6 +165,8 @@
     <string name="id_data">data</string>
     <string name="link">link</string>
     <string name="data">data</string>
+    <string name="id_none">none</string>
+    <string name="no_notify">No Notify</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>
