@@ -50,15 +50,15 @@
             android:title="@string/text_blog"
             android:summary="@string/kevin_blog"/>
         <Preference
-            android:key="kevin_github"
+            android:key="@string/id_kevin_github"
             android:title="GitHub"
             android:summary="@string/kevin_github"/>
         <Preference
-            android:key="kevin_email"
-            android:title="E-Mail"
+            android:key="@string/id_kevin_email"
+            android:title="@string/text_email"
             android:summary="@string/kevin_email"/>
         <Preference
-            android:key="kevin_app"
+            android:key="@string/id_kevin_app"
             android:title="@string/text_ytweather"
             android:summary="@string/summary_ytweather"/>
     </PreferenceCategory>

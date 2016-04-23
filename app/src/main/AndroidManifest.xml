@@ -50,10 +50,9 @@
         <activity
             android:name=".ui.library.BookBorrowedDialog"
             android:theme="@style/DialogTheme" />
-
-        <activity android:name=".ui.library.SearchResultDialog"
-            android:theme="@style/DialogTheme"/>
-
+        <activity
+            android:name=".ui.library.SearchResultDialog"
+            android:theme="@style/DialogTheme" />
         <activity android:name=".ui.life.CampusExpressDetailsActivity" />
 
         <receiver
@@ -74,7 +73,7 @@
 
         <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.about.AboutActivity" />
-
+        <activity android:name=".ui.about.AppIntroActivity"/>
     </application>
 
 </manifest>
