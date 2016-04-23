@@ -19,7 +19,6 @@ public class LeisureFragment extends TopNavigationFragment{
             fragments.clear();
         }
         fragments.add(new DailyFragment());
-        fragments.add(new CampusFragment());
         fragments.add(new ScienceFragment());
         fragments.add(new FilmFragment());
     }
