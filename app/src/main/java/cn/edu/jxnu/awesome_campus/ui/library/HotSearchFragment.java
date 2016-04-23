@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.library;
 
 import android.os.Handler;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -11,6 +12,9 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.library.HotSearchModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.library.HotSearchAdapter;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
@@ -22,6 +26,9 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 public class HotSearchFragment extends BaseListFragment {
 
     private TagCloudView tagCloudView;
+    private HotSearchModel model;
+    private List<HotSearchModel> modelList;
+
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_hot_search;
@@ -31,12 +38,6 @@ public class HotSearchFragment extends BaseListFragment {
     protected void init() {
         tagCloudView = (TagCloudView) parentView.findViewById(R.id.tagView);
 
-        List<String> tags = new ArrayList<>();
-        for (int i=0 ;i<50;i++){
-            tags.add("Android");
-        }
-        HotSearchAdapter adapter = new HotSearchAdapter(tags,getActivity());
-        tagCloudView.setAdapter(adapter);
     }
 
     @Override
@@ -45,10 +46,9 @@ public class HotSearchFragment extends BaseListFragment {
     }
 
 
-
     @Override
     public void onDataRefresh() {
-
+        model.loadFromNet();
     }
 
     @Override
@@ -62,7 +62,27 @@ public class HotSearchFragment extends BaseListFragment {
 
     @Override
     public void initView() {
-
+        model.loadFromCache();
+        List<String> tags = new ArrayList<>();
+        for (int i = 0; i < modelList.size(); i++) {
+            tags.add(modelList.get(i).getTag());
+        }
+        HotSearchAdapter adapter = new HotSearchAdapter(tags, getActivity());
+        tagCloudView.setAdapter(adapter);
     }
 
+    @Override
+    public void onEventComing(EventModel eventModel) {
+        super.onEventComing(eventModel);
+        switch (eventModel.getEventCode()) {
+            case EVENT.BOOK_HOT_SEARCH_REFRESH_SUCCESS:
+                Log.d("标签列表大小", eventModel.getDataList().size() + "");
+                modelList = eventModel.getDataList();
+                hideLoading();
+                break;
+            case EVENT.BOOK_HOT_SEARCH_REFRESH_FAILURE:
+                hideLoading();
+                break;
+        }
+    }
 }

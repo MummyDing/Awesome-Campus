@@ -16,7 +16,6 @@
             android:authorities="cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider" />
 
         <activity android:name=".MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

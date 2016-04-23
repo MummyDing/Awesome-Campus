@@ -113,6 +113,11 @@ public class EVENT {
     public static final int SELFSTUDYROOM_LOGIN_FAILURE_NETWORKERROR=51;
     public static final int SELFSTUDYROOM_LOGIN_FAILURE_NULL_INPUT=52;
 
+
+    //hot search result
+    public static final int BOOK_HOT_SEARCH_REFRESH_SUCCESS = 53;
+    public static final int BOOK_HOT_SEARCH_REFRESH_FAILURE = 54;
+
     /**
      * Cache Event Code
      */
@@ -168,14 +173,5 @@ public class EVENT {
     // Campus ATM cache
     public static final int CAMPUS_ATM_LOAD_CACHE_SUCCESS = 1023;
     public static final int CAMPUS_ATM_LOAD_CACHE_FAILURE = 1024;
-
-    // Notify
-    public static final int NOTIFY_REFRESH_SUCCESS = 1025;
-    public static final int NOTIFY_REFRESH_FAILURE = 1026;
-
-    // Notify Cache
-    public static final int NOTIFY_LOAD_CACHE_SUCCESS = 1027;
-    public static final int NOTIFY_LOAD_CACHE_FAILURE = 1028;
-
 }
 
