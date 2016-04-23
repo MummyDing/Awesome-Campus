@@ -60,7 +60,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:gravity="center"
-                        android:text="CourseInfo"
+                        android:text="@string/courseinfo"
                         android:textColor="#44000000"
                         android:textSize="20sp"
                         android:textStyle="bold" />

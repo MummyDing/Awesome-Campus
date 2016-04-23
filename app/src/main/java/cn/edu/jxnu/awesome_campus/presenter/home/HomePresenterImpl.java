@@ -1,8 +1,6 @@
 package cn.edu.jxnu.awesome_campus.presenter.home;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -29,7 +27,6 @@ import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
-import cn.edu.jxnu.awesome_campus.ui.study.StudyFragment;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 
 /**
@@ -69,7 +66,6 @@ public class HomePresenterImpl implements HomePresenter {
                 buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
                 buildPrimaryItem(DrawerItem.LEISURE.getItemName(),DrawerItem.LEISURE.getItemIconID(),DrawerItem.LEISURE.getId()),
                 buildPrimaryItem(DrawerItem.LIFE.getItemName(),DrawerItem.LIFE.getItemIconID(),DrawerItem.LIFE.getId()),
-                buildPrimaryItem(DrawerItem.STUDY.getItemName(),DrawerItem.STUDY.getItemIconID(),DrawerItem.STUDY.getId()),
                 buildPrimaryItem(DrawerItem.LIBRARY.getItemName(),DrawerItem.LIBRARY.getItemIconID(),DrawerItem.LIBRARY.getId()),
                 buildPrimaryItem(DrawerItem.EDUCATION.getItemName(),DrawerItem.EDUCATION.getItemIconID(),DrawerItem.EDUCATION.getId()),
                 new DividerDrawerItem(),
@@ -148,7 +144,6 @@ public class HomePresenterImpl implements HomePresenter {
         HomeFragment.clearChildFragments();
         LeisureFragment.clearChildFragments();
         LifeFragment.clearChildFragments();
-        StudyFragment.clearChildFragments();
         LibraryFragment.clearChildFragments();
         EducationFragment.clearChildFragments();
 

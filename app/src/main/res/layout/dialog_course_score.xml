@@ -51,7 +51,6 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-
                             android:background="@drawable/circlenoedge" />
                     </LinearLayout>
 
@@ -60,7 +59,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:gravity="center"
-                        android:text="CourseScore"
+                        android:text="@string/coursescore"
                         android:textColor="#44000000"
                         android:textSize="20sp"
                         android:textStyle="bold" />

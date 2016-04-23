@@ -156,6 +156,10 @@
     <string name="id_kevin_github">kevin_github</string>
     <string name="id_kevin_email">kevin_email</string>
     <string name="id_kevin_app">kevin_app</string>
+    <string name="courseinfo">CourseInfo</string>
+    <string name="coursescore">CourseScore</string>
+    <string name="id_search">Search</string>
+    <string name="hot_search">Hot</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

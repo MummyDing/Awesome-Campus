@@ -18,7 +18,7 @@ public class LibraryFragment extends TopNavigationFragment{
         }else if(fragments.size()>0){
             fragments.clear();
         }
-        fragments.add(new ReadingFragment());
+        fragments.add(new HotSearchFragment());
         fragments.add(new BookBorrowedFragment());
     }
 
