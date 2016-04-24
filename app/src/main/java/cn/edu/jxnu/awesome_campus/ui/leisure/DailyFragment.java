@@ -10,6 +10,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.DailyModel;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.leisure.DailyAdapter;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
@@ -56,6 +57,9 @@ public class DailyFragment extends BaseListFragment {
 
         switch (eventModel.getEventCode()){
             case EVENT.DAILY_LOAD_CACHE_SUCCESS:
+                if (Settings.autoRefresh){
+                    onDataRefresh();
+                }
             case EVENT.DAILY_REFRESH_SUCCESS:
                 List list = eventModel.getDataList();
                 adapter.newList(list);

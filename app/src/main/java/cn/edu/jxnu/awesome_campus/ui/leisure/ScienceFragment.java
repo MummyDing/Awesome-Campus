@@ -7,6 +7,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.ScienceModel;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.leisure.ScienceAdapter;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
@@ -52,6 +53,9 @@ public class ScienceFragment extends BaseListFragment {
 
         switch (eventModel.getEventCode()){
             case EVENT.SCIENCE_LOAD_CACHE_SUCCESS:
+                if (Settings.autoRefresh){
+                    onDataRefresh();
+                }
             case EVENT.SCIENCE_REFRESH_SUCCESS:
                 List list = eventModel.getDataList();
                 adapter.newList(list);

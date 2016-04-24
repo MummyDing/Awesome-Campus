@@ -6,6 +6,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.DailyModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.FilmModel;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.leisure.FilmAdapter;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
@@ -54,6 +55,9 @@ public class FilmFragment extends BaseListFragment {
 
         switch (eventModel.getEventCode()){
             case EVENT.FILM_LOAD_CACHE_SUCCESS:
+                if (Settings.autoRefresh){
+                    onDataRefresh();
+                }
             case EVENT.FILM_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());
                 hideLoading();

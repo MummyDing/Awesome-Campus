@@ -14,6 +14,8 @@ public class Settings {
 
     public static boolean needRecreate = false;
 
+    public static boolean autoRefresh = true;
+
     public static boolean isExitConfirm = true;
 
     public static int swipeID = 0;
@@ -21,6 +23,8 @@ public class Settings {
     public static final String XML_NAME = "settings";
 
     public static final String LANGUAGE = "language";
+
+    public static final String  AUTO_REFRESH = "auto_refresh";
 
     public static final String EXIT_CONFIRM = "exit_confirm";
 

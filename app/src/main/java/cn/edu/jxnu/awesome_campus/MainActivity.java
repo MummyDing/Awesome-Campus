@@ -90,6 +90,7 @@ public class MainActivity extends BaseActivity implements HomeView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        mSettings.autoRefresh = mSettings.getBoolean(Settings.AUTO_REFRESH,true);
         mSettings.swipeID = mSettings.getInt(Settings.SWIPE_BACK,0);
         mSettings.isExitConfirm = mSettings.getBoolean(Settings.EXIT_CONFIRM,true);
 

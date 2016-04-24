@@ -5,6 +5,11 @@
         <Preference
             android:key="@string/id_language"
             android:title="@string/text_language"/>
+        <CheckBoxPreference
+            android:key="auto_refresh"
+            android:title="@string/text_auto_refresh"
+            android:summary="@string/text_auto_refresh_summary"
+            />
         <Preference
             android:key="@string/id_swipe_back"
             android:title="@string/text_swipe_to_return"/>

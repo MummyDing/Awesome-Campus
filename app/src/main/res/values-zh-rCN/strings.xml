@@ -83,6 +83,8 @@
     <string name="setting">设置</string>
     <string name="notify_exit_confirm">再按一次退出</string>
     <string name="hot_search_title">大家都在搜</string>
+    <string name="text_auto_refresh">自动刷新</string>
+    <string name="text_auto_refresh_summary">在WIFI下自动从网络加载数据</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

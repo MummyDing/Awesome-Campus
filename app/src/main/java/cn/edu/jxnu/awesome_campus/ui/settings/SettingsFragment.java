@@ -23,6 +23,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     private Settings mSettings;
 
     private Preference mLanguage;
+    private CheckBoxPreference mAutoRefresh;
     private Preference mSwipeBack;
     private CheckBoxPreference mExitConfirm;
     private Preference mClearCache;
@@ -35,6 +36,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         mSettings = Settings.getsInstance();
 
         mLanguage = findPreference(Settings.LANGUAGE);
+        mAutoRefresh = (CheckBoxPreference) findPreference(Settings.AUTO_REFRESH);
         mSwipeBack = findPreference(Settings.SWIPE_BACK);
 
         mExitConfirm = (CheckBoxPreference) findPreference(Settings.EXIT_CONFIRM);
@@ -43,7 +45,9 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         mLanguage.setSummary(this.getResources().getStringArray(R.array.langs)[SettingsUtil.getCurrentLanguage()]);
         mSwipeBack.setSummary(this.getResources().getStringArray(R.array.swipe_back)[Settings.swipeID]);
 
+        mAutoRefresh.setChecked(Settings.autoRefresh);
         mExitConfirm.setChecked(Settings.isExitConfirm);
+        mAutoRefresh.setOnPreferenceChangeListener(this);
         mExitConfirm.setOnPreferenceChangeListener(this);
 
 
@@ -57,6 +61,10 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         if(preference == mExitConfirm){
             Settings.isExitConfirm = Boolean.valueOf(newValue.toString());
             mSettings.putBoolean(mSettings.EXIT_CONFIRM, Settings.isExitConfirm);
+            return true;
+        }else if (preference == mAutoRefresh){
+            Settings.autoRefresh = Boolean.valueOf(newValue.toString());
+            mSettings.putBoolean(mSettings.AUTO_REFRESH,Settings.autoRefresh);
             return true;
         }
         return false;

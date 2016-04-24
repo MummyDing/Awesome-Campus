@@ -175,6 +175,9 @@
     <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
     <string name="notify_info_copied">Info copied to Clipboard! You can paste it to an edit area</string>
     <string name="id_license">license</string>
+    <string name="text_auto_refresh">Auto Refresh</string>
+    <string name="text_auto_refresh_summary">Load data from network automatically if WIFI is connected</string>
+
 
     <string-array name="langs" translatable="false">
         <item>English</item>

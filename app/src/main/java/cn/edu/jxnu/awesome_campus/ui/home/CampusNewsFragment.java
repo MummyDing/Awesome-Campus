@@ -15,6 +15,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.home.CampusNewsAdapter;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
@@ -60,8 +61,11 @@ public class CampusNewsFragment extends BaseListFragment {
         super.onEventComing(eventModel);
 
         switch (eventModel.getEventCode()){
-            case EVENT.CAMPUS_NEWS_REFRESH_SUCCESS:
             case EVENT.CAMPUS_NEWS_LOAD_CACHE_SUCCESS:
+                if (Settings.autoRefresh){
+                    onDataRefresh();
+                }
+            case EVENT.CAMPUS_NEWS_REFRESH_SUCCESS:
                 List list = eventModel.getDataList();
                 Collections.sort(list);
                 adapter.newList(list);
