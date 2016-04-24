@@ -34,7 +34,7 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
 
     public static final String TAG = "DailyDetailsActivity";
     private DailyModel model;
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private static Handler handler = new Handler(Looper.getMainLooper());
     @Override
     protected void onDataRefresh() {
 

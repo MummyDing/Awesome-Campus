@@ -1,8 +1,11 @@
 package cn.edu.jxnu.awesome_campus.ui.library;
 
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.moxun.tagcloudlib.view.TagCloudView;
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ public class HotSearchFragment extends BaseListFragment {
     private TagCloudView tagCloudView;
     private HotSearchModel model = new HotSearchModel();
     private HotSearchAdapter searchAdapter;
-
+    private Handler handler = new Handler(Looper.getMainLooper());
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_hot_search;
@@ -82,7 +85,14 @@ public class HotSearchFragment extends BaseListFragment {
             case EVENT.HOT_SEARCH_LOAD_CACHE_SUCCESS:
                 searchAdapter.newTags(eventModel.getDataList());
                 hideLoading();
-                onDataRefresh();
+                // 延时请求
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        onDataRefresh();
+                    }
+                },2000);
+
                 break;
             case EVENT.HOT_SEARCH_LOAD_CACHE_FAILURE:
                 onDataRefresh();

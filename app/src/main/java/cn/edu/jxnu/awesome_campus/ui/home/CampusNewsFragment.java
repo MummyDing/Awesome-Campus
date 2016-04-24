@@ -1,6 +1,8 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
@@ -58,6 +60,7 @@ public class CampusNewsFragment extends BaseListFragment {
         model.loadFromCache();
     }
 
+    private static final Handler handler = new Handler(Looper.getMainLooper());
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
@@ -65,7 +68,12 @@ public class CampusNewsFragment extends BaseListFragment {
         switch (eventModel.getEventCode()){
             case EVENT.CAMPUS_NEWS_LOAD_CACHE_SUCCESS:
                 if (Settings.autoRefresh){
-                    onDataRefresh();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onDataRefresh();
+                        }
+                    },1500);
                 }
             case EVENT.CAMPUS_NEWS_REFRESH_SUCCESS:
                 List list = eventModel.getDataList();

@@ -1,5 +1,8 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.dao.leisure.FilmDAO;
@@ -50,7 +53,7 @@ public class FilmFragment extends BaseListFragment {
     public void initView() {
         model.loadFromCache();
     }
-
+    private static Handler handler = new Handler(Looper.getMainLooper());
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
@@ -58,7 +61,12 @@ public class FilmFragment extends BaseListFragment {
         switch (eventModel.getEventCode()){
             case EVENT.FILM_LOAD_CACHE_SUCCESS:
                 if (Settings.autoRefresh){
-                    onDataRefresh();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onDataRefresh();
+                        }
+                    },1500);
                 }
             case EVENT.FILM_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());

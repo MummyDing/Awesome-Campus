@@ -1,5 +1,8 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -49,6 +52,7 @@ public class ScienceFragment extends BaseListFragment {
         model.loadFromCache();
     }
 
+    private static Handler handler = new Handler(Looper.getMainLooper());
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
@@ -56,7 +60,12 @@ public class ScienceFragment extends BaseListFragment {
         switch (eventModel.getEventCode()){
             case EVENT.SCIENCE_LOAD_CACHE_SUCCESS:
                 if (Settings.autoRefresh){
-                    onDataRefresh();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onDataRefresh();
+                        }
+                    },1500);
                 }
             case EVENT.SCIENCE_REFRESH_SUCCESS:
                 List list = eventModel.getDataList();
