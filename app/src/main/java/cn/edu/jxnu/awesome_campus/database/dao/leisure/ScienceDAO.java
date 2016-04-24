@@ -33,7 +33,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class ScienceDAO implements DAO<ScienceModel> {
-    public final String TAG = "ScienceDAO";
+    public static final String TAG = "ScienceDAO";
     @Override
     public boolean cacheAll(List<ScienceModel> list) {
 

@@ -4,12 +4,14 @@ import android.util.Log;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.library.BookBorrowedDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.library.BookBorrowedAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -69,5 +71,11 @@ public class BookBorrowedFragment extends BaseListFragment{
                 onDataRefresh();
                 break;
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(BookBorrowedDAO.TAG);
     }
 }

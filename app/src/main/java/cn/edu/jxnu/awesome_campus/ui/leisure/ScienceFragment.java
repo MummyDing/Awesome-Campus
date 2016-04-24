@@ -4,11 +4,13 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.leisure.ScienceDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.ScienceModel;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.leisure.ScienceAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -71,5 +73,9 @@ public class ScienceFragment extends BaseListFragment {
         }
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(ScienceDAO.TAG);
+    }
 }

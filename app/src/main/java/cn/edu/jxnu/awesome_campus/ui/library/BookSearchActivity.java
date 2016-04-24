@@ -22,11 +22,13 @@ import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.library.BookSearchResultDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.library.BookSearchResultAdapter;
 import cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 
@@ -104,6 +106,9 @@ public class BookSearchActivity extends BaseToolbarActivity {
         }
     }
 
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(BookSearchResultDAO.TAG);
+    }
 }

@@ -28,7 +28,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
  * Created by KevinWu on 16-4-23.
  */
 public class HotSearchDAO implements DAO<HotSearchModel> {
-    private static final String TAG="HotSearchDAO";
+    public static final String TAG="HotSearchDAO";
     @Override
     public boolean cacheAll(List<HotSearchModel> list) {
         if (list == null || list.isEmpty()){

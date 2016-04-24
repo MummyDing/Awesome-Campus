@@ -12,11 +12,13 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.home.CampusNewsDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.home.CampusNewsAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -80,4 +82,9 @@ public class CampusNewsFragment extends BaseListFragment {
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(CampusNewsDAO.TAG);
+    }
 }

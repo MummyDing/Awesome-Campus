@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.library.HotSearchDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.HotSearchModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.library.HotSearchAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -86,5 +88,11 @@ public class HotSearchFragment extends BaseListFragment {
                 onDataRefresh();
                 break;
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(HotSearchDAO.TAG);
     }
 }

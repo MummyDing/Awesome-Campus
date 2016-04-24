@@ -10,12 +10,15 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.home.CourseTableDAO;
+import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.home.CourseTableAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.OnDayChangedListener;
 import cn.edu.jxnu.awesome_campus.view.widget.weekspinner.WeekSpinnerWrapper;
@@ -107,5 +110,11 @@ public class CourseTableFragment extends BaseListFragment{
                 courseInfoModel.loadFromNet();
                 break;
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(CourseTableDAO.TAG);
     }
 }

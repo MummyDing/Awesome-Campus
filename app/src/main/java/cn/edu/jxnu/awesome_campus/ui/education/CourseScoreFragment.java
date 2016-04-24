@@ -114,5 +114,9 @@ public class CourseScoreFragment extends BaseListFragment {
         return tempList;
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("poooooo","dfdfd");
+    }
 }

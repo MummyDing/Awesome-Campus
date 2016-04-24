@@ -4,10 +4,12 @@ import android.util.Log;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.life.CampusExpressDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.life.CampusExpressModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.life.CampusExpressAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -64,5 +66,11 @@ public class CampusExpressFragment extends BaseListFragment{
                 onDataRefresh();
                 break;
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(CampusExpressDAO.TAG);
     }
 }

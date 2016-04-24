@@ -7,11 +7,13 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.leisure.DailyDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.leisure.DailyModel;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.leisure.DailyAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -74,6 +76,9 @@ public class DailyFragment extends BaseListFragment {
                 break;
         }
     }
-
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(DailyDAO.TAG);
+    }
 
 }

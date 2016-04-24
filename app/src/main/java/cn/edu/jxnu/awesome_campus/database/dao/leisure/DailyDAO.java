@@ -32,7 +32,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class DailyDAO implements DAO<DailyModel>{
-    public final String TAG = "DailyModel";
+    public static final String TAG = "DailyModel";
 
     @Override
     public boolean cacheAll(List<DailyModel> list) {

@@ -4,11 +4,13 @@ import android.widget.Toast;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.life.CampusATMDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.life.CampusATMModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.life.CampusATMAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.life.CampusExpressAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -66,5 +68,11 @@ public class ATMFragment extends BaseListFragment{
                 onDataRefresh();
                 break;
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(CampusATMDAO.TAG);
     }
 }

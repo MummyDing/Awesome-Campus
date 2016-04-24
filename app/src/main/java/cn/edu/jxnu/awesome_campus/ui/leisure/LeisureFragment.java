@@ -2,7 +2,9 @@ package cn.edu.jxnu.awesome_campus.ui.leisure;
 
 import java.util.ArrayList;
 
+import cn.edu.jxnu.awesome_campus.database.dao.leisure.DailyDAO;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 
 /**
@@ -31,5 +33,11 @@ public class LeisureFragment extends TopNavigationFragment{
     @Override
     public void onEventComing(EventModel eventModel) {
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        NetManageUtil.cancelByTag(DailyDAO.TAG);
     }
 }
