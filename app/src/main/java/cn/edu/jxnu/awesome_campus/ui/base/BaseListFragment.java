@@ -65,6 +65,12 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         initView();
     }
 
+    @Override
+    public void onDataRefresh() {
+        if (progressBar!=null && progressBar.getVisibility()== View.VISIBLE){
+            return;
+        }
+    }
 
     @Override
     protected int getLayoutID() {

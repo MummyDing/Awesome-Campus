@@ -37,6 +37,7 @@ public class CourseScoreFragment extends BaseListFragment {
 
     @Override
     public void onDataRefresh() {
+        super.onDataRefresh();
         model.loadFromNet();
     }
 
