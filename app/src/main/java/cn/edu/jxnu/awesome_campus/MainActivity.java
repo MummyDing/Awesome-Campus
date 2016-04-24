@@ -151,7 +151,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         }else if(id == DrawerItem.THEME.getId()){
 
             ColorPickerDialog dialog = new ColorPickerDialog(this, ThemeConfig.themeColor);
-
+            dialog.setTitle(InitApp.AppContext.getString(R.string.theme));
 
             dialog.setOnColorChangedListener(new OnColorChangedListener() {
                 @Override
