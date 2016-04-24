@@ -30,7 +30,7 @@ public class SelfStudySeatsAdapter extends BaseListAdapter<SelfStudySeatLeftMode
 
     @Override
     protected void updateView() {
-
+        notifyDataSetChanged();
     }
 
     @Override

@@ -10,6 +10,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.SelfStudySeatLeftModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.support.adapter.library.SelfStudySeatsAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 import cn.edu.jxnu.awesome_campus.ui.login.StudyLoginFragment;
@@ -31,6 +32,8 @@ public class SelfStudySeatFragment extends BaseListFragment{
     @Override
     public void bindAdapter() {
         model = new SelfStudySeatLeftModel();
+        adapter = new SelfStudySeatsAdapter(getActivity(),model);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
