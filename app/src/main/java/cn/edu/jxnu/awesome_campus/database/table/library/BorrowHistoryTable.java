@@ -34,7 +34,7 @@ public class BorrowHistoryTable {
     public static final int ID_BOOK_LOCATION = 5;
 
 
-    public static final String CREATE_TIME = "create table "+NAME+"("+
+    public static final String CREATE_TABLE = "create table "+NAME+"("+
             BOOKCODE+" text, "+
             BOOKTITLE+" text, "+
             AUTHOR+" text, "+

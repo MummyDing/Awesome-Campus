@@ -2,6 +2,8 @@ package cn.edu.jxnu.awesome_campus.ui.library;
 
 
 import android.util.Log;
+import android.widget.ProgressBar;
+
 import com.moxun.tagcloudlib.view.TagCloudView;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,22 +23,22 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 public class HotSearchFragment extends BaseListFragment {
 
     private TagCloudView tagCloudView;
-    private HotSearchModel model;
-    private List<HotSearchModel> modelList;
+    private HotSearchModel model = new HotSearchModel();
+    private HotSearchAdapter searchAdapter;
 
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_hot_search;
     }
 
+
     @Override
     protected void init() {
-
-        model=new HotSearchModel();
-        model.loadFromNet();
         tagCloudView = (TagCloudView) parentView.findViewById(R.id.tagView);
-
-
+        progressBar = (ProgressBar) parentView.findViewById(R.id.progressBar);
+        searchAdapter = new HotSearchAdapter(getActivity());
+        tagCloudView.setAdapter(searchAdapter);
+        model.loadFromCache();
     }
 
     @Override
@@ -52,13 +54,6 @@ public class HotSearchFragment extends BaseListFragment {
 
     @Override
     public void bindAdapter() {
-        List<String> tags = new ArrayList<>();
-        for (int i = 0; i < modelList.size(); i++) {
-            tags.add(modelList.get(i).getTag());
-        }
-        HotSearchAdapter adapter = new HotSearchAdapter(tags, getActivity());
-        tagCloudView.setAdapter(adapter);
-
     }
 
     @Override
@@ -74,14 +69,21 @@ public class HotSearchFragment extends BaseListFragment {
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
         switch (eventModel.getEventCode()) {
-            case EVENT.BOOK_HOT_SEARCH_REFRESH_SUCCESS:
+            case EVENT.HOT_SEARCH_REFRESH_SUCCESS:
                 Log.d("标签列表大小", eventModel.getDataList().size() + "");
-                modelList = eventModel.getDataList();
-                bindAdapter();
-//                hideLoading();
-                break;
-            case EVENT.BOOK_HOT_SEARCH_REFRESH_FAILURE:
+                searchAdapter.newTags(eventModel.getDataList());
                 hideLoading();
+                break;
+            case EVENT.HOT_SEARCH_REFRESH_FAILURE:
+                hideLoading();
+                break;
+            case EVENT.HOT_SEARCH_LOAD_CACHE_SUCCESS:
+                searchAdapter.newTags(eventModel.getDataList());
+                hideLoading();
+                onDataRefresh();
+                break;
+            case EVENT.HOT_SEARCH_LOAD_CACHE_FAILURE:
+                onDataRefresh();
                 break;
         }
     }

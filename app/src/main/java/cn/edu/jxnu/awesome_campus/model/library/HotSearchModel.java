@@ -33,7 +33,7 @@ public class HotSearchModel implements IModel<HotSearchModel> {
 
     @Override
     public void loadFromCache() {
-//        dao.loadFromNet();
+        dao.loadFromCache();
     }
 
     @Override

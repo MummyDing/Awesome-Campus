@@ -115,8 +115,8 @@ public class EVENT {
 
 
     //hot search result
-    public static final int BOOK_HOT_SEARCH_REFRESH_SUCCESS = 53;
-    public static final int BOOK_HOT_SEARCH_REFRESH_FAILURE = 54;
+    public static final int HOT_SEARCH_REFRESH_SUCCESS = 53;
+    public static final int HOT_SEARCH_REFRESH_FAILURE = 54;
 
     // Campus ATM
     public static final int CAMPUS_ATM_REFRESH_SUCCESS = 55;
@@ -182,6 +182,9 @@ public class EVENT {
     public static final int CAMPUS_ATM_LOAD_CACHE_SUCCESS = 1023;
     public static final int CAMPUS_ATM_LOAD_CACHE_FAILURE = 1024;
 
+    //hot search result
+    public static final int HOT_SEARCH_LOAD_CACHE_SUCCESS = 1025;
+    public static final int HOT_SEARCH_LOAD_CACHE_FAILURE = 1026;
 
 }
 

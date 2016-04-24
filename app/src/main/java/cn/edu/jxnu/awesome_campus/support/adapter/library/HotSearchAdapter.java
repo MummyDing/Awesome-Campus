@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import com.moxun.tagcloudlib.view.TagsAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.model.library.HotSearchModel;
 import cn.edu.jxnu.awesome_campus.ui.library.BookSearchActivity;
 
 /**
@@ -21,11 +23,11 @@ import cn.edu.jxnu.awesome_campus.ui.library.BookSearchActivity;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class HotSearchAdapter extends TagsAdapter {
-    private List<String> tags;
+    private List<HotSearchModel> tags;
     private Context mContext;
 
-    public HotSearchAdapter(List<String> tags, Context context) {
-        this.tags = tags;
+    public HotSearchAdapter(Context context) {
+        this.tags = new ArrayList<>();
         this.mContext = context;
     }
 
@@ -37,22 +39,30 @@ public class HotSearchAdapter extends TagsAdapter {
     @Override
     public View getView(final Context context, final int position, ViewGroup parent) {
         TextView tv = new TextView(context);
-        tv.setText(tags.get(position));
+        tv.setText(getItem(position).getTag());
         tv.setGravity(Gravity.CENTER);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Tag " + position + " clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, BookSearchActivity.class);
-                intent.putExtra(mContext.getString(R.string.id_search),tags.get(position));
+                intent.putExtra(mContext.getString(R.string.id_search),getItem(position).getTag());
                 mContext.startActivity(intent);
             }
         });
         return tv;
     }
 
+
+    public void newTags(List<HotSearchModel> tags){
+        if (tags == null || tags.isEmpty()) return;
+        this.tags.clear();
+        this.tags.addAll(tags);
+        notifyDataSetChanged();
+    }
+
     @Override
-    public Object getItem(int position) {
+    public HotSearchModel getItem(int position) {
         return tags.get(position);
     }
 
