@@ -13,7 +13,7 @@
     <!--cyan主题-->
     <color name="cyanColorPrimary">#00BCD4</color>
     <color name="cyanColorPrimaryDark">#0097A7</color>
-    <color name="cyanColorAccent">#FFC107</color>
+    <color name="cyanColorAccent">#FF9800</color>
 
     <!--purple主题-->
     <color name="purpleColorPrimary">#9C27B0</color>
@@ -23,12 +23,12 @@
     <!--blue主题-->
     <color name="blueColorPrimary">#2196F3</color>
     <color name="blueColorPrimaryDark">#1976D2</color>
-    <color name="blueColorAccent">#FFC107</color>
+    <color name="blueColorAccent">#303F9F</color>
 
     <!--blueGrey主题-->
     <color name="blueGreyColorPrimary">#607D8B</color>
     <color name="blueGreyColorPrimaryDark">#455A64</color>
-    <color name="blueGreyColorAccent">#FFC107</color>
+    <color name="blueGreyColorAccent">#FF9800</color>
 
     <!--orange主题-->
     <color name="orangeColorPrimary">#FF9800</color>
@@ -43,12 +43,17 @@
     <!--brown主题-->
     <color name="brownColorPrimary">#795548</color>
     <color name="brownColorPrimaryDark">#5D4037</color>
-    <color name="brownColorAccent">#CDDC39</color>
+    <color name="brownColorAccent">#727272</color>
 
     <!--LightgreenTheme主题-->
     <color name="lightGreenColorPrimary">#8BC34A</color>
     <color name="lightGreenColorPrimaryDark">#689F38</color>
     <color name="lightGreenColorAccent">#CDDC39</color>
+
+    <!--马卡龙草莓奶霜主题-->
+    <color name="mklColorPrimary">#f16d7a</color>
+    <color name="mklColorPrimaryDark">#ef5461</color>
+    <color name="mklColorAccent">#e27386</color>
 
     <!--夜间模式-->
     <color name="nightColorPrimary">#222222</color>
