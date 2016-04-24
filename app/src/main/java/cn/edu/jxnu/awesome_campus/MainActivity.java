@@ -92,6 +92,7 @@ public class MainActivity extends BaseActivity implements HomeView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         mSettings.autoRefresh = mSettings.getBoolean(Settings.AUTO_REFRESH,true);
         mSettings.swipeID = mSettings.getInt(Settings.SWIPE_BACK,0);
         mSettings.isExitConfirm = mSettings.getBoolean(Settings.EXIT_CONFIRM,true);
@@ -99,6 +100,9 @@ public class MainActivity extends BaseActivity implements HomeView{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(MainActivity.this,AppGuideActivity.class);
+        startActivity(intent);
         EventBus.getDefault().register(this);
 
         presenter = new HomePresenterImpl(this);

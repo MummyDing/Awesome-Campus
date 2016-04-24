@@ -16,8 +16,10 @@
             android:authorities="cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider" />
 
         <activity android:name=".MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,10 +77,11 @@
 
         <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.about.AboutActivity" />
-        <activity android:name=".ui.about.AppIntroActivity"/>
-        <activity android:name=".ui.library.BookSearchDetailsActivity"></activity>
-        <activity android:name=".ui.about.NotifyActivity"/>
-        <activity android:name=".ui.about.LicenseActivity"/>
+        <activity android:name=".ui.about.AppIntroActivity" />
+        <activity android:name=".ui.library.BookSearchDetailsActivity" />
+        <activity android:name=".ui.about.NotifyActivity" />
+        <activity android:name=".ui.about.LicenseActivity" />
+        <activity android:name=".AppGuideActivity"></activity>
     </application>
 
 </manifest>
