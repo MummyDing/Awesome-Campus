@@ -6,10 +6,15 @@ import android.util.Log;
 
 import com.squareup.okhttp.Headers;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
 import cn.edu.jxnu.awesome_campus.model.library.SelfStudySeatLeftModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.SelfStudySeatLeftParse;
 import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
@@ -52,11 +57,30 @@ public class SelfStudySeatLeftDAO implements DAO<SelfStudySeatLeftModel> {
                     @Override
                     public void onSuccess(String result, Headers headers) {
                         SelfStudySeatLeftParse parse=new SelfStudySeatLeftParse(result);
+                        final List list = parse.getEndList();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (list != null && !list.isEmpty()) {
+                                    // 缓存数据
+                                    cacheAll(list);
+                                    //发送获取成功消息
+                                    EventBus.getDefault().post(new EventModel<SelfStudySeatLeftDAO>(EVENT.SELF_STUDY_SEATS_LOAD_CACHE_SUCCESS, list));
+                                } else {
+                                    //发送获取失败消息
+                                    EventBus.getDefault().post(new EventModel<SelfStudySeatLeftDAO>(EVENT.SELF_STUDY_SEATS_LOAD_CACHE_FAILURE));
+                                }
+                            }
+                        });
                     }
 
                     @Override
                     public void onFailure(String error) {
-
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<SelfStudySeatLeftDAO>(EVENT.SELF_STUDY_SEATS_LOAD_CACHE_FAILURE));                            }
+                        });
                     }
                 });
     }

@@ -42,6 +42,7 @@ public class SelfStudySeatLeftModel implements IModel<SelfStudySeatLeftModel>{
 
     @Override
     public void loadFromCache() {
+        //测试用
         dao.loadFromCache();
     }
 

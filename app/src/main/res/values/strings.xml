@@ -181,6 +181,10 @@
     <string name="avatar">Avatar</string>
     <string name="text_default">Default</string>
     <string name="seats">Seats</string>
+    <string name="total_seat">Total Seat:</string>
+    <string name="be_present">Be Present:</string>
+    <string name="temporary_leave">Temporary Leave:</string>
+    <string name="free_seat">Free Seat:</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

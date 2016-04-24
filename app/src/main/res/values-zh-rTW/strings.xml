@@ -158,6 +158,10 @@
     <string name="avatar">頭像</string>
     <string name="text_default">默認</string>
     <string name="seats">自習位</string>
+    <string name="total_seat">總座位：</string>
+    <string name="be_present">在座：</string>
+    <string name="temporary_leave">暫離：</string>
+    <string name="free_seat">空閒：</string>
 
 
 </resources>
