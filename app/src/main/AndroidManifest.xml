@@ -78,6 +78,7 @@
         <activity android:name=".ui.about.AppIntroActivity"/>
         <activity android:name=".ui.library.BookSearchDetailsActivity"></activity>
         <activity android:name=".ui.about.NotifyActivity"/>
+        <activity android:name=".ui.about.LicenseActivity"/>
     </application>
 
 </manifest>

@@ -51,6 +51,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private Preference mKevinGitHub;
     private Preference mKevinEmail;
     private Preference mKevinApp;
+    private Preference license;
 
     private final String APP_INTRO = InitApp.AppContext.getString(R.string.id_app_intro);
     private final String DEMO_VIDEO = InitApp.AppContext.getString(R.string.id_demo_video);
@@ -66,6 +67,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private final String KEVIN_GITHUB = InitApp.AppContext.getString(R.string.id_kevin_github);
     private final String KEVIN_EMAIL = InitApp.AppContext.getString(R.string.id_kevin_email);
     private final String KEVIN_APP = InitApp.AppContext.getString(R.string.id_kevin_app);
+
+    private final String LICENSE = InitApp.AppContext.getString(R.string.id_license);
 
     private ProgressBar progressBar;
 
@@ -91,6 +94,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
         mKevinEmail = findPreference(KEVIN_EMAIL);
         mKevinApp = findPreference(KEVIN_APP);
 
+        license = findPreference(LICENSE);
+
         mAppIntro.setOnPreferenceClickListener(this);
         mDemoVideo.setOnPreferenceClickListener(this);
         mCheckUpdate.setOnPreferenceClickListener(this);
@@ -106,6 +111,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
         mKevinGitHub.setOnPreferenceClickListener(this);
         mKevinEmail.setOnPreferenceClickListener(this);
         mKevinApp.setOnPreferenceClickListener(this);
+
+        license.setOnPreferenceClickListener(this);
 
         progressBar = (ProgressBar) getActivity().findViewById(R.id.progressbar);
     }
@@ -170,6 +177,9 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
             Uri content_url = Uri.parse("http://coolapk.com/apk/fsyt.ytweather");
             intent.setData(content_url);
             startActivity(intent);
+        }else if (license == preference){
+            Intent toLicense = new Intent(getActivity(),LicenseActivity.class);
+            startActivity(toLicense);
         }
         return false;
     }

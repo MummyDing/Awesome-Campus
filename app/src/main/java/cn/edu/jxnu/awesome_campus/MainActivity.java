@@ -240,7 +240,8 @@ public class MainActivity extends BaseActivity implements HomeView{
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.logo);
-        builder.setContentTitle(model.getTitle());
+        builder.setContentTitle(getString(R.string.app_name));
+        builder.setContentText(model.getTitle());
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
 
         builder.setAutoCancel(true);
