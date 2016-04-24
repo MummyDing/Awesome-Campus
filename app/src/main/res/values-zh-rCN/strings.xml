@@ -159,5 +159,6 @@
     <string name="notify_find_new_version">发现新版本　</string>
     <string name="avatar">头像</string>
     <string name="text_default">默认</string>
+    <string name="seats">自习位</string>
 
 </resources>
