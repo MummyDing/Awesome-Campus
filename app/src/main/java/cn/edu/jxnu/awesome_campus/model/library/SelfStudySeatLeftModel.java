@@ -32,22 +32,22 @@ public class SelfStudySeatLeftModel implements IModel<SelfStudySeatLeftModel>{
 
     @Override
     public boolean cacheAll(List<SelfStudySeatLeftModel> list) {
-        return false;
+        return dao.cacheAll(list);
     }
 
     @Override
     public boolean clearCache() {
-        return false;
+        return dao.clearCache();
     }
 
     @Override
     public void loadFromCache() {
-
+        dao.loadFromCache();
     }
 
     @Override
     public void loadFromNet() {
-
+        dao.loadFromNet();
     }
     public String getBePresent() {
         return bePresent;

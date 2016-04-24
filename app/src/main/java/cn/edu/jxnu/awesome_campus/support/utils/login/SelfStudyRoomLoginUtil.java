@@ -106,7 +106,7 @@ public class SelfStudyRoomLoginUtil {
         }
     }
 
-    private static void toFollowRedirects(String cookies) {
+    private static void toFollowRedirects(final String cookies) {
         Log.d("自习室重定向", "------");
         NetManageUtil.get(Urlconfig.SelfStudyRoom_Redirect_URL)
                 .addHeader("Cookie", cookies)
@@ -117,7 +117,7 @@ public class SelfStudyRoomLoginUtil {
 
                         if(result.indexOf("注销")>0){
                             Log.d("自习室重定向成功", "---");
-                            saveToSP(cookie);
+                            saveToSP(cookies);
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
@@ -149,7 +149,6 @@ public class SelfStudyRoomLoginUtil {
     private static void saveToSP(String cookies) {
         SPUtil mysp = new SPUtil(InitApp.AppContext);
         SelfStudyRoomLoginUtil.cookie=cookies;
-
 
         mysp.putStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME, SelfStudyRoomStaticKey.COOKIE, cookies);
     }
