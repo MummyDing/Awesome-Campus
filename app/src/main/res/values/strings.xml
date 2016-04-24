@@ -181,6 +181,8 @@
     <string name="avatar">Avatar</string>
     <string name="text_default">Default</string>
     <string name="seats">Seats</string>
+    <string name="click_to_main">Click To Main</string>
+    <string name="click_to_login">Click To Login</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

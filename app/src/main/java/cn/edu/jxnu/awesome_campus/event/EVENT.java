@@ -131,6 +131,11 @@ public class EVENT {
     public static final int SELF_STUDY_SEATS_REFRESH_SUCCESS = 59;
     public static final int SELF_STUDY_SEATS_REFRESH_FAILURE = 60;
 
+    // Jump to Login
+    public static final int JUMP_TO_LOGIN = 61;
+    // Jump to Main Activity
+    public static final int JUMP_TO_MAIN = 62;
+
     /**
      * Cache Event Code
      */
@@ -194,6 +199,7 @@ public class EVENT {
     // Self Study Seats
     public static final int SELF_STUDY_SEATS_LOAD_CACHE_SUCCESS = 1027;
     public static final int SELF_STUDY_SEATS_LOAD_CACHE_FAILURE = 1028;
+
 
 }
 

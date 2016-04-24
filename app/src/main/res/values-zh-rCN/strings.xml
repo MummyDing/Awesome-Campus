@@ -160,5 +160,7 @@
     <string name="avatar">头像</string>
     <string name="text_default">默认</string>
     <string name="seats">自习位</string>
+    <string name="click_to_main">跳转至主界面</string>
+    <string name="click_to_login">点击登陆</string>
 
 </resources>

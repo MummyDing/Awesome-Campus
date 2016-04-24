@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -18,6 +19,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.view.base.BaseListView;
@@ -39,6 +41,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     protected BaseListAdapter adapter;
     protected CardView spinnerCard;
     protected SwipeRefreshLayout swipeRefreshLayout;
+    protected Button toLoginBtn;
     @Override
     protected void init() {
         onLineLayout = (RelativeLayout) parentView.findViewById(R.id.onLineLayout);
@@ -49,6 +52,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         networkBtn = (ImageButton) parentView.findViewById(R.id.networkBtn);
         spinnerCard = (CardView) parentView.findViewById(R.id.spinner_card_view);
         recyclerView = (RecyclerView) parentView.findViewById(R.id.recyclerView);
+        toLoginBtn = (Button) parentView.findViewById(R.id.toLoginBtn);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(layoutManager);
         networkBtn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +61,12 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
                 networkBtn.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 onDataRefresh();
+            }
+        });
+        toLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new EventModel<String>(EVENT.JUMP_TO_LOGIN));
             }
         });
         bindAdapter();
@@ -127,11 +137,11 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         if(flag){
             onLineLayout.setVisibility(View.VISIBLE);
             offLineLayout.setVisibility(View.GONE);
-      //      onDataRefresh();
             displayLoading();
         }else{
             onLineLayout.setVisibility(View.GONE);
             offLineLayout.setVisibility(View.VISIBLE);
+
         }
     }
 }

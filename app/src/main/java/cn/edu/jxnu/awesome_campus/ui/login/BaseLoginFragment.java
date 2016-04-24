@@ -7,7 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 
 /**
@@ -24,6 +28,7 @@ public abstract class BaseLoginFragment extends BaseFragment{
     protected RelativeLayout onLineLayout;
 
     protected TextInputLayout userNameLayout;
+    protected Button jumpBtn;
     protected abstract String getUsernameHint();
     @Override
     protected void init() {
@@ -32,11 +37,18 @@ public abstract class BaseLoginFragment extends BaseFragment{
         usernameET = (EditText) parentView.findViewById(R.id.et_username);
         passwordET = (EditText) parentView.findViewById(R.id.et_password);
         loginBtn = (Button) parentView.findViewById(R.id.loginBtn);
+        jumpBtn = (Button) parentView.findViewById(R.id.jumpBtn);
 
         loginLayout = (RelativeLayout) parentView.findViewById(R.id.loginLayout);
         onLineLayout = (RelativeLayout) parentView.findViewById(R.id.onLineLayout);
 
         userNameLayout.setHint(getUsernameHint());
+        jumpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new EventModel<String>(EVENT.JUMP_TO_MAIN));
+            }
+        });
     }
 
 

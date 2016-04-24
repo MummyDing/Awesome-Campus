@@ -158,6 +158,8 @@
     <string name="avatar">頭像</string>
     <string name="text_default">默認</string>
     <string name="seats">自習位</string>
+    <string name="click_to_main">跳轉至主界面</string>
+    <string name="click_to_login">點擊登陸</string>
 
 
 </resources>

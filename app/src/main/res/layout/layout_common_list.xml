@@ -76,10 +76,23 @@
         android:layout_height="match_parent"
         android:visibility="gone">
         <TextView
+            android:id="@+id/textNotify"
             android:text="@string/notify_need_login"
             android:textColor="?attr/textColor"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/toLoginBtn"
+            android:text="@string/click_to_login"
+            android:layout_below="@+id/textNotify"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:textColor="?attr/textColorHighlight"
+            android:background="?attr/cardViewColor"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 </FrameLayout>
