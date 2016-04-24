@@ -13,6 +13,7 @@ import org.greenrobot.eventbus.EventBus;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.support.spkey.SelfStudyRoomStaticKey;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
@@ -36,14 +37,18 @@ public class SelfStudyRoomLoginUtil {
         if (usernameET == null) {
             throw new IllegalArgumentException("args cannot be null");
         }
-        return usernameET.getText().toString();
+        String tmp = usernameET.getText().toString();
+        if (tmp.startsWith("20") == false) return "20"+tmp;
+        return tmp;
     }
 
     private static String getPassword(EditText passwordET) {
         if (passwordET == null) {
             throw new IllegalArgumentException("args cannot be null");
         }
-        return passwordET.getText().toString();
+        String tmp = passwordET.getText().toString();
+        if (tmp.startsWith("20") == false) return "20"+tmp;
+        return tmp;
     }
 
     /**
@@ -148,4 +153,33 @@ public class SelfStudyRoomLoginUtil {
 
         mysp.putStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME, SelfStudyRoomStaticKey.COOKIE, cookies);
     }
+
+    public static String cookies;
+    public static boolean isLogin() {
+
+        Log.d("执行到判断是否登录的方法", "--");
+        SPUtil sp = new SPUtil(InitApp.AppContext);
+        String cookie = sp.getStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME, SelfStudyRoomStaticKey.COOKIE);
+        if (TextUtil.isNull(cookie) == false) {
+            Log.d("已登录","--");
+            cookies=sp.getStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME, SelfStudyRoomStaticKey.COOKIE);
+            // 获取cookie
+          //  userName=sp.getStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME,SelfStudyRoomStaticKey.USER_NAME);
+            return true;
+        }
+        Log.d("未登录","--");
+        return false;
+    }
+
+    /**
+     * 清除本地Cookie，主要应用场景:
+     * 1. 注销登陆
+     * 2. 当前cookie失效
+     */
+    public static void clearCookie() {
+        SPUtil sp=new SPUtil(InitApp.AppContext);
+        sp.clearSP(SelfStudyRoomStaticKey.SP_FILE_NAME);
+        cookies=null;
+    }
+
 }

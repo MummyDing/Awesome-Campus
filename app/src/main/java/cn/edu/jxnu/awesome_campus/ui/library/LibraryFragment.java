@@ -20,6 +20,7 @@ public class LibraryFragment extends TopNavigationFragment{
         }
         fragments.add(new HotSearchFragment());
         fragments.add(new BookBorrowedFragment());
+        fragments.add(new SelfStudySeatFragment());
     }
 
     public static LibraryFragment newInstance(){

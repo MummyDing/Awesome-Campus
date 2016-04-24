@@ -126,6 +126,11 @@ public class EVENT {
     public static final int NOTIFY_REFRESH_FAILURE = 57;
     public static final int NOTIFY_REFRESH_SUCCESS = 58;
 
+
+    // Self Study Seats
+    public static final int SELF_STUDY_SEATS_REFRESH_SUCCESS = 59;
+    public static final int SELF_STUDY_SEATS_REFRESH_FAILURE = 60;
+
     /**
      * Cache Event Code
      */
@@ -185,6 +190,10 @@ public class EVENT {
     //hot search result
     public static final int HOT_SEARCH_LOAD_CACHE_SUCCESS = 1025;
     public static final int HOT_SEARCH_LOAD_CACHE_FAILURE = 1026;
+
+    // Self Study Seats
+    public static final int SELF_STUDY_SEATS_LOAD_CACHE_SUCCESS = 1027;
+    public static final int SELF_STUDY_SEATS_LOAD_CACHE_FAILURE = 1028;
 
 }
 

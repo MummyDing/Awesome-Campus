@@ -13,6 +13,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 
 /**
@@ -56,6 +57,9 @@ public class EducationLoginFragment extends BaseLoginFragment{
                 setInputAreaEnable(true);
                 DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_login_successful));
                 MainActivity.presenter.updateHeader(getActivity());
+                if (SelfStudyRoomLoginUtil.isLogin() == false){
+                    SelfStudyRoomLoginUtil.onLogin(usernameET,usernameET);
+                }
                 break;
             case EVENT.EDUCATION_LOGIN_FAILURE_NETWORK_ERROR:
                 setLoginFailureLayout();

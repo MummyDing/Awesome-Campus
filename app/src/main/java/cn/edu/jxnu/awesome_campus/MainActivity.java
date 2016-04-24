@@ -45,6 +45,7 @@ import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
+import cn.edu.jxnu.awesome_campus.support.spkey.SelfStudyRoomStaticKey;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
@@ -52,6 +53,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.SettingsUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
 import cn.edu.jxnu.awesome_campus.ui.about.NotifyActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
@@ -186,6 +188,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             //setTitle(DrawerItem.LOGOUT.getItemName());
             EducationLoginUtil.clearCookie();
             LibraryLoginUtil.clearCookie();
+            SelfStudyRoomLoginUtil.clearCookie();
             presenter.updateHeader(this);
         }
     }
