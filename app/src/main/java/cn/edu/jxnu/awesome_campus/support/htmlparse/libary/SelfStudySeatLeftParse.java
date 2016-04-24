@@ -46,15 +46,14 @@ public class SelfStudySeatLeftParse {
                 String roomInfo=tempList.get(i).toString().split(" 总座位")[0];
                 List tempSubList=new HtmlUtil(tempRawResultList.get(i).toString()).parseString(ITEM_CSS2);
                 System.out.println("获取到的子结果列表大小"+tempSubList.size());
-                for(int j=1;j<tempSubList.size()-1;j++){
+//                for(int j=1;j<tempSubList.size()-1;j=j+6){
 //                    System.out.println(tempSubList.get(j).toString());
-
                     endList.add(new SelfStudySeatLeftModel(roomInfo,
-                            tempSubList.get(j).toString(),
-                            tempSubList.get(j+1).toString(),
-                            tempSubList.get(j+2).toString(),
-                            tempSubList.get(j+3).toString()));
-                }
+                            tempSubList.get(1).toString(),
+                            tempSubList.get(2).toString(),
+                            tempSubList.get(3).toString(),
+                            tempSubList.get(4).toString()));
+//                }
 //                System.out.println(roomInfo);
 
             }
