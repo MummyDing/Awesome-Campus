@@ -5,6 +5,9 @@
         <Preference
             android:key="@string/id_language"
             android:title="@string/text_language"/>
+        <Preference
+            android:key="@string/id_avatar"
+            android:title="@string/avatar"/>
         <CheckBoxPreference
             android:key="auto_refresh"
             android:title="@string/text_auto_refresh"

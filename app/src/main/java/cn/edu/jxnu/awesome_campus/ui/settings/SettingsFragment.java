@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SettingsUtil;
 
@@ -23,6 +24,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     private Settings mSettings;
 
     private Preference mLanguage;
+    private Preference mAvatar;
     private CheckBoxPreference mAutoRefresh;
     private Preference mSwipeBack;
     private CheckBoxPreference mExitConfirm;
@@ -36,6 +38,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         mSettings = Settings.getsInstance();
 
         mLanguage = findPreference(Settings.LANGUAGE);
+        mAvatar = findPreference(Settings.AVATAR);
+
         mAutoRefresh = (CheckBoxPreference) findPreference(Settings.AUTO_REFRESH);
         mSwipeBack = findPreference(Settings.SWIPE_BACK);
 
@@ -43,6 +47,9 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         mClearCache = findPreference(Settings.CLEAR_CACHE);
 
         mLanguage.setSummary(this.getResources().getStringArray(R.array.langs)[SettingsUtil.getCurrentLanguage()]);
+
+        mAvatar.setSummary(this.getResources().getStringArray(R.array.avatars)[Settings.avatorID]);
+
         mSwipeBack.setSummary(this.getResources().getStringArray(R.array.swipe_back)[Settings.swipeID]);
 
         mAutoRefresh.setChecked(Settings.autoRefresh);
@@ -52,6 +59,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
 
         mLanguage.setOnPreferenceClickListener(this);
+        mAvatar.setOnPreferenceClickListener(this);
         mSwipeBack.setOnPreferenceClickListener(this);
         mClearCache.setOnPreferenceClickListener(this);
     }
@@ -74,6 +82,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     public boolean onPreferenceClick(Preference preference) {
         if(preference == mLanguage){
             showLangDialog();
+        }else if (preference == mAvatar){
+            showAvatarSettingsDialog();
         }else if(preference == mClearCache){
             SettingsUtil.clearCache();
             Settings.needRecreate = true;
@@ -129,5 +139,26 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
                 ).show();
     }
+    private void showAvatarSettingsDialog(){
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getString(R.string.avatar))
+                .setSingleChoiceItems(
+                        getResources().getStringArray(R.array.avatars), Settings.avatorID,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                if(which != Settings.avatorID){
+                                    Settings.avatorID = which;
+                                    mSettings.putInt(Settings.AVATAR,which);
+                                    mAvatar.setSummary(getResources().getStringArray(R.array.avatars)[Settings.avatorID]);
+                                    Settings.needUpdateAvatar = true;
+                                }
+                            }
+                        }
 
+                ).show();
+    }
 }
+
+

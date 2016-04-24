@@ -177,12 +177,23 @@
     <string name="id_license">license</string>
     <string name="text_auto_refresh">Auto Refresh</string>
     <string name="text_auto_refresh_summary">Load data from network automatically if WIFI is connected</string>
-
+    <string name="id_avatar">avatar</string>
+    <string name="avatar">Avatar</string>
+    <string name="text_default">Default</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>
         <item>简体中文</item>
         <item>繁體中文</item>
+    </string-array>
+
+    <string-array name="avatars" translatable="false">
+        <item>@string/text_default</item>>
+        <item>AC1</item>
+        <item>AC2</item>
+        <item>AC3</item>
+        <item>AC4</item>
+        <item>AC5</item>
     </string-array>
 
     <string-array name="swipe_back">

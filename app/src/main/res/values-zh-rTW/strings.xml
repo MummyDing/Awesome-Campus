@@ -155,6 +155,8 @@
     <string name="hint_fail_check_update">獲取版本資訊失敗，請檢查網路設定</string>
     <string name="text_auto_refresh">自动刷新</string>
     <string name="text_auto_refresh_summary">在WIFI下自动从网络加载数据</string>
+    <string name="avatar">頭像</string>
+    <string name="text_default">默認</string>
 
 
 </resources>

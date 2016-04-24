@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.R;
 
 /**
  * Created by MummyDing on 16-4-17.
@@ -14,15 +15,21 @@ public class Settings {
 
     public static boolean needRecreate = false;
 
+    public static boolean needUpdateAvatar = false;
+
     public static boolean autoRefresh = true;
 
     public static boolean isExitConfirm = true;
+
+    public static int avatorID = 0;
 
     public static int swipeID = 0;
 
     public static final String XML_NAME = "settings";
 
     public static final String LANGUAGE = "language";
+
+    public static final String AVATAR = InitApp.AppContext.getString(R.string.id_avatar);
 
     public static final String  AUTO_REFRESH = "auto_refresh";
 

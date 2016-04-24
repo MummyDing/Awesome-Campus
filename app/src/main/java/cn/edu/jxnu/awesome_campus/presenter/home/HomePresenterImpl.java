@@ -17,7 +17,9 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import cn.edu.jxnu.awesome_campus.Config;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.api.AvatarApi;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
@@ -87,7 +89,7 @@ public class HomePresenterImpl implements HomePresenter {
 
     public void updateHeader(Activity activity){
         EducationLoginUtil.isLogin();
-        buildHeader(activity, EducationLoginUtil.getAvatorUrl(),EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
+        buildHeader(activity, Settings.avatorID == 0 ? EducationLoginUtil.getAvatorUrl(): AvatarApi.baseAvatarUrl+Settings.avatorID+".png",EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
     }
 
     @Override

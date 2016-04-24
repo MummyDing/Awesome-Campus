@@ -9,6 +9,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 
 /**
@@ -62,6 +63,7 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 setOnLineLayout(true);
                 setInputAreaEnable(true);
                 MainActivity.presenter.updateHeader(getActivity());
+                SelfStudyRoomLoginUtil.onLogin(usernameET,usernameET);
                 DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_login_successful));
                 break;
         }

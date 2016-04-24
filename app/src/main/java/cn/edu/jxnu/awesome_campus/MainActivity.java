@@ -93,6 +93,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         mSettings.autoRefresh = mSettings.getBoolean(Settings.AUTO_REFRESH,true);
         mSettings.swipeID = mSettings.getInt(Settings.SWIPE_BACK,0);
         mSettings.isExitConfirm = mSettings.getBoolean(Settings.EXIT_CONFIRM,true);
+        mSettings.avatorID = mSettings.getInt(Settings.AVATAR,0);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -288,6 +289,13 @@ public class MainActivity extends BaseActivity implements HomeView{
         if(Settings.needRecreate) {
             Settings.needRecreate = false;
             this.recreate();
+        }
+
+        if (Settings.needUpdateAvatar){
+            Settings.needUpdateAvatar = false;
+            if (EducationLoginUtil.isLogin()){
+                presenter.updateHeader(this);
+            }
         }
     }
 }
