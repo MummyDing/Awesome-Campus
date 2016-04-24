@@ -164,5 +164,7 @@
     <string name="be_present">在座：</string>
     <string name="temporary_leave">暂离：</string>
     <string name="free_seat">空闲：</string>
+    <string name="click_to_main">跳转至主界面</string>
+    <string name="click_to_login">点击登陆</string>
 
 </resources>

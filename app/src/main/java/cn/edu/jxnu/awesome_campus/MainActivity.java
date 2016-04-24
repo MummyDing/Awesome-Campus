@@ -16,23 +16,17 @@ import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -45,12 +39,8 @@ import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
-import cn.edu.jxnu.awesome_campus.support.spkey.SelfStudyRoomStaticKey;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
-import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.common.SettingsUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
@@ -238,6 +228,13 @@ public class MainActivity extends BaseActivity implements HomeView{
                 }
                 break;
             case EVENT.NOTIFY_REFRESH_FAILURE:
+                break;
+            case EVENT.JUMP_TO_MAIN:
+                presenter.clearAllFragments();
+                switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
+                break;
+            case EVENT.JUMP_TO_LOGIN:
+                switchToLogin();
                 break;
         }
 

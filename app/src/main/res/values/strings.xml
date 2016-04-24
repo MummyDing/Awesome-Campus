@@ -185,6 +185,8 @@
     <string name="be_present">Be Present:</string>
     <string name="temporary_leave">Temporary Leave:</string>
     <string name="free_seat">Free Seat:</string>
+    <string name="click_to_main">Click To Main</string>
+    <string name="click_to_login">Click To Login</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>
