@@ -7,7 +7,7 @@
     <solid android:color="@color/colorAccent"/>
     <stroke
         android:width="5dp"
-        android:color="#44ffffff"/>
+        android:color="@color/backgroundColor"/>
     <size android:width="20dp"
     android:height="20dp"/>
 </shape>
