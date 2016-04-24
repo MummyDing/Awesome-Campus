@@ -65,4 +65,6 @@ public class Urlconfig {
     //自习室重定向url
     public static final String SelfStudyRoom_Redirect_URL="http://zwfp.jxnu.jadl.net/MainFunctionPage.aspx";
 
+    //自习室剩余座位查询url
+    public static final String SelfStudyRoom_Seat_Left_URL="http://zwfp.jxnu.jadl.net/ReadingRoomInfos/ReadingRoomState.aspx";
 }

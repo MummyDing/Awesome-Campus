@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.library;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -27,7 +28,7 @@ public class BookBorrowedDialog extends Activity {
     private TextView author;
     private TextView borrowDate;
     private TextView dueDate;
-    private Button renewBtn;
+    private TextView renewBtn;
     private TextView bookLocation;
     private ImageButton closeBtn;
 
@@ -46,7 +47,7 @@ public class BookBorrowedDialog extends Activity {
         author = (TextView) findViewById(R.id.author);
         borrowDate = (TextView) findViewById(R.id.borrowedDate);
         dueDate = (TextView) findViewById(R.id.due_date);
-        renewBtn = (Button) findViewById(R.id.renewBtn);
+        renewBtn = (TextView) findViewById(R.id.renew);
         bookLocation = (TextView) findViewById(R.id.book_location);
         closeBtn = (ImageButton) findViewById(R.id.btn_close);
 
@@ -66,16 +67,7 @@ public class BookBorrowedDialog extends Activity {
         });
 
         if (model.getAgainTimes().equals("0")){
-            renewBtn.setText(R.string.renew);
-            renewBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // 续借逻辑
-                    Toast.makeText(getBaseContext(), "续借成功", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }else {
-            renewBtn.setEnabled(false);
+            renewBtn.setText("未续借");
         }
 
 

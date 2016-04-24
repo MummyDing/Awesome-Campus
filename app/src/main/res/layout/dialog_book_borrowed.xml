@@ -194,11 +194,11 @@ android:layout_marginTop="20dp">
                     android:textColor="#88ffffff"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-                <Button
-                    android:id="@+id/renewBtn"
+                <TextView
+                    android:id="@+id/renew"
                     android:text="已续借"
+                    android:layout_marginLeft="20dp"
                     android:textColor="#88ffffff"
-                    android:background="?attr/dialogCardColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
