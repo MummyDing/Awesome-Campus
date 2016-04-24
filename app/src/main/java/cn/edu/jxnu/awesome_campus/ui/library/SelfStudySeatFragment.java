@@ -46,10 +46,8 @@ public class SelfStudySeatFragment extends BaseListFragment{
         if (SelfStudyRoomLoginUtil.isLogin()){
             model.loadFromCache();
             setOnLineLayout(true);
-            Toast.makeText(getActivity(),"登陆了",Toast.LENGTH_SHORT).show();
         }else {
             setOnLineLayout(false);
-            Toast.makeText(getActivity(),"没有",Toast.LENGTH_SHORT).show();
         }
 
     }

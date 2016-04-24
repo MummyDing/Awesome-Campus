@@ -157,6 +157,7 @@
     <string name="text_auto_refresh_summary">在WIFI下自动从网络加载数据</string>
     <string name="avatar">頭像</string>
     <string name="text_default">默認</string>
+    <string name="seats">自習位</string>
 
 
 </resources>

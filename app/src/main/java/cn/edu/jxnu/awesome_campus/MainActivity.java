@@ -101,8 +101,8 @@ public class MainActivity extends BaseActivity implements HomeView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(MainActivity.this,AppGuideActivity.class);
-        startActivity(intent);
+       /* Intent intent = new Intent(MainActivity.this,AppGuideActivity.class);
+        startActivity(intent);*/
         EventBus.getDefault().register(this);
 
         presenter = new HomePresenterImpl(this);
