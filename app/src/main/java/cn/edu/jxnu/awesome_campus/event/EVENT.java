@@ -72,6 +72,7 @@ public class EVENT {
     public static final int EDUCATION_LOGIN_FAILURE_PASSWORD_INCORRECT=30;
     public static final int EDUCATION_LOGIN_FAILURE_NULL_INPUT=31;
     public static final int EDUCATION_LOGIN_FAILURE_NETWORK_ERROR=32;
+    public static final int EDUCATION_LOGIN_SERVER_ERROR = 4433;
 
 
     // Exam Time

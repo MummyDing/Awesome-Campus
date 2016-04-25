@@ -91,7 +91,9 @@ public class EducationLoginUtil {
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    if (endList.get(0).toString().equals(EducationalSysLoginParse.LOGIN_FAIL_NO_ID_STR)) {
+                                    if (endList == null || endList.isEmpty()){
+                                        EventBus.getDefault().post(new EventModel<String>(EVENT.EDUCATION_LOGIN_SERVER_ERROR));
+                                    }else if (endList.get(0).toString().equals(EducationalSysLoginParse.LOGIN_FAIL_NO_ID_STR)) {
                                         EventBus.getDefault().post(new EventModel<String>(EVENT.EDUCATION_LOGIN_FAILURE_NO_ID));
                                     } else if (endList.get(0).toString().equals(EducationalSysLoginParse.LOGIN_FAIL_PASSWORD_INCORRECT_STR)) {
                                         EventBus.getDefault().post(new EventModel<String>(EVENT.EDUCATION_LOGIN_FAILURE_PASSWORD_INCORRECT));

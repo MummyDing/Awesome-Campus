@@ -77,6 +77,10 @@ public class EducationLoginFragment extends BaseLoginFragment{
                 setLoginFailureLayout();
                 DisplayUtil.Snack(passwordET,InitApp.AppContext.getString(R.string.hint_wrong_password));
                 break;
+            case EVENT.EDUCATION_LOGIN_SERVER_ERROR:
+                setLoginFailureLayout();
+                DisplayUtil.Snack(passwordET,InitApp.AppContext.getString(R.string.server_error));
+                break;
         }
     }
 

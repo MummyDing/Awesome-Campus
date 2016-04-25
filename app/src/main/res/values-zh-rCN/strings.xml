@@ -166,5 +166,6 @@
     <string name="free_seat">空闲：</string>
     <string name="click_to_main">跳转至主界面</string>
     <string name="click_to_login">点击登陆</string>
+    <string name="server_error">服务器错误</string>
 
 </resources>
