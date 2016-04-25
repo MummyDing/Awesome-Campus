@@ -16,10 +16,18 @@ public class SelfStudySeatLeftModel implements IModel<SelfStudySeatLeftModel>{
     private String temporaryLeave;//暂离
     private String freeSeat;//空闲座位
     private SelfStudySeatLeftDAO dao;
+
+
+
     public SelfStudySeatLeftModel(){
         dao=new SelfStudySeatLeftDAO();
     }
-    public SelfStudySeatLeftModel(String roomInfo,String totalSeat,String bePresent,String temporaryLeave,String freeSeat)
+
+    public void setCookie(String cookie) {
+        dao.setCookie(cookie);
+    }
+
+    public SelfStudySeatLeftModel(String roomInfo, String totalSeat, String bePresent, String temporaryLeave, String freeSeat)
     {
         this.roomInfo=roomInfo;
         this.totalSeat=totalSeat;

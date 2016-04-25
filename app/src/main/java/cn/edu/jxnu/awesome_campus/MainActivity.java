@@ -92,8 +92,6 @@ public class MainActivity extends BaseActivity implements HomeView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* Intent intent = new Intent(MainActivity.this,AppGuideActivity.class);
-        startActivity(intent);*/
         EventBus.getDefault().register(this);
 
         presenter = new HomePresenterImpl(this);
@@ -180,10 +178,8 @@ public class MainActivity extends BaseActivity implements HomeView{
             startActivity(intent);
         }
         else if(id == DrawerItem.LOGOUT.getId()){
-            //setTitle(DrawerItem.LOGOUT.getItemName());
             EducationLoginUtil.clearCookie();
             LibraryLoginUtil.clearCookie();
-            SelfStudyRoomLoginUtil.clearCookie();
             presenter.updateHeader(this);
         }
     }

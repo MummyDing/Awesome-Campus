@@ -63,9 +63,6 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 setOnLineLayout(true);
                 setInputAreaEnable(true);
                 MainActivity.presenter.updateHeader(getActivity());
-                if (SelfStudyRoomLoginUtil.isLogin() == false) {
-                    SelfStudyRoomLoginUtil.onLogin(usernameET, usernameET);
-                }
                 DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_login_successful));
                 break;
         }

@@ -28,7 +28,6 @@ public class StudyLoginFragment extends BaseLoginFragment {
             public void onClick(View v) {
                 // 这里还要加点登录时的效果 progressbar 或是其他动画什么的
                 setInputAreaEnable(false);
-                SelfStudyRoomLoginUtil.onLogin(usernameET,passwordET);
             }
         });
     }

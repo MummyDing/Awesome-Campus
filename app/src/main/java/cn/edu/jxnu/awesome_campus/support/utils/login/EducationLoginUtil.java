@@ -219,6 +219,10 @@ public class EducationLoginUtil {
     }
 
     public static String getStudentID() {
+        if (TextUtil.isNull(studentID)){
+            SPUtil sp=new SPUtil(InitApp.AppContext);
+            studentID = sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NUM);
+        }
         return studentID;
     }
 

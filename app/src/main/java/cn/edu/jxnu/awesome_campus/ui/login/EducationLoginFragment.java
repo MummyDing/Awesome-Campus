@@ -57,9 +57,6 @@ public class EducationLoginFragment extends BaseLoginFragment{
                 setInputAreaEnable(true);
                 DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_login_successful));
                 MainActivity.presenter.updateHeader(getActivity());
-                if (SelfStudyRoomLoginUtil.isLogin() == false){
-                    SelfStudyRoomLoginUtil.onLogin(usernameET,usernameET);
-                }
                 break;
             case EVENT.EDUCATION_LOGIN_FAILURE_NETWORK_ERROR:
                 setLoginFailureLayout();

@@ -21,6 +21,7 @@ import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.support.spkey.SelfStudyRoomStaticKey;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 
@@ -29,6 +30,20 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
  */
 public class SelfStudySeatLeftDAO implements DAO<SelfStudySeatLeftModel> {
     private static final String TAG="SelfStudySeatLeftDAO";
+
+    private String cookie;
+
+    public SelfStudySeatLeftDAO() {
+    }
+
+    public String getCookie() {
+        return cookie;
+    }
+
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
+    }
+
     @Override
     public boolean cacheAll(List<SelfStudySeatLeftModel> list) {
         return false;
@@ -47,10 +62,10 @@ public class SelfStudySeatLeftDAO implements DAO<SelfStudySeatLeftModel> {
     public void loadFromNet() {
         Log.d(TAG,"联网拉去自习室数据");
         final Handler handler = new Handler(Looper.getMainLooper());
-        SPUtil spu = new SPUtil(InitApp.AppContext);
-        String cookies = spu.getStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME, SelfStudyRoomStaticKey.COOKIE);
+        if (TextUtil.isNull(cookie)) return;
+
         NetManageUtil.get(Urlconfig.SelfStudyRoom_Seat_Left_URL)
-                .addHeader("Cookie", cookies)
+                .addHeader("Cookie", cookie)
                 .addTag(TAG)
                 .enqueue(new StringCallback() {
                     @Override

@@ -11,6 +11,8 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.SelfStudySeatLeftModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.library.SelfStudySeatsAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 import cn.edu.jxnu.awesome_campus.ui.login.StudyLoginFragment;
@@ -52,8 +54,8 @@ public class SelfStudySeatFragment extends BaseListFragment{
 
 
         // 判断是否登陆
-        if (SelfStudyRoomLoginUtil.isLogin()){
-            model.loadFromNet();
+        if (EducationLoginUtil.isLogin()){
+            SelfStudyRoomLoginUtil.onLogin(EducationLoginUtil.getStudentID());
             setOnLineLayout(true);
         }else {
             setOnLineLayout(false);
@@ -68,14 +70,21 @@ public class SelfStudySeatFragment extends BaseListFragment{
 
         switch (eventModel.getEventCode()){
 
+            case EVENT.SELFSTUDYROOM_LOGIN_SUCCESS:
+                model.setCookie((String) eventModel.getData());
+                model.loadFromNet();
+                break;
             case EVENT.SELF_STUDY_SEATS_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());
                 hideLoading();
                 break;
+            case EVENT.SELFSTUDYROOM_LOGIN_FAILURE:
+            case EVENT.SELFSTUDYROOM_LOGIN_FAILURE_NETWORKERROR:
             case EVENT.SELF_STUDY_SEATS_REFRESH_FAILURE:
                 hideLoading();
                 displayNetworkError();
                 break;
+
         }
     }
 }

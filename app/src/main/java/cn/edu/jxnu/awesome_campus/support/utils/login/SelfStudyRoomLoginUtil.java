@@ -32,7 +32,7 @@ public class SelfStudyRoomLoginUtil {
     public static final String VIEWSTATEGENERATOR="C2EE9ABB";
     public static final String EVENTVALIDATION="/wEWBALGu8H0CwK1lMLgCgLS9cL8AgKXzJ6eD1PrwC/+tEuQt/W6kERZa2FJGBofrpzrzMbXnOcWuVzp";
 
-
+/*
     private static String getUsername(EditText usernameET) {
         if (usernameET == null) {
             throw new IllegalArgumentException("args cannot be null");
@@ -49,15 +49,13 @@ public class SelfStudyRoomLoginUtil {
         String tmp = passwordET.getText().toString();
         if (tmp.startsWith("20") == false) return "20"+tmp;
         return tmp;
-    }
+    }*/
 
     /**
      * 登录方法
-     * @param usernameET
-     * @param passwordET
      */
-    public static void onLogin(EditText usernameET,EditText passwordET){
-        if (TextUtil.isNull(getUsername(usernameET)) || TextUtil.isNull(getPassword(passwordET))) {
+    public static void onLogin(String userName){
+        if (TextUtil.isNull(userName)) {
             EventBus.getDefault().post(new EventModel<String>(EVENT.SELFSTUDYROOM_LOGIN_FAILURE_NULL_INPUT));
             return;
         } else {
@@ -67,8 +65,8 @@ public class SelfStudyRoomLoginUtil {
                     .addParams("__VIEWSTATEGENERATOR",VIEWSTATEGENERATOR)
                     .addParams("__EVENTVALIDATION",EVENTVALIDATION)
                     .addParams("subCmd","Login")
-                    .addParams("txt_LoginID",getUsername(usernameET))
-                    .addParams("txt_Password",getPassword(passwordET))
+                    .addParams("txt_LoginID","20"+userName)
+                    .addParams("txt_Password","20"+userName)
                     .enqueue(new StringCodeCallback() {
                         @Override
                         public void onSuccess(String result, int code,Headers headers) {
@@ -117,11 +115,11 @@ public class SelfStudyRoomLoginUtil {
 
                         if(result.indexOf("注销")>0){
                             Log.d("自习室重定向成功", "---");
-                            saveToSP(cookies);
+                            //saveToSP(cookies);
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
-                                EventBus.getDefault().post(new EventModel<String>(EVENT.SELFSTUDYROOM_LOGIN_SUCCESS));
+                                EventBus.getDefault().post(new EventModel<String>(EVENT.SELFSTUDYROOM_LOGIN_SUCCESS,cookies));
                             }
                         });
                         }else{
@@ -145,40 +143,6 @@ public class SelfStudyRoomLoginUtil {
                         });
                     }
                 });
-    }
-    private static void saveToSP(String cookies) {
-        SPUtil mysp = new SPUtil(InitApp.AppContext);
-        SelfStudyRoomLoginUtil.cookie=cookies;
-
-        mysp.putStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME, SelfStudyRoomStaticKey.COOKIE, cookies);
-    }
-
-    public static String cookies;
-    public static boolean isLogin() {
-
-        Log.d("执行到判断是否登录的方法", "--");
-        SPUtil sp = new SPUtil(InitApp.AppContext);
-        String cookie = sp.getStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME, SelfStudyRoomStaticKey.COOKIE);
-        if (TextUtil.isNull(cookie) == false) {
-            Log.d("已登录","--");
-            cookies=sp.getStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME, SelfStudyRoomStaticKey.COOKIE);
-            // 获取cookie
-          //  userName=sp.getStringSP(SelfStudyRoomStaticKey.SP_FILE_NAME,SelfStudyRoomStaticKey.USER_NAME);
-            return true;
-        }
-        Log.d("未登录","--");
-        return false;
-    }
-
-    /**
-     * 清除本地Cookie，主要应用场景:
-     * 1. 注销登陆
-     * 2. 当前cookie失效
-     */
-    public static void clearCookie() {
-        SPUtil sp=new SPUtil(InitApp.AppContext);
-        sp.clearSP(SelfStudyRoomStaticKey.SP_FILE_NAME);
-        cookies=null;
     }
 
 }

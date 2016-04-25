@@ -21,7 +21,6 @@ public class LoginFragment extends TopNavigationFragment{
         }
         fragments.add(new EducationLoginFragment());
         fragments.add(new LibraryLoginFragment());
-       /* fragments.add(new StudyLoginFragment());*/
     }
 
     public static LibraryFragment newInstance(){
