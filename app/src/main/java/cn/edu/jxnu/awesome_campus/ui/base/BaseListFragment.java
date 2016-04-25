@@ -78,7 +78,10 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     @Override
     public void onDataRefresh() {
         if (progressBar!=null && progressBar.getVisibility()== View.VISIBLE){
-            return;
+            if (swipeRefreshLayout.isRefreshing()){
+                swipeRefreshLayout.setRefreshing(false);
+                return;
+            }
         }
     }
 

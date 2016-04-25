@@ -41,7 +41,6 @@ public class SelfStudySeatLeftDAO implements DAO<SelfStudySeatLeftModel> {
 
     @Override
     public void loadFromCache() {
-        loadFromNet();
     }
 
     @Override
@@ -62,13 +61,11 @@ public class SelfStudySeatLeftDAO implements DAO<SelfStudySeatLeftModel> {
                             @Override
                             public void run() {
                                 if (list != null && !list.isEmpty()) {
-                                    // 缓存数据
-                                    cacheAll(list);
                                     //发送获取成功消息
-                                    EventBus.getDefault().post(new EventModel<SelfStudySeatLeftDAO>(EVENT.SELF_STUDY_SEATS_LOAD_CACHE_SUCCESS, list));
+                                    EventBus.getDefault().post(new EventModel<SelfStudySeatLeftModel>(EVENT.SELF_STUDY_SEATS_REFRESH_SUCCESS, list));
                                 } else {
                                     //发送获取失败消息
-                                    EventBus.getDefault().post(new EventModel<SelfStudySeatLeftDAO>(EVENT.SELF_STUDY_SEATS_LOAD_CACHE_FAILURE));
+                                    EventBus.getDefault().post(new EventModel<SelfStudySeatLeftModel>(EVENT.SELF_STUDY_SEATS_REFRESH_FAILURE));
                                 }
                             }
                         });
@@ -79,7 +76,7 @@ public class SelfStudySeatLeftDAO implements DAO<SelfStudySeatLeftModel> {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                EventBus.getDefault().post(new EventModel<SelfStudySeatLeftDAO>(EVENT.SELF_STUDY_SEATS_LOAD_CACHE_FAILURE));                            }
+                                EventBus.getDefault().post(new EventModel<SelfStudySeatLeftModel>(EVENT.SELF_STUDY_SEATS_REFRESH_FAILURE));                            }
                         });
                     }
                 });

@@ -37,6 +37,12 @@ public class SelfStudySeatFragment extends BaseListFragment{
     }
 
     @Override
+    public void onDataRefresh() {
+        super.onDataRefresh();
+        model.loadFromNet();
+    }
+
+    @Override
     public void addHeader() {
 
     }
@@ -47,7 +53,7 @@ public class SelfStudySeatFragment extends BaseListFragment{
 
         // 判断是否登陆
         if (SelfStudyRoomLoginUtil.isLogin()){
-            model.loadFromCache();
+            model.loadFromNet();
             setOnLineLayout(true);
         }else {
             setOnLineLayout(false);
@@ -55,30 +61,20 @@ public class SelfStudySeatFragment extends BaseListFragment{
 
     }
 
-    private static Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
 
         switch (eventModel.getEventCode()){
-            case EVENT.SELF_STUDY_SEATS_LOAD_CACHE_SUCCESS:
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        onDataRefresh();
-                    }
-                },1500);
+
             case EVENT.SELF_STUDY_SEATS_REFRESH_SUCCESS:
                 adapter.newList(eventModel.getDataList());
                 hideLoading();
                 break;
             case EVENT.SELF_STUDY_SEATS_REFRESH_FAILURE:
                 hideLoading();
-                displayLoading();
-                break;
-            case EVENT.SELF_STUDY_SEATS_LOAD_CACHE_FAILURE:
-                onDataRefresh();
+                displayNetworkError();
                 break;
         }
     }
