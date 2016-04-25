@@ -49,10 +49,10 @@ public class SelfStudySeatLeftParse {
 //                for(int j=1;j<tempSubList.size()-1;j=j+6){
 //                    System.out.println(tempSubList.get(j).toString());
                     endList.add(new SelfStudySeatLeftModel(roomInfo,
-                            tempSubList.get(1).toString(),
-                            tempSubList.get(2).toString(),
-                            tempSubList.get(3).toString(),
-                            tempSubList.get(4).toString()));
+                            tempSubList.get(1).toString().split("：")[1],
+                            tempSubList.get(2).toString().split("：")[1],
+                            tempSubList.get(3).toString().split("：")[1],
+                            tempSubList.get(4).toString().split("：")[1]));
 //                }
 //                System.out.println(roomInfo);
 
