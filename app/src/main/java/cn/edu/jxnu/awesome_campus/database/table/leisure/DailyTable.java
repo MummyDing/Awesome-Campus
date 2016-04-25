@@ -36,7 +36,7 @@ public class DailyTable {
 
 
     public static final String CREATE_TABLE = "create table "+NAME+"("+
-            TITLE+" text, "+
+            TITLE+" text primary key, "+
             ID+" integer, "+
             BODY + " text, "+
             LARGE_PIC + " text, "+

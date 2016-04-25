@@ -48,7 +48,7 @@ public class CampusExpressTable {
     public static final int ID_BODY = 7;
 
     public static final String CREATE_TABLE = "create table "+NAME+"("+
-            EXP_TEXT_NAME+" text, "+
+            EXP_TEXT_NAME+" text primary key, "+
             EXP_SPELL_NAME+" text, "+
             EXP_TEL+" text, "+
             EXP_LOC+" text, "+

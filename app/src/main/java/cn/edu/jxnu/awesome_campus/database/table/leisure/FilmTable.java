@@ -39,7 +39,7 @@ public class FilmTable {
 
     public static final String CREATE_TABLE = "create table "+NAME+"("+
             URL+" text, "+
-            TITLE+" text, "+
+            TITLE+" text primary key, "+
             READING_COUNT+" text, "+
             DETAIL+" text, "+
             TOP_PIC+" text)";

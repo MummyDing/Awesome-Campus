@@ -42,7 +42,7 @@ public class ScienceTable {
             REPLIES_COUNT+" integer, "+
             IMAGE_URL+" text, "+
             URL+" text, "+
-            TITLE+" text, "+
+            TITLE+" text primary key, "+
             SCIENCE_DETAILS+" text)";
 
 

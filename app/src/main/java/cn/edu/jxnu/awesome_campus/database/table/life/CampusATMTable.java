@@ -30,7 +30,7 @@ public class CampusATMTable {
 
 
     public static final String CREATE_TABLE = "create table "+NAME+"("+
-            BANK_NAME+" text, "+
+            BANK_NAME+" text primary key, "+
             BANK_LOCATION+" text, "+
             IMAGE_URL+" text)";
 }
