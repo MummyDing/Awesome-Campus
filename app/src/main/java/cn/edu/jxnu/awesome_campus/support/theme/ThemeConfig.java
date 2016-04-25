@@ -21,7 +21,8 @@ public class ThemeConfig {
             ContextCompat.getColor(InitApp.AppContext,R.color.blueGreyColorPrimary),
             ContextCompat.getColor(InitApp.AppContext,R.color.purpleColorPrimary),
             ContextCompat.getColor(InitApp.AppContext,R.color.orangeColorPrimary),
-            ContextCompat.getColor(InitApp.AppContext,R.color.mklColorPrimary)
+            ContextCompat.getColor(InitApp.AppContext,R.color.mklColorPrimary),
+            ContextCompat.getColor(InitApp.AppContext,R.color.bgColorPrimary)
     };
     //主题样式值
     public static final int themeStyle[]={
@@ -35,7 +36,8 @@ public class ThemeConfig {
             R.style.BlueGreyTheme,
             R.style.PurpleTheme,
             R.style.OrangeTheme,
-            R.style.MklTheme
+            R.style.MklTheme,
+            R.style.BgTheme
     };
     //主题对话框样式值
     public static final int themeDialogStyle[]={
@@ -49,6 +51,7 @@ public class ThemeConfig {
             R.style.BlueGreyDialogTheme,
             R.style.PurpleDialogTheme,
             R.style.OrangeDialogTheme,
-            R.style.MklDialogTheme
+            R.style.MklDialogTheme,
+            R.style.BgDialogTheme
     };
 }

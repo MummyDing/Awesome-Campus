@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="text_enabled">#FFFFFFFF</color>
+    <color name="text_disabled">#4DFFFFFF</color>
     <!--默认主题-->
     <color name="colorPrimary">#A52F2F</color>
     <color name="colorPrimaryDark">#8c2222</color>
@@ -54,6 +55,15 @@
     <color name="mklColorPrimary">#f16d7a</color>
     <color name="mklColorPrimaryDark">#ef5461</color>
     <color name="mklColorAccent">#e27386</color>
+
+    <!--黑金Black Golden主题-->
+    <color name="bgColorPrimary">#223</color>
+    <color name="bgColorPrimaryDark">#000</color>
+    <color name="bgColorAccent">#FFB44a</color>
+    <color name="bgCardViewColor">#ffd191</color>
+    <color name="bgTextColor">#ff9500</color>
+    <color name="bgTextColorHighlight">#ffb44a</color>
+    <color name="bgBackgroundColor">#fff1de</color>
 
     <!--夜间模式-->
     <color name="nightColorPrimary">#222222</color>
