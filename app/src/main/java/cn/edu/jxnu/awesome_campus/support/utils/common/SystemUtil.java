@@ -12,11 +12,17 @@ import cn.edu.jxnu.awesome_campus.InitApp;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class SystemUtil {
+
+    private static int versionCode = -1;
+
+    private static String versionName = null;
+
     /**
      * App 版本号
      * @return
      */
     public static int getVersionCode() {
+        if (versionCode != -1) return versionCode;
         return getPackageInfo().versionCode;
     }
 
@@ -25,6 +31,7 @@ public class SystemUtil {
      * @return
      */
     public static String getVersionName() {
+        if (TextUtil.isNull(versionName) == false) return versionName;
         return getPackageInfo().versionName;
     }
     /***

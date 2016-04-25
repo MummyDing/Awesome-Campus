@@ -39,6 +39,8 @@ public class Settings {
 
     public static final String SWIPE_BACK = "swipe_back";
 
+    public static final String INTRO_VERSION = "intro_version";
+
     private static Settings sInstance;
 
     private static SharedPreferences mPrefs;

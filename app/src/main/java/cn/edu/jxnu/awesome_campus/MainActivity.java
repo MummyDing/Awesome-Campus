@@ -41,6 +41,7 @@ import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
@@ -92,8 +93,11 @@ public class MainActivity extends BaseActivity implements HomeView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(MainActivity.this,AppGuideActivity.class);
-        startActivity(intent);
+      //  if (SystemUtil.getVersionCode() != mSettings.getInt(Settings.INTRO_VERSION,0)) {
+            mSettings.putInt(Settings.INTRO_VERSION,SystemUtil.getVersionCode());
+            Intent intent = new Intent(MainActivity.this, AppGuideActivity.class);
+            startActivity(intent);
+       // }
         EventBus.getDefault().register(this);
 
         presenter = new HomePresenterImpl(this);
@@ -267,6 +271,8 @@ public class MainActivity extends BaseActivity implements HomeView{
         builder.setContentIntent(pIntent);
         nm.cancel(0);
         nm.notify(0,builder.build());
+
+
     }
 
     @Override
