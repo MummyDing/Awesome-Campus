@@ -41,6 +41,7 @@ import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
@@ -202,6 +203,16 @@ public class MainActivity extends BaseActivity implements HomeView{
         fragmentTransaction.commit();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        /**
+         * 偶数分检查通知
+         */
+        if (TimeUtil.getHourMinute() % 2 == 0){
+            notifyModel.loadFromCache();
+        }
+    }
 
     @Override
     protected void onDestroy() {
