@@ -259,6 +259,33 @@
         <item name="textColorHighlight">@color/textColorHighlight</item>
         <item name="backgroundColor">@color/backgroundColor</item>
     </style>
+
+    <!--黑金主题-->
+    <style name="BgTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/bgColorPrimary</item>
+        <item name="colorPrimaryDark">@color/bgColorPrimaryDark</item>
+        <item name="colorAccent">@color/bgColorAccent</item>
+        <item name="cardViewColor">@color/bgCardViewColor</item>
+        <item name="textColor">@color/bgTextColor</item>
+        <item name="textColorHighlight">@color/bgTextColorHighlight</item>
+        <item name="backgroundColor">@color/bgBackgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="BgDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/bgColorPrimary</item>
+        <item name="textColor">@color/bgTextColor</item>
+        <item name="textColorHighlight">@color/bgTextColorHighlight</item>
+        <item name="backgroundColor">@color/bgBackgroundColor</item>
+    </style>
+
     <!--夜间模式-->
     <style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/nightColorPrimary</item>
