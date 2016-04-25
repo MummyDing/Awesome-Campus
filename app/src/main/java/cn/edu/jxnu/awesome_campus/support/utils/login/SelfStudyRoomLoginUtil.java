@@ -32,24 +32,6 @@ public class SelfStudyRoomLoginUtil {
     public static final String VIEWSTATEGENERATOR="C2EE9ABB";
     public static final String EVENTVALIDATION="/wEWBALGu8H0CwK1lMLgCgLS9cL8AgKXzJ6eD1PrwC/+tEuQt/W6kERZa2FJGBofrpzrzMbXnOcWuVzp";
 
-/*
-    private static String getUsername(EditText usernameET) {
-        if (usernameET == null) {
-            throw new IllegalArgumentException("args cannot be null");
-        }
-        String tmp = usernameET.getText().toString();
-        if (tmp.startsWith("20") == false) return "20"+tmp;
-        return tmp;
-    }
-
-    private static String getPassword(EditText passwordET) {
-        if (passwordET == null) {
-            throw new IllegalArgumentException("args cannot be null");
-        }
-        String tmp = passwordET.getText().toString();
-        if (tmp.startsWith("20") == false) return "20"+tmp;
-        return tmp;
-    }*/
 
     /**
      * 登录方法

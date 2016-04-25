@@ -1,21 +1,14 @@
 package cn.edu.jxnu.awesome_campus.ui.library;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.widget.Toast;
-
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.SelfStudySeatLeftModel;
-import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.library.SelfStudySeatsAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
-import cn.edu.jxnu.awesome_campus.ui.login.StudyLoginFragment;
 
 /**
  * Created by MummyDing on 16-4-24.

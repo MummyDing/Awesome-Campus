@@ -67,14 +67,7 @@ public class LibraryLoginUtil {
                         @Override
                         public void onSuccess(String result,int code, Headers headers) {
                             System.out.println("获取到的状态码为：" + code);
-//                            System.out.println("页面内容："+result);
-//                            char a[]=result.toCharArray();
-//                            for (int i=0;i<a.length;i++){
-//                                if(i%30==0){
-//                                    System.out.println("\n");
-//                                }
-//                                System.out.print(a[i]);
-//                            }
+
 
                             String cookies = null;
                             for (int i = 0; i < headers.size(); i++) {
@@ -122,14 +115,6 @@ public class LibraryLoginUtil {
                     public void onSuccess(String result, Headers headers) {
                         Log.d("第二次访问成功", "---");
                         LibraryLoginInfoParse myParse=new LibraryLoginInfoParse(result);
-//                        System.out.println(result);
-//                        char a[] = result.toCharArray();
-//                        for (int i = 0; i < a.length; i++) {
-//                            if (i % 30 == 0) {
-//                                System.out.println("\n");
-//                            }
-//                            System.out.print(a[i]);
-//                        }
                         String name=myParse.getEndList().get(0).toString();
                         saveToSP(name, cookies);
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
