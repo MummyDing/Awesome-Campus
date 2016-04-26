@@ -142,7 +142,7 @@ public class ScienceDetailsActivity extends BaseDetailsActivity {
 
     @Override
     protected String getShareInfo() {
-        return "["+model.getTitle()+"]:"+model.getUrl()+" ( "+getString(R.string.text_share_from)+getString(R.string.app_name)+")";
+        return "["+model.getTitle()+"]:"+model.getUrl()+" ( "+getString(R.string.text_share_from)+" "+getString(R.string.app_name)+")";
     }
 }
 

@@ -17,7 +17,7 @@
         android:textColor="#ffffff"
         android:paddingRight="32dp"
         android:textSize="28sp"
-        android:text="生活信息"/>
+        android:text="生活小助手"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -47,7 +47,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:onClick="getStarted"
-        android:text="快递、ATM我来告诉你在那里"/>
+        android:text="校园生活小助手\n用实力告别路痴"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />

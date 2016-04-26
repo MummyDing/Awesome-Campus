@@ -49,7 +49,7 @@ public class CampusExpressDetailsActivity extends BaseDetailsActivity {
             return null;
         }
         return "["+model.getExpTextName()+"]:\n"+"Location:"+model.getExpLoc()
-                +"\nTel:"+model.getExpTel()+getString(R.string.text_share_from)+" ( "+"share from "+getString(R.string.app_name)+")";
+                +"\nTel:"+model.getExpTel()+getString(R.string.text_share_from)+" ( "+getString(R.string.text_share_from)+" "+getString(R.string.app_name)+")";
     }
 
 }

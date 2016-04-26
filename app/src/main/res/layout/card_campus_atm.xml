@@ -11,11 +11,9 @@
     android:layout_marginTop="@dimen/card_margin"
     android:clipChildren="false"
     android:clipToPadding="false"
+    app:contentPadding="10dp"
     app:cardBackgroundColor="?attr/cardViewColor"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="8dp"
-    app:cardPreventCornerOverlap="true"
-    app:contentPadding="10dp">
+    >
 
     <!--折叠视图-->
     <com.ramotion.foldingcell.FoldingCell

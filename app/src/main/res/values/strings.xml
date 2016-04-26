@@ -156,7 +156,6 @@
     <string name="location">Location:</string>
     <string name="bank">Bank:</string>
     <string name="id_kevin_github">kevin_github</string>
-    <string name="id_kevin_email">kevin_email</string>
     <string name="id_kevin_app">kevin_app</string>
     <string name="courseinfo">CourseInfo</string>
     <string name="coursescore">CourseScore</string>
@@ -190,14 +189,14 @@
     <string name="server_error">Server Error</string>
     <string name="link_data">link_data</string>
 
-    <string-array name="langs" translatable="false">
+    <string-array name="langs">
         <item>English</item>
         <item>简体中文</item>
         <item>繁體中文</item>
     </string-array>
 
     <string-array name="avatars" translatable="false">
-        <item>@string/text_default</item>>
+        <item>@string/text_default</item>
         <item>AC1</item>
         <item>AC2</item>
         <item>AC3</item>
@@ -209,4 +208,7 @@
         <item>@string/text_anywhere</item>
         <item>@string/text_left_only</item>
     </string-array>
+    <string name="text_share_awesome_campus">分享"师大+"</string>
+    <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到https://github.com/MummyDing/Awesome-Campus下载</string>
+    <string name="id_kevin_email">kevin_email</string>
 </resources>

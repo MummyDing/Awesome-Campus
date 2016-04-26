@@ -86,7 +86,7 @@
     <string name="text_auto_refresh">自动刷新</string>
     <string name="text_auto_refresh_summary">在WIFI下自动从网络加载数据</string>
 
-    <string-array name="langs" translatable="false">
+    <string-array name="langs">
         <item>English</item>
         <item>简体中文</item>
         <item>繁體中文</item>
@@ -167,5 +167,37 @@
     <string name="click_to_main">跳转至主界面</string>
     <string name="click_to_login">点击登陆</string>
     <string name="server_error">服务器错误</string>
+    <string name="text_github">GitHub</string>
+    <string name="summary_version">Awesome Campus 1.0</string>
+    <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
+    <string name="mummyding_github">https://github.com/MummyDing</string>
+    <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
+    <string name="mummy_email">MummyDing@outlook.com</string>
+    <string name="link">link</string>
+    <string name="link_data">link_data</string>
+    <string name="kevin_blog">http://kevinwu1993.github.io</string>
+    <string name="kevin_email">wqd1993@qq.com</string>
+    <string name="kevin_github">https://github.com/KevinWu1993</string>
+    <string name="id_type">type</string>
+    <string name="id_star_project">star_project</string>
+    <string name="id_share">share</string>
+    <string name="id_search">share</string>
+    <string name="id_none">none</string>
+    <string name="id_mummy_email">mummy_email</string>
+    <string name="id_mummy_blog">mummy_blog</string>
+    <string name="id_mummy_app">mummy_app</string>
+    <string name="id_license">license</string>
+    <string name="id_kevin_github">kevin_github</string>
+    <string name="id_kevin_email">kevin_email</string>
+    <string name="id_kevin_blog">kevin_blog</string>
+    <string name="id_kevin_app">kevin_app</string>
+    <string name="id_github_mummy">mummy_github</string>
+    <string name="id_demo_video">demo_video</string>
+    <string name="id_data">data</string>
+    <string name="id_current_version">current_version</string>
+    <string name="id_check_update">check_update</string>
+    <string name="id_avatar">avatar</string>
+    <string name="id_app_intro">app_intro</string>
+    <string name="data">data</string>
 
 </resources>

@@ -122,7 +122,14 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
         if(mAppIntro == preference){
             Intent toIntro = new Intent(getActivity(),AppIntroActivity.class);
             startActivity(toIntro);
-        }else if(mCheckUpdate == preference){
+        }else if(mDemoVideo==preference){
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            Uri content_url = Uri.parse("http://www.miaopai.com/show/Q-ekXL4V31-TkE8jIR14AQ__.htm");
+            intent.setData(content_url);
+            startActivity(intent);
+        }
+        else if(mCheckUpdate == preference){
             progressBar.setVisibility(View.VISIBLE);
 
             NetManageUtil.get(VersoinApi.versionUrl)

@@ -113,6 +113,6 @@ public class CampusNewsDetailsActivity extends BaseDetailsActivity{
 
     @Override
     protected String getShareInfo() {
-        return "["+model.getNewsTitle()+"]:"+ Urlconfig.CampusNews_Base_URL+model.getNewsURL()+" ( "+"share from "+getString(R.string.app_name)+")";
+        return "["+model.getNewsTitle()+"]:"+ Urlconfig.CampusNews_Base_URL+model.getNewsURL()+" ( "+getString(R.string.text_share_from)+" "+getString(R.string.app_name)+")";
     }
 }
