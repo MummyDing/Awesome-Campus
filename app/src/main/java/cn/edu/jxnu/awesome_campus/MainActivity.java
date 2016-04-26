@@ -31,6 +31,9 @@ import android.view.MenuItem;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
@@ -93,11 +96,11 @@ public class MainActivity extends BaseActivity implements HomeView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-      //  if (SystemUtil.getVersionCode() != mSettings.getInt(Settings.INTRO_VERSION,0)) {
+        if (SystemUtil.getVersionCode() != mSettings.getInt(Settings.INTRO_VERSION,0)) {
             mSettings.putInt(Settings.INTRO_VERSION,SystemUtil.getVersionCode());
             Intent intent = new Intent(MainActivity.this, AppGuideActivity.class);
             startActivity(intent);
-       // }
+        }
         EventBus.getDefault().register(this);
 
         presenter = new HomePresenterImpl(this);
@@ -208,12 +211,6 @@ public class MainActivity extends BaseActivity implements HomeView{
     @Override
     protected void onPause() {
         super.onPause();
-        /**
-         * 偶数分检查通知
-         */
-        if (TimeUtil.getHourMinute() % 2 == 0){
-            notifyModel.loadFromCache();
-        }
     }
 
     @Override
@@ -236,6 +233,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                 NotifyModel tmpModel = (NotifyModel) eventModel.getData();
                 if (model == null || model.getNotifyCode().equals(tmpModel.getNotifyCode()) == false){
                     // 通知到了=_+
+                    tmpModel.cacheAll(Arrays.asList(tmpModel));
                     model = tmpModel;
                     showNotify();
                 }
@@ -315,6 +313,13 @@ public class MainActivity extends BaseActivity implements HomeView{
             if (EducationLoginUtil.isLogin()){
                 presenter.updateHeader(this);
             }
+        }
+
+        /**
+         * 偶数分检查通知
+         */
+        if (TimeUtil.getHourMinute() % 2 == 0){
+            notifyModel.loadFromCache();
         }
     }
 }

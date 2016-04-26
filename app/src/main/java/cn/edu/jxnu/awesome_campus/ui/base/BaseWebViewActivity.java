@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.base;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +10,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.squareup.okhttp.Headers;
+
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 
 public abstract class BaseWebViewActivity extends SwipeBackActivity {
 
@@ -26,6 +32,9 @@ public abstract class BaseWebViewActivity extends SwipeBackActivity {
 
     protected abstract String getLink();
     protected abstract String getData();
+    protected abstract String getLinkData();
+
+    private Handler handler = new Handler(Looper.getMainLooper());
     protected void initData(){
 
         webView = (WebView) findViewById(R.id.webView);
@@ -52,7 +61,7 @@ public abstract class BaseWebViewActivity extends SwipeBackActivity {
                 super.onProgressChanged(view, newProgress);
                 if (isLoading) {
                     progressBar.incrementProgressBy(newProgress - progressBar.getProgress());
-                    if (newProgress > 25) {
+                    if (newProgress > 45) {
                         isLoading = false;
                         progressBar.setVisibility(View.GONE);
                     }
@@ -65,6 +74,25 @@ public abstract class BaseWebViewActivity extends SwipeBackActivity {
 
         }else if (TextUtil.isNull(getLink()) == false){
             webView.loadUrl(getLink());
+        }else if (TextUtil.isNull(getLinkData()) == false){
+            NetManageUtil.get(getLinkData())
+                    .enqueue(new StringCallback() {
+                        @Override
+                        public void onSuccess(final String result, Headers headers) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    webView.loadDataWithBaseURL("file:///android_asset/", result, "text/html", "utf-8", null);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onFailure(String error) {
+                            webView.loadDataWithBaseURL("file:///android_asset/",  "<hr>"+getString(R.string.no_notify)+"</h1>", "text/html", "utf-8", null);
+
+                        }
+                    });
         }
     }
 }

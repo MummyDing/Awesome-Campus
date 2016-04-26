@@ -44,7 +44,6 @@ public class HotSearchAdapter extends TagsAdapter {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Tag " + position + " clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, BookSearchActivity.class);
                 intent.putExtra(mContext.getString(R.string.id_search),getItem(position).getTag());
                 mContext.startActivity(intent);

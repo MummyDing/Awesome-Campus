@@ -40,8 +40,6 @@ public class NotifyDAO implements DAO<NotifyModel> {
             return false;
         }
 
-        clearCache();
-
         for (int i=0 ;i <list.size(); i++) {
             NotifyModel model = list.get(i);
             ContentValues values = new ContentValues();
@@ -80,7 +78,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             public void run() {
                 if (!list.isEmpty()){
                     // 发送成功消息
-                    EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_SUCCESS,list.get(0)));
+                    EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_SUCCESS,list.get(list.size()-1)));
                 }else {
                     //发送失败消息
                     EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_FAILURE));
@@ -123,7 +121,6 @@ public class NotifyDAO implements DAO<NotifyModel> {
                     public void onSuccess(final NotifyModel entity, Headers headers) {
                         final List<NotifyModel> list = new ArrayList<NotifyModel>();
                         list.add(entity);
-                        cacheAll(list);
                         handler.post(new Runnable() {
                             @Override
                             public void run() {

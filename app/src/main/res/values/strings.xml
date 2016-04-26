@@ -188,6 +188,7 @@
     <string name="click_to_main">Click To Main</string>
     <string name="click_to_login">Click To Login</string>
     <string name="server_error">Server Error</string>
+    <string name="link_data">link_data</string>
 
     <string-array name="langs" translatable="false">
         <item>English</item>

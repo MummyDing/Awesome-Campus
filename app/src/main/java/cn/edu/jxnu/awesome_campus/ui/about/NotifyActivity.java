@@ -44,4 +44,15 @@ public class NotifyActivity extends BaseWebViewActivity {
             return "<hr>"+getString(R.string.no_notify)+"</h1>";
         return null;
     }
+
+    @Override
+    protected String getLinkData() {
+        if (type == null){
+            type = getIntent().getStringExtra(getString(R.string.id_type));
+            data = getIntent().getStringExtra(getString(R.string.id_data));
+        }
+        if (type.equals(getString(R.string.link_data)))
+            return data;
+        return null;
+    }
 }

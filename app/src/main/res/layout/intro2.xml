@@ -44,7 +44,7 @@
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
         android:textSize="16sp"
-        android:text="借书找书\n统统搞掂"/>
+        android:text="借书找书\n统统搞定"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />

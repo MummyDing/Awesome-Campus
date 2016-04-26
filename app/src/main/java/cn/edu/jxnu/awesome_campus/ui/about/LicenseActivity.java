@@ -17,4 +17,9 @@ public class LicenseActivity extends BaseWebViewActivity {
     protected String getData() {
         return null;
     }
+
+    @Override
+    protected String getLinkData() {
+        return null;
+    }
 }

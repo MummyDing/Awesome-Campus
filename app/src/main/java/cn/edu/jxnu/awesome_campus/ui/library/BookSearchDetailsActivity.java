@@ -35,6 +35,11 @@ public class BookSearchDetailsActivity extends BaseWebViewActivity{
     }
 
     @Override
+    protected String getLinkData() {
+        return null;
+    }
+
+    @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
