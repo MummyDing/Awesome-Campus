@@ -21,6 +21,9 @@ public class NotifyTable {
 
     public static final String DATA = "data";
 
+    public static final String READED="readed";//预留字段，是否已读
+
+    public static final String DATE="date";//预留字段，时间
     /**
      * 字段ID 数据库操作建立字段对应关系 从0开始
      */
@@ -34,7 +37,9 @@ public class NotifyTable {
             NOTIFY_CODE+" text ,"+
             TITLE+" text, "+
             TYPE+" text, "+
-            DATA+")";
+            DATA+" text,"+
+            READED+" boolean,"+
+            DATE+" text)";
 
 
 }
