@@ -166,7 +166,7 @@
     <string name="click_to_login">点击登陆</string>
     <string name="server_error">服務器錯誤</string>
     <string name="text_github">GitHub</string>
-    <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到https://github.com/MummyDing/Awesome-Campus下载</string>
+    <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到 http://fir.im/AwesomeCampus 下载</string>
     <string name="text_share_awesome_campus">分享"师大+"</string>
     <string name="summary_version">Awesome Campus 1.0</string>
     <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
