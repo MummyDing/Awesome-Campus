@@ -118,12 +118,14 @@ public class HomePresenterImpl implements HomePresenter {
 
         if(EducationLoginUtil.isLogin() || LibraryLoginUtil.isLogin()){
             if(drawer !=null) {
+                LogItem.withEnabled(true);
                 LogItem.withName(DrawerItem.LOGOUT.getItemName());
                 LogItem.withIcon(DrawerItem.LOGOUT.getItemIconID());
                 drawer.updateItem(LogItem);
             }
         }else{
             if(drawer !=null) {
+                LogItem.withEnabled(false);
                 LogItem.withName("");
                 LogItem.withIcon(R.drawable.ic_blank);
                 drawer.updateItem(LogItem);

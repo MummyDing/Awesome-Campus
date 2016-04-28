@@ -15,6 +15,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.Snackbar;
@@ -23,10 +24,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,6 +49,7 @@ import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
@@ -187,9 +194,27 @@ public class MainActivity extends BaseActivity implements HomeView{
             startActivity(intent);
         }
         else if(id == DrawerItem.LOGOUT.getId()){
-            EducationLoginUtil.clearCookie();
-            LibraryLoginUtil.clearCookie();
-            presenter.updateHeader(this);
+
+        AlertDialog dialog =  new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.logo)
+                    .setTitle(getString(R.string.logout))
+                    .setMessage(getString(R.string.notify_sure_to_logout))
+                    .setNeutralButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            EducationLoginUtil.clearCookie();
+                            LibraryLoginUtil.clearCookie();
+                            presenter.updateHeader(MainActivity.this);
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).create();
+            dialog.getWindow().setLayout(3*DisplayUtil.getScreenWidth(this)/4,-2);
+            dialog.show();
         }
     }
 
@@ -208,10 +233,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         fragmentTransaction.commit();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
+
 
     @Override
     protected void onDestroy() {
