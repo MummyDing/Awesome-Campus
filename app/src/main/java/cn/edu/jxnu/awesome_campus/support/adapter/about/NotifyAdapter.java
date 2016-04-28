@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -18,6 +19,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.ui.about.NotifyActivity;
 import cn.edu.jxnu.awesome_campus.ui.education.ScoreDetailsDialog;
 
 /**
@@ -51,7 +53,10 @@ public class NotifyAdapter extends BaseListAdapter<NotifyModel,NotifyAdapter.VH>
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(mContext,NotifyActivity.class);
+                intent.putExtra(InitApp.AppContext.getString(R.string.id_type),model.getType());
+                intent.putExtra(InitApp.AppContext.getString(R.string.id_data),model.getData());
+                mContext.startActivity(intent);
             }
         });
 
