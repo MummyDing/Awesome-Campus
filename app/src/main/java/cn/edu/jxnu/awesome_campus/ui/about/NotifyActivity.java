@@ -41,7 +41,7 @@ public class NotifyActivity extends BaseWebViewActivity {
         if (type.equals(getString(R.string.data)))
             return data;
         else if (type.equals(getString(R.string.id_none)))
-            return "<hr>"+getString(R.string.no_notify)+"</h1>";
+            return "<h1>"+getString(R.string.no_notify)+"</h1>";
         return null;
     }
 

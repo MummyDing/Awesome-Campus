@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.support.adapter.about;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class NotifyAdapter extends BaseListAdapter<NotifyModel,NotifyAdapter.VH>
     public void onBindViewHolder(VH holder, int position) {
         final NotifyModel model = getItem(position);
         holder.notifyTitle.setText(model.getTitle());
+        Log.d("获取到的date信息","--"+model.getDate());
         holder.date.setText(model.getDate());
         if(!model.isReaded()){
             holder.readed.setVisibility(View.VISIBLE);

@@ -32,13 +32,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
                 android:visibility="gone"
+                android:layout_marginRight="5dp"
                 android:id="@+id/readedImg"
                 android:src="@drawable/red_circle"/>
             <TextView
                 android:id="@+id/notify_date"
+                android:text="2016"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/textColor" />
