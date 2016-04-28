@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.api.NotifyApi;
@@ -21,6 +22,7 @@ import cn.edu.jxnu.awesome_campus.database.table.about.NotifyTable;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseInfoTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.about.NotifyBean;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
@@ -39,6 +41,8 @@ public class NotifyDAO implements DAO<NotifyModel> {
         if (list == null || list.size() == 0){
             return false;
         }
+
+        clearCache();
 
         for (int i=0 ;i <list.size(); i++) {
             NotifyModel model = list.get(i);
@@ -78,7 +82,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             public void run() {
                 if (!list.isEmpty()){
                     // 发送成功消息
-                    EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_SUCCESS,list.get(list.size()-1)));
+                    EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_SUCCESS,list));
                 }else {
                     //发送失败消息
                     EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_FAILURE));
@@ -105,9 +109,21 @@ public class NotifyDAO implements DAO<NotifyModel> {
     @Override
     public void loadFromNet() {
         final Handler handler = new Handler(Looper.getMainLooper());
-        NetManageUtil.get(NotifyApi.NotifyUrl)
+        NetManageUtil.get(NotifyApi.NotifyListUrl)
                 .addTag(TAG)
-                .enqueue(new JsonEntityCallback<NotifyModel>() {
+                .enqueue(new JsonEntityCallback<NotifyBean>() {
+                    @Override
+                    public void onSuccess(NotifyBean entity, Headers headers) {
+                        final List<NotifyModel> list = new ArrayList<NotifyModel>();
+                        list.addAll(Arrays.asList(entity.getMsgList()));
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_REFRESH_SUCCESS,list));
+                            }
+                        });
+                    }
+
                     @Override
                     public void onFailure(IOException e) {
                         handler.post(new Runnable() {
@@ -119,17 +135,6 @@ public class NotifyDAO implements DAO<NotifyModel> {
 
                     }
 
-                    @Override
-                    public void onSuccess(final NotifyModel entity, Headers headers) {
-                        final List<NotifyModel> list = new ArrayList<NotifyModel>();
-                        list.add(entity);
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_REFRESH_SUCCESS,list.get(0)));
-                            }
-                        });
-                    }
                 });
     }
 }

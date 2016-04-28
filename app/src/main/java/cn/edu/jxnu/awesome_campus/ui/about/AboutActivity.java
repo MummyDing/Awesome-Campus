@@ -1,20 +1,15 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.dao.about.NotifyDAO;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
-import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 
 public class AboutActivity extends BaseToolbarActivity {
 
@@ -29,13 +24,13 @@ public class AboutActivity extends BaseToolbarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_notify, menu);
+        getMenuInflater().inflate(R.menu.menu_notify_none, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_notify){
+        if (item.getItemId() == R.id.menu_notify_none){
             Intent intent = new Intent(this,NotifyActivity.class);
             NotifyDAO dao = new NotifyDAO();
             NotifyModel model = dao.getCache();

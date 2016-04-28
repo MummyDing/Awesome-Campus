@@ -39,6 +39,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -58,6 +59,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
 import cn.edu.jxnu.awesome_campus.ui.about.NotifyActivity;
+import cn.edu.jxnu.awesome_campus.ui.about.NotifyListActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
@@ -136,6 +138,11 @@ public class MainActivity extends BaseActivity implements HomeView{
             menu.clear();
         }
         if(id == DrawerItem.HOME.getId()){
+
+            if(menu != null) {
+                /// 这里根据是否有未读消息进行显示
+               getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
+            }
             presenter.clearAllFragments();
             switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
         }else if(id == DrawerItem.LEISURE.getId()){
@@ -240,23 +247,23 @@ public class MainActivity extends BaseActivity implements HomeView{
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
-    private NotifyModel model;
+    private List<NotifyModel>  modelList;
     @Subscribe
     public void onEventMainThread(EventModel eventModel){
         switch (eventModel.getEventCode()){
             case EVENT.NOTIFY_LOAD_CACHE_SUCCESS:
-                model = (NotifyModel) eventModel.getData();
-                model.loadFromNet();
+                modelList = (List<NotifyModel>) eventModel.getDataList();
+                notifyModel.loadFromNet();
                 break;
             case EVENT.NOTIFY_LOAD_CACHE_FAILURE:
                 notifyModel.loadFromNet();
                 break;
             case EVENT.NOTIFY_REFRESH_SUCCESS:
-                NotifyModel tmpModel = (NotifyModel) eventModel.getData();
-                if (model == null || model.getNotifyCode().equals(tmpModel.getNotifyCode()) == false){
+                List<NotifyModel> tmpModel = (List<NotifyModel>) eventModel.getDataList();
+                if (modelList == null || modelList.isEmpty() || modelList.size()!=tmpModel.size()){
                     // 通知到了=_+
-                    tmpModel.cacheAll(Arrays.asList(tmpModel));
-                    model = tmpModel;
+                    notifyModel.cacheAll(tmpModel);
+                    modelList = tmpModel;
                     showNotify();
                 }
                 break;
@@ -275,6 +282,10 @@ public class MainActivity extends BaseActivity implements HomeView{
 
 
     private void showNotify(){
+
+        getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
+
+        NotifyModel model = modelList.get(modelList.size()-1);
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
@@ -298,7 +309,21 @@ public class MainActivity extends BaseActivity implements HomeView{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
+        // 这里根据是否有消息进行菜单显示
+        getMenuInflater().inflate(R.menu.menu_notify_none, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menu_notify_unread:
+            case R.id.menu_notify_none:
+                Intent intent = new Intent(this, NotifyListActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -7,10 +7,10 @@
     <application
         android:name=".InitApp"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
         <provider
             android:name=".support.provider.SuggestionProvider"
@@ -82,8 +82,8 @@
         <activity android:name=".ui.library.BookSearchDetailsActivity" />
         <activity android:name=".ui.about.NotifyActivity" />
         <activity android:name=".ui.about.LicenseActivity" />
-        <activity android:name=".AppGuideActivity"
-            ></activity>
+        <activity android:name=".AppGuideActivity" />
+        <activity android:name=".ui.about.NotifyListActivity"></activity>
     </application>
 
 </manifest>
