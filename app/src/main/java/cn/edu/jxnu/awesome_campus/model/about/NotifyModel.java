@@ -10,7 +10,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class NotifyModel implements IModel<NotifyModel>{
+public class NotifyModel implements IModel<NotifyModel> {
 
     protected NotifyDAO notifyDAO;
 
@@ -28,8 +28,37 @@ public class NotifyModel implements IModel<NotifyModel>{
     private String data;
 
 
+    private String date;//日期
+
+    private boolean readed;//已读或未读，未读默认为false
+
+    private NotifyModel(String notifyCode, String title, String type, String data, String date, boolean readed) {
+        this.notifyCode = notifyCode;
+        this.title = title;
+        this.type = type;
+        this.data = data;
+        this.date = date;
+        this.readed = readed;
+    }
+
     public NotifyModel() {
         notifyDAO = new NotifyDAO();
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public boolean isReaded() {
+        return readed;
+    }
+
+    public void setReaded(boolean readed) {
+        this.readed = readed;
     }
 
     @Override
