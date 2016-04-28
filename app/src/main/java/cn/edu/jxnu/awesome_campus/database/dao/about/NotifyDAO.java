@@ -42,7 +42,21 @@ public class NotifyDAO implements DAO<NotifyModel> {
             return false;
         }
 
+        List<NotifyModel> tmpList = getCache();
+
         clearCache();
+
+        if (tmpList != null){
+            for (NotifyModel model:tmpList){
+                for (int i=0 ; i<list.size() ; i++){
+                    NotifyModel m = list.get(i);
+                    if (m.getTitle().equals(model.getTitle())) {
+                        m.setReaded(model.isReaded());
+                        break;
+                    }
+                }
+            }
+        }
 
         for (int i=0 ;i <list.size(); i++) {
             NotifyModel model = list.get(i);
@@ -51,6 +65,8 @@ public class NotifyDAO implements DAO<NotifyModel> {
             values.put(NotifyTable.TITLE,model.getTitle());
             values.put(NotifyTable.TYPE,model.getType());
             values.put(NotifyTable.DATA,model.getData());
+            values.put(NotifyTable.READED,model.isReaded());
+            values.put(NotifyTable.DATE,model.getDate());
             DatabaseHelper.insert(NotifyTable.NAME,values);
         }
         return true;
@@ -74,6 +90,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             model.setTitle(cursor.getString(NotifyTable.ID_TITLE));
             model.setType(cursor.getString(NotifyTable.ID_TYPE));
             model.setData(cursor.getString(NotifyTable.ID_DATA));
+            model.setDate(cursor.getString(NotifyTable.ID_DATE));
             list.add(model);
         }
 
@@ -91,7 +108,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
         });
     }
 
-    public NotifyModel getCache(){
+    public List<NotifyModel> getCache(){
         Cursor cursor = DatabaseHelper.selectAll(NotifyTable.NAME);
         List<NotifyModel> list = new ArrayList<>();
         if (cursor.moveToNext()){
@@ -103,7 +120,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             list.add(model);
         }
         if (list.isEmpty()) return null;
-        return list.get(list.size()-1);
+        return list;
     }
 
     @Override

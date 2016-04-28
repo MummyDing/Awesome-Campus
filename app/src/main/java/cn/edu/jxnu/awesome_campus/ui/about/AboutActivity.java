@@ -30,7 +30,7 @@ public class AboutActivity extends BaseToolbarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_notify_none){
+       /* if (item.getItemId() == R.id.menu_notify_none){
             Intent intent = new Intent(this,NotifyActivity.class);
             NotifyDAO dao = new NotifyDAO();
             NotifyModel model = dao.getCache();
@@ -41,7 +41,7 @@ public class AboutActivity extends BaseToolbarActivity {
                 intent.putExtra(getString(R.string.id_data),model.getData());
             }
             startActivity(intent);
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 }

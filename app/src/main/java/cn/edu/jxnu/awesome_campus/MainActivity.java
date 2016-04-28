@@ -265,6 +265,16 @@ public class MainActivity extends BaseActivity implements HomeView{
                     notifyModel.cacheAll(tmpModel);
                     modelList = tmpModel;
                     showNotify();
+                }else {
+                    for (NotifyModel model:modelList){
+                        if (!model.isReaded()){
+                            if (menu != null) {
+                                menu.clear();
+                                getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
+                            }
+
+                        }
+                    }
                 }
                 break;
             case EVENT.NOTIFY_REFRESH_FAILURE:
@@ -283,7 +293,10 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     private void showNotify(){
 
-        getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
+        if (menu != null) {
+            menu.clear();
+            getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
+        }
 
         NotifyModel model = modelList.get(modelList.size()-1);
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
