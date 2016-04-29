@@ -97,7 +97,8 @@ public class MainActivity extends BaseActivity implements HomeView{
             startActivity(intent);
         }
         EventBus.getDefault().register(this);
-        PollingUtils.startPollingService(this, 20, NotifyService.class, NotifyService.ACTION);
+        //一个小时启动一次
+        PollingUtils.startPollingService(this, 3600, NotifyService.class, NotifyService.ACTION);
 
         presenter = new HomePresenterImpl(this);
         presenter.initlization();

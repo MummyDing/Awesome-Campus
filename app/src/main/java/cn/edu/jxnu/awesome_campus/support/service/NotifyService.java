@@ -114,13 +114,15 @@ public class NotifyService extends Service {
                 List<NotifyModel> tmpModel = (List<NotifyModel>) eventModel.getDataList();
                 // 这里版本检查需要更改
                 notifyModel.cacheAll(tmpModel);
-                modelList = tmpModel;
+
                 if (modelList == null || modelList.isEmpty() || modelList.size() != tmpModel.size()) {
                     // 通知到了=_+
+                    modelList = tmpModel;
                     notifyUpdateMenu(true);
                     showNotify(modelList.get(modelList.size() - 1));
                     Log.d("msg","show notify");
                 }else {
+                    modelList = tmpModel;
                     notifyUpdateMenu(NotifyUtil.hasUnread(modelList));
                     Log.d("msg","notifyUpdateMenu ");
                 }

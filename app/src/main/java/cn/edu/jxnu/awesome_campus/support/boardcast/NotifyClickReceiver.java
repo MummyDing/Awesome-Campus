@@ -22,7 +22,8 @@ public class NotifyClickReceiver extends BroadcastReceiver {
         // 标记已读
         DatabaseHelper.exeSQL(NotifyTable.UPDATE_READED,"1",intent.getStringExtra(context.getString(R.string.id_title)));
 
-        Intent newIntent = new Intent(context, NotifyActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(newIntent);
+      //  Intent newIntent = new Intent(context, NotifyActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setClass(context, NotifyActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 }
