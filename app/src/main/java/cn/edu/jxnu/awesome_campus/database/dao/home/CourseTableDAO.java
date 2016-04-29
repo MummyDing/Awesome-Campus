@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.squareup.okhttp.Headers;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseTableExtraInfo;
 import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -24,6 +26,7 @@ import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseTableParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 
@@ -110,21 +113,29 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE) +
                 ";JwOAUserSettingNew=" +
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
-        NetManageUtil.get(Urlconfig.CourseTable_URL)
+        NetManageUtil.post(Urlconfig.CourseTable_URL)
                 .addHeader("Cookie", cookies)
+                .addParams("__EVENTTARGET", CourseTableExtraInfo.__EVENTTARGET)
+                .addParams("__EVENTARGUMENT",CourseTableExtraInfo.__EVENTARGUMENT)
+                .addParams("__VIEWSTATE",CourseTableExtraInfo.__VIEWSTATE)
+                .addParams("__EVENTVALIDATION",CourseTableExtraInfo.__EVENTVALIDATION)
+                .addParams("_ctl1:ddlSterm", TimeUtil.getTerm())
+                .addParams("_ctl1:btnSearch","确定")
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
                CourseTableParse myParse = new CourseTableParse(result);
                 final List<CourseTableModel> list = myParse.getEndList();
-                for (int i = 0; i < list.size(); i++)
+                //for (int i = 0; i < list.size(); i++)
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         if (list != null) {
+                            Log.e(TAG,"课程表获取成功");
                             cacheAll(list);
                             EventBus.getDefault().post(new EventModel<CourseTableModel>(EVENT.COURSE_TABLE_REFRESH_SUCCESS, list));
                         } else {
+                            Log.e(TAG,"课程表获取失败，解析结果列表为空");
                             EventBus.getDefault().post(new EventModel<CourseTableModel>(EVENT.COURSE_TABLE_REFRESH_FAILURE));
                         }
                     }
@@ -133,6 +144,7 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
 
             @Override
             public void onFailure(String error) {
+                Log.e(TAG,"课程表获取失败");
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

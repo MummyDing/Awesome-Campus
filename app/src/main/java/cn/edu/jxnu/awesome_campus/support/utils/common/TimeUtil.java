@@ -237,4 +237,13 @@ public class TimeUtil {
         }
         return time;
     }
+
+    public static String getTerm(){
+        String y=getYear_xxxx();
+        int m = Integer.parseInt(getMonth());//月份
+        m = (m >= 6 ? 9 : 3);
+        String T = y + "/" + m + "/1 0:00:00";
+        Log.d("取得的日期为：",T);
+        return T;
+    }
 }

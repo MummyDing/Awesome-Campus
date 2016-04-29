@@ -49,7 +49,7 @@ public class NotifyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        pollingThread.start();
+//        pollingThread.start();
         return super.onStartCommand(intent, flags, startId);
     }
 

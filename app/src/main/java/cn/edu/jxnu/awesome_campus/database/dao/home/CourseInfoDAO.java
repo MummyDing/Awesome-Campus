@@ -15,6 +15,7 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseTableExtraInfo;
 import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseInfoTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -24,6 +25,7 @@ import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseInfoParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 
@@ -102,8 +104,16 @@ public class CourseInfoDAO implements DAO<CourseInfoModel>{
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE) +
                 ";JwOAUserSettingNew=" +
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
-        NetManageUtil.get(Urlconfig.CourseTable_URL)
+//        NetManageUtil.get(Urlconfig.CourseTable_URL)
+//                .addHeader("Cookie", cookies)
+        NetManageUtil.post(Urlconfig.CourseTable_URL)
                 .addHeader("Cookie", cookies)
+                .addParams("__EVENTTARGET", CourseTableExtraInfo.__EVENTTARGET)
+                .addParams("__EVENTARGUMENT",CourseTableExtraInfo.__EVENTARGUMENT)
+                .addParams("__VIEWSTATE",CourseTableExtraInfo.__VIEWSTATE)
+                .addParams("__EVENTVALIDATION",CourseTableExtraInfo.__EVENTVALIDATION)
+                .addParams("_ctl1:ddlSterm",TimeUtil.getTerm())
+                .addParams("_ctl1:btnSearch","确定")
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
