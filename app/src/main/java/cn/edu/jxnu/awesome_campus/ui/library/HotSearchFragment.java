@@ -84,7 +84,6 @@ public class HotSearchFragment extends BaseListFragment {
                 break;
             case EVENT.HOT_SEARCH_LOAD_CACHE_SUCCESS:
                 searchAdapter.newTags(eventModel.getDataList());
-                hideLoading();
                 // 延时请求
                 handler.postDelayed(new Runnable() {
                     @Override

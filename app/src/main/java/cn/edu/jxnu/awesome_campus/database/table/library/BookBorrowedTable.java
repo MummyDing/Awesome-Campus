@@ -44,4 +44,8 @@ public class BookBorrowedTable {
             SHOULD_BACK_TIME+" text, "+
             AGAIN_TIMES+" text, "+
             BOOK_LOCATION+" text)";
+
+
+    public static final String UPDATE_RENEW = "update "+NAME+" set "+
+            AGAIN_TIMES+" =1"+" where "+BOOK_CODE+" =?";
 }

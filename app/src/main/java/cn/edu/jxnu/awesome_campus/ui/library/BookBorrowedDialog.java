@@ -21,6 +21,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import cn.edu.jxnu.awesome_campus.Config;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
+import cn.edu.jxnu.awesome_campus.database.table.library.BookBorrowedTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
@@ -146,8 +148,12 @@ public class BookBorrowedDialog extends Activity {
             model = (BookBorrowedModel) eventModel.getData();
             initView();
         }else if(eventModel.getEventCode() == EVENT.LIBRARY_RENEW_SUCCESS){
-//            存进数据库重新执行initView()即可
-            Toast.makeText(getApplicationContext(),"续借成功",Toast.LENGTH_SHORT).show();
+            DatabaseHelper.exeSQL(BookBorrowedTable.UPDATE_RENEW,model.getBookCode());
+            //通知刷新已借图书列表
+            EventBus.getDefault().post(new EventModel<BookBorrowedModel>(EVENT.BOOK_BORROWED_LOAD_CACHE_FAILURE));
+            //finish当前列表
+            finish();
+
         }
         else if(eventModel.getEventCode() == EVENT.LIBRARY_RENEW_SUCCESS){
             Toast.makeText(getApplicationContext(),"续借失败",Toast.LENGTH_SHORT).show();

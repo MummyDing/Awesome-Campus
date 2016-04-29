@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.library;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -53,12 +55,21 @@ public class BookBorrowedFragment extends BaseListFragment{
             model.loadFromCache();
         }
     }
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
         switch (eventModel.getEventCode()){
             case EVENT.BOOK_BORROWED_LOAD_CACHE_SUCCESS:
+                // 延时请求
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        onDataRefresh();
+                    }
+                },2000);
+
             case EVENT.BOOK_BORROWED_REFRESH_SUCCESS:
                 Log.d("sis000e",eventModel.getDataList().size()+"");
                 adapter.newList(eventModel.getDataList());
