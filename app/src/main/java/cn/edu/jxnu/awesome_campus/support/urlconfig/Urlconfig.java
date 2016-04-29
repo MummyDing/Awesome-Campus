@@ -58,6 +58,8 @@ public class Urlconfig {
     //图书馆搜索url
     public static final String Library_Book_Search_URL="http://tsg.jxnu.edu.cn:8080/opac/openlink.php";
 
+    //图书馆续借url
+    public static final String Library_Book_Renew_URL="http://tsg.jxnu.edu.cn:8080/reader/ajax_renew.php?";
 
     //自习室登录url
     public static final String SelfStudyRoom_Login_URL="http://zwfp.jxnu.jadl.net/Login.aspx";

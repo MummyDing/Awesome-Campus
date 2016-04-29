@@ -1,6 +1,8 @@
 package cn.edu.jxnu.awesome_campus.ui.library;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -10,16 +12,26 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.okhttp.Headers;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import cn.edu.jxnu.awesome_campus.Config;
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
+import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
+import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 
 public class BookBorrowedDialog extends Activity {
 
@@ -31,8 +43,10 @@ public class BookBorrowedDialog extends Activity {
     private TextView renewBtn;
     private TextView bookLocation;
     private ImageButton closeBtn;
+    private Button againBtn;//续借按钮
 
     private BookBorrowedModel model;
+    private static final String TAG="BookBorrowedDialog";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +64,15 @@ public class BookBorrowedDialog extends Activity {
         renewBtn = (TextView) findViewById(R.id.renew);
         bookLocation = (TextView) findViewById(R.id.book_location);
         closeBtn = (ImageButton) findViewById(R.id.btn_close);
+        againBtn=(Button)findViewById(R.id.againBtn);
 
         bookCode.setText(model.getBookCode());
         bookTitle.setText(model.getBookTitle());
         author.setText(model.getAuthor());
         borrowDate.setText(model.getBorrowTime());
         dueDate.setText(model.getShouldBackTime());
+
+
 
         bookLocation.setText(model.getBookLocation());
 
@@ -70,7 +87,56 @@ public class BookBorrowedDialog extends Activity {
             renewBtn.setText("未续借");
         }
 
+//        当剩余还书时间小于15
+        if(Integer.parseInt(TimeUtil.getTimeDiff(TimeUtil.getYearMonthDay(),model.getShouldBackTime()))<15
+                &&model.getAgainTimes().equals("0")){
+            againBtn.setVisibility(View.VISIBLE);
+            againBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    renewBook();
+                }
+            });
+        }
 
+
+    }
+
+    /**
+     * 续借方法
+     */
+    private void renewBook() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        SPUtil spu = new SPUtil(InitApp.AppContext);
+        String cookies = spu.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
+        String timeStamp=TimeUtil.getTimestamp()+"";
+        String bookCode=model.getBookCode();
+        String fullURL= Urlconfig.Library_Book_Renew_URL+"bar_code="+bookCode+"&time="+timeStamp;
+        NetManageUtil.post(fullURL)
+                .addTag(TAG)
+                .addHeader("Cookie", cookies)
+                .addParams("bar_code",bookCode)
+                .addParams("time",timeStamp)
+                .enqueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(final String result, Headers headers) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(result.indexOf("续借成功")>0){
+                                    EventBus.getDefault().post(new EventModel<BookBorrowedModel>(EVENT.LIBRARY_RENEW_SUCCESS));
+                                }else{
+                                    EventBus.getDefault().post(new EventModel<BookBorrowedModel>(EVENT.LIBRARY_RENEW_FAILURE));
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        EventBus.getDefault().post(new EventModel<BookBorrowedModel>(EVENT.LIBRARY_RENEW_FAILURE));
+                    }
+                });
 
     }
 
@@ -79,6 +145,12 @@ public class BookBorrowedDialog extends Activity {
         if(eventModel.getEventCode() == EVENT.SEND_MODEL_DETAIL){
             model = (BookBorrowedModel) eventModel.getData();
             initView();
+        }else if(eventModel.getEventCode() == EVENT.LIBRARY_RENEW_SUCCESS){
+//            存进数据库重新执行initView()即可
+            Toast.makeText(getApplicationContext(),"续借成功",Toast.LENGTH_SHORT).show();
+        }
+        else if(eventModel.getEventCode() == EVENT.LIBRARY_RENEW_SUCCESS){
+            Toast.makeText(getApplicationContext(),"续借失败",Toast.LENGTH_SHORT).show();
         }
     }
 

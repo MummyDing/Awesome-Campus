@@ -11,7 +11,6 @@ import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 
 public class NotifyListActivity extends BaseToolbarActivity {
 
-    private Toolbar toolbar ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -137,6 +137,11 @@ public class EVENT {
     // Jump to Main Activity
     public static final int JUMP_TO_MAIN = 62;
 
+    //图书续借code
+    public static final int LIBRARY_RENEW_SUCCESS=63;
+    public static final int LIBRARY_RENEW_FAILURE=64;
+
+
     /**
      * Cache Event Code
      */

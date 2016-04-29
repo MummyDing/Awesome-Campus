@@ -201,6 +201,16 @@ android:layout_marginTop="20dp">
                     android:textColor="#88ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+                <!--续借按钮-->
+                <Button
+                    android:id="@+id/againBtn"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="点我续借"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
