@@ -83,7 +83,17 @@
         <activity android:name=".ui.about.NotifyActivity" />
         <activity android:name=".ui.about.LicenseActivity" />
         <activity android:name=".AppGuideActivity" />
-        <activity android:name=".ui.about.NotifyListActivity"></activity>
+        <activity android:name=".ui.about.NotifyListActivity" />
+
+        <service
+            android:name=".support.service.NotifyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".support.boardcast.NotifyClickReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>

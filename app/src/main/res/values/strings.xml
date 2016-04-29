@@ -214,4 +214,5 @@
     <string name="notify_sure_to_logout">Are you sure to Logout?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
+    <string name="id_title">title</string>
 </resources>

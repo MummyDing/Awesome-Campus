@@ -202,5 +202,6 @@
     <string name="notify_sure_to_logout">確定注銷登陸嗎?</string>
     <string name="yes">確定</string>
     <string name="cancel">取消</string>
+    <string name="id_title">title</string>
 
 </resources>
