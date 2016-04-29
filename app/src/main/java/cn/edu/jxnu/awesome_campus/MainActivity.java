@@ -261,7 +261,8 @@ public class MainActivity extends BaseActivity implements HomeView{
                     notifyModel.cacheAll(tmpModel);
                     modelList = tmpModel;
                     showNotify();
-                }else {
+                }
+                if (presenter.getCurrentSelectedID() == DrawerItem.HOME.getId()){
                     updateMenu();
                 }
                 break;
@@ -281,11 +282,11 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     private void showNotify(){
 
-        if (menu != null) {
+      /*  if (menu != null) {
             menu.clear();
             getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
         }
-
+*/
         NotifyModel model = modelList.get(modelList.size()-1);
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

@@ -18,4 +18,5 @@ public interface HomePresenter extends IPresenter{
     void clearAllFragments();
     boolean isDrawerOpen();
     void closeDrawer();
+    int getCurrentSelectedID();
 }

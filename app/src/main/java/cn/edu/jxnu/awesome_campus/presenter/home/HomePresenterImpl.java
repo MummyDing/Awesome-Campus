@@ -62,7 +62,6 @@ public class HomePresenterImpl implements HomePresenter {
         if(header == null){
             updateHeader(activity);
         }
-
         drawer = new DrawerBuilder().withActivity(activity).withAccountHeader(header)
                 .withToolbar(toolbar).withActionBarDrawerToggleAnimated(true).addDrawerItems(
                 buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
@@ -141,6 +140,11 @@ public class HomePresenterImpl implements HomePresenter {
 
     public void closeDrawer(){
         drawer.closeDrawer();
+    }
+
+    @Override
+    public int getCurrentSelectedID() {
+        return drawer.getCurrentSelection();
     }
 
     @Override
