@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             startActivity(intent);
         }
         EventBus.getDefault().register(this);
-        PollingUtils.startPollingService(this, 5, NotifyService.class, NotifyService.ACTION);
+        PollingUtils.startPollingService(this, 1000, NotifyService.class, NotifyService.ACTION);
 
         presenter = new HomePresenterImpl(this);
         presenter.initlization();
@@ -122,7 +122,14 @@ public class MainActivity extends BaseActivity implements HomeView{
             menu.clear();
         }
         if(id == DrawerItem.HOME.getId()){
+            boolean flag = false;
+            if (menu != null && menu.findItem(0)!=null && menu.findItem(0).getItemId() == R.id.menu_notify_unread){
+                flag = true;
+            }
+
             presenter.clearAllFragments();
+
+            updateNotifyMenu(flag);
             switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
         }else if(id == DrawerItem.LEISURE.getId()){
             // switch fragment
@@ -262,7 +269,9 @@ public class MainActivity extends BaseActivity implements HomeView{
     }
 
     private void updateNotifyMenu(boolean flag){
+        if (menu == null) return;
         if (presenter.getCurrentSelectedID() == DrawerItem.HOME.getId()){
+            menu.clear();
             if (flag){
                 getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
             }else {
@@ -275,6 +284,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         if (menu == null) return;
 
         if (presenter.getCurrentSelectedID() == DrawerItem.LIBRARY.getId()){
+            menu.clear();
             getMenuInflater().inflate(R.menu.menu_library, menu);
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             MenuItem searchItem = menu.findItem(R.id.menu_search);

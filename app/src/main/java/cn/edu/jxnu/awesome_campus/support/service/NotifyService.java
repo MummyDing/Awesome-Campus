@@ -49,7 +49,9 @@ public class NotifyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-//        pollingThread.start();
+        pollingThread = new PollingThread();
+        pollingThread.start();
+        Log.d("msg","start");
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -92,8 +94,8 @@ public class NotifyService extends Service {
         @Override
         public void run() {
             // 这里请求消息
-           // notifyModel.loadFromCache();
-            System.out.print("msgmsgmsg");
+             notifyModel.loadFromCache();
+            Log.d("msg","run");
         }
     }
 
@@ -116,11 +118,14 @@ public class NotifyService extends Service {
                     modelList = tmpModel;
                     notifyUpdateMenu(true);
                     showNotify(modelList.get(modelList.size() - 1));
+                    Log.d("msg","show notify");
                 }else {
                     notifyUpdateMenu(false);
+                    Log.d("msg","notifyUpdateMenu ");
                 }
                 break;
             case EVENT.NOTIFY_REFRESH_FAILURE:
+                Log.d("msg","REFRESH_FAILURE ");
                 break;
         }
     }
@@ -141,7 +146,7 @@ public class NotifyService extends Service {
     @Override
     public void onDestroy () {
         EventBus.getDefault().unregister(this);
-        pollingThread.interrupt();
+         pollingThread.interrupt();
         super.onDestroy();
     }
 }
