@@ -120,6 +120,7 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                 .addParams("__VIEWSTATE",CourseTableExtraInfo.__VIEWSTATE)
                 .addParams("__EVENTVALIDATION",CourseTableExtraInfo.__EVENTVALIDATION)
                 .addParams("_ctl1:ddlSterm", TimeUtil.getTerm())
+//                .addParams("_ctl1:ddlSterm", "2015/3/1 0:00:00")
                 .addParams("_ctl1:btnSearch","确定")
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
