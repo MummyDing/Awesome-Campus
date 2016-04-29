@@ -32,6 +32,7 @@ public class NotifyTable {
     public static final int ID_TITLE = 1;
     public static final int ID_TYPE = 2;
     public static final int ID_DATA = 3;
+    public static final int ID_READED = 4;
     public static final int ID_DATE = 5;
 
     public static final String CREATE_TABLE = "create table "+NAME+"("+
@@ -42,5 +43,7 @@ public class NotifyTable {
             READED+" boolean,"+
             DATE+" text)";
 
+    public static final String UPDATE_READED = "update "+NAME+" set "+
+            READED+" =?"+" where "+TITLE+" =? ";
 
 }

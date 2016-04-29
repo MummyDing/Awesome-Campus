@@ -90,6 +90,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             model.setTitle(cursor.getString(NotifyTable.ID_TITLE));
             model.setType(cursor.getString(NotifyTable.ID_TYPE));
             model.setData(cursor.getString(NotifyTable.ID_DATA));
+            model.setReaded(cursor.getInt(NotifyTable.ID_READED) == 0 ? false:true);
             model.setDate(cursor.getString(NotifyTable.ID_DATE));
             list.add(model);
         }
@@ -116,6 +117,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             model.setNotifyCode(cursor.getString(NotifyTable.ID_NOTIFY_CODE));
             model.setTitle(cursor.getString(NotifyTable.ID_TITLE));
             model.setType(cursor.getString(NotifyTable.ID_TYPE));
+            model.setReaded(cursor.getInt(NotifyTable.ID_READED) == 0 ? false:true);
             model.setData(cursor.getString(NotifyTable.ID_DATA));
             list.add(model);
         }

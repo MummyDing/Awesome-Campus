@@ -27,20 +27,17 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Toast;
+import android.view.View;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
+import cn.edu.jxnu.awesome_campus.database.table.about.NotifyTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
@@ -56,7 +53,6 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.login.SelfStudyRoomLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
 import cn.edu.jxnu.awesome_campus.ui.about.NotifyActivity;
 import cn.edu.jxnu.awesome_campus.ui.about.NotifyListActivity;
@@ -141,7 +137,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
             if(menu != null) {
                 /// 这里根据是否有未读消息进行显示
-               getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
+                updateMenu();
             }
             presenter.clearAllFragments();
             switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
@@ -266,15 +262,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                     modelList = tmpModel;
                     showNotify();
                 }else {
-                    for (NotifyModel model:modelList){
-                        if (!model.isReaded()){
-                            if (menu != null) {
-                                menu.clear();
-                                getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
-                            }
-
-                        }
-                    }
+                    updateMenu();
                 }
                 break;
             case EVENT.NOTIFY_REFRESH_FAILURE:
@@ -308,6 +296,11 @@ public class MainActivity extends BaseActivity implements HomeView{
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
 
         builder.setAutoCancel(true);
+
+
+        // 标记已读
+        DatabaseHelper.exeSQL(NotifyTable.UPDATE_READED,"1",model.getTitle());
+
         Intent intent = new Intent(this, NotifyActivity.class);
         intent.putExtra(getString(R.string.id_type),model.getType());
         intent.putExtra(getString(R.string.id_data),model.getData());
@@ -337,6 +330,26 @@ public class MainActivity extends BaseActivity implements HomeView{
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateMenu(){
+        boolean flag = true;
+        for (NotifyModel model:modelList){
+            if (!model.isReaded()){
+                if (menu != null) {
+                    menu.clear();
+                    getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
+                    flag = false;
+                    break;
+                }
+            }
+        }
+        if (flag){
+            if (menu != null) {
+                menu.clear();
+                getMenuInflater().inflate(R.menu.menu_notify_none, menu);
+            }
+        }
     }
 
     @Override

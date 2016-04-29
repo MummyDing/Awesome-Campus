@@ -14,6 +14,8 @@ import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
+import cn.edu.jxnu.awesome_campus.database.table.about.NotifyTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.IModel;
@@ -44,7 +46,7 @@ public class NotifyAdapter extends BaseListAdapter<NotifyModel,NotifyAdapter.VH>
     }
 
     @Override
-    public void onBindViewHolder(VH holder, int position) {
+    public void onBindViewHolder(final VH holder, int position) {
         final NotifyModel model = getItem(position);
         holder.notifyTitle.setText(model.getTitle());
         Log.d("获取到的date信息","--"+model.getDate());
@@ -55,6 +57,10 @@ public class NotifyAdapter extends BaseListAdapter<NotifyModel,NotifyAdapter.VH>
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 标记已读
+                DatabaseHelper.exeSQL(NotifyTable.UPDATE_READED,"1",model.getTitle());
+                holder.readed.setVisibility(View.GONE);
+
                 Intent intent = new Intent(mContext,NotifyActivity.class);
                 intent.putExtra(InitApp.AppContext.getString(R.string.id_type),model.getType());
                 intent.putExtra(InitApp.AppContext.getString(R.string.id_data),model.getData());
@@ -70,8 +76,6 @@ public class NotifyAdapter extends BaseListAdapter<NotifyModel,NotifyAdapter.VH>
         TextView notifyTitle;
         TextView date;
         ImageView readed;
-
-
 
         public VH(View itemView) {
             super(itemView);
