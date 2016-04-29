@@ -11,33 +11,24 @@
 
 package cn.edu.jxnu.awesome_campus;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.List;
-
-import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
-import cn.edu.jxnu.awesome_campus.database.table.about.NotifyTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
@@ -46,15 +37,15 @@ import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
+import cn.edu.jxnu.awesome_campus.support.service.NotifyService;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.PollingUtils;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
-import cn.edu.jxnu.awesome_campus.ui.about.NotifyActivity;
 import cn.edu.jxnu.awesome_campus.ui.about.NotifyListActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
@@ -87,8 +78,6 @@ public class MainActivity extends BaseActivity implements HomeView{
     public static HomePresenter presenter;
     private Settings mSettings = Settings.getsInstance();
 
-    // Notify
-    private NotifyModel notifyModel = new NotifyModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -107,14 +96,13 @@ public class MainActivity extends BaseActivity implements HomeView{
             startActivity(intent);
         }
         EventBus.getDefault().register(this);
+        PollingUtils.startPollingService(this, 5, NotifyService.class, NotifyService.ACTION);
 
         presenter = new HomePresenterImpl(this);
         presenter.initlization();
         presenter.buildDrawer(this,toolbar);
         switchDrawerItem(DrawerItem.HOME.getId());
 
-
-        notifyModel.loadFromCache();
     }
 
     @Override
@@ -134,11 +122,6 @@ public class MainActivity extends BaseActivity implements HomeView{
             menu.clear();
         }
         if(id == DrawerItem.HOME.getId()){
-
-            if(menu != null) {
-                /// 这里根据是否有未读消息进行显示
-                updateMenu();
-            }
             presenter.clearAllFragments();
             switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
         }else if(id == DrawerItem.LEISURE.getId()){
@@ -150,13 +133,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             switchFragment(LifeFragment.newInstance(),DrawerItem.LIFE.getItemName());
         }else if(id == DrawerItem.LIBRARY.getId()){
             // switch menu  搜索框 下拉主题还有点问题
-            if(menu != null) {
-                getMenuInflater().inflate(R.menu.menu_library, menu);
-                SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-                MenuItem searchItem = menu.findItem(R.id.menu_search);
-                SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-                searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-            }
+            updateMenu();
             // switch fragment
             presenter.clearAllFragments();
             switchFragment(LibraryFragment.newInstance(),DrawerItem.LIBRARY.getItemName());
@@ -164,32 +141,8 @@ public class MainActivity extends BaseActivity implements HomeView{
             presenter.clearAllFragments();
             switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
         }else if(id == DrawerItem.THEME.getId()){
-
-            ColorPickerDialog dialog = new ColorPickerDialog(this, ThemeConfig.themeColor);
-            dialog.setTitle(InitApp.AppContext.getString(R.string.theme));
-
-            dialog.setOnColorChangedListener(new OnColorChangedListener() {
-                @Override
-                public void onColorChanged(int newColor) {
-                    if (newColor == ThemeConfig.themeColor[Config.themeSelected]){
-                        return;
-                    }
-                    SPUtil sp=new SPUtil(MainActivity.this);
-                    int selectColor=0;
-                    for(int i=0;i<ThemeConfig.themeColor.length;i++){
-                        if(ThemeConfig.themeColor[i]==newColor){
-                            selectColor=i;
-                            break;
-                        }
-                    }
-                    sp.putIntSP(Config.SP_FILE_NAME,Config.THEME_SELECTED,selectColor);
-                    recreate();
-                }
-            });
-            dialog.build().show();
-            dialog.setCheckedColor(ThemeConfig.themeColor[Config.themeSelected]);
+            showThemePickerDialog();
         }else if(id == DrawerItem.SETTINGS.getId()){
-            //setTitle(DrawerItem.SETTINGS.getItemName());
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         }else if(id == DrawerItem.ABOUT.getId()){
@@ -197,28 +150,58 @@ public class MainActivity extends BaseActivity implements HomeView{
             startActivity(intent);
         }
         else if(id == DrawerItem.LOGOUT.getId()){
-
-        AlertDialog dialog =  new AlertDialog.Builder(this)
-                    .setIcon(R.drawable.logo)
-                    .setTitle(getString(R.string.logout))
-                    .setMessage(getString(R.string.notify_sure_to_logout))
-                    .setNeutralButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            EducationLoginUtil.clearCookie();
-                            LibraryLoginUtil.clearCookie();
-                            presenter.updateHeader(MainActivity.this);
-                        }
-                    })
-                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    }).create();
-            dialog.getWindow().setLayout(3*DisplayUtil.getScreenWidth(this)/4,-2);
-            dialog.show();
+            showLogoutDialog();
         }
+    }
+
+
+    private void showThemePickerDialog(){
+        ColorPickerDialog dialog = new ColorPickerDialog(this, ThemeConfig.themeColor);
+        dialog.setTitle(InitApp.AppContext.getString(R.string.theme));
+
+        dialog.setOnColorChangedListener(new OnColorChangedListener() {
+            @Override
+            public void onColorChanged(int newColor) {
+                if (newColor == ThemeConfig.themeColor[Config.themeSelected]){
+                    return;
+                }
+                SPUtil sp=new SPUtil(MainActivity.this);
+                int selectColor=0;
+                for(int i=0;i<ThemeConfig.themeColor.length;i++){
+                    if(ThemeConfig.themeColor[i]==newColor){
+                        selectColor=i;
+                        break;
+                    }
+                }
+                sp.putIntSP(Config.SP_FILE_NAME,Config.THEME_SELECTED,selectColor);
+                recreate();
+            }
+        });
+        dialog.build().show();
+        dialog.setCheckedColor(ThemeConfig.themeColor[Config.themeSelected]);
+    }
+
+    private void showLogoutDialog(){
+        AlertDialog dialog =  new AlertDialog.Builder(this)
+                .setIcon(R.drawable.logo)
+                .setTitle(getString(R.string.logout))
+                .setMessage(getString(R.string.notify_sure_to_logout))
+                .setNeutralButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EducationLoginUtil.clearCookie();
+                        LibraryLoginUtil.clearCookie();
+                        presenter.updateHeader(MainActivity.this);
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+        dialog.getWindow().setLayout(3*DisplayUtil.getScreenWidth(this)/4,-2);
+        dialog.show();
     }
 
     private void switchFragment(TopNavigationFragment fragment, String title){
@@ -238,36 +221,10 @@ public class MainActivity extends BaseActivity implements HomeView{
 
 
 
-    @Override
-    protected void onDestroy() {
-        EventBus.getDefault().unregister(this);
-        super.onDestroy();
-    }
-    private List<NotifyModel>  modelList;
+
     @Subscribe
     public void onEventMainThread(EventModel eventModel){
         switch (eventModel.getEventCode()){
-            case EVENT.NOTIFY_LOAD_CACHE_SUCCESS:
-                modelList = (List<NotifyModel>) eventModel.getDataList();
-                notifyModel.loadFromNet();
-                break;
-            case EVENT.NOTIFY_LOAD_CACHE_FAILURE:
-                notifyModel.loadFromNet();
-                break;
-            case EVENT.NOTIFY_REFRESH_SUCCESS:
-                List<NotifyModel> tmpModel = (List<NotifyModel>) eventModel.getDataList();
-                if (modelList == null || modelList.isEmpty() || modelList.size()!=tmpModel.size()){
-                    // 通知到了=_+
-                    notifyModel.cacheAll(tmpModel);
-                    modelList = tmpModel;
-                    showNotify();
-                }
-                if (presenter.getCurrentSelectedID() == DrawerItem.HOME.getId()){
-                    updateMenu();
-                }
-                break;
-            case EVENT.NOTIFY_REFRESH_FAILURE:
-                break;
             case EVENT.JUMP_TO_MAIN:
                 presenter.clearAllFragments();
                 switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
@@ -275,43 +232,14 @@ public class MainActivity extends BaseActivity implements HomeView{
             case EVENT.JUMP_TO_LOGIN:
                 switchToLogin();
                 break;
+            case EVENT.UPDATE_MENU:
+                updateNotifyMenu((Boolean) eventModel.getData());
+                break;
         }
 
     }
 
 
-    private void showNotify(){
-
-      /*  if (menu != null) {
-            menu.clear();
-            getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
-        }
-*/
-        NotifyModel model = modelList.get(modelList.size()-1);
-        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setSmallIcon(R.drawable.logo);
-        builder.setContentTitle(getString(R.string.app_name));
-        builder.setContentText(model.getTitle());
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
-
-        builder.setAutoCancel(true);
-
-
-        // 标记已读
-        DatabaseHelper.exeSQL(NotifyTable.UPDATE_READED,"1",model.getTitle());
-
-        Intent intent = new Intent(this, NotifyActivity.class);
-        intent.putExtra(getString(R.string.id_type),model.getType());
-        intent.putExtra(getString(R.string.id_data),model.getData());
-        PendingIntent pIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pIntent);
-        nm.cancel(0);
-        nm.notify(0,builder.build());
-
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -333,23 +261,25 @@ public class MainActivity extends BaseActivity implements HomeView{
         return super.onOptionsItemSelected(item);
     }
 
-    private void updateMenu(){
-        boolean flag = true;
-        for (NotifyModel model:modelList){
-            if (!model.isReaded()){
-                if (menu != null) {
-                    menu.clear();
-                    getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
-                    flag = false;
-                    break;
-                }
-            }
-        }
-        if (flag){
-            if (menu != null) {
-                menu.clear();
+    private void updateNotifyMenu(boolean flag){
+        if (presenter.getCurrentSelectedID() == DrawerItem.HOME.getId()){
+            if (flag){
+                getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
+            }else {
                 getMenuInflater().inflate(R.menu.menu_notify_none, menu);
             }
+        }
+    }
+
+    private void updateMenu(){
+        if (menu == null) return;
+
+        if (presenter.getCurrentSelectedID() == DrawerItem.LIBRARY.getId()){
+            getMenuInflater().inflate(R.menu.menu_library, menu);
+            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+            MenuItem searchItem = menu.findItem(R.id.menu_search);
+            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         }
     }
 
@@ -389,11 +319,11 @@ public class MainActivity extends BaseActivity implements HomeView{
             }
         }
 
-        /**
-         * 偶数分检查通知
-         */
-        if (TimeUtil.getHourMinute() % 2 == 0){
-            notifyModel.loadFromCache();
-        }
+    }
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        PollingUtils.stopPollingService(this,NotifyService.class,NotifyService.ACTION);
+        super.onDestroy();
     }
 }

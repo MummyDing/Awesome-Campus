@@ -207,5 +207,11 @@ public class EVENT {
     public static final int SELF_STUDY_SEATS_LOAD_CACHE_FAILURE = 1028;
 
 
+
+
+    //Common
+    public static final int UPDATE_MENU = 2000;
+
+
 }
 
