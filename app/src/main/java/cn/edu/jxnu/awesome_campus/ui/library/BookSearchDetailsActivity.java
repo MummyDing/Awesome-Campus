@@ -25,8 +25,8 @@ public class BookSearchDetailsActivity extends BaseWebViewActivity{
 
     @Override
     protected String getLink() {
-        Log.d(TAG,"URL为"+url);
-        return url;
+//        Log.d(TAG,"URL为"+url);
+        return null;
     }
 
     @Override
@@ -37,6 +37,11 @@ public class BookSearchDetailsActivity extends BaseWebViewActivity{
     @Override
     protected String getLinkData() {
         return null;
+    }
+
+    @Override
+    protected String getLinkParseData() {
+        return url;
     }
 
     @Override

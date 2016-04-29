@@ -16,7 +16,8 @@
             android:name=".support.provider.SuggestionProvider"
             android:authorities="cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:launchMode="standard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -33,7 +34,7 @@
         </activity>
         <activity
             android:name=".ui.library.BookSearchActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>

@@ -12,7 +12,7 @@ import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
  */
 public class NotifyUtil {
     public static boolean hasUnread(List<NotifyModel> modelList){
-mei        if (modelList == null || modelList.isEmpty()) return false;
+        if (modelList == null || modelList.isEmpty()) return false;
         for (NotifyModel model:modelList){
             if (!model.isReaded()){
                 return true;

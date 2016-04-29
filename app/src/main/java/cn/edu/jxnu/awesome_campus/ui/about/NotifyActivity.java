@@ -55,4 +55,9 @@ public class NotifyActivity extends BaseWebViewActivity {
             return data;
         return null;
     }
+
+    @Override
+    protected String getLinkParseData() {
+        return null;
+    }
 }

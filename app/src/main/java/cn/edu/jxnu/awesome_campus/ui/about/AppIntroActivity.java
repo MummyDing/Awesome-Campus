@@ -22,4 +22,9 @@ public class AppIntroActivity extends BaseWebViewActivity{
     protected String getLinkData() {
         return null;
     }
+
+    @Override
+    protected String getLinkParseData() {
+        return null;
+    }
 }

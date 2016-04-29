@@ -33,6 +33,7 @@ public abstract class BaseWebViewActivity extends SwipeBackActivity {
     protected abstract String getLink();
     protected abstract String getData();
     protected abstract String getLinkData();
+    protected abstract String getLinkParseData();
 
     private Handler handler = new Handler(Looper.getMainLooper());
     protected void initData(){
@@ -89,8 +90,33 @@ public abstract class BaseWebViewActivity extends SwipeBackActivity {
 
                         @Override
                         public void onFailure(String error) {
-                            webView.loadDataWithBaseURL("file:///android_asset/",  "<hr>"+getString(R.string.no_notify)+"</h1>", "text/html", "utf-8", null);
+                            webView.loadDataWithBaseURL("file:///android_asset/",  "<h1>"+getString(R.string.no_notify)+"</h1>", "text/html", "utf-8", null);
 
+                        }
+                    });
+        }else if(TextUtil.isNull(getLinkParseData()) == false){
+//            暂时先写死，以后有待重构
+            NetManageUtil.get(getLinkParseData())
+                    .enqueue(new StringCallback() {
+                        @Override
+                        public void onSuccess(String result, Headers headers) {
+                            result=result.split("<div style=\"text-align:center;height: 50px;\" >")[0]+"</div>" +
+                                    "</div>" +
+                                    "</body>" +
+                                    "</html>";
+                            result=result.replaceAll("<link rel=\"stylesheet\" type=\"text/css\" href=\"/style/index.css\" />","<link rel=\"stylesheet\" type=\"text/css\" href=\"bookDetail.css\" />");
+                            final String finalResult = result;
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    webView.loadDataWithBaseURL("file:///android_asset/", finalResult, "text/html", "utf-8", null);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onFailure(String error) {
+                            webView.loadDataWithBaseURL("file:///android_asset/",  "<h1>"+getString(R.string.no_notify)+"</h1>", "text/html", "utf-8", null);
                         }
                     });
         }
