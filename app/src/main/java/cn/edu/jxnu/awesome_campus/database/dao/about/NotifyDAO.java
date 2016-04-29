@@ -112,7 +112,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
     public List<NotifyModel> getCache(){
         Cursor cursor = DatabaseHelper.selectAll(NotifyTable.NAME);
         List<NotifyModel> list = new ArrayList<>();
-        if (cursor.moveToNext()){
+        while (cursor.moveToNext()){
             NotifyModel model = new NotifyModel();
             model.setNotifyCode(cursor.getString(NotifyTable.ID_NOTIFY_CODE));
             model.setTitle(cursor.getString(NotifyTable.ID_TITLE));

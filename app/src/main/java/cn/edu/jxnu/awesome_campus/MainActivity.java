@@ -40,6 +40,7 @@ import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.service.NotifyService;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.NotifyUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.PollingUtils;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
@@ -96,7 +97,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             startActivity(intent);
         }
         EventBus.getDefault().register(this);
-        PollingUtils.startPollingService(this, 1000, NotifyService.class, NotifyService.ACTION);
+        PollingUtils.startPollingService(this, 20, NotifyService.class, NotifyService.ACTION);
 
         presenter = new HomePresenterImpl(this);
         presenter.initlization();
@@ -122,14 +123,9 @@ public class MainActivity extends BaseActivity implements HomeView{
             menu.clear();
         }
         if(id == DrawerItem.HOME.getId()){
-            boolean flag = false;
-            if (menu != null && menu.findItem(0)!=null && menu.findItem(0).getItemId() == R.id.menu_notify_unread){
-                flag = true;
-            }
 
             presenter.clearAllFragments();
-
-            updateNotifyMenu(flag);
+            updateNotifyMenu();
             switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
         }else if(id == DrawerItem.LEISURE.getId()){
             // switch fragment
@@ -252,7 +248,7 @@ public class MainActivity extends BaseActivity implements HomeView{
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
         // 这里根据是否有消息进行菜单显示
-        getMenuInflater().inflate(R.menu.menu_notify_none, menu);
+        updateNotifyMenu();
         return true;
     }
 
@@ -278,6 +274,10 @@ public class MainActivity extends BaseActivity implements HomeView{
                 getMenuInflater().inflate(R.menu.menu_notify_none, menu);
             }
         }
+    }
+
+    private void updateNotifyMenu(){
+        updateNotifyMenu(NotifyUtil.hasUnread());
     }
 
     private void updateMenu(){
@@ -328,7 +328,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                 presenter.updateHeader(this);
             }
         }
-
+        updateNotifyMenu();
     }
     @Override
     protected void onDestroy() {

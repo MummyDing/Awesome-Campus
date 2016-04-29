@@ -23,6 +23,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.support.boardcast.NotifyClickReceiver;
+import cn.edu.jxnu.awesome_campus.support.utils.common.NotifyUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 
@@ -95,7 +96,6 @@ public class NotifyService extends Service {
         public void run() {
             // 这里请求消息
              notifyModel.loadFromCache();
-            Log.d("msg","run");
         }
     }
 
@@ -105,6 +105,7 @@ public class NotifyService extends Service {
             case EVENT.NOTIFY_LOAD_CACHE_SUCCESS:
                 modelList = (List<NotifyModel>) eventModel.getDataList();
                 notifyModel.loadFromNet();
+                notifyUpdateMenu(NotifyUtil.hasUnread(modelList));
                 break;
             case EVENT.NOTIFY_LOAD_CACHE_FAILURE:
                 notifyModel.loadFromNet();
@@ -112,15 +113,15 @@ public class NotifyService extends Service {
             case EVENT.NOTIFY_REFRESH_SUCCESS:
                 List<NotifyModel> tmpModel = (List<NotifyModel>) eventModel.getDataList();
                 // 这里版本检查需要更改
+                notifyModel.cacheAll(tmpModel);
+                modelList = tmpModel;
                 if (modelList == null || modelList.isEmpty() || modelList.size() != tmpModel.size()) {
                     // 通知到了=_+
-                    notifyModel.cacheAll(tmpModel);
-                    modelList = tmpModel;
                     notifyUpdateMenu(true);
                     showNotify(modelList.get(modelList.size() - 1));
                     Log.d("msg","show notify");
                 }else {
-                    notifyUpdateMenu(false);
+                    notifyUpdateMenu(NotifyUtil.hasUnread(modelList));
                     Log.d("msg","notifyUpdateMenu ");
                 }
                 break;
@@ -130,15 +131,6 @@ public class NotifyService extends Service {
         }
     }
 
-    private boolean hasUnread(){
-        if (modelList == null || modelList.isEmpty()) return false;
-        for (NotifyModel model:modelList){
-            if (!model.isReaded()){
-                return true;
-            }
-        }
-        return false;
-    }
 
     private void notifyUpdateMenu(boolean flag){
         EventBus.getDefault().post(new EventModel<Boolean>(EVENT.UPDATE_MENU,flag));

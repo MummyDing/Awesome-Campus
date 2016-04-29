@@ -21,7 +21,6 @@ public abstract class BaseListAdapter<M extends IModel,VH extends RecyclerView.V
 
     public BaseListAdapter(Context mContext,M model) {
         this.mContext = mContext;
-        model.loadFromCache();
     }
     @Override
     public int getItemCount() {
