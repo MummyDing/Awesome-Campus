@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.ramotion.foldingcell.FoldingCell;
 
 import cn.edu.jxnu.awesome_campus.R;
@@ -59,7 +60,7 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
                 + model.getInfo().getNight()[3] + "\n" +
                 model.getInfo().getNight()[4]);
 
-        holder.weatherIconSmall.setImageResource(
+        holder.weatherIconSmall.setBackgroundResource(
                 WeatherConfig.WeatherPic
                         [
                         WeatherConfig.getWeatherPicNum(model.getInfo().getDay()[1])
@@ -78,7 +79,7 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
         TextView date;
         TextView dayInfo;
         TextView nightInfo;
-        ImageView weatherIconSmall;
+        SimpleDraweeView weatherIconSmall;
         LinearLayout linearLayout;
         FoldingCell fc;
 
@@ -90,7 +91,7 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
             dayInfo = (TextView) itemView.findViewById(R.id.dayInfo);
             nightInfo = (TextView) itemView.findViewById(R.id.nightInfo);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.weather_icon_background);
-            weatherIconSmall = (ImageView) itemView.findViewById(R.id.weather_icon_small);
+            weatherIconSmall = (SimpleDraweeView) itemView.findViewById(R.id.weather_icon_small);
             fc = (FoldingCell) itemView.findViewById(R.id.folding_cell);
             fc.initialize(10, Color.TRANSPARENT, 0);
             GradientDrawable myGrad = (GradientDrawable) linearLayout.getBackground();
