@@ -49,4 +49,6 @@ public abstract class TopNavigationFragment extends BaseFragment{
             fragments.clear();
         }
     }
+
+
 }

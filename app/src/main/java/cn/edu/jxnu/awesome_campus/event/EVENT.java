@@ -132,10 +132,7 @@ public class EVENT {
     public static final int SELF_STUDY_SEATS_REFRESH_SUCCESS = 59;
     public static final int SELF_STUDY_SEATS_REFRESH_FAILURE = 60;
 
-    // Jump to Login
-    public static final int JUMP_TO_LOGIN = 61;
-    // Jump to Main Activity
-    public static final int JUMP_TO_MAIN = 62;
+
 
     //图书续借code
     public static final int LIBRARY_RENEW_SUCCESS=63;
@@ -210,9 +207,19 @@ public class EVENT {
 
 
     //Common
+
+
     public static final int UPDATE_MENU = 2000;
 
     public static final int UPDATE_SELECTED_MENU_TO_HOME = 2001;
 
+    public static final int SWIPE_TO_LIBRARY_LOGIN = 2002;
+
+    // Jump to Login
+    public static final int JUMP_TO_EDUCATION_LOGIN = 2003;
+    // Jump to Main Activity
+    public static final int JUMP_TO_MAIN = 2004;
+
+    public static final int JUMP_TO_LIBRARY_LOGIN = 2005;
 }
 

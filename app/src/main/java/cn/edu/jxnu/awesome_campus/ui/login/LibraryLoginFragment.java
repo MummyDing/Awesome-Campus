@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
 import android.view.View;
+import android.widget.Toast;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.MainActivity;
@@ -65,6 +66,10 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 MainActivity.presenter.updateHeader(getActivity());
                 DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_login_successful));
                 break;
+            case EVENT.SWIPE_TO_LIBRARY_LOGIN:
+                Toast.makeText(getActivity(),"----",Toast.LENGTH_SHORT).show();
+
         }
     }
+
 }

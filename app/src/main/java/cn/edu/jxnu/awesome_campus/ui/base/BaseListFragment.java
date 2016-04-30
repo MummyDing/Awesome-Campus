@@ -1,13 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.base;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -66,7 +63,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         toLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new EventModel<String>(EVENT.JUMP_TO_LOGIN));
+                EventBus.getDefault().post(new EventModel<String>(EVENT.JUMP_TO_EDUCATION_LOGIN));
             }
         });
         bindAdapter();

@@ -12,6 +12,7 @@
 package cn.edu.jxnu.awesome_campus;
 
 import android.app.SearchManager;
+import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -240,8 +242,13 @@ public class MainActivity extends BaseActivity implements HomeView{
                 presenter.clearAllFragments();
                 switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
                 break;
-            case EVENT.JUMP_TO_LOGIN:
+            case EVENT.JUMP_TO_EDUCATION_LOGIN:
                 switchToLogin();
+                break;
+            case EVENT.JUMP_TO_LIBRARY_LOGIN:
+                switchToLogin();
+                //这里还有问题~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                EventBus.getDefault().postSticky(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_LOGIN));
                 break;
             case EVENT.UPDATE_MENU:
                 updateNotifyMenu((Boolean) eventModel.getData());
@@ -249,6 +256,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
                 presenter.updateSelectedToHome();
                 break;
+
         }
 
     }

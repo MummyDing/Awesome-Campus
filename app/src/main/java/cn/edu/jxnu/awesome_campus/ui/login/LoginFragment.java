@@ -1,7 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
+import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
@@ -23,14 +26,22 @@ public class LoginFragment extends TopNavigationFragment{
         fragments.add(new LibraryLoginFragment());
     }
 
-    public static LibraryFragment newInstance(){
+    public static LoginFragment newInstance(){
         addChildFragments();
-        return new LibraryFragment();
+        return new LoginFragment();
     }
 
 
     @Override
     public void onEventComing(EventModel eventModel) {
+        switch (eventModel.getEventCode()){
+            case EVENT.SWIPE_TO_LIBRARY_LOGIN:
+                Toast.makeText(getActivity(),""+viewPager.getCurrentItem(),Toast.LENGTH_SHORT).show();
+                //pagerAdapter.notifyDataSetChanged();
+                break;
 
+        }
     }
+
+
 }
