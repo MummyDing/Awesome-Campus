@@ -44,16 +44,16 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
         WeatherInfoModel model = getItem(position);
         holder.dateTitle.setText(model.getDate());
         holder.date.setText(model.getDate());
-        holder.dayInfo.setText(model.getDay()[1]
+        holder.dayInfo.setText(model.getInfo().getDay()[1]
                 + "\n"
-                + model.getDay()[2] + "°C \n"
-                + model.getDay()[3] + "\n" +
-                model.getDay()[4]);
-        holder.nightInfo.setText(model.getNight()[1]
+                + model.getInfo().getDay()[2] + "°C \n"
+                + model.getInfo().getDay()[3] + "\n" +
+                model.getInfo().getDay()[4]);
+        holder.nightInfo.setText(model.getInfo().getNight()[1]
                 + "\n"
-                + model.getNight()[2] + "°C \n"
-                + model.getNight()[3] + "\n" +
-                model.getNight()[4]);
+                + model.getInfo().getNight()[2] + "°C \n"
+                + model.getInfo().getNight()[3] + "\n" +
+                model.getInfo().getNight()[4]);
         holder.fc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
