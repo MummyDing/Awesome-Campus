@@ -122,7 +122,6 @@ public class NotifyService extends Service {
                 NotifyUtil.updateNotifyVersion(notifyBean.getNotifyVersion());
 
                 modelList = Arrays.asList(notifyBean.getMsgList());
-             //   Collections.sort(modelList);
                 notifyModel.cacheAll(modelList);
                 notifyUpdateMenu(true);
                 showNotify(modelList.get(modelList.size() - 1));

@@ -145,7 +145,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         }else{
             onLineLayout.setVisibility(View.GONE);
             offLineLayout.setVisibility(View.VISIBLE);
-
+            tip.setVisibility(View.GONE);
         }
     }
 }
