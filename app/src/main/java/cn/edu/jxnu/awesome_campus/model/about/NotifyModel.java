@@ -10,7 +10,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  * GitHub: https://github.com/MummyDing
  * Blog: http://blog.csdn.net/mummyding
  */
-public class NotifyModel implements IModel<NotifyModel>,Comparable<NotifyModel> {
+public class NotifyModel implements IModel<NotifyModel>{
 
     protected NotifyDAO notifyDAO;
 
@@ -114,12 +114,4 @@ public class NotifyModel implements IModel<NotifyModel>,Comparable<NotifyModel> 
         this.data = data;
     }
 
-    @Override
-    public int compareTo(NotifyModel another) {
-        int num1 = Integer.getInteger(getNotifyCode());
-        int num2 = Integer.getInteger(another.getNotifyCode());
-        if (num1 > num2) return 1;
-        if (num1 < num2) return -1;
-        return 0;
-    }
 }

@@ -45,7 +45,6 @@ public class LibraryLoginFragment extends BaseLoginFragment{
             }
         });
 
-//        tips.setText("温馨提示:默认账号为本人校园卡卡号,密码与账号一致\n如遗忘密码,之前有绑定邮箱的则可直接通过邮箱找回，否则请联系图书馆工作人员");
         tips.setText("无法登录？");
         tips.setOnClickListener(new View.OnClickListener() {
             @Override
