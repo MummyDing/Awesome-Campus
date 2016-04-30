@@ -20,6 +20,7 @@ public class LifeFragment extends TopNavigationFragment{
         }
         fragments.add(new CampusExpressFragment());
         fragments.add(new ATMFragment());
+        fragments.add(new WeatherFragment());
     }
 
     public static LifeFragment newInstance(){

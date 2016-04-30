@@ -11,10 +11,20 @@ public class WeatherConfig {
         String endweather = null;
         if (isSeperate.length > 1) {
             String tempStr[] = isSeperate[1].split("到");
-            endweather = tempStr[tempStr.length - 1];
+            if(tempStr.length>1)
+                endweather = tempStr[tempStr.length - 1];
+            else{
+                String tempStr2[] = isSeperate[0].split("-");
+                endweather = tempStr2[tempStr2.length - 1];
+            }
         } else {
             String tempStr[] = isSeperate[0].split("到");
+            if(tempStr.length>1)
             endweather = tempStr[tempStr.length - 1];
+            else{
+                String tempStr2[] = isSeperate[0].split("-");
+                    endweather = tempStr2[tempStr2.length - 1];
+            }
         }
         int returnNum = 0;
         switch (endweather) {

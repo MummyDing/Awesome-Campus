@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ramotion.foldingcell.FoldingCell;
@@ -16,6 +17,7 @@ import com.ramotion.foldingcell.FoldingCell;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.model.life.WeatherInfoModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.support.weather.WeatherConfig;
 
 /**
  * Created by KevinWu on 16-4-30.
@@ -42,7 +44,9 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
     @Override
     public void onBindViewHolder(final VH holder, int position) {
         WeatherInfoModel model = getItem(position);
-        holder.dateTitle.setText(model.getDate());
+        holder.dateTitle.setText(model.getDate()+"\n"
+                +model.getInfo().getDay()[1]
+        +"\n"+model.getInfo().getDay()[2] + "°C ~ "+model.getInfo().getNight()[2] + "°C");
         holder.date.setText(model.getDate());
         holder.dayInfo.setText(model.getInfo().getDay()[1]
                 + "\n"
@@ -54,6 +58,12 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
                 + model.getInfo().getNight()[2] + "°C \n"
                 + model.getInfo().getNight()[3] + "\n" +
                 model.getInfo().getNight()[4]);
+
+        holder.weatherIconSmall.setImageResource(
+                WeatherConfig.WeatherPic
+                        [
+                        WeatherConfig.getWeatherPicNum(model.getInfo().getDay()[1])
+                        ]);
         holder.fc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +79,7 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
         TextView dayInfo;
         TextView nightInfo;
         ImageView weatherIconSmall;
+        LinearLayout linearLayout;
         FoldingCell fc;
 
         public VH(View itemView) {
@@ -78,14 +89,15 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
             date = (TextView) itemView.findViewById(R.id.date);
             dayInfo = (TextView) itemView.findViewById(R.id.dayInfo);
             nightInfo = (TextView) itemView.findViewById(R.id.nightInfo);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.weather_icon_background);
             weatherIconSmall = (ImageView) itemView.findViewById(R.id.weather_icon_small);
             fc = (FoldingCell) itemView.findViewById(R.id.folding_cell);
             fc.initialize(10, Color.TRANSPARENT, 0);
-            GradientDrawable myGrad=(GradientDrawable)weatherIconSmall.getBackground();
-            TypedArray array = mContext.getTheme().obtainStyledAttributes(new int[] {
-                    android.R.attr.colorAccent,
+            GradientDrawable myGrad = (GradientDrawable) linearLayout.getBackground();
+            TypedArray array = mContext.getTheme().obtainStyledAttributes(new int[]{
+                    android.R.attr.colorPrimary,
             });
-            myGrad.setColor(array.getColor(0,0xFFFFFF));
+            myGrad.setColor(array.getColor(0, 0xFFFFFF));
             array.recycle();
         }
     }
