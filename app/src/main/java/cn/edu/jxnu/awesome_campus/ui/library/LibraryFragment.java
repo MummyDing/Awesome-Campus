@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.library;
 
 import java.util.ArrayList;
 
+import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 
@@ -30,6 +31,11 @@ public class LibraryFragment extends TopNavigationFragment{
 
     @Override
     public void onEventComing(EventModel eventModel) {
-
+        switch (eventModel.getEventCode()){
+            case EVENT.SWIPE_TO_LIBRARY_BORROWED:
+                viewPager.setCurrentItem(1);
+                pagerAdapter.notifyDataSetChanged();
+                break;
+        }
     }
 }

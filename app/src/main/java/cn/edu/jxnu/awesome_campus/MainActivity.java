@@ -16,6 +16,8 @@ import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -215,6 +217,12 @@ public class MainActivity extends BaseActivity implements HomeView{
                 }).create();
         dialog.getWindow().setLayout(3*DisplayUtil.getScreenWidth(this)/4,-2);
         dialog.show();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                presenter.updateSelectedToHome();
+            }
+        });
     }
 
     private void switchFragment(TopNavigationFragment fragment, String title){
@@ -232,8 +240,13 @@ public class MainActivity extends BaseActivity implements HomeView{
         fragmentTransaction.commit();
     }
 
+    public void switchToLibrary(){
+        switchFragment(LibraryFragment.newInstance(),getString(R.string.library));
+    }
 
 
+
+    private static final Handler handler = new Handler(Looper.getMainLooper());
 
     @Subscribe
     public void onEventMainThread(EventModel eventModel){
@@ -247,8 +260,21 @@ public class MainActivity extends BaseActivity implements HomeView{
                 break;
             case EVENT.JUMP_TO_LIBRARY_LOGIN:
                 switchToLogin();
-                //这里还有问题~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                EventBus.getDefault().postSticky(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_LOGIN));
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_LOGIN));
+                    }
+                },500);
+                 break;
+            case EVENT.JUMP_TO_LIBRARY_BORROWED:
+                switchToLibrary();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_BORROWED));
+                    }
+                },500);
                 break;
             case EVENT.UPDATE_MENU:
                 updateNotifyMenu((Boolean) eventModel.getData());

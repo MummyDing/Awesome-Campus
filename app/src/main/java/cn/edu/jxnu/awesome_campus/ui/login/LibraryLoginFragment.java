@@ -3,6 +3,8 @@ package cn.edu.jxnu.awesome_campus.ui.login;
 import android.view.View;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.MainActivity;
 import cn.edu.jxnu.awesome_campus.R;
@@ -31,6 +33,13 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 // 这里还要加点登录时的效果 progressbar 或是其他动画什么的
                 setInputAreaEnable(false);
                 LibraryLoginUtil.onLogin(usernameET,passwordET);
+            }
+        });
+
+        jumpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new EventModel<Void>(EVENT.JUMP_TO_LIBRARY_BORROWED));
             }
         });
     }
@@ -66,8 +75,6 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 MainActivity.presenter.updateHeader(getActivity());
                 DisplayUtil.Snack(getView(),InitApp.AppContext.getString(R.string.hint_login_successful));
                 break;
-            case EVENT.SWIPE_TO_LIBRARY_LOGIN:
-                Toast.makeText(getActivity(),"----",Toast.LENGTH_SHORT).show();
 
         }
     }

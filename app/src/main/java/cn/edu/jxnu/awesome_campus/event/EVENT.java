@@ -221,5 +221,9 @@ public class EVENT {
     public static final int JUMP_TO_MAIN = 2004;
 
     public static final int JUMP_TO_LIBRARY_LOGIN = 2005;
+
+    public static final int JUMP_TO_LIBRARY_BORROWED = 2006;
+
+    public static final int SWIPE_TO_LIBRARY_BORROWED = 2007;
 }
 

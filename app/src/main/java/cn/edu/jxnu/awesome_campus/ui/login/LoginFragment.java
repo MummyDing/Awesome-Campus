@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,10 +37,9 @@ public class LoginFragment extends TopNavigationFragment{
     public void onEventComing(EventModel eventModel) {
         switch (eventModel.getEventCode()){
             case EVENT.SWIPE_TO_LIBRARY_LOGIN:
-                Toast.makeText(getActivity(),""+viewPager.getCurrentItem(),Toast.LENGTH_SHORT).show();
-                //pagerAdapter.notifyDataSetChanged();
+                viewPager.setCurrentItem(1);
+                pagerAdapter.notifyDataSetChanged();
                 break;
-
         }
     }
 
