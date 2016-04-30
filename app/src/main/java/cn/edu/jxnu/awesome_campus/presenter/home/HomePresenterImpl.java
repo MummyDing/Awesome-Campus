@@ -91,6 +91,7 @@ public class HomePresenterImpl implements HomePresenter {
         buildHeader(activity, Settings.avatorID == 0 ? EducationLoginUtil.getAvatorUrl(): AvatarApi.baseAvatarUrl+Settings.avatorID+".png",EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
     }
 
+
     @Override
     public void buildHeader(Activity activity, String avatarURL,String studentID, String name) {
         if(header == null){
@@ -145,6 +146,10 @@ public class HomePresenterImpl implements HomePresenter {
     @Override
     public int getCurrentSelectedID() {
         return drawer.getCurrentSelection();
+    }
+
+    public void updateSelectedToHome(){
+        drawer.setSelection(DrawerItem.HOME.getId());
     }
 
     @Override

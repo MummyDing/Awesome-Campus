@@ -1,14 +1,15 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
-import cn.edu.jxnu.awesome_campus.database.dao.about.NotifyDAO;
-import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 public class AboutActivity extends BaseToolbarActivity {
@@ -30,18 +31,13 @@ public class AboutActivity extends BaseToolbarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       /* if (item.getItemId() == R.id.menu_notify_none){
-            Intent intent = new Intent(this,NotifyActivity.class);
-            NotifyDAO dao = new NotifyDAO();
-            NotifyModel model = dao.getCache();
-            if (model == null){
-                intent.putExtra(getString(R.string.id_type),getString(R.string.id_none));
-            }else {
-                intent.putExtra(getString(R.string.id_type),model.getType());
-                intent.putExtra(getString(R.string.id_data),model.getData());
-            }
-            startActivity(intent);
-        }*/
+
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().post(new EventModel<Void>(EVENT.UPDATE_SELECTED_MENU_TO_HOME));
     }
 }

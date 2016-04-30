@@ -19,4 +19,5 @@ public interface HomePresenter extends IPresenter{
     boolean isDrawerOpen();
     void closeDrawer();
     int getCurrentSelectedID();
+    void updateSelectedToHome();
 }

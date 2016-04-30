@@ -32,7 +32,6 @@ import org.greenrobot.eventbus.Subscribe;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
@@ -184,6 +183,12 @@ public class MainActivity extends BaseActivity implements HomeView{
         });
         dialog.build().show();
         dialog.setCheckedColor(ThemeConfig.themeColor[Config.themeSelected]);
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new EventModel<Void>(EVENT.UPDATE_SELECTED_MENU_TO_HOME));
+            }
+        });
     }
 
     private void showLogoutDialog(){
@@ -240,6 +245,9 @@ public class MainActivity extends BaseActivity implements HomeView{
                 break;
             case EVENT.UPDATE_MENU:
                 updateNotifyMenu((Boolean) eventModel.getData());
+                break;
+            case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
+                presenter.updateSelectedToHome();
                 break;
         }
 

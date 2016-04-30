@@ -212,6 +212,7 @@ public class EVENT {
     //Common
     public static final int UPDATE_MENU = 2000;
 
+    public static final int UPDATE_SELECTED_MENU_TO_HOME = 2001;
 
 }
 

@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -148,7 +149,6 @@ public class ColorPickerDialog implements View.OnClickListener{
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         dialog = builder.create();
         dialog.setTitle(getTitle());
-//        dialog.setIcon(R.mipmap.ic_theme_black);
         dialog.setView(rootLayout);
         dialog.show();
         dialog.getWindow().setLayout((DisplayUtil.dip2px(mContext,30)+defaultPadding)*colCount+defaultPadding*3,DisplayUtil.dip2px(mContext,100+30*rowCount)+defaultPadding*rowCount);
@@ -184,5 +184,9 @@ public class ColorPickerDialog implements View.OnClickListener{
 
     public String getTitle() {
         return title;
+    }
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener listener){
+        dialog.setOnDismissListener(listener);
     }
 }

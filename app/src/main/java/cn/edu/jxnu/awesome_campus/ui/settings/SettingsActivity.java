@@ -1,18 +1,14 @@
 package cn.edu.jxnu.awesome_campus.ui.settings;
 
-import android.content.res.TypedArray;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.View;
+
+import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
-import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 
 public class SettingsActivity extends BaseToolbarActivity{
     private static final String TAG="SettingsActivity";
@@ -27,5 +23,11 @@ public class SettingsActivity extends BaseToolbarActivity{
 
         getFragmentManager().beginTransaction().replace(R.id.framelayout,new SettingsFragment()).commit();
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().post(new EventModel<Void>(EVENT.UPDATE_SELECTED_MENU_TO_HOME));
     }
 }
