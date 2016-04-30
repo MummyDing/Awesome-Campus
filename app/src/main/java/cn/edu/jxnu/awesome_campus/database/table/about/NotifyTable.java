@@ -21,7 +21,7 @@ public class NotifyTable {
 
     public static final String DATA = "data";
 
-    public static final String READED="readed";//预留字段，是否已读
+    public static final String READED = "readed";//预留字段，是否已读
 
     public static final String DATE="date";//预留字段，时间
     /**
@@ -40,7 +40,7 @@ public class NotifyTable {
             TITLE+" text, "+
             TYPE+" text, "+
             DATA+" text,"+
-            READED+" boolean,"+
+            READED+" integer,"+
             DATE+" text)";
 
     public static final String UPDATE_READED = "update "+NAME+" set "+

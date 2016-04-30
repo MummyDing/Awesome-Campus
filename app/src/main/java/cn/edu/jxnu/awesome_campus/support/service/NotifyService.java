@@ -113,7 +113,9 @@ public class NotifyService extends Service {
                 notifyModel.loadFromNet();
                 break;
             case EVENT.NOTIFY_REFRESH_SUCCESS:
+
                 NotifyBean notifyBean = (NotifyBean) eventModel.getData();
+                Toast.makeText(InitApp.AppContext,"TTT"+notifyBean.getNotifyVersion(),Toast.LENGTH_SHORT).show();
                 if (NotifyUtil.checkVersion(notifyBean.getNotifyVersion())){
                     break;
                 }
@@ -125,7 +127,6 @@ public class NotifyService extends Service {
                 showNotify(modelList.get(modelList.size() - 1));
                 break;
             case EVENT.NOTIFY_REFRESH_FAILURE:
-                Log.d("msg","REFRESH_FAILURE ");
                 break;
         }
     }

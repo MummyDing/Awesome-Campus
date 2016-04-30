@@ -50,7 +50,7 @@ public class NotifyAdapter extends BaseListAdapter<NotifyModel,NotifyAdapter.VH>
         final NotifyModel model = getItem(position);
         holder.notifyTitle.setText(model.getTitle());
         holder.date.setText(model.getDate());
-        if(!model.isReaded()){
+        if(model.getReaded() == 0){
             holder.readed.setVisibility(View.VISIBLE);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {

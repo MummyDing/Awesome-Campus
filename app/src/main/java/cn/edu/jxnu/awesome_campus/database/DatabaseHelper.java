@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "Awesome_Campus";
     private static DatabaseHelper instance = null;
     private static SQLiteDatabase db = null;
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     public static final String CLEAR_TABLE_DATA = "delete from ";
     public static final String DROP_TABLE = "drop table if exists ";
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -101,7 +101,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if (oldVersion == 1 && newVersion == 2){
+            db.execSQL(DROP_TABLE+NotifyTable.NAME);
+            db.execSQL(NotifyTable.CREATE_TABLE);
+        }
     }
     public static synchronized DatabaseHelper getInstance(){
         if(instance == null){

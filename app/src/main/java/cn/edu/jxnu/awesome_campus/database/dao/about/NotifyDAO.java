@@ -51,7 +51,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
                 for (int i=0 ; i<list.size() ; i++){
                     NotifyModel m = list.get(i);
                     if (m.getTitle().equals(model.getTitle())) {
-                        m.setReaded(model.isReaded());
+                        m.setReaded(model.getReaded());
                         break;
                     }
                 }
@@ -65,7 +65,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             values.put(NotifyTable.TITLE,model.getTitle());
             values.put(NotifyTable.TYPE,model.getType());
             values.put(NotifyTable.DATA,model.getData());
-            values.put(NotifyTable.READED,model.isReaded());
+            values.put(NotifyTable.READED,model.getReaded());
             values.put(NotifyTable.DATE,model.getDate());
             DatabaseHelper.insert(NotifyTable.NAME,values);
         }
@@ -90,7 +90,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             model.setTitle(cursor.getString(NotifyTable.ID_TITLE));
             model.setType(cursor.getString(NotifyTable.ID_TYPE));
             model.setData(cursor.getString(NotifyTable.ID_DATA));
-            model.setReaded(cursor.getInt(NotifyTable.ID_READED) == 0 ? false:true);
+            model.setReaded(cursor.getInt(NotifyTable.ID_READED));
             model.setDate(cursor.getString(NotifyTable.ID_DATE));
             list.add(model);
         }
@@ -117,7 +117,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
             model.setNotifyCode(cursor.getString(NotifyTable.ID_NOTIFY_CODE));
             model.setTitle(cursor.getString(NotifyTable.ID_TITLE));
             model.setType(cursor.getString(NotifyTable.ID_TYPE));
-            model.setReaded(cursor.getInt(NotifyTable.ID_READED) == 0 ? false:true);
+            model.setReaded(cursor.getInt(NotifyTable.ID_READED));
             model.setData(cursor.getString(NotifyTable.ID_DATA));
             list.add(model);
         }

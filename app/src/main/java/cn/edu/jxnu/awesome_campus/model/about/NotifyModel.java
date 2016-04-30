@@ -30,9 +30,9 @@ public class NotifyModel implements IModel<NotifyModel> {
 
     private String date;//日期
 
-    private boolean readed;//已读或未读，未读默认为false
+    private int readed;//已读或未读，未读默认为false
 
-    private NotifyModel(String notifyCode, String title, String type, String data, String date, boolean readed) {
+    private NotifyModel(String notifyCode, String title, String type, String data, String date, int readed) {
         this.notifyCode = notifyCode;
         this.title = title;
         this.type = type;
@@ -53,11 +53,12 @@ public class NotifyModel implements IModel<NotifyModel> {
         this.date = date;
     }
 
-    public boolean isReaded() {
+
+    public int getReaded() {
         return readed;
     }
 
-    public void setReaded(boolean readed) {
+    public void setReaded(int readed) {
         this.readed = readed;
     }
 

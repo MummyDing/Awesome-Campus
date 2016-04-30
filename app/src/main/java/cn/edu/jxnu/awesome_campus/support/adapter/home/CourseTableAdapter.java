@@ -132,7 +132,6 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
             addCourseList(list.get(CourseTableFragment.currentSelectedDay).getCourseList());
         }
 
-
     }
 
     public void addCourseInfoList(List<CourseInfoModel> list){

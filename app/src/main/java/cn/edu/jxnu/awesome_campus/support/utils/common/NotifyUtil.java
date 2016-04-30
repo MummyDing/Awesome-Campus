@@ -18,7 +18,7 @@ public class NotifyUtil {
     public static boolean hasUnread(List<NotifyModel> modelList){
         if (modelList == null || modelList.isEmpty()) return false;
         for (NotifyModel model:modelList){
-            if (!model.isReaded()){
+            if (model.getReaded() == 0){
                 return true;
             }
         }
