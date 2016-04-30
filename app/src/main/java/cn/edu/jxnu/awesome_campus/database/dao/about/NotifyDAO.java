@@ -132,13 +132,11 @@ public class NotifyDAO implements DAO<NotifyModel> {
                 .addTag(TAG)
                 .enqueue(new JsonEntityCallback<NotifyBean>() {
                     @Override
-                    public void onSuccess(NotifyBean entity, Headers headers) {
-                        final List<NotifyModel> list = new ArrayList<NotifyModel>();
-                        list.addAll(Arrays.asList(entity.getMsgList()));
+                    public void onSuccess(final NotifyBean entity, Headers headers) {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_REFRESH_SUCCESS,list));
+                                EventBus.getDefault().post(new EventModel<NotifyBean>(EVENT.NOTIFY_REFRESH_SUCCESS,entity));
                             }
                         });
                     }

@@ -215,4 +215,6 @@
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="id_title">title</string>
+    <string name="notify_list">Notify</string>
+    <string name="no_message">No Message!!!!</string>
 </resources>

@@ -14,12 +14,14 @@ import android.widget.Toast;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.Arrays;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.about.NotifyBean;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.support.boardcast.NotifyClickReceiver;
@@ -111,21 +113,16 @@ public class NotifyService extends Service {
                 notifyModel.loadFromNet();
                 break;
             case EVENT.NOTIFY_REFRESH_SUCCESS:
-                List<NotifyModel> tmpModel = (List<NotifyModel>) eventModel.getDataList();
-                // 这里版本检查需要更改
-                notifyModel.cacheAll(tmpModel);
-
-                if (modelList == null || modelList.isEmpty() || modelList.size() != tmpModel.size()) {
-                    // 通知到了=_+
-                    modelList = tmpModel;
-                    notifyUpdateMenu(true);
-                    showNotify(modelList.get(modelList.size() - 1));
-                    Log.d("msg","show notify");
-                }else {
-                    modelList = tmpModel;
-                    notifyUpdateMenu(NotifyUtil.hasUnread(modelList));
-                    Log.d("msg","notifyUpdateMenu ");
+                NotifyBean notifyBean = (NotifyBean) eventModel.getData();
+                if (NotifyUtil.checkVersion(notifyBean.getNotifyVersion())){
+                    break;
                 }
+                NotifyUtil.updateNotifyVersion(notifyBean.getNotifyVersion());
+
+                modelList = Arrays.asList(notifyBean.getMsgList());
+                notifyModel.cacheAll(modelList);
+                notifyUpdateMenu(true);
+                showNotify(modelList.get(modelList.size() - 1));
                 break;
             case EVENT.NOTIFY_REFRESH_FAILURE:
                 Log.d("msg","REFRESH_FAILURE ");

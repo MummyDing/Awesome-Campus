@@ -1,9 +1,13 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
+import android.support.design.widget.Snackbar;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
@@ -27,7 +31,6 @@ public class NotifyListFragment extends BaseListFragment{
     @Override
     public void onDataRefresh() {
         super.onDataRefresh();
-       // model.loadFromNet();
     }
 
     @Override
@@ -55,14 +58,14 @@ public class NotifyListFragment extends BaseListFragment{
             case EVENT.NOTIFY_LOAD_CACHE_SUCCESS:
                 List list = eventModel.getDataList();
                 adapter.newList(list);
-                Toast.makeText(getActivity(),""+list.size(),Toast.LENGTH_SHORT).show();
                 hideLoading();
+
                 break;
 
             case EVENT.NOTIFY_LOAD_CACHE_FAILURE:
                 hideLoading();
                 // 显示没有消息
-                Toast.makeText(getActivity(),"奇怪",Toast.LENGTH_SHORT).show();
+                Snackbar.make(getView(), InitApp.AppContext.getString(R.string.no_message),Snackbar.LENGTH_LONG).show();
                 break;
         }
     }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.about.NotifyDAO;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 
 /**
  * Created by MummyDing on 16-4-30.
@@ -11,6 +12,9 @@ import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class NotifyUtil {
+
+    public static final String NotifyVersion = "notifyVersion";
+
     public static boolean hasUnread(List<NotifyModel> modelList){
         if (modelList == null || modelList.isEmpty()) return false;
         for (NotifyModel model:modelList){
@@ -24,5 +28,17 @@ public class NotifyUtil {
     public static boolean hasUnread(){
         NotifyDAO dao = new NotifyDAO();
         return hasUnread(dao.getCache());
+    }
+
+    public static String getNotifyVersion(){
+       return Settings.getsInstance().getString(NotifyVersion,"0");
+    }
+
+    public static void updateNotifyVersion(String newVersion){
+        Settings.getsInstance().putString(NotifyVersion,newVersion);
+    }
+
+    public static boolean checkVersion(String version){
+        return getNotifyVersion().equals(version);
     }
 }

@@ -49,7 +49,6 @@ public class NotifyAdapter extends BaseListAdapter<NotifyModel,NotifyAdapter.VH>
     public void onBindViewHolder(final VH holder, int position) {
         final NotifyModel model = getItem(position);
         holder.notifyTitle.setText(model.getTitle());
-        Log.d("获取到的date信息","--"+model.getDate());
         holder.date.setText(model.getDate());
         if(!model.isReaded()){
             holder.readed.setVisibility(View.VISIBLE);
