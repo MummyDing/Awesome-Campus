@@ -2,6 +2,8 @@ package cn.edu.jxnu.awesome_campus.support.adapter.education;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +67,12 @@ public class CourseScoreAdapter extends BaseListAdapter<CourseScoreModel,CourseS
             this.itemView = itemView;
             courseName = (TextView) itemView.findViewById(R.id.courseName);
             courseScore = (TextView) itemView.findViewById(R.id.courseScore);
+            GradientDrawable myGrad=(GradientDrawable)courseScore.getBackground();
+            TypedArray array = mContext.getTheme().obtainStyledAttributes(new int[] {
+                    android.R.attr.colorAccent,
+            });
+            myGrad.setColor(array.getColor(0,0xFFFFFF));
+            array.recycle();
         }
     }
 }

@@ -1,7 +1,9 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.life;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +62,7 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
         });
     }
 
-    static class VH extends RecyclerView.ViewHolder {
+    class VH extends RecyclerView.ViewHolder {
         View itemView;
         TextView dateTitle;
         TextView date;
@@ -79,6 +81,12 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
             weatherIconSmall = (ImageView) itemView.findViewById(R.id.weather_icon_small);
             fc = (FoldingCell) itemView.findViewById(R.id.folding_cell);
             fc.initialize(10, Color.TRANSPARENT, 0);
+            GradientDrawable myGrad=(GradientDrawable)weatherIconSmall.getBackground();
+            TypedArray array = mContext.getTheme().obtainStyledAttributes(new int[] {
+                    android.R.attr.colorAccent,
+            });
+            myGrad.setColor(array.getColor(0,0xFFFFFF));
+            array.recycle();
         }
     }
 }

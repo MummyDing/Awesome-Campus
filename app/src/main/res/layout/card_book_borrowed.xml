@@ -51,7 +51,7 @@
             android:background="@drawable/wideedgecircle"
             android:gravity="center"
             android:text="98"
-            android:textColor="?attr/textColor"
+            android:textColor="#fff"
             android:textSize="20sp" />
     </FrameLayout>
 </FrameLayout>
