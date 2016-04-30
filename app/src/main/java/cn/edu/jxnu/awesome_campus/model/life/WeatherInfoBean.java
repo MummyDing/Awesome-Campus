@@ -8,8 +8,8 @@ package cn.edu.jxnu.awesome_campus.model.life;
 public class WeatherInfoBean  {
     private String reason;
     private Result result;
-    private String error_code;
-    static class Result{
+    private int error_code;
+    public static class Result{
         private Data data;
 
         public Data getData() {
@@ -20,16 +20,17 @@ public class WeatherInfoBean  {
             this.data = data;
         }
     }
-    static class Data{
-        public WeatherInfoModel getWeather() {
+    public static class Data{
+
+        private WeatherInfoModel [] weather;
+
+        public WeatherInfoModel[] getWeather() {
             return weather;
         }
 
-        public void setWeather(WeatherInfoModel weather) {
+        public void setWeather(WeatherInfoModel[] weather) {
             this.weather = weather;
         }
-
-        private WeatherInfoModel weather;
     }
 
     public String getReason() {
@@ -48,11 +49,11 @@ public class WeatherInfoBean  {
         this.result = result;
     }
 
-    public String getError_code() {
+    public int getError_code() {
         return error_code;
     }
 
-    public void setError_code(String error_code) {
+    public void setError_code(int error_code) {
         this.error_code = error_code;
     }
 }

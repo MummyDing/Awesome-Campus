@@ -22,10 +22,7 @@ public class WeatherInfoModel implements IModel<WeatherInfoModel> {
 
     private String date;
 
-    private String [] night;
-
-    private String [] day;
-
+    private Info info;
 
     public WeatherInfoModel() {
         dao = new WeatherInfoDAO();
@@ -61,19 +58,38 @@ public class WeatherInfoModel implements IModel<WeatherInfoModel> {
         this.date = date;
     }
 
-    public String[] getNight() {
-        return night;
+    public static class Info{
+        public Info(String[] night, String[] day) {
+            this.night = night;
+            this.day = day;
+        }
+
+        private String [] night;
+
+        private String [] day;
+
+        public String[] getNight() {
+            return night;
+        }
+
+        public void setNight(String[] night) {
+            this.night = night;
+        }
+
+        public String[] getDay() {
+            return day;
+        }
+
+        public void setDay(String[] day) {
+            this.day = day;
+        }
     }
 
-    public void setNight(String[] night) {
-        this.night = night;
+    public Info getInfo() {
+        return info;
     }
 
-    public String[] getDay() {
-        return day;
-    }
-
-    public void setDay(String[] day) {
-        this.day = day;
+    public void setInfo(Info info) {
+        this.info = info;
     }
 }

@@ -138,7 +138,6 @@ public class EVENT {
     public static final int LIBRARY_RENEW_SUCCESS=63;
     public static final int LIBRARY_RENEW_FAILURE=64;
 
-
     /**
      * Cache Event Code
      */
@@ -202,6 +201,10 @@ public class EVENT {
     // Self Study Seats
     public static final int SELF_STUDY_SEATS_LOAD_CACHE_SUCCESS = 1027;
     public static final int SELF_STUDY_SEATS_LOAD_CACHE_FAILURE = 1028;
+
+    // 天气
+    public static final int WEATHER_INFO_LOAD_CACHE_SUCCESS = 1029;
+    public static final int WEATHER_INFO_LOAD_CACHE_FAILURE = 2030;
 
 
 

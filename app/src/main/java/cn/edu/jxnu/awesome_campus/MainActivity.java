@@ -34,6 +34,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
+import cn.edu.jxnu.awesome_campus.database.dao.life.WeatherInfoDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
@@ -108,7 +109,8 @@ public class MainActivity extends BaseActivity implements HomeView{
         presenter.initlization();
         presenter.buildDrawer(this,toolbar);
         switchDrawerItem(DrawerItem.HOME.getId());
-
+        WeatherInfoDAO dao = new WeatherInfoDAO();
+        dao.loadFromNet();
     }
 
     @Override
@@ -260,21 +262,21 @@ public class MainActivity extends BaseActivity implements HomeView{
                 break;
             case EVENT.JUMP_TO_LIBRARY_LOGIN:
                 switchToLogin();
-                handler.postDelayed(new Runnable() {
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
                         EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_LOGIN));
                     }
-                },500);
+                });
                  break;
             case EVENT.JUMP_TO_LIBRARY_BORROWED:
                 switchToLibrary();
-                handler.postDelayed(new Runnable() {
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
                         EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_BORROWED));
                     }
-                },500);
+                });
                 break;
             case EVENT.UPDATE_MENU:
                 updateNotifyMenu((Boolean) eventModel.getData());
