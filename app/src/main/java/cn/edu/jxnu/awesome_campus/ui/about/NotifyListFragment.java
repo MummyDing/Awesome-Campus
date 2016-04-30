@@ -4,6 +4,8 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -59,7 +61,6 @@ public class NotifyListFragment extends BaseListFragment{
                 List list = eventModel.getDataList();
                 adapter.newList(list);
                 hideLoading();
-
                 break;
 
             case EVENT.NOTIFY_LOAD_CACHE_FAILURE:
