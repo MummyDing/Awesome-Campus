@@ -61,6 +61,7 @@ public class NotifyAdapter extends BaseListAdapter<NotifyModel,NotifyAdapter.VH>
                 holder.readed.setVisibility(View.GONE);
 
                 Intent intent = new Intent(mContext,NotifyActivity.class);
+                intent.putExtra(InitApp.AppContext.getString(R.string.id_title),model.getTitle());
                 intent.putExtra(InitApp.AppContext.getString(R.string.id_type),model.getType());
                 intent.putExtra(InitApp.AppContext.getString(R.string.id_data),model.getData());
                 mContext.startActivity(intent);

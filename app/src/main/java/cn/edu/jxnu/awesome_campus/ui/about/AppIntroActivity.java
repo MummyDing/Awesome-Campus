@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
+import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
 
 /**
@@ -10,6 +11,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
 public class AppIntroActivity extends BaseWebViewActivity{
     @Override
     protected String getLink() {
+        super.title=getApplicationContext().getString(R.string.app_intro);
         return "file:///android_asset/Awesome_CampusIntroduction.html";
     }
 

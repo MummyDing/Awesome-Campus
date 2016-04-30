@@ -15,10 +15,12 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
 public class BookSearchDetailsActivity extends BaseWebViewActivity{
     private static final String TAG="BookSearchDetails...";
     private String url;
+    private String title;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Intent intent=getIntent();
         url=intent.getStringExtra("URL");
+        title=intent.getStringExtra("TITLE");
         super.onCreate(savedInstanceState);
 
     }
@@ -41,6 +43,7 @@ public class BookSearchDetailsActivity extends BaseWebViewActivity{
 
     @Override
     protected String getLinkParseData() {
+        super.title=title;
         return url;
     }
 

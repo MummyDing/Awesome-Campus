@@ -17,17 +17,20 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 
-public abstract class BaseWebViewActivity extends SwipeBackActivity {
+public abstract class BaseWebViewActivity extends BaseToolbarActivity {
 
     protected WebView webView;
     protected ProgressBar progressBar;
     protected boolean isLoading = true;
     protected String data;
+    protected String title="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_webview);
         initData();
+        initToolbar();
+        setToolbarTitle(title);
     }
 
     protected abstract String getLink();

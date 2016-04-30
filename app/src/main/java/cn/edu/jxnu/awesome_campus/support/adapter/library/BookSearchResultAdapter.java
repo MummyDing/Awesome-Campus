@@ -78,6 +78,7 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
                 Intent intent = new Intent(mContext, BookSearchDetailsActivity.class);
                 Log.d("--","URL为"+model.getUrl());
                 intent.putExtra("URL",model.getUrl());
+                intent.putExtra("TITLE",model.getBookTitle());
                 mContext.startActivity(intent);
             }
         });

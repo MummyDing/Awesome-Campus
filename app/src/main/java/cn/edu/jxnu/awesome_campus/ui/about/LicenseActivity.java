@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
+import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
 
 /**
@@ -10,6 +11,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
 public class LicenseActivity extends BaseWebViewActivity {
     @Override
     protected String getLink() {
+        super.title=getString(R.string.text_license);
         return "file:///android_asset/licenses.html";
     }
 

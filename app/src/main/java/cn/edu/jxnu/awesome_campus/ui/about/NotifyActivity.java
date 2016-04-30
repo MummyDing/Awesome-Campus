@@ -16,6 +16,7 @@ public class NotifyActivity extends BaseWebViewActivity {
 
     private String type;
     private String data;
+    private String title;
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
@@ -26,6 +27,7 @@ public class NotifyActivity extends BaseWebViewActivity {
         if (type == null){
             type = getIntent().getStringExtra(getString(R.string.id_type));
             data = getIntent().getStringExtra(getString(R.string.id_data));
+            super.title=getIntent().getStringExtra(getString(R.string.id_title));
         }
         if (type.equals(getString(R.string.link)))
         return data;
@@ -37,6 +39,7 @@ public class NotifyActivity extends BaseWebViewActivity {
         if (type == null){
             type = getIntent().getStringExtra(getString(R.string.id_type));
             data = getIntent().getStringExtra(getString(R.string.id_data));
+            super.title=getIntent().getStringExtra(getString(R.string.id_title));
         }
         if (type.equals(getString(R.string.data)))
             return data;
@@ -50,6 +53,7 @@ public class NotifyActivity extends BaseWebViewActivity {
         if (type == null){
             type = getIntent().getStringExtra(getString(R.string.id_type));
             data = getIntent().getStringExtra(getString(R.string.id_data));
+            super.title=getIntent().getStringExtra(getString(R.string.id_title));
         }
         if (type.equals(getString(R.string.link_data)))
             return data;
