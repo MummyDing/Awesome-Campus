@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -115,13 +116,13 @@ public class NotifyService extends Service {
             case EVENT.NOTIFY_REFRESH_SUCCESS:
 
                 NotifyBean notifyBean = (NotifyBean) eventModel.getData();
-                Toast.makeText(InitApp.AppContext,"TTT"+notifyBean.getNotifyVersion(),Toast.LENGTH_SHORT).show();
                 if (NotifyUtil.checkVersion(notifyBean.getNotifyVersion())){
                     break;
                 }
                 NotifyUtil.updateNotifyVersion(notifyBean.getNotifyVersion());
 
                 modelList = Arrays.asList(notifyBean.getMsgList());
+             //   Collections.sort(modelList);
                 notifyModel.cacheAll(modelList);
                 notifyUpdateMenu(true);
                 showNotify(modelList.get(modelList.size() - 1));

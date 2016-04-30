@@ -152,6 +152,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         clearTable(BookBorrowedTable.NAME);
     }
 
-
-
 }

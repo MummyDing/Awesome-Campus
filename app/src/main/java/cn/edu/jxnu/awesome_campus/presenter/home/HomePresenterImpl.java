@@ -58,7 +58,6 @@ public class HomePresenterImpl implements HomePresenter {
     @Override
     public void buildDrawer(Activity activity,Toolbar toolbar) {
         LogItem = buildSecondaryItem(DrawerItem.LOGOUT.getItemName(),DrawerItem.LOGOUT.getItemIconID(),DrawerItem.LOGOUT.getId());
-
         if(header == null){
             updateHeader(activity);
         }
