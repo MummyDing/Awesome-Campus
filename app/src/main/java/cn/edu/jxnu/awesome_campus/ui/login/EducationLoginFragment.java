@@ -41,6 +41,7 @@ public class EducationLoginFragment extends BaseLoginFragment{
                 EducationLoginUtil.onLogin(usernameET,passwordET);
             }
         });
+        tips.setText("温馨提示:默认账号为本人学号,密码为本人身份证号\n如遗忘密码,请联系学院教学秘书查询");
     }
 
     @Override

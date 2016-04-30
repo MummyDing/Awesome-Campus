@@ -59,6 +59,16 @@
             android:layout_width="240dp"
             android:layout_height="50dp" />
 
+        <TextView
+            android:id="@+id/tips"
+            android:layout_below="@+id/loginBtn"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -84,4 +94,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+
 </FrameLayout>

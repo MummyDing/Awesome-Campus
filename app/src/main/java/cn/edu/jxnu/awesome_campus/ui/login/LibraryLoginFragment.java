@@ -42,6 +42,9 @@ public class LibraryLoginFragment extends BaseLoginFragment{
                 EventBus.getDefault().post(new EventModel<Void>(EVENT.JUMP_TO_LIBRARY_BORROWED));
             }
         });
+
+        tips.setText("温馨提示:默认账号为本人校园卡卡号,密码与账号一致\n如遗忘密码,之前有绑定邮箱的则可直接通过邮箱找回，否则请联系图书馆工作人员");
+
     }
 
     @Override

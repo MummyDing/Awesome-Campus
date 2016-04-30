@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -29,6 +30,7 @@ public abstract class BaseLoginFragment extends BaseFragment{
 
     protected TextInputLayout userNameLayout;
     protected Button jumpBtn;
+    protected TextView tips;
     protected abstract String getUsernameHint();
     @Override
     protected void init() {
@@ -38,6 +40,7 @@ public abstract class BaseLoginFragment extends BaseFragment{
         passwordET = (EditText) parentView.findViewById(R.id.et_password);
         loginBtn = (Button) parentView.findViewById(R.id.loginBtn);
         jumpBtn = (Button) parentView.findViewById(R.id.jumpBtn);
+        tips = (TextView) parentView.findViewById(R.id.tips);
 
         loginLayout = (RelativeLayout) parentView.findViewById(R.id.loginLayout);
         onLineLayout = (RelativeLayout) parentView.findViewById(R.id.onLineLayout);
