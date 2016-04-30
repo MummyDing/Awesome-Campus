@@ -76,14 +76,11 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
     }
 
     private CourseInfoModel getCourseInfoModel(String courseName){
-        Log.d("查询",courseName+" 大小"+courseInfoList.size());
         for(CourseInfoModel model: courseInfoList){
-            Log.d("课程名",model.getCourseName());
             if(model.getCourseName().trim().equals(courseName.trim())){
                 return model;
             }
         }
-        Log.d("没有查到",courseName);
         return null;
     }
 
@@ -118,6 +115,12 @@ public class CourseTableAdapter extends BaseListAdapter<CourseTableModel,CourseT
         listCourse = new ArrayList<>();
         listCourse.addAll(list);
         notifyDataSetChanged();
+
+        if (listCourse.isEmpty()){
+            EventBus.getDefault().post(new EventModel<Void>(EVENT.NO_COURSE));
+        }else {
+            EventBus.getDefault().post(new EventModel<Void>(EVENT.HAVE_COURSE));
+        }
     }
 
     @Override

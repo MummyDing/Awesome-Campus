@@ -73,6 +73,7 @@ public class CourseTableFragment extends BaseListFragment{
     public void initView() {
         setOnLineLayout(EducationLoginUtil.isLogin());
         courseTableModel.loadFromCache();
+        tip.setText(InitApp.AppContext.getString(R.string.notify_no_course));
     }
 
     @Override
@@ -108,6 +109,12 @@ public class CourseTableFragment extends BaseListFragment{
                 break;
             case EVENT.COURSE_INFO_LOAD_CACHE_FAILURE:
                 courseInfoModel.loadFromNet();
+                break;
+            case EVENT.NO_COURSE:
+                tip.setVisibility(View.VISIBLE);
+                break;
+            case EVENT.HAVE_COURSE:
+                tip.setVisibility(View.GONE);
                 break;
         }
     }

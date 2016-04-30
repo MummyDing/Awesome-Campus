@@ -71,7 +71,6 @@ public abstract class BaseLoginFragment extends BaseFragment{
     }
 
     protected void setOnLineLayout(boolean flag){
-        Log.d("Is OnLine",flag+"");
         if(flag){
             loginLayout.setVisibility(View.GONE);
             onLineLayout.setVisibility(View.VISIBLE);

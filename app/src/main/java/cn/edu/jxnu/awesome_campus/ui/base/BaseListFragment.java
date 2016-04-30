@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -39,6 +40,7 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
     protected CardView spinnerCard;
     protected SwipeRefreshLayout swipeRefreshLayout;
     protected Button toLoginBtn;
+    protected TextView tip;
     @Override
     protected void init() {
         onLineLayout = (RelativeLayout) parentView.findViewById(R.id.onLineLayout);
@@ -50,6 +52,8 @@ public abstract class BaseListFragment extends BaseFragment implements BaseListV
         spinnerCard = (CardView) parentView.findViewById(R.id.spinner_card_view);
         recyclerView = (RecyclerView) parentView.findViewById(R.id.recyclerView);
         toLoginBtn = (Button) parentView.findViewById(R.id.toLoginBtn);
+        tip = (TextView) parentView.findViewById(R.id.tip);
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(layoutManager);
         networkBtn.setOnClickListener(new View.OnClickListener() {

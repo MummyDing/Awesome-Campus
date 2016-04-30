@@ -95,4 +95,13 @@
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tip"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </FrameLayout>

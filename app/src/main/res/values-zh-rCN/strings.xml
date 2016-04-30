@@ -205,5 +205,6 @@
     <string name="id_title">title</string>
     <string name="notify_list">通知列表</string>
     <string name="no_message">暂无消息</string>
+    <string name="notify_no_course">今天没课\n可以好好休息哦~</string>
 
 </resources>
