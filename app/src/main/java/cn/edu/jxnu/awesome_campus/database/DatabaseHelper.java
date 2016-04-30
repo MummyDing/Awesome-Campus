@@ -97,6 +97,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -136,6 +138,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static void clearTable(String table){
         exeSQL(CLEAR_TABLE_DATA+table);
+    }
+
+    public static void clearUserData(){
+        clearTable(CourseTable.NAME);
+        clearTable(CourseInfoTable.NAME);
+        clearTable(CourseScoreTable.NAME);
+        clearTable(ExamTimeTable.NAME);
+
+        clearTable(BookBorrowedTable.NAME);
     }
 
 

@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
@@ -196,6 +197,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                         EducationLoginUtil.clearCookie();
                         LibraryLoginUtil.clearCookie();
                         presenter.updateHeader(MainActivity.this);
+                        DatabaseHelper.clearUserData();
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
