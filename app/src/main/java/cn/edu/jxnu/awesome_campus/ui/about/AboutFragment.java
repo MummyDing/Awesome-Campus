@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.preference.PreferenceFragment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.TypedArrayUtils;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.api.VersoinApi;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
@@ -40,6 +43,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 
     private Preference mAppIntro;
     private Preference mDemoVideo;
+    private Preference mCurrentVersion;
     private Preference mCheckUpdate;
     private Preference mStarProject;
     private Preference mShare;
@@ -55,6 +59,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 
     private final String APP_INTRO = InitApp.AppContext.getString(R.string.id_app_intro);
     private final String DEMO_VIDEO = InitApp.AppContext.getString(R.string.id_demo_video);
+    private final String CURRENT_VERSION = InitApp.AppContext.getString(R.string.id_current_version);
     private final String CHECK_UPDATE = InitApp.AppContext.getString(R.string.id_check_update);
     private final String STAR_PROJECT = InitApp.AppContext.getString(R.string.id_star_project);
     private final String SHARE = InitApp.AppContext.getString(R.string.id_share);
@@ -80,6 +85,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 
         mAppIntro = findPreference(APP_INTRO);
         mDemoVideo = findPreference(DEMO_VIDEO);
+        mCurrentVersion = findPreference(CURRENT_VERSION);
         mCheckUpdate = findPreference(CHECK_UPDATE);
         mStarProject = findPreference(STAR_PROJECT);
         mShare = findPreference(SHARE);
@@ -95,6 +101,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
         mKevinApp = findPreference(KEVIN_APP);
 
         license = findPreference(LICENSE);
+
+        mCurrentVersion.setSummary(InitApp.AppContext.getString(R.string.summary_version)+SystemUtil.getVersionName());
 
         mAppIntro.setOnPreferenceClickListener(this);
         mDemoVideo.setOnPreferenceClickListener(this);
@@ -135,11 +143,18 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
             NetManageUtil.get(VersoinApi.versionUrl)
                     .enqueue(new StringCallback() {
                         @Override
-                        public void onSuccess(String result, Headers headers) {
+                        public void onSuccess(final String result, Headers headers) {
                             if (SystemUtil.getVersionName().equals(result)) {
                                 Snackbar.make(getView(), getString(R.string.notify_current_is_latest), Snackbar.LENGTH_SHORT).show();
                             } else {
-                                Snackbar.make(getView(), getString(R.string.notify_find_new_version) + result, Snackbar.LENGTH_SHORT).show();
+//                                Snackbar.make(getView(), getString(R.string.notify_find_new_version) + result, Snackbar.LENGTH_SHORT).show();
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        showNewVersionDialog(result);
+                                    }
+                                });
+
                             }
                             hideLoading();
                         }
@@ -199,5 +214,30 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
                 progressBar.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void showNewVersionDialog(String newVersion){
+        AlertDialog dialog =  new AlertDialog.Builder(getActivity())
+                .setIcon(R.drawable.logo)
+                .setTitle(InitApp.AppContext.getString(R.string.new_version)+newVersion)
+                .setMessage(InitApp.AppContext.getString(R.string.notify_new_version))
+                .setNegativeButton(InitApp.AppContext.getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setAction("android.intent.action.VIEW");
+                        Uri content_url = Uri.parse("http://fir.im/AwesomeCampus");
+                        intent.setData(content_url);
+                        startActivity(intent);
+                    }
+                })
+                .setNeutralButton(InitApp.AppContext.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+        dialog.getWindow().setLayout(3* DisplayUtil.getScreenWidth(getActivity())/4,-2);
+        dialog.show();
     }
 }

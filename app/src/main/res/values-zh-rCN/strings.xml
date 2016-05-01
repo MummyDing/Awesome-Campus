@@ -167,7 +167,7 @@
     <string name="click_to_login">点击登陆</string>
     <string name="server_error">服务器错误</string>
     <string name="text_github">GitHub</string>
-    <string name="summary_version">Awesome Campus 1.0</string>
+    <string name="summary_version">Awesome Campus Release Version </string>
     <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
     <string name="mummyding_github">https://github.com/MummyDing</string>
     <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
@@ -208,5 +208,7 @@
     <string name="app_intro">应用简介</string>
     <string name="campus_weather">校园天气</string>
     <string name="search_books">搜索</string>
+    <string name="new_version">新版本 </string>
+    <string name="notify_new_version">现在就去下载吧!</string>
 
 </resources>

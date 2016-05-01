@@ -167,7 +167,7 @@
     <string name="text_github">GitHub</string>
     <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到 http://fir.im/AwesomeCampus 下载</string>
     <string name="text_share_awesome_campus">分享"师大+"</string>
-    <string name="summary_version">Awesome Campus 1.0</string>
+    <string name="summary_version">Awesome Campus Release Version </string>
     <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
     <string name="mummyding_github">https://github.com/MummyDing</string>
     <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
@@ -208,5 +208,7 @@
     <string name="app_intro">應用介紹</string>
     <string name="campus_weather">校園天氣</string>
     <string name="search_books">查找</string>
+    <string name="new_version">新版本　</string>
+    <string name="notify_new_version">現在就去下載吧!</string>
 
 </resources>
