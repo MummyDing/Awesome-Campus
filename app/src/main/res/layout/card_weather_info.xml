@@ -114,6 +114,7 @@
                         android:layout_gravity="right"
                         android:layout_margin="10dp"
                         android:gravity="center"
+                        android:tint="?attr/textColor"
                         android:background="@drawable/weather_qing"
                         android:textSize="20sp" />
 

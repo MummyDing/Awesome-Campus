@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,7 @@ public class CourseScoreAdapter extends BaseListAdapter<CourseScoreModel,CourseS
             TypedArray array = mContext.getTheme().obtainStyledAttributes(new int[] {
                     android.R.attr.colorAccent,
             });
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
             myGrad.setColor(array.getColor(0,0xFFFFFF));
             array.recycle();
         }
