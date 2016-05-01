@@ -19,6 +19,7 @@ import com.ramotion.foldingcell.FoldingCell;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.model.life.WeatherInfoModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.weather.WeatherConfig;
 
 /**
@@ -46,9 +47,7 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
     @Override
     public void onBindViewHolder(final VH holder, int position) {
         WeatherInfoModel model = getItem(position);
-        holder.dateTitle.setText(model.getDate()+"\n"
-                +model.getInfo().getDay()[1]
-        +"\n"+model.getInfo().getDay()[2] + "°C ~ "+model.getInfo().getNight()[2] + "°C");
+
         holder.date.setText(model.getDate());
         holder.dayInfo.setText(model.getInfo().getDay()[1]
                 + "\n"
@@ -60,11 +59,26 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
                 + model.getInfo().getNight()[2] + "°C \n"
                 + model.getInfo().getNight()[3] + "\n" +
                 model.getInfo().getNight()[4]);
-        holder.weatherIconSmall.setBackgroundResource(
-                WeatherConfig.WeatherPic
-                        [
-                        WeatherConfig.getWeatherPicNum(model.getInfo().getDay()[1])
-                        ]);
+        if(TimeUtil.getHourMinute()<1800){
+            holder.dateTitle.setText(model.getDate()+"\n"
+                    +model.getInfo().getDay()[1]
+                    +"\n"+model.getInfo().getDay()[2] + "°C ~ "+model.getInfo().getNight()[2] + "°C");
+            holder.weatherIconSmall.setBackgroundResource(
+                    WeatherConfig.WeatherPic
+                            [
+                            WeatherConfig.getWeatherPicNum(model.getInfo().getDay()[1])
+                            ]);
+        }else{
+            holder.dateTitle.setText(model.getDate()+"\n"
+                    +model.getInfo().getNight()[1]
+                    +"\n"+model.getInfo().getDay()[2] + "°C ~ "+model.getInfo().getNight()[2] + "°C");
+            holder.weatherIconSmall.setBackgroundResource(
+                    WeatherConfig.WeatherPic
+                            [
+                            WeatherConfig.getWeatherPicNum(model.getInfo().getNight()[1])
+                            ]);
+        }
+
         holder.fc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

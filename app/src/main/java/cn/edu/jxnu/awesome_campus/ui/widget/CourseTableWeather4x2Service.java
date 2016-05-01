@@ -95,6 +95,7 @@ public class CourseTableWeather4x2Service extends BaseWidgetService {
      */
     private void updateWeather() {
         weatherInfoModel=weatherInfoModelList.get(0);
+        Log.d("取得时间为：","--"+TimeUtil.getHourMinute());
         if(TimeUtil.getHourMinute()<1800){
             rviews.setImageViewResource(R.id.weatherIcon,
                     WeatherConfig.WeatherPic
