@@ -18,7 +18,6 @@
     <string name="film">电影</string>
     <string name="science">科学</string>
     <string name="campus">校内</string>
-    <string name="search_books">搜索</string>
     <string name="book_borrowed">已借</string>
     <string name="reading">阅读</string>
     <string name="atm">ATM</string>
@@ -37,7 +36,7 @@
     <string name="friday">周五</string>
     <string name="saturday">周六</string>
     <string name="sunday">周日</string>
-    <string name="hint_search">搜索图书</string>
+    <string name="hint_search">输入关键字查找图书</string>
     <string name="search">搜索</string>
     <string name="search_result">搜索结果</string>
     <string name="id_campusnews">id_campusnews</string>
@@ -207,5 +206,7 @@
     <string name="no_message">暂无消息</string>
     <string name="notify_no_course">今天没课\n可以好好休息哦~</string>
     <string name="app_intro">应用简介</string>
+    <string name="campus_weather">校园天气</string>
+    <string name="search_books">搜索</string>
 
 </resources>

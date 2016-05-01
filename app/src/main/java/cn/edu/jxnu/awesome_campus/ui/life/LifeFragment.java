@@ -18,9 +18,10 @@ public class LifeFragment extends TopNavigationFragment{
         }else if(fragments.size()>0){
             fragments.clear();
         }
+        fragments.add(new WeatherFragment());
         fragments.add(new CampusExpressFragment());
         fragments.add(new ATMFragment());
-        fragments.add(new WeatherFragment());
+
     }
 
     public static LifeFragment newInstance(){

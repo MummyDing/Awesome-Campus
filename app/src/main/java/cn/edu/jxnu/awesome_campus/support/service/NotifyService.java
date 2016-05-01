@@ -25,6 +25,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyBean;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
+import cn.edu.jxnu.awesome_campus.model.life.WeatherInfoModel;
 import cn.edu.jxnu.awesome_campus.support.boardcast.NotifyClickReceiver;
 import cn.edu.jxnu.awesome_campus.support.utils.common.NotifyUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
@@ -38,6 +39,7 @@ public class NotifyService extends Service {
     private NotificationCompat.Builder builder;
     private PollingThread pollingThread;
     private NotifyModel notifyModel = new NotifyModel();
+    private WeatherInfoModel weatherInfoModel = new WeatherInfoModel();
     private List<NotifyModel>  modelList;
 
     public NotifyService() {
@@ -99,6 +101,8 @@ public class NotifyService extends Service {
         public void run() {
             // 这里请求消息
              notifyModel.loadFromCache();
+            // 刷新天气
+            weatherInfoModel.loadFromNet();
         }
     }
 

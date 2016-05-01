@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.life;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.life.WeatherInfoModel;
@@ -13,7 +15,7 @@ public class WeatherFragment  extends BaseListFragment {
     private WeatherInfoModel model;
     @Override
     public String getTitle() {
-        return "校园天气";//测试用
+        return InitApp.AppContext.getString(R.string.campus_weather);//测试用
     }
 
     @Override
