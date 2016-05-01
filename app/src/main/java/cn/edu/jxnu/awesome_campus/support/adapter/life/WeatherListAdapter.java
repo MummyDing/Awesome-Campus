@@ -60,7 +60,6 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
                 + model.getInfo().getNight()[2] + "°C \n"
                 + model.getInfo().getNight()[3] + "\n" +
                 model.getInfo().getNight()[4]);
-
         holder.weatherIconSmall.setBackgroundResource(
                 WeatherConfig.WeatherPic
                         [

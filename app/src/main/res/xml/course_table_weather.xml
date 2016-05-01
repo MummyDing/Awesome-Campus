@@ -3,4 +3,5 @@
     android:initialLayout="@layout/widget_4x2_course_table_weather"
     android:minHeight="130dp"
     android:minWidth="250dp"
+    android:previewImage="@drawable/w_course_table_weather"
     android:updatePeriodMillis="0"></appwidget-provider>

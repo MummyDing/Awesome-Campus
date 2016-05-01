@@ -20,7 +20,7 @@
                 android:layout_width="@dimen/width_course_icon"
                 android:layout_height="@dimen/width_course_icon"
                 android:layout_gravity="center"
-                android:tint="#fff"/>
+                />
 
             <TextView
                 android:id="@+id/weatherInfo"
