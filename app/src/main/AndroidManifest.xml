@@ -61,21 +61,10 @@
             android:theme="@style/DialogTheme" />
         <activity android:name=".ui.life.CampusExpressDetailsActivity" />
 
-        <receiver
-            android:name=".ui.widget.CourseTable4x2Privider"
-            android:label="课程表4x2">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/course_table4x2" />
 
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-        </receiver>
 
-        <service
-            android:name=".ui.widget.CourseTable4x2Service"
-            android:process=":CourseTable4x2Service" />
+
+
 
         <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.about.AboutActivity" />
@@ -95,6 +84,35 @@
             android:name=".support.boardcast.NotifyClickReceiver"
             android:enabled="true"
             android:exported="true"></receiver>
+
+
+        <receiver
+            android:name=".ui.widget.CourseTable4x2Privider"
+            android:label="课程表">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/course_table4x2" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".ui.widget.CourseTableWeather4x2Privider"
+            android:label="课程表天气">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/course_table_weather" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name=".ui.widget.CourseTable4x2Service"
+            android:process=":CourseTable4x2Service" />
+        <service
+            android:name=".ui.widget.CourseTableWeather4x2Service"
+            android:process=":CourseTableWeather4x2Service" />
+
     </application>
 
 </manifest>

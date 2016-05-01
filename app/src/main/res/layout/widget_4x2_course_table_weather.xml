@@ -5,8 +5,6 @@
     android:background="#00f33333"
     android:orientation="vertical">
 
-
-
         <LinearLayout
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
@@ -22,8 +20,7 @@
                 android:layout_width="@dimen/width_course_icon"
                 android:layout_height="@dimen/width_course_icon"
                 android:layout_gravity="center"
-                android:src="@drawable/weather_qing"
-                android:tint="?attr/cardViewColor"/>
+                android:tint="#fff"/>
 
             <TextView
                 android:id="@+id/weatherInfo"
@@ -31,8 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:gravity="center_vertical"
-                android:text="qing"
-                android:textColor="?attr/cardViewColor"
+                android:text=""
+                android:textColor="#fff"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -57,7 +54,7 @@
                 android:layout_height="@dimen/width_course_icon"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_time"
-                android:tint="?attr/cardViewColor"/>
+                android:tint="#fff"/>
 
             <TextView
                 android:id="@+id/courseTime"
@@ -66,7 +63,7 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="center_vertical"
                 android:text="20:00 ~ 21:00"
-                android:textColor="?attr/cardViewColor"
+                android:textColor="#fff"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -79,7 +76,7 @@
                 android:layout_width="@dimen/width_course_icon"
                 android:layout_height="@dimen/width_course_icon"
                 android:layout_gravity="center"
-                android:tint="?attr/cardViewColor"
+                android:tint="#fff"
                 android:src="@drawable/ic_course" />
 
             <TextView
@@ -89,7 +86,7 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="center_vertical"
                 android:text="操作系统"
-                android:textColor="?attr/cardViewColor"
+                android:textColor="#fff"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -102,7 +99,7 @@
                 android:layout_width="@dimen/width_course_icon"
                 android:layout_height="@dimen/width_course_icon"
                 android:layout_gravity="center"
-                android:tint="?attr/cardViewColor"
+                android:tint="#fff"
                 android:src="@drawable/ic_location"
                 />
 
@@ -113,7 +110,7 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
                 android:text="X4313"
-                android:textColor="?attr/cardViewColor"
+                android:textColor="#fff"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -145,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text=""
-                    android:textColor="?attr/cardViewColor"
+                    android:textColor="#fff"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -159,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text=""
-                    android:textColor="?attr/cardViewColor"
+                    android:textColor="#fff"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -173,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text=""
-                    android:textColor="?attr/cardViewColor"
+                    android:textColor="#fff"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
@@ -183,7 +180,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="9"
-            android:textColor="?attr/cardViewColor"
+            android:textColor="#fff"
             android:gravity="center"
             android:textSize="20sp"
             android:text="@string/initializing" />
