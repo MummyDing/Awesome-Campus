@@ -61,7 +61,7 @@
     <string name="hint_null_input">輸入不能爲空</string>
     <string name="hint_wrong_studentid">學號錯誤!!!</string>
     <string name="hint_wrong_password">密碼錯誤!!!</string>
-    <string name="all_courses_are_over">沒有課了！</string>
+    <string name="all_courses_are_over">今日課程已完畢</string>
     <string name="no_course_today">今天沒課喔~</string>
     <string name="initializing">初始化...</string>
     <string name="need_login_education_first">請先登陸教務在線!</string>

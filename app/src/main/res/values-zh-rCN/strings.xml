@@ -62,7 +62,6 @@
     <string name="hint_null_input">输入不能为空</string>
     <string name="hint_wrong_studentid">学号错误!!!</string>
     <string name="hint_wrong_password">密码错误!!!</string>
-    <string name="all_courses_are_over">没有课了</string>
     <string name="no_course_today">今天没课哦~</string>
     <string name="initializing">初始化...</string>
     <string name="need_login_education_first">请先登陆教务在线!</string>
@@ -210,5 +209,6 @@
     <string name="search_books">搜索</string>
     <string name="new_version">新版本 </string>
     <string name="notify_new_version">现在就去下载吧!</string>
+    <string name="all_courses_are_over">今天的课都上完啦</string>
 
 </resources>
