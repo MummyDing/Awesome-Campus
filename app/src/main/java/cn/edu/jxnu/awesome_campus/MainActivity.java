@@ -133,8 +133,8 @@ public class MainActivity extends BaseActivity implements HomeView{
         if(id == DrawerItem.HOME.getId()){
 
             presenter.clearAllFragments();
-            updateNotifyMenu();
             switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
+            updateNotifyMenu();
         }else if(id == DrawerItem.LEISURE.getId()){
             // switch fragment
             presenter.clearAllFragments();
@@ -143,11 +143,12 @@ public class MainActivity extends BaseActivity implements HomeView{
             presenter.clearAllFragments();
             switchFragment(LifeFragment.newInstance(),DrawerItem.LIFE.getItemName());
         }else if(id == DrawerItem.LIBRARY.getId()){
-            // switch menu  搜索框 下拉主题还有点问题
-            updateMenu();
+
             // switch fragment
             presenter.clearAllFragments();
             switchFragment(LibraryFragment.newInstance(),DrawerItem.LIBRARY.getItemName());
+            // switch menu  搜索框 下拉主题还有点问题
+            updateMenu();
         }else if(id == DrawerItem.EDUCATION.getId()){
             presenter.clearAllFragments();
             switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
@@ -241,10 +242,12 @@ public class MainActivity extends BaseActivity implements HomeView{
         setTitle(getString(R.string.Login));
         fragmentTransaction.replace(R.id.framelayout, LoginFragment.newInstance());
         fragmentTransaction.commit();
+        if (menu != null) menu.clear();
     }
 
     public void switchToLibrary(){
         switchFragment(LibraryFragment.newInstance(),getString(R.string.library));
+        updateMenu();
     }
 
 
@@ -257,6 +260,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             case EVENT.JUMP_TO_MAIN:
                 presenter.clearAllFragments();
                 switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
+                updateNotifyMenu();
                 break;
             case EVENT.JUMP_TO_EDUCATION_LOGIN:
                 switchToLogin();
@@ -314,8 +318,8 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     private void updateNotifyMenu(boolean flag){
         if (menu == null) return;
+        menu.clear();
         if (presenter.getCurrentSelectedID() == DrawerItem.HOME.getId()){
-            menu.clear();
             if (flag){
                 getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
             }else {
@@ -332,8 +336,8 @@ public class MainActivity extends BaseActivity implements HomeView{
     private void updateMenu(){
         if (menu == null) return;
 //        Icon unreadIcon=(Icon)findViewById(R.id.menu_notify_unread);
+        menu.clear();
         if (presenter.getCurrentSelectedID() == DrawerItem.LIBRARY.getId()){
-            menu.clear();
             getMenuInflater().inflate(R.menu.menu_library, menu);
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             MenuItem searchItem = menu.findItem(R.id.menu_search);
