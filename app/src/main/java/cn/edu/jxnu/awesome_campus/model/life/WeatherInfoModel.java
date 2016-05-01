@@ -59,7 +59,7 @@ public class WeatherInfoModel implements IModel<WeatherInfoModel> {
     }
 
     public static class Info{
-        public Info(String[] night, String[] day) {
+        public Info(String[] day, String[] night) {
             this.night = night;
             this.day = day;
         }

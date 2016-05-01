@@ -59,7 +59,8 @@ public class WeatherListAdapter extends BaseListAdapter<WeatherInfoModel, Weathe
                 + model.getInfo().getNight()[2] + "°C \n"
                 + model.getInfo().getNight()[3] + "\n" +
                 model.getInfo().getNight()[4]);
-        if(TimeUtil.getHourMinute()<1800){
+        int nowTime=Integer.parseInt(model.getInfo().getNight()[5].substring(0, 2)+model.getInfo().getNight()[5].substring(3, 5));
+        if(TimeUtil.getHourMinute()<nowTime){
             holder.dateTitle.setText(model.getDate()+"\n"
                     +model.getInfo().getDay()[1]
                     +"\n"+model.getInfo().getDay()[2] + "°C ~ "+model.getInfo().getNight()[2] + "°C");
