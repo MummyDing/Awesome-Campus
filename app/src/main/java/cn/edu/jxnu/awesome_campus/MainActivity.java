@@ -16,6 +16,7 @@ import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
@@ -320,6 +321,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             }else {
                 getMenuInflater().inflate(R.menu.menu_notify_none, menu);
             }
+
         }
     }
 
@@ -329,7 +331,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     private void updateMenu(){
         if (menu == null) return;
-
+//        Icon unreadIcon=(Icon)findViewById(R.id.menu_notify_unread);
         if (presenter.getCurrentSelectedID() == DrawerItem.LIBRARY.getId()){
             menu.clear();
             getMenuInflater().inflate(R.menu.menu_library, menu);
