@@ -12,9 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -35,6 +38,12 @@ public class CourseTable4x2Service extends BaseWidgetService {
     RemoteViews rviews;
     List<CourseBean> courseList;
     private int nowWeek;
+    private static final String TAG="CourseTable4x2Service";
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+    }
 
     @Override
     protected void init() {
@@ -159,4 +168,10 @@ public class CourseTable4x2Service extends BaseWidgetService {
             Log.d("pos的值：", "--" + pos);
         }
     };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
+    }
 }

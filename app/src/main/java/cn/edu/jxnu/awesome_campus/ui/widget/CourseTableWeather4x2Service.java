@@ -7,9 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -34,6 +37,15 @@ public class CourseTableWeather4x2Service extends BaseWidgetService {
     RemoteViews rviews;
     List<CourseBean> courseList;
     private int nowWeek;
+    private static final String TAG="CourseTableWeather4x2Service";
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+
+    }
+
     @Override
     protected void init() {
         context = this;
@@ -157,5 +169,11 @@ public class CourseTableWeather4x2Service extends BaseWidgetService {
     }
 
     private void needLoginInfo() {
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
     }
 }

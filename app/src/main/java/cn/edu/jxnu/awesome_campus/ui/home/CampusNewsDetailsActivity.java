@@ -1,13 +1,17 @@
 package cn.edu.jxnu.awesome_campus.ui.home;
 
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.PersistableBundle;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import com.squareup.okhttp.Headers;
+import com.tendcloud.tenddata.TCAgent;
 
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.table.home.CampusNewsTable;
@@ -32,11 +36,18 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseDetailsActivity;
 
 public class CampusNewsDetailsActivity extends BaseDetailsActivity{
 
-
     public static final String TAG = "CampusNewsDetailsActivity";
 
     private CampusNewsModel model;
     private Handler handler = new Handler(Looper.getMainLooper());
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+    }
+
     @Override
     protected void onDataRefresh() {
         if (TextUtil.isNull(model.getNewsDetails())){
@@ -114,5 +125,11 @@ public class CampusNewsDetailsActivity extends BaseDetailsActivity{
     @Override
     protected String getShareInfo() {
         return "["+model.getNewsTitle()+"]:"+ Urlconfig.CampusNews_Base_URL+model.getNewsURL()+" ( "+getString(R.string.text_share_from)+" "+getString(R.string.app_name)+")";
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
     }
 }

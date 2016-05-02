@@ -7,11 +7,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import cn.edu.jxnu.awesome_campus.Config;
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -20,7 +23,7 @@ import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 
 public class SearchResultDialog extends Activity {
-
+    private static final String TAG="SearchResultDialog";
     private TextView bookTitle;
     private TextView bookNumber;
     private TextView bookClass;
@@ -35,6 +38,7 @@ public class SearchResultDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         setTheme(ThemeConfig.themeDialogStyle[Config.themeSelected]);
         setContentView(R.layout.dialog_search_result);
         EventBus.getDefault().register(this);
@@ -71,6 +75,7 @@ public class SearchResultDialog extends Activity {
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
 

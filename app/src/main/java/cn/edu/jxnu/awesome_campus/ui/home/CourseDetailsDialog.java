@@ -25,6 +25,8 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 
 public class CourseDetailsDialog extends Activity {
 
+    private static final String TAG="CourseDetailsDialog";
+
     private TextView courseName;
     private TextView courseID;
     private TextView courseTeacher;
@@ -39,6 +41,9 @@ public class CourseDetailsDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+
         setTheme(ThemeConfig.themeDialogStyle[Config.themeSelected]);
         setContentView(R.layout.dialog_course_info);
         EventBus.getDefault().register(this);
@@ -94,6 +99,8 @@ public class CourseDetailsDialog extends Activity {
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
 

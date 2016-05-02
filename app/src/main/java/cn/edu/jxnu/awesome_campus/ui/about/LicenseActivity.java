@@ -1,5 +1,11 @@
 package cn.edu.jxnu.awesome_campus.ui.about;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
+
+import com.tendcloud.tenddata.TCAgent;
+
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
 
@@ -9,6 +15,13 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class LicenseActivity extends BaseWebViewActivity {
+    private static final String TAG="LicenseActivity";
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+    }
+
     @Override
     protected String getLink() {
         super.title=getString(R.string.text_license);
@@ -28,5 +41,11 @@ public class LicenseActivity extends BaseWebViewActivity {
     @Override
     protected String getLinkParseData() {
         return null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
     }
 }

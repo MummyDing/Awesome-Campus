@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import org.greenrobot.eventbus.EventBus;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
 
 /**
@@ -21,6 +24,7 @@ public class BookSearchDetailsActivity extends BaseWebViewActivity{
         Intent intent=getIntent();
         url=intent.getStringExtra("URL");
         title=intent.getStringExtra("TITLE");
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         super.onCreate(savedInstanceState);
 
     }
@@ -50,6 +54,7 @@ public class BookSearchDetailsActivity extends BaseWebViewActivity{
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
 
     }

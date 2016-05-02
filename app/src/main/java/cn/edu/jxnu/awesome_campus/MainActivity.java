@@ -31,6 +31,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -77,7 +79,7 @@ import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.OnColorChangedLi
 public class MainActivity extends BaseActivity implements HomeView{
 
     private long lastPressTime = 0;
-
+    private static final String TAG="MainActivity";
     private Toolbar toolbar;
     private Menu menu;
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -96,7 +98,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         if (SystemUtil.getVersionCode() != mSettings.getInt(Settings.INTRO_VERSION,0)) {
             mSettings.putInt(Settings.INTRO_VERSION,SystemUtil.getVersionCode());
             Intent intent = new Intent(MainActivity.this, AppGuideActivity.class);
@@ -387,6 +389,8 @@ public class MainActivity extends BaseActivity implements HomeView{
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
         PollingUtils.stopPollingService(this,NotifyService.class,NotifyService.ACTION);
+
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
 }

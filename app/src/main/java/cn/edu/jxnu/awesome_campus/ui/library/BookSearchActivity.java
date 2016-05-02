@@ -17,6 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -33,6 +35,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.SwipeBackActivity;
 
 public class BookSearchActivity extends BaseToolbarActivity {
+    private static final String TAG="BookSearchActivity";
     private String keyword;
     private BookSearchResultModel model;
     private RecyclerView recyclerView;
@@ -46,7 +49,7 @@ public class BookSearchActivity extends BaseToolbarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         EventBus.getDefault().register(this);
-
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         initToolbar();
 
 
@@ -89,6 +92,7 @@ public class BookSearchActivity extends BaseToolbarActivity {
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
 

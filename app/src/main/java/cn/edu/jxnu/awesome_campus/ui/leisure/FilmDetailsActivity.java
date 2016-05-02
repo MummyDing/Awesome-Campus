@@ -1,6 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.view.MarginLayoutParamsCompat;
@@ -15,7 +16,9 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.squareup.okhttp.Headers;
+import com.tendcloud.tenddata.TCAgent;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -34,6 +37,13 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseDetailsActivity;
 public class FilmDetailsActivity extends BaseDetailsActivity {
     public static final String TAG = "FilmDetailsActivity";
     private FilmModel model = new FilmModel();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+    }
+
     @Override
     protected void onDataRefresh() {
 
@@ -95,5 +105,12 @@ public class FilmDetailsActivity extends BaseDetailsActivity {
     protected String getShareInfo() {
         return "["+model.getTitle()+"]:"+model.getUrl()+" ( "+getString(R.string.text_share_from)+" "+getString(R.string.app_name)+")";
 
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
     }
 }

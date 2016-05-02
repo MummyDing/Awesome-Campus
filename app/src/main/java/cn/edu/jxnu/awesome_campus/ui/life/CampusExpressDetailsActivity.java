@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.tendcloud.tenddata.TCAgent;
+
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -16,6 +19,13 @@ public class CampusExpressDetailsActivity extends BaseDetailsActivity {
 
     public static final String  TAG = "CampusExpressDetailsActivity";
     private CampusExpressModel model;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+    }
+
     @Override
     protected void onDataRefresh() {
 
@@ -52,4 +62,9 @@ public class CampusExpressDetailsActivity extends BaseDetailsActivity {
                 +"\nTel:"+model.getExpTel()+getString(R.string.text_share_from)+" ( "+getString(R.string.text_share_from)+" "+getString(R.string.app_name)+")";
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
+    }
 }

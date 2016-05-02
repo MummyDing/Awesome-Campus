@@ -2,6 +2,8 @@ package cn.edu.jxnu.awesome_campus.ui.settings;
 
 import android.os.Bundle;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -17,7 +19,7 @@ public class SettingsActivity extends BaseToolbarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         initToolbar();
         setToolbarTitle(InitApp.AppContext.getString(R.string.settings));
 
@@ -29,5 +31,11 @@ public class SettingsActivity extends BaseToolbarActivity{
     protected void onStop() {
         super.onStop();
         EventBus.getDefault().post(new EventModel<Void>(EVENT.UPDATE_SELECTED_MENU_TO_HOME));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
     }
 }

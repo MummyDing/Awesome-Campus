@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.widget.NestedScrollView;
@@ -7,11 +8,13 @@ import android.view.View;
 
 
 import com.squareup.okhttp.Headers;
+import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.table.leisure.DailyTable;
@@ -35,6 +38,14 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
     public static final String TAG = "DailyDetailsActivity";
     private DailyModel model;
     private static Handler handler = new Handler(Looper.getMainLooper());
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+    }
+
     @Override
     protected void onDataRefresh() {
 
@@ -111,5 +122,11 @@ public class DailyDetailsActivity extends BaseDetailsActivity{
     @Override
     protected String getShareInfo() {
         return "["+model.getTitle()+"]:"+model.getUrl()+" ( "+getString(R.string.text_share_from)+" "+getString(R.string.app_name)+")";
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
     }
 }

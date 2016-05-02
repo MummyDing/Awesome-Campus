@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.Headers;
+import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,7 +37,6 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 
 public class BookBorrowedDialog extends Activity {
-
     private TextView bookCode;
     private TextView bookTitle;
     private TextView author;
@@ -52,6 +52,7 @@ public class BookBorrowedDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         setTheme(ThemeConfig.themeDialogStyle[Config.themeSelected]);
         setContentView(R.layout.dialog_book_borrowed);
         EventBus.getDefault().register(this);
@@ -163,6 +164,7 @@ public class BookBorrowedDialog extends Activity {
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
 }

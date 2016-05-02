@@ -95,12 +95,14 @@ public class CourseTableFragment extends BaseListFragment{
                 break;
 
             case EVENT.COURSE_TABLE_LOAD_CACHE_SUCCESS:
+                Log.e("---","COURSE_TABLE_LOAD_CACHE_SUCCESS");
                 weekCourse = eventModel.getDataList();
                 adapter.newList(eventModel.getDataList());
                 courseInfoModel.loadFromCache();
                 break;
 
             case EVENT.COURSE_TABLE_LOAD_CACHE_FAILURE:
+                Log.e("---","COURSE_TABLE_LOAD_CACHE_FAILURE");
                 onDataRefresh();
                 break;
 

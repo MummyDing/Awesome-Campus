@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.leisure;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.widget.NestedScrollView;
@@ -10,9 +11,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.squareup.okhttp.Headers;
+import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.table.leisure.ScienceTable;
@@ -38,6 +41,12 @@ public class ScienceDetailsActivity extends BaseDetailsActivity {
     private ScienceModel model;
 
     private Handler handler = new Handler(Looper.getMainLooper());
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+    }
 
     @Override
     protected void onDataRefresh() {
@@ -143,6 +152,12 @@ public class ScienceDetailsActivity extends BaseDetailsActivity {
     @Override
     protected String getShareInfo() {
         return "["+model.getTitle()+"]:"+model.getUrl()+" ( "+getString(R.string.text_share_from)+" "+getString(R.string.app_name)+")";
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
     }
 }
 

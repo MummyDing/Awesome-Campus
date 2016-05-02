@@ -106,6 +106,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(NotifyTable.CREATE_TABLE);
             db.execSQL(DROP_TABLE+WeatherInfoTable.NAME);
             db.execSQL(WeatherInfoTable.CREATE_TABLE);
+            db.execSQL(DROP_TABLE+CourseTable.NAME);
+            db.execSQL(CourseTable.CREATE_TABLE);
         }
     }
     public static synchronized DatabaseHelper getInstance(){

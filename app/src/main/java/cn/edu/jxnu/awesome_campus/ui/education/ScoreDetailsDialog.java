@@ -10,11 +10,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import cn.edu.jxnu.awesome_campus.Config;
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -25,6 +28,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.TermUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 
 public class ScoreDetailsDialog extends Activity {
+    private static final String TAG="ScoreDetailsDialog";
 
     private TextView courseName;
     private TextView courseCredit;
@@ -36,6 +40,8 @@ public class ScoreDetailsDialog extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         Log.d("当前选择的颜色下标为：",Config.themeSelected+"");
         setTheme(ThemeConfig.themeDialogStyle[Config.themeSelected]);
         setContentView(R.layout.dialog_course_score);
@@ -72,6 +78,8 @@ public class ScoreDetailsDialog extends Activity {
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
 

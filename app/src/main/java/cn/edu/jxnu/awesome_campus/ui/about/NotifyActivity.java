@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 
+import com.tendcloud.tenddata.TCAgent;
+
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
 
@@ -13,13 +16,15 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseWebViewActivity;
  * Blog: http://blog.csdn.net/mummyding
  */
 public class NotifyActivity extends BaseWebViewActivity {
+    private static final String TAG="NotifyActivity";
 
     private String type;
     private String data;
     private String title;
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
     }
 
     @Override
@@ -63,5 +68,11 @@ public class NotifyActivity extends BaseWebViewActivity {
     @Override
     protected String getLinkParseData() {
         return null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
     }
 }
