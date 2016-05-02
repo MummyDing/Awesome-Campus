@@ -8,11 +8,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import cn.edu.jxnu.awesome_campus.Config;
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -39,6 +42,7 @@ public class CourseDetailsDialog extends Activity {
         setTheme(ThemeConfig.themeDialogStyle[Config.themeSelected]);
         setContentView(R.layout.dialog_course_info);
         EventBus.getDefault().register(this);
+
     }
 
     private void initView(){

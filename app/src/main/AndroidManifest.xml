@@ -3,6 +3,10 @@
     package="cn.edu.jxnu.awesome_campus">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"  />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"  />
+    <uses-permission android:name="android.permission.GET_TASKS"  />
 
     <application
         android:name=".InitApp"
@@ -112,7 +116,8 @@
         <service
             android:name=".ui.widget.CourseTableWeather4x2Service"
             android:process=":CourseTableWeather4x2Service" />
-
+        <meta-data android:name="TD_APP_ID" android:value="AA659C3528C62C870A16860692AD6325" />
+        <meta-data android:name="TD_CHANNEL_ID" android:value="00001" />
     </application>
 
 </manifest>
