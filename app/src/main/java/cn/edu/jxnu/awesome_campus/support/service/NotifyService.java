@@ -128,7 +128,7 @@ public class NotifyService extends Service {
                 modelList = Arrays.asList(notifyBean.getMsgList());
                 notifyModel.cacheAll(modelList);
                 notifyUpdateMenu(true);
-                showNotify(modelList.get(modelList.size() - 1));
+                showNotify(modelList.get(0));
                 break;
             case EVENT.NOTIFY_REFRESH_FAILURE:
                 break;

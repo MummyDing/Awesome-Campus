@@ -71,9 +71,14 @@ public class CourseTableFragment extends BaseListFragment{
 
     @Override
     public void initView() {
-        setOnLineLayout(EducationLoginUtil.isLogin());
-        courseTableModel.loadFromCache();
-        tip.setText(InitApp.AppContext.getString(R.string.notify_no_course));
+
+        if (EducationLoginUtil.isLogin()){
+            setOnLineLayout(true);
+            courseTableModel.loadFromCache();
+            tip.setText(InitApp.AppContext.getString(R.string.notify_no_course));
+        }else {
+            setOnLineLayout(false);
+        }
     }
 
     @Override

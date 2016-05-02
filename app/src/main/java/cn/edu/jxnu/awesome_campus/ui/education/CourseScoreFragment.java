@@ -58,7 +58,6 @@ public class CourseScoreFragment extends BaseListFragment {
                 @Override
                 public void onTermChanged(int termID, String termName) {
                     adapter.newList(getCourseScoreByTerm(termID));
-                    Log.d("学期",termName);
                 }
             });
             spinnerWrapper.build((MaterialSpinner) parentView.findViewById(R.id.spinner));

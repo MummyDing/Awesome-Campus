@@ -93,7 +93,7 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if(list.size() != 0){
+                if(!list.isEmpty()){
                     // 发送成功消息
                     EventBus.getDefault().post(new EventModel<CourseTableModel>(EVENT.COURSE_TABLE_LOAD_CACHE_SUCCESS,list));
                 }else{
