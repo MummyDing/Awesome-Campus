@@ -39,11 +39,7 @@ public class CourseTable4x2Service extends BaseWidgetService {
     List<CourseBean> courseList;
     private int nowWeek;
     private static final String TAG="CourseTable4x2Service";
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        TCAgent.onPageStart(InitApp.AppContext, TAG);
-    }
+
 
     @Override
     protected void init() {
@@ -169,9 +165,5 @@ public class CourseTable4x2Service extends BaseWidgetService {
         }
     };
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        TCAgent.onPageEnd(InitApp.AppContext, TAG);
-    }
+
 }

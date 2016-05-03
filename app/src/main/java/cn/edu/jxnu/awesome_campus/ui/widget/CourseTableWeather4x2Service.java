@@ -39,12 +39,7 @@ public class CourseTableWeather4x2Service extends BaseWidgetService {
     private int nowWeek;
     private static final String TAG="CourseTableWeather4x2Service";
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        TCAgent.onPageStart(InitApp.AppContext, TAG);
 
-    }
 
     @Override
     protected void init() {
@@ -171,9 +166,4 @@ public class CourseTableWeather4x2Service extends BaseWidgetService {
     private void needLoginInfo() {
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        TCAgent.onPageEnd(InitApp.AppContext, TAG);
-    }
 }

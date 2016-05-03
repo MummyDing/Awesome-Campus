@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TCAgent.onPageStart(InitApp.AppContext, TAG);
+//        TCAgent.onPageStart(InitApp.AppContext, TAG);
         if (SystemUtil.getVersionCode() != mSettings.getInt(Settings.INTRO_VERSION,0)) {
             mSettings.putInt(Settings.INTRO_VERSION,SystemUtil.getVersionCode());
             Intent intent = new Intent(MainActivity.this, AppGuideActivity.class);
@@ -390,7 +390,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         EventBus.getDefault().unregister(this);
         PollingUtils.stopPollingService(this,NotifyService.class,NotifyService.ACTION);
 
-        TCAgent.onPageEnd(InitApp.AppContext, TAG);
+//        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
 }
