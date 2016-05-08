@@ -15,7 +15,6 @@
     <string name="course_table">课表</string>
     <string name="compus_news">校闻</string>
     <string name="daily">日报</string>
-    <string name="film">电影</string>
     <string name="science">科学</string>
     <string name="campus">校内</string>
     <string name="book_borrowed">已借</string>
@@ -210,5 +209,6 @@
     <string name="new_version">新版本 </string>
     <string name="notify_new_version">现在就去下载吧!</string>
     <string name="all_courses_are_over">今天的课都上完啦</string>
+    <string name="film">影评</string>
 
 </resources>

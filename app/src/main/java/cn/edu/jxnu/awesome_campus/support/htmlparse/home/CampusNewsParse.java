@@ -1,6 +1,5 @@
 package cn.edu.jxnu.awesome_campus.support.htmlparse.home;
 
-import android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -54,7 +53,6 @@ public class CampusNewsParse {
             HtmlUtil hu = new HtmlUtil(parseStr);
             List tempStrList = hu.parseString(ITEM_CSS);
             List tempRawStrList = hu.parseRawString(ITEM_CSS);
-//            Log.d("两个列表大小分别为：",tempRawStrList.size()+"  ||  "+tempStrList.size());
             for (int i = 0; i < tempStrList.size(); i++) {
                 String tempStr = tempStrList.get(i).toString();
                 String newsTitle = tempStr.substring(0, tempStr.length() - REFERENCE_STR.length()).trim();
@@ -96,7 +94,6 @@ public class CampusNewsParse {
      * create at 2016/2/6 21:25
      */
     private void fillEndList() {
-//        Log.d("结果填充列表大小：",resultList.size()+"");
         for (int i = 0; i <= resultList.size() - GROUPSIZE; i = i + GROUPSIZE) {
             endList.add(new CampusNewsModel(
                     resultList.get(i).toString(),
@@ -107,6 +104,4 @@ public class CampusNewsParse {
             ));
         }
     }
-
-
 }
