@@ -27,6 +27,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -286,6 +287,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                 });
                 break;
             case EVENT.UPDATE_MENU:
+                Log.d(TAG,"更新主页通知menu");
                 updateNotifyMenu((Boolean) eventModel.getData());
                 break;
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
@@ -384,6 +386,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             }
         }
         updateNotifyMenu();
+        updateMenu();
     }
     @Override
     protected void onDestroy() {
