@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.view.Guide;
+package cn.edu.jxnu.awesome_campus.view.guide;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

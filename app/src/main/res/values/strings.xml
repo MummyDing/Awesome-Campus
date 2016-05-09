@@ -108,7 +108,7 @@
     <string name="text_app_intro">App Introduction</string>
     <string name="id_current_version">current_version</string>
     <string name="text_current_version">Current Version</string>
-    <string name="summary_version">Awesome Campus Release Version </string>
+    <string name="summary_version">Release Version </string>
     <string name="id_check_update">check_update</string>
     <string name="text_check_update">Check Update</string>
     <string name="id_demo_video">demo_video</string>
@@ -120,7 +120,8 @@
     <string name="text_share_app">Share Awesome Campus</string>
     <string name="text_mummyding">MummyDing</string>
     <string name="id_mummy_blog">mummy_blog</string>
-    <string name="text_blog">Blog</string>
+    <string name="text_blog_mummyding">MummyDing\'s Blog</string>
+    <string name="text_blog_kevinwu">KevinWu\'s Page</string>
     <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
     <string name="id_github_mummy">mummy_github</string>
     <string name="text_github">GitHub</string>
@@ -134,7 +135,7 @@
     <string name="summary_ytweather">An Weather app for Old people</string>
     <string name="text_kevinwu">KevinWu</string>
     <string name="id_kevin_blog">kevin_blog</string>
-    <string name="kevin_blog">http://kevinwu1993.github.io</string>
+    <string name="kevin_blog">http://www.kevinwu.cn</string>
     <string name="kevin_github">https://github.com/KevinWu1993</string>
     <string name="kevin_email">wqd1993@qq.com</string>
     <string name="text_thanks">Thanks</string>
@@ -222,4 +223,7 @@
     <string name="campus_weather">Campus Weather</string>
     <string name="new_version">"New Version "</string>
     <string name="notify_new_version">Found New Version!\nDo you want to download it?</string>
+    <string name="authors">Authors</string>
+    <string name="feedback">Feedback</string>
+    <string name="id_feedback">id_feedback</string>
 </resources>

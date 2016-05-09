@@ -112,7 +112,8 @@
     <string name="text_app_intro">應用簡介</string>
     <string name="text_attention">注意</string>
     <string name="text_attention_summary">該應用禁止用於商業用途</string>
-    <string name="text_blog">部落格</string>
+    <string name="text_blog_mummyding">MummyDing的部落格</string>
+    <string name="text_blog_kevinwu">KevinWu的個人主頁</string>
     <string name="text_check_update">檢查更新</string>
     <string name="text_thanks">致謝</string>
     <string name="text_share_app">分享"師大+"</string>
@@ -167,14 +168,14 @@
     <string name="text_github">GitHub</string>
     <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到 http://fir.im/AwesomeCampus 下载</string>
     <string name="text_share_awesome_campus">分享"师大+"</string>
-    <string name="summary_version">Awesome Campus Release Version </string>
+    <string name="summary_version">Release Version</string>
     <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
     <string name="mummyding_github">https://github.com/MummyDing</string>
     <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
     <string name="mummy_email">MummyDing@outlook.com</string>
     <string name="link">link</string>
     <string name="link_data">link_data</string>
-    <string name="kevin_blog">http://kevinwu1993.github.io</string>
+    <string name="kevin_blog">http://www.kevinwu.cn</string>
     <string name="kevin_email">wqd1993@qq.com</string>
     <string name="kevin_github">https://github.com/KevinWu1993</string>
     <string name="id_type">type</string>
@@ -210,5 +211,8 @@
     <string name="search_books">查找</string>
     <string name="new_version">新版本　</string>
     <string name="notify_new_version">現在就去下載吧!</string>
+    <string name="authors">作者</string>
+    <string name="feedback">意見反饋</string>
+    <string name="id_feedback">id_feedback</string>
 
 </resources>

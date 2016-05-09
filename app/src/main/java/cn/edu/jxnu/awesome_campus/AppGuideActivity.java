@@ -1,16 +1,12 @@
 package cn.edu.jxnu.awesome_campus;
 
-import android.graphics.Color;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 
-import cn.edu.jxnu.awesome_campus.view.Guide.Slide;
+import cn.edu.jxnu.awesome_campus.view.guide.Slide;
 
 public class AppGuideActivity extends AppIntro2 {
 

@@ -111,7 +111,8 @@
     <string name="summary_yingzi">师大+摄影(负责快递图片)\n个人微信订阅号:ershisuizhihou</string>
     <string name="text_app_intro">应用简介</string>
     <string name="text_check_update">检查更新</string>
-    <string name="text_blog">博客</string>
+    <string name="text_blog_mummyding">MummyDing的博客</string>
+    <string name="text_blog_kevinwu">KevinWu的主页</string>
     <string name="text_attention_summary">该应用禁止用于商业用途</string>
     <string name="text_attention">注意</string>
     <string name="text_copyright">版权</string>
@@ -165,14 +166,14 @@
     <string name="click_to_login">点击登陆</string>
     <string name="server_error">服务器错误</string>
     <string name="text_github">GitHub</string>
-    <string name="summary_version">Awesome Campus Release Version </string>
+    <string name="summary_version">Release Version</string>
     <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
     <string name="mummyding_github">https://github.com/MummyDing</string>
     <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
     <string name="mummy_email">MummyDing@outlook.com</string>
     <string name="link">link</string>
     <string name="link_data">link_data</string>
-    <string name="kevin_blog">http://kevinwu1993.github.io</string>
+    <string name="kevin_blog">http://www.kevinwu.cn</string>
     <string name="kevin_email">wqd1993@qq.com</string>
     <string name="kevin_github">https://github.com/KevinWu1993</string>
     <string name="id_type">type</string>
@@ -210,5 +211,8 @@
     <string name="notify_new_version">现在就去下载吧!</string>
     <string name="all_courses_are_over">今天的课都上完啦</string>
     <string name="film">影评</string>
+    <string name="authors">作者</string>
+    <string name="feedback">意见反馈</string>
+    <string name="id_feedback">id_feedback</string>
 
 </resources>

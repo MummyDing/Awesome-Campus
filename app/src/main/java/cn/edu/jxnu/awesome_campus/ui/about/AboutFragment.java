@@ -43,7 +43,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 
     private Preference mAppIntro;
     private Preference mDemoVideo;
-    private Preference mCurrentVersion;
+//    private Preference mCurrentVersion;
+    private Preference mFeedback;
     private Preference mCheckUpdate;
     private Preference mStarProject;
     private Preference mShare;
@@ -57,6 +58,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private Preference mKevinApp;
     private Preference license;
 
+    private final String FEEDBACK=InitApp.AppContext.getString(R.string.id_feedback);;
     private final String APP_INTRO = InitApp.AppContext.getString(R.string.id_app_intro);
     private final String DEMO_VIDEO = InitApp.AppContext.getString(R.string.id_demo_video);
     private final String CURRENT_VERSION = InitApp.AppContext.getString(R.string.id_current_version);
@@ -64,14 +66,14 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private final String STAR_PROJECT = InitApp.AppContext.getString(R.string.id_star_project);
     private final String SHARE = InitApp.AppContext.getString(R.string.id_share);
     private final String MUMMY_BLOG = InitApp.AppContext.getString(R.string.id_mummy_blog);
-    private final String MUMMY_GITHUB = InitApp.AppContext.getString(R.string.id_github_mummy);
-    private final String MUMMY_EMAIL = InitApp.AppContext.getString(R.string.id_mummy_email);
-    private final String MUMMY_APP = InitApp.AppContext.getString(R.string.id_mummy_app);
+//    private final String MUMMY_GITHUB = InitApp.AppContext.getString(R.string.id_github_mummy);
+//    private final String MUMMY_EMAIL = InitApp.AppContext.getString(R.string.id_mummy_email);
+//    private final String MUMMY_APP = InitApp.AppContext.getString(R.string.id_mummy_app);
 
     private final String KEVIN_BLOG = InitApp.AppContext.getString(R.string.id_kevin_blog);
-    private final String KEVIN_GITHUB = InitApp.AppContext.getString(R.string.id_kevin_github);
-    private final String KEVIN_EMAIL = InitApp.AppContext.getString(R.string.id_kevin_email);
-    private final String KEVIN_APP = InitApp.AppContext.getString(R.string.id_kevin_app);
+//    private final String KEVIN_GITHUB = InitApp.AppContext.getString(R.string.id_kevin_github);
+//    private final String KEVIN_EMAIL = InitApp.AppContext.getString(R.string.id_kevin_email);
+//    private final String KEVIN_APP = InitApp.AppContext.getString(R.string.id_kevin_app);
 
     private final String LICENSE = InitApp.AppContext.getString(R.string.id_license);
 
@@ -85,25 +87,26 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 
         mAppIntro = findPreference(APP_INTRO);
         mDemoVideo = findPreference(DEMO_VIDEO);
-        mCurrentVersion = findPreference(CURRENT_VERSION);
+//        mCurrentVersion = findPreference(CURRENT_VERSION);
         mCheckUpdate = findPreference(CHECK_UPDATE);
         mStarProject = findPreference(STAR_PROJECT);
         mShare = findPreference(SHARE);
-
+        mFeedback=findPreference(FEEDBACK);
         mMummyBlog = findPreference(MUMMY_BLOG);
-        mMummyGitHub = findPreference(MUMMY_GITHUB);
-        mMummyEmail = findPreference(MUMMY_EMAIL);
-        mMummyApp = findPreference(MUMMY_APP);
+//        mMummyGitHub = findPreference(MUMMY_GITHUB);
+//        mMummyEmail = findPreference(MUMMY_EMAIL);
+//        mMummyApp = findPreference(MUMMY_APP);
 
         mKevinBlog = findPreference(KEVIN_BLOG);
-        mKevinGitHub = findPreference(KEVIN_GITHUB);
-        mKevinEmail = findPreference(KEVIN_EMAIL);
-        mKevinApp = findPreference(KEVIN_APP);
+//        mKevinGitHub = findPreference(KEVIN_GITHUB);
+//        mKevinEmail = findPreference(KEVIN_EMAIL);
+//        mKevinApp = findPreference(KEVIN_APP);
 
         license = findPreference(LICENSE);
 
-        mCurrentVersion.setSummary(InitApp.AppContext.getString(R.string.summary_version)+SystemUtil.getVersionName());
+//        mCurrentVersion.setSummary(InitApp.AppContext.getString(R.string.summary_version)+SystemUtil.getVersionName());
 
+        mFeedback.setOnPreferenceClickListener(this);
         mAppIntro.setOnPreferenceClickListener(this);
         mDemoVideo.setOnPreferenceClickListener(this);
         mCheckUpdate.setOnPreferenceClickListener(this);
@@ -111,14 +114,14 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
         mShare.setOnPreferenceClickListener(this);
 
         mMummyBlog.setOnPreferenceClickListener(this);
-        mMummyGitHub.setOnPreferenceClickListener(this);
-        mMummyEmail.setOnPreferenceClickListener(this);
-        mMummyApp.setOnPreferenceClickListener(this);
+//        mMummyGitHub.setOnPreferenceClickListener(this);
+//        mMummyEmail.setOnPreferenceClickListener(this);
+//        mMummyApp.setOnPreferenceClickListener(this);
 
         mKevinBlog.setOnPreferenceClickListener(this);
-        mKevinGitHub.setOnPreferenceClickListener(this);
-        mKevinEmail.setOnPreferenceClickListener(this);
-        mKevinApp.setOnPreferenceClickListener(this);
+//        mKevinGitHub.setOnPreferenceClickListener(this);
+//        mKevinEmail.setOnPreferenceClickListener(this);
+//        mKevinApp.setOnPreferenceClickListener(this);
 
         license.setOnPreferenceClickListener(this);
 
@@ -134,6 +137,12 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
             Intent intent = new Intent();
             intent.setAction("android.intent.action.VIEW");
             Uri content_url = Uri.parse("http://www.miaopai.com/show/Q-ekXL4V31-TkE8jIR14AQ__.htm");
+            intent.setData(content_url);
+            startActivity(intent);
+        }else if(mFeedback == preference){
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            Uri content_url = Uri.parse("http://kevinwu.cn/2016/01/01/%E5%B8%88%E5%A4%A7+%20%E8%BE%85%E5%8A%A9%E6%96%87%E6%A1%A3/%E5%B8%88%E5%A4%A7-%E5%8F%8D%E9%A6%88%E9%A1%B5%E9%9D%A2/");
             intent.setData(content_url);
             startActivity(intent);
         }
@@ -177,29 +186,33 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 
         }else if(mMummyBlog == preference){
             TextUtil.copyToClipboard(getView(),getString(R.string.mummyding_blog));
-        }else if(mMummyGitHub == preference){
-            TextUtil.copyToClipboard(getView(),getString(R.string.mummyding_github));
-        }else if(mMummyEmail == preference){
-            TextUtil.copyToClipboard(getView(),getString(R.string.mummy_email));
-        }else if (mMummyApp == preference){
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
-            Uri content_url = Uri.parse("http://coolapk.com/apk/com.mummyding.app.leisure");
-            intent.setData(content_url);
-            startActivity(intent);
-        }else if(mKevinBlog == preference){
+        }
+//        else if(mMummyGitHub == preference){
+//            TextUtil.copyToClipboard(getView(),getString(R.string.mummyding_github));
+//        }else if(mMummyEmail == preference){
+//            TextUtil.copyToClipboard(getView(),getString(R.string.mummy_email));
+//        }else if (mMummyApp == preference){
+//            Intent intent = new Intent();
+//            intent.setAction("android.intent.action.VIEW");
+//            Uri content_url = Uri.parse("http://coolapk.com/apk/com.mummyding.app.leisure");
+//            intent.setData(content_url);
+//            startActivity(intent);
+//        }
+        else if(mKevinBlog == preference){
             TextUtil.copyToClipboard(getView(),getString(R.string.kevin_blog));
-        }else if(mKevinGitHub == preference){
-            TextUtil.copyToClipboard(getView(),getString(R.string.kevin_github));
-        }else if(mKevinEmail == preference){
-            TextUtil.copyToClipboard(getView(),getString(R.string.kevin_email));
-        }else if (mKevinApp == preference){
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
-            Uri content_url = Uri.parse("http://coolapk.com/apk/fsyt.ytweather");
-            intent.setData(content_url);
-            startActivity(intent);
-        }else if (license == preference){
+        }
+//        else if(mKevinGitHub == preference){
+//            TextUtil.copyToClipboard(getView(),getString(R.string.kevin_github));
+//        }else if(mKevinEmail == preference){
+//            TextUtil.copyToClipboard(getView(),getString(R.string.kevin_email));
+//        }else if (mKevinApp == preference){
+//            Intent intent = new Intent();
+//            intent.setAction("android.intent.action.VIEW");
+//            Uri content_url = Uri.parse("http://coolapk.com/apk/fsyt.ytweather");
+//            intent.setData(content_url);
+//            startActivity(intent);
+//        }
+        else if (license == preference){
             Intent toLicense = new Intent(getActivity(),LicenseActivity.class);
             startActivity(toLicense);
         }

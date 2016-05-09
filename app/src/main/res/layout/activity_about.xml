@@ -7,51 +7,64 @@
     android:orientation="vertical">
 
     <include layout="@layout/widget_toolbar"/>
-
-    <RelativeLayout
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+    <TextView
+        android:id="@+id/version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="?attr/backgroundColor">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_alignParentLeft="true"
-            android:orientation="vertical">
-            <cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView
-                android:src="@drawable/mummy"
-                android:layout_width="100dp"
-                android:layout_height="100dp" />
-            <TextView
-                android:text="MummyDing"
-                android:textSize="15sp"
-                android:textColor="?attr/textColor"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/summary_version"/>
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:background="?attr/backgroundColor">-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="40dp"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:orientation="vertical">-->
+            <!--<cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView-->
+                <!--android:src="@drawable/mummy"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="100dp" />-->
+            <!--<TextView-->
+                <!--android:text="MummyDing"-->
+                <!--android:textSize="15sp"-->
+                <!--android:textColor="?attr/textColor"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:orientation="vertical"
-            android:layout_alignParentRight="true">
-            <cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView
-                android:src="@drawable/kevin"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-            <TextView
-                android:text="KevinWu"
-                android:textSize="15sp"
-                android:textColor="?attr/textColor"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="40dp"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_alignParentRight="true">-->
+            <!--<cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView-->
+                <!--android:src="@drawable/kevin"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="100dp"/>-->
+            <!--<TextView-->
+                <!--android:text="KevinWu"-->
+                <!--android:textSize="15sp"-->
+                <!--android:textColor="?attr/textColor"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
