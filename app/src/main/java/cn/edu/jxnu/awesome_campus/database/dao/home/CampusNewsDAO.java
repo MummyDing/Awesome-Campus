@@ -77,7 +77,7 @@ public class CampusNewsDAO implements DAO<CampusNewsModel> {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (list.size() != 0){
+                if (list!=null &&list.size() != 0){
                     // 从缓存获取成功 发送消息
                     EventBus.getDefault().post(new EventModel<CampusNewsModel>(EVENT.CAMPUS_NEWS_LOAD_CACHE_SUCCESS,list));
                 }else{

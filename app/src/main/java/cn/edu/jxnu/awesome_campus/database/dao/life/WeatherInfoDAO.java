@@ -138,7 +138,7 @@ public class WeatherInfoDAO implements DAO<WeatherInfoModel> {
 
                     @Override
                     public void onSuccess(final WeatherInfoBean entity, Headers headers) {
-                        if (entity.getError_code() == 0){
+                        if (entity!=null&&entity.getError_code() == 0){
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {

@@ -85,7 +85,7 @@ public class CourseInfoDAO implements DAO<CourseInfoModel>{
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if(list.size() != 0){
+                if(list!=null&&list.size() != 0){
                     // 发送成功消息
                     EventBus.getDefault().post(new EventModel<CourseInfoModel>(EVENT.COURSE_INFO_LOAD_CACHE_SUCCESS,list));
                 }else{

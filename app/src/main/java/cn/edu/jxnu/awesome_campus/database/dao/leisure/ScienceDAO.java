@@ -82,7 +82,7 @@ public class ScienceDAO implements DAO<ScienceModel> {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (!list.isEmpty()){
+                if (list!=null&&!list.isEmpty()){
                     // 从缓存获取成功　发送消息
                     EventBus.getDefault().post(new EventModel<ScienceModel>(EVENT.SCIENCE_LOAD_CACHE_SUCCESS,list));
                 }else {
@@ -111,15 +111,25 @@ public class ScienceDAO implements DAO<ScienceModel> {
                     }
 
                     @Override
-                    public void onSuccess(ScienceBean entity, Headers headers) {
-                        final List<ScienceModel> list = Arrays.asList(entity.getResult());
-                        cacheAll(list);
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                EventBus.getDefault().post(new EventModel<ScienceModel>(EVENT.SCIENCE_REFRESH_SUCCESS,list));
-                            }
-                        });
+                    public void onSuccess(final ScienceBean entity, Headers headers) {
+                       if(entity!=null){
+                           final List<ScienceModel> list = Arrays.asList(entity.getResult());
+                           cacheAll(list);
+                           handler.post(new Runnable() {
+                               @Override
+                               public void run() {
+                                   EventBus.getDefault().post(new EventModel<ScienceModel>(EVENT.SCIENCE_REFRESH_SUCCESS,list));
+                               }
+                           });
+                       }else{
+                           handler.post(new Runnable() {
+                               @Override
+                               public void run() {
+                                   EventBus.getDefault().post(new EventModel<ScienceModel>(EVENT.SCIENCE_REFRESH_FAILURE));
+                               }
+                           });
+                       }
+
                     }
                 });
 

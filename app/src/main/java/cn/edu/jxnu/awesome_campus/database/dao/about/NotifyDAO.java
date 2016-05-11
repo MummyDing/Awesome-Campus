@@ -98,7 +98,7 @@ public class NotifyDAO implements DAO<NotifyModel> {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (!list.isEmpty()){
+                if (list!=null&&!list.isEmpty()){
                     // 发送成功消息
                     EventBus.getDefault().post(new EventModel<NotifyModel>(EVENT.NOTIFY_LOAD_CACHE_SUCCESS,list));
                 }else {
@@ -136,7 +136,12 @@ public class NotifyDAO implements DAO<NotifyModel> {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                EventBus.getDefault().post(new EventModel<NotifyBean>(EVENT.NOTIFY_REFRESH_SUCCESS,entity));
+                                if(entity!=null){
+                                    EventBus.getDefault().post(new EventModel<NotifyBean>(EVENT.NOTIFY_REFRESH_SUCCESS,entity));
+                                }
+                                else{
+                                    EventBus.getDefault().post(new EventModel<NotifyBean>(EVENT.NOTIFY_REFRESH_FAILURE));
+                                }
                             }
                         });
                     }

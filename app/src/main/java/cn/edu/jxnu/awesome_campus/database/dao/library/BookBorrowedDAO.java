@@ -84,7 +84,7 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (!list.isEmpty()){
+                if (list!=null&&!list.isEmpty()){
                     // 从缓存获取成功　发送消息
                     EventBus.getDefault().post(new EventModel<BookBorrowedModel>(EVENT.BOOK_BORROWED_LOAD_CACHE_SUCCESS,list));
 

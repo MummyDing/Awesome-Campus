@@ -79,7 +79,7 @@ public class DailyDAO implements DAO<DailyModel>{
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (list.size() != 0){
+                if (list!=null&&list.size() != 0){
                     // 从缓存获取成功 发送消息
                     EventBus.getDefault().post(new EventModel<DailyModel>(EVENT.DAILY_LOAD_CACHE_SUCCESS,list));
                 }else{
@@ -107,16 +107,23 @@ public class DailyDAO implements DAO<DailyModel>{
                     }
 
                     @Override
-                    public void onSuccess(DailyBean entity, Headers headers) {
-                        Log.d("date:",entity.getDate());
-                        final List<DailyModel> list = Arrays.asList(entity.getStories());
-                        cacheAll(list);
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                EventBus.getDefault().post(new EventModel<DailyModel>(EVENT.DAILY_REFRESH_SUCCESS,list));
-                            }
-                        });
+                    public void onSuccess(final DailyBean entity, Headers headers) {
+                        if(entity!=null){
+                            Log.d("date:",entity.getDate());
+                            final List<DailyModel> list = Arrays.asList(entity.getStories());
+                            cacheAll(list);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                        EventBus.getDefault().post(new EventModel<DailyModel>(EVENT.DAILY_REFRESH_SUCCESS,list));
+
+                                }
+                            });
+                        }else{
+                            EventBus.getDefault().post(new EventModel<DailyModel>(EVENT.DAILY_REFRESH_FAILURE));
+                        }
+
                     }
                 });
     }

@@ -80,7 +80,7 @@ public class FilmDAO implements DAO<FilmModel> {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (!list.isEmpty()){
+                if (list!=null&&!list.isEmpty()){
                     // 从缓存获取成功　发送消息
                     EventBus.getDefault().post(new EventModel<FilmModel>(EVENT.FILM_LOAD_CACHE_SUCCESS,list));
                 }else {
@@ -110,7 +110,7 @@ public class FilmDAO implements DAO<FilmModel> {
                             cacheAll(list);
                             EventBus.getDefault().post(new EventModel<FilmModel>(EVENT.FILM_REFRESH_SUCCESS, list));
                         } else {
-                            EventBus.getDefault().post(new EventModel<FilmModel>(EVENT.FILM_REFRESH_SUCCESS));
+                            EventBus.getDefault().post(new EventModel<FilmModel>(EVENT.FILM_REFRESH_FAILURE));
                         }
                     }
                 });
