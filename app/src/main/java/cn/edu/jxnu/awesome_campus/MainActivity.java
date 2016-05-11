@@ -117,8 +117,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         WeatherInfoDAO dao = new WeatherInfoDAO();
         dao.loadFromNet();
 
-        //test switch to jxnu userinfo fragment
-        EventBus.getDefault().post(new EventModel<Void>(EVENT.JUMP_TO_JXNUGO_USERINFO));
+
     }
 
     @Override
@@ -243,13 +242,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         fragmentTransaction.commit();
     }
 
-    /**
-     * Created by Thereisnospon on 16-5-11.
-     * 切换到jxnugo用户信息界面
-     */
-    public void switchToJxnuGoUserInfo(){
-        switchFragment(new JxnugoUserInfoFragment(),"userinfo");
-    }
+
 
     @Override
     public void switchToLogin() {
@@ -279,9 +272,6 @@ public class MainActivity extends BaseActivity implements HomeView{
                 break;
             case EVENT.JUMP_TO_EDUCATION_LOGIN:
                 switchToLogin();
-                break;
-            case EVENT.JUMP_TO_JXNUGO_USERINFO:
-                switchToJxnuGoUserInfo();
                 break;
             case EVENT.JUMP_TO_LIBRARY_LOGIN:
                 switchToLogin();
