@@ -78,6 +78,7 @@
         <activity android:name=".ui.about.LicenseActivity" />
         <activity android:name=".AppGuideActivity" />
         <activity android:name=".ui.about.NotifyListActivity" />
+        <activity android:name=".ui.registe.JxnuGoRegisteActivity"/>
 
         <service
             android:name=".support.service.NotifyService"

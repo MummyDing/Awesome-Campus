@@ -1,10 +1,12 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
+import android.content.Intent;
 import android.view.View;
 
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.utils.login.MarketLoginUtil;
+import cn.edu.jxnu.awesome_campus.ui.registe.JxnuGoRegisteActivity;
 
 /**
  * Created by root on 16-5-11.
@@ -26,7 +28,9 @@ public class MarketLoginFragment extends BaseLoginFragment {
         tips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), JxnuGoRegisteActivity.class);
+                startActivity(intent);
             }
         });
     }
