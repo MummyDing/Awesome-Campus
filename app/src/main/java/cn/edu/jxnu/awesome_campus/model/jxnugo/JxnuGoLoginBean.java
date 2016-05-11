@@ -3,7 +3,7 @@ package cn.edu.jxnu.awesome_campus.model.jxnugo;
 /**
  * Created by KevinWu on 16-5-11.
  */
-public class JxnugoLoginBean {
+public class JxnuGoLoginBean {
     //成功返回的东西
     private String expiration;
     private String token;

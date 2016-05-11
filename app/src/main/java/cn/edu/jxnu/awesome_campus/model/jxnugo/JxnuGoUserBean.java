@@ -1,23 +1,13 @@
 package cn.edu.jxnu.awesome_campus.model.jxnugo;
 
-import java.util.List;
-
-import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnugoUserDAO;
-import cn.edu.jxnu.awesome_campus.model.IModel;
-
 /**
  * Created by KevinWu on 16-5-11.
  */
-public class JxnugoUserModel implements IModel<JxnugoUserModel> {
-
-    private static final String TAG="JxnugoUserModel";
-    private JxnugoUserDAO dao;
-
-
+public class JxnuGoUserBean {
     private String about_me;
     private String last_seen;
     private String location;
-    private String member_since;
+    private String menber_since;
     private String name;
     private int postCount;
     private int collectionPostCount;
@@ -25,45 +15,18 @@ public class JxnugoUserModel implements IModel<JxnugoUserModel> {
     private String userName;
     private String followed;
     private String followers;
-
-    public JxnugoUserModel(){
-        dao=new JxnugoUserDAO();
+    public int getCollectionPostCount() {
+        return collectionPostCount;
     }
 
-    public JxnugoUserModel(String about_me,String last_seen,String location,String member_since,
-                           String name,int postCount,int collectionPostCount,String sex,String userName,String followed,String followers){
-        this.about_me=about_me;
-        this.last_seen=last_seen;
-        this.location=location;
-        this.member_since=member_since;
-        this.name=name;
-        this.postCount=postCount;
-        this.collectionPostCount=collectionPostCount;
-        this.sex=sex;
-        this.userName=userName;
-        this.followed=followed;
-        this.followers=followers;
-    }
-    @Override
-    public boolean cacheAll(List<JxnugoUserModel> list) {
-        return dao.cacheAll(list);
-
+    public void setCollectionPostCount(int collectionPostCount) {
+        this.collectionPostCount = collectionPostCount;
     }
 
-    @Override
-    public boolean clearCache() {
-        return dao.clearCache();
-    }
 
-    @Override
-    public void loadFromCache() {
-        dao.loadFromCache();
-    }
 
-    @Override
-    public void loadFromNet() {
-        dao.loadFromNet();
-    }
+
+
     public String getAbout_me() {
         return about_me;
     }
@@ -88,12 +51,12 @@ public class JxnugoUserModel implements IModel<JxnugoUserModel> {
         this.location = location;
     }
 
-    public String getMember_since() {
-        return member_since;
+    public String getMenber_since() {
+        return menber_since;
     }
 
-    public void setMember_since(String member_since) {
-        this.member_since = member_since;
+    public void setMenber_since(String menber_since) {
+        this.menber_since = menber_since;
     }
 
     public String getName() {
@@ -112,14 +75,6 @@ public class JxnugoUserModel implements IModel<JxnugoUserModel> {
         this.postCount = postCount;
     }
 
-    public int getCollectionPostCount() {
-        return collectionPostCount;
-    }
-
-    public void setCollectionPostCount(int collectionPostCount) {
-        this.collectionPostCount = collectionPostCount;
-    }
-
     public String getSex() {
         return sex;
     }
@@ -136,6 +91,8 @@ public class JxnugoUserModel implements IModel<JxnugoUserModel> {
         this.userName = userName;
     }
 
+
+
     public String getFollowed() {
         return followed;
     }
@@ -151,5 +108,6 @@ public class JxnugoUserModel implements IModel<JxnugoUserModel> {
     public void setFollowers(String followers) {
         this.followers = followers;
     }
+
 
 }

@@ -5,9 +5,12 @@ import android.widget.EditText;
 
 import com.squareup.okhttp.Headers;
 
-import cn.edu.jxnu.awesome_campus.api.JxnugoApi;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnugoLoginBean;
-import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
+import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
+import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallback;
@@ -15,8 +18,25 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallb
 /**
  * Created by zpauly on 16-5-11.
  */
-public class MarketLoginUtil {
-    public static final String TAG = "MarketLoginUtil";
+public class JxnuGoLoginUtil {
+    public static final String TAG = "JxnuGoLoginUtil";
+
+    public static String getUserName() {
+        return userName;
+    }
+
+    public static String getPassWord() {
+        return passWord;
+    }
+
+    private static String userName;
+    private static String passWord;
+
+    public static String getToken() {
+        return token;
+    }
+
+    private static String token;
 
     public static String getUsername(EditText editText) {
         return editText.getText().toString();
@@ -31,23 +51,22 @@ public class MarketLoginUtil {
             return;
         }
         //there has something inputed into the username and password edittext,and then verify it by net
-
         else{
 
             Log.d(TAG,"开始请求网络");
-            NetManageUtil.getAuth(JxnugoApi.LoginUrl)
+            NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
                     .addTag(TAG)
                     .addUserName(getUsername(usernameText))
                     .addPassword(getPassword(passwordText))
-//                    .addParams("userName",getUsername(usernameText))
-//                    .addParams("passWord",getPassword(passwordText))
-                    .enqueue(new JsonCodeEntityCallback<JxnugoLoginBean>() {
+                    .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
                         @Override
-                        public void onSuccess(JxnugoLoginBean entity, int responseCode, Headers headers) {
+                        public void onSuccess(JxnuGoLoginBean entity, int responseCode, Headers headers) {
                             Log.d(TAG,"返回数据成功");
                             Log.d(TAG,"状态码"+responseCode);
                             if(!TextUtil.isNull(entity.getToken())){
                                 Log.d("Token",entity.getToken());
+                                token=entity.getToken();
+                                saveToSP(getUsername(usernameText),getPassword(passwordText));
                             }
                         }
 
@@ -57,6 +76,13 @@ public class MarketLoginUtil {
                         }
                     });
         }
+    }
+
+    private static void saveToSP(String userName,String passWord){
+        SPUtil mysp = new SPUtil(InitApp.AppContext);
+        mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME, userName);
+        mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD, passWord);
+
     }
 
 }

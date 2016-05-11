@@ -3,15 +3,14 @@ package cn.edu.jxnu.awesome_campus.database.dao.jxnugo;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnugoUserModel;
-import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoUserModel;
 
 /**
  * Created by KevinWu on 16-5-11.
  */
-public class JxnugoUserDAO implements DAO<JxnugoUserModel> {
+public class JxnuGoUserDAO implements DAO<JxnuGoUserModel> {
     @Override
-    public boolean cacheAll(List<JxnugoUserModel> list) {
+    public boolean cacheAll(List<JxnuGoUserModel> list) {
         return false;
     }
 

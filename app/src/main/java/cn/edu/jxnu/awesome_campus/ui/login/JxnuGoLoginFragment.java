@@ -5,7 +5,7 @@ import android.view.View;
 
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.support.utils.login.MarketLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.registe.JxnuGoRegisteActivity;
 
 /**
@@ -21,7 +21,7 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
             @Override
             public void onClick(View v) {
                 setInputAreaEnable(false);
-                MarketLoginUtil.onLogin(usernameET, passwordET);
+                JxnuGoLoginUtil.onLogin(usernameET, passwordET);
             }
         });
         tips.setText("没有账号？请注册");

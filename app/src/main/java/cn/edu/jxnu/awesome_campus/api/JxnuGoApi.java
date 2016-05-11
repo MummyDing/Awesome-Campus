@@ -3,7 +3,7 @@ package cn.edu.jxnu.awesome_campus.api;
 /**
  * Created by KevinWu on 16-5-11.
  */
-public class JxnugoApi {
+public class JxnuGoApi {
     public static final String LoginUrl="http://www.jxnugo.com/api/get_token";
     public static final String RegisterUrl="http://www.jxnugo.com/api/register";
     public static final String QiniuToken="http://www.jxnugo.com/api/get_mobile_token";//七牛图片token
