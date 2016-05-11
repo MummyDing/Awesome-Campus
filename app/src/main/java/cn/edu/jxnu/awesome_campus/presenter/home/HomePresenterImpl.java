@@ -26,6 +26,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
@@ -66,6 +67,7 @@ public class HomePresenterImpl implements HomePresenter {
                 buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
                 buildPrimaryItem(DrawerItem.LEISURE.getItemName(),DrawerItem.LEISURE.getItemIconID(),DrawerItem.LEISURE.getId()),
                 buildPrimaryItem(DrawerItem.LIFE.getItemName(),DrawerItem.LIFE.getItemIconID(),DrawerItem.LIFE.getId()),
+                        buildPrimaryItem(DrawerItem.JXNUGO.getItemName(),DrawerItem.JXNUGO.getItemIconID(),DrawerItem.JXNUGO.getId()),
                 buildPrimaryItem(DrawerItem.LIBRARY.getItemName(),DrawerItem.LIBRARY.getItemIconID(),DrawerItem.LIBRARY.getId()),
                 buildPrimaryItem(DrawerItem.EDUCATION.getItemName(),DrawerItem.EDUCATION.getItemIconID(),DrawerItem.EDUCATION.getId()),
                 new DividerDrawerItem(),
@@ -156,6 +158,7 @@ public class HomePresenterImpl implements HomePresenter {
         HomeFragment.clearChildFragments();
         LeisureFragment.clearChildFragments();
         LifeFragment.clearChildFragments();
+        JxnugoFragment.clearChildFragments();
         LibraryFragment.clearChildFragments();
         EducationFragment.clearChildFragments();
 
