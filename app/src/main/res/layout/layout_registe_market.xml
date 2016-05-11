@@ -26,7 +26,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:text="@string/text_email"
+                android:hint="@string/text_email"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content" />
 
@@ -39,7 +39,7 @@
 
             <EditText
                 android:id="@+id/et_password"
-                android:text="@string/password"
+                android:hint="@string/password"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content" />
 
@@ -52,7 +52,7 @@
 
             <EditText
                 android:id="@+id/et_verifyPassword"
-                android:text="确认密码"
+                android:hint="确认密码"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content" />
 
