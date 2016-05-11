@@ -10,6 +10,7 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
  */
 public class GoodsDAO implements DAO<GoodsModel> {
     private static final String TAG="GoodsDAO";
+
     @Override
     public boolean cacheAll(List<GoodsModel> list) {
         return false;

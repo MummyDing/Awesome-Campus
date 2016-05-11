@@ -11,6 +11,7 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
 public class GoodsModel implements IModel<GoodsModel>{
 
     private GoodsDAO dao;
+
     private String author;
     private String body;
     private String contact;
