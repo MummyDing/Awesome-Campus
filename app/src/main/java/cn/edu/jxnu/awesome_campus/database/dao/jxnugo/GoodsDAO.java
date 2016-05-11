@@ -1,5 +1,8 @@
 package cn.edu.jxnu.awesome_campus.database.dao.jxnugo;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
@@ -28,6 +31,7 @@ public class GoodsDAO implements DAO<GoodsModel> {
 
     @Override
     public void loadFromNet() {
+        final Handler handler = new Handler(Looper.getMainLooper());
 
     }
 }
