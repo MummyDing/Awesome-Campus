@@ -293,7 +293,6 @@ public class MainActivity extends BaseActivity implements HomeView{
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
                 presenter.updateSelectedToHome();
                 break;
-
         }
 
     }

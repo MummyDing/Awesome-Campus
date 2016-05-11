@@ -9,13 +9,11 @@ import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -24,12 +22,9 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyBean;
 import cn.edu.jxnu.awesome_campus.model.about.NotifyModel;
-import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.model.life.WeatherInfoModel;
 import cn.edu.jxnu.awesome_campus.support.boardcast.NotifyClickReceiver;
 import cn.edu.jxnu.awesome_campus.support.utils.common.NotifyUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
-import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 
 public class NotifyService extends Service {
 
