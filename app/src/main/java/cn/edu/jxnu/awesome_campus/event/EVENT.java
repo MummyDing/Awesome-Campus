@@ -232,5 +232,8 @@ public class EVENT {
     public static final int NO_COURSE = 2008;
 
     public static final int HAVE_COURSE = 2009;
+
+    //Jump to jxnugo userinfo
+    public  static final  int JUMP_TO_JXNUGO_USERINFO=2010;
 }
 

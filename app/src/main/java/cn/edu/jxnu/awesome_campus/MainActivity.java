@@ -61,6 +61,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserInfoFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
@@ -115,6 +116,9 @@ public class MainActivity extends BaseActivity implements HomeView{
         switchDrawerItem(DrawerItem.HOME.getId());
         WeatherInfoDAO dao = new WeatherInfoDAO();
         dao.loadFromNet();
+
+        //test switch to jxnu userinfo fragment
+        EventBus.getDefault().post(new EventModel<Void>(EVENT.JUMP_TO_JXNUGO_USERINFO));
     }
 
     @Override
@@ -239,6 +243,14 @@ public class MainActivity extends BaseActivity implements HomeView{
         fragmentTransaction.commit();
     }
 
+    /**
+     * Created by Thereisnospon on 16-5-11.
+     * 切换到jxnugo用户信息界面
+     */
+    public void switchToJxnuGoUserInfo(){
+        switchFragment(new JxnugoUserInfoFragment(),"userinfo");
+    }
+
     @Override
     public void switchToLogin() {
         fragmentTransaction = fragmentManager.beginTransaction();
@@ -267,6 +279,9 @@ public class MainActivity extends BaseActivity implements HomeView{
                 break;
             case EVENT.JUMP_TO_EDUCATION_LOGIN:
                 switchToLogin();
+                break;
+            case EVENT.JUMP_TO_JXNUGO_USERINFO:
+                switchToJxnuGoUserInfo();
                 break;
             case EVENT.JUMP_TO_LIBRARY_LOGIN:
                 switchToLogin();
