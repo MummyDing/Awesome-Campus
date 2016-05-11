@@ -52,7 +52,6 @@ public class JxnuGoLoginUtil {
         }
         //there has something inputed into the username and password edittext,and then verify it by net
         else{
-
             Log.d(TAG,"开始请求网络");
             NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
                     .addTag(TAG)

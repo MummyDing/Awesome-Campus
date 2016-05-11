@@ -5,7 +5,7 @@ package cn.edu.jxnu.awesome_campus.model.jxnugo;
  */
 public class JxnuGoLoginBean {
     //成功返回的东西
-    private String expiration;
+    private int expiration;
     private String token;
     //失败返回的东西
     private String error;
@@ -34,11 +34,11 @@ public class JxnuGoLoginBean {
         this.token = token;
     }
 
-    public String getExpiration() {
+    public int getExpiration() {
         return expiration;
     }
 
-    public void setExpiration(String expiration) {
+    public void setExpiration(int expiration) {
         this.expiration = expiration;
     }
 
