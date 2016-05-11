@@ -1,14 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
-import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 
 /**
  * Created by MummyDing on 16-2-1.
@@ -25,7 +21,7 @@ public class LoginFragment extends TopNavigationFragment{
         }
         fragments.add(new EducationLoginFragment());
         fragments.add(new LibraryLoginFragment());
-        fragments.add(new MarketLoginFragment());
+        fragments.add(new JxnuGoLoginFragment());
     }
 
     public static LoginFragment newInstance(){

@@ -27,7 +27,7 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_registe_market);
+        setContentView(R.layout.layout_registe_jxnugo);
 
         initViews();
     }

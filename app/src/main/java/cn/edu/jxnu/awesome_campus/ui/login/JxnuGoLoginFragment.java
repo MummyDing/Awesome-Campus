@@ -11,7 +11,7 @@ import cn.edu.jxnu.awesome_campus.ui.registe.JxnuGoRegisteActivity;
 /**
  * Created by root on 16-5-11.
  */
-public class MarketLoginFragment extends BaseLoginFragment {
+public class JxnuGoLoginFragment extends BaseLoginFragment {
 
     @Override
     protected void init() {
