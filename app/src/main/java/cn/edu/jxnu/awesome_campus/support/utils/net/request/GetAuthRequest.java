@@ -1,8 +1,13 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net.request;
 
+import com.squareup.okhttp.Authenticator;
 import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Credentials;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
+import java.io.IOException;
+import java.net.Proxy;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -11,15 +16,14 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.NetCallback;
 
 /**
- * Created by MummyDing on 16-1-24.
- * GitHub: https://github.com/MummyDing
- * Blog: http://blog.csdn.net/mummyding
+ * Created by KevinWu on 16-5-11.
  */
-public class GetRequest extends IRequest {
-
-    public GetRequest(String url){
+public class GetAuthRequest extends IRequest {
+    public GetAuthRequest(String url){
         this.url = url;
     }
+
+
     @Override
     public IRequest addHeader(String key, String val) {
         if (headers == null){
@@ -46,12 +50,14 @@ public class GetRequest extends IRequest {
 
     @Override
     public IRequest addUserName(String userName) {
-        return null;
+        this.userName=userName;
+        return this;
     }
 
     @Override
     public IRequest addPassword(String password) {
-        return null;
+        this.password=password;
+        return this;
     }
 
     @Override
@@ -61,35 +67,30 @@ public class GetRequest extends IRequest {
     }
 
 
+
     @Override
     public void enqueue(NetCallback callback) {
+        NetManageUtil.netClient.setAuthenticator(new Authenticator() {
+            @Override
+            public Request authenticate(Proxy proxy, Response response) throws IOException {
+
+                String credential = Credentials.basic(userName, password);
+                return response.request().newBuilder()
+                        .header("Authorization", credential)
+                        .build();
+            }
+
+            @Override
+            public Request authenticateProxy(Proxy proxy, Response response) throws IOException {
+                return null;
+            }
+        });
         Call call = NetManageUtil.netClient.newCall(buildRequest());
         call.enqueue(callback);
     }
 
-   /* @Override
-    public void execute(final NetCallback callback) {
-        final Call call = NetManageUtil.netClient.newCall(buildRequest());
-        //run in child thread
-        //Log.d("threadTTTOut", String.valueOf(Thread.currentThread()));
-        childThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Response response = call.execute();
-                    Log.d("eeee","okok");
-                  //  Log.d("threadTTTin", response.body().string());
-                    callback.onResponse(response);
-                } catch (IOException e) {
-                    callback.onFailure(e);
-                }
-            }
-        });
-        childThread.start();
-    }*/
-
-    private Request buildRequest(){
-        if (TextUtil.isNull(url)){
+    private Request buildRequest() {
+        if (TextUtil.isNull(url)) {
             new IllegalArgumentException("NETWORK : url can't be null !!!!");
             return null;
         }
@@ -98,17 +99,16 @@ public class GetRequest extends IRequest {
                 .get();
 
         // add headers
-        if(headers != null){
-            for(Map.Entry<String ,String> map: headers.entrySet()){
-                request.addHeader(map.getKey(),map.getValue());
+        if (headers != null) {
+            for (Map.Entry<String, String> map : headers.entrySet()) {
+                request.addHeader(map.getKey(), map.getValue());
             }
         }
 
         // add tag
-        if(tag != null){
+        if (tag != null) {
             request.tag(tag);
         }
-
         return request.build();
     }
 }

@@ -56,7 +56,6 @@ public class LibraryLoginUtil {
             EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY__LOGIN_FAILURE_NULL_INPUT));
             return;
         } else {
-
             NetManageUtil.post(Urlconfig.Library_Login_URL)
                     .addTag(TAG)
                     .addParams("number", getUsername(usernameET))
@@ -67,7 +66,6 @@ public class LibraryLoginUtil {
                         @Override
                         public void onSuccess(String result,int code, Headers headers) {
                             System.out.println("获取到的状态码为：" + code);
-
 
                             String cookies = null;
                             for (int i = 0; i < headers.size(); i++) {

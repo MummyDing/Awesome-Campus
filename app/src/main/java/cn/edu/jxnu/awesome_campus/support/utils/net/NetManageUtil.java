@@ -10,6 +10,7 @@ import java.net.CookieManager;
 import java.net.CookiePolicy;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.support.utils.net.request.GetAuthRequest;
 import cn.edu.jxnu.awesome_campus.support.utils.net.request.GetRequest;
 import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostRequest;
 
@@ -40,6 +41,10 @@ public class NetManageUtil {
      */
     public static GetRequest get(String url){
         return new GetRequest(url);
+    }
+
+    public static GetAuthRequest getAuth(String url){
+        return new GetAuthRequest(url);
     }
 
     /***

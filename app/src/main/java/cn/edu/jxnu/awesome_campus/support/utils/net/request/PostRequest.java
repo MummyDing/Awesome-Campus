@@ -41,6 +41,16 @@ public class PostRequest extends IRequest{
     }
 
     @Override
+    public IRequest addUserName(String userName) {
+        return null;
+    }
+
+    @Override
+    public IRequest addPassword(String password) {
+        return null;
+    }
+
+    @Override
     public IRequest addTag(String tag) {
         this.tag = tag;
         return this;
