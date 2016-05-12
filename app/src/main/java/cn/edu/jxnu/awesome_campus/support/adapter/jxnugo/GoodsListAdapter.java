@@ -47,6 +47,7 @@ public class GoodsListAdapter extends BaseListAdapter<GoodsModel,GoodsListAdapte
         holder.time.setText(model.getTimestamp());
         holder.goodName.setText(model.getGoodName());
         holder.goodPrice.setText(model.getGoodPrice()+"");
+        if(model.getPhoto()!=null&&model.getPhoto().length>0)
         holder.goodFirstImg.setImageURI(Uri.parse(model.getPhoto()[0]));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -61,6 +61,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserInfoFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
@@ -148,6 +149,10 @@ public class MainActivity extends BaseActivity implements HomeView{
         }else if(id == DrawerItem.LIFE.getId()){
             presenter.clearAllFragments();
             switchFragment(LifeFragment.newInstance(),DrawerItem.LIFE.getItemName());
+        }else if(id == DrawerItem.JXNUGO.getId()){
+            presenter.clearAllFragments();
+            switchFragment(JxnugoFragment.newInstance(),DrawerItem.JXNUGO.getItemName());
+
         }else if(id == DrawerItem.LIBRARY.getId()){
 
             // switch fragment

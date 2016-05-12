@@ -51,8 +51,8 @@ public class JxnuGoLoginUtil {
             return;
         }
         //there has something inputed into the username and password edittext,and then verify it by net
-        else{
-            Log.d(TAG,"开始请求网络");
+        else {
+            Log.d(TAG, "开始请求网络");
             NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
                     .addTag(TAG)
                     .addUserName(getUsername(usernameText))
@@ -60,25 +60,26 @@ public class JxnuGoLoginUtil {
                     .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
                         @Override
                         public void onSuccess(JxnuGoLoginBean entity, int responseCode, Headers headers) {
-                            Log.d(TAG,"返回数据成功");
-                            Log.d(TAG,"状态码"+responseCode);
-                            if(!TextUtil.isNull(entity.getToken())){
-                                Log.d("Token",entity.getToken());
-                                token=entity.getToken();
-                                saveToSP(getUsername(usernameText),getPassword(passwordText));
+                            Log.d(TAG, "返回数据成功");
+                            Log.d(TAG, "状态码" + responseCode);
+                            if (!TextUtil.isNull(entity.getToken())) {
+                                Log.d("Token", entity.getToken());
+                                token = entity.getToken();
+                                saveToSP(token, getUsername(usernameText), getPassword(passwordText));
                             }
                         }
 
                         @Override
                         public void onFailure(String error) {
-                            Log.d(TAG,"登录失败"+error);
+                            Log.d(TAG, "登录失败" + error);
                         }
                     });
         }
     }
 
-    private static void saveToSP(String userName,String passWord){
+    private static void saveToSP(String token, String userName, String passWord) {
         SPUtil mysp = new SPUtil(InitApp.AppContext);
+        mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.TOKEN, token);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME, userName);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD, passWord);
 

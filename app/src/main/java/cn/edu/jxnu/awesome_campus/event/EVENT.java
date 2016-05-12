@@ -138,6 +138,10 @@ public class EVENT {
     public static final int LIBRARY_RENEW_SUCCESS=63;
     public static final int LIBRARY_RENEW_FAILURE=64;
 
+    //货物列表加载code
+    public static final int GOODS_LIST_REFRESH_SUCCESS =65;
+    public static final int GOODS_LIST_REFRESH_FAILURE =66;
+
     /**
      * Cache Event Code
      */

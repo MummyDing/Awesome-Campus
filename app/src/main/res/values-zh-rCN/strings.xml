@@ -215,5 +215,6 @@
     <string name="feedback">意见反馈</string>
     <string name="id_feedback">id_feedback</string>
     <string name="jxnugo">二手</string>
+    <string name="goodslist">淘二手</string>
 
 </resources>
