@@ -7,6 +7,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
  * Created by KevinWu on 16-5-12.
  */
 public class GoodsListAdapter extends BaseListAdapter<GoodsModel,GoodsListAdapter.VH> {
+    public static final String TAG="GoodsListAdapter";
     public GoodsListAdapter(Context mContext, GoodsModel model) {
         super(mContext, model);
     }
@@ -43,7 +45,7 @@ public class GoodsListAdapter extends BaseListAdapter<GoodsModel,GoodsListAdapte
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        GoodsModel model=new GoodsModel();
+        GoodsModel model=getItem(position);
         holder.time.setText(model.getTimestamp());
         holder.goodName.setText(model.getGoodName());
         holder.goodPrice.setText(model.getGoodPrice()+"");
