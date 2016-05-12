@@ -1,11 +1,14 @@
 package cn.edu.jxnu.awesome_campus.support.adapter.jxnugo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +20,16 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ramotion.foldingcell.FoldingCell;
 
+import org.greenrobot.eventbus.EventBus;
+
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
+import cn.edu.jxnu.awesome_campus.model.leisure.DailyModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.GoodsDetailActivity;
 
 /**
  * Created by KevinWu on 16-5-12.
@@ -45,7 +55,7 @@ public class GoodsListAdapter extends BaseListAdapter<GoodsModel,GoodsListAdapte
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        GoodsModel model=getItem(position);
+        final GoodsModel model=getItem(position);
         holder.time.setText(model.getTimestamp());
         holder.goodName.setText(model.getGoodName());
         holder.goodPrice.setText(model.getGoodPrice()+"");
@@ -55,7 +65,10 @@ public class GoodsListAdapter extends BaseListAdapter<GoodsModel,GoodsListAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                EventBus.getDefault().postSticky(new EventModel<GoodsModel>(EVENT.GOODS_DETAIL_INTENT,model));
+                Intent intent=new Intent();
+                intent.setClass(InitApp.AppContext, GoodsDetailActivity.class);
+                InitApp.AppContext.startActivity(intent);
             }
         });
 
