@@ -4,16 +4,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoUserDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoUserBean;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
+
+/**
+ * @author Thereisnospon
+ * 2016-5-11
+ */
 
 public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.OnClickListener{
 
@@ -24,6 +32,7 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
     TextView userFollowerdNum;
     TextView userFollowingNum;
     TextView userLocate;
+    ProgressBar progressBar;
 
     public void initView(){
         userDesc=(TextView)findViewById(R.id.jxnugo_user_desc);
@@ -35,6 +44,7 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
         View locate=findViewById(R.id.jxnugo_user_card_local);
         View posts=findViewById(R.id.jxnugo_user_card_posts);
         View collect=findViewById(R.id.jxnugo_user_card_collect);
+        progressBar=(ProgressBar)findViewById(R.id.progressBar);
         locate.setOnClickListener(this);
         posts.setOnClickListener(this);
         collect.setOnClickListener(this);
@@ -47,7 +57,10 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
         initToolbar();
         loadUserInfo();
         initView();
+        progressBar.setVisibility(View.VISIBLE);
         EventBus.getDefault().register(this);
+        JxnuGoUserDAO dao=new JxnuGoUserDAO();
+        dao.loadFromNet();
 
     }
 
@@ -72,10 +85,21 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
         if(model!=null&&model.getEventCode()==EVENT.JXNUGO_USERINFO_LOAD_USER){
             JxnuGoLoginBean bean=(JxnuGoLoginBean) model.getData();
             Log.d("JXNU_GO","load sticky login bean"+bean.getMessage());
-            setToolbarTitle("vczh");
+            //setToolbarTitle("vczh");
             EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS));
         }
 
+    }
+    public  void loadInfo(EventModel eventModel){
+        JxnuGoUserBean bean=(JxnuGoUserBean)eventModel.getData();
+        setToolbarTitle(bean.getName());
+        userDesc.setText(bean.getAbout_me());
+        userLocate.setText(bean.getLocation());
+        userFollowerdNum.setText(bean.getFollowed());
+        userFollowingNum.setText(bean.getFollowers());
+        userCollectNum.setText(bean.getCollectionPostCount());
+        userPostNum.setText(bean.getPostCount());
+        progressBar.setVisibility(View.GONE);
     }
 
     @Subscribe
@@ -85,6 +109,7 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
            case  EVENT.JXNUGO_USERINFO_LOAD_USER:
                break;
            case EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS:
+               loadInfo(eventModel);
                break;
            case EVENT.JXNUGO_USERINFO_LOAD_USER_FALURE:
                break;

@@ -1,23 +1,38 @@
 package cn.edu.jxnu.awesome_campus.ui.registe;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoRegisteUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
  * Created by zpauly on 16-5-11.
  */
 public class JxnuGoRegisteActivity extends BaseToolbarActivity {
+
     private EditText mUsernameEt;
     private EditText mEmailEt;
     private EditText mPasswordEt;
@@ -89,35 +104,17 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
             public void onClick(View v) {
                 if (!mRegisteBtn.isEnabled())
                     return;
-                if (mPasswordEt.getText().toString().length() < 6) {
-                    DisplayUtil.Snack(mPasswordEt, "密码长度不得小于6位");
-                    mPasswordEt.setText("");
-                    mVerityPasswordEt.setText("");
+                if (!JxnuGoRegisteUtil.verifyEmail(mEmailEt)) {
                     return;
                 }
-                if (!verifyEmail(mEmailEt.getText().toString())) {
-                    DisplayUtil.Snack(mEmailEt, "邮件格式错误");
-                    mEmailEt.setText("");
+                if (!JxnuGoRegisteUtil.verifyPassword(mPasswordEt, mVerityPasswordEt)) {
                     return;
                 }
-                if (!mPasswordEt.getText().toString().equals(mVerityPasswordEt.getText().toString())) {
-                    DisplayUtil.Snack(mRegisteBtn, "两次输入密码不一致");
-                    mPasswordEt.setText("");
-                    mVerityPasswordEt.setText("");
-                    return;
-                }
+                Toast.makeText(JxnuGoRegisteActivity.this, "button enable", Toast.LENGTH_SHORT).show();
+                JxnuGoRegisteUtil.onRegiste(mUsernameEt.getText().toString(),
+                        mEmailEt.getText().toString(),
+                        mPasswordEt.getText().toString());
             }
         });
-    }
-
-    private boolean verifyEmail(String email) {
-        String regex = "\\w+@\\w+\\.(com\\.cn)|\\w+@\\w+\\.(com|cn)";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.find()) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
