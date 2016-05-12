@@ -6,7 +6,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Android/Sdk/gradle-2.8/caches/modules-2/files-2.1/com.mikepenz/iconics-core/2.5.11/f3a7af5566f0eaed603998924f565d5fe3e7edde/iconics-core-2.5.11-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/iconics-core/2.5.11/f3a7af5566f0eaed603998924f565d5fe3e7edde/iconics-core-2.5.11-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
