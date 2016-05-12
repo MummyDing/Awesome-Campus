@@ -208,6 +208,11 @@ public class EVENT {
 
 
 
+    //Jxnugo uerinfo
+    public  static final int JXNUGO_USERINFO_LOAD_USER=1031;
+    public  static final int JXNUGO_USERINFO_LOAD_USER_SUCCESS=1032;
+    public static final int JXNUGO_USERINFO_LOAD_USER_FALURE=1033;
+
 
     //Common
 

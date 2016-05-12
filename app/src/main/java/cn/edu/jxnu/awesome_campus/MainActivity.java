@@ -42,6 +42,7 @@ import cn.edu.jxnu.awesome_campus.database.dao.life.WeatherInfoDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.CONSTANT;
@@ -62,6 +63,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserInfoFragment;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserinfoActivity;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
@@ -259,6 +261,14 @@ public class MainActivity extends BaseActivity implements HomeView{
     }
 
 
+    public void jumpToJxnugoUserinfo(EventModel eventModel){
+        Intent intent=new Intent(this, JxnugoUserinfoActivity.class);
+        JxnuGoLoginBean loginBean=(JxnuGoLoginBean)eventModel.getData();
+        Log.d("JXNU_GO",loginBean.getMessage());
+        EventBus.getDefault().postSticky(new EventModel<JxnuGoLoginBean>(EVENT.JXNUGO_USERINFO_LOAD_USER,loginBean));
+        startActivity(intent);
+    }
+
 
     private static final Handler handler = new Handler(Looper.getMainLooper());
 
@@ -290,6 +300,9 @@ public class MainActivity extends BaseActivity implements HomeView{
                         EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_BORROWED));
                     }
                 });
+                break;
+            case EVENT.JUMP_TO_JXNUGO_USERINFO:
+                jumpToJxnugoUserinfo(eventModel);
                 break;
             case EVENT.UPDATE_MENU:
                 Log.d(TAG,"更新主页通知menu");

@@ -5,8 +5,12 @@ import android.widget.EditText;
 
 import com.squareup.okhttp.Headers;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
 import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
@@ -66,6 +70,9 @@ public class JxnuGoLoginUtil {
                                 Log.d("Token",entity.getToken());
                                 token=entity.getToken();
                                 saveToSP(getUsername(usernameText),getPassword(passwordText));
+
+                                //登陆成功,跳转到用户信息界面
+                                //EventBus.getDefault().post(new EventModel<JxnuGoLoginBean>(EVENT.JUMP_TO_JXNUGO_USERINFO,entity));
                             }
                         }
 

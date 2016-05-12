@@ -59,6 +59,6 @@ public class ExampleUnitTest {
     }
     @Test
     public void testSelfStudyRoom(){
-        SelfStudyRoomLoginUtil.onLogin(null,null);
+       // SelfStudyRoomLoginUtil.onLogin(null,null);
     }
 }
