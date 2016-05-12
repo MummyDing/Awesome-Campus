@@ -142,6 +142,9 @@ public class EVENT {
     public static final int GOODS_LIST_REFRESH_SUCCESS =65;
     public static final int GOODS_LIST_REFRESH_FAILURE =66;
 
+    //货物详情跳转
+    public static final int GOODS_DETAIL_INTENT=67;
+
     /**
      * Cache Event Code
      */

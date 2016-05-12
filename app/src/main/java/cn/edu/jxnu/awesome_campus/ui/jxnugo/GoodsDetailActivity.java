@@ -14,7 +14,8 @@ public class GoodsDetailActivity extends BaseWebViewActivity{
 
     @Override
     protected String getData() {
-        return null;
+        String webViewContent="";
+        return webViewContent;
     }
 
     @Override
