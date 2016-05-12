@@ -3,19 +3,13 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 import android.os.Handler;
 import android.os.Looper;
 
-import java.util.Collections;
 import java.util.List;
-
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
-import cn.edu.jxnu.awesome_campus.database.dao.home.CampusNewsDAO;
-import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.GoodsDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
-import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.GoodsListAdapter;
-import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
