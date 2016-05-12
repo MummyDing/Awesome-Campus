@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -71,5 +72,11 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity{
     private void initView() {
         tvUserName=(TextView)findViewById(R.id.username);
         tvTime=(TextView)findViewById(R.id.time);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_goodsdetail,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
