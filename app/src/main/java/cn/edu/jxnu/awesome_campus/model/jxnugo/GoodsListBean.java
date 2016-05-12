@@ -7,7 +7,7 @@ public class GoodsListBean {
     private String count;
     private String next;
     private String prev;
-    private GoodsBean[] posts;
+    private GoodsModel[] posts;
 
     public String getPrev() {
         return prev;
@@ -33,11 +33,11 @@ public class GoodsListBean {
         this.count = count;
     }
 
-    public GoodsBean[] getPosts() {
+    public GoodsModel[] getPosts() {
         return posts;
     }
 
-    public void setPosts(GoodsBean[] posts) {
+    public void setPosts(GoodsModel[] posts) {
         this.posts = posts;
     }
 

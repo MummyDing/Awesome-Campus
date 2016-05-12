@@ -138,6 +138,13 @@ public class EVENT {
     public static final int LIBRARY_RENEW_SUCCESS=63;
     public static final int LIBRARY_RENEW_FAILURE=64;
 
+    //货物列表加载code
+    public static final int GOODS_LIST_REFRESH_SUCCESS =65;
+    public static final int GOODS_LIST_REFRESH_FAILURE =66;
+
+    //货物详情跳转
+    public static final int GOODS_DETAIL_INTENT=67;
+
     /**
      * Cache Event Code
      */
@@ -207,6 +214,11 @@ public class EVENT {
     public static final int WEATHER_INFO_LOAD_CACHE_FAILURE = 2030;
 
 
+
+    //Jxnugo uerinfo
+    public  static final int JXNUGO_USERINFO_LOAD_USER=1031;
+    public  static final int JXNUGO_USERINFO_LOAD_USER_SUCCESS=1032;
+    public static final int JXNUGO_USERINFO_LOAD_USER_FALURE=1033;
 
 
     //Common

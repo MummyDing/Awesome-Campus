@@ -4,9 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"  />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"  />
-    <uses-permission android:name="android.permission.GET_TASKS"  />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".InitApp"
@@ -20,7 +20,8 @@
             android:name=".support.provider.SuggestionProvider"
             android:authorities="cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider" />
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:launchMode="standard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -51,6 +52,7 @@
         <activity android:name=".ui.leisure.DailyDetailsActivity" />
         <activity android:name=".ui.leisure.ScienceDetailsActivity" />
         <activity android:name=".ui.leisure.FilmDetailsActivity" />
+        <activity android:name=".ui.jxnugo.GoodsDetailActivity"/>
         <activity
             android:name=".ui.home.CourseDetailsDialog"
             android:theme="@style/BlueDialogTheme" />
@@ -64,12 +66,6 @@
             android:name=".ui.library.SearchResultDialog"
             android:theme="@style/DialogTheme" />
         <activity android:name=".ui.life.CampusExpressDetailsActivity" />
-
-
-
-
-
-
         <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".ui.about.AppIntroActivity" />
@@ -78,7 +74,7 @@
         <activity android:name=".ui.about.LicenseActivity" />
         <activity android:name=".AppGuideActivity" />
         <activity android:name=".ui.about.NotifyListActivity" />
-        <activity android:name=".ui.registe.JxnuGoRegisteActivity"/>
+        <activity android:name=".ui.registe.JxnuGoRegisteActivity" />
 
         <service
             android:name=".support.service.NotifyService"
@@ -88,15 +84,14 @@
         <receiver
             android:name=".support.boardcast.NotifyClickReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
-
-
+            android:exported="true" />
         <receiver
             android:name=".ui.widget.CourseTable4x2Privider"
             android:label="课程表">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/course_table4x2" />
+
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -107,18 +102,27 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/course_table_weather" />
+
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
         </receiver>
+
         <service
             android:name=".ui.widget.CourseTable4x2Service"
             android:process=":CourseTable4x2Service" />
         <service
             android:name=".ui.widget.CourseTableWeather4x2Service"
             android:process=":CourseTableWeather4x2Service" />
-        <meta-data android:name="TD_APP_ID" android:value="AA659C3528C62C870A16860692AD6325" />
-        <meta-data android:name="TD_CHANNEL_ID" android:value="00001" />
+
+        <meta-data
+            android:name="TD_APP_ID"
+            android:value="AA659C3528C62C870A16860692AD6325" />
+        <meta-data
+            android:name="TD_CHANNEL_ID"
+            android:value="00001" />
+
+        <activity android:name=".ui.jxnugo.JxnugoUserinfoActivity"></activity>
     </application>
 
 </manifest>
