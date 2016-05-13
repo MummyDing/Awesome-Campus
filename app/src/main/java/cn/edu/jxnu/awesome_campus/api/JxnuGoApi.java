@@ -11,5 +11,5 @@ public class JxnuGoApi {
     public static final String BaseOnePostUrl="http://www.jxnugo.com/api/posts/";//获取一篇基础url
     public static final String BaseUserPostUrl="http://www.jxnugo.com/api/user_posts/";//获取一个用户基础url
     public static final String BaseUserCollectionPostUrl="http://www.jxnugo.com/api/user_collectionpost/";//获取一个用户基础url
-
+    public static final String BaseCommentListUrl="http://www.jxnugo.com/api/comments/";//基础评论url
 }

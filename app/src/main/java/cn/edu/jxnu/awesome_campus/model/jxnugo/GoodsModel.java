@@ -14,6 +14,7 @@ public class GoodsModel implements IModel<GoodsModel>{
 
     private String author;
     private String body;
+    private int commentsCount;
     private String contact;
     private String goodLocation;
     private String goodBuyTime;
@@ -23,14 +24,20 @@ public class GoodsModel implements IModel<GoodsModel>{
     private int goodTag;
     private String[] photo;
 
+    public int getPostId() {
+        return postId;
+    }
 
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
 
+    private int postId;
     private String postUserAvator;
     private String postUserName;
     private String timestamp;
     private String url;
-    private String comments;
-    private String comments_count;
+
 
     public GoodsModel(){
         dao=new GoodsDAO();
@@ -38,7 +45,7 @@ public class GoodsModel implements IModel<GoodsModel>{
 
     public GoodsModel(String author,String body,String contact,String goodLocation,String goodBuyTime,
                       String goodName,float goodPrice,String goodQuality,int goodTag,String[] photo
-    ,String postUserAvator,String postUserName,String timestamp,String url,String comments,String comments_count){
+    ,int postId,String postUserAvator,String postUserName,String timestamp,String url,int commentsCount){
         this.author=author;
         this.body=body;
         this.contact=contact;
@@ -47,14 +54,14 @@ public class GoodsModel implements IModel<GoodsModel>{
         this.goodName=goodName;
         this.goodPrice=goodPrice;
         this.goodQuality=goodQuality;
+        this.postUserName=postUserName;
         this.goodTag=goodTag;
         this.photo=photo;
         this.timestamp=timestamp;
         this.url=url;
-        this.comments=comments;
-        this.comments_count=comments_count;
+        this.commentsCount=commentsCount;
         this.postUserAvator=postUserAvator;
-
+        this.postId=postId;
     }
 
     public String getAuthor() {
@@ -153,20 +160,14 @@ public class GoodsModel implements IModel<GoodsModel>{
         this.url = url;
     }
 
-    public String getComments() {
-        return comments;
+
+
+    public int getCommentsCount() {
+        return commentsCount;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public String getComments_count() {
-        return comments_count;
-    }
-
-    public void setComments_count(String comments_count) {
-        this.comments_count = comments_count;
+    public void setCommentsCount(int comments_count) {
+        this.commentsCount = comments_count;
     }
     public String getPostUserAvator() {
         return postUserAvator;

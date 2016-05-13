@@ -22,6 +22,25 @@ public class JxnuGoUserModel implements IModel<JxnuGoUserModel> {
     private int postCount;
     private int collectionPostCount;
     private String sex;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getContactMe() {
+        return contactMe;
+    }
+
+    public void setContactMe(String contactMe) {
+        this.contactMe = contactMe;
+    }
+
+    private int userId;
+    private String contactMe;
     private String userName;
     private String followed;
     private String followers;
@@ -31,7 +50,7 @@ public class JxnuGoUserModel implements IModel<JxnuGoUserModel> {
     }
 
     public JxnuGoUserModel(String about_me, String last_seen, String location, String member_since,
-                           String name, int postCount, int collectionPostCount, String sex, String userName, String followed, String followers){
+                           String name, int postCount, int collectionPostCount, String sex, int userId,String contactMe,String userName, String followed, String followers){
         this.about_me=about_me;
         this.last_seen=last_seen;
         this.location=location;
@@ -43,6 +62,8 @@ public class JxnuGoUserModel implements IModel<JxnuGoUserModel> {
         this.userName=userName;
         this.followed=followed;
         this.followers=followers;
+        this.userId=userId;
+        this.contactMe=contactMe;
     }
     @Override
     public boolean cacheAll(List<JxnuGoUserModel> list) {

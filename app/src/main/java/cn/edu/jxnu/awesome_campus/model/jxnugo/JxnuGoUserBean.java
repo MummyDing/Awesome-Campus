@@ -12,6 +12,25 @@ public class JxnuGoUserBean {
     private int postCount;
     private int collectionPostCount;
     private String sex;
+    private int userId;
+
+    public String getContactMe() {
+        return contactMe;
+    }
+
+    public void setContactMe(String contactMe) {
+        this.contactMe = contactMe;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    private String contactMe;
     private String userName;
     private String followed;
     private String followers;
