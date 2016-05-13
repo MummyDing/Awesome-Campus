@@ -1,9 +1,12 @@
 package cn.edu.jxnu.awesome_campus.support.utils.login;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.EditText;
 
 import com.squareup.okhttp.Headers;
+import com.squareup.okhttp.internal.spdy.FrameReader;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -57,19 +60,30 @@ public class JxnuGoLoginUtil {
         //there has something inputed into the username and password edittext,and then verify it by net
         else {
             Log.d(TAG, "开始请求网络");
+            final Handler handler = new Handler(Looper.getMainLooper());
             NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
                     .addTag(TAG)
                     .addUserName(getUsername(usernameText))
                     .addPassword(getPassword(passwordText))
                     .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
                         @Override
-                        public void onSuccess(JxnuGoLoginBean entity, int responseCode, Headers headers) {
+                        public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
                             Log.d(TAG, "返回数据成功");
                             Log.d(TAG, "状态码" + responseCode);
                             if (!TextUtil.isNull(entity.getToken())) {
-                                Log.d("Token", entity.getToken());
+                                Log.d("JXNUGOLOD","SUCCESS");
+
                                 token = entity.getToken();
+
                                 saveToSP(token, getUsername(usernameText), getPassword(passwordText));
+
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //Log.d("JXNUGOLOAD", entity.getToken()+entity.getMessage()+entity.getError());
+                                        EventBus.getDefault().post(new EventModel<String>(EVENT.JUMP_TO_JXNUGO_USERINFO,"41"));
+                                    }
+                                });
                             }
                         }
 

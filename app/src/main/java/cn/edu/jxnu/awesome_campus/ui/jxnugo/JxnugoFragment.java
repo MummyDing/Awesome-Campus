@@ -1,5 +1,8 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -9,6 +12,11 @@ import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
  */
 public class JxnugoFragment extends TopNavigationFragment {
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     protected static void addChildFragments() {
         if(fragments == null) {

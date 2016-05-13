@@ -28,10 +28,10 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
                 setInputAreaEnable(false);
                 JxnuGoLoginUtil.onLogin(usernameET, passwordET);
                 //测试跳转到用户信息界面
-                JxnuGoLoginBean bean=new JxnuGoLoginBean();
+                /*JxnuGoLoginBean bean=new JxnuGoLoginBean();
                 bean.setMessage("hello");
                 EventBus.getDefault().post(new EventModel<JxnuGoLoginBean>(EVENT.JUMP_TO_JXNUGO_USERINFO,bean));
-                //
+                */
             }
         });
         tips.setText("没有账号？请注册");
