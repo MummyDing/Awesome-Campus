@@ -108,7 +108,8 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
         switch (item.getItemId()) {
             case R.id.menu_comment:
                 Intent intent=new Intent();
-                intent.setClass(this,GoodsCommentActivity.class);
+//                intent.setClass(this,GoodsCommentActivity.class);//测试
+                intent.setClass(this,NewGoodsActivity.class);
                 intent.putExtra("id",16);
                 startActivity(intent);
                 break;

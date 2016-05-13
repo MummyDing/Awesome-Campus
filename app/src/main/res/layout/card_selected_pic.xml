@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_marginTop="@dimen/card_margin"
+    android:layout_marginLeft="@dimen/card_margin"
+    android:layout_marginRight="@dimen/card_margin"
+    app:cardBackgroundColor="#00000000"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    app:contentPadding="0dp"
+    app:cardPreventCornerOverlap="true">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/delete"
+                android:padding="30dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_highlight_remove_black"
+                android:visibility="gone"/>
+        </FrameLayout>
+
+        <cn.finalteam.galleryfinal.widget.GFImageView
+            android:id="@+id/addPic"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_add_circle"/>
+    </FrameLayout>
+
+
+
+</android.support.v7.widget.CardView>

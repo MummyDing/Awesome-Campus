@@ -251,5 +251,7 @@ public class EVENT {
 
     //Jump to jxnugo userinfo
     public  static final  int JUMP_TO_JXNUGO_USERINFO=2010;
+
+    public static final int JUMP_TO_JXNUGO=2011;
 }
 

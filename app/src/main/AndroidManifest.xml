@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.jxnu.awesome_campus">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -54,6 +56,7 @@
         <activity android:name=".ui.leisure.FilmDetailsActivity" />
         <activity android:name=".ui.jxnugo.GoodsDetailActivity"/>
         <activity android:name=".ui.jxnugo.GoodsCommentActivity"/>
+        <activity android:name=".ui.jxnugo.NewGoodsActivity"/>
         <activity
             android:name=".ui.home.CourseDetailsDialog"
             android:theme="@style/BlueDialogTheme" />
@@ -124,6 +127,9 @@
             android:value="00001" />
 
         <activity android:name=".ui.jxnugo.JxnugoUserinfoActivity"></activity>
+        <activity
+            android:configChanges="orientation|screenSize"
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity" />
     </application>
 
 </manifest>
