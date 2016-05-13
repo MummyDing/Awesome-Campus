@@ -11,20 +11,18 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.NetCallback;
 /**
  * Created by zpauly on 16-5-12.
  */
-public class PostJsonRequest {
+public class PostJsonRequest extends PostRequest {
     private static final MediaType Json = MediaType.parse("application/json; charset=utf-8");
 
     private String json;
-    private String url;
     private OkHttpClient client;
+
+    public PostJsonRequest(String url) {
+        super(url);
+    }
 
     public PostJsonRequest addJsonObject(Object json) {
         this.json = new Gson().toJson(json);
-        return this;
-    }
-
-    public PostJsonRequest addUrl(String url) {
-        this.url = url;
         return this;
     }
 
