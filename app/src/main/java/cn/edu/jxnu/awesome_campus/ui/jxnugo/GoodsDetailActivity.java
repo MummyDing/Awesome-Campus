@@ -41,7 +41,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity{
     @Override
     protected void onDataRefresh() {
         tvTime.setText(model.getTimestamp());
-//        tvUserName.setText(model.getAuthor());
+        tvUserName.setText(model.getPostUserName());
         data="<div class=\"main-wrap content-wrap\">" +
                 "<h1 class=\"question-title\">"
                 +model.getGoodName() +"</h1>\n\n" +
