@@ -23,6 +23,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
@@ -32,6 +33,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -65,6 +67,7 @@ import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserInfoFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserinfoActivity;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.NewGoodsActivity;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
 import cn.edu.jxnu.awesome_campus.ui.life.LifeFragment;
@@ -91,6 +94,8 @@ public class MainActivity extends BaseActivity implements HomeView{
     private FragmentTransaction fragmentTransaction;
     public static HomePresenter presenter;
     private Settings mSettings = Settings.getsInstance();
+    private MenuItem notifyMenu,searchMenu,newGoodsMenu;
+    private int nowDrawID=DrawerItem.HOME.getId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +141,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     public void switchDrawerItem(int id) {
+        nowDrawID=id;
         if( menu!= null) {
             menu.clear();
         }
@@ -143,7 +149,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
             presenter.clearAllFragments();
             switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
-            updateNotifyMenu();
+//            setNotify();
         }else if(id == DrawerItem.LEISURE.getId()){
             // switch fragment
             presenter.clearAllFragments();
@@ -161,7 +167,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             presenter.clearAllFragments();
             switchFragment(LibraryFragment.newInstance(),DrawerItem.LIBRARY.getItemName());
             // switch menu  搜索框 下拉主题还有点问题
-            updateMenu();
+//            updateMenu();
         }else if(id == DrawerItem.EDUCATION.getId()){
             presenter.clearAllFragments();
             switchFragment(EducationFragment.newInstance(),DrawerItem.EDUCATION.getItemName());
@@ -177,6 +183,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         else if(id == DrawerItem.LOGOUT.getId()){
             showLogoutDialog();
         }
+        setMenu();
     }
 
 
@@ -262,7 +269,6 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     public void switchToLibrary(){
         switchFragment(LibraryFragment.newInstance(),getString(R.string.library));
-        updateMenu();
     }
 
 
@@ -284,10 +290,11 @@ public class MainActivity extends BaseActivity implements HomeView{
             case EVENT.JUMP_TO_MAIN:
                 presenter.clearAllFragments();
                 switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
-                updateNotifyMenu();
+                nowDrawID=DrawerItem.HOME.getId();
                 break;
             case EVENT.JUMP_TO_EDUCATION_LOGIN:
                 switchToLogin();
+                nowDrawID=0;
                 break;
             case EVENT.JUMP_TO_LIBRARY_LOGIN:
                 switchToLogin();
@@ -297,6 +304,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                         EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_LOGIN));
                     }
                 });
+                nowDrawID=0;
                  break;
             case EVENT.JUMP_TO_LIBRARY_BORROWED:
                 switchToLibrary();
@@ -306,72 +314,108 @@ public class MainActivity extends BaseActivity implements HomeView{
                         EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_LIBRARY_BORROWED));
                     }
                 });
+                nowDrawID=0;
                 break;
             case EVENT.JUMP_TO_JXNUGO_USERINFO:
                 jumpToJxnugoUserinfo(eventModel);
+                nowDrawID=0;
                 break;
             case EVENT.UPDATE_MENU:
-                Log.d(TAG,"更新主页通知menu");
-                updateNotifyMenu((Boolean) eventModel.getData());
+//                Log.d(TAG,"更新主页通知menu");
+//                updateNotifyMenu((int) eventModel.getData());
+                nowDrawID=DrawerItem.HOME.getId();
                 break;
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
                 presenter.updateSelectedToHome();
+                nowDrawID=0;
                 break;
         }
-
+        setMenu();
     }
 
+    private void updateNotifyMenu(int data) {
+        setNotify(data);
+    }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
         // 这里根据是否有消息进行菜单显示
-        updateNotifyMenu();
+        getMenuInflater().inflate(R.menu.menu_mainactivity, menu);
+        newGoodsMenu=menu.findItem(R.id.menu_new_goods);
+        notifyMenu=menu.findItem(R.id.menu_notify);
+        searchMenu=menu.findItem(R.id.menu_search);
+        setMenu();
         return true;
+    }
+
+    private void setMenu() {
+        Log.d(TAG,"当前ID为："+nowDrawID);
+        if(notifyMenu!=null&&searchMenu!=null&&newGoodsMenu!=null){
+//        hideAllMenu();
+            getMenuInflater().inflate(R.menu.menu_mainactivity, menu);
+            newGoodsMenu=menu.findItem(R.id.menu_new_goods);
+            notifyMenu=menu.findItem(R.id.menu_notify);
+            searchMenu=menu.findItem(R.id.menu_search);
+        if(nowDrawID==DrawerItem.HOME.getId()){
+            Log.d(TAG,"主页菜单切换");
+            notifyMenu.setVisible(true);
+            setNotify();
+        }else if(nowDrawID==DrawerItem.LIBRARY.getId()){
+            Log.d(TAG,"图书馆菜单切换");
+            searchMenu.setVisible(true);
+            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchMenu);
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        }else if(nowDrawID==DrawerItem.JXNUGO.getId()){
+            Log.d(TAG,"二手菜单切换");
+            newGoodsMenu.setVisible(true);
+        }}
+    }
+
+    /**
+     * 设置显示的消息数
+     */
+    private void setNotify(int...data) {
+        if(NotifyUtil.hasUnread()>0){
+            ActionItemBadge.update(this, notifyMenu, ContextCompat.getDrawable(this, R.mipmap.ic_notify_none), ActionItemBadge.BadgeStyles.YELLOW, NotifyUtil.hasUnread());
+        }else if(data.length>0){
+            ActionItemBadge.update(this, notifyMenu, ContextCompat.getDrawable(this, R.mipmap.ic_notify_none), ActionItemBadge.BadgeStyles.YELLOW,data[0]);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
-            case R.id.menu_notify_unread:
-            case R.id.menu_notify_none:
+            case R.id.menu_notify:
                 Intent intent = new Intent(this, NotifyListActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.menu_new_goods:
+                startActivity(new Intent(this, NewGoodsActivity.class));
+                break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    private void updateNotifyMenu(boolean flag){
-        if (menu == null) return;
-        menu.clear();
-        if (presenter.getCurrentSelectedID() == DrawerItem.HOME.getId()){
-            if (flag){
-                getMenuInflater().inflate(R.menu.menu_notify_unread, menu);
-            }else {
-                getMenuInflater().inflate(R.menu.menu_notify_none, menu);
-            }
 
-        }
-    }
 
-    private void updateNotifyMenu(){
-        updateNotifyMenu(NotifyUtil.hasUnread());
-    }
 
-    private void updateMenu(){
-        if (menu == null) return;
-//        Icon unreadIcon=(Icon)findViewById(R.id.menu_notify_unread);
-        menu.clear();
-        if (presenter.getCurrentSelectedID() == DrawerItem.LIBRARY.getId()){
-            getMenuInflater().inflate(R.menu.menu_library, menu);
-            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-            MenuItem searchItem = menu.findItem(R.id.menu_search);
-            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        }
-    }
+
+//    private void updateMenu(){
+//        if (menu == null) return;
+////        Icon unreadIcon=(Icon)findViewById(R.id.menu_notify_unread);
+//        menu.clear();
+//        if (presenter.getCurrentSelectedID() == DrawerItem.LIBRARY.getId()){
+//            getMenuInflater().inflate(R.menu.menu_library, menu);
+//            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//            MenuItem searchItem = menu.findItem(R.id.menu_search);
+//            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//        }
+//    }
 
     @Override
     public void onBackPressed() {
@@ -408,8 +452,12 @@ public class MainActivity extends BaseActivity implements HomeView{
                 presenter.updateHeader(this);
             }
         }
-        updateNotifyMenu();
-        updateMenu();
+        setMenu();
+    }
+    private void hideAllMenu(){
+        notifyMenu.setVisible(false);
+        newGoodsMenu.setVisible(false);
+        notifyMenu.setVisible(false);
     }
     @Override
     protected void onDestroy() {

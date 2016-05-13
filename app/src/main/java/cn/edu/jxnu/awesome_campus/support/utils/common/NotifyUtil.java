@@ -15,17 +15,18 @@ public class NotifyUtil {
 
     public static final String NotifyVersion = "notifyVersion";
 
-    public static boolean hasUnread(List<NotifyModel> modelList){
-        if (modelList == null || modelList.isEmpty()) return false;
+    public static int hasUnread(List<NotifyModel> modelList){
+        if (modelList == null || modelList.isEmpty()) return 0;
+        int i=0;
         for (NotifyModel model:modelList){
             if (model.getReaded() == 0){
-                return true;
+               i++;
             }
         }
-        return false;
+        return i;
     }
 
-    public static boolean hasUnread(){
+    public static int hasUnread(){
         NotifyDAO dao = new NotifyDAO();
         return hasUnread(dao.getCache());
     }

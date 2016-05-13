@@ -107,7 +107,7 @@ public class NotifyService extends Service {
             case EVENT.NOTIFY_LOAD_CACHE_SUCCESS:
                 modelList = (List<NotifyModel>) eventModel.getDataList();
                 notifyModel.loadFromNet();
-                notifyUpdateMenu(NotifyUtil.hasUnread(modelList));
+                notifyUpdateMenu(modelList.size());
                 break;
             case EVENT.NOTIFY_LOAD_CACHE_FAILURE:
                 notifyModel.loadFromNet();
@@ -122,7 +122,7 @@ public class NotifyService extends Service {
 
                 modelList = Arrays.asList(notifyBean.getMsgList());
                 notifyModel.cacheAll(modelList);
-                notifyUpdateMenu(true);
+                notifyUpdateMenu(modelList.size());
                 showNotify(modelList.get(0));
                 break;
             case EVENT.NOTIFY_REFRESH_FAILURE:
@@ -131,8 +131,8 @@ public class NotifyService extends Service {
     }
 
 
-    private void notifyUpdateMenu(boolean flag){
-        EventBus.getDefault().post(new EventModel<Boolean>(EVENT.UPDATE_MENU,flag));
+    private void notifyUpdateMenu(int flag){
+        EventBus.getDefault().post(new EventModel<Integer>(EVENT.UPDATE_MENU,flag));
     }
     @Override
     public void onDestroy () {
