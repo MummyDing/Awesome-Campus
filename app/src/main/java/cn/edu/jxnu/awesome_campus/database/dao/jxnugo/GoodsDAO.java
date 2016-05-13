@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import com.google.gson.JsonSyntaxException;
 import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,7 +30,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallb
  * Created by KevinWu on 16-5-11.
  */
 public class GoodsDAO implements DAO<GoodsModel> {
-    private static final String TAG="GoodsDAO";
+    private static final String TAG = "GoodsDAO";
 
     @Override
     public boolean cacheAll(List<GoodsModel> list) {
@@ -43,7 +44,7 @@ public class GoodsDAO implements DAO<GoodsModel> {
 
     @Override
     public void loadFromCache() {
-
+        loadFromNet();
     }
 
     @Override
@@ -52,36 +53,39 @@ public class GoodsDAO implements DAO<GoodsModel> {
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
         String password = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
         final Handler handler = new Handler(Looper.getMainLooper());
-        NetManageUtil.getAuth(JxnuGoApi.AllPostUrl)
-                .addUserName(userName)
-                .addPassword(password)
-                .addTag(TAG)
-                .enqueue(new JsonCodeEntityCallback<GoodsListBean>() {
-                    @Override
-                    public void onSuccess(GoodsListBean entity, int responseCode, Headers headers) {
-                        if(entity!=null){
-                           final List<GoodsModel> list = Arrays.asList(entity.getPosts());
-                            Log.d(TAG,"取得的条数"+entity.getCount());
-                            Log.d(TAG,"下一页"+entity.getNext());
-                            Log.d(TAG,"实际条数"+entity.getPosts().length);
-                            Log.d(TAG,"获取到的第一条信息"+entity.getPosts()[0].getBody());
-                            Log.d(TAG,"商品模型列表大小"+list.size());
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_SUCCESS,list));
+        try {
+            NetManageUtil.getAuth(JxnuGoApi.AllPostUrl)
+                    .addUserName(userName)
+                    .addPassword(password)
+                    .addTag(TAG)
+                    .enqueue(new JsonCodeEntityCallback<GoodsListBean>() {
+                        @Override
+                        public void onSuccess(GoodsListBean entity, int responseCode, Headers headers) {
+                            if (entity != null) {
+                                final List<GoodsModel> list = Arrays.asList(entity.getPosts());
+                                Log.d(TAG, "取得的条数" + entity.getCount());
+                                Log.d(TAG, "下一页" + entity.getNext());
+                                Log.d(TAG, "实际条数" + entity.getPosts().length);
+                                Log.d(TAG, "获取到的第一条信息" + entity.getPosts()[0].getBody());
+                                Log.d(TAG, "商品模型列表大小" + list.size());
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_SUCCESS, list));
 
-                                }
-                            });
-                        }else{
+                                    }
+                                });
+                            } else {
+                                EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                            }
+                        }
+                        @Override
+                        public void onFailure(String error) {
                             EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_FAILURE));
                         }
-                    }
-
-                    @Override
-                    public void onFailure(String error) {
-                        EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_FAILURE));
-                    }
-                });
+                    });
+        } catch (IllegalStateException e) {
+            EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+        }
     }
 }

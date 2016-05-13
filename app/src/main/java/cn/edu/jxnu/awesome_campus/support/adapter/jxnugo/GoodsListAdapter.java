@@ -67,8 +67,8 @@ public class GoodsListAdapter extends BaseListAdapter<GoodsModel,GoodsListAdapte
             public void onClick(View v) {
                 EventBus.getDefault().postSticky(new EventModel<GoodsModel>(EVENT.GOODS_DETAIL_INTENT,model));
                 Intent intent=new Intent();
-                intent.setClass(InitApp.AppContext, GoodsDetailActivity.class);
-                InitApp.AppContext.startActivity(intent);
+                intent.setClass(mContext, GoodsDetailActivity.class);
+                mContext.startActivity(intent);
             }
         });
 

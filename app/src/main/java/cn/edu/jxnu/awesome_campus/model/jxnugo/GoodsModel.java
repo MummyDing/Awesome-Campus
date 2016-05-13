@@ -22,6 +22,11 @@ public class GoodsModel implements IModel<GoodsModel>{
     private String goodQuality;
     private int goodTag;
     private String[] photo;
+
+
+
+    private String postUserAvator;
+    private String postUserName;
     private String timestamp;
     private String url;
     private String comments;
@@ -33,7 +38,7 @@ public class GoodsModel implements IModel<GoodsModel>{
 
     public GoodsModel(String author,String body,String contact,String goodLocation,String goodBuyTime,
                       String goodName,float goodPrice,String goodQuality,int goodTag,String[] photo
-    ,String timestamp,String url,String comments,String comments_count){
+    ,String postUserAvator,String postUserName,String timestamp,String url,String comments,String comments_count){
         this.author=author;
         this.body=body;
         this.contact=contact;
@@ -48,6 +53,8 @@ public class GoodsModel implements IModel<GoodsModel>{
         this.url=url;
         this.comments=comments;
         this.comments_count=comments_count;
+        this.postUserAvator=postUserAvator;
+
     }
 
     public String getAuthor() {
@@ -161,7 +168,21 @@ public class GoodsModel implements IModel<GoodsModel>{
     public void setComments_count(String comments_count) {
         this.comments_count = comments_count;
     }
+    public String getPostUserAvator() {
+        return postUserAvator;
+    }
 
+    public void setPostUserAvator(String postUserAvator) {
+        this.postUserAvator = postUserAvator;
+    }
+
+    public String getPostUserName() {
+        return postUserName;
+    }
+
+    public void setPostUserName(String postUserName) {
+        this.postUserName = postUserName;
+    }
 
 
     @Override

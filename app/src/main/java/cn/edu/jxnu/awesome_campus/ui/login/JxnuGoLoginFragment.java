@@ -52,7 +52,7 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
 
     @Override
     public String getTitle() {
-        return "Market";
+        return "JxnuGo";
     }
 
     @Override

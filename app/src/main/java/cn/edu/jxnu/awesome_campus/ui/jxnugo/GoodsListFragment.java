@@ -40,7 +40,9 @@ public class GoodsListFragment  extends BaseListFragment {
 
     @Override
     public void initView() {
+
         goodsModel.loadFromCache();
+
     }
 
     private static final Handler handler = new Handler(Looper.getMainLooper());
