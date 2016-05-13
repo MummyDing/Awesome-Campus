@@ -34,6 +34,8 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
     TextView userLocate;
     ProgressBar progressBar;
 
+    final String TAG="JXNU_GO";
+
     public void initView(){
         userDesc=(TextView)findViewById(R.id.jxnugo_user_desc);
         userPostNum=(TextView)findViewById(R.id.jxnugo_user_posts);
@@ -54,11 +56,12 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jxnugo_userinfo);
+        EventBus.getDefault().register(this);
         initToolbar();
         loadUserInfo();
         initView();
         progressBar.setVisibility(View.VISIBLE);
-        EventBus.getDefault().register(this);
+
         JxnuGoUserDAO dao=new JxnuGoUserDAO();
         dao.loadFromNet();
 
@@ -83,23 +86,24 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
     public  void loadUserInfo(){
         EventModel model= EventBus.getDefault().getStickyEvent(EventModel.class);
         if(model!=null&&model.getEventCode()==EVENT.JXNUGO_USERINFO_LOAD_USER){
-            JxnuGoLoginBean bean=(JxnuGoLoginBean) model.getData();
-            Log.d("JXNU_GO","load sticky login bean"+bean.getMessage());
+            String userId=(String) model.getData();
+            Log.d("JXNU_GO","load sticky login bean"+userId);
             //setToolbarTitle("vczh");
-            EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS));
+            //EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS));
         }
 
     }
     public  void loadInfo(EventModel eventModel){
         JxnuGoUserBean bean=(JxnuGoUserBean)eventModel.getData();
-        setToolbarTitle(bean.getName());
-        userDesc.setText(bean.getAbout_me());
-        userLocate.setText(bean.getLocation());
-        userFollowerdNum.setText(bean.getFollowed());
-        userFollowingNum.setText(bean.getFollowers());
-        userCollectNum.setText(bean.getCollectionPostCount());
-        userPostNum.setText(bean.getPostCount());
+        setToolbarTitle(bean.getName()+"");
+        userDesc.setText(bean.getAbout_me()+"");
+        userLocate.setText(bean.getLocation()+"");
+        userFollowerdNum.setText(bean.getFollowed()+"");
+        userFollowingNum.setText(bean.getFollowers()+"");
+        userCollectNum.setText(bean.getCollectionPostCount()+"");
+        userPostNum.setText(bean.getPostCount()+"");
         progressBar.setVisibility(View.GONE);
+        Log.d(TAG,"progress"+progressBar.getVisibility());
     }
 
     @Subscribe
@@ -109,6 +113,7 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
            case  EVENT.JXNUGO_USERINFO_LOAD_USER:
                break;
            case EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS:
+               Log.d(TAG,"load userinfo sueccess");
                loadInfo(eventModel);
                break;
            case EVENT.JXNUGO_USERINFO_LOAD_USER_FALURE:
