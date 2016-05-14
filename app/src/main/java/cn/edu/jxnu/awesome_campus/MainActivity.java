@@ -40,6 +40,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
+import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.GoodsDAO;
+import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoPeopleDao;
 import cn.edu.jxnu.awesome_campus.database.dao.life.WeatherInfoDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
@@ -124,8 +126,8 @@ public class MainActivity extends BaseActivity implements HomeView{
         switchDrawerItem(DrawerItem.HOME.getId());
         WeatherInfoDAO dao = new WeatherInfoDAO();
         dao.loadFromNet();
-
-
+        JxnuGoPeopleDao  dao1=new JxnuGoPeopleDao(JxnuGoPeopleDao.MODE.FOLLOWED,27);
+        dao1.loadFromNet();
     }
 
     @Override
@@ -274,10 +276,11 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     public void jumpToJxnugoUserinfo(EventModel eventModel){
         Intent intent=new Intent(this, JxnugoUserinfoActivity.class);
-        String  userId=(String)eventModel.getData();
+        Integer userId=(Integer) eventModel.getData();
+        Log.d(TAG,userId+"");
 
        // Log.d("JXNU_GO",loginBean.getMessage());
-        EventBus.getDefault().postSticky(new EventModel<String>(EVENT.JXNUGO_USERINFO_LOAD_USER,userId));
+        EventBus.getDefault().postSticky(new EventModel<Integer>(EVENT.JXNUGO_USERINFO_LOAD_USER,userId));
         startActivity(intent);
     }
 

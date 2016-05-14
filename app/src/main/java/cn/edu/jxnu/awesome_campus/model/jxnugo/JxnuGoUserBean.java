@@ -9,10 +9,19 @@ public class JxnuGoUserBean {
     private String location;
     private String menber_since;
     private String name;
+    private  String avatar;
     private int postCount;
     private int collectionPostCount;
     private String sex;
     private int userId;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getContactMe() {
         return contactMe;

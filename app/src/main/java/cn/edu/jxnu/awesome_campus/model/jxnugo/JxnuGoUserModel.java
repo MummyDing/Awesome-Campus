@@ -17,11 +17,20 @@ public class JxnuGoUserModel implements IModel<JxnuGoUserModel> {
     private String about_me;
     private String last_seen;
     private String location;
+    private String avatar;
     private String member_since;
     private String name;
     private int postCount;
     private int collectionPostCount;
     private String sex;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public int getUserId() {
         return userId;
@@ -50,7 +59,7 @@ public class JxnuGoUserModel implements IModel<JxnuGoUserModel> {
     }
 
     public JxnuGoUserModel(String about_me, String last_seen, String location, String member_since,
-                           String name, int postCount, int collectionPostCount, String sex, int userId,String contactMe,String userName, String followed, String followers){
+                           String name, int postCount, int collectionPostCount, String sex, int userId,String contactMe,String userName, String followed, String followers,String avatar){
         this.about_me=about_me;
         this.last_seen=last_seen;
         this.location=location;
@@ -61,9 +70,11 @@ public class JxnuGoUserModel implements IModel<JxnuGoUserModel> {
         this.sex=sex;
         this.userName=userName;
         this.followed=followed;
+        this.avatar=avatar;
         this.followers=followers;
         this.userId=userId;
         this.contactMe=contactMe;
+        dao=new JxnuGoUserDAO(userId);
     }
     @Override
     public boolean cacheAll(List<JxnuGoUserModel> list) {

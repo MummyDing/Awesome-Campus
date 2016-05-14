@@ -15,7 +15,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.SimpleUploadSer
 /**
  * Created by zpauly on 16-5-14.
  */
-public class UploadFilesUtil {
+public class UploadUtil {
     private static SimpleUploadService service;
 
     static {
