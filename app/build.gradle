@@ -52,4 +52,5 @@ dependencies {
     compile 'com.qiniu:happy-dns:0.2.3.2'
     compile 'cn.finalteam:galleryfinal:1.4.8.7'
     compile 'com.android.support:support-v4:23.1.1'
+    compile project(':HeaderAndFooterRecyclerView')
 }

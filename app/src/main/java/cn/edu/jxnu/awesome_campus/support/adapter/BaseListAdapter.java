@@ -18,8 +18,10 @@ public abstract class BaseListAdapter<M extends IModel,VH extends RecyclerView.V
     protected List<M> mItems;
     protected Context mContext;
     protected abstract void updateView();
-
     public BaseListAdapter(Context mContext,M model) {
+        this.mContext = mContext;
+    }
+    public BaseListAdapter(Context mContext,List<M> modelList) {
         this.mContext = mContext;
     }
     @Override
@@ -31,7 +33,6 @@ public abstract class BaseListAdapter<M extends IModel,VH extends RecyclerView.V
     protected M getItem(int position){
         return mItems.get(position);
     }
-
     public void newList(List<M> list){
         if(list == null){
             return;

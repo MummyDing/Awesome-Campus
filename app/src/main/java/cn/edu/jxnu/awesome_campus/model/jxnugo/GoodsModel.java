@@ -16,13 +16,18 @@ public class GoodsModel implements IModel<GoodsModel>{
     private String body;
     private int commentsCount;
     private String contact;
-    private String goodLocation;
     private String goodBuyTime;
+    private String goodLocation;
     private String goodName;
     private float goodPrice;
     private String goodQuality;
     private int goodTag;
     private String[] photo;
+    private int postId;
+    private String postUserAvator;
+    private String postUserName;
+    private String timestamp;
+    private String url;
 
     public int getPostId() {
         return postId;
@@ -32,20 +37,29 @@ public class GoodsModel implements IModel<GoodsModel>{
         this.postId = postId;
     }
 
-    private int postId;
-    private String postUserAvator;
-    private String postUserName;
-    private String timestamp;
-    private String url;
+
 
 
     public GoodsModel(){
         dao=new GoodsDAO();
     }
 
-    public GoodsModel(String author,String body,String contact,String goodLocation,String goodBuyTime,
-                      String goodName,float goodPrice,String goodQuality,int goodTag,String[] photo
-    ,int postId,String postUserAvator,String postUserName,String timestamp,String url,int commentsCount){
+    public GoodsModel(String author,
+                      String body,
+                      String contact,
+                      String goodLocation,
+                      String goodBuyTime,
+                      String goodName,
+                      float goodPrice,
+                      String goodQuality,
+                      int goodTag,
+                      String[] photo,
+                      int postId,
+                      String postUserAvator,
+                      String postUserName,
+                      String timestamp,
+                      String url,
+                      int commentsCount){
         this.author=author;
         this.body=body;
         this.contact=contact;

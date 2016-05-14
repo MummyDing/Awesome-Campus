@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Awesome-Campus.iml" filepath="$PROJECT_DIR$/Awesome-Campus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HeaderAndFooterRecyclerView/HeaderAndFooterRecyclerView.iml" filepath="$PROJECT_DIR$/HeaderAndFooterRecyclerView/HeaderAndFooterRecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

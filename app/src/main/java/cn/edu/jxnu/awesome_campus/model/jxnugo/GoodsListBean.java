@@ -4,7 +4,7 @@ package cn.edu.jxnu.awesome_campus.model.jxnugo;
  * Created by KevinWu on 16-5-11.
  */
 public class GoodsListBean {
-    private String count;
+    private int count;
     private String next;
     private String prev;
     private GoodsModel[] posts;
@@ -25,11 +25,11 @@ public class GoodsListBean {
         this.next = next;
     }
 
-    public String getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(int count) {
         this.count = count;
     }
 

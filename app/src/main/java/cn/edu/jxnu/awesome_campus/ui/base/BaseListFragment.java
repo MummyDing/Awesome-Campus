@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
