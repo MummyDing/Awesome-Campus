@@ -2,12 +2,11 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,18 +15,27 @@ import android.widget.EditText;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.squareup.okhttp.Headers;
 import com.tendcloud.tenddata.TCAgent;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsPhotoModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.ChoosePicAdapter;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadGoodsUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
+import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.IUploadService;
+import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostJsonRequest;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 import cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner.GoodTagSpinnerWrapper;
 import cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner.OnGoodTagChangedLister;
@@ -47,6 +55,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     private final int REQUEST_CODE_GALLERY = 1001;
     private int goodTag = 4;//默认其它
     private List<GoodsPhotoModel> mPhotoList;
+    private ArrayList<String> photoKeys = new ArrayList<>();
     private ChoosePicAdapter adapter;
     private HorizontalListView picListView;
     private AppCompatButton addPicButton;
@@ -59,6 +68,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     private EditText positionET;
     private EditText contactET;
     private EditText discribtionET;
+    private IUploadService.OnUploadListener uploadListener;
 
 
     @Override
@@ -147,7 +157,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     private boolean completeInput(){
         if(!TextUtil.isNull(goodNameET.getText().toString())
                 &&!TextUtil.isNull(priceET.getText().toString())
-        &&!TextUtil.isNull(amountET.getText().toString())
+                &&!TextUtil.isNull(amountET.getText().toString())
                 &&!TextUtil.isNull(positionET.getText().toString())
                 &&!TextUtil.isNull(contactET.getText().toString())
                 &&!TextUtil.isNull(discribtionET.getText().toString()))return true;
@@ -241,9 +251,28 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                 }
                 else{
                     //这里上传帖子信息，用Eventbus发送消息到外部处理
+                    UploadGoodsUtil.onUploadImages(this, mPhotoList);
+
+                    final PublishGoodsBean bean = new PublishGoodsBean();
+                    bean.setBody(discribtionET.getText().toString());
+                    bean.setContact(contactET.getText().toString());
+                    if (!TextUtil.isNull(yearET.getText().toString())
+                            && !TextUtil.isNull(monthET.getText().toString())
+                            && !TextUtil.isNull(dayET.getText().toString()))
+                        bean.setGoodBuyTime(yearET + "-" + monthET + "-" + dayET);
+                    bean.setGoodLocation(positionET.getText().toString());
+                    bean.setGoodName(goodNameET.getText().toString());
+                    bean.setGoodPrice(Float.valueOf(priceET.getText().toString()));
+                    bean.setGoodTag(goodTag);
+                    bean.setGoodNum(Integer.valueOf(amountET.getText().toString()));
+                    bean.setGoodQuality("");
+
+                    UploadGoodsUtil.onUploadJson(bean);
                 }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
