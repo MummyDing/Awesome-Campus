@@ -1,20 +1,15 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.tendcloud.tenddata.TCAgent;
 
 import java.util.ArrayList;
@@ -22,20 +17,18 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.CommentModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsPhotoModel;
-import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
-import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.CommentListAdapter;
-import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.GoodsListAdapter;
-import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.GoodsPicListAdapter;
+import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.ChoosePicAdapter;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
+import cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner.GoodTagSpinnerWrapper;
+import cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner.OnGoodTagChangedLister;
 import cn.finalteam.galleryfinal.CoreConfig;
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
-import cn.finalteam.galleryfinal.ImageLoader;
 import cn.finalteam.galleryfinal.ThemeConfig;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
+import cn.finalteam.galleryfinal.widget.HorizontalListView;
 
 /**
  * Created by KevinWu on 16-5-13.
@@ -44,43 +37,52 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     public static final String TAG="NewGoodsActivity";
     private static final String title="发布二手商品";
     private final int REQUEST_CODE_GALLERY = 1001;
-    private Button image;
-    private GoodsPhotoModel model;
+    private int goodTag=4;//默认其它
     private List<GoodsPhotoModel> mPhotoList;
-    private BaseListAdapter adapter;
-    private RecyclerView recyclerView;
+    private ChoosePicAdapter adapter;
+    private HorizontalListView picListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TCAgent.onPageStart(InitApp.AppContext, TAG);
         setContentView(R.layout.activity_jxnugo_new_goods);
+        swipeEnabled=false;
         initToolbar();
         initView();
         bindAdapter();
+        addTagSpinner();
         setToolbarTitle(title);
-        image=(Button)findViewById(R.id.addPic);
-        image.setOnClickListener(this);
-
-//        callImageSelector();
     }
+
+    private void addTagSpinner() {
+        GoodTagSpinnerWrapper spinnerWrapper = new GoodTagSpinnerWrapper();
+        spinnerWrapper.setOnTagChangeedListener(new OnGoodTagChangedLister() {
+
+            @Override
+            public void onTagChanged(int tag) {
+                goodTag=tag;
+            }
+        });
+        spinnerWrapper.build((MaterialSpinner)findViewById(R.id.spinner));
+    }
+
     private void initView() {
-        recyclerView=(RecyclerView)findViewById(R.id.addPhotoRV);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        picListView=(HorizontalListView)findViewById(R.id.lv_photo);
     }
     private void bindAdapter() {
-        model=new GoodsPhotoModel();
-        adapter=new GoodsPicListAdapter(NewGoodsActivity.this,model);
-        recyclerView.setAdapter(adapter);
+        mPhotoList = new ArrayList<>();
+        adapter=new ChoosePicAdapter(NewGoodsActivity.this,mPhotoList);
+        picListView.setAdapter(adapter);
     }
     private void callImageSelector() {
-        mPhotoList = new ArrayList<>();
+
         ThemeConfig themeConfig = null;
         themeConfig = ThemeConfig.DARK;
         FunctionConfig.Builder functionConfigBuilder = new FunctionConfig.Builder();
         cn.finalteam.galleryfinal.ImageLoader imageLoader;
         imageLoader = new FrescoImageLoader(NewGoodsActivity.this);
-        functionConfigBuilder.setMutiSelectMaxSize(3);
+        functionConfigBuilder.setMutiSelectMaxSize(6);
         functionConfigBuilder.setEnableEdit(false);
         functionConfigBuilder.setEnableCamera(true);
         functionConfigBuilder.setEnablePreview(true);
@@ -92,7 +94,6 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                 .build();
         GalleryFinal.init(coreConfig);
         GalleryFinal.openGalleryMuti(REQUEST_CODE_GALLERY, functionConfig, mOnHanlderResultCallback);
-//        startActivityForResult(intent, REQUEST_IMAGE);
         initFresco();
     }
 
@@ -107,7 +108,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                             resultList.get(i).getWidth(),
                             resultList.get(i).getHeight()));
                 }
-                adapter.newList(mPhotoList);
+                adapter.notifyDataSetChanged();
 //                mChoosePhotoListAdapter.notifyDataSetChanged();
                 Log.d(TAG,"取得的图片的数量为："+resultList.size());
                 Log.d(TAG,"目标图片数量为："+mPhotoList.size());
@@ -142,5 +143,20 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                 .setBitmapsConfig(Bitmap.Config.ARGB_8888)
                 .build();
         Fresco.initialize(this, config);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_newgoods, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_new_goods_done:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
