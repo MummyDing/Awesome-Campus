@@ -216,5 +216,9 @@
     <string name="id_feedback">id_feedback</string>
     <string name="jxnugo">二手</string>
     <string name="goodslist">淘二手</string>
-
+    <string name="jxnugo_user_followed">關註的人</string>
+    <string name="jxnugo_user_followers">粉絲</string>
+    <string name="jxnugo_user_locate">地址</string>
+    <string name="jxnugo_user_post">帖子</string>
+    <string name="jxnugo_user_collect">收藏</string>
 </resources>

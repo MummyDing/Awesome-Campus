@@ -223,6 +223,8 @@ public class EVENT {
     public  static final int JXNUGO_USERINFO_LOAD_USER=1031;
     public  static final int JXNUGO_USERINFO_LOAD_USER_SUCCESS=1032;
     public static final int JXNUGO_USERINFO_LOAD_USER_FALURE=1033;
+    public static final int JXNUGO_LOAD_PEOPLELIST_SUCCESS=1034;
+    public static final int JXNUGO_LOAD_PEOPLELIST_FAILURE=1035;
 
 
     //Common
@@ -252,6 +254,9 @@ public class EVENT {
     //Jump to jxnugo userinfo
     public  static final  int JUMP_TO_JXNUGO_USERINFO=2010;
 
+
     public static final int JUMP_TO_JXNUGO=2011;
+
+    public  static final int JUMP_TO_JXNUGO_LOAD_POEPLE=2012;
 }
 

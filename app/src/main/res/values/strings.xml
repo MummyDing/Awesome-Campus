@@ -228,4 +228,11 @@
     <string name="id_feedback">id_feedback</string>
     <string name="jxnugo">JxnuGo</string>
     <string name="goodslist">JxnuGo</string>
+    
+    <string name="jxnugo_user_followed">followed</string>
+    <string name="jxnugo_user_followers">followers</string>
+    <string name="jxnugo_user_locate">locate</string>
+    <string name="jxnugo_user_post">post</string>
+    <string name="jxnugo_user_collect">collect</string>
+
 </resources>

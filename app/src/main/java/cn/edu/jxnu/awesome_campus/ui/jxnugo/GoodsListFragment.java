@@ -16,6 +16,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
  * Created by KevinWu on 16-5-12.
  */
 public class GoodsListFragment  extends BaseListFragment {
+
     private GoodsModel goodsModel;
     @Override
     public String getTitle() {

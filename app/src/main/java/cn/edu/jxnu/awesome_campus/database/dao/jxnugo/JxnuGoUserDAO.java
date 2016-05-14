@@ -33,12 +33,20 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 public class JxnuGoUserDAO implements DAO<JxnuGoUserModel> {
 
     private  String TAG="JXNU_GO";
+    private int userId;
+
+   public JxnuGoUserDAO(){
+        userId=-1;
+    }
+    public JxnuGoUserDAO(int userId){
+       this.userId=userId;
+    }
     @Override
     public boolean cacheAll(List<JxnuGoUserModel> list) {
         return false;
     }
 
-    @Override
+
     public boolean clearCache() {
         return false;
     }
@@ -50,11 +58,23 @@ public class JxnuGoUserDAO implements DAO<JxnuGoUserModel> {
 
     @Override
     public void loadFromNet() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+
+        if(userId<0){
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG,"load userinfo error");
+                    EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_USERINFO_LOAD_USER_FALURE));
+                }
+            });
+            return;
+        }
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
         String password = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
-        final Handler handler = new Handler(Looper.getMainLooper());
-        NetManageUtil.getAuth("http://www.jxnugo.com/api/user/40")
+
+        NetManageUtil.getAuth("http://www.jxnugo.com/api/user/"+userId)
                 .addUserName(userName)
                 .addPassword(password)
                 .addTag(TAG)

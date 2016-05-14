@@ -10,6 +10,16 @@ public class JxnuGoLoginBean {
     //失败返回的东西
     private String error;
 
+    private int userId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId=userId;
+    }
+
     public String getMessage() {
         return message;
     }
