@@ -3,12 +3,15 @@ package cn.edu.jxnu.awesome_campus.support.utils.login;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.qiniu.android.http.ResponseInfo;
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.Response;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -21,7 +24,9 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoRegisterBean;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.NetCallback;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCodeCallback;
+import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.IUploadService;
 import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostJsonRequest;
+import cn.edu.jxnu.awesome_campus.support.utils.qiniu.UploadFilesUtil;
 
 /**
  * Created by root on 16-5-12.
@@ -63,7 +68,7 @@ public class JxnuGoRegisteUtil {
         final JxnuGoRegisterBean bean = new JxnuGoRegisterBean();
         bean.setUserName(username);
         bean.setUserEmail(email);
-        bean.setPassword(password);
+        bean.setPassWord(password);
         final PostJsonRequest request = new PostJsonRequest(JxnuGoApi.RegisterUrl);
         new Handler().post(new Runnable() {
             @Override
@@ -77,7 +82,7 @@ public class JxnuGoRegisteUtil {
                                     new Handler().post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            EventBus.getDefault().post(new EventModel<Void>(EVENT.JUMP_TO_JXNUGO_USERINFO));
+
                                         }
                                     });
                                 }
