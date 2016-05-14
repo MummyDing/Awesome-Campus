@@ -12,4 +12,6 @@ public class JxnuGoApi {
     public static final String BaseUserPostUrl="http://www.jxnugo.com/api/user_posts/";//获取一个用户基础url
     public static final String BaseUserCollectionPostUrl="http://www.jxnugo.com/api/user_collectionpost/";//获取一个用户基础url
     public static final String BaseCommentListUrl="http://www.jxnugo.com/api/comments/";//基础评论url
+    public static final String UserFollowers="http://www.jxnugo.com/api/user_followers/";//用户粉丝url
+    public static final String UserFollowerd="http://www.jxnugo.com/api/user_followed/";//用户关注url
 }

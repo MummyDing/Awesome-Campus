@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,25 +9,31 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoPeopleDao;
 import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoUserDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoPeopleLoad;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoUserBean;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
  * @author Thereisnospon
  * 2016-5-11
+ * 跳转方法:通过发布 JXNUGO_USERINFO_LOAD_USER 的 String 的sticky事件,给定id,加载相应数据
  */
 
 public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.OnClickListener{
 
 
+    private  int id;
     TextView userDesc;
     TextView userPostNum;
     TextView userCollectNum;
@@ -33,10 +41,12 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
     TextView userFollowingNum;
     TextView userLocate;
     ProgressBar progressBar;
+    SimpleDraweeView userImg;
 
     final String TAG="JXNU_GO";
 
     public void initView(){
+        userImg=(SimpleDraweeView)findViewById(R.id.jxnugo_user_img);
         userDesc=(TextView)findViewById(R.id.jxnugo_user_desc);
         userPostNum=(TextView)findViewById(R.id.jxnugo_user_posts);
         userCollectNum=(TextView)findViewById(R.id.jxnugo_user_collection);
@@ -50,6 +60,8 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
         locate.setOnClickListener(this);
         posts.setOnClickListener(this);
         collect.setOnClickListener(this);
+        userFollowingNum.setOnClickListener(this);
+        userFollowerdNum.setOnClickListener(this);
     }
 
     @Override
@@ -60,11 +72,23 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
         initToolbar();
         loadUserInfo();
         initView();
+
         progressBar.setVisibility(View.VISIBLE);
+    }
 
-        JxnuGoUserDAO dao=new JxnuGoUserDAO();
-        dao.loadFromNet();
-
+    public  void jumpToFollowed(){
+        JxnuGoPeopleLoad load=new JxnuGoPeopleLoad(JxnuGoPeopleDao.MODE.FOLLOWED,id);
+        Log.d(TAG,"LOAD ID"+id);
+        EventBus.getDefault().postSticky(new EventModel<JxnuGoPeopleLoad>(EVENT.JUMP_TO_JXNUGO_LOAD_POEPLE,load));
+        Intent intent=new Intent(this,JxnuGoPeopleActivity.class);
+        startActivity(intent);
+    }
+    public  void  jumpToFollowers(){
+        JxnuGoPeopleLoad load=new JxnuGoPeopleLoad(JxnuGoPeopleDao.MODE.FOLLOWERS,id);
+        Log.d(TAG,"LOAD ID"+id);
+        EventBus.getDefault().postSticky(new EventModel<JxnuGoPeopleLoad>(EVENT.JUMP_TO_JXNUGO_LOAD_POEPLE,load));
+        Intent intent=new Intent(this,JxnuGoPeopleActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -73,29 +97,43 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
         switch (v.getId())
         {
             case R.id.jxnugo_user_card_collect:
+                Log.d(TAG,"跳转到用户收藏帖子信息");
                 break;
             case R.id.jxnugo_user_card_local:
+                Log.d(TAG,"点击用户地址信息");
                 break;
             case R.id.jxnugo_user_card_posts:
+                Log.d(TAG,"跳转到用户发布帖子信息");
+                break;
+            case R.id.jxnugo_user_followerd:
+                Log.d(TAG,"跳转到用户粉丝信息");
+                jumpToFollowed();
+                break;
+            case R.id.jxnugo_user_following:
+                Log.d(TAG,"跳转到用户关注人信息");
+                jumpToFollowers();
                 break;
             default:
                 break;
         }
     }
 
+    //接受加载用户信息事件(sticky),加载相应id的用户数据
     public  void loadUserInfo(){
         EventModel model= EventBus.getDefault().getStickyEvent(EventModel.class);
         if(model!=null&&model.getEventCode()==EVENT.JXNUGO_USERINFO_LOAD_USER){
-            String userId=(String) model.getData();
+            Integer userId=(Integer) model.getData();
             Log.d("JXNU_GO","load sticky login bean"+userId);
-            //setToolbarTitle("vczh");
-            //EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS));
+            JxnuGoUserDAO dao=new JxnuGoUserDAO(userId);
+            dao.loadFromNet();
         }
-
     }
+
+    //用户信息数据更新到ui
     public  void loadInfo(EventModel eventModel){
         JxnuGoUserBean bean=(JxnuGoUserBean)eventModel.getData();
         setToolbarTitle(bean.getName()+"");
+        userImg.setImageURI(Uri.parse(bean.getAvatar()));
         userDesc.setText(bean.getAbout_me()+"");
         userLocate.setText(bean.getLocation()+"");
         userFollowerdNum.setText(bean.getFollowed()+"");
@@ -103,6 +141,7 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
         userCollectNum.setText(bean.getCollectionPostCount()+"");
         userPostNum.setText(bean.getPostCount()+"");
         progressBar.setVisibility(View.GONE);
+        id=bean.getUserId();
         Log.d(TAG,"progress"+progressBar.getVisibility());
     }
 

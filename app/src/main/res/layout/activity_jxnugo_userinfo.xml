@@ -19,6 +19,7 @@
    <com.facebook.drawee.view.SimpleDraweeView
        android:id="@+id/jxnugo_user_img"
        android:layout_width="60dp"
+       app:roundAsCircle="true"
        android:layout_gravity="center"
        app:placeholderImage="@drawable/ic_teacher"
        android:layout_height="60dp" />
@@ -43,7 +44,7 @@
         card_view:cardPreventCornerOverlap="true">
         <TextView
             android:id="@+id/jxnugo_user_desc"
-            android:text="专业造轮子(逃"
+            android:text="..."
             android:textSize="18sp"
             android:layout_margin="@dimen/activity_vertical_margin"
             android:padding="2dp"
@@ -82,7 +83,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:textColor="@color/md_grey_700"
-                    android:text="关注的人"
+                    android:text="@string/jxnugo_user_followers"
                     android:layout_margin="5dp"
                     android:textSize="20sp"
                     android:gravity="center"
@@ -93,7 +94,7 @@
                     android:id="@+id/jxnugo_user_following"
                     android:textSize="36sp"
                     android:gravity="center"
-                    android:text="1"
+                    android:text="0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -108,12 +109,12 @@
                     android:textSize="20sp"
                     android:layout_margin="5dp"
                     android:gravity="center"
-                    android:text="粉丝"
+                    android:text="@string/jxnugo_user_followed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/jxnugo_user_followerd"
-                    android:text="2"
+                    android:text="0"
                     android:textSize="36sp"
                     android:gravity="center"
                     android:layout_width="match_parent"
@@ -153,7 +154,7 @@
                 android:src="@drawable/ic_location"
                 android:layout_height="40dp" />
             <TextView
-                android:text="地址:"
+                android:text="@string/jxnugo_user_locate"
                 android:gravity="left|center_vertical"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
@@ -161,7 +162,7 @@
                 android:layout_height="match_parent" />
             <TextView
                 android:id="@+id/jxnugo_user_locate"
-                android:text="北京"
+                android:text="..."
                 android:gravity="center"
                android:layout_weight="5"
                 android:layout_gravity="center_vertical"
@@ -201,7 +202,7 @@
                 android:src="@drawable/ic_course"
                 android:layout_height="40dp" />
             <TextView
-                android:text="收藏"
+                android:text="@string/jxnugo_user_collect"
                 android:gravity="left|center_vertical"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
@@ -209,7 +210,7 @@
                 android:layout_height="match_parent" />
             <TextView
                 android:id="@+id/jxnugo_user_collection"
-                android:text="20"
+                android:text="..."
                 android:gravity="center"
                 android:layout_weight="5"
                 android:layout_gravity="center_vertical"
@@ -249,7 +250,7 @@
                 android:src="@drawable/ic_flag"
                 android:layout_height="40dp" />
             <TextView
-                android:text="帖子"
+                android:text="@string/jxnugo_user_post"
                 android:gravity="left|center_vertical"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
@@ -257,7 +258,7 @@
                 android:layout_height="match_parent" />
             <TextView
                 android:id="@+id/jxnugo_user_posts"
-                android:text="30"
+                android:text="..."
                 android:gravity="center"
                 android:layout_weight="5"
                 android:layout_gravity="center_vertical"

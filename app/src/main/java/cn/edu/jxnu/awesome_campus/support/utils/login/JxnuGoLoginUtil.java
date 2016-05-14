@@ -74,6 +74,8 @@ public class JxnuGoLoginUtil {
                                 Log.d("JXNUGOLOD","SUCCESS");
 
                                 token = entity.getToken();
+                                final int userId=entity.getUserId();
+                                Log.d(TAG,"userId:"+userId);
 
                                 saveToSP(token, getUsername(usernameText), getPassword(passwordText));
 
@@ -81,7 +83,7 @@ public class JxnuGoLoginUtil {
                                     @Override
                                     public void run() {
                                         //Log.d("JXNUGOLOAD", entity.getToken()+entity.getMessage()+entity.getError());
-                                        EventBus.getDefault().post(new EventModel<String>(EVENT.JUMP_TO_JXNUGO_USERINFO,"41"));
+                                        EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO_USERINFO,userId));
                                     }
                                 });
                             }
