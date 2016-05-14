@@ -4,15 +4,16 @@ package cn.edu.jxnu.awesome_campus.model.jxnugo;
  * Created by root on 16-5-12.
  */
 public class JxnuGoRegisterBean {
+
     /**
      * userName :
      * userEmail :
-     * password :
+     * passWord :
      */
 
     private String userName;
     private String userEmail;
-    private String password;
+    private String passWord;
 
     public String getUserName() {
         return userName;
@@ -30,11 +31,11 @@ public class JxnuGoRegisterBean {
         this.userEmail = userEmail;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 }

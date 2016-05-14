@@ -216,9 +216,27 @@
     <string name="id_feedback">id_feedback</string>
     <string name="jxnugo">二手</string>
     <string name="goodslist">淘二手</string>
+
     <string name="jxnugo_user_followed">关注的人</string>
     <string name="jxnugo_user_followers">粉丝</string>
     <string name="jxnugo_user_locate">地址</string>
     <string name="jxnugo_user_post">帖子</string>
     <string name="jxnugo_user_collect">收藏</string>
+
+    <string name="jxnugo_newgoods_amount">*数量</string>
+    <string name="jxnugo_newgoods_buytime">购买时间（例：1993 03 05）</string>
+    <string name="jxnugo_newgoods_contactinformation">*联系方式</string>
+    <string name="jxnugo_newgoods_day">日</string>
+    <string name="jxnugo_newgoods_description">*商品描述</string>
+    <string name="jxnugo_newgoods_edit">编辑</string>
+    <string name="jxnugo_newgoods_goodspic">商品图片</string>
+    <string name="jxnugo_newgoods_month">月</string>
+    <string name="jxnugo_newgoods_name">*商品名称</string>
+    <string name="jxnugo_newgoods_position">*所在楼栋</string>
+    <string name="jxnugo_newgoods_postnewgood">发布二手商品</string>
+    <string name="jxnugo_newgoods_price">*价格</string>
+    <string name="jxnugo_newgoods_ps">件</string>
+    <string name="jxnugo_newgoods_year">年</string>
+    <string name="jxnugo_newgoods_inputillegal">请输入必填的信息再提交！</string>
+
 </resources>

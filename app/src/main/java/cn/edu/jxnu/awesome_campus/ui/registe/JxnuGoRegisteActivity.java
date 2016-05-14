@@ -11,12 +11,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.qiniu.android.http.ResponseInfo;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -26,6 +29,8 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoRegisteUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.IUploadService;
+import cn.edu.jxnu.awesome_campus.support.utils.qiniu.UploadFilesUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
@@ -110,7 +115,23 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
                 if (!JxnuGoRegisteUtil.verifyPassword(mPasswordEt, mVerityPasswordEt)) {
                     return;
                 }
-                Toast.makeText(JxnuGoRegisteActivity.this, "button enable", Toast.LENGTH_SHORT).show();
+                /*UploadFilesUtil.simpleUploadByPath("/system/media/Pre-loaded/Pictures/Picture_03_Eiffel.jpg",
+                        new IUploadService.OnUploadListener() {
+                            @Override
+                            public void onCompleted(String key, ResponseInfo info, JSONObject res) {
+                                Toast.makeText(JxnuGoRegisteActivity.this, key + ",\r\n " + info + ",\r\n " + res, Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onProcessing(String key, double percent) {
+
+                            }
+
+                            @Override
+                            public boolean onCancelled() {
+                                return false;
+                            }
+                        });*/
                 JxnuGoRegisteUtil.onRegiste(mUsernameEt.getText().toString(),
                         mEmailEt.getText().toString(),
                         mPasswordEt.getText().toString());

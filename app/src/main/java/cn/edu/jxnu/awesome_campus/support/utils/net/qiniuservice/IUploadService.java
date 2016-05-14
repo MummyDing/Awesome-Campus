@@ -24,10 +24,10 @@ public abstract class IUploadService {
 
     private UploadOptions options;
 
-    interface OnUploadListener {
-        void onCompleted();
+    public interface OnUploadListener {
+        void onCompleted(String key, ResponseInfo info, JSONObject res);
 
-        void onProcessing();
+        void onProcessing(String key, double percent);
 
         boolean onCancelled();
     }
@@ -69,7 +69,7 @@ public abstract class IUploadService {
                 if (uploadListener == null) {
                     return;
                 }
-                uploadListener.onCompleted();
+                uploadListener.onCompleted(key, info, response);
             }
         };
 
@@ -80,7 +80,7 @@ public abstract class IUploadService {
                         if (uploadListener == null) {
                             return;
                         }
-                        uploadListener.onProcessing();
+                        uploadListener.onProcessing(key, percent);
                     }
                 }, new UpCancellationSignal() {
             @Override

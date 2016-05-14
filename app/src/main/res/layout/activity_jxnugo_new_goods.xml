@@ -30,8 +30,7 @@
                     android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:hint="商品名称" />
+                    android:hint="@string/jxnugo_newgoods_name" />
             </android.support.design.widget.TextInputLayout>
 
             <com.jaredrummler.materialspinner.MaterialSpinner
@@ -42,7 +41,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:text="请选择类别"
                 app:ms_arrow_tint="?attr/textColor"
                 app:ms_background_color="?attr/cardViewColor"
                 app:ms_text_color="?attr/textColor" />
@@ -53,7 +51,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:text="购买时间（例：1993-03-05）"
+                android:text="@string/jxnugo_newgoods_buytime"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -72,9 +70,12 @@
 
                     <EditText
                         android:id="@+id/year"
+                        android:digits="0123456789"
+                        android:maxLength="4"
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="年" />
+                        android:hint="@string/jxnugo_newgoods_year" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -88,9 +89,12 @@
 
                     <EditText
                         android:id="@+id/month"
+                        android:digits="0123456789"
+                        android:maxLength="2"
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="月" />
+                        android:hint="@string/jxnugo_newgoods_month" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -104,9 +108,12 @@
 
                     <EditText
                         android:id="@+id/day"
+                        android:digits="0123456789"
+                        android:inputType="number"
+                        android:maxLength="2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="日" />
+                        android:hint="@string/jxnugo_newgoods_day" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -132,10 +139,11 @@
 
                         <EditText
                             android:id="@+id/price"
+                            android:inputType="numberDecimal"
+                            android:digits="0123456789."
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
-                            android:hint="价格" />
+                            android:hint="@string/jxnugo_newgoods_price" />
                     </android.support.design.widget.TextInputLayout>
 
                     <TextView
@@ -164,9 +172,12 @@
 
                         <EditText
                             android:id="@+id/count"
+                            android:digits="0123456789"
+                            android:maxLength="4"
+                            android:inputType="number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="数量" />
+                            android:hint="@string/jxnugo_newgoods_amount" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -175,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="2"
-                        android:text="件"
+                        android:text="@string/jxnugo_newgoods_ps"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -192,7 +203,7 @@
                     android:id="@+id/pos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="所在楼栋" />
+                    android:hint="@string/jxnugo_newgoods_position" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -208,7 +219,7 @@
                     android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="联系方式（请注明是QQ或手机等）：" />
+                    android:hint="@string/jxnugo_newgoods_contactinformation" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -220,51 +231,56 @@
                 android:layout_marginTop="5dp">
 
                 <EditText
-                    android:id="@+id/describe"
+                    android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="商品描述" />
+                    android:hint="@string/jxnugo_newgoods_description" />
             </android.support.design.widget.TextInputLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="商品展示图片"
-        android:textSize="20sp" />
-<android.support.v7.widget.AppCompatButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/addPic"
-    android:text="添加/删除"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/jxnugo_newgoods_goodspic"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/addPic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/cardViewColor"
+                    android:text="@string/jxnugo_newgoods_edit" />
+
+            </LinearLayout>
 
             <!--<ImageView-->
-                <!---->
-                <!--android:layout_width="100dp"-->
-                <!--android:layout_height="100dp"-->
-                <!--android:padding="20dp"-->
-                <!--android:src="@mipmap/ic_add_circle"/>-->
-            <android.support.v7.widget.RecyclerView
-            android:id="@+id/addPhotoRV"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"/>
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/post"
+            <!---->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:padding="20dp"-->
+            <!--android:src="@mipmap/ic_add_circle"/>-->
+            <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/addPhotoRV"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="120dp"/>-->
+            <cn.finalteam.galleryfinal.widget.HorizontalListView
+                android:id="@+id/lv_photo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginBottom="20dp"
-                android:background="?attr/colorAccent"
-                android:text="发布"
-                android:textSize="20sp" />
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:cacheColorHint="@android:color/transparent"
+                android:clipToPadding="false"
+                android:fadingEdge="none"
+                android:horizontalSpacing="2dp"
+                android:numColumns="3"
+                android:verticalSpacing="2dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
