@@ -24,7 +24,7 @@ public abstract class IUploadService {
 
     private UploadOptions options;
 
-    interface OnUploadListener {
+    public interface OnUploadListener {
         void onCompleted();
 
         void onProcessing();
