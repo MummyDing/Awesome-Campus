@@ -63,7 +63,6 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
             avatarImageView.setImageURI(Uri.parse(model.getPostUserAvator()));
             Log.d(TAG,"取得的帖子发布者头像信息"+model.getPostUserAvator());
         }
-
         data = "<div class=\"main-wrap content-wrap\">" +
                 "<h1 class=\"question-title\">"
                 + model.getGoodName() + "</h1>\n\n" +

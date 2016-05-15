@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -150,7 +152,24 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
                 adapter.newList(list);
                 hideLoading();
                 break;
+            case EVENT.COMMENT_TRIGGER:
+                triggerComment((CommentModel) eventModel.getData());
+                break;
         }
+    }
+
+    /**
+     * 触发评论时调用
+     */
+    private void triggerComment(CommentModel model) {
+        if(TextUtil.isNull(commentEditText.getText().toString())){
+            commentEditText.requestFocus();
+            InputMethodManager imm=(InputMethodManager)commentEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(0,InputMethodManager.SHOW_FORCED);
+            commentEditText.setText(InitApp.AppContext.getString(R.string.jxnugo_comment_reply)+"["+model.getAuthor()+"] ");
+        }
+
+
     }
 
     private void hideLoading() {

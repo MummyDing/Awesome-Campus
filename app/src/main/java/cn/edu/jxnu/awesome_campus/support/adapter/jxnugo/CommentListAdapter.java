@@ -2,6 +2,8 @@ package cn.edu.jxnu.awesome_campus.support.adapter.jxnugo;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +12,11 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.CommentModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 
@@ -42,11 +48,16 @@ public class CommentListAdapter extends BaseListAdapter<CommentModel,CommentList
         holder.timestamp.setText(model.getTimestamp());
         if(model.getAuthorAvatar()!=null)
         holder.authorAvatar.setImageURI(Uri.parse(model.getAuthorAvatar()));
-
+        final Handler handler = new Handler(Looper.getMainLooper());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new EventModel<CommentModel>(EVENT.COMMENT_TRIGGER,model));
+                    }
+                });
             }
         });
     }

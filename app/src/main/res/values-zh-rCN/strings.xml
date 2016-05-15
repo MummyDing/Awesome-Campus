@@ -238,5 +238,6 @@
     <string name="jxnugo_newgoods_ps">件</string>
     <string name="jxnugo_newgoods_year">年</string>
     <string name="jxnugo_newgoods_inputillegal">请输入必填的信息再提交！</string>
+    <string name="jxnugo_comment_reply">回复：</string>
 
 </resources>

@@ -161,6 +161,11 @@ public class EVENT {
     public static final int POST_UPLOAD_SUCCESS=72;
     public static final int POST_UPLOAD_FAIL=73;
 
+    //帖子评论
+    public static final int POST_COMMENT_SUCCESS=76;
+    public static final int POST_COMMENT_FAIL=77;
+    public static final int COMMENT_TRIGGER=78;//触发评论
+
     /**
      * Cache Event Code
      */
