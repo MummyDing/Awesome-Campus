@@ -355,12 +355,13 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     private void setMenu() {
         Log.d(TAG,"当前ID为："+nowDrawID);
+
         if(notifyMenu!=null&&searchMenu!=null&&newGoodsMenu!=null){
-//        hideAllMenu();
+            menu.clear();
             getMenuInflater().inflate(R.menu.menu_mainactivity, menu);
-            newGoodsMenu=menu.findItem(R.id.menu_new_goods);
             notifyMenu=menu.findItem(R.id.menu_notify);
             searchMenu=menu.findItem(R.id.menu_search);
+            newGoodsMenu=menu.findItem(R.id.menu_new_goods);
         if(nowDrawID==DrawerItem.HOME.getId()){
             Log.d(TAG,"主页菜单切换");
             notifyMenu.setVisible(true);
@@ -381,9 +382,9 @@ public class MainActivity extends BaseActivity implements HomeView{
      * 设置显示的消息数
      */
     private void setNotify(int...data) {
-        if(NotifyUtil.hasUnread()>0){
+        if(NotifyUtil.hasUnread()>0&&nowDrawID==DrawerItem.HOME.getId()){
             ActionItemBadge.update(this, notifyMenu, ContextCompat.getDrawable(this, R.mipmap.ic_notify_none), ActionItemBadge.BadgeStyles.YELLOW, NotifyUtil.hasUnread());
-        }else if(data.length>0){
+        }else if(data.length>0&&nowDrawID==DrawerItem.HOME.getId()){
             ActionItemBadge.update(this, notifyMenu, ContextCompat.getDrawable(this, R.mipmap.ic_notify_none), ActionItemBadge.BadgeStyles.YELLOW,data[0]);
         }
     }

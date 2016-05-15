@@ -10,6 +10,8 @@ import com.cundong.recyclerview.EndlessRecyclerOnScrollListener;
 import com.cundong.recyclerview.HeaderAndFooterRecyclerViewAdapter;
 import com.squareup.okhttp.Headers;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Array;
@@ -55,23 +57,20 @@ public class GoodsListFragment  extends BaseListFragment {
     public void onDataRefresh() {
         goodsModel.loadFromNet();
     }
-    @Override
-    public void bindAdapter() {
-        goodsModel=new GoodsModel();
-        mList=new ArrayList<>();
-//        recyclerView.setAdapter(adapter);
-        displayLoading();
-    }
 
     @Override
-    public void addHeader() {
+    public void bindAdapter() {}
 
-    }
+
+    @Override
+    public void addHeader() {}
 
     @Override
     public void initView() {
+        goodsModel=new GoodsModel();
+        mList=new ArrayList<>();
+        displayLoading();
         goodsModel.loadFromCache();
-
     }
 
     private void addItems(ArrayList<GoodsModel> list) {
@@ -88,30 +87,47 @@ public class GoodsListFragment  extends BaseListFragment {
 
         switch (eventModel.getEventCode()){
             case EVENT.GOODS_LIST_REFRESH_SUCCESS:
-                mList.clear();
-                List<GoodsListBean> tempList =  eventModel.getDataList();
-                GoodsModel[] g=tempList.get(0).getPosts();
-                for(int i=0;i<g.length;i++)
-                    mList.add(g[i]);
-                initData();
+                initData(eventModel.getDataList());
                 hideLoading();
                 break;
             case EVENT.GOODS_LIST_REFRESH_FAILURE:
                 hideLoading();
                 break;
             case EVENT.GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS:
-
+                loadNextPage(eventModel.getDataList());
                 hideLoading();
                 break;
             case EVENT.GOODS_LIST_NEXTPAGE_REFRESH_FAILURE:
                 hideLoading();
                 break;
-
         }
     }
 
-    private void initData() {
+    /**
+     * LoadNextPage DATA
+     * @param tempNextList
+     */
+    private void loadNextPage(List<GoodsListBean> tempNextList){
+        nexPage=tempNextList.get(0).getNext();
+        ArrayList<GoodsModel> tempNextAL=new ArrayList<>();
+        for(int i=0;i<tempNextList.get(0).getPosts().length;i++)
+            tempNextAL.add(tempNextList.get(0).getPosts()[i]);
+        addItems(tempNextAL);
+        notifyDataSetChanged();
+    }
 
+    /**
+     * FrstLoad DATA
+     * @param tempList
+     */
+    private void initData(List<GoodsListBean> tempList) {
+        mList.clear();
+        GoodsModel[] g=tempList.get(0).getPosts();
+        nexPage=tempList.get(0).getNext();
+        ArrayList<GoodsModel> tempAL=new ArrayList<>();
+        for(int i=0;i<g.length;i++)
+            tempAL.add(g[i]);
+        addItems(tempAL);
         goodsListAdapter=new GoodsListAdapter(getContext(),mList);
         mHeaderAndFooterRecyclerViewAdapter = new HeaderAndFooterRecyclerViewAdapter(goodsListAdapter);
         recyclerView.setAdapter(mHeaderAndFooterRecyclerViewAdapter);
@@ -119,11 +135,7 @@ public class GoodsListFragment  extends BaseListFragment {
         mCurrentCounter=mList.size();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-//        NetManageUtil.cancelByTag(GoodsDAO.TAG);
-    }
+
     private View.OnClickListener mFooterClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -159,6 +171,7 @@ public class GoodsListFragment  extends BaseListFragment {
      * 请求新数据
      */
     private void requestData() {
+//        final Handler handler = new Handler(Looper.getMainLooper());
         Log.d(TAG,"请求数据");
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
@@ -171,12 +184,25 @@ public class GoodsListFragment  extends BaseListFragment {
                 .enqueue(new JsonEntityCallback<GoodsListBean>() {
                     @Override
                     public void onFailure(IOException e) {
-
+                        Log.e(TAG,e.toString());
+//                        EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_NEXTPAGE_REFRESH_FAILURE));
                     }
 
                     @Override
                     public void onSuccess(GoodsListBean entity, Headers headers) {
-
+                        if (entity != null) {
+                            final List<GoodsListBean> list = Arrays.asList(entity);
+                            loadNextPage(list);
+//                            handler.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS, list));
+//
+//                                }
+//                            });
+                        } else {
+//                            EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_NEXTPAGE_REFRESH_FAILURE));
+                        }
                     }
                 });
     }

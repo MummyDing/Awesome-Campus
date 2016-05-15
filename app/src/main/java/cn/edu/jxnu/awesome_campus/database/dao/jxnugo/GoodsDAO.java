@@ -81,7 +81,7 @@ public class GoodsDAO implements DAO<GoodsModel> {
                         }
                         @Override
                         public void onFailure(String error) {
-                            EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                            EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
                         }
                     });
         } catch (IllegalStateException e) {
