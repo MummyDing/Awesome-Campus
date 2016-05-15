@@ -22,10 +22,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView
+                <com.facebook.drawee.view.SimpleDraweeView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
+                    android:id="@+id/avatar"
                     android:src="@drawable/logo" />
 
                 <LinearLayout

@@ -77,7 +77,7 @@ public class JxnuGoLoginUtil {
                                 final int userId=entity.getUserId();
                                 Log.d(TAG,"userId:"+userId);
 
-                                saveToSP(token, getUsername(usernameText), getPassword(passwordText));
+                                saveToSP(token, getUsername(usernameText), getPassword(passwordText),entity.getUserId());
 
                                 handler.post(new Runnable() {
                                     @Override
@@ -97,11 +97,12 @@ public class JxnuGoLoginUtil {
         }
     }
 
-    private static void saveToSP(String token, String userName, String passWord) {
+    private static void saveToSP(String token, String userName, String passWord,int userId) {
         SPUtil mysp = new SPUtil(InitApp.AppContext);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.TOKEN, token);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME, userName);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD, passWord);
+        mysp.putIntSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERID,userId);
 
     }
 

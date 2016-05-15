@@ -42,6 +42,13 @@ public class CommentListAdapter extends BaseListAdapter<CommentModel,CommentList
         holder.timestamp.setText(model.getTimestamp());
         if(model.getAuthorAvatar()!=null)
         holder.authorAvatar.setImageURI(Uri.parse(model.getAuthorAvatar()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
     }
     static class VH extends RecyclerView.ViewHolder {
         View itemView;

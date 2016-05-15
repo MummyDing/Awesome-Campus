@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -11,16 +12,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.CollectBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
+import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadCollectingStatusUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseEventWebViewActivity;
+import cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView;
 
 /**
  * Created by KevinWu on 16-5-12.
@@ -36,7 +44,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     private TextView tvUserName;
     private TextView tvTime;
     private MenuItem favorite, favorite_select, comment;
-
+    private SimpleDraweeView avatarImageView;
 
     @Override
     protected void init() {
@@ -51,6 +59,11 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     protected void onDataRefresh() {
         tvTime.setText(model.getTimestamp());
         tvUserName.setText(model.getPostUserName());
+        if(model.getPostUserAvator()!=null){
+            avatarImageView.setImageURI(Uri.parse(model.getPostUserAvator()));
+            Log.d(TAG,"取得的帖子发布者头像信息"+model.getPostUserAvator());
+        }
+
         data = "<div class=\"main-wrap content-wrap\">" +
                 "<h1 class=\"question-title\">"
                 + model.getGoodName() + "</h1>\n\n" +
@@ -63,11 +76,11 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
                 "<p>" + goodContact + model.getContact() + "</p>" +
                 "<p>" + model.getBody() + "</p>";
 //        Log.d(TAG,"取得的图片数组大小"+model.getPhoto().length);
-//        for(int i=0;i<model.getPhoto().length;i++)
-//            data=data+"</p>\r\n<p><img class=\"content-image\" src=\""+model.getPhoto()[i]+"\" alt=\"\" /></p>\r\n<p>";
+        if(model.getPhoto()!=null)
+        for(int i=0;i<model.getPhoto().length;i++)
+            data=data+"\r\n<p><img class=\"content-image\" src=\""+model.getPhoto()[i]+"\" alt=\"\" /></p>\r\n";
         data = data + "</div></div></div>";
-
-
+        onDataShow("Daily.css");
     }
 
     @Override
@@ -76,7 +89,6 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
             model = (GoodsModel) eventModel.getData();
             initView();
             onDataRefresh();
-            onDataShow("Daily.css");
         }
     }
 
@@ -89,6 +101,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     private void initView() {
         tvUserName = (TextView) findViewById(R.id.username);
         tvTime = (TextView) findViewById(R.id.time);
+        avatarImageView=(SimpleDraweeView)findViewById(R.id.avatar);
     }
 
     @Override
@@ -129,6 +142,11 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     }
 
     private void setFavorite(boolean b) {
-        
+        SPUtil spu = new SPUtil(InitApp.AppContext);
+        int userId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
+        CollectBean bean=new CollectBean(userId+"",model.getPostId()+"");
+        Log.d(TAG,"取得userId："+userId);
+        Log.d(TAG,"取得postId："+model.getPostId());
+        UploadCollectingStatusUtil.onUploadJson(b,bean);
     }
 }

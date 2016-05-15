@@ -23,7 +23,7 @@ public abstract class JsonCodeEntityCallback<T> extends NetCallback {
             T entity = new Gson().fromJson(response.body().string(),((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
             onSuccess(entity,response.code(),response.headers());
         }catch (JsonSyntaxException e){
-            Log.d("--","异常");
+            Log.d("--","异常"+e);
             onFailure("数据解析出错");
         }
     }

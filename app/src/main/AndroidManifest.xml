@@ -25,7 +25,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="standard">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

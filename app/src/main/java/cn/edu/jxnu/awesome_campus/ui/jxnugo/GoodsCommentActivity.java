@@ -3,11 +3,13 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import com.squareup.okhttp.Headers;
@@ -28,9 +30,14 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.CommentBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.CommentModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.PostCommentBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.CommentListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.GoodsListAdapter;
+import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadCommentUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
@@ -43,6 +50,7 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
     private EditText commentEditText;
     private String title="评论区";//测试用，正式版用string
     private int postID;
+    private AppCompatImageButton sendCommentBT;
     private ProgressBar progressBar;
     private CommentModel model;
     private  BaseListAdapter adapter;
@@ -59,13 +67,29 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
         initToolbar();
         setToolbarTitle(title);
         onDataRefresh();
+        dataOperation();
+    }
 
+    private void dataOperation() {
+        sendCommentBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtil.isNull(commentEditText.getText().toString())){
+                    SPUtil spu = new SPUtil(InitApp.AppContext);
+                    int userId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
+                    PostCommentBean pb=new PostCommentBean(userId+"",postID+"",commentEditText.getText().toString());
+                    UploadCommentUtil.onUploadJson(pb);
+                }
+            }
+        });
     }
 
     private void initView() {
         progressBar=(ProgressBar)findViewById(R.id.progressbar);
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        commentEditText=(EditText)findViewById(R.id.et_comment);
+        sendCommentBT=(AppCompatImageButton)findViewById(R.id.bt_sendcomment);
     }
 
     private void displayLoading() {

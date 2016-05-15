@@ -31,8 +31,8 @@
                 android:id="@+id/authorAvatar"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/logo"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:src="@drawable/logo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,26 +53,23 @@
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/textColorHighlight"
                     android:text="用户名测试"
+                    android:textColor="?attr/textColorHighlight"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
 
+        </LinearLayout>
 
-
-
-
-        </LinearLayout> <TextView
-        android:id="@+id/comment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="?attr/textColor"
-        android:text="测试评论，长评论，超长评论"
-        android:textSize="18sp"
-        />
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试评论，长评论，超长评论"
+            android:textColor="?attr/textColor"
+            android:textSize="18sp" />
     </LinearLayout>
 
 

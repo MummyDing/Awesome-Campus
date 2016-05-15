@@ -13,4 +13,14 @@ public class CollectRTBean {
     }
 
     private String uncollectStatus;
+
+    public String getCollectStatus() {
+        return collectStatus;
+    }
+
+    public void setCollectStatus(String collectStatus) {
+        this.collectStatus = collectStatus;
+    }
+
+    private String collectStatus;
 }

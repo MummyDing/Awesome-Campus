@@ -15,7 +15,7 @@ public class JxnuGoApi {
     public static final String BaseCommentListUrl="http://www.jxnugo.com/api/comments/";//基础评论url
     public static final String UserFollowers="http://www.jxnugo.com/api/user_followers/";//用户粉丝url
     public static final String UserFollowerd="http://www.jxnugo.com/api/user_followed/";//用户关注url
-    public static final String BaseCollectUrl="http://www.jxnugo.com/api/collect/";//收藏帖子的URL
-    public static final String BaseUnCollectUrl="http://www.jxnugo.com/api/uncollect/";//取消收藏帖子的URL
-
+    public static final String BaseCollectUrl="http://www.jxnugo.com/api/collect";//收藏帖子的URL
+    public static final String BaseUnCollectUrl="http://www.jxnugo.com/api/uncollect";//取消收藏帖子的URL
+    public static final String CommentUrl="http://www.jxnugo.com/api/new_comment";
 }

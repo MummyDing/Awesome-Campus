@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net.request;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.squareup.okhttp.Authenticator;
 import com.squareup.okhttp.Call;
@@ -69,8 +71,9 @@ public class PostAuthJsonRequest extends PostRequest {
     }
 
     @Override
-    public IRequest addJsonObject(Object json) {
-        this.json = new Gson().toJson(json);
+    public IRequest addJsonObject(Object bean) {
+        this.json = new Gson().toJson(bean);
+        Log.d("封装后的Json数据为","--"+json.toString());
         return this;
     }
 }

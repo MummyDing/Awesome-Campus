@@ -17,26 +17,40 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:id="@+id/recyclerView"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recyclerView"
+            android:paddingBottom="40dp"
+            android:layout_height="wrap_content"/>
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:background="#000"-->
+            <!--android:layout_marginBottom="2dp"-->
+            <!--android:layout_height="50dp"></View>-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="bottom">
+        android:background="#55ffffff"
+        android:layout_gravity="bottom">
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
+            android:id="@+id/et_comment"
             android:hint="说点什么吧"/>
-        <ImageView
+        <android.support.v7.widget.AppCompatImageButton
             android:layout_width="0dp"
+            android:background="#00000000"
             android:layout_height="38dp"
             android:layout_weight="1.5"
+            android:id="@+id/bt_sendcomment"
             android:src="@mipmap/ic_send_black"/>
     </LinearLayout>
 </FrameLayout>
