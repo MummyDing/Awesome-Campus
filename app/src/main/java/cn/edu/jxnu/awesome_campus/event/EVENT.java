@@ -149,6 +149,14 @@ public class EVENT {
     public static final int GOODS_COMMENT_REFRESH_SUCCESS=68;
     public static final int GOODS_COMMENT_REFRESH_FAILURE=69;
 
+    //上传图片
+    public static final int GOODS_IMAGES_UPLOAD_SUCCESS=70;
+    public static final int GOODS_IMAGES_UPLOAD_FAIL=71;
+
+    //上传帖子
+    public static final int POST_UPLOAD_SUCCESS=72;
+    public static final int POST_UPLOAD_FAIL=73;
+
     /**
      * Cache Event Code
      */

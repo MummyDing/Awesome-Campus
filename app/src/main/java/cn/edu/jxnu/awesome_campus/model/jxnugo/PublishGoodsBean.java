@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.model.jxnugo;
 
+import java.util.Date;
+
 /**
  * Created by zpauly on 16-5-14.
  */
@@ -9,7 +11,8 @@ public class PublishGoodsBean {
      * body :
      * timestamp :
      * goodName :
-     * goodPrice :
+     * timestamp : date
+     * goodPrice :1.0
      * goodNum :
      * goodLocation :
      * goodQuality :
@@ -23,6 +26,7 @@ public class PublishGoodsBean {
     private String goodName;
     private float goodPrice;
     private int goodNum;
+    private Date timestamp;
     private String goodLocation;
     private String goodQuality;
     private String goodBuyTime;
@@ -36,6 +40,14 @@ public class PublishGoodsBean {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getGoodName() {
