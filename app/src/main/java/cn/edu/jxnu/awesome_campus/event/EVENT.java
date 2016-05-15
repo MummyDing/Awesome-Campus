@@ -151,8 +151,16 @@ public class EVENT {
     public static final int GOODS_COMMENT_REFRESH_FAILURE=69;
 
     //商品列表加载下一页
-    public static final int GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS =70;
-    public static final int GOODS_LIST_NEXTPAGE_REFRESH_FAILURE =71;
+    public static final int GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS =74;
+    public static final int GOODS_LIST_NEXTPAGE_REFRESH_FAILURE =75;
+    //上传图片
+    public static final int GOODS_IMAGES_UPLOAD_SUCCESS=70;
+    public static final int GOODS_IMAGES_UPLOAD_FAIL=71;
+
+    //上传帖子
+    public static final int POST_UPLOAD_SUCCESS=72;
+    public static final int POST_UPLOAD_FAIL=73;
+
     /**
      * Cache Event Code
      */
