@@ -51,6 +51,11 @@ public class PostRequest extends IRequest{
     }
 
     @Override
+    public IRequest addJsonObject(Object json) {
+        return null;
+    }
+
+    @Override
     public IRequest addTag(String tag) {
         this.tag = tag;
         return this;

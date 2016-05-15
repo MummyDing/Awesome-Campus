@@ -110,18 +110,25 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
                 Intent intent=new Intent();
                 intent.setClass(this,GoodsCommentActivity.class);//测试
 
+//                intent.putExtra("id",model.getPostId());
                 intent.putExtra("id",16);
                 startActivity(intent);
                 break;
             case R.id.menu_favorite:
                 favorite.setVisible(false);
                 favorite_select.setVisible(true);
+                setFavorite(true);
                 break;
             case R.id.menu_favorite_select:
                 favorite.setVisible(true);
                 favorite_select.setVisible(false);
+                setFavorite(false);
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setFavorite(boolean b) {
+        
     }
 }

@@ -12,6 +12,8 @@ import java.net.CookiePolicy;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.support.utils.net.request.GetAuthRequest;
 import cn.edu.jxnu.awesome_campus.support.utils.net.request.GetRequest;
+import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostAuthJsonRequest;
+import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostJsonRequest;
 import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostRequest;
 
 /**
@@ -53,6 +55,11 @@ public class NetManageUtil {
      */
     public static PostRequest post(String url){
         return new PostRequest(url);
+    }
+
+
+    public static PostAuthJsonRequest postAuthJson(String url){
+        return new PostAuthJsonRequest(url);
     }
 
     /***
