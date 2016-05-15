@@ -62,7 +62,7 @@ public class GoodsDAO implements DAO<GoodsModel> {
                         @Override
                         public void onSuccess(GoodsListBean entity, int responseCode, Headers headers) {
                             if (entity != null) {
-                                final List<GoodsModel> list = Arrays.asList(entity.getPosts());
+                                final List<GoodsListBean> list = Arrays.asList(entity);
                                 Log.d(TAG, "取得的条数" + entity.getCount());
                                 Log.d(TAG, "下一页" + entity.getNext());
                                 Log.d(TAG, "实际条数" + entity.getPosts().length);
@@ -71,12 +71,12 @@ public class GoodsDAO implements DAO<GoodsModel> {
                                 handler.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_SUCCESS, list));
+                                        EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_SUCCESS, list));
 
                                     }
                                 });
                             } else {
-                                EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                                EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
                             }
                         }
                         @Override
@@ -85,7 +85,7 @@ public class GoodsDAO implements DAO<GoodsModel> {
                         }
                     });
         } catch (IllegalStateException e) {
-            EventBus.getDefault().post(new EventModel<GoodsModel>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+            EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
         }
     }
 }

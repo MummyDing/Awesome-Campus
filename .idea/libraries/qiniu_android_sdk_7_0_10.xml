@@ -6,7 +6,6 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Android/Sdk/gradle-2.8/caches/modules-2/files-2.1/com.qiniu/qiniu-android-sdk/7.0.10/577776aebf93d3fb212ae9189f3a210ce1705e08/qiniu-android-sdk-7.0.10-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.qiniu/qiniu-android-sdk/7.0.10/577776aebf93d3fb212ae9189f3a210ce1705e08/qiniu-android-sdk-7.0.10-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

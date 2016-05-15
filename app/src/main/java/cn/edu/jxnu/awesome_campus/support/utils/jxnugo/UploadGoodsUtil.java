@@ -21,7 +21,7 @@ import java.io.OutputStream;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsPhotoModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.QiniuUptokenBean;
@@ -69,14 +69,14 @@ public class UploadGoodsUtil {
             @Override
             public void run() {
                 request.addJsonObject(bean)
-                        .enqueue(new JsonEntityCallback<GoodsBean>() {
+                        .enqueue(new JsonEntityCallback<GoodsModel>() {
                             @Override
                             public void onFailure(IOException e) {
 
                             }
 
                             @Override
-                            public void onSuccess(GoodsBean entity, Headers headers) {
+                            public void onSuccess(GoodsModel entity, Headers headers) {
 
                             }
                         });

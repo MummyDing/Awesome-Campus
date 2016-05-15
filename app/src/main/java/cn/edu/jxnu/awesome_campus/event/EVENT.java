@@ -142,6 +142,7 @@ public class EVENT {
     public static final int GOODS_LIST_REFRESH_SUCCESS =65;
     public static final int GOODS_LIST_REFRESH_FAILURE =66;
 
+
     //商品详情跳转
     public static final int GOODS_DETAIL_INTENT=67;
 
@@ -149,6 +150,9 @@ public class EVENT {
     public static final int GOODS_COMMENT_REFRESH_SUCCESS=68;
     public static final int GOODS_COMMENT_REFRESH_FAILURE=69;
 
+    //商品列表加载下一页
+    public static final int GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS =70;
+    public static final int GOODS_LIST_NEXTPAGE_REFRESH_FAILURE =71;
     /**
      * Cache Event Code
      */
