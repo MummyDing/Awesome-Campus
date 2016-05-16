@@ -241,5 +241,6 @@
     <string name="jxnugo_comment_reply">回复：</string>
     <string name="jxnugo_collect_failure">收藏失败</string>
     <string name="jxnugo_collect_success">收藏成功</string>
+    <string name="jxnugo_comment_failure">评论失败</string>
 
 </resources>

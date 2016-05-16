@@ -21,6 +21,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.CollectBean;
@@ -78,7 +79,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
 //        Log.d(TAG,"取得的图片数组大小"+model.getPhoto().length);
         if (model.getPhoto() != null)
             for (int i = 0; i < model.getPhoto().length; i++)
-                data = data + "\r\n<p><img class=\"content-image\" src=\"" + model.getPhoto()[i] + "\" alt=\"\" /></p>\r\n";
+                data = data + "\r\n<p><img class=\"content-image\" src=\"" + JxnuGoApi.BasePicUrl+ model.getPhoto()[i] + "\" alt=\"\" /></p>\r\n";
         data = data + "</div></div></div>";
         onDataShow("Daily.css");
         SPUtil spu = new SPUtil(InitApp.AppContext);
@@ -153,8 +154,8 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
                 Intent intent = new Intent();
                 intent.setClass(this, GoodsCommentActivity.class);//测试
 
-//                intent.putExtra("id",model.getPostId());
-                intent.putExtra("id", 16);
+                intent.putExtra("id",model.getPostId());
+//                intent.putExtra("id", 16);
                 startActivity(intent);
                 break;
             case R.id.menu_favorite:

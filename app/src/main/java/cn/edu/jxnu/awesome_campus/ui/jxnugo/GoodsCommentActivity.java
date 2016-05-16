@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -72,6 +73,10 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
         dataOperation();
     }
 
+    private void onDataRefresh() {
+        UploadCommentUtil.onDataRefresh(postID);
+    }
+
     private void dataOperation() {
         sendCommentBT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,41 +103,7 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    //获取网络数据
-    private void onDataRefresh() {
-        if(postID!=-1){
-            final Handler handler = new Handler(Looper.getMainLooper());
-        NetManageUtil.get(JxnuGoApi.BaseCommentListUrl+postID)
-        .addTag(TAG)
-        .enqueue(new JsonEntityCallback<CommentBean>() {
-            @Override
-            public void onFailure(IOException e) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        EventBus.getDefault().post(new EventModel<CommentModel>(EVENT.GOODS_COMMENT_REFRESH_FAILURE));
-                    }
-                });
-            }
 
-            @Override
-            public void onSuccess(CommentBean entity, Headers headers) {
-                if(entity!=null){
-                    Log.d("评论条数:","--"+entity.getComments().length);
-                    final List<CommentModel> list = Arrays.asList(entity.getComments());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            EventBus.getDefault().post(new EventModel<CommentModel>(EVENT.GOODS_COMMENT_REFRESH_SUCCESS,list));
-
-                        }
-                    });
-                }else{
-                    EventBus.getDefault().post(new EventModel<CommentModel>(EVENT.GOODS_COMMENT_REFRESH_FAILURE));
-                }
-            }
-        });}
-    }
 
     @Override
     protected void onDestroy() {
@@ -154,6 +125,15 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
                 break;
             case EVENT.COMMENT_TRIGGER:
                 triggerComment((CommentModel) eventModel.getData());
+                break;
+            case EVENT.POST_COMMENT_SUCCESS:
+                onDataRefresh();
+                commentEditText.setText("");
+                commentEditText.clearFocus();
+                break;
+            case EVENT.POST_COMMENT_FAILURE:
+                Snackbar.make(getCurrentFocus(), R.string.jxnugo_collect_success,Snackbar.LENGTH_SHORT).show();
+                commentEditText.clearFocus();
                 break;
         }
     }

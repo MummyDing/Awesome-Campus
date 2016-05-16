@@ -239,8 +239,9 @@
     <string name="jxnugo_newgoods_year">年</string>
     <string name="jxnugo_newgoods_inputillegal">請輸入必填的信息再提交！</string>
     <string name="jxnugo_comment_reply">回覆：</string>
-    <string name="jxnugo_collect_failure">收藏失败</string>
+    <string name="jxnugo_collect_failure">收藏失敗</string>
     <string name="jxnugo_collect_success">收藏成功</string>
+    <string name="jxnugo_comment_failure">回復失敗</string>
 
 
 </resources>
