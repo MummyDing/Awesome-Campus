@@ -25,7 +25,6 @@ public class UploadCommentUtil {
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
         String password = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
-        /*未收藏*/
             NetManageUtil.postAuthJson(JxnuGoApi.CommentUrl)
                     .addUserName(userName)
                     .addPassword(password)

@@ -167,8 +167,8 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
             InputMethodManager imm=(InputMethodManager)commentEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(0,InputMethodManager.SHOW_FORCED);
             commentEditText.setText(InitApp.AppContext.getString(R.string.jxnugo_comment_reply)+"["+model.getAuthor()+"] ");
+            commentEditText.setSelection(commentEditText.getText().length());
         }
-
 
     }
 

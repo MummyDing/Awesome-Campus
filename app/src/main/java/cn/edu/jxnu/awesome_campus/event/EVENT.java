@@ -163,8 +163,16 @@ public class EVENT {
 
     //帖子评论
     public static final int POST_COMMENT_SUCCESS=76;
-    public static final int POST_COMMENT_FAIL=77;
+    public static final int POST_COMMENT_FAILURE=77;
     public static final int COMMENT_TRIGGER=78;//触发评论
+
+    //收藏帖子返回的状态码
+    public static final int POST_COLLECT_SUCCESS=79;
+    public static final int POST_COLLECT_FAILURE=80;
+
+    //判断帖子是否已收藏返回的状态码
+    public static final int JUDGE_COLLECT_TRUE=81;//已收藏
+    public static final int JUDGE_COLLECT_FALSE=82;//未收藏
 
     /**
      * Cache Event Code

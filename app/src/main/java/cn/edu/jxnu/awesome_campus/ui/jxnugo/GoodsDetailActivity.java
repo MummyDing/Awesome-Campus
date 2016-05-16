@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
@@ -59,9 +60,9 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     protected void onDataRefresh() {
         tvTime.setText(model.getTimestamp());
         tvUserName.setText(model.getPostUserName());
-        if(model.getPostUserAvator()!=null){
+        if (model.getPostUserAvator() != null) {
             avatarImageView.setImageURI(Uri.parse(model.getPostUserAvator()));
-            Log.d(TAG,"取得的帖子发布者头像信息"+model.getPostUserAvator());
+            Log.d(TAG, "取得的帖子发布者头像信息" + model.getPostUserAvator());
         }
         data = "<div class=\"main-wrap content-wrap\">" +
                 "<h1 class=\"question-title\">"
@@ -75,19 +76,49 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
                 "<p>" + goodContact + model.getContact() + "</p>" +
                 "<p>" + model.getBody() + "</p>";
 //        Log.d(TAG,"取得的图片数组大小"+model.getPhoto().length);
-        if(model.getPhoto()!=null)
-        for(int i=0;i<model.getPhoto().length;i++)
-            data=data+"\r\n<p><img class=\"content-image\" src=\""+model.getPhoto()[i]+"\" alt=\"\" /></p>\r\n";
+        if (model.getPhoto() != null)
+            for (int i = 0; i < model.getPhoto().length; i++)
+                data = data + "\r\n<p><img class=\"content-image\" src=\"" + model.getPhoto()[i] + "\" alt=\"\" /></p>\r\n";
         data = data + "</div></div></div>";
         onDataShow("Daily.css");
+        SPUtil spu = new SPUtil(InitApp.AppContext);
+        int userId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
+        CollectBean bean = new CollectBean(userId + "", model.getPostId() + "");
+        UploadCollectingStatusUtil.getStatusJson(bean);
     }
 
     @Override
     protected void onEventComing(EventModel eventModel) {
-        if (eventModel.getEventCode() == EVENT.GOODS_DETAIL_INTENT) {
-            model = (GoodsModel) eventModel.getData();
-            initView();
-            onDataRefresh();
+        switch (eventModel.getEventCode()) {
+            case EVENT.GOODS_DETAIL_INTENT:
+                model = (GoodsModel) eventModel.getData();
+                initView();
+                onDataRefresh();
+                break;
+            case EVENT.POST_COLLECT_SUCCESS://成功评论
+                setCollect(true);
+                Snackbar.make(getCurrentFocus(), R.string.jxnugo_collect_success,Snackbar.LENGTH_SHORT).show();
+                break;
+            case EVENT.POST_COLLECT_FAILURE:
+                setCollect(false);
+                Snackbar.make(getCurrentFocus(), R.string.jxnugo_collect_failure,Snackbar.LENGTH_SHORT).show();
+                break;
+            case EVENT.JUDGE_COLLECT_TRUE:
+                setCollect(true);
+                break;
+            case EVENT.JUDGE_COLLECT_FALSE:
+                setCollect(false);
+                break;
+        }
+    }
+
+    private void setCollect(boolean b) {
+        if(b){
+            favorite.setVisible(false);
+            favorite_select.setVisible(true);
+        }else{
+            favorite.setVisible(true);
+            favorite_select.setVisible(false);
         }
     }
 
@@ -100,12 +131,12 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     private void initView() {
         tvUserName = (TextView) findViewById(R.id.username);
         tvTime = (TextView) findViewById(R.id.time);
-        avatarImageView=(SimpleDraweeView)findViewById(R.id.avatar);
+        avatarImageView = (SimpleDraweeView) findViewById(R.id.avatar);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG,"创建菜单");
+        Log.d(TAG, "创建菜单");
         getMenuInflater().inflate(R.menu.menu_goodsdetail, menu);
         favorite = menu.findItem(R.id.menu_favorite);
         favorite_select = menu.findItem(R.id.menu_favorite_select);
@@ -119,11 +150,11 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_comment:
-                Intent intent=new Intent();
-                intent.setClass(this,GoodsCommentActivity.class);//测试
+                Intent intent = new Intent();
+                intent.setClass(this, GoodsCommentActivity.class);//测试
 
 //                intent.putExtra("id",model.getPostId());
-                intent.putExtra("id",16);
+                intent.putExtra("id", 16);
                 startActivity(intent);
                 break;
             case R.id.menu_favorite:
@@ -143,9 +174,9 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     private void setFavorite(boolean b) {
         SPUtil spu = new SPUtil(InitApp.AppContext);
         int userId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
-        CollectBean bean=new CollectBean(userId+"",model.getPostId()+"");
-        Log.d(TAG,"取得userId："+userId);
-        Log.d(TAG,"取得postId："+model.getPostId());
-        UploadCollectingStatusUtil.onUploadJson(b,bean);
+        CollectBean bean = new CollectBean(userId + "", model.getPostId() + "");
+        Log.d(TAG, "取得userId：" + userId);
+        Log.d(TAG, "取得postId：" + model.getPostId());
+        UploadCollectingStatusUtil.onUploadJson(b, bean);
     }
 }
