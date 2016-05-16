@@ -132,7 +132,7 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
                 commentEditText.clearFocus();
                 break;
             case EVENT.POST_COMMENT_FAILURE:
-                Snackbar.make(getCurrentFocus(), R.string.jxnugo_collect_success,Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getCurrentFocus(), R.string.jxnugo_comment_failure,Snackbar.LENGTH_SHORT).show();
                 commentEditText.clearFocus();
                 break;
         }
