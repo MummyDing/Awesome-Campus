@@ -21,6 +21,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallback;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCodeCallback;
 
 /**
  * Created by zpauly on 16-5-11.
@@ -65,35 +66,49 @@ public class JxnuGoLoginUtil {
                     .addTag(TAG)
                     .addUserName(getUsername(usernameText))
                     .addPassword(getPassword(passwordText))
-                    .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
-                        @Override
-                        public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
-                            Log.d(TAG, "返回数据成功");
-                            Log.d(TAG, "状态码" + responseCode);
-                            if (!TextUtil.isNull(entity.getToken())) {
-                                Log.d("JXNUGOLOD","SUCCESS");
+//                    .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
+//                        @Override
+//                        public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
+//                            Log.d(TAG, "返回数据成功");
+//                            Log.d(TAG, "状态码" + responseCode);
+//                            if (!TextUtil.isNull(entity.getToken())) {
+//                                Log.d("JXNUGOLOD","SUCCESS");
+//
+//                                token = entity.getToken();
+//                                final int userId=entity.getUserId();
+//                                Log.d(TAG,"userId:"+userId);
+//
+//                                saveToSP(token, getUsername(usernameText), getPassword(passwordText),entity.getUserId());
+//
+//                                handler.post(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        //Log.d("JXNUGOLOAD", entity.getToken()+entity.getMessage()+entity.getError());
+//                                        EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO_USERINFO,userId));
+//                                    }
+//                                });
+//                            }
+//                            else{
+//                                Log.d(TAG,"错误信息："+entity.getError()+"\n"+entity.getMessage());
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(String error) {
+//                            Log.d(TAG, "登录失败" + error);
+//                        }
+//                    });
+            .enqueue(new StringCodeCallback() {
+                @Override
+                public void onSuccess(String result, int responseCode, Headers headers) {
+                    Log.d(TAG,"返回码为："+responseCode+"\n"+result);
+                }
 
-                                token = entity.getToken();
-                                final int userId=entity.getUserId();
-                                Log.d(TAG,"userId:"+userId);
-
-                                saveToSP(token, getUsername(usernameText), getPassword(passwordText),entity.getUserId());
-
-                                handler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        //Log.d("JXNUGOLOAD", entity.getToken()+entity.getMessage()+entity.getError());
-                                        EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO_USERINFO,userId));
-                                    }
-                                });
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(String error) {
-                            Log.d(TAG, "登录失败" + error);
-                        }
-                    });
+                @Override
+                public void onFailure(String error) {
+                    Log.d(TAG,error);
+                }
+            });
         }
     }
 

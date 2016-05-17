@@ -275,11 +275,16 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     public void jumpToJxnugoUserinfo(EventModel eventModel){
         Intent intent=new Intent(this, JxnugoUserinfoActivity.class);
-        Integer userId=(Integer) eventModel.getData();
+        final Integer userId=(Integer) eventModel.getData();
         Log.d(TAG,userId+"");
 
        // Log.d("JXNU_GO",loginBean.getMessage());
-        EventBus.getDefault().postSticky(new EventModel<Integer>(EVENT.JXNUGO_USERINFO_LOAD_USER,userId));
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                EventBus.getDefault().postSticky(new EventModel<Integer>(EVENT.JXNUGO_USERINFO_LOAD_USER,userId));
+            }
+        });
         startActivity(intent);
     }
 

@@ -77,9 +77,12 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
                 "<p>" + goodContact + model.getContact() + "</p>" +
                 "<p>" + model.getBody() + "</p>";
 //        Log.d(TAG,"取得的图片数组大小"+model.getPhoto().length);
-        if (model.getPhoto() != null)
-            for (int i = 0; i < model.getPhoto().length; i++)
-                data = data + "\r\n<p><img class=\"content-image\" src=\"" + JxnuGoApi.BasePicUrl+ model.getPhoto()[i] + "\" alt=\"\" /></p>\r\n";
+        if (model.getPhotos() != null){
+            Log.d(TAG,"取得的图片数组大小"+model.getPhotos().length);
+            for (int i = 0; i < model.getPhotos().length; i++)
+                data = data + "\r\n<p><img class=\"content-image\" src=\"" + JxnuGoApi.BasePicUrl+ model.getPhotos()[i].getKey()+".png" + "\" alt=\"\" /></p>\r\n";
+        }
+
         data = data + "</div></div></div>";
         onDataShow("JianShu.css");
         SPUtil spu = new SPUtil(InitApp.AppContext);

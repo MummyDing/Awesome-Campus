@@ -49,8 +49,8 @@ public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAd
         holder.time.setText(model.getTimestamp());
         holder.goodName.setText(model.getGoodName());
         holder.goodPrice.setText(model.getGoodPrice()+"");
-        if(model.getPhoto()!=null&&model.getPhoto().length>0)
-            holder.goodFirstImg.setImageURI(Uri.parse(model.getPhoto()[0]));
+        if(model.getPhotos()!=null&&model.getPhotos().length>0)
+//            holder.goodFirstImg.setImageURI(Uri.parse(model.getPhotos()[0]));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

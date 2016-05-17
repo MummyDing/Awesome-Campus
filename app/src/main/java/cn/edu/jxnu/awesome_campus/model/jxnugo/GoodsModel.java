@@ -22,7 +22,7 @@ public class GoodsModel implements IModel<GoodsModel>{
     private float goodPrice;
     private String goodQuality;
     private int goodTag;
-    private String[] photo;
+    private PhotokeyBean[] photos;
     private int postId;
     private String postUserAvator;
     private String postUserName;
@@ -53,7 +53,7 @@ public class GoodsModel implements IModel<GoodsModel>{
                       float goodPrice,
                       String goodQuality,
                       int goodTag,
-                      String[] photo,
+                      PhotokeyBean[] photos,
                       int postId,
                       String postUserAvator,
                       String postUserName,
@@ -70,7 +70,7 @@ public class GoodsModel implements IModel<GoodsModel>{
         this.goodQuality=goodQuality;
         this.postUserName=postUserName;
         this.goodTag=goodTag;
-        this.photo=photo;
+        this.photos=photos;
         this.timestamp=timestamp;
         this.url=url;
         this.commentsCount=commentsCount;
@@ -150,12 +150,12 @@ public class GoodsModel implements IModel<GoodsModel>{
         this.goodTag = goodTag;
     }
 
-    public String[] getPhoto() {
-        return photo;
+    public PhotokeyBean[] getPhotos() {
+        return photos;
     }
 
-    public void setPhoto(String[] photo) {
-        this.photo = photo;
+    public void setPhotos(PhotokeyBean[] photos) {
+        this.photos = photos;
     }
 
     public String getTimestamp() {

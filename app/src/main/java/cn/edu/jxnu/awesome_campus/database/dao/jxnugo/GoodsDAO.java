@@ -76,16 +76,32 @@ public class GoodsDAO implements DAO<GoodsModel> {
                                     }
                                 });
                             } else {
-                                EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                                    }
+                                });
                             }
                         }
+
                         @Override
                         public void onFailure(String error) {
-                            EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                                }
+                            });
                         }
                     });
         } catch (IllegalStateException e) {
-            EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                }
+            });
         }
     }
 }

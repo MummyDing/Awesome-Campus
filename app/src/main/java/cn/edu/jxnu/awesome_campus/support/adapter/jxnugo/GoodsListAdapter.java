@@ -50,8 +50,8 @@ public class GoodsListAdapter extends RecyclerView.Adapter {
         vh.time.setText(model.getTimestamp());
         vh.goodName.setText(model.getGoodName());
         vh.goodPrice.setText(model.getGoodPrice()+"");
-        if(model.getPhoto()!=null&&model.getPhoto().length>0)
-            vh.goodFirstImg.setImageURI(Uri.parse(model.getPhoto()[0]));
+//        if(model.getPhotos()!=null&&model.getPhotos().length>0)
+//            vh.goodFirstImg.setImageURI(Uri.parse(model.getPhotos()[0].getKey()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
