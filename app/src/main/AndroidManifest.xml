@@ -127,9 +127,9 @@
             android:name="TD_CHANNEL_ID"
             android:value="00001" />
 
-        <activity android:name=".ui.jxnugo.JxnugoUserinfoActivity"></activity>
+        <activity android:name=".ui.jxnugo.JxnugoUserinfoActivity" android:launchMode="singleTop"></activity>
 
-        <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity"
+        <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity" android:launchMode="singleTop"
             ></activity>
 
     </application>

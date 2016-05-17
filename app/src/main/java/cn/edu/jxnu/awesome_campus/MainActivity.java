@@ -126,8 +126,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         switchDrawerItem(DrawerItem.HOME.getId());
         WeatherInfoDAO dao = new WeatherInfoDAO();
         dao.loadFromNet();
-        JxnuGoPeopleDao  dao1=new JxnuGoPeopleDao(JxnuGoPeopleDao.MODE.FOLLOWED,27);
-        dao1.loadFromNet();
+
     }
 
     @Override

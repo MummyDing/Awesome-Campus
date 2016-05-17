@@ -1,6 +1,11 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -55,9 +60,11 @@ public class JxnuGoPeopleFragment extends BaseListFragment {
             adapter=new JxnuGoPeopleAdapter(getContext(),null);
             recyclerView.setAdapter(adapter);
             dao.loadFromNet();
+
             displayLoading();
         }
     }
+
 
     @Override
     public void addHeader() {
@@ -105,4 +112,6 @@ public class JxnuGoPeopleFragment extends BaseListFragment {
                 break;
         }
     }
+
+
 }

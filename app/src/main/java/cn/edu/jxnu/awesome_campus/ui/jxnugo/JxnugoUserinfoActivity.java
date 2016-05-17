@@ -2,9 +2,11 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.Snackbar;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,9 +21,9 @@ import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoPeopleDao;
 import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoUserDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoPeopleLoad;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoUserBean;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.JxnugoFollowUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
@@ -44,6 +46,8 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
     SimpleDraweeView userImg;
 
     final String TAG="JXNU_GO";
+
+    private MenuItem favorite, favorite_select;
 
     public void initView(){
         userImg=(SimpleDraweeView)findViewById(R.id.jxnugo_user_img);
@@ -157,8 +161,66 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
                break;
            case EVENT.JXNUGO_USERINFO_LOAD_USER_FALURE:
                break;
+           case EVENT.JXNUGO_FOLLOW_SUCCESS:
+               makeSnack("关注成功");
+               break;
+           case EVENT.JXNUGO_FOLLOW_FAILURE:
+               makeSnack("关注失败");
+               break;
+           case EVENT.JXNUGO_UNFOLLOW_SUCCESS:
+               makeSnack("取消关注成功");
+               break;
+           case EVENT.JXNUGO_UNFOLLOW_FAILURE:
+               makeSnack("取消关注失败");
+               break;
+           default:
+               break;
        }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d(TAG,"创建菜单");
+        getMenuInflater().inflate(R.menu.menu_jxnugo_userinfo, menu);
+        favorite = menu.findItem(R.id.jxnugo_follow);
+        favorite_select = menu.findItem(R.id.jxnugo_follow_selector);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.jxnugo_follow:
+                favorite.setVisible(false);
+                favorite_select.setVisible(true);
+                setFavorite(true);
+                break;
+            case R.id.jxnugo_follow_selector:
+                favorite.setVisible(true);
+                favorite_select.setVisible(false);
+                setFavorite(false);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    private void setFavorite(boolean b) {
+        JxnugoFollowUtil util=new JxnugoFollowUtil();
+        if(b){
+            util.followed(id);
+        }else {
+            util.unFollow(id);
+        }
+    }
+
+    public  void makeSnack(String msg){
+        Snackbar.make(userPostNum, msg, Snackbar.LENGTH_LONG).show();
+    }
+
 
 
 }

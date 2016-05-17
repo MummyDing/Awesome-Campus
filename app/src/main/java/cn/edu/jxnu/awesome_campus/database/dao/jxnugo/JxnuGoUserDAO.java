@@ -73,7 +73,6 @@ public class JxnuGoUserDAO implements DAO<JxnuGoUserModel> {
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
         String password = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
-
         NetManageUtil.getAuth("http://www.jxnugo.com/api/user/"+userId)
                 .addUserName(userName)
                 .addPassword(password)

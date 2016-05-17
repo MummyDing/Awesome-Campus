@@ -251,6 +251,11 @@ public class EVENT {
     public static final int JXNUGO_LOAD_PEOPLELIST_SUCCESS=1034;
     public static final int JXNUGO_LOAD_PEOPLELIST_FAILURE=1035;
 
+    public  static final  int JXNUGO_FOLLOW_SUCCESS=1036;
+    public static  final  int JXNUGO_FOLLOW_FAILURE=1037;
+    public  static  final  int JXNUGO_UNFOLLOW_SUCCESS=1038;
+    public static final int JXNUGO_UNFOLLOW_FAILURE=1039;
+
 
     //Common
 

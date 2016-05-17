@@ -18,6 +18,12 @@ public class JxnuGoApi {
     public static final String BaseCollectUrl="http://www.jxnugo.com/api/collect";//收藏帖子的URL
     public static final String BaseUnCollectUrl="http://www.jxnugo.com/api/uncollect";//取消收藏帖子的URL
     public static final String CommentUrl="http://www.jxnugo.com/api/new_comment";
+
+    public static final String FollowUrl="http://www.jxnugo.com/api/follow";
+    public static final String UnfollowUrl="http://www.jxnugo.com/api/unfollow";
+
+
     public static final String JudgeCollect="http://www.jxnugo.com/api/judge_collect";//判断用户是否已收藏
     public static final String BasePicUrl="http://7xrkww.com1.z0.glb.clouddn.com/";//图片基础url
+
 }

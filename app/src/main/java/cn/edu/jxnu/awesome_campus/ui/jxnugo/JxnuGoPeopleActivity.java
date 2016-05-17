@@ -15,7 +15,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
  * Created by Thereisnospon on 16/5/14.
- * 显示用户关注的人的信息活着粉丝信息
+ * 显示用户关注的人的信息或者粉丝信息
  */
 public class JxnuGoPeopleActivity extends BaseToolbarActivity {
 
