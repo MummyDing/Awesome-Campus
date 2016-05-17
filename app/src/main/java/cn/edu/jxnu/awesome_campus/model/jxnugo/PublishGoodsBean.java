@@ -1,38 +1,55 @@
 package cn.edu.jxnu.awesome_campus.model.jxnugo;
 
-import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zpauly on 16-5-14.
  */
 public class PublishGoodsBean {
 
+
     /**
-     * body :
-     * timestamp :
-     * goodName :
-     * timestamp : date
-     * goodPrice :1.0
-     * goodNum :
-     * goodLocation :
-     * goodQuality :
-     * goodBuyTime :
+     * body : 二手笔记本，成色非常好，见鲁大师，见鲁大师二手笔记本，成色非常好，见鲁大师，见鲁大师二手笔记本，成色非常好，见鲁大师，见鲁大师二手笔记本，
+     * goodName : 戴尔灵越5537
+     * goodNum : 1
+     * goodPrice : 2000
+     * goodLocation : 一栋N204
+     * goodQuality : 7成新
+     * goodBuyTime : 2014年6月
      * goodTag : 1
-     * contact :
-     * photos :
+     * contact : 13361640744
+     * photos : [{"key":"84BE7838-E41C-4E60-A1B8-CA95DBEE326B"},{"key":"84BE7838-E41C-4E60-A1B8-CA95DBEE326B"},{"key":"84BE7838-E41C-4E60-A1B8-CA95DBEE326B"}]
      */
 
     private String body;
     private String goodName;
-    private float goodPrice;
     private int goodNum;
-    private Date timestamp;
+    private float goodPrice;
     private String goodLocation;
     private String goodQuality;
     private String goodBuyTime;
     private int goodTag;
     private String contact;
-    private String photos;
+    /**
+     * key : 84BE7838-E41C-4E60-A1B8-CA95DBEE326B
+     */
+
+    private List<PhotokeyBean> photos;
+
+    public PublishGoodsBean(String body, String goodName, int goodNum, float goodPrice
+            , String goodLocation, String goodQuality, String goodBuyTime
+            , int goodTag, String contact, List<PhotokeyBean> photos) {
+        this.body = body;
+        this.goodName = goodName;
+        this.goodNum = goodNum;
+        this.goodPrice = goodPrice;
+        this.goodLocation = goodLocation;
+        this.goodQuality = goodQuality;
+        this.goodBuyTime = goodBuyTime;
+        this.goodTag = goodTag;
+        this.contact = contact;
+        this.photos = photos;
+    }
 
     public String getBody() {
         return body;
@@ -40,14 +57,6 @@ public class PublishGoodsBean {
 
     public void setBody(String body) {
         this.body = body;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getGoodName() {
@@ -58,20 +67,20 @@ public class PublishGoodsBean {
         this.goodName = goodName;
     }
 
-    public float getGoodPrice() {
-        return goodPrice;
-    }
-
-    public void setGoodPrice(float goodPrice) {
-        this.goodPrice = goodPrice;
-    }
-
     public int getGoodNum() {
         return goodNum;
     }
 
     public void setGoodNum(int goodNum) {
         this.goodNum = goodNum;
+    }
+
+    public float getGoodPrice() {
+        return goodPrice;
+    }
+
+    public void setGoodPrice(float goodPrice) {
+        this.goodPrice = goodPrice;
     }
 
     public String getGoodLocation() {
@@ -114,11 +123,11 @@ public class PublishGoodsBean {
         this.contact = contact;
     }
 
-    public String getPhotos() {
+    public List<PhotokeyBean> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(String photos) {
+    public void setPhotos(List<PhotokeyBean> photos) {
         this.photos = photos;
     }
 }

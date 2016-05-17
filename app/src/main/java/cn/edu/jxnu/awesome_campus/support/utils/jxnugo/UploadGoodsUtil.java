@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.qiniu.android.http.ResponseInfo;
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Response;
@@ -20,12 +22,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsPhotoModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.PhotokeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
+import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallback;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.NetCallback;
@@ -48,23 +55,27 @@ public class UploadGoodsUtil {
     }
 
     public static void onUploadImages(final Context context, final List<GoodsPhotoModel> photoList) {
-        final List<String> keys = new ArrayList<>();
+        final List<PhotokeyBean> keys = new ArrayList<>();
         IUploadService.OnUploadListener uploadListener = new IUploadService.OnUploadListener() {
             @Override
             public void onCompleted(String key, ResponseInfo info, JSONObject res) {
+                if (!info.isOK()) {
+                    EventBus.getDefault()
+                            .post(new EventModel<String>(EVENT.GOODS_IMAGES_UPLOAD_FAIL
+                                    , ""));
+                    return;
+                }
+                PhotokeyBean bean;
                 try {
-                    keys.add(res.getString("key"));
+                    bean = new PhotokeyBean(res.getString("key"));
+                    keys.add(bean);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 if (keys.size() == photoList.size()) {
-                    Toast.makeText(context, String.valueOf(keys.size()), Toast.LENGTH_SHORT).show();
-                    final StringBuffer stringBuffer = new StringBuffer();
-                    for (String str : keys)
-                        stringBuffer.append(str + "/");
                     EventBus.getDefault()
-                            .post(new EventModel<String>(EVENT.GOODS_IMAGES_UPLOAD_SUCCESS
-                                    , stringBuffer.toString()));
+                            .post(new EventModel<List<PhotokeyBean>>(EVENT.GOODS_IMAGES_UPLOAD_SUCCESS
+                                    , keys));
                 }
             }
 
@@ -85,27 +96,25 @@ public class UploadGoodsUtil {
         }
     }
 
-    public static void onUploadJson(final PublishGoodsBean bean) {
-        final PostJsonRequest request = new PostJsonRequest(JxnuGoApi.PublishNewPostUrl);
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                request.addJsonObject(bean)
-                        .enqueue(new StringCodeCallback() {
-                            @Override
-                            public void onSuccess(String result, int responseCode, Headers headers) {
-                                Log.i(TAG, "" + responseCode);
-                                if (responseCode == 200) {
-                                    EventBus.getDefault().post(new EventModel<Void>(EVENT.POST_UPLOAD_SUCCESS));
-                                }
-                            }
+    public static void onUploadJson(final PublishGoodsBean bean, final Context context) {
+        SPUtil spu = new SPUtil(InitApp.AppContext);
+        final String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
+        final String password = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
+        NetManageUtil.postAuthJson(JxnuGoApi.PublishNewPostUrl)
+                .addUserName(userName)
+                .addPassword(password)
+                .addTag(TAG)
+                .addJsonObject(bean)
+                .enqueue(new StringCodeCallback() {
+                    @Override
+                    public void onSuccess(String result, int responseCode, Headers headers) {
+                        Log.i(TAG, "" + responseCode);
+                    }
 
-                            @Override
-                            public void onFailure(String error) {
-
-                            }
-                        });
-            }
-        });
+                    @Override
+                    public void onFailure(String error) {
+                        Log.i(TAG, error);
+                    }
+                });
     }
 }

@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.google.gson.Gson;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.tendcloud.tenddata.TCAgent;
 
@@ -30,9 +32,11 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsPhotoModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.PhotokeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.ChoosePicAdapter;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadGoodsUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.IUploadService;
@@ -260,28 +264,33 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void uploadPost(EventModel eventModel) {
-        if (eventModel.getEventCode() == EVENT.GOODS_IMAGES_UPLOAD_SUCCESS) {
-            String keys = (String) eventModel.getData();
+        switch (eventModel.getEventCode()) {
+            case EVENT.GOODS_IMAGES_UPLOAD_SUCCESS:
+                ArrayList<PhotokeyBean> keys = (ArrayList<PhotokeyBean>) eventModel.getData();
 
-            final PublishGoodsBean bean = new PublishGoodsBean();
-            bean.setBody(discribtionET.getText().toString());
-            bean.setContact(contactET.getText().toString());
-            if (!TextUtil.isNull(yearET.getText().toString())
-                    && !TextUtil.isNull(monthET.getText().toString())
-                    && !TextUtil.isNull(dayET.getText().toString()))
-                bean.setGoodBuyTime(yearET + "-" + monthET + "-" + dayET);
-            bean.setGoodLocation(positionET.getText().toString());
-            bean.setGoodName(goodNameET.getText().toString());
-            bean.setGoodPrice(Float.valueOf(priceET.getText().toString()));
-            bean.setGoodTag(goodTag);
-            bean.setPhotos(keys);
-            bean.setGoodNum(Integer.valueOf(amountET.getText().toString()));
-            bean.setGoodQuality("perfect");
+                final PublishGoodsBean bean = new PublishGoodsBean(discribtionET.getText().toString()
+                        , goodNameET.getText().toString()
+                        , Integer.parseInt(amountET.getText().toString())
+                        , Float.parseFloat(priceET.getText().toString())
+                        , positionET.getText().toString()
+                        , "perfect"
+                        , yearET.getText().toString() + "-"
+                            + monthET.getText().toString() + "-" +
+                            dayET.getText().toString()
+                        , Integer.parseInt(String.valueOf(goodTag))
+                        , contactET.getText().toString()
+                        , keys);
 
-            UploadGoodsUtil.onUploadJson(bean);
-        }
-        if (eventModel.getEventCode() == EVENT.POST_UPLOAD_SUCCESS) {
-            Toast.makeText(NewGoodsActivity.this, "upload success", Toast.LENGTH_SHORT).show();
+                UploadGoodsUtil.onUploadJson(bean, this);
+                break;
+            case EVENT.GOODS_IMAGES_UPLOAD_FAIL:
+                break;
+            case EVENT.POST_UPLOAD_SUCCESS:
+                DisplayUtil.Snack(getCurrentFocus(), "upload success");
+                finish();
+                break;
+            case EVENT.POST_UPLOAD_FAIL:
+                break;
         }
     }
 
