@@ -152,7 +152,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         clearTable(CourseInfoTable.NAME);
         clearTable(CourseScoreTable.NAME);
         clearTable(ExamTimeTable.NAME);
-
         clearTable(BookBorrowedTable.NAME);
     }
 

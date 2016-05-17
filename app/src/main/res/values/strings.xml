@@ -251,5 +251,8 @@
     <string name="jxnugo_newgoods_postnewgood">Post New</string>
     <string name="jxnugo_newgoods_inputillegal">Please Input Necessary Info.</string>
     <string name="jxnugo_comment_reply">ReplyTo:</string>
+    <string name="jxnugo_collect_success">Collect Success</string>
+    <string name="jxnugo_collect_failure">Collect Failure</string>
+    <string name="jxnugo_comment_failure">Comment Failure!!!</string>
 
 </resources>

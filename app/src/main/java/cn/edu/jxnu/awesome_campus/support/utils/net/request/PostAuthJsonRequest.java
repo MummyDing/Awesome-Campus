@@ -21,6 +21,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.NetCallback;
  * Created by KevinWu on 16-5-15.
  */
 public class PostAuthJsonRequest extends PostRequest {
+    public static final String TAG="PostAuthJsonRequest";
     private static final MediaType Json = MediaType.parse("application/json; charset=utf-8");
 
 
@@ -46,6 +47,8 @@ public class PostAuthJsonRequest extends PostRequest {
                 return null;
             }
         });
+        Log.d(TAG,"用户名"+userName);
+        Log.d(TAG,"密码"+password);
         Call call = NetManageUtil.netClient.newCall(buildRequest());
         call.enqueue(callback);
     }
