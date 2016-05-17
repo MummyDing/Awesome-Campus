@@ -81,7 +81,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
             for (int i = 0; i < model.getPhoto().length; i++)
                 data = data + "\r\n<p><img class=\"content-image\" src=\"" + JxnuGoApi.BasePicUrl+ model.getPhoto()[i] + "\" alt=\"\" /></p>\r\n";
         data = data + "</div></div></div>";
-        onDataShow("Daily.css");
+        onDataShow("JianShu.css");
         SPUtil spu = new SPUtil(InitApp.AppContext);
         int userId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
         CollectBean bean = new CollectBean(userId + "", model.getPostId() + "");

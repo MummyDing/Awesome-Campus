@@ -130,6 +130,8 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
                 onDataRefresh();
                 commentEditText.setText("");
                 commentEditText.clearFocus();
+                InputMethodManager imm=(InputMethodManager)commentEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(0,InputMethodManager.HIDE_IMPLICIT_ONLY);
                 break;
             case EVENT.POST_COMMENT_FAILURE:
                 Snackbar.make(getCurrentFocus(), R.string.jxnugo_comment_failure,Snackbar.LENGTH_SHORT).show();
@@ -154,7 +156,6 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
 
     private void hideLoading() {
         progressBar.setVisibility(View.GONE);
-
 //        if(swipeRefreshLayout != null){
 //            swipeRefreshLayout.setRefreshing(false);
 //        }
