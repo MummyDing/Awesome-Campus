@@ -16,10 +16,9 @@ import org.greenrobot.eventbus.EventBus;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoPeopleBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoPeopleModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
-import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserinfoActivity;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnuGoUserinfoActivity;
 
 /**
  * Created by yzr on 16/5/14.
@@ -56,7 +55,7 @@ public class JxnuGoPeopleAdapter extends BaseListAdapter<JxnuGoPeopleModel,JxnuG
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().postSticky(new EventModel<Integer>(EVENT.JXNUGO_USERINFO_LOAD_USER,id));
-                Intent intent=new Intent(mContext, JxnugoUserinfoActivity.class);
+                Intent intent=new Intent(mContext, JxnuGoUserinfoActivity.class);
                 mContext.startActivity(intent);
             }
         });

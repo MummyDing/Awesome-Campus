@@ -61,7 +61,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
-import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserinfoActivity;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnuGoUserinfoActivity;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.NewGoodsActivity;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
@@ -268,7 +268,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
 
     public void jumpToJxnugoUserinfo(EventModel eventModel){
-        Intent intent=new Intent(this, JxnugoUserinfoActivity.class);
+        Intent intent=new Intent(this, JxnuGoUserinfoActivity.class);
 //        final Integer userId=(Integer) eventModel.getData();
 //        Log.d(TAG,userId+"");
 //

@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.support.utils.net.request;
 
+import android.util.Log;
+
 import com.squareup.okhttp.Authenticator;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Credentials;
@@ -78,13 +80,11 @@ public class GetAuthRequest extends IRequest {
         NetManageUtil.netClient.setAuthenticator(new Authenticator() {
             @Override
             public Request authenticate(Proxy proxy, Response response) throws IOException {
-
                 String credential = Credentials.basic(userName, password);
                 return response.request().newBuilder()
                         .header("Authorization", credential)
                         .build();
             }
-
             @Override
             public Request authenticateProxy(Proxy proxy, Response response) throws IOException {
                 return null;

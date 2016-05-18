@@ -35,7 +35,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
  * 跳转方法:通过发布 JXNUGO_USERINFO_LOAD_USER 的 String 的sticky事件,给定id,加载相应数据
  */
 
-public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.OnClickListener{
+public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.OnClickListener{
 
 
     private  int id;
@@ -222,6 +222,8 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
                 setFavorite(false);
                 break;
             case R.id.jxnugo_userinfo_edit:
+                Intent intent=new Intent(this,JxnuGoUserInfoETActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);

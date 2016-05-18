@@ -256,5 +256,10 @@
     <string name="jxnugo_comment_failure">Comment Failure!!!</string>
     <string name="jxnugo_newgoods_quality">Quality</string>
     <string name="jxnugo_jump_to_personal_info">Check the Personal Information</string>
+    <string name="jxnugo_user_nickname">Nickname</string>
+    <string name="jxnugo_user_location">Location</string>
+    <string name="jxnugo_user_sex">Sex</string>
+    <string name="jxnugo_user_contact">Contact</string>
+    <string name="jxnugo_user_about_me">About Me</string>
 
 </resources>

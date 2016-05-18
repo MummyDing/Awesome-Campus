@@ -244,5 +244,10 @@
     <string name="jxnugo_comment_failure">评论失败</string>
     <string name="jxnugo_newgoods_quality">成色</string>
     <string name="jxnugo_jump_to_personal_info">查看个人信息</string>
+    <string name="jxnugo_user_nickname">昵称</string>
+    <string name="jxnugo_user_location">地址</string>
+    <string name="jxnugo_user_sex">性别</string>
+    <string name="jxnugo_user_contact">联系方式</string>
+    <string name="jxnugo_user_about_me">个性签名</string>
 
 </resources>

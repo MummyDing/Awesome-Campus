@@ -6,18 +6,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.google.gson.Gson;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.tendcloud.tenddata.TCAgent;
 
@@ -38,13 +35,12 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.PhotokeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.ChoosePicAdapter;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
-import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadGoodsUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.IUploadService;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 import cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner.GoodTagSpinnerWrapper;
-import cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner.OnGoodTagChangedLister;
+import cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner.OnGoodTagChangedListener;
 import cn.finalteam.galleryfinal.CoreConfig;
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
@@ -98,7 +94,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
 
     private void addTagSpinner() {
         GoodTagSpinnerWrapper spinnerWrapper = new GoodTagSpinnerWrapper();
-        spinnerWrapper.setOnTagChangeedListener(new OnGoodTagChangedLister() {
+        spinnerWrapper.setOnTagChangedListener(new OnGoodTagChangedListener() {
             @Override
             public void onTagChanged(int tag) {
                 goodTag = tag;

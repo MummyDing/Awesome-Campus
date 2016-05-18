@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner;
+package cn.edu.jxnu.awesome_campus.view.widget.sexspinner;
 
 import android.content.Context;
 
@@ -11,35 +11,30 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 
 /**
- * Created by KevinWu on 16-5-14.
+ * Created by KevinWu on 16-5-18.
  */
-public class GoodTagSpinnerWrapper {
+public class SexSpinnerWrapper {
+    public static final String TAG="SexSpinnerWrapper";
     private Context mContext = InitApp.AppContext;
-    private OnGoodTagChangedListener listener;
-    private int index;
-
+    private OnSexChangedListener listener;
+    private String sex;
     public MaterialSpinner build(MaterialSpinner spinner) {
-        List<String> tagList =  Arrays.asList(GoodTagList.tag);
-        spinner.setItems(tagList);
-        spinner.setSelectedIndex(4);//
+        List<String> sexList =Arrays.asList(SexList.sex);
+        spinner.setItems(sexList);
+        spinner.setSelectedIndex(0);//
         if (listener != null) {
+            final List<String> finalSexList = sexList;
             spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
                 @Override
                 public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                    listener.onTagChanged(position);
+                    listener.onSexChanged(finalSexList.get(position));
                 }
             });
         }
         return spinner;
     }
-
-    public void setOnTagChangedListener(OnGoodTagChangedListener listener) {
-        this.listener = listener;
-
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
+    public void setOnSexChangedListener(OnSexChangedListener listener){
+        this.listener=listener;
     }
 }

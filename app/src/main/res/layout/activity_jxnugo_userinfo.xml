@@ -8,7 +8,7 @@
 
     android:orientation="vertical"
 
-    tools:context="cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserinfoActivity">
+    tools:context=".ui.jxnugo.JxnuGoUserinfoActivity">
 
 
 
