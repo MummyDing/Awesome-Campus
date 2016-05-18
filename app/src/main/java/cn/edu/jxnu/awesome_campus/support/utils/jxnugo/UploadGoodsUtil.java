@@ -46,7 +46,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.qiniu.UploadUtil;
  */
 public class UploadGoodsUtil {
     public static final String TAG = "UploadGoodsUtil";
-
+    private static Handler handler=new Handler(Looper.getMainLooper());
     public static ByteArrayOutputStream compressImages(String imagePath) {
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -60,9 +60,15 @@ public class UploadGoodsUtil {
             @Override
             public void onCompleted(String key, ResponseInfo info, JSONObject res) {
                 if (!info.isOK()) {
-                    EventBus.getDefault()
-                            .post(new EventModel<String>(EVENT.GOODS_IMAGES_UPLOAD_FAIL
-                                    , ""));
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            EventBus.getDefault()
+                                    .post(new EventModel<String>(EVENT.GOODS_IMAGES_UPLOAD_FAIL
+                                            , ""));
+                        }
+                    });
+
                     return;
                 }
                 PhotokeyBean bean;
@@ -73,9 +79,15 @@ public class UploadGoodsUtil {
                     e.printStackTrace();
                 }
                 if (keys.size() == photoList.size()) {
-                    EventBus.getDefault()
-                            .post(new EventModel<List<PhotokeyBean>>(EVENT.GOODS_IMAGES_UPLOAD_SUCCESS
-                                    , keys));
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            EventBus.getDefault()
+                                    .post(new EventModel<List<PhotokeyBean>>(EVENT.GOODS_IMAGES_UPLOAD_SUCCESS
+                                            , keys));
+                        }
+                    });
+
                 }
             }
 
@@ -109,11 +121,32 @@ public class UploadGoodsUtil {
                     @Override
                     public void onSuccess(String result, int responseCode, Headers headers) {
                         Log.i(TAG, "" + responseCode);
+                        if(responseCode==200)
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<PublishGoodsBean>(EVENT.POST_UPLOAD_SUCCESS));
+                            }
+                        });
+                        else{
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<PublishGoodsBean>(EVENT.POST_UPLOAD_FAIL));
+                                }
+                            });
+                        }
                     }
 
                     @Override
                     public void onFailure(String error) {
                         Log.i(TAG, error);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<PublishGoodsBean>(EVENT.POST_UPLOAD_FAIL));
+                            }
+                        });
                     }
                 });
     }

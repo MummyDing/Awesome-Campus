@@ -302,7 +302,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ddffffff"
         android:gravity="center"
         android:orientation="vertical">
         <LinearLayout
@@ -310,6 +309,7 @@
             android:layout_height="match_parent"
             android:id="@+id/uploading"
             android:gravity="center"
+            android:visibility="gone"
             android:orientation="vertical">
             <ProgressBar
                 android:layout_width="100dp"
@@ -326,6 +326,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:visibility="gone"
+            android:id="@+id/doneUploading"
             android:orientation="vertical"
             >
             <TextView
@@ -338,6 +339,7 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/colorAccent"
                 android:textColor="?attr/cardViewColor"
+                android:id="@+id/doneBackButton"
                 android:layout_marginTop="20dp"
                 android:text="返回商品列表"/>
         </LinearLayout>

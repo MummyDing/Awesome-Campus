@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -73,7 +75,11 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     private EditText contactET;
     private EditText discribtionET;
     private EditText qualityET;
+    private AppCompatButton doneBackButton;
+    private LinearLayout uploadingLayout,doneLayout;
+    private ScrollView infoScrollview;
     private IUploadService.OnUploadListener uploadListener;
+    private MenuItem sendMenuItem;
 
 
     @Override
@@ -114,7 +120,12 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         contactET=(EditText)findViewById(R.id.contact);
         discribtionET=(EditText)findViewById(R.id.description);
         qualityET=(EditText)findViewById(R.id.quality);
+        infoScrollview=(ScrollView)findViewById(R.id.content);
+        uploadingLayout=(LinearLayout)findViewById(R.id.uploading);
+        doneLayout=(LinearLayout)findViewById(R.id.doneUploading);
+        doneBackButton=(AppCompatButton)findViewById(R.id.doneBackButton);
         addPicButton.setOnClickListener(this);
+        doneBackButton.setOnClickListener(this);
     }
 
     private void bindAdapter() {
@@ -222,6 +233,9 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
             case R.id.addPic:
                 callImageSelector();
                 break;
+            case R.id.doneBackButton:
+                this.finish();
+                break;
         }
     }
 
@@ -236,6 +250,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_newgoods, menu);
+        sendMenuItem=menu.findItem(R.id.menu_new_goods_done);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -243,21 +258,26 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_new_goods_done:
+                sendMenuItem.setVisible(false);
                 if(!completeInput()){
                     Snackbar.make(getCurrentFocus(), R.string.jxnugo_newgoods_inputillegal,Snackbar.LENGTH_SHORT).show();
                 }
                 else{
+                    setLayoutVisible(1);//设置显示内容上传中
                     if(mPhotoList.size()>0)
                     UploadGoodsUtil.onUploadImages(this, mPhotoList);
                     else
-                        uploadDataNoImage(null);
+                        uploadData(null);
                 }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void uploadDataNoImage(ArrayList<PhotokeyBean> keys) {
+    private void uploadData(ArrayList<PhotokeyBean> keys) {
+        if(keys==null){
+            keys=new ArrayList<>();
+        }
         int amount=amountET.getText().toString().equals("")?1:Integer.parseInt(amountET.getText().toString());
         final PublishGoodsBean bean = new PublishGoodsBean(discribtionET.getText().toString()
                 , goodNameET.getText().toString()
@@ -280,20 +300,46 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         switch (eventModel.getEventCode()) {
             case EVENT.GOODS_IMAGES_UPLOAD_SUCCESS:
                 ArrayList<PhotokeyBean> keys = (ArrayList<PhotokeyBean>) eventModel.getData();
-                uploadDataNoImage(keys);
+                uploadData(keys);
                 break;
             case EVENT.GOODS_IMAGES_UPLOAD_FAIL:
                 break;
             case EVENT.POST_UPLOAD_SUCCESS:
-                DisplayUtil.Snack(getCurrentFocus(), "upload success");
-                finish();
+//                DisplayUtil.Snack(getCurrentFocus(), "upload success");
+                setLayoutVisible(2);
                 break;
             case EVENT.POST_UPLOAD_FAIL:
                 break;
         }
     }
 
-
+    /**
+     * 设置界面显示模式
+     * 参数为模式
+     * 0表示待发送界面
+     * 1表示发送中的界面
+     * 2表示发送完成界面
+     * @param mode
+     */
+    private void setLayoutVisible(int mode){
+        switch (mode){
+            case 0:
+                infoScrollview.setVisibility(View.VISIBLE);
+                uploadingLayout.setVisibility(View.GONE);
+                doneLayout.setVisibility(View.GONE);
+                break;
+            case 1:
+                infoScrollview.setVisibility(View.GONE);
+                uploadingLayout.setVisibility(View.VISIBLE);
+                doneLayout.setVisibility(View.GONE);
+                break;
+            case 2:
+                infoScrollview.setVisibility(View.GONE);
+                uploadingLayout.setVisibility(View.GONE);
+                doneLayout.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
