@@ -16,6 +16,11 @@
         android:icon="@mipmap/ic_favorite_white"
         android:visible="false"
         app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/menu_goods_detail_share"
+        android:icon="@mipmap/ic_share_white"
+        app:showAsAction="ifRoom"
+        android:title=""></item>
 
 
 </menu>

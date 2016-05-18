@@ -45,7 +45,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     private String goodContact = "联系方式：";
     private TextView tvUserName;
     private TextView tvTime;
-    private MenuItem favorite, favorite_select, comment;
+    private MenuItem favorite, favorite_select, comment,share;
     private SimpleDraweeView avatarImageView;
 
     @Override
@@ -145,6 +145,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
         favorite = menu.findItem(R.id.menu_favorite);
         favorite_select = menu.findItem(R.id.menu_favorite_select);
         comment = menu.findItem(R.id.menu_comment);
+        share=menu.findItem(R.id.menu_share);
         setComment();
         return super.onCreateOptionsMenu(menu);
     }
@@ -171,8 +172,25 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
                 favorite_select.setVisible(false);
                 setFavorite(false);
                 break;
+            case R.id.menu_goods_detail_share:
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getShareInfo());
+                startActivity(Intent.createChooser(sharingIntent, getString(R.string.hint_share_to)));
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 拼接分享的信息的方法
+     * @return
+     */
+    private String getShareInfo() {
+        String info="我在江西师大的专属二手市场发现了件不错的商品——【"+model.getGoodName()+"】，你也来看看吧：";
+        info =info+JxnuGoApi.BaseTradeURL+model.getPostId();
+        info = info+"(分享自 师大+)";
+        return info;
     }
 
     private void setFavorite(boolean b) {
