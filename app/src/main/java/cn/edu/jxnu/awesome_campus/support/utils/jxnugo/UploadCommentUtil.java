@@ -45,49 +45,49 @@ public class UploadCommentUtil {
                 .addPassword(password)
                 .addTag(TAG)
                 .addJsonObject(pbean)
-//                .enqueue(new JsonCodeEntityCallback<CommentRTBean>() {
-//                    @Override
-//                    public void onSuccess(CommentRTBean entity, int responseCode, Headers headers) {
-//                        if (responseCode == 200) {
-//                            Log.d(TAG, entity.getCommentStatus());
-//                            handler.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    EventBus.getDefault().post(new EventModel<CommentRTBean>(EVENT.POST_COMMENT_SUCCESS));
-//                                }
-//                            });
-//                        } else {
-//                            handler.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    EventBus.getDefault().post(new EventModel<CommentRTBean>(EVENT.POST_COMMENT_FAILURE));
-//                                }
-//                            });
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(String error) {
-//                        Log.d(TAG,"错误信息"+error);
-//                        handler.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                EventBus.getDefault().post(new EventModel<CommentRTBean>(EVENT.POST_COMMENT_FAILURE));
-//                            }
-//                        });
-//                    }
-//                });
-            .enqueue(new StringCodeCallback() {
-                @Override
-                public void onSuccess(String result, int responseCode, Headers headers) {
-                    Log.d(TAG,"-"+responseCode+" "+result);
-                }
+                .enqueue(new JsonCodeEntityCallback<CommentRTBean>() {
+                    @Override
+                    public void onSuccess(CommentRTBean entity, int responseCode, Headers headers) {
+                        if (responseCode == 200) {
+                            Log.d(TAG, entity.getCommentStatus());
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<CommentRTBean>(EVENT.POST_COMMENT_SUCCESS));
+                                }
+                            });
+                        } else {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<CommentRTBean>(EVENT.POST_COMMENT_FAILURE));
+                                }
+                            });
+                        }
+                    }
 
-                @Override
-                public void onFailure(String error) {
-                    Log.d(TAG,"-"+error);
-                }
-            });
+                    @Override
+                    public void onFailure(String error) {
+                        Log.d(TAG,"错误信息"+error);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<CommentRTBean>(EVENT.POST_COMMENT_FAILURE));
+                            }
+                        });
+                    }
+                });
+//            .enqueue(new StringCodeCallback() {
+//                @Override
+//                public void onSuccess(String result, int responseCode, Headers headers) {
+//                    Log.d(TAG,"-"+responseCode+" "+result);
+//                }
+//
+//                @Override
+//                public void onFailure(String error) {
+//                    Log.d(TAG,"-"+error);
+//                }
+//            });
             /*已收藏*/
     }
 

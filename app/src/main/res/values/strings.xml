@@ -254,5 +254,6 @@
     <string name="jxnugo_collect_success">Collect Success</string>
     <string name="jxnugo_collect_failure">Collect Failure</string>
     <string name="jxnugo_comment_failure">Comment Failure!!!</string>
+    <string name="jxnugo_newgoods_quality">*Quality</string>
 
 </resources>

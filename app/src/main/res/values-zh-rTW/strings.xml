@@ -242,6 +242,7 @@
     <string name="jxnugo_collect_failure">收藏失敗</string>
     <string name="jxnugo_collect_success">收藏成功</string>
     <string name="jxnugo_comment_failure">回復失敗</string>
+    <string name="jxnugo_newgoods_quality">*成色</string>
 
 
 </resources>

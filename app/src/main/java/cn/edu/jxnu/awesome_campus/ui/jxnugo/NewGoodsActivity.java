@@ -72,12 +72,14 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     private EditText positionET;
     private EditText contactET;
     private EditText discribtionET;
+    private EditText qualityET;
     private IUploadService.OnUploadListener uploadListener;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         TCAgent.onPageStart(InitApp.AppContext, TAG);
         setContentView(R.layout.activity_jxnugo_new_goods);
         swipeEnabled = false;
@@ -111,6 +113,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         positionET=(EditText)findViewById(R.id.pos);
         contactET=(EditText)findViewById(R.id.contact);
         discribtionET=(EditText)findViewById(R.id.description);
+        qualityET=(EditText)findViewById(R.id.quality);
         addPicButton.setOnClickListener(this);
     }
 
@@ -217,11 +220,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         }
     };
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        TCAgent.onPageEnd(InitApp.AppContext, TAG);
-    }
+
 
     @Override
     public void onClick(View v) {
@@ -267,13 +266,12 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         switch (eventModel.getEventCode()) {
             case EVENT.GOODS_IMAGES_UPLOAD_SUCCESS:
                 ArrayList<PhotokeyBean> keys = (ArrayList<PhotokeyBean>) eventModel.getData();
-
                 final PublishGoodsBean bean = new PublishGoodsBean(discribtionET.getText().toString()
                         , goodNameET.getText().toString()
                         , Integer.parseInt(amountET.getText().toString())
                         , Float.parseFloat(priceET.getText().toString())
                         , positionET.getText().toString()
-                        , "perfect"
+                        , qualityET.getText().toString()
                         , yearET.getText().toString() + "-"
                             + monthET.getText().toString() + "-" +
                             dayET.getText().toString()
@@ -294,15 +292,11 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
 
     @Override
-    protected void onStop() {
+    protected void onDestroy() {
         EventBus.getDefault().unregister(this);
-        super.onStop();
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
+        super.onDestroy();
     }
 }
