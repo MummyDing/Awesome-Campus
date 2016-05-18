@@ -52,6 +52,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.common.PollingUtils;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
 import cn.edu.jxnu.awesome_campus.ui.about.NotifyListActivity;
@@ -222,6 +223,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                     public void onClick(DialogInterface dialog, int which) {
                         EducationLoginUtil.clearCookie();
                         LibraryLoginUtil.clearCookie();
+                        JxnuGoLoginUtil.clearInfo();
                         presenter.updateHeader(MainActivity.this);
                         DatabaseHelper.clearUserData();
                     }

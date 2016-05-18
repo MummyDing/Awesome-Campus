@@ -140,4 +140,11 @@ public class JxnuGoLoginUtil {
         return false;
     }
 
+    public static void clearInfo(){
+        SPUtil sp=new SPUtil(InitApp.AppContext);
+        sp.clearSP(JxnuGoStaticKey.SP_FILE_NAME);
+        userName=null;
+        passWord=null;
+    }
+
 }
