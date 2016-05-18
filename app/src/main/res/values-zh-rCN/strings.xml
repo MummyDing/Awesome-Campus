@@ -223,7 +223,7 @@
     <string name="jxnugo_user_post">帖子</string>
     <string name="jxnugo_user_collect">收藏</string>
 
-    <string name="jxnugo_newgoods_amount">*数量</string>
+    <string name="jxnugo_newgoods_amount">数量</string>
     <string name="jxnugo_newgoods_buytime">购买时间（例：1993 03 05）</string>
     <string name="jxnugo_newgoods_contactinformation">*联系方式</string>
     <string name="jxnugo_newgoods_day">日</string>
@@ -232,7 +232,7 @@
     <string name="jxnugo_newgoods_goodspic">商品图片</string>
     <string name="jxnugo_newgoods_month">月</string>
     <string name="jxnugo_newgoods_name">*商品名称</string>
-    <string name="jxnugo_newgoods_position">*所在楼栋</string>
+    <string name="jxnugo_newgoods_position">所在楼栋</string>
     <string name="jxnugo_newgoods_postnewgood">发布二手商品</string>
     <string name="jxnugo_newgoods_price">*价格</string>
     <string name="jxnugo_newgoods_ps">件</string>
@@ -242,6 +242,6 @@
     <string name="jxnugo_collect_failure">收藏失败</string>
     <string name="jxnugo_collect_success">收藏成功</string>
     <string name="jxnugo_comment_failure">评论失败</string>
-    <string name="jxnugo_newgoods_quality">*成色</string>
+    <string name="jxnugo_newgoods_quality">成色</string>
 
 </resources>

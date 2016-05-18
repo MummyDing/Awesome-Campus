@@ -163,10 +163,8 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
      */
     private boolean completeInput(){
         if(!TextUtil.isNull(goodNameET.getText().toString())
-                &&!TextUtil.isNull(priceET.getText().toString())
-                &&!TextUtil.isNull(amountET.getText().toString())
-                &&!TextUtil.isNull(positionET.getText().toString())
                 &&!TextUtil.isNull(contactET.getText().toString())
+                &&!TextUtil.isNull(priceET.getText().toString())
                 &&!TextUtil.isNull(discribtionET.getText().toString()))return true;
         return false;
     }
@@ -207,10 +205,6 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                             resultList.get(i).getHeight()));
                 }
                 adapter.notifyDataSetChanged();
-////                mChoosePhotoListAdapter.notifyDataSetChanged();
-//                Log.d(TAG,"取得的图片的数量为："+resultList.size());
-//                Log.d(TAG,"目标图片数量为："+mPhotoList.size());
-//                Log.d(TAG,"第一个图片路劲为"+mPhotoList.get(0).getPhotoPath());
             }
         }
 
@@ -253,12 +247,32 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                     Snackbar.make(getCurrentFocus(), R.string.jxnugo_newgoods_inputillegal,Snackbar.LENGTH_SHORT).show();
                 }
                 else{
-                    //这里上传帖子信息，用Eventbus发送消息到外部处理
+                    if(mPhotoList.size()>0)
                     UploadGoodsUtil.onUploadImages(this, mPhotoList);
+                    else
+                        uploadDataNoImage(null);
                 }
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void uploadDataNoImage(ArrayList<PhotokeyBean> keys) {
+        int amount=amountET.getText().toString().equals("")?1:Integer.parseInt(amountET.getText().toString());
+        final PublishGoodsBean bean = new PublishGoodsBean(discribtionET.getText().toString()
+                , goodNameET.getText().toString()
+                , amount
+                , Float.parseFloat(priceET.getText().toString())
+                , positionET.getText().toString()
+                , qualityET.getText().toString()
+                , yearET.getText().toString() + "-"
+                + monthET.getText().toString() + "-" +
+                dayET.getText().toString()
+                , Integer.parseInt(String.valueOf(goodTag))
+                , contactET.getText().toString()
+                , keys);
+
+        UploadGoodsUtil.onUploadJson(bean, this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -266,20 +280,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         switch (eventModel.getEventCode()) {
             case EVENT.GOODS_IMAGES_UPLOAD_SUCCESS:
                 ArrayList<PhotokeyBean> keys = (ArrayList<PhotokeyBean>) eventModel.getData();
-                final PublishGoodsBean bean = new PublishGoodsBean(discribtionET.getText().toString()
-                        , goodNameET.getText().toString()
-                        , Integer.parseInt(amountET.getText().toString())
-                        , Float.parseFloat(priceET.getText().toString())
-                        , positionET.getText().toString()
-                        , qualityET.getText().toString()
-                        , yearET.getText().toString() + "-"
-                            + monthET.getText().toString() + "-" +
-                            dayET.getText().toString()
-                        , Integer.parseInt(String.valueOf(goodTag))
-                        , contactET.getText().toString()
-                        , keys);
-
-                UploadGoodsUtil.onUploadJson(bean, this);
+                uploadDataNoImage(keys);
                 break;
             case EVENT.GOODS_IMAGES_UPLOAD_FAIL:
                 break;

@@ -241,12 +241,12 @@
     <string name="jxnugo_newgoods_month">Month</string>
     <string name="jxnugo_newgoods_day">Day</string>
     <string name="jxnugo_newgoods_price">*Price</string>
-    <string name="jxnugo_newgoods_amount">*Amount</string>
+    <string name="jxnugo_newgoods_amount">Amount</string>
     <string name="jxnugo_newgoods_ps">PS</string>
-    <string name="jxnugo_newgoods_position">*Position</string>
+    <string name="jxnugo_newgoods_position">Position</string>
     <string name="jxnugo_newgoods_contactinformation">*Contact Information</string>
     <string name="jxnugo_newgoods_description">*Description</string>
-    <string name="jxnugo_newgoods_goodspic">Good\'s Picture</string>
+    <string name="jxnugo_newgoods_goodspic">Goods Picture</string>
     <string name="jxnugo_newgoods_edit">Edit</string>
     <string name="jxnugo_newgoods_postnewgood">Post New</string>
     <string name="jxnugo_newgoods_inputillegal">Please Input Necessary Info.</string>
@@ -254,6 +254,6 @@
     <string name="jxnugo_collect_success">Collect Success</string>
     <string name="jxnugo_collect_failure">Collect Failure</string>
     <string name="jxnugo_comment_failure">Comment Failure!!!</string>
-    <string name="jxnugo_newgoods_quality">*Quality</string>
+    <string name="jxnugo_newgoods_quality">Quality</string>
 
 </resources>
