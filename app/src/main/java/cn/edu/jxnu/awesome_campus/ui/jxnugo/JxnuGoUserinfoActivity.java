@@ -48,6 +48,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
     ProgressBar progressBar;
     SimpleDraweeView userImg;
     private MenuItem editUserInfoMenu;//修改个人信息菜单
+    private boolean hasLogin;
 
     final String TAG="JXNU_GO";
 
@@ -136,8 +137,10 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
             dao.loadFromNet();
         }else if(model!=null&&model.getEventCode()==EVENT.JXNUGO_USERINFO_LOAD_LOGIN_USER){
             SPUtil sp = new SPUtil(InitApp.AppContext);
+            hasLogin=true;
             int userId=sp.getIntSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERID);
 //            Log.d("JXNU_GO",""+userId);
+
             JxnuGoUserDAO dao=new JxnuGoUserDAO(userId);
             dao.loadFromNet();
         }
@@ -196,6 +199,8 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         favorite_select = menu.findItem(R.id.jxnugo_follow_selector);
         boolean isLoginUser=judgeUserType();
         editUserInfoMenu=menu.findItem(R.id.jxnugo_userinfo_edit);
+        if(hasLogin)
+        editUserInfoMenu.setVisible(true);
         return super.onCreateOptionsMenu(menu);
     }
 

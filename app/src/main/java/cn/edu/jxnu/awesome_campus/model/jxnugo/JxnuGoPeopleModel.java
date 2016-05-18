@@ -19,10 +19,10 @@ public class JxnuGoPeopleModel implements IModel<JxnuGoPeopleModel> {
     private JxnuGoPeopleDao dao;
 
 
-    JxnuGoPeopleModel(){
+    public JxnuGoPeopleModel(){
         dao=new JxnuGoPeopleDao();
     }
-    JxnuGoPeopleModel(String aboutMe,String urlLinkUser,String userAvatar,String userId,String userName){
+    public JxnuGoPeopleModel(String aboutMe,String urlLinkUser,String userAvatar,String userId,String userName){
         this.aboutMe=aboutMe;
         this.urlLinkUser=urlLinkUser;
         this.userAvatar=userAvatar;
