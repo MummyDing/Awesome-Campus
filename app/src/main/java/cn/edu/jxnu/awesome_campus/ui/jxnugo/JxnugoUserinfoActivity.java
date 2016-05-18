@@ -16,6 +16,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoPeopleDao;
 import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoUserDAO;
@@ -23,6 +24,8 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoPeopleLoad;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoUserBean;
+import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.JxnugoFollowUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
@@ -36,7 +39,7 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
 
 
     private  int id;
-    TextView userDesc;
+    private TextView userDesc;
     TextView userPostNum;
     TextView userCollectNum;
     TextView userFollowerdNum;
@@ -44,6 +47,7 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
     TextView userLocate;
     ProgressBar progressBar;
     SimpleDraweeView userImg;
+    private MenuItem editUserInfoMenu;//修改个人信息菜单
 
     final String TAG="JXNU_GO";
 
@@ -130,6 +134,12 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
             Log.d("JXNU_GO","load sticky login bean"+userId);
             JxnuGoUserDAO dao=new JxnuGoUserDAO(userId);
             dao.loadFromNet();
+        }else if(model!=null&&model.getEventCode()==EVENT.JXNUGO_USERINFO_LOAD_LOGIN_USER){
+            SPUtil sp = new SPUtil(InitApp.AppContext);
+            int userId=sp.getIntSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERID);
+//            Log.d("JXNU_GO",""+userId);
+            JxnuGoUserDAO dao=new JxnuGoUserDAO(userId);
+            dao.loadFromNet();
         }
     }
 
@@ -184,9 +194,18 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
         getMenuInflater().inflate(R.menu.menu_jxnugo_userinfo, menu);
         favorite = menu.findItem(R.id.jxnugo_follow);
         favorite_select = menu.findItem(R.id.jxnugo_follow_selector);
+        boolean isLoginUser=judgeUserType();
+        editUserInfoMenu=menu.findItem(R.id.jxnugo_userinfo_edit);
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * 判断用户类型，如果是登录的用户返回true，不是登录的返回false
+     * @return
+     */
+    private boolean judgeUserType() {
+        return false;
+    }
 
 
     @Override
@@ -201,6 +220,8 @@ public class JxnugoUserinfoActivity extends BaseToolbarActivity implements View.
                 favorite.setVisible(true);
                 favorite_select.setVisible(false);
                 setFavorite(false);
+                break;
+            case R.id.jxnugo_userinfo_edit:
                 break;
         }
         return super.onOptionsItemSelected(item);

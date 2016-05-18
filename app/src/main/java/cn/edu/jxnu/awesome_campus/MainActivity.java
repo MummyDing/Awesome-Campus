@@ -12,11 +12,9 @@
 package cn.edu.jxnu.awesome_campus;
 
 import android.app.SearchManager;
-import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
@@ -31,22 +29,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
-import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
-import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.GoodsDAO;
-import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoPeopleDao;
 import cn.edu.jxnu.awesome_campus.database.dao.life.WeatherInfoDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenter;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.CONSTANT;
@@ -67,7 +60,6 @@ import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
-import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserInfoFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserinfoActivity;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.NewGoodsActivity;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
@@ -275,14 +267,14 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     public void jumpToJxnugoUserinfo(EventModel eventModel){
         Intent intent=new Intent(this, JxnugoUserinfoActivity.class);
-        final Integer userId=(Integer) eventModel.getData();
-        Log.d(TAG,userId+"");
-
-       // Log.d("JXNU_GO",loginBean.getMessage());
+//        final Integer userId=(Integer) eventModel.getData();
+//        Log.d(TAG,userId+"");
+//
+//       // Log.d("JXNU_GO",loginBean.getMessage());
         handler.post(new Runnable() {
             @Override
             public void run() {
-                EventBus.getDefault().postSticky(new EventModel<Integer>(EVENT.JXNUGO_USERINFO_LOAD_USER,userId));
+                EventBus.getDefault().postSticky(new EventModel<Void>(EVENT.JXNUGO_USERINFO_LOAD_LOGIN_USER));
             }
         });
         startActivity(intent);
@@ -323,7 +315,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                 });
                 nowDrawID=0;
                 break;
-            case EVENT.JUMP_TO_JXNUGO_USERINFO:
+            case EVENT.JUMP_TO_LOGIN_JXNUGO_USERINFO:
                 jumpToJxnugoUserinfo(eventModel);
                 nowDrawID=0;
                 break;

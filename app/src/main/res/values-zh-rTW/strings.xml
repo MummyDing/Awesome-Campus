@@ -243,6 +243,7 @@
     <string name="jxnugo_collect_success">收藏成功</string>
     <string name="jxnugo_comment_failure">回復失敗</string>
     <string name="jxnugo_newgoods_quality">成色</string>
+    <string name="jxnugo_jump_to_personal_info">查看個人訊息</string>
 
 
 </resources>

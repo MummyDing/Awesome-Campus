@@ -1,14 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.login;
 
-import android.support.v4.app.Fragment;
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
-import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoUserInfoFragment;
 
 /**
  * Created by MummyDing on 16-2-1.
@@ -41,12 +37,7 @@ public class LoginFragment extends TopNavigationFragment{
                 viewPager.setCurrentItem(1);
                 pagerAdapter.notifyDataSetChanged();
                 break;
-            /*case  EVENT.JUMP_TO_JXNUGO_USERINFO:
-                Log.d("JXNU_GO","event coming ,go to userinfo");
-                fragments.remove(fragments.size()-1);
-                fragments.add(new JxnugoUserInfoFragment());
-                pagerAdapter.notifyDataSetChanged();
-            */
+
         }
     }
 

@@ -17,6 +17,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
 import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
@@ -84,31 +85,33 @@ public class JxnuGoLoginUtil {
                                     @Override
                                     public void run() {
                                         //Log.d("JXNUGOLOAD", entity.getToken()+entity.getMessage()+entity.getError());
-                                        EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO_USERINFO,userId));
+//                                        EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO_USERINFO,userId));
+                                        EventBus.getDefault().post(new EventModel<String>(EVENT.JXNUGO_LOGIN_SUCCESS));
                                     }
                                 });
                             }
                             else{
                                 Log.d(TAG,"错误信息："+entity.getError()+"\n"+entity.getMessage());
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<String>(EVENT.JXNUGO_LOGIN_FAILURE));
+                                    }
+                                });
                             }
                         }
 
                         @Override
                         public void onFailure(String error) {
                             Log.d(TAG, "登录失败" + error);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<String>(EVENT.JXNUGO_LOGIN_FAILURE));
+                                }
+                            });
                         }
                     });
-//            .enqueue(new StringCodeCallback() {
-//                @Override
-//                public void onSuccess(String result, int responseCode, Headers headers) {
-//                    Log.d(TAG,"返回码为："+responseCode+"\n"+result);
-//                }
-//
-//                @Override
-//                public void onFailure(String error) {
-//                    Log.d(TAG,error);
-//                }
-//            });
         }
     }
 
@@ -119,6 +122,22 @@ public class JxnuGoLoginUtil {
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD, passWord);
         mysp.putIntSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERID,userId);
 
+    }
+
+    /**
+     * 这个方法是根据当前cookie是否存在来判断当前是否处于登陆状态【查询本地sp即可】
+     *
+     * @return
+     */
+
+    public static boolean isLogin() {
+        SPUtil sp = new SPUtil(InitApp.AppContext);
+        userName=sp.getStringSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERNAME);
+        if (TextUtil.isNull(userName) == false) {
+            passWord=sp.getStringSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.PASSWORD);
+            return true;
+        }
+        return false;
     }
 
 }

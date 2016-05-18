@@ -153,17 +153,17 @@ public class LibraryLoginUtil {
 
     public static boolean isLogin() {
 
-        Log.d("执行到判断是否登录的方法", "--");
+//        Log.d("执行到判断是否登录的方法", "--");
        SPUtil sp = new SPUtil(InitApp.AppContext);
         String cookie = sp.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
         if (TextUtil.isNull(cookie) == false) {
-            Log.d("已登录","--");
+//            Log.d("已登录","--");
             cookies=sp.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
             // 获取cookie
             userName=sp.getStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.USER_NAME);
             return true;
         }
-        Log.d("未登录","--");
+//        Log.d("未登录","--");
         return false;
     }
 

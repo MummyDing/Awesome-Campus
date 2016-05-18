@@ -6,10 +6,13 @@ import android.view.View;
 
 import org.greenrobot.eventbus.EventBus;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.MainActivity;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.registe.JxnuGoRegisteActivity;
 
@@ -21,17 +24,12 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
     @Override
     protected void init() {
         super.init();
-        setOnLineLayout(false);
+        setOnLineLayout(JxnuGoLoginUtil.isLogin());
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setInputAreaEnable(false);
                 JxnuGoLoginUtil.onLogin(usernameET, passwordET);
-                //测试跳转到用户信息界面
-                /*JxnuGoLoginBean bean=new JxnuGoLoginBean();
-                bean.setMessage("hello");
-                EventBus.getDefault().post(new EventModel<JxnuGoLoginBean>(EVENT.JUMP_TO_JXNUGO_USERINFO,bean));
-                */
             }
         });
         tips.setText("没有账号？请注册");
@@ -43,6 +41,17 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
                 startActivity(intent);
             }
         });
+        jumpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new EventModel<Void>(EVENT.JUMP_TO_LOGIN_JXNUGO_USERINFO));
+            }
+        });
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.layout_login_jxnugo;
     }
 
     @Override
@@ -57,6 +66,13 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
 
     @Override
     public void onEventComing(EventModel eventModel) {
-
+        switch (eventModel.getEventCode()){
+            case EVENT.JXNUGO_LOGIN_SUCCESS:
+                setOnLineLayout(true);
+                setInputAreaEnable(true);
+//                MainActivity.presenter.updateHeader(getActivity());
+                DisplayUtil.Snack(getView(), InitApp.AppContext.getString(R.string.hint_login_successful));
+                break;
+        }
     }
 }

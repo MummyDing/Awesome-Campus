@@ -174,6 +174,13 @@ public class EVENT {
     public static final int JUDGE_COLLECT_TRUE=81;//已收藏
     public static final int JUDGE_COLLECT_FALSE=82;//未收藏
 
+    //JXNUGO登录的状态码
+    public static final int JXNUGO_LOGIN_SUCCESS=83;
+    public static final int JXNUGO_LOGIN_FAILURE=84;
+
+    //跳转到已经登录了的用户个人信息
+    public static final int JUMP_TO_LOGIN_JXNUGO_USERINFO=85;
+
     /**
      * Cache Event Code
      */
@@ -255,6 +262,7 @@ public class EVENT {
     public static  final  int JXNUGO_FOLLOW_FAILURE=1037;
     public  static  final  int JXNUGO_UNFOLLOW_SUCCESS=1038;
     public static final int JXNUGO_UNFOLLOW_FAILURE=1039;
+    public  static final int JXNUGO_USERINFO_LOAD_LOGIN_USER=1040;
 
 
     //Common

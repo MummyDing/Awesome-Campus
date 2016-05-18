@@ -12,6 +12,13 @@
         android:icon="@mipmap/ic_favorite_white"
         android:visible="false"
         app:showAsAction="ifRoom"></item>
+    <!--修改个人信息菜单项-->
+    <item
+        android:id="@+id/jxnugo_userinfo_edit"
+        android:icon="@mipmap/ic_edit_white"
+        android:visible="false"
+        android:title=""
+        app:showAsAction="ifRoom"></item>
 
 
 </menu>

@@ -45,6 +45,7 @@ public class HomePresenterImpl implements HomePresenter {
 
     private SecondaryDrawerItem LogItem;
 
+
     public HomePresenterImpl(HomeView view) {
         this.homeView = view;
     }
