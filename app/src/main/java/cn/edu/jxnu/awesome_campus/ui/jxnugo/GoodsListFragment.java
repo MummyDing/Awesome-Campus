@@ -38,9 +38,9 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
  */
 public class GoodsListFragment  extends BaseListFragment {
     public static final String TAG="GoodsListFragment";
-    private static final int TOTAL_COUNTER = 30;
+    private static final int TOTAL_COUNTER = 100;
     /**每一页展示多少条数据*/
-    private static final int REQUEST_COUNT = 10;
+    private static final int REQUEST_COUNT = 16;
     /**已经获取到多少条数据了*/
     private int mCurrentCounter = 0;
     private GoodsModel goodsModel;
@@ -157,6 +157,8 @@ public class GoodsListFragment  extends BaseListFragment {
 
             if (mCurrentCounter < TOTAL_COUNTER) {
                 // loading more
+                Log.d(TAG,"当前mCurrentCounter"+mCurrentCounter);
+                Log.d(TAG,"当前TOTAL_COUNTER"+TOTAL_COUNTER);
                 RecyclerViewStateUtils.setFooterViewState(getActivity(), recyclerView, REQUEST_COUNT, LoadingFooter.State.Loading, null);
                 requestData();
             } else {
@@ -171,7 +173,7 @@ public class GoodsListFragment  extends BaseListFragment {
      * 请求新数据
      */
     private void requestData() {
-//        final Handler handler = new Handler(Looper.getMainLooper());
+        final Handler handler = new Handler(Looper.getMainLooper());
         Log.d(TAG,"请求数据");
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
@@ -192,14 +194,14 @@ public class GoodsListFragment  extends BaseListFragment {
                     public void onSuccess(GoodsListBean entity, Headers headers) {
                         if (entity != null) {
                             final List<GoodsListBean> list = Arrays.asList(entity);
-                            loadNextPage(list);
-//                            handler.post(new Runnable() {
-//                                @Override
-//                                public void run() {
+//                            loadNextPage(list);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
 //                                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS, list));
-//
-//                                }
-//                            });
+                                    loadNextPage(list);
+                                }
+                            });
                         } else {
 //                            EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_NEXTPAGE_REFRESH_FAILURE));
                         }
