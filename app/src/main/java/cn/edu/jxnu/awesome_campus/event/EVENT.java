@@ -181,6 +181,14 @@ public class EVENT {
     //跳转到已经登录了的用户个人信息
     public static final int JUMP_TO_LOGIN_JXNUGO_USERINFO=85;
 
+    //图片上传相关
+    public static final int IMAGES_UPLOAD_FAILURE=86;
+    public static final int IMAGES_UPLOAD_SUCCESS=87;
+
+    //个人信息修改
+    public static final int UPDATE_USER_INFO_SUCCESS=88;
+    public static final int UPDATE_USER_INFO_FAILURE=89;
+
     /**
      * Cache Event Code
      */
