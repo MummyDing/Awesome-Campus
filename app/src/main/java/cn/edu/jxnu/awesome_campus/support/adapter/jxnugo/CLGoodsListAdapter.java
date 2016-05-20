@@ -14,6 +14,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
@@ -50,7 +51,7 @@ public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAd
         holder.goodName.setText(model.getGoodName());
         holder.goodPrice.setText(model.getGoodPrice()+"");
         if(model.getPhotos()!=null&&model.getPhotos().length>0)
-//            holder.goodFirstImg.setImageURI(Uri.parse(model.getPhotos()[0]));
+            holder.goodFirstImg.setImageURI(Uri.parse(JxnuGoApi.BasePicUrl+model.getPhotos()[0].getKey()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

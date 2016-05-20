@@ -2,49 +2,20 @@ package cn.edu.jxnu.awesome_campus.model.jxnugo;
 
 import java.util.List;
 
-import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.GoodsDAO;
+import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.UserCollectionDAO;
 import cn.edu.jxnu.awesome_campus.model.IModel;
 
 /**
- * Created by KevinWu on 16-5-11.
+ * Created by KevinWu on 16-5-20.
  */
-public class GoodsModel implements IModel<GoodsModel>{
+public class UserCollectionModel extends GoodsModel{
+    private UserCollectionDAO dao;
 
-    private GoodsDAO dao;
-
-    protected String author;
-    protected String body;
-    protected int commentsCount;
-    protected String contact;
-    protected String goodBuyTime;
-    protected String goodLocation;
-    protected String goodName;
-    protected float goodPrice;
-    protected String goodQuality;
-    protected int goodTag;
-    protected PhotokeyBean[] photos;
-    protected int postId;
-    protected String postUserAvator;
-    protected String postUserName;
-    protected String timestamp;
-    protected String url;
-
-    public int getPostId() {
-        return postId;
+    public UserCollectionModel(){
+        dao=new UserCollectionDAO();
     }
 
-    public void setPostId(int postId) {
-        this.postId = postId;
-    }
-
-
-
-
-    public GoodsModel(){
-        dao=new GoodsDAO();
-    }
-
-    public GoodsModel(String author,
+    public UserCollectionModel(String author,
                       String body,
                       String contact,
                       String goodLocation,
@@ -60,22 +31,22 @@ public class GoodsModel implements IModel<GoodsModel>{
                       String timestamp,
                       String url,
                       int commentsCount){
-        this.author=author;
-        this.body=body;
-        this.contact=contact;
-        this.goodLocation=goodLocation;
-        this.goodBuyTime=goodBuyTime;
-        this.goodName=goodName;
-        this.goodPrice=goodPrice;
-        this.goodQuality=goodQuality;
-        this.postUserName=postUserName;
-        this.goodTag=goodTag;
-        this.photos=photos;
-        this.timestamp=timestamp;
-        this.url=url;
-        this.commentsCount=commentsCount;
-        this.postUserAvator=postUserAvator;
-        this.postId=postId;
+        super.author=author;
+        super.body=body;
+        super.contact=contact;
+        super.goodLocation=goodLocation;
+        super.goodBuyTime=goodBuyTime;
+        super.goodName=goodName;
+        super.goodPrice=goodPrice;
+        super.goodQuality=goodQuality;
+        super.postUserName=postUserName;
+        super.goodTag=goodTag;
+        super.photos=photos;
+        super.timestamp=timestamp;
+        super.url=url;
+        super.commentsCount=commentsCount;
+        super.postUserAvator=postUserAvator;
+        super.postId=postId;
     }
 
     public String getAuthor() {
@@ -83,7 +54,7 @@ public class GoodsModel implements IModel<GoodsModel>{
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        super.author = author;
     }
 
     public String getBody() {
@@ -200,11 +171,7 @@ public class GoodsModel implements IModel<GoodsModel>{
     }
 
 
-    @Override
-    public boolean cacheAll(List<GoodsModel> list) {
-        return dao.cacheAll(list);
 
-    }
 
     @Override
     public boolean clearCache() {

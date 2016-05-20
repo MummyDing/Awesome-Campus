@@ -23,6 +23,7 @@ import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
@@ -118,7 +119,7 @@ public class HomePresenterImpl implements HomePresenter {
                     .withName(name.length() == 2 ?"    "+name :"  "+name));
         }
 
-        if(EducationLoginUtil.isLogin() || LibraryLoginUtil.isLogin()){
+        if(EducationLoginUtil.isLogin() || LibraryLoginUtil.isLogin()|| JxnuGoLoginUtil.isLogin()){
             if(drawer !=null) {
                 LogItem.withEnabled(true);
                 LogItem.withName(DrawerItem.LOGOUT.getItemName());
