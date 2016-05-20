@@ -38,7 +38,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
  */
 public class GoodsListFragment  extends BaseListFragment {
     public static final String TAG="GoodsListFragment";
-    private static final int TOTAL_COUNTER = 100;
+    private static int TOTAL_COUNTER;
     /**每一页展示多少条数据*/
     private static final int REQUEST_COUNT = 16;
     /**已经获取到多少条数据了*/
@@ -93,13 +93,13 @@ public class GoodsListFragment  extends BaseListFragment {
             case EVENT.GOODS_LIST_REFRESH_FAILURE:
                 hideLoading();
                 break;
-            case EVENT.GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS:
-                loadNextPage(eventModel.getDataList());
-                hideLoading();
-                break;
-            case EVENT.GOODS_LIST_NEXTPAGE_REFRESH_FAILURE:
-                hideLoading();
-                break;
+//            case EVENT.GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS:
+//                loadNextPage(eventModel.getDataList());
+//                hideLoading();
+//                break;
+//            case EVENT.GOODS_LIST_NEXTPAGE_REFRESH_FAILURE:
+//                hideLoading();
+//                break;
         }
     }
 
@@ -109,10 +109,14 @@ public class GoodsListFragment  extends BaseListFragment {
      */
     private void loadNextPage(List<GoodsListBean> tempNextList){
         nexPage=tempNextList.get(0).getNext();
+
         ArrayList<GoodsModel> tempNextAL=new ArrayList<>();
         for(int i=0;i<tempNextList.get(0).getPosts().length;i++)
             tempNextAL.add(tempNextList.get(0).getPosts()[i]);
         addItems(tempNextAL);
+//        Log.d("loadNextPage",nexPage);
+//        Log.d("loadNextPage","当前mCurrentCounter "+mCurrentCounter);
+//        Log.d(TAG,"当前TOTAL_COUNTER "+TOTAL_COUNTER);
         notifyDataSetChanged();
     }
 
@@ -124,6 +128,7 @@ public class GoodsListFragment  extends BaseListFragment {
         mList.clear();
         GoodsModel[] g=tempList.get(0).getPosts();
         nexPage=tempList.get(0).getNext();
+        TOTAL_COUNTER=tempList.get(0).getCount();
         ArrayList<GoodsModel> tempAL=new ArrayList<>();
         for(int i=0;i<g.length;i++)
             tempAL.add(g[i]);
@@ -152,13 +157,12 @@ public class GoodsListFragment  extends BaseListFragment {
             LoadingFooter.State state = RecyclerViewStateUtils.getFooterViewState(recyclerView);
             if(state == LoadingFooter.State.Loading) {
                 Log.d(TAG, "the state is Loading, just wait..");
-                return;
+//                return;
             }
 
             if (mCurrentCounter < TOTAL_COUNTER) {
                 // loading more
-                Log.d(TAG,"当前mCurrentCounter"+mCurrentCounter);
-                Log.d(TAG,"当前TOTAL_COUNTER"+TOTAL_COUNTER);
+
                 RecyclerViewStateUtils.setFooterViewState(getActivity(), recyclerView, REQUEST_COUNT, LoadingFooter.State.Loading, null);
                 requestData();
             } else {
@@ -174,11 +178,12 @@ public class GoodsListFragment  extends BaseListFragment {
      */
     private void requestData() {
         final Handler handler = new Handler(Looper.getMainLooper());
-        Log.d(TAG,"请求数据");
+//        Log.d(TAG,"请求数据");
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
         String password = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
 //        mHandler.sendEmptyMessage(-1);
+//        Log.d(TAG,"正在加载的页面为："+nexPage);
         NetManageUtil.getAuth(nexPage)
                 .addUserName(userName)
                 .addPassword(password)
@@ -195,6 +200,8 @@ public class GoodsListFragment  extends BaseListFragment {
                         if (entity != null) {
                             final List<GoodsListBean> list = Arrays.asList(entity);
 //                            loadNextPage(list);
+//                            Log.d(TAG,"当前mCurrentCounter "+mCurrentCounter);
+//                            Log.d(TAG,"当前TOTAL_COUNTER "+TOTAL_COUNTER);
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -208,49 +215,5 @@ public class GoodsListFragment  extends BaseListFragment {
                     }
                 });
     }
-//    private static class PreviewHandler extends Handler {
-//
-//        private WeakReference<GoodsListFragment> ref;
-//
-//        PreviewHandler(GoodsListFragment fg) {
-//            ref = new WeakReference<>(fg);
-//        }
-//
-//        @Override
-//        public void handleMessage(Message msg) {
-//            final GoodsListFragment fg = ref.get();
-//            if (fg == null || fg.getActivity().isFinishing()) {
-//                return;
-//            }
-//
-//            switch (msg.what) {
-//                case -1:
-//                    int currentSize = fg.goodsListAdapter.getItemCount();
-//
-//                    //模拟组装10个数据
-//                    ArrayList<GoodsModel> newList = new ArrayList<>();
-//                    for (int i = 0; i < 10; i++) {
-//                        if (newList.size() + currentSize >= TOTAL_COUNTER) {
-//                            break;
-//                        }
-//
-//                        GoodsModel item = new GoodsModel(
-//                                "1","2","3","4","5","6",7,"8",9,null,11,"12","13","14","15",16
-//                        );
-//                        newList.add(item);
-//                    }
-//
-//                    fg.addItems(newList);
-//                    RecyclerViewStateUtils.setFooterViewState(fg.recyclerView, LoadingFooter.State.Normal);
-//                    break;
-//                case -2:
-//                    fg.notifyDataSetChanged();
-//                    break;
-//                case -3:
-//                    RecyclerViewStateUtils.setFooterViewState(fg.getActivity(), fg.recyclerView, REQUEST_COUNT, LoadingFooter.State.NetWorkError, fg.mFooterClick);
-//                    break;
-//            }
-//        }
-//    }
 
 }

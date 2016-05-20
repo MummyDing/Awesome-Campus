@@ -324,7 +324,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             case EVENT.UPDATE_MENU:
 //                Log.d(TAG,"更新主页通知menu");
 //                updateNotifyMenu((int) eventModel.getData());
-                nowDrawID=DrawerItem.HOME.getId();
+//                nowDrawID=DrawerItem.HOME.getId();
                 break;
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
                 presenter.updateSelectedToHome();

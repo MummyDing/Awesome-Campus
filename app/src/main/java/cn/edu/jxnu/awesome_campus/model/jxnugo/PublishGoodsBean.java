@@ -8,6 +8,7 @@ import java.util.List;
 public class PublishGoodsBean {
 
 
+
     /**
      * body : 二手笔记本，成色非常好，见鲁大师，见鲁大师二手笔记本，成色非常好，见鲁大师，见鲁大师二手笔记本，成色非常好，见鲁大师，见鲁大师二手笔记本，
      * goodName : 戴尔灵越5537
@@ -20,7 +21,7 @@ public class PublishGoodsBean {
      * contact : 13361640744
      * photos : [{"key":"84BE7838-E41C-4E60-A1B8-CA95DBEE326B"},{"key":"84BE7838-E41C-4E60-A1B8-CA95DBEE326B"},{"key":"84BE7838-E41C-4E60-A1B8-CA95DBEE326B"}]
      */
-
+    private String userId;
     private String body;
     private String goodName;
     private int goodNum;
@@ -36,9 +37,10 @@ public class PublishGoodsBean {
 
     private List<PhotokeyBean> photos;
 
-    public PublishGoodsBean(String body, String goodName, int goodNum, float goodPrice
+    public PublishGoodsBean(String userId,String body, String goodName, int goodNum, float goodPrice
             , String goodLocation, String goodQuality, String goodBuyTime
             , int goodTag, String contact, List<PhotokeyBean> photos) {
+        this.userId=userId;
         this.body = body;
         this.goodName = goodName;
         this.goodNum = goodNum;
@@ -87,6 +89,13 @@ public class PublishGoodsBean {
         return goodLocation;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     public void setGoodLocation(String goodLocation) {
         this.goodLocation = goodLocation;
     }

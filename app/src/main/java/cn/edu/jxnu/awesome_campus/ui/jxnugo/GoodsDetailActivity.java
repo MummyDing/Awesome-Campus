@@ -80,11 +80,11 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
         if (model.getPhotos() != null){
             Log.d(TAG,"取得的图片数组大小"+model.getPhotos().length);
             for (int i = 0; i < model.getPhotos().length; i++)
-                data = data + "\r\n<p><img class=\"content-image\" src=\"" + JxnuGoApi.BasePicUrl+ model.getPhotos()[i].getKey()+".png"+ "\" /></p>\r\n";
+                data = data + "\r\n<p><img class=\"content-image\" src=\"" + JxnuGoApi.BasePicUrl+ model.getPhotos()[i].getKey()+ "\" /></p>\r\n";
         }
 
         data = data + "</div></div></div>";
-        onDataShow("JianShu.css");
+        onDataShow("Daily.css");
         SPUtil spu = new SPUtil(InitApp.AppContext);
         int userId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
         CollectBean bean = new CollectBean(userId + "", model.getPostId() + "");

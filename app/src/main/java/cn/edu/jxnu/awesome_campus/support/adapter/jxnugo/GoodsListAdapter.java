@@ -19,6 +19,7 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
@@ -50,8 +51,8 @@ public class GoodsListAdapter extends RecyclerView.Adapter {
         vh.time.setText(model.getTimestamp());
         vh.goodName.setText(model.getGoodName());
         vh.goodPrice.setText(model.getGoodPrice()+"");
-//        if(model.getPhotos()!=null&&model.getPhotos().length>0)
-//            vh.goodFirstImg.setImageURI(Uri.parse(model.getPhotos()[0].getKey()));
+        if(model.getPhotos()!=null&&model.getPhotos().length>0)
+            vh.goodFirstImg.setImageURI(Uri.parse(JxnuGoApi.BasePicUrl+model.getPhotos()[0].getKey()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

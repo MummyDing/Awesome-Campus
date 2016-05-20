@@ -35,6 +35,8 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.PhotokeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.ChoosePicAdapter;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
+import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadGoodsUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.IUploadService;
@@ -274,8 +276,12 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         if(keys==null){
             keys=new ArrayList<>();
         }
+        SPUtil spu = new SPUtil(InitApp.AppContext);
+        int userId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
         int amount=amountET.getText().toString().equals("")?1:Integer.parseInt(amountET.getText().toString());
-        final PublishGoodsBean bean = new PublishGoodsBean(discribtionET.getText().toString()
+        final PublishGoodsBean bean = new PublishGoodsBean(
+                userId+""
+                ,discribtionET.getText().toString()
                 , goodNameET.getText().toString()
                 , amount
                 , Float.parseFloat(priceET.getText().toString())
