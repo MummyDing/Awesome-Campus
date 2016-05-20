@@ -11,7 +11,7 @@ import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCollectionListBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCPListBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.CLGoodsListAdapter;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
@@ -32,7 +32,7 @@ public class CollectionListsFragment  extends BaseListFragment {
     }
     @Override
     public void onDataRefresh() {
-        LodingGoodsListUtil.getGoodsList(InitApp.AppContext,userId);
+        LodingGoodsListUtil.getCGoodsList(InitApp.AppContext,userId);
     }
     @Override
     public void bindAdapter() {
@@ -51,7 +51,7 @@ public class CollectionListsFragment  extends BaseListFragment {
 
     @Override
     public void initView() {
-        LodingGoodsListUtil.getGoodsList(InitApp.AppContext,userId);
+        LodingGoodsListUtil.getCGoodsList(InitApp.AppContext,userId);
     }
     private static final Handler handler = new Handler(Looper.getMainLooper());
     @Override
@@ -60,7 +60,7 @@ public class CollectionListsFragment  extends BaseListFragment {
 
         switch (eventModel.getEventCode()){
             case EVENT.USERCOLLECT_REFRESH_SUCCESS:
-                List<UserCollectionListBean> list = (List<UserCollectionListBean>)eventModel.getDataList();
+                List<UserCPListBean> list = (List<UserCPListBean>)eventModel.getDataList();
                 adapter.newList(Arrays.asList(list.get(0).getCollectionPost()));
                 hideLoading();
                 break;

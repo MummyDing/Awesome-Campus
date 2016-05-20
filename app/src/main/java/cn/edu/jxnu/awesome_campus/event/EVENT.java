@@ -150,9 +150,7 @@ public class EVENT {
     public static final int GOODS_COMMENT_REFRESH_SUCCESS=68;
     public static final int GOODS_COMMENT_REFRESH_FAILURE=69;
 
-    //商品列表加载下一页
-    public static final int USERCOLLECT_REFRESH_SUCCESS =74;
-    public static final int USERCOLLECT_REFRESH_FAILURE=75;
+
     //上传图片
     public static final int GOODS_IMAGES_UPLOAD_SUCCESS=70;
     public static final int GOODS_IMAGES_UPLOAD_FAIL=71;
@@ -189,6 +187,16 @@ public class EVENT {
     public static final int UPDATE_USER_INFO_SUCCESS=88;
     public static final int UPDATE_USER_INFO_FAILURE=89;
 
+    //商品列表activity页（收藏和发布的商品）
+    //商品列表加载下一页
+    public static final int USERCOLLECT_REFRESH_SUCCESS =74;
+    public static final int USERCOLLECT_REFRESH_FAILURE=75;
+    public static final int USERPOST_REFRESH_SUCCESS=90;
+    public static final int USERPOST_REFRESH_FAILURE=91;
+
+    //判断用户是否被当前用户收藏返回的状态码
+    public static final int JUDGE_FOLLOW_TRUE=92;//已关注
+    public static final int JUDGE_FOLLOW_FALSE=93;//未关注
     /**
      * Cache Event Code
      */

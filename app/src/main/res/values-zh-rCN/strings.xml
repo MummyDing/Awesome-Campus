@@ -220,8 +220,8 @@
     <string name="jxnugo_user_followed">关注的人</string>
     <string name="jxnugo_user_followers">粉丝</string>
     <string name="jxnugo_user_locate">地址</string>
-    <string name="jxnugo_user_post">帖子</string>
-    <string name="jxnugo_user_collect">收藏</string>
+    <string name="jxnugo_user_post">他/她发布的商品</string>
+    <string name="jxnugo_user_collect">他/她收藏的商品</string>
 
     <string name="jxnugo_newgoods_amount">数量</string>
     <string name="jxnugo_newgoods_buytime">购买时间（例：1993 03 05）</string>

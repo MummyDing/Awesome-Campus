@@ -11,7 +11,16 @@ public class JxnuGoUserBean {
     private String name;
     private  String avatar;
     private int postCount;
-    private int collectionPostCount;
+
+    public int getPostCollectionCount() {
+        return postCollectionCount;
+    }
+
+    public void setPostCollectionCount(int postCollectionCount) {
+        this.postCollectionCount = postCollectionCount;
+    }
+
+    private int postCollectionCount;
     private String sex;
     private int userId;
 
@@ -43,13 +52,7 @@ public class JxnuGoUserBean {
     private String userName;
     private String followed;
     private String followers;
-    public int getCollectionPostCount() {
-        return collectionPostCount;
-    }
 
-    public void setCollectionPostCount(int collectionPostCount) {
-        this.collectionPostCount = collectionPostCount;
-    }
 
 
 

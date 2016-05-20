@@ -12,7 +12,15 @@ public class GoodsModel implements IModel<GoodsModel>{
 
     private GoodsDAO dao;
 
-    protected String author;
+    public int getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
+    }
+
+    protected int author_id;
     protected String body;
     protected int commentsCount;
     protected String contact;
@@ -44,7 +52,7 @@ public class GoodsModel implements IModel<GoodsModel>{
         dao=new GoodsDAO();
     }
 
-    public GoodsModel(String author,
+    public GoodsModel(int author_id,
                       String body,
                       String contact,
                       String goodLocation,
@@ -60,7 +68,7 @@ public class GoodsModel implements IModel<GoodsModel>{
                       String timestamp,
                       String url,
                       int commentsCount){
-        this.author=author;
+        this.author_id=author_id;
         this.body=body;
         this.contact=contact;
         this.goodLocation=goodLocation;
@@ -78,13 +86,7 @@ public class GoodsModel implements IModel<GoodsModel>{
         this.postId=postId;
     }
 
-    public String getAuthor() {
-        return author;
-    }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     public String getBody() {
         return body;

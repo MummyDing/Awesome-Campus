@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/jxnugo_follow"
-        android:icon="@mipmap/ic_favorite_outline_white"
+        android:icon="@mipmap/ic_star_outline_white"
         app:showAsAction="ifRoom"
         android:title=""></item>
     <item
         android:id="@+id/jxnugo_follow_selector"
-        android:icon="@mipmap/ic_favorite_white"
+        android:icon="@mipmap/ic_star_white"
         android:visible="false"
         app:showAsAction="ifRoom"></item>
     <!--修改个人信息菜单项-->

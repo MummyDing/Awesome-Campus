@@ -8,9 +8,15 @@ import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.CollectBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.CollectStatusBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.FollowerJudgeBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.FollowerJudgeInfoBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoFollowBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.UpdateInfoBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.UpdateUserInfoRTBean;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
@@ -70,5 +76,45 @@ public class UploadUserETInfoUtil {
                     }
                 });
 
+    }
+    public static void getStatusJson(FollowerJudgeBean pbean){
+        final Handler handler=new Handler(Looper.getMainLooper());
+        NetManageUtil.postAuthJson(JxnuGoApi.JudgeFollow)
+                .addUserName(getUserName(InitApp.AppContext))
+                .addPassword(getPassword(InitApp.AppContext))
+                .addTag(TAG)
+                .addJsonObject(pbean)
+                .enqueue(new JsonCodeEntityCallback<FollowerJudgeInfoBean>() {
+
+                    @Override
+                    public void onSuccess(FollowerJudgeInfoBean entity, int responseCode, Headers headers) {
+                        if(responseCode==200){
+                            if(entity.getJudgeInfo()==0){
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<FollowerJudgeInfoBean>(EVENT.JUDGE_FOLLOW_FALSE));
+                                    }
+                                });
+                            }else if(entity.getJudgeInfo()==1){
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<FollowerJudgeInfoBean>(EVENT.JUDGE_FOLLOW_TRUE));
+                                    }
+                                });
+                            }
+                        }
+                    }
+                    @Override
+                    public void onFailure(String error) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<FollowerJudgeInfoBean>(EVENT.JUDGE_FOLLOW_FALSE));
+                            }
+                        });
+                    }
+                });
     }
 }

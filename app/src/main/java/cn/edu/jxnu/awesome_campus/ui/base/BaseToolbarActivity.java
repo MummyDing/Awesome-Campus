@@ -14,7 +14,7 @@ import cn.edu.jxnu.awesome_campus.ui.about.AboutFragment;
  * Created by KevinWu on 16-4-21.
  */
 public class BaseToolbarActivity extends SwipeBackActivity {
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

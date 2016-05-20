@@ -24,6 +24,7 @@ public class JxnuGoApi {
     public static final String UpdateUserInfo="http://www.jxnugo.com/api/update_userInfo";//更新个人信息
     public static final String BaseTradeURL="http://www.jxnugo.com/trade_detail/";//分享帖子时的基础url
     public static final String JudgeCollect="http://www.jxnugo.com/api/judge_collect";//判断用户是否已收藏
+    public static final String JudgeFollow="http://www.jxnugo.com/api/judge_follow";//判断是否关注某用户的url
     public static final String BasePicUrl="http://7xrkww.com1.z0.glb.clouddn.com/";//图片基础url
 
 }

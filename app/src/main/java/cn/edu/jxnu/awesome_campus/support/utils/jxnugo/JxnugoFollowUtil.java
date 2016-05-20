@@ -78,9 +78,7 @@ public class JxnugoFollowUtil {
         String password = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
         int userId=spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERID);
         Log.d(TAG,userName+password);
-        JxnuGoFollowBean bean=new JxnuGoFollowBean();
-        bean.setFollowedId(id);
-        bean.setUserId(userId);
+        JxnuGoFollowBean bean=new JxnuGoFollowBean(userId,id);
         NetManageUtil.postAuthJson(JxnuGoApi.FollowUrl)
                 .addUserName(userName)
                 .addPassword(password)

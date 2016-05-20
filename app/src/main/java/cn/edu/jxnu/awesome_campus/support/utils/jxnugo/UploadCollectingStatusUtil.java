@@ -136,7 +136,7 @@ public class UploadCollectingStatusUtil {
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    EventBus.getDefault().post(new EventModel<CollectStatusBean>(EVENT.JUDGE_COLLECT_TRUE));
+                                    EventBus.getDefault().post(new EventModel<CollectStatusBean>(EVENT.JUDGE_COLLECT_FALSE));
                                 }
                             });
                         }

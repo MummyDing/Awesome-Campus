@@ -68,7 +68,7 @@ public class JxnuGoUserDAO implements DAO<JxnuGoUserModel> {
                     EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_USERINFO_LOAD_USER_FALURE));
                 }
             });
-            return;
+//            return;
         }
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
@@ -77,15 +77,16 @@ public class JxnuGoUserDAO implements DAO<JxnuGoUserModel> {
                 .addUserName(userName)
                 .addPassword(password)
                 .addTag(TAG)
-                .enqueue(new JsonEntityCallback<JxnuGoUserBean>(){
+                .enqueue(new JsonCodeEntityCallback<JxnuGoUserBean>(){
+
                     @Override
-                    public void onSuccess(final JxnuGoUserBean entity, Headers headers) {
+                    public void onSuccess(final JxnuGoUserBean entity, int responseCode, Headers headers) {
                         if(entity!=null){
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     Log.d(TAG,"load user success");
-                                   EventBus.getDefault().post(new EventModel<JxnuGoUserBean>(EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS,entity));
+                                    EventBus.getDefault().post(new EventModel<JxnuGoUserBean>(EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS,entity));
                                 }
                             });
                         }else{
@@ -100,8 +101,14 @@ public class JxnuGoUserDAO implements DAO<JxnuGoUserModel> {
                     }
 
                     @Override
-                    public void onFailure(IOException e) {
-                        Log.d(TAG,"failure");
+                    public void onFailure(String error) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d(TAG,"load userinfo error");
+                                EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_USERINFO_LOAD_USER_FALURE));
+                            }
+                        });
                     }
                 });
 

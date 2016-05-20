@@ -1,124 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/md_grey_200"
-
+    android:background="?attr/backgroundColor"
+    android:fitsSystemWindows="true"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-
-    tools:context=".ui.jxnugo.JxnuGoUserinfoActivity">
+    tools:context="cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnuGoUserinfoActivity">
 
 
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <include layout="@layout/widget_toolbar"></include>
-   <com.facebook.drawee.view.SimpleDraweeView
-       android:id="@+id/jxnugo_user_img"
-       android:layout_width="60dp"
-       app:roundAsCircle="true"
-       android:layout_gravity="center"
-       app:placeholderImage="@drawable/ic_teacher"
-       android:layout_height="60dp" />
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true"
+        android:background="?attr/colorPrimary"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/headerpic"
+            android:orientation="vertical">
+
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/jxnugo_user_img"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                app:placeholderImage="@drawable/ic_teacher"
+                app:roundAsCircle="true" />
+            <TextView
+                android:id="@+id/jxnugo_user_locate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="..."
+                android:textColor="#fff" />
+            <TextView
+                android:id="@+id/jxnugo_user_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="..."
+                android:textColor="#99ffffff"
+                />
+        </LinearLayout>
     </android.support.design.widget.AppBarLayout>
 
 
 
     <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/card_margin"
-        android:layout_marginLeft="@dimen/card_margin"
-        android:layout_marginRight="@dimen/card_margin"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="8dp"
-        app:cardBackgroundColor="?attr/cardViewColor"
-        card_view:contentPadding="10dp"
-        card_view:cardPreventCornerOverlap="true">
-        <TextView
-            android:id="@+id/jxnugo_user_desc"
-            android:text="..."
-            android:textSize="18sp"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:padding="2dp"
-            android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/card_margin"
+        android:layout_gravity="center"
         android:layout_marginLeft="@dimen/card_margin"
         android:layout_marginRight="@dimen/card_margin"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="8dp"
+        android:layout_marginTop="@dimen/card_margin"
         app:cardBackgroundColor="?attr/cardViewColor"
-        card_view:contentPadding="10dp"
-        card_view:cardPreventCornerOverlap="true">
+        tools:cardCornerRadius="4dp"
+        tools:cardElevation="8dp"
+        tools:cardPreventCornerOverlap="true"
+        tools:contentPadding="10dp">
 
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
+
                 <TextView
-                    android:textColor="@color/md_grey_700"
-                    android:text="@string/jxnugo_user_followers"
-                    android:layout_margin="5dp"
-                    android:textSize="20sp"
-                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/jxnugo_user_followers"
+                    android:textColor="?attr/textColor"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/jxnugo_user_following"
-                    android:textSize="36sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="0"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:textColor="?attr/textColor"
+                    android:textSize="36sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
+
                 <TextView
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:text="@string/jxnugo_user_followed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:textColor="?attr/textColor"
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/jxnugo_user_followerd"
-                    android:text="0"
-                    android:textSize="36sp"
-                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/textColor"
+                    android:textSize="36sp" />
 
             </LinearLayout>
 
@@ -128,146 +143,110 @@
     </android.support.v7.widget.CardView>
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/jxnugo_user_card_local"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/card_margin"
-        android:layout_marginLeft="@dimen/card_margin"
-        android:layout_marginRight="@dimen/card_margin"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="8dp"
-        app:cardBackgroundColor="?attr/cardViewColor"
-        card_view:contentPadding="10dp"
-        card_view:cardPreventCornerOverlap="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="40dp"
-                android:src="@drawable/ic_location"
-                android:layout_height="40dp" />
-            <TextView
-                android:text="@string/jxnugo_user_locate"
-                android:gravity="left|center_vertical"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-            <TextView
-                android:id="@+id/jxnugo_user_locate"
-                android:text="..."
-                android:gravity="center"
-               android:layout_weight="5"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-            <ImageView
-                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:id="@+id/jxnugo_user_card_collect"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/card_margin"
+        android:layout_gravity="center"
         android:layout_marginLeft="@dimen/card_margin"
         android:layout_marginRight="@dimen/card_margin"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="8dp"
+        android:layout_marginTop="@dimen/card_margin"
         app:cardBackgroundColor="?attr/cardViewColor"
-        card_view:contentPadding="10dp"
-        card_view:cardPreventCornerOverlap="true">
+        tools:cardCornerRadius="4dp"
+        tools:cardElevation="8dp"
+        tools:cardPreventCornerOverlap="true"
+        tools:contentPadding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="40dp"
-                android:src="@drawable/ic_course"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_course" />
+
             <TextView
-                android:text="@string/jxnugo_user_collect"
-                android:gravity="left|center_vertical"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/jxnugo_user_collect"
+                android:textColor="?attr/textColor" />
+
             <TextView
                 android:id="@+id/jxnugo_user_collection"
-                android:text="..."
-                android:gravity="center"
-                android:layout_weight="5"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="..."
+                android:textColor="?attr/textColor" />
+
             <ImageView
-                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:id="@+id/jxnugo_user_card_posts"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/card_margin"
+        android:layout_gravity="center"
         android:layout_marginLeft="@dimen/card_margin"
         android:layout_marginRight="@dimen/card_margin"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="8dp"
+        android:layout_marginTop="@dimen/card_margin"
         app:cardBackgroundColor="?attr/cardViewColor"
-        card_view:contentPadding="10dp"
-        card_view:cardPreventCornerOverlap="true">
+        tools:cardCornerRadius="4dp"
+        tools:cardElevation="8dp"
+        tools:cardPreventCornerOverlap="true"
+        tools:contentPadding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="40dp"
-                android:src="@drawable/ic_flag"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flag" />
+
             <TextView
-                android:text="@string/jxnugo_user_post"
-                android:gravity="left|center_vertical"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/jxnugo_user_post"
+                android:textColor="?attr/textColor" />
+
             <TextView
                 android:id="@+id/jxnugo_user_posts"
-                android:text="..."
-                android:gravity="center"
-                android:layout_weight="5"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="..."
+                android:textColor="?attr/textColor" />
+
             <ImageView
-                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
@@ -276,10 +255,6 @@
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
-
-
 
 
 </LinearLayout>

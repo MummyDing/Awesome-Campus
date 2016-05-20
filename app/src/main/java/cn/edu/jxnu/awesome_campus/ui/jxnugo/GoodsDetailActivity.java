@@ -11,12 +11,14 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
@@ -136,6 +138,16 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
         tvUserName = (TextView) findViewById(R.id.username);
         tvTime = (TextView) findViewById(R.id.time);
         avatarImageView = (SimpleDraweeView) findViewById(R.id.avatar);
+        avatarImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(model!=null&&model.getAuthor_id()!=0){
+                    EventBus.getDefault().postSticky(new EventModel<Integer>(EVENT.JXNUGO_USERINFO_LOAD_USER,model.getAuthor_id()));
+                    Intent intent=new Intent(GoodsDetailActivity.this, JxnuGoUserinfoActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

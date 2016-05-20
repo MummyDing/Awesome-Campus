@@ -15,7 +15,7 @@ import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsListBean;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCollectionListBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCPListBean;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
@@ -35,22 +35,27 @@ public class LodingGoodsListUtil {
         return sp.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
     }
 
-    public static void getGoodsList(Context context,int userId){
+    /**
+     * 获取收藏商品列表
+     * @param context
+     * @param userId
+     */
+    public static void getCGoodsList(Context context, int userId){
         final Handler handler = new Handler(Looper.getMainLooper());
         try {
             NetManageUtil.getAuth(JxnuGoApi.BaseUserCollectionPostUrl+userId)
                     .addUserName(getUserName(context))
                     .addPassword(getPassword(context))
                     .addTag(TAG)
-                    .enqueue(new JsonCodeEntityCallback<UserCollectionListBean>() {
+                    .enqueue(new JsonCodeEntityCallback<UserCPListBean>() {
                         @Override
-                        public void onSuccess(UserCollectionListBean entity, int responseCode, Headers headers) {
+                        public void onSuccess(UserCPListBean entity, int responseCode, Headers headers) {
                             if (entity != null) {
-                                final List<UserCollectionListBean> list = Arrays.asList(entity);
+                                final List<UserCPListBean> list = Arrays.asList(entity);
                                 handler.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        EventBus.getDefault().post(new EventModel<UserCollectionListBean>(EVENT.USERCOLLECT_REFRESH_SUCCESS, list));
+                                        EventBus.getDefault().post(new EventModel<UserCPListBean>(EVENT.USERCOLLECT_REFRESH_SUCCESS, list));
 
                                     }
                                 });
@@ -58,7 +63,7 @@ public class LodingGoodsListUtil {
                                 handler.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        EventBus.getDefault().post(new EventModel<UserCollectionListBean>(EVENT.USERCOLLECT_REFRESH_FAILURE));
+                                        EventBus.getDefault().post(new EventModel<UserCPListBean>(EVENT.USERCOLLECT_REFRESH_FAILURE));
                                     }
                                 });
                             }
@@ -69,7 +74,7 @@ public class LodingGoodsListUtil {
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.USERCOLLECT_REFRESH_FAILURE));
                                 }
                             });
                         }
@@ -78,7 +83,60 @@ public class LodingGoodsListUtil {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_REFRESH_FAILURE));
+                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.USERCOLLECT_REFRESH_FAILURE));
+                }
+            });
+        }
+    }
+    /**
+     * 获取发布商品列表
+     * @param context
+     * @param userId
+     */
+    public static void getPGoodsList(Context context, int userId){
+        final Handler handler = new Handler(Looper.getMainLooper());
+        try {
+            NetManageUtil.getAuth(JxnuGoApi.BaseUserPostUrl+userId)
+                    .addUserName(getUserName(context))
+                    .addPassword(getPassword(context))
+                    .addTag(TAG)
+                    .enqueue(new JsonCodeEntityCallback<UserCPListBean>() {
+                        @Override
+                        public void onSuccess(UserCPListBean entity, int responseCode, Headers headers) {
+                            if (entity != null) {
+                                final List<UserCPListBean> list = Arrays.asList(entity);
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<UserCPListBean>(EVENT.USERPOST_REFRESH_SUCCESS, list));
+
+                                    }
+                                });
+                            } else {
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<UserCPListBean>(EVENT.USERPOST_REFRESH_FAILURE));
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(String error) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.USERPOST_REFRESH_FAILURE));
+                                }
+                            });
+                        }
+                    });
+        } catch (IllegalStateException e) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.USERPOST_REFRESH_FAILURE));
                 }
             });
         }

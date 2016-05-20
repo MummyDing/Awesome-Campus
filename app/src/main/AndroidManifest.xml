@@ -131,6 +131,8 @@
 
         <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity" android:launchMode="singleTop"
             ></activity>
+        <activity android:name=".ui.jxnugo.JxnuGoGoodsListActivity" android:launchMode="singleTop"
+            ></activity>
         <activity android:name=".ui.jxnugo.JxnuGoUserInfoETActivity"></activity>
 
     </application>

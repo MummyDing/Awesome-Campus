@@ -2,12 +2,16 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -22,17 +26,21 @@ import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoPeopleDao;
 import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoUserDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.FollowerJudgeBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoFollowBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoPeopleLoad;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoUserBean;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.JxnugoFollowUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadUserETInfoUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
  * @author Thereisnospon
  * 2016-5-11
  * 跳转方法:通过发布 JXNUGO_USERINFO_LOAD_USER 的 String 的sticky事件,给定id,加载相应数据
+ * 待重构（@KevinWu）
  */
 
 public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.OnClickListener{
@@ -62,11 +70,9 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         userFollowerdNum = (TextView)findViewById(R.id.jxnugo_user_followerd);
         userFollowingNum=(TextView)findViewById(R.id.jxnugo_user_following);
         userLocate=(TextView)findViewById(R.id.jxnugo_user_locate);
-        View locate=findViewById(R.id.jxnugo_user_card_local);
         View posts=findViewById(R.id.jxnugo_user_card_posts);
         View collect=findViewById(R.id.jxnugo_user_card_collect);
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
-        locate.setOnClickListener(this);
         posts.setOnClickListener(this);
         collect.setOnClickListener(this);
         userFollowingNum.setOnClickListener(this);
@@ -85,6 +91,19 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         progressBar.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    protected void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
     public  void jumpToFollowed(){
         JxnuGoPeopleLoad load=new JxnuGoPeopleLoad(JxnuGoPeopleDao.MODE.FOLLOWED,id);
         Log.d(TAG,"LOAD ID"+id);
@@ -99,7 +118,12 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         Intent intent=new Intent(this,JxnuGoPeopleActivity.class);
         startActivity(intent);
     }
-
+    private void jumpToGoodsListActivity(int type) {
+        Intent intent=new Intent(this,JxnuGoGoodsListActivity.class);
+        intent.putExtra("type",type);
+        intent.putExtra("userid",id);
+        startActivity(intent);
+    }
     @Override
     public void onClick(View v) {
         Log.d("JXNU_GO","view onclick");
@@ -107,12 +131,11 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         {
             case R.id.jxnugo_user_card_collect:
                 Log.d(TAG,"跳转到用户收藏帖子信息");
-                break;
-            case R.id.jxnugo_user_card_local:
-                Log.d(TAG,"点击用户地址信息");
+                jumpToGoodsListActivity(0);
                 break;
             case R.id.jxnugo_user_card_posts:
                 Log.d(TAG,"跳转到用户发布帖子信息");
+                jumpToGoodsListActivity(1);
                 break;
             case R.id.jxnugo_user_followerd:
                 Log.d(TAG,"跳转到用户粉丝信息");
@@ -127,20 +150,24 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         }
     }
 
+
+
     //接受加载用户信息事件(sticky),加载相应id的用户数据
     public  void loadUserInfo(){
         EventModel model= EventBus.getDefault().getStickyEvent(EventModel.class);
         if(model!=null&&model.getEventCode()==EVENT.JXNUGO_USERINFO_LOAD_USER){
             Integer userId=(Integer) model.getData();
-            Log.d("JXNU_GO","load sticky login bean"+userId);
             JxnuGoUserDAO dao=new JxnuGoUserDAO(userId);
             dao.loadFromNet();
+            Log.d(TAG,"非本人");
+            SPUtil spu = new SPUtil(this);
+            int myLoginuserId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
+            UploadUserETInfoUtil.getStatusJson(new FollowerJudgeBean(myLoginuserId,userId));
+            if(userId==myLoginuserId)hasLogin=true;
         }else if(model!=null&&model.getEventCode()==EVENT.JXNUGO_USERINFO_LOAD_LOGIN_USER){
             SPUtil sp = new SPUtil(InitApp.AppContext);
             hasLogin=true;
             int userId=sp.getIntSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERID);
-//            Log.d("JXNU_GO",""+userId);
-
             JxnuGoUserDAO dao=new JxnuGoUserDAO(userId);
             dao.loadFromNet();
         }
@@ -155,7 +182,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         userLocate.setText(bean.getLocation()+"");
         userFollowerdNum.setText(bean.getFollowed()+"");
         userFollowingNum.setText(bean.getFollowers()+"");
-        userCollectNum.setText(bean.getCollectionPostCount()+"");
+        userCollectNum.setText(bean.getPostCollectionCount()+"");
         userPostNum.setText(bean.getPostCount()+"");
         progressBar.setVisibility(View.GONE);
         id=bean.getUserId();
@@ -176,15 +203,25 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
                break;
            case EVENT.JXNUGO_FOLLOW_SUCCESS:
                makeSnack("关注成功");
+               setFollowStatus(true);
                break;
            case EVENT.JXNUGO_FOLLOW_FAILURE:
                makeSnack("关注失败");
                break;
            case EVENT.JXNUGO_UNFOLLOW_SUCCESS:
                makeSnack("取消关注成功");
+               setFollowStatus(false);
                break;
            case EVENT.JXNUGO_UNFOLLOW_FAILURE:
                makeSnack("取消关注失败");
+               break;
+           case EVENT.JUDGE_FOLLOW_TRUE:
+               Log.d(TAG,"已关注");
+               setFollowStatus(true);
+               break;
+           case EVENT.JUDGE_FOLLOW_FALSE:
+               Log.d(TAG,"未关注");
+               setFollowStatus(false);
                break;
            default:
                break;
@@ -197,19 +234,14 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         getMenuInflater().inflate(R.menu.menu_jxnugo_userinfo, menu);
         favorite = menu.findItem(R.id.jxnugo_follow);
         favorite_select = menu.findItem(R.id.jxnugo_follow_selector);
-        boolean isLoginUser=judgeUserType();
         editUserInfoMenu=menu.findItem(R.id.jxnugo_userinfo_edit);
-        if(hasLogin)
-        editUserInfoMenu.setVisible(true);
-        return super.onCreateOptionsMenu(menu);
-    }
+        if(hasLogin){
+            editUserInfoMenu.setVisible(true);
+            favorite.setVisible(false);
+            favorite_select.setVisible(false);
+        }
 
-    /**
-     * 判断用户类型，如果是登录的用户返回true，不是登录的返回false
-     * @return
-     */
-    private boolean judgeUserType() {
-        return false;
+        return super.onCreateOptionsMenu(menu);
     }
 
 
@@ -217,13 +249,9 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.jxnugo_follow:
-                favorite.setVisible(false);
-                favorite_select.setVisible(true);
                 setFavorite(true);
                 break;
             case R.id.jxnugo_follow_selector:
-                favorite.setVisible(true);
-                favorite_select.setVisible(false);
                 setFavorite(false);
                 break;
             case R.id.jxnugo_userinfo_edit:
@@ -249,6 +277,14 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         Snackbar.make(userPostNum, msg, Snackbar.LENGTH_LONG).show();
     }
 
-
+    private void setFollowStatus(boolean b) {
+        if(b){
+            favorite.setVisible(false);
+            favorite_select.setVisible(true);
+        }else{
+            favorite.setVisible(true);
+            favorite_select.setVisible(false);
+        }
+    }
 
 }

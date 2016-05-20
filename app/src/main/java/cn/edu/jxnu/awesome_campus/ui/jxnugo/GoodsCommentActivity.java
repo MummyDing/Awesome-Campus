@@ -131,7 +131,7 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
                 commentEditText.setText("");
                 commentEditText.clearFocus();
                 InputMethodManager imm=(InputMethodManager)commentEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(0,InputMethodManager.HIDE_IMPLICIT_ONLY);
+                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 break;
             case EVENT.POST_COMMENT_FAILURE:
                 Snackbar.make(getCurrentFocus(), R.string.jxnugo_comment_failure,Snackbar.LENGTH_SHORT).show();
