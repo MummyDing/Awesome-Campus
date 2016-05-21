@@ -312,5 +312,7 @@ public class EVENT {
     public static final int JUMP_TO_JXNUGO=2011;
 
     public  static final int JUMP_TO_JXNUGO_LOAD_POEPLE=2012;
+    public static final int SWIPE_TO_JXNUGO_LOGIN = 2013;
+
 }
 

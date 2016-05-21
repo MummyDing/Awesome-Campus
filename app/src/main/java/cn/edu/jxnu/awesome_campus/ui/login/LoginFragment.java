@@ -37,7 +37,10 @@ public class LoginFragment extends TopNavigationFragment{
                 viewPager.setCurrentItem(1);
                 pagerAdapter.notifyDataSetChanged();
                 break;
-
+            case EVENT.SWIPE_TO_JXNUGO_LOGIN:
+                viewPager.setCurrentItem(2);
+                pagerAdapter.notifyDataSetChanged();
+                break;
         }
     }
 

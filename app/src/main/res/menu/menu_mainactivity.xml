@@ -9,8 +9,13 @@
         android:visible="false"
         app:showAsAction="ifRoom" android:title="@string/menu_notify" />
     <item
+        android:id="@+id/menu_user_info"
+        android:icon="@mipmap/ic_perm_identity_white"
+        android:visible="false"
+        app:showAsAction="ifRoom"></item>
+    <item
         android:id="@+id/menu_new_goods" android:icon="@mipmap/ic_add_white"
         android:visible="false"
-        app:showAsAction="ifRoom" android:title="@string/menu_notify"
+        app:showAsAction="ifRoom" android:title=""
         />
 </menu>

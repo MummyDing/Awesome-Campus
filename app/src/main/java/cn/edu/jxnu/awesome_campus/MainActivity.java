@@ -45,6 +45,7 @@ import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.service.NotifyService;
+import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.NotifyUtil;
@@ -89,7 +90,7 @@ public class MainActivity extends BaseActivity implements HomeView{
     private FragmentTransaction fragmentTransaction;
     public static HomePresenter presenter;
     private Settings mSettings = Settings.getsInstance();
-    private MenuItem notifyMenu,searchMenu,newGoodsMenu;
+    private MenuItem notifyMenu,searchMenu,newGoodsMenu,userInfoMenu;
     private int nowDrawID=DrawerItem.HOME.getId();
 
     @Override
@@ -269,10 +270,6 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     public void jumpToJxnugoUserinfo(EventModel eventModel){
         Intent intent=new Intent(this, JxnuGoUserinfoActivity.class);
-//        final Integer userId=(Integer) eventModel.getData();
-//        Log.d(TAG,userId+"");
-//
-//       // Log.d("JXNU_GO",loginBean.getMessage());
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -347,6 +344,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         newGoodsMenu=menu.findItem(R.id.menu_new_goods);
         notifyMenu=menu.findItem(R.id.menu_notify);
         searchMenu=menu.findItem(R.id.menu_search);
+        userInfoMenu=menu.findItem(R.id.menu_user_info);
         setMenu();
         return true;
     }
@@ -360,6 +358,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             notifyMenu=menu.findItem(R.id.menu_notify);
             searchMenu=menu.findItem(R.id.menu_search);
             newGoodsMenu=menu.findItem(R.id.menu_new_goods);
+            userInfoMenu=menu.findItem(R.id.menu_user_info);
         if(nowDrawID==DrawerItem.HOME.getId()){
             Log.d(TAG,"主页菜单切换");
             notifyMenu.setVisible(true);
@@ -373,6 +372,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         }else if(nowDrawID==DrawerItem.JXNUGO.getId()){
             Log.d(TAG,"二手菜单切换");
             newGoodsMenu.setVisible(true);
+            userInfoMenu.setVisible(true);
         }}
     }
 
@@ -397,6 +397,23 @@ public class MainActivity extends BaseActivity implements HomeView{
             case R.id.menu_new_goods:
                 startActivity(new Intent(this, NewGoodsActivity.class));
                 break;
+            case R.id.menu_user_info:
+                if(JxnuGoLoginUtil.isLogin()){
+                    SPUtil sp=new SPUtil(MainActivity.this);
+                    int userId=sp.getIntSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERID);
+                    EventBus.getDefault().postSticky(new EventModel<Integer>(EVENT.JXNUGO_USERINFO_LOAD_USER,userId));
+                    Intent intent2=new Intent(MainActivity.this, JxnuGoUserinfoActivity.class);
+                    startActivity(intent2);
+                }else{
+                    //未登录时跳转到登录界面
+                    switchToLogin();
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_JXNUGO_LOGIN));
+                        }
+                    });
+                }
         }
 
         return super.onOptionsItemSelected(item);
@@ -404,20 +421,6 @@ public class MainActivity extends BaseActivity implements HomeView{
 
 
 
-
-
-//    private void updateMenu(){
-//        if (menu == null) return;
-////        Icon unreadIcon=(Icon)findViewById(R.id.menu_notify_unread);
-//        menu.clear();
-//        if (presenter.getCurrentSelectedID() == DrawerItem.LIBRARY.getId()){
-//            getMenuInflater().inflate(R.menu.menu_library, menu);
-//            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//            MenuItem searchItem = menu.findItem(R.id.menu_search);
-//            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        }
-//    }
 
     @Override
     public void onBackPressed() {
