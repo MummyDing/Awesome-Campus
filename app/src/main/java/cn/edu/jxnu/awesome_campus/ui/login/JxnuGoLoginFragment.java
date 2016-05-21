@@ -32,7 +32,7 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
                 JxnuGoLoginUtil.onLogin(usernameET, passwordET);
             }
         });
-        tips.setText("没有账号？请注册");
+        tips.setText("没有账号？请点击这里注册");
         tips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

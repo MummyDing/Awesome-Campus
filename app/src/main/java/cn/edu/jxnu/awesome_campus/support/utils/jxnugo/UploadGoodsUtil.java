@@ -6,19 +6,14 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
 import com.qiniu.android.http.ResponseInfo;
 import com.squareup.okhttp.Headers;
-import com.squareup.okhttp.Response;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,19 +21,14 @@ import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsPhotoModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PhotokeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallback;
-import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
-import cn.edu.jxnu.awesome_campus.support.utils.net.callback.NetCallback;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCodeCallback;
 import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.IUploadService;
-import cn.edu.jxnu.awesome_campus.support.utils.net.request.PostJsonRequest;
 import cn.edu.jxnu.awesome_campus.support.utils.qiniu.UploadUtil;
 
 /**

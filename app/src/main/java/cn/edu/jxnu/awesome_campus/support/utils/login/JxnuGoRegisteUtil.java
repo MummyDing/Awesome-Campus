@@ -68,66 +68,61 @@ public class JxnuGoRegisteUtil {
         bean.setUserName(username);
         bean.setUserEmail(email);
         bean.setPassWord(password);
-        final PostJsonRequest request = new PostJsonRequest(JxnuGoApi.RegisterUrl);
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                request.addJsonObject(bean)
-                        .enqueue(new StringCodeCallback() {
-                            @Override
-                            public void onSuccess(String result, int responseCode, Headers headers) {
-                                if (responseCode == 200) {
-                                    new Handler().post(new Runnable() {
+//        final PostJsonRequest request = new PostJsonRequest(JxnuGoApi.RegisterUrl);
+        NetManageUtil.postJson(JxnuGoApi.RegisterUrl)
+                .addJsonObject(bean)
+                .addTag(TAG)
+                .enqueue(new StringCodeCallback() {
+                    @Override
+                    public void onSuccess(String result, int responseCode, Headers headers) {
+                        Log.d(TAG,"返回码为"+responseCode);
+                        if (responseCode == 200) {
+                            Log.d(TAG, "注册成功");
+                            NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
+                                    .addTag(TAG)
+                                    .addUserName(username)
+                                    .addPassword(password)
+                                    .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
                                         @Override
-                                        public void run() {
-                                            NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
-                                                    .addTag(TAG)
-                                                    .addUserName(username)
-                                                    .addPassword(password)
-                                                    .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
-                                                        @Override
-                                                        public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
-                                                            if (!TextUtil.isNull(entity.getToken())) {
-                                                                saveToSP(entity.getToken(),
-                                                                        username,
-                                                                        password,
-                                                                        entity.getUserId());
-                                                                new Handler(Looper.getMainLooper())
-                                                                        .post(new Runnable() {
-                                                                            @Override
-                                                                            public void run() {
-                                                                                EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO
-                                                                                        ,entity.getUserId()));
-                                                                            }
-                                                                        });
+                                        public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
+                                            if (!TextUtil.isNull(entity.getToken())) {
+                                                saveToSP(entity.getToken(),
+                                                        username,
+                                                        password,
+                                                        entity.getUserId());
+                                                Log.d(TAG, "Jxnugo注册成功并登录");
+                                                new Handler(Looper.getMainLooper())
+                                                        .post(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO
+                                                                        , entity.getUserId()));
                                                             }
-                                                        }
+                                                        });
+                                            }
+                                        }
 
-                                                        @Override
-                                                        public void onFailure(String error) {
+                                        @Override
+                                        public void onFailure(String error) {
 
-                                                        }
-                                                    });
                                         }
                                     });
-                                }
-                            }
+                        }
+                    }
 
-                            @Override
-                            public void onFailure(String error) {
-                                Log.i(TAG, "error");
-                            }
-                        });
-            }
-        });
+                    @Override
+                    public void onFailure(String error) {
+                        Log.i(TAG, "error");
+                    }
+                });
     }
 
-    private static void saveToSP(String token, String userName, String passWord,int userId) {
+    private static void saveToSP(String token, String userName, String passWord, int userId) {
         SPUtil mysp = new SPUtil(InitApp.AppContext);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.TOKEN, token);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME, userName);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD, passWord);
-        mysp.putIntSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERID,userId);
+        mysp.putIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID, userId);
 
     }
 }

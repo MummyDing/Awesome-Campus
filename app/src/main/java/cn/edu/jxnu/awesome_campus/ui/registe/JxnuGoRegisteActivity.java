@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.registe;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,7 +47,7 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
 
     private void setupToolbar() {
         initToolbar();
-        setToolbarTitle("注册JxnuGo");
+        setToolbarTitle("注册JxnuGo账号");
     }
 
     private void setupEditTexts() {
@@ -59,12 +60,16 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mUsernameEt.getText().toString() == "" || null == mUsernameEt.getText()
-                        || mEmailEt.getText().toString() == "" || null == mEmailEt.getText()
-                        || mPasswordEt.getText().toString() == "" || null == mPasswordEt.getText()
-                        || mVerityPasswordEt.getText().toString() == "" || null == mVerityPasswordEt.getText()) {
+                if (mUsernameEt.getText().toString().equals("") || null == mUsernameEt.getText()
+                        || mEmailEt.getText().toString().equals("")|| null == mEmailEt.getText()
+                        || mPasswordEt.getText().toString().equals("") || null == mPasswordEt.getText()
+                        || mVerityPasswordEt.getText().toString().equals("") || null == mVerityPasswordEt.getText()) {
                     mRegisteBtn.setEnabled(false);
-                } else {
+                }
+//                else if(!isOKEmail(mEmailEt.getText().toString())) {
+//                    mRegisteBtn.setEnabled(false);
+//                }
+                else{
                     mRegisteBtn.setEnabled(true);
                 }
             }
@@ -79,6 +84,17 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
         mPasswordEt.addTextChangedListener(watcher);
         mVerityPasswordEt.addTextChangedListener(watcher);
     }
+
+//    /**
+//     * 判断邮箱是否合法
+//     * @param s
+//     * @return
+//     */
+//    private boolean isOKEmail(String s) {
+//        String regex="\\w+@\\w+(\\.\\w{2,3})*\\.\\w{2,3}";
+//        if(s.matches(regex))return true;
+//        return false;
+//    }
 
     private void setupButton() {
         mRegisteBtn.setEnabled(false);
@@ -110,6 +126,7 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
                                 return false;
                             }
                         });*/
+                Log.d("开始注册","--");
                 JxnuGoRegisteUtil.onRegiste(mUsernameEt.getText().toString(),
                         mEmailEt.getText().toString(),
                         mPasswordEt.getText().toString());

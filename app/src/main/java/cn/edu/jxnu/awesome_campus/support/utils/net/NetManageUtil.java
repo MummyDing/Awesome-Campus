@@ -57,7 +57,9 @@ public class NetManageUtil {
         return new PostRequest(url);
     }
 
-
+    public static PostJsonRequest postJson(String url){
+        return new PostJsonRequest(url);
+    }
     public static PostAuthJsonRequest postAuthJson(String url){
         return new PostAuthJsonRequest(url);
     }

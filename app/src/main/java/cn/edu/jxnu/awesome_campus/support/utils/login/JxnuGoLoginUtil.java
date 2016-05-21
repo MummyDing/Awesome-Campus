@@ -61,7 +61,7 @@ public class JxnuGoLoginUtil {
         }
         //there has something inputed into the username and password edittext,and then verify it by net
         else {
-            Log.d(TAG, "开始请求网络");
+//            Log.d(TAG, "开始请求网络");
             final Handler handler = new Handler(Looper.getMainLooper());
             NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
                     .addTag(TAG)
@@ -70,14 +70,14 @@ public class JxnuGoLoginUtil {
                     .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
                         @Override
                         public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
-                            Log.d(TAG, "返回数据成功");
-                            Log.d(TAG, "状态码" + responseCode);
+//                            Log.d(TAG, "返回数据成功");
+//                            Log.d(TAG, "状态码" + responseCode);
                             if (!TextUtil.isNull(entity.getToken())) {
                                 Log.d("JXNUGOLOD","SUCCESS");
 
                                 token = entity.getToken();
                                 final int userId=entity.getUserId();
-                                Log.d(TAG,"userId:"+userId);
+//                                Log.d(TAG,"userId:"+userId);
 
                                 saveToSP(token, getUsername(usernameText), getPassword(passwordText),entity.getUserId());
 
