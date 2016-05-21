@@ -2,7 +2,7 @@
     <!--<string name="app_name">Awesome-Campus</string>-->
     <!--暂时这么命名-->
     <string name="app_name">师大+</string>
-    <string name="hint_click_to_login">點擊登陸</string>
+    <string name="hint_click_to_login">點擊登錄</string>
     <string name="home">主頁</string>
     <string name="leisure">課餘</string>
     <string name="life">生活</string>
@@ -25,7 +25,7 @@
     <string name="seat">座位</string>
     <string name="my_seat">我</string>
     <string name="exam">考試</string>
-    <string name="Login">登陸</string>
+    <string name="Login">登錄</string>
     <string name="studentid">學號</string>
     <string name="password">密碼</string>
     <string name="monday">周一</string>
@@ -163,7 +163,7 @@
     <string name="temporary_leave">暫離：</string>
     <string name="free_seat">空閒：</string>
     <string name="click_to_main">跳转至主界面</string>
-    <string name="click_to_login">点击登陆</string>
+    <string name="click_to_login">点击登錄</string>
     <string name="server_error">服務器錯誤</string>
     <string name="text_github">GitHub</string>
     <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到 http://fir.im/AwesomeCampus 下载</string>
@@ -229,7 +229,7 @@
     <string name="jxnugo_newgoods_day">日</string>
     <string name="jxnugo_newgoods_description">*商品描述</string>
     <string name="jxnugo_newgoods_edit">編輯</string>
-    <string name="jxnugo_newgoods_goodspic">商品圖片</string>
+    <string name="jxnugo_newgoods_goodspic">商品圖片（至少一張）</string>
     <string name="jxnugo_newgoods_month">月</string>
     <string name="jxnugo_newgoods_name">*商品名稱</string>
     <string name="jxnugo_newgoods_position">所在樓棟</string>
@@ -249,6 +249,13 @@
     <string name="jxnugo_user_sex">性別</string>
     <string name="jxnugo_user_contact">聯絡方式</string>
     <string name="jxnugo_user_about_me">個性簽名</string>
+    <string name="text_github_zpauly">zpauly的GitHub</string>
+    <string name="thereisnospon_blog">http://blog.csdn.net/yzr1183739890</string>
+    <string name="zpauly_github">https://github.com/zpauly</string>
+    <string name="text_blog_thereisnospon">Thereisnospon的部落格</string>
+    <string name="id_thereisnospon_blog">Thereisnospon_blog</string>
+    <string name="id_zpauly_github">zpauly_github</string>
+    <string name="text_username_or_email">用戶名/Email</string>
 
 
 </resources>

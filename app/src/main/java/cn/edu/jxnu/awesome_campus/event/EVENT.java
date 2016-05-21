@@ -201,6 +201,10 @@ public class EVENT {
 
     //图书馆补充状态码
     public static final int LIBRARY_GET_COOKIE_SUCCESS=94;
+
+    //完成商品发布
+    public static final int FINISH_GOODS_SEND=95;
+
     /**
      * Cache Event Code
      */

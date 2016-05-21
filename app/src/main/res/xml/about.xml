@@ -61,6 +61,14 @@
             <!--android:key="@string/id_kevin_app"-->
             <!--android:title="@string/text_ytweather"-->
             <!--android:summary="@string/summary_ytweather"/>-->
+        <Preference
+            android:key="@string/id_zpauly_github"
+            android:title="@string/text_github_zpauly"
+            android:summary="@string/zpauly_github"/>
+        <Preference
+            android:key="@string/id_thereisnospon_blog"
+            android:title="@string/text_blog_thereisnospon"
+            android:summary="@string/thereisnospon_blog"/>
     </PreferenceCategory>
 
 

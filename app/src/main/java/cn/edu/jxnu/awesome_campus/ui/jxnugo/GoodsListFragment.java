@@ -104,6 +104,10 @@ public class GoodsListFragment  extends BaseListFragment {
             case EVENT.GOODS_LIST_REFRESH_FAILURE:
                 hideLoading();
                 break;
+            case EVENT.FINISH_GOODS_SEND:
+                goodsModel.loadFromCache();
+                displayLoading();
+                break;
 //            case EVENT.GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS:
 //                loadNextPage(eventModel.getDataList());
 //                hideLoading();

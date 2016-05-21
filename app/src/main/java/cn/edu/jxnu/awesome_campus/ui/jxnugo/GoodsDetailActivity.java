@@ -72,7 +72,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
                 + model.getGoodName() + "</h1>\n\n" +
                 "<div class=\"answer\">"
                 + "<div class=\"content\">\n" +
-                "<p>" + goodPrice + model.getGoodPrice() + "</p>" +
+                "<p>" + goodPrice + model.getGoodPrice() + "￥</p>" +
                 "<p>" + goodBuyTime + model.getGoodBuyTime() + "</p>" +
                 "<p>" + goodQuality + model.getGoodQuality() + "</p>" +
                 "<p>" + goodLocation + model.getGoodLocation() + "</p>" +

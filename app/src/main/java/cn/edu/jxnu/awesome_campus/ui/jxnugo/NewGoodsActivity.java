@@ -4,6 +4,8 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
 import android.view.Menu;
@@ -76,6 +78,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     private AppCompatButton doneBackButton;
     private LinearLayout uploadingLayout,doneLayout;
     private ScrollView infoScrollview;
+    private boolean sending;
     private IUploadService.OnUploadListener uploadListener;
     private MenuItem sendMenuItem;
 
@@ -171,7 +174,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
      * @return
      */
     private boolean completeInput(){
-        if(!TextUtil.isNull(goodNameET.getText().toString())
+        if(mPhotoList.size()>0&&!TextUtil.isNull(goodNameET.getText().toString())
                 &&!TextUtil.isNull(contactET.getText().toString())
                 &&!TextUtil.isNull(priceET.getText().toString())
                 &&!TextUtil.isNull(discribtionET.getText().toString()))return true;
@@ -232,6 +235,13 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                 callImageSelector();
                 break;
             case R.id.doneBackButton:
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new EventModel<Void>(EVENT.FINISH_GOODS_SEND));
+                    }
+                });
+
                 this.finish();
                 break;
         }
@@ -256,11 +266,11 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_new_goods_done:
-                sendMenuItem.setVisible(false);
                 if(!completeInput()){
                     Snackbar.make(getCurrentFocus(), R.string.jxnugo_newgoods_inputillegal,Snackbar.LENGTH_SHORT).show();
                 }
                 else{
+                    sendMenuItem.setVisible(false);
                     setLayoutVisible(1);//设置显示内容上传中
                     if(mPhotoList.size()>0)
                     UploadGoodsUtil.onUploadImages(this, mPhotoList);

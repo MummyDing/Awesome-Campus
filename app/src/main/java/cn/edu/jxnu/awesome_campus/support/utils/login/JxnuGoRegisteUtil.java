@@ -76,6 +76,7 @@ public class JxnuGoRegisteUtil {
                     @Override
                     public void onSuccess(String result, int responseCode, Headers headers) {
                         Log.d(TAG,"返回码为"+responseCode);
+                        Log.d(TAG,"内容为："+result);
                         if (responseCode == 200) {
                             Log.d(TAG, "注册成功");
                             NetManageUtil.getAuth(JxnuGoApi.LoginUrl)

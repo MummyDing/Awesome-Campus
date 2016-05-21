@@ -56,12 +56,12 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
 
     @Override
     protected String getUsernameHint() {
-        return getResources().getString(R.string.text_username);
+        return getResources().getString(R.string.text_username_or_email);
     }
 
     @Override
     public String getTitle() {
-        return "JxnuGo";
+        return InitApp.AppContext.getString(R.string.jxnugo);
     }
 
     @Override
@@ -72,6 +72,11 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
                 setInputAreaEnable(true);
 //                MainActivity.presenter.updateHeader(getActivity());
                 DisplayUtil.Snack(getView(), InitApp.AppContext.getString(R.string.hint_login_successful));
+                break;
+            case EVENT.JXNUGO_LOGIN_FAILURE:
+                setInputAreaEnable(true);
+//                MainActivity.presenter.updateHeader(getActivity());
+                DisplayUtil.Snack(getView(), InitApp.AppContext.getString(R.string.hint_login_failed));
                 break;
         }
     }

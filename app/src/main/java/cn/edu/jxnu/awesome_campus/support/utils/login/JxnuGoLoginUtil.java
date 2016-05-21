@@ -70,8 +70,8 @@ public class JxnuGoLoginUtil {
                     .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
                         @Override
                         public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
-//                            Log.d(TAG, "返回数据成功");
-//                            Log.d(TAG, "状态码" + responseCode);
+                            Log.d(TAG, "返回数据成功");
+                            Log.d(TAG, "状态码" + responseCode);
                             if (!TextUtil.isNull(entity.getToken())) {
                                 Log.d("JXNUGOLOD","SUCCESS");
 
@@ -104,6 +104,7 @@ public class JxnuGoLoginUtil {
                         @Override
                         public void onFailure(String error) {
                             Log.d(TAG, "登录失败" + error);
+                            Log.d(TAG,"账户信息"+getUsername(usernameText)+getPassword(passwordText));
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {

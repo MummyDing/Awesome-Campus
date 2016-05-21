@@ -122,6 +122,8 @@
     <string name="id_mummy_blog">mummy_blog</string>
     <string name="text_blog_mummyding">MummyDing\'s Blog</string>
     <string name="text_blog_kevinwu">KevinWu\'s Page</string>
+    <string name="text_blog_thereisnospon">Thereisnospon\'s Blog</string>
+    <string name="text_github_zpauly">zpauly\'s GitHub</string>
     <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
     <string name="id_github_mummy">mummy_github</string>
     <string name="text_github">GitHub</string>
@@ -135,7 +137,11 @@
     <string name="summary_ytweather">An Weather app for Old people</string>
     <string name="text_kevinwu">KevinWu</string>
     <string name="id_kevin_blog">kevin_blog</string>
+    <string name="id_thereisnospon_blog">Thereisnospon_blog</string>
+    <string name="id_zpauly_github">zpauly_github</string>
     <string name="kevin_blog">http://www.kevinwu.cn</string>
+    <string name="thereisnospon_blog">http://blog.csdn.net/yzr1183739890</string>
+    <string name="zpauly_github">https://github.com/zpauly</string>
     <string name="kevin_github">https://github.com/KevinWu1993</string>
     <string name="kevin_email">wqd1993@qq.com</string>
     <string name="text_thanks">Thanks</string>
@@ -246,7 +252,7 @@
     <string name="jxnugo_newgoods_position">Position</string>
     <string name="jxnugo_newgoods_contactinformation">*Contact Information</string>
     <string name="jxnugo_newgoods_description">*Description</string>
-    <string name="jxnugo_newgoods_goodspic">Goods Picture</string>
+    <string name="jxnugo_newgoods_goodspic">Goods Picture(At least 1)</string>
     <string name="jxnugo_newgoods_edit">Edit</string>
     <string name="jxnugo_newgoods_postnewgood">Post New</string>
     <string name="jxnugo_newgoods_inputillegal">Please Input Necessary Info.</string>
@@ -261,5 +267,6 @@
     <string name="jxnugo_user_sex">Sex</string>
     <string name="jxnugo_user_contact">Contact</string>
     <string name="jxnugo_user_about_me">About Me</string>
+    <string name="text_username_or_email">Username/Email</string>
 
 </resources>

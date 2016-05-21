@@ -335,7 +335,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                 break;
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
                 presenter.updateSelectedToHome();
-                nowDrawID=0;
+                nowDrawID=DrawerItem.HOME.getId();;
                 break;
         }
         setMenu();
@@ -422,6 +422,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                             EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_JXNUGO_LOGIN));
                         }
                     });
+                    setMenu();
                 }
         }
 

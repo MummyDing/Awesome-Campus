@@ -56,6 +56,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private Preference mKevinGitHub;
     private Preference mKevinEmail;
     private Preference mKevinApp;
+    private Preference mzpaulyGithub;
+    private Preference mThereisnosponBlog;
     private Preference license;
 
     private final String FEEDBACK=InitApp.AppContext.getString(R.string.id_feedback);;
@@ -74,7 +76,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 //    private final String KEVIN_GITHUB = InitApp.AppContext.getString(R.string.id_kevin_github);
 //    private final String KEVIN_EMAIL = InitApp.AppContext.getString(R.string.id_kevin_email);
 //    private final String KEVIN_APP = InitApp.AppContext.getString(R.string.id_kevin_app);
-
+private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zpauly_github);
+    private final String Thereisnospon_BLOG = InitApp.AppContext.getString(R.string.id_thereisnospon_blog);
     private final String LICENSE = InitApp.AppContext.getString(R.string.id_license);
 
     private ProgressBar progressBar;
@@ -101,7 +104,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 //        mKevinGitHub = findPreference(KEVIN_GITHUB);
 //        mKevinEmail = findPreference(KEVIN_EMAIL);
 //        mKevinApp = findPreference(KEVIN_APP);
-
+        mzpaulyGithub=findPreference(zpauly_GITHUB);
+        mThereisnosponBlog=findPreference(Thereisnospon_BLOG);
         license = findPreference(LICENSE);
 
 //        mCurrentVersion.setSummary(InitApp.AppContext.getString(R.string.summary_version)+SystemUtil.getVersionName());
@@ -122,7 +126,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 //        mKevinGitHub.setOnPreferenceClickListener(this);
 //        mKevinEmail.setOnPreferenceClickListener(this);
 //        mKevinApp.setOnPreferenceClickListener(this);
-
+        mzpaulyGithub.setOnPreferenceClickListener(this);
+        mThereisnosponBlog.setOnPreferenceClickListener(this);
         license.setOnPreferenceClickListener(this);
 
         progressBar = (ProgressBar) getActivity().findViewById(R.id.progressbar);
@@ -212,6 +217,13 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 //            intent.setData(content_url);
 //            startActivity(intent);
 //        }
+
+        else if(mThereisnosponBlog == preference){
+            TextUtil.copyToClipboard(getView(),getString(R.string.thereisnospon_blog));
+        }
+        else if(mzpaulyGithub == preference){
+            TextUtil.copyToClipboard(getView(),getString(R.string.zpauly_github));
+        }
         else if (license == preference){
             Intent toLicense = new Intent(getActivity(),LicenseActivity.class);
             startActivity(toLicense);
