@@ -109,7 +109,6 @@ public class JxnuGoRegisteUtil {
                                     });
                         }
                     }
-
                     @Override
                     public void onFailure(String error) {
                         Log.i(TAG, "error");

@@ -30,6 +30,8 @@ public class LibraryLoginUtil {
     private static final String TAG = "LibraryLoginUtil";
     public static String cookies;
     public static String userName;
+    public static String id;
+    public static String password;
 
     private static String getUsername(EditText usernameET) {
         if (usernameET == null) {
@@ -51,7 +53,7 @@ public class LibraryLoginUtil {
      * @param usernameET
      * @param passwordET
      */
-    public static void onLogin(final EditText usernameET, EditText passwordET) {
+    public static void onLogin(final EditText usernameET, final EditText passwordET) {
         if (TextUtil.isNull(getUsername(usernameET)) || TextUtil.isNull(getPassword(passwordET))) {
             EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY__LOGIN_FAILURE_NULL_INPUT));
             return;
@@ -77,7 +79,7 @@ public class LibraryLoginUtil {
                             System.out.println(cookies);
                             //账号密码正确，执行重定向
                             if(code==302){
-                                toFollowRedirects(cookies);
+                                toFollowRedirects(getUsername(usernameET),getPassword(passwordET),cookies);
                             }else{
                                 //密码错误
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -103,7 +105,7 @@ public class LibraryLoginUtil {
         }
     }
 
-    private static void toFollowRedirects(final String cookies) {
+    private static void toFollowRedirects(final String id, final String password, final String cookies) {
         Log.d("调用到这里", "------");
         NetManageUtil.get(Urlconfig.Library_Redirect_URL)
                 .addHeader("Cookie", cookies)
@@ -114,7 +116,7 @@ public class LibraryLoginUtil {
                         Log.d("第二次访问成功", "---");
                         LibraryLoginInfoParse myParse=new LibraryLoginInfoParse(result);
                         String name=myParse.getEndList().get(0).toString();
-                        saveToSP(name, cookies);
+                        saveToSP(id,password,name,cookies);
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
@@ -136,12 +138,14 @@ public class LibraryLoginUtil {
                 });
     }
 
-    private static void saveToSP(String userName, String cookies) {
+    private static void saveToSP(String id,String password,String userName, String cookies) {
         SPUtil mysp = new SPUtil(InitApp.AppContext);
         LibraryLoginUtil.cookies=cookies;
         //用户名还需存入sp文件
         mysp.putStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.USER_NAME,userName);
         mysp.putStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE, cookies);
+        mysp.putStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.ID,id);
+        mysp.putStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.PASSWORD,password);
     }
 
 
@@ -161,6 +165,8 @@ public class LibraryLoginUtil {
             cookies=sp.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
             // 获取cookie
             userName=sp.getStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.USER_NAME);
+            id=sp.getStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.ID);
+            password=sp.getStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.PASSWORD);
             return true;
         }
 //        Log.d("未登录","--");
@@ -177,6 +183,62 @@ public class LibraryLoginUtil {
         sp.clearSP(LibraryStaticKey.SP_FILE_NAME);
         userName=null;
         cookies=null;
+    }
+
+    /**
+     * 对于已经登录的通过这个取得cookies
+     */
+    public static void getCookie(){
+        NetManageUtil.post(Urlconfig.Library_Login_URL)
+                .addTag(TAG)
+                .addParams("number", id)
+                .addParams("passwd", password)
+                .addParams("select", "cert_no")
+                .addParams("returnUrl", "")
+                .enqueue(new StringCodeCallback() {
+                    @Override
+                    public void onSuccess(String result,int code, Headers headers) {
+                        System.out.println("获取到的状态码为：" + code);
+
+                        String cookies = null;
+                        for (int i = 0; i < headers.size(); i++) {
+                            if (headers.name(i).equals("Set-Cookie")) {
+                                cookies = headers.value(i);
+                                break;
+                            }
+                        }
+//                        System.out.println(cookies);
+                        //账号密码正确，执行重定向
+                        if(code==302){
+                            final String finalCookies = cookies;
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_GET_COOKIE_SUCCESS, finalCookies));
+                                }
+                            });
+                        }else{
+                            //密码错误
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_LOGIN_FAILURE));
+                                }
+                            });
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_LOGIN_FAILURE_NETWORKERROR));
+                            }
+                        });
+                    }
+                });
     }
 
 }

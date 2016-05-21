@@ -25,6 +25,7 @@ import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCodeCallback;
 
 /**
  * Created by MummyDing on 16-2-2.
@@ -98,11 +99,65 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
 
     @Override
     public void loadFromNet() {
-        final Handler handler = new Handler(Looper.getMainLooper());
         SPUtil spu = new SPUtil(InitApp.AppContext);
-        String cookies = spu.getStringSP(LibraryStaticKey.SP_FILE_NAME, LibraryStaticKey.COOKIE);
+        String id=spu.getStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.ID);
+        String password=spu.getStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.PASSWORD);
+        NetManageUtil.post(Urlconfig.Library_Login_URL)
+                .addTag(TAG)
+                .addParams("number", id)
+                .addParams("passwd", password)
+                .addParams("select", "cert_no")
+                .addParams("returnUrl", "")
+                .enqueue(new StringCodeCallback() {
+                    @Override
+                    public void onSuccess(String result,int code, Headers headers) {
+                        System.out.println("获取到的状态码为：" + code);
+
+                        String cookies = null;
+                        for (int i = 0; i < headers.size(); i++) {
+                            if (headers.name(i).equals("Set-Cookie")) {
+                                cookies = headers.value(i);
+                                break;
+                            }
+                        }
+//                        System.out.println(cookies);
+                        //账号密码正确，执行重定向
+                        if(code==302){
+//                            final String finalCookies = cookies;
+//                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_GET_COOKIE_SUCCESS, finalCookies));
+//                                }
+//                            });
+                            toFollowRedirects(cookies);
+                        }else{
+                            //密码错误
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_LOGIN_FAILURE));
+                                }
+                            });
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<String>(EVENT.LIBRARY_LOGIN_FAILURE_NETWORKERROR));
+                            }
+                        });
+                    }
+                });
+    }
+    private void toFollowRedirects(final String cookie){
+        final Handler handler = new Handler(Looper.getMainLooper());
         NetManageUtil.get(Urlconfig.Library_Book_Borrowed_URL)
-                .addHeader("Cookie", cookies)
+                .addHeader("Cookie", cookie)
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
@@ -114,6 +169,9 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
                         if (list != null && !list.isEmpty()) {
                             // 缓存数据
                             cacheAll(list);
+//                            把cookies保存一下
+                            SPUtil sp = new SPUtil(InitApp.AppContext);
+                            sp.putStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.COOKIE,cookie);
                             //发送获取成功消息
                             EventBus.getDefault().post(new EventModel<BookBorrowedModel>(EVENT.BOOK_BORROWED_REFRESH_SUCCESS, list));
                         } else {
@@ -134,6 +192,5 @@ public class BookBorrowedDAO implements DAO<BookBorrowedModel> {
                 });
             }
         });
-
     }
 }

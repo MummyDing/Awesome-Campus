@@ -197,6 +197,10 @@ public class EVENT {
     //判断用户是否被当前用户收藏返回的状态码
     public static final int JUDGE_FOLLOW_TRUE=92;//已关注
     public static final int JUDGE_FOLLOW_FALSE=93;//未关注
+
+
+    //图书馆补充状态码
+    public static final int LIBRARY_GET_COOKIE_SUCCESS=94;
     /**
      * Cache Event Code
      */
