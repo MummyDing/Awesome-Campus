@@ -294,6 +294,16 @@ public class MainActivity extends BaseActivity implements HomeView{
                 switchToLogin();
                 nowDrawID=0;
                 break;
+            case EVENT.JUMP_TO_JXNUGO_LOGIN:
+                switchToLogin();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new EventModel<String>(EVENT.SWIPE_TO_JXNUGO_LOGIN));
+                    }
+                });
+                nowDrawID=0;
+                 break;
             case EVENT.JUMP_TO_LIBRARY_LOGIN:
                 switchToLogin();
                 handler.post(new Runnable() {
@@ -303,7 +313,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                     }
                 });
                 nowDrawID=0;
-                 break;
+                break;
             case EVENT.JUMP_TO_LIBRARY_BORROWED:
                 switchToLibrary();
                 handler.post(new Runnable() {
@@ -351,7 +361,6 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     private void setMenu() {
         Log.d(TAG,"当前ID为："+nowDrawID);
-
         if(notifyMenu!=null&&searchMenu!=null&&newGoodsMenu!=null){
             menu.clear();
             getMenuInflater().inflate(R.menu.menu_mainactivity, menu);

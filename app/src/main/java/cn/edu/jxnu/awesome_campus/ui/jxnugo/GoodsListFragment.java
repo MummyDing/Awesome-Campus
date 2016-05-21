@@ -29,6 +29,8 @@ import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LoadingFooter;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.RecyclerViewStateUtils;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
@@ -69,8 +71,17 @@ public class GoodsListFragment  extends BaseListFragment {
     public void initView() {
         goodsModel=new GoodsModel();
         mList=new ArrayList<>();
-        displayLoading();
-        goodsModel.loadFromCache();
+        setOnLineLayout(JxnuGoLoginUtil.isLogin());
+        if(JxnuGoLoginUtil.isLogin()){
+            goodsModel.loadFromCache();
+            displayLoading();
+        }
+        toLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new EventModel<String>(EVENT.JUMP_TO_JXNUGO_LOGIN));
+            }
+        });
     }
 
     private void addItems(ArrayList<GoodsModel> list) {
