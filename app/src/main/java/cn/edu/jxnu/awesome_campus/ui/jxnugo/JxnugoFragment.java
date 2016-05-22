@@ -25,7 +25,9 @@ public class JxnugoFragment extends TopNavigationFragment {
             fragments.clear();
         }
         fragments.add(new GoodsListFragment());
+        fragments.add(new CategoryListFragment());
         fragments.add(new CollectionListsFragment());
+
     }
 
     public static JxnugoFragment newInstance(){

@@ -209,6 +209,12 @@ public class EVENT {
     //JXNUGO注册相关状态码
     public static final int JXNUGO_REGISTER_SUCCESS=96;
     public static final int JXNUGO_REGISTER_FAILURE=97;
+
+    //JXNUGO根据标签获取货物列表相关状态码
+    public static final int JXNUGO_TAG_GOODS_LIST_REFRESH_SUCCESS=98;
+    public static final int JXNUGO_TAG_GOODS_LIST_REFRESH_FAILURE=99;
+
+
     /**
      * Cache Event Code
      */

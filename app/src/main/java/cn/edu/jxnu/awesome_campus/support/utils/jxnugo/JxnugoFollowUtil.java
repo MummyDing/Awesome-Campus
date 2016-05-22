@@ -53,7 +53,7 @@ public class JxnugoFollowUtil {
                     @Override
                     public void onSuccess(JxnuGoUnfollowRetBean entity, Headers headers) {
                         Log.d(TAG,"unfollow"+entity.getUnfollowStatus());
-                        if(entity.getUnfollowStatus().equals("successful"))
+//                        if(entity.getUnfollowStatus().equals("successful"))
                         handler.post(new Runnable() {
                             @Override
                             public void run() {

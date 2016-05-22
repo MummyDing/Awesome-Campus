@@ -141,4 +141,58 @@ public class LodingGoodsListUtil {
             });
         }
     }
+
+    /**
+     * 根据标签分裂返回商品信息
+     * @param context
+     * @param tagID
+     */
+    public static void getTagGoodsList(Context context,int tagID){
+        final Handler handler = new Handler(Looper.getMainLooper());
+        try {
+            NetManageUtil.getAuth(JxnuGoApi.BaseTagGoodsUrl+tagID)
+                    .addUserName(getUserName(context))
+                    .addPassword(getPassword(context))
+                    .addTag(TAG)
+                    .enqueue(new JsonCodeEntityCallback<GoodsListBean>() {
+                        @Override
+                        public void onSuccess(GoodsListBean entity, int responseCode, Headers headers) {
+                            if (entity != null) {
+                                final List<GoodsListBean> list = Arrays.asList(entity);
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.JXNUGO_TAG_GOODS_LIST_REFRESH_SUCCESS, list));
+
+                                    }
+                                });
+                            } else {
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.JXNUGO_TAG_GOODS_LIST_REFRESH_FAILURE));
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(String error) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.JXNUGO_TAG_GOODS_LIST_REFRESH_FAILURE));
+                                }
+                            });
+                        }
+                    });
+        } catch (IllegalStateException e) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.JXNUGO_TAG_GOODS_LIST_REFRESH_FAILURE));
+                }
+            });
+        }
+    }
 }

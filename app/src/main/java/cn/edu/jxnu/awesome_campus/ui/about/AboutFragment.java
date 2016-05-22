@@ -58,6 +58,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private Preference mKevinApp;
     private Preference mzpaulyGithub;
     private Preference mThereisnosponBlog;
+    private Preference mCan2Github;
+    private Preference mDdragon;
     private Preference license;
 
     private final String FEEDBACK=InitApp.AppContext.getString(R.string.id_feedback);;
@@ -78,6 +80,8 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 //    private final String KEVIN_APP = InitApp.AppContext.getString(R.string.id_kevin_app);
 private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zpauly_github);
     private final String Thereisnospon_BLOG = InitApp.AppContext.getString(R.string.id_thereisnospon_blog);
+    private final String Can2_GITHUB=InitApp.AppContext.getString(R.string.id_can2studio_github);
+    private final String Ddragon_BLOG =InitApp.AppContext.getString(R.string.id_ddragon_blog);
     private final String LICENSE = InitApp.AppContext.getString(R.string.id_license);
 
     private ProgressBar progressBar;
@@ -106,6 +110,8 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
 //        mKevinApp = findPreference(KEVIN_APP);
         mzpaulyGithub=findPreference(zpauly_GITHUB);
         mThereisnosponBlog=findPreference(Thereisnospon_BLOG);
+        mCan2Github=findPreference(Can2_GITHUB);
+        mDdragon=findPreference(Ddragon_BLOG);
         license = findPreference(LICENSE);
 
 //        mCurrentVersion.setSummary(InitApp.AppContext.getString(R.string.summary_version)+SystemUtil.getVersionName());
@@ -128,6 +134,8 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
 //        mKevinApp.setOnPreferenceClickListener(this);
         mzpaulyGithub.setOnPreferenceClickListener(this);
         mThereisnosponBlog.setOnPreferenceClickListener(this);
+        mCan2Github.setOnPreferenceClickListener(this);
+        mDdragon.setOnPreferenceClickListener(this);
         license.setOnPreferenceClickListener(this);
 
         progressBar = (ProgressBar) getActivity().findViewById(R.id.progressbar);
@@ -223,6 +231,12 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
         }
         else if(mzpaulyGithub == preference){
             TextUtil.copyToClipboard(getView(),getString(R.string.zpauly_github));
+        }
+        else if(mDdragon == preference){
+            TextUtil.copyToClipboard(getView(),getString(R.string.ddragon_blog));
+        }
+        else if(mCan2Github == preference){
+            TextUtil.copyToClipboard(getView(),getString(R.string.can2studio_github));
         }
         else if (license == preference){
             Intent toLicense = new Intent(getActivity(),LicenseActivity.class);

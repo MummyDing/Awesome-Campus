@@ -124,6 +124,8 @@
     <string name="text_blog_kevinwu">KevinWu\'s Page</string>
     <string name="text_blog_thereisnospon">Thereisnospon\'s Blog</string>
     <string name="text_github_zpauly">zpauly\'s GitHub</string>
+    <string name="text_blog_ddragon">Ddragon\'s Page</string>
+    <string name="text_github_can2studio">Can2\'s GitHub</string>
     <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
     <string name="id_github_mummy">mummy_github</string>
     <string name="text_github">GitHub</string>
@@ -139,9 +141,13 @@
     <string name="id_kevin_blog">kevin_blog</string>
     <string name="id_thereisnospon_blog">Thereisnospon_blog</string>
     <string name="id_zpauly_github">zpauly_github</string>
+    <string name="id_ddragon_blog">ddragon_blog</string>
+    <string name="id_can2studio_github">Can2studio_github</string>
     <string name="kevin_blog">http://www.kevinwu.cn</string>
     <string name="thereisnospon_blog">http://blog.csdn.net/yzr1183739890</string>
     <string name="zpauly_github">https://github.com/zpauly</string>
+    <string name="ddragon_blog">https://www.ddragonever.com</string>
+    <string name="can2studio_github">https://github.com/Can2studio</string>
     <string name="kevin_github">https://github.com/KevinWu1993</string>
     <string name="kevin_email">wqd1993@qq.com</string>
     <string name="text_thanks">Thanks</string>
@@ -229,11 +235,12 @@
     <string name="campus_weather">Campus Weather</string>
     <string name="new_version">"New Version "</string>
     <string name="notify_new_version">Found New Version!\nDo you want to download it?</string>
-    <string name="authors">Authors</string>
+    <string name="authors">Android</string>
     <string name="feedback">Feedback</string>
     <string name="id_feedback">id_feedback</string>
     <string name="jxnugo">JxnuGo</string>
     <string name="goodslist">JxnuGo</string>
+    <string name="goodscategory">Category</string>
 
     
     <string name="jxnugo_user_followed">followed</string>
@@ -268,5 +275,7 @@
     <string name="jxnugo_user_contact">Contact</string>
     <string name="jxnugo_user_about_me">About Me</string>
     <string name="text_username_or_email">Username/Email</string>
+    <string name="authors_front_end">Front-end</string>
+    <string name="authors_backstage_supporter">Backstage Supporter</string>
 
 </resources>

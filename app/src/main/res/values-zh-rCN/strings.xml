@@ -211,7 +211,7 @@
     <string name="notify_new_version">现在就去下载吧!</string>
     <string name="all_courses_are_over">今天的课都上完啦</string>
     <string name="film">影评</string>
-    <string name="authors">作者</string>
+    <string name="authors">Android客户端</string>
     <string name="feedback">意见反馈</string>
     <string name="id_feedback">id_feedback</string>
     <string name="jxnugo">二手</string>
@@ -256,5 +256,14 @@
     <string name="id_thereisnospon_blog">Thereisnospon_blog</string>
     <string name="id_zpauly_github">zpauly_github</string>
     <string name="text_username_or_email">用户名/邮箱</string>
+    <string name="goodscategory">分类</string>
+    <string name="authors_front_end">Web前端</string>
+    <string name="authors_backstage_supporter">后端支持</string>
+    <string name="can2studio_github">https://github.com/Can2studio</string>
+    <string name="ddragon_blog">https://www.ddragonever.com</string>
+    <string name="id_can2studio_github">Can2studio_github</string>
+    <string name="id_ddragon_blog">ddragon_blog</string>
+    <string name="text_blog_ddragon">Ddragon的主页</string>
+    <string name="text_github_can2studio">Can2的GitHub</string>
 
 </resources>
