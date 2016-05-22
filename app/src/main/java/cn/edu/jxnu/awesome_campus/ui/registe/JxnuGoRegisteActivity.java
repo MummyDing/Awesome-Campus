@@ -1,14 +1,24 @@
 package cn.edu.jxnu.awesome_campus.ui.registe;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.AppCompatButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
 import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoRegisteUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
@@ -22,12 +32,14 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
     private EditText mPasswordEt;
     private EditText mVerityPasswordEt;
     private Button mRegisteBtn;
+    private AppCompatButton mBackButton;
+    private LinearLayout contentLayout,finishLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         setContentView(R.layout.layout_registe_jxnugo);
-
         initViews();
     }
 
@@ -37,11 +49,11 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
         mPasswordEt = (EditText) findViewById(R.id.et_password);
         mVerityPasswordEt = (EditText) findViewById(R.id.et_verifyPassword);
         mRegisteBtn = (Button) findViewById(R.id.registeBtn);
-
+        mBackButton=(AppCompatButton)findViewById(R.id.back_button);
+        contentLayout=(LinearLayout)findViewById(R.id.content_layout);
+        finishLayout=(LinearLayout)findViewById(R.id.finish_layout);
         setupToolbar();
-
         setupEditTexts();
-
         setupButton();
     }
 
@@ -52,7 +64,6 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
 
     private void setupEditTexts() {
         TextWatcher watcher = new TextWatcher() {
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -66,9 +77,6 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
                         || mVerityPasswordEt.getText().toString().equals("") || null == mVerityPasswordEt.getText()) {
                     mRegisteBtn.setEnabled(false);
                 }
-//                else if(!isOKEmail(mEmailEt.getText().toString())) {
-//                    mRegisteBtn.setEnabled(false);
-//                }
                 else{
                     mRegisteBtn.setEnabled(true);
                 }
@@ -85,16 +93,6 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
         mVerityPasswordEt.addTextChangedListener(watcher);
     }
 
-//    /**
-//     * 判断邮箱是否合法
-//     * @param s
-//     * @return
-//     */
-//    private boolean isOKEmail(String s) {
-//        String regex="\\w+@\\w+(\\.\\w{2,3})*\\.\\w{2,3}";
-//        if(s.matches(regex))return true;
-//        return false;
-//    }
 
     private void setupButton() {
         mRegisteBtn.setEnabled(false);
@@ -109,28 +107,36 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
                 if (!JxnuGoRegisteUtil.verifyPassword(mPasswordEt, mVerityPasswordEt)) {
                     return;
                 }
-                /*UploadGoodsUtil.simpleUploadByPath("/system/media/Pre-loaded/Pictures/Picture_03_Eiffel.jpg",
-                        new IUploadService.OnUploadListener() {
-                            @Override
-                            public void onCompleted(String key, ResponseInfo info, JSONObject res) {
-                                Toast.makeText(JxnuGoRegisteActivity.this, key + ",\r\n " + info + ",\r\n " + res, Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onProcessing(String key, double percent) {
-
-                            }
-
-                            @Override
-                            public boolean onCancelled() {
-                                return false;
-                            }
-                        });*/
                 Log.d("开始注册","--");
                 JxnuGoRegisteUtil.onRegiste(mUsernameEt.getText().toString(),
                         mEmailEt.getText().toString(),
                         mPasswordEt.getText().toString());
             }
         });
+
+        mBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    @Subscribe
+    public void onEventMainThread(EventModel eventModel) {
+        switch (eventModel.getEventCode()) {
+            case EVENT.JXNUGO_REGISTER_SUCCESS:
+                contentLayout.setVisibility(View.GONE);
+                finishLayout.setVisibility(View.VISIBLE);
+                break;
+            case EVENT.JXNUGO_REGISTER_FAILURE:
+                Snackbar.make(getCurrentFocus(), "注册失败，请稍后再试！",Snackbar.LENGTH_SHORT).show();
+                        break;
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }

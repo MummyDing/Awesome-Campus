@@ -79,40 +79,47 @@ public class JxnuGoRegisteUtil {
                         Log.d(TAG,"内容为："+result);
                         if (responseCode == 200) {
                             Log.d(TAG, "注册成功");
-                            NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
-                                    .addTag(TAG)
-                                    .addUserName(username)
-                                    .addPassword(password)
-                                    .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
-                                        @Override
-                                        public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
-                                            if (!TextUtil.isNull(entity.getToken())) {
-                                                saveToSP(entity.getToken(),
-                                                        username,
-                                                        password,
-                                                        entity.getUserId());
-                                                Log.d(TAG, "Jxnugo注册成功并登录");
+//                            NetManageUtil.getAuth(JxnuGoApi.LoginUrl)
+//                                    .addTag(TAG)
+//                                    .addUserName(username)
+//                                    .addPassword(password)
+//                                    .enqueue(new JsonCodeEntityCallback<JxnuGoLoginBean>() {
+//                                        @Override
+//                                        public void onSuccess(final JxnuGoLoginBean entity, int responseCode, Headers headers) {
+//                                            if (!TextUtil.isNull(entity.getToken())) {
+//                                                saveToSP(entity.getToken(),
+//                                                        username,
+//                                                        password,
+//                                                        entity.getUserId());
+//                                                Log.d(TAG, "Jxnugo注册成功并登录");
                                                 new Handler(Looper.getMainLooper())
                                                         .post(new Runnable() {
                                                             @Override
                                                             public void run() {
-                                                                EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO
-                                                                        , entity.getUserId()));
+//                                                                EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO
+//                                                                        , entity.getUserId()));
+                                                                EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_REGISTER_SUCCESS));
                                                             }
                                                         });
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onFailure(String error) {
-
-                                        }
-                                    });
+//                                            }
+//                                        }
+//
+//                                        @Override
+//                                        public void onFailure(String error) {
+//
+//                                        }
+//                                    });
                         }
                     }
                     @Override
                     public void onFailure(String error) {
                         Log.i(TAG, "error");
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_REGISTER_FAILURE));
+                            }
+                        });
                     }
                 });
     }

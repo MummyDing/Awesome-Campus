@@ -205,6 +205,10 @@ public class EVENT {
     //完成商品发布
     public static final int FINISH_GOODS_SEND=95;
 
+
+    //JXNUGO注册相关状态码
+    public static final int JXNUGO_REGISTER_SUCCESS=96;
+    public static final int JXNUGO_REGISTER_FAILURE=97;
     /**
      * Cache Event Code
      */
