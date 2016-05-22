@@ -132,6 +132,9 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
             case EVENT.JXNUGO_REGISTER_FAILURE:
                 Snackbar.make(getCurrentFocus(), "注册失败，请稍后再试！",Snackbar.LENGTH_SHORT).show();
                         break;
+            case EVENT.JXNUGO_REGISTER_FAILURE_SAME:
+                Snackbar.make(getCurrentFocus(), "用户名或邮箱已被注册，请更换后重试",Snackbar.LENGTH_SHORT).show();
+                break;
         }
     }
     @Override

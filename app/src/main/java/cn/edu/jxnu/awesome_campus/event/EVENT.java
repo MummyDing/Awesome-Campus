@@ -215,6 +215,13 @@ public class EVENT {
     public static final int JXNUGO_TAG_GOODS_LIST_REFRESH_FAILURE=99;
 
 
+    //反馈
+    public static final int FEEDBACK_SUCCESS=100;
+    public static final int FEEDBACK_FAILURE=101;
+
+    //JXNUGO注册补充
+    public static final int JXNUGO_REGISTER_FAILURE_SAME=102;
+
     /**
      * Cache Event Code
      */

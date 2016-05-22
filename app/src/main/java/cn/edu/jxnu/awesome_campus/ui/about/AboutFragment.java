@@ -154,9 +154,10 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
             startActivity(intent);
         }else if(mFeedback == preference){
             Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
-            Uri content_url = Uri.parse("http://kevinwu.cn/2016/01/01/%E5%B8%88%E5%A4%A7+%20%E8%BE%85%E5%8A%A9%E6%96%87%E6%A1%A3/%E5%B8%88%E5%A4%A7-%E5%8F%8D%E9%A6%88%E9%A1%B5%E9%9D%A2/");
-            intent.setData(content_url);
+//            intent.setAction("android.intent.action.VIEW");
+//            Uri content_url = Uri.parse("http://kevinwu.cn/2016/01/01/%E5%B8%88%E5%A4%A7+%20%E8%BE%85%E5%8A%A9%E6%96%87%E6%A1%A3/%E5%B8%88%E5%A4%A7-%E5%8F%8D%E9%A6%88%E9%A1%B5%E9%9D%A2/");
+//            intent.setData(content_url);
+            intent.setClass(InitApp.AppContext,FeedbackActivity.class);
             startActivity(intent);
         }
         else if(mCheckUpdate == preference){

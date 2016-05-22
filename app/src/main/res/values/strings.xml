@@ -277,5 +277,8 @@
     <string name="text_username_or_email">Username/Email</string>
     <string name="authors_front_end">Front-end</string>
     <string name="authors_backstage_supporter">Backstage Supporter</string>
+    <string name="feedback_respondent">Respondent</string>
+    <string name="feedback_email">Email/QQ</string>
+    <string name="feedback_body">Please write your opinions here</string>
 
 </resources>

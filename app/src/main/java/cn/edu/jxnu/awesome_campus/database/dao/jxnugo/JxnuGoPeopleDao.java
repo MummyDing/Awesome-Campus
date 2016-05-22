@@ -113,9 +113,9 @@ public class JxnuGoPeopleDao implements DAO<JxnuGoPeopleModel> {
                                 @Override
                                 public void run() {
                                    JxnuGoPeopleModel[]beans=entity.getFollowed();
-                                    for(JxnuGoPeopleModel dao:beans){
-                                        Log.d("JxnuGoPeopleFragment",dao.getUserName());
-                                    }
+//                                    for(JxnuGoPeopleModel dao:beans){
+//                                        Log.d("JxnuGoPeopleFragment",dao.getUserName());
+//                                    }
                                     EventBus.getDefault().post(new EventModel<JxnuGoPeopleListBean>(EVENT.JXNUGO_LOAD_PEOPLELIST_SUCCESS,entity));
                                 }
                             });

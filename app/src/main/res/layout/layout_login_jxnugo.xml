@@ -12,10 +12,10 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:src="@drawable/logo"
+            android:src="@drawable/jxnugo_logo"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/inputArea"
-            android:layout_width="100dp"
+            android:layout_width="220dp"
             android:layout_height="100dp"
             android:layout_marginBottom="60dp"/>
         <RelativeLayout

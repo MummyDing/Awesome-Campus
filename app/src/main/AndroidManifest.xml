@@ -134,6 +134,7 @@
         <activity android:name=".ui.jxnugo.JxnuGoGoodsListActivity" android:launchMode="singleTop"
             ></activity>
         <activity android:name=".ui.jxnugo.JxnuGoUserInfoETActivity"></activity>
+        <activity android:name=".ui.about.FeedbackActivity"></activity>
 
     </application>
 

@@ -109,6 +109,24 @@ public class JxnuGoRegisteUtil {
 //
 //                                        }
 //                                    });
+                        }else if(responseCode==202){
+                            new Handler(Looper.getMainLooper())
+                                    .post(new Runnable() {
+                                        @Override
+                                        public void run() {
+//                                                                EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO
+//                                                                        , entity.getUserId()));
+                                            EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_REGISTER_FAILURE_SAME));
+                                        }
+                                    });
+                        }
+                        else{
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_REGISTER_FAILURE));
+                                }
+                            });
                         }
                     }
                     @Override

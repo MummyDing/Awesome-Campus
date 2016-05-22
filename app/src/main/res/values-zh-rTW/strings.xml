@@ -265,6 +265,9 @@
     <string name="id_ddragon_blog">ddragon_blog</string>
     <string name="text_blog_ddragon">Ddragon的個人主頁</string>
     <string name="text_github_can2studio">Can2的GitHub</string>
+    <string name="feedback_respondent">您的稱呼</string>
+    <string name="feedback_email">您的郵箱/QQ</string>
+    <string name="feedback_body">請在這裏輸入您的反饋信息</string>
 
 
 </resources>
