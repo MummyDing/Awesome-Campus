@@ -60,7 +60,8 @@ public class CategoryListFragment extends BaseListFragment {
     }
     @Override
     public void onDataRefresh() {
-        goodsModel.loadFromNet();
+//        goodsModel.loadFromNet();
+        LodingGoodsListUtil.getTagGoodsList(InitApp.AppContext,selectedNum);
     }
 
     @Override
@@ -74,6 +75,7 @@ public class CategoryListFragment extends BaseListFragment {
         spinnerWrapper.setOnTagChangedListener(new OnGoodTagChangedListener() {
             @Override
             public void onTagChanged(int tag) {
+                selectedNum=tag;
                 LodingGoodsListUtil.getTagGoodsList(InitApp.AppContext,tag);
             }
         });
@@ -215,8 +217,8 @@ public class CategoryListFragment extends BaseListFragment {
                         if (entity != null) {
                             final List<GoodsListBean> list = Arrays.asList(entity);
 //                            loadNextPage(list);
-//                            Log.d(TAG,"当前mCurrentCounter "+mCurrentCounter);
-//                            Log.d(TAG,"当前TOTAL_COUNTER "+TOTAL_COUNTER);
+                            Log.d(TAG,"当前mCurrentCounter "+mCurrentCounter);
+                            Log.d(TAG,"当前TOTAL_COUNTER "+TOTAL_COUNTER);
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {

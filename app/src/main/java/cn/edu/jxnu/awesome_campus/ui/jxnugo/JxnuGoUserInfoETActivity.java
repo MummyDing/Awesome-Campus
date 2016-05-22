@@ -15,6 +15,7 @@ import android.widget.EditText;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.squareup.okhttp.Headers;
+import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -75,6 +77,7 @@ public class JxnuGoUserInfoETActivity extends BaseToolbarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         setContentView(R.layout.activity_edit_jxnugo_userinfo);
         initToolbar();
         setToolbarTitle(title);
@@ -188,6 +191,7 @@ public class JxnuGoUserInfoETActivity extends BaseToolbarActivity{
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
 

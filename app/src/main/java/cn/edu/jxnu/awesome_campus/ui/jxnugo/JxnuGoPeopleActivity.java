@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
+import com.tendcloud.tenddata.TCAgent;
+
 import org.greenrobot.eventbus.EventBus;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.dao.jxnugo.JxnuGoPeopleDao;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -18,11 +21,12 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
  * 显示用户关注的人的信息或者粉丝信息
  */
 public class JxnuGoPeopleActivity extends BaseToolbarActivity {
-
+    public static final String TAG="JxnuGoPeopleActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         setContentView(R.layout.activity_jxnugo_people);
         initToolbar();
         getMsg();
@@ -46,5 +50,11 @@ public class JxnuGoPeopleActivity extends BaseToolbarActivity {
         manager.beginTransaction()
                 .replace(R.id.fragment_content,fragment)
                 .commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
+        super.onDestroy();
     }
 }

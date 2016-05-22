@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -82,6 +83,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
         setContentView(R.layout.activity_jxnugo_userinfo);
         EventBus.getDefault().register(this);
         initToolbar();
@@ -288,4 +290,9 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
+        super.onDestroy();
+    }
 }

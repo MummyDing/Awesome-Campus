@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -49,6 +50,12 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     private TextView tvTime;
     private MenuItem favorite, favorite_select, comment,share;
     private SimpleDraweeView avatarImageView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        TCAgent.onPageStart(InitApp.AppContext, TAG);
+    }
 
     @Override
     protected void init() {
@@ -212,5 +219,11 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
         Log.d(TAG, "取得userId：" + userId);
         Log.d(TAG, "取得postId：" + model.getPostId());
         UploadCollectingStatusUtil.onUploadJson(b, bean);
+    }
+
+    @Override
+    protected void onDestroy() {
+        TCAgent.onPageEnd(InitApp.AppContext, TAG);
+        super.onDestroy();
     }
 }

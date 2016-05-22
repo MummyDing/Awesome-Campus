@@ -260,7 +260,7 @@
     <string name="authors_front_end">Web前端</string>
     <string name="authors_backstage_supporter">后端支持</string>
     <string name="can2studio_github">https://github.com/Can2studio</string>
-    <string name="ddragon_blog">https://www.ddragonever.com</string>
+    <string name="ddragon_blog">http://www.ddragonever.com</string>
     <string name="id_can2studio_github">Can2studio_github</string>
     <string name="id_ddragon_blog">ddragon_blog</string>
     <string name="text_blog_ddragon">Ddragon的主页</string>
