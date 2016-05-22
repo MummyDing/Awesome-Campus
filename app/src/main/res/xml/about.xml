@@ -24,6 +24,7 @@
     <PreferenceCategory android:title="@string/authors">
         <Preference
             android:key="@string/id_mummy_blog"
+            android:icon="@drawable/ic_mummy"
             android:summary="@string/mummyding_blog"
             android:title="@string/text_blog_mummyding" />
         <!--<Preference-->
@@ -45,6 +46,7 @@
         <Preference
             android:key="@string/id_kevin_blog"
             android:summary="@string/kevin_blog"
+            android:icon="@drawable/ic_kevin"
             android:title="@string/text_blog_kevinwu" />
         <!--<Preference-->
         <!--android:key="@string/id_kevin_github"-->
@@ -61,21 +63,25 @@
         <Preference
             android:key="@string/id_zpauly_github"
             android:summary="@string/zpauly_github"
+            android:icon="@drawable/ic_zpauly"
             android:title="@string/text_github_zpauly" />
         <Preference
             android:key="@string/id_thereisnospon_blog"
             android:summary="@string/thereisnospon_blog"
+            android:icon="@drawable/ic_thereisnospon"
             android:title="@string/text_blog_thereisnospon" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/authors_backstage_supporter">
         <Preference
             android:key="@string/id_ddragon_blog"
+            android:icon="@drawable/ic_ddragon"
             android:summary="@string/ddragon_blog"
             android:title="@string/text_blog_ddragon" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/authors_front_end">
         <Preference
             android:key="@string/id_can2studio_github"
+            android:icon="@drawable/ic_can2studio"
             android:summary="@string/can2studio_github"
             android:title="@string/text_github_can2studio" />
     </PreferenceCategory>
