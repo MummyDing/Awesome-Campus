@@ -93,11 +93,15 @@ public class HomePresenterImpl implements HomePresenter {
 
     public void updateHeader(Activity activity){
         EducationLoginUtil.isLogin();
-        if(JxnuGoLoginUtil.isLogin()){
+        if(JxnuGoLoginUtil.isLogin()&&Settings.avatorID == 1){
             Log.d("--","使用jxnugo头像");
-            buildHeader(activity, JxnuGoLoginUtil.getUserAvatar(),EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
+            if(EducationLoginUtil.isLogin())
+            buildHeader(activity, Settings.avatorID == 1 ? JxnuGoLoginUtil.getUserAvatar(): AvatarApi.baseAvatarUrl+(Settings.avatorID-1)+".png",EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
+            else{
+                buildHeader(activity, Settings.avatorID == 1 ? JxnuGoLoginUtil.getUserAvatar(): AvatarApi.baseAvatarUrl+(Settings.avatorID-1)+".png","--","JxnuGo: "+JxnuGoLoginUtil.getUserName());
+            }
         }else{
-            buildHeader(activity, Settings.avatorID == 0 ? EducationLoginUtil.getAvatorUrl(): AvatarApi.baseAvatarUrl+Settings.avatorID+".png",EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
+            buildHeader(activity, Settings.avatorID == 0 ? EducationLoginUtil.getAvatorUrl(): AvatarApi.baseAvatarUrl+(Settings.avatorID-1)+".png",EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
         }
     }
 

@@ -20,7 +20,7 @@ import cn.edu.jxnu.awesome_campus.ui.registe.JxnuGoRegisteActivity;
  * Created by root on 16-5-11.
  */
 public class JxnuGoLoginFragment extends BaseLoginFragment {
-
+    private static final  String TAG="JxnuGoLoginFragment";
     @Override
     protected void init() {
         super.init();
@@ -44,6 +44,7 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
         jumpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG,"跳转");
                 EventBus.getDefault().post(new EventModel<Void>(EVENT.JUMP_TO_LOGIN_JXNUGO_USERINFO));
             }
         });

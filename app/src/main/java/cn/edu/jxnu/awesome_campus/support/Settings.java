@@ -21,7 +21,7 @@ public class Settings {
 
     public static boolean isExitConfirm = true;
 
-    public static int avatorID = 0;
+    public static int avatorID = 1;
 
     public static int swipeID = 0;
 

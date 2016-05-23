@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -38,6 +39,7 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.ChoosePicAdapter;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadGoodsUtil;
@@ -65,6 +67,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
     private ChoosePicAdapter adapter;
     private HorizontalListView picListView;
     private AppCompatButton addPicButton;
+    private TextView finishText;
     private EditText goodNameET;
     private EditText yearET;
     private EditText monthET;
@@ -321,6 +324,10 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                 setLayoutVisible(2);
                 break;
             case EVENT.POST_UPLOAD_FAIL:
+                setLayoutVisible(2);
+                finishText=(TextView)findViewById(R.id.finishtext);
+                finishText.setText("服务器出错，发布失败");
+//                DisplayUtil.Snack(getCurrentFocus(), "发布失败");
                 break;
         }
     }

@@ -46,6 +46,8 @@ public class JxnuGoLoginUtil {
     }
 
     public static void setUserAvatar(String userAvatar) {
+        SPUtil mysp = new SPUtil(InitApp.AppContext);
+        mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USER_AVATAR,userAvatar);
         JxnuGoLoginUtil.userAvatar = userAvatar;
     }
 

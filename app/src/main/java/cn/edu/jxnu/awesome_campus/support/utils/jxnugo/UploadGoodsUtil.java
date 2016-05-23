@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.support.utils.jxnugo;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -39,8 +40,22 @@ public class UploadGoodsUtil {
     private static Handler handler=new Handler(Looper.getMainLooper());
     public static ByteArrayOutputStream compressImages(String imagePath) {
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+        float width=bitmap.getWidth();
+        float height=bitmap.getHeight();
+        while(width>2000||height>2000){
+            Log.d(TAG,"上传的图片大小 宽："+width+" 高："+height);
+            float scaleWidth=0;
+            float scaleHeight=0;
+            scaleWidth=(float)((width/2))/width;
+            scaleHeight=(float)((height/2))/height;
+            Matrix matrix=new Matrix();
+            matrix.postScale(scaleWidth,scaleHeight);
+            bitmap=Bitmap.createBitmap(bitmap,0,0,(int)width,(int)height,matrix,true);
+            width=bitmap.getWidth();
+            height=bitmap.getHeight();
+        }
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, bos);
         return bos;
     }
 

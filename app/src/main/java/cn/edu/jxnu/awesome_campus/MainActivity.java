@@ -182,6 +182,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         else if(id == DrawerItem.LOGOUT.getId()){
             showLogoutDialog();
         }
+        Log.d(TAG,"switchDrawerItem");
         setMenu();
     }
 
@@ -337,6 +338,7 @@ public class MainActivity extends BaseActivity implements HomeView{
     public void onEventMainThread(EventModel eventModel){
         switch (eventModel.getEventCode()){
             case EVENT.JUMP_TO_MAIN:
+                Log.d(TAG,"跳转到主菜单");
                 presenter.clearAllFragments();
                 switchFragment(HomeFragment.newInstance(),DrawerItem.HOME.getItemName());
                 nowDrawID=DrawerItem.HOME.getId();
@@ -379,16 +381,17 @@ public class MainActivity extends BaseActivity implements HomeView{
                 jumpToJxnugoUserinfo(eventModel);
                 nowDrawID=0;
                 break;
-            case EVENT.UPDATE_MENU:
-//                Log.d(TAG,"更新主页通知menu");
-//                updateNotifyMenu((int) eventModel.getData());
-//                nowDrawID=DrawerItem.HOME.getId();
-                break;
+//            case EVENT.UPDATE_MENU:
+////                Log.d(TAG,"更新主页通知menu");
+////                updateNotifyMenu((int) eventModel.getData());
+////                nowDrawID=DrawerItem.HOME.getId();
+//                break;
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
                 presenter.updateSelectedToHome();
                 nowDrawID=DrawerItem.HOME.getId();;
                 break;
         }
+        Log.d(TAG,"onEventMainThread"+eventModel.getEventCode());
         setMenu();
     }
 
@@ -406,6 +409,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         notifyMenu=menu.findItem(R.id.menu_notify);
         searchMenu=menu.findItem(R.id.menu_search);
         userInfoMenu=menu.findItem(R.id.menu_user_info);
+        Log.d(TAG,"初始化菜单");
         setMenu();
         return true;
     }
@@ -441,6 +445,7 @@ public class MainActivity extends BaseActivity implements HomeView{
      * 设置显示的消息数
      */
     private void setNotify(int...data) {
+        Log.d(TAG,"更新消息数");
         if(NotifyUtil.hasUnread()>0&&nowDrawID==DrawerItem.HOME.getId()){
             ActionItemBadge.update(this, notifyMenu, ContextCompat.getDrawable(this, R.mipmap.ic_notify_none), ActionItemBadge.BadgeStyles.YELLOW, NotifyUtil.hasUnread());
         }else if(data.length>0&&nowDrawID==DrawerItem.HOME.getId()){
@@ -507,7 +512,6 @@ public class MainActivity extends BaseActivity implements HomeView{
     @Override
     protected void onResume() {
         super.onResume();
-
         if(Settings.needRecreate) {
             Settings.needRecreate = false;
             this.recreate();
@@ -519,7 +523,8 @@ public class MainActivity extends BaseActivity implements HomeView{
                 presenter.updateHeader(this);
             }
         }
-        setMenu();
+        Log.d(TAG,"onResume");
+//        setMenu();
     }
     private void hideAllMenu(){
         notifyMenu.setVisible(false);

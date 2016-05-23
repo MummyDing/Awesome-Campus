@@ -210,6 +210,7 @@
 
     <string-array name="avatars" translatable="false">
         <item>@string/text_default</item>
+        <item>@string/jxnugo_avatar</item>
         <item>AC1</item>
         <item>AC2</item>
         <item>AC3</item>
@@ -283,5 +284,6 @@
     <string name="jxnugo_login_user_collect">Collected</string>
     <string name="jxnugo_user_collect">Collected</string>
     <string name="logout_title">Select Logout Acount</string>
+    <string name="jxnugo_avatar">JxnuGo Avatar</string>
 
 </resources>

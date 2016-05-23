@@ -21,6 +21,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
  * Blog: http://blog.csdn.net/mummyding
  */
 public abstract class BaseLoginFragment extends BaseFragment{
+    private static final String TAG="BaseLoginFragment";
 
     protected EditText usernameET;
     protected EditText passwordET;
@@ -49,6 +50,7 @@ public abstract class BaseLoginFragment extends BaseFragment{
         jumpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG,"跳转");
                 EventBus.getDefault().post(new EventModel<String>(EVENT.JUMP_TO_MAIN));
             }
         });

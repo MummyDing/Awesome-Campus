@@ -35,6 +35,7 @@ import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.JxnugoFollowUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadUserETInfoUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
@@ -193,6 +194,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
     public void loadInfo(EventModel eventModel) {
         JxnuGoUserBean bean = (JxnuGoUserBean) eventModel.getData();
         if(id==bean.getUserId()){
+            if(hasLogin) JxnuGoLoginUtil.setUserAvatar(bean.getAvatar());
         setToolbarTitle(bean.getName() + "");
         userImg.setImageURI(Uri.parse(bean.getAvatar()));
         userDesc.setText(bean.getAbout_me() + "");
