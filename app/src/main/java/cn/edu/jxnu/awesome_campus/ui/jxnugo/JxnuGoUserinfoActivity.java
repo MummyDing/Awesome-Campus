@@ -41,7 +41,8 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
  * @author Thereisnospon
  *         2016-5-11
  *         跳转方法:通过发布 JXNUGO_USERINFO_LOAD_USER 的 String 的sticky事件,给定id,加载相应数据
- *         待重构（@KevinWu）
+ *
+ *        待重构（@KevinWu）
  */
 
 public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.OnClickListener {
@@ -114,7 +115,9 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         JxnuGoPeopleLoad load = new JxnuGoPeopleLoad(JxnuGoPeopleDao.MODE.FOLLOWED, id);
         Log.d(TAG, "LOAD ID" + id);
         EventBus.getDefault().postSticky(new EventModel<JxnuGoPeopleLoad>(EVENT.JUMP_TO_JXNUGO_LOAD_POEPLE, load));
+
         Intent intent = new Intent(this, JxnuGoPeopleActivity.class);
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 
@@ -123,6 +126,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         Log.d(TAG, "LOAD ID" + id);
         EventBus.getDefault().postSticky(new EventModel<JxnuGoPeopleLoad>(EVENT.JUMP_TO_JXNUGO_LOAD_POEPLE, load));
         Intent intent = new Intent(this, JxnuGoPeopleActivity.class);
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 
@@ -164,7 +168,8 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         EventModel model = EventBus.getDefault().getStickyEvent(EventModel.class);
         if (model != null && model.getEventCode() == EVENT.JXNUGO_USERINFO_LOAD_USER) {
             Integer userId = (Integer) model.getData();
-            JxnuGoUserDAO dao = new JxnuGoUserDAO(userId);
+            id=userId;
+            dao = new JxnuGoUserDAO(userId);
             dao.loadFromNet();
             Log.d(TAG, "非本人");
             SPUtil spu = new SPUtil(this);
@@ -177,7 +182,8 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
             SPUtil sp = new SPUtil(InitApp.AppContext);
             hasLogin = true;
             int userId = sp.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
-            JxnuGoUserDAO dao = new JxnuGoUserDAO(userId);
+            id=userId;
+            dao = new JxnuGoUserDAO(userId);
             dao.loadFromNet();
 //            this.dao=dao;
         }
@@ -186,6 +192,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
     //用户信息数据更新到ui
     public void loadInfo(EventModel eventModel) {
         JxnuGoUserBean bean = (JxnuGoUserBean) eventModel.getData();
+        if(id==bean.getUserId()){
         setToolbarTitle(bean.getName() + "");
         userImg.setImageURI(Uri.parse(bean.getAvatar()));
         userDesc.setText(bean.getAbout_me() + "");
@@ -195,8 +202,9 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         userCollectNum.setText(bean.getPostCollectionCount() + "");
         userPostNum.setText(bean.getPostCount() + "");
         progressBar.setVisibility(View.GONE);
-        id = bean.getUserId();
-        Log.d(TAG, "progress" + progressBar.getVisibility());
+//        id = bean.getUserId();
+//        Log.d(TAG, "progress" + progressBar.getVisibility());
+ }
     }
 
     @Subscribe
@@ -205,7 +213,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
             case EVENT.JXNUGO_USERINFO_LOAD_USER:
                 break;
             case EVENT.JXNUGO_USERINFO_LOAD_USER_SUCCESS:
-                Log.d(TAG, "load userinfo sueccess");
+//                Log.d(TAG, "load userinfo sueccess");
                 loadInfo(eventModel);
                 break;
             case EVENT.JXNUGO_USERINFO_LOAD_USER_FALURE:
@@ -213,6 +221,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
             case EVENT.JXNUGO_FOLLOW_SUCCESS:
                 makeSnack("关注成功");
                 setFollowStatus(true);
+                dao.loadFromNet();
                 break;
             case EVENT.JXNUGO_FOLLOW_FAILURE:
                 makeSnack("关注失败");
@@ -220,6 +229,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
             case EVENT.JXNUGO_UNFOLLOW_SUCCESS:
                 makeSnack("取消关注成功");
                 setFollowStatus(false);
+                dao.loadFromNet();
                 break;
             case EVENT.JXNUGO_UNFOLLOW_FAILURE:
                 makeSnack("取消关注失败");
@@ -233,7 +243,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
                 setFollowStatus(false);
                 break;
             case EVENT.JXNUGO_REFRESH_USERINFO_TRIGGER:
-//                dao.loadFromNet();
+                dao.loadFromNet();
                 break;
             default:
                 break;
@@ -259,6 +269,17 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    protected void onRestart() {
+        if (hasLogin) {
+            editUserInfoMenu.setVisible(true);
+            favorite.setVisible(false);
+            favorite_select.setVisible(false);
+            userPostText.setText(InitApp.AppContext.getString(R.string.jxnugo_login_user_post));
+            userCollectText.setText(InitApp.AppContext.getString(R.string.jxnugo_login_user_collect));
+        }
+        super.onRestart();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

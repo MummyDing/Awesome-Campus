@@ -127,11 +127,11 @@
             android:name="TD_CHANNEL_ID"
             android:value="00001" />
 
-        <activity android:name=".ui.jxnugo.JxnuGoUserinfoActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".ui.jxnugo.JxnuGoUserinfoActivity"></activity>
 
-        <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity" android:launchMode="singleTop"
+        <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity"
             ></activity>
-        <activity android:name=".ui.jxnugo.JxnuGoGoodsListActivity" android:launchMode="singleTop"
+        <activity android:name=".ui.jxnugo.JxnuGoGoodsListActivity"
             ></activity>
         <activity android:name=".ui.jxnugo.JxnuGoUserInfoETActivity"></activity>
         <activity android:name=".ui.about.FeedbackActivity"></activity>

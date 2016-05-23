@@ -76,7 +76,12 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
             case EVENT.JXNUGO_LOGIN_FAILURE:
                 setInputAreaEnable(true);
 //                MainActivity.presenter.updateHeader(getActivity());
-                DisplayUtil.Snack(getView(), InitApp.AppContext.getString(R.string.hint_login_failed));
+                DisplayUtil.Snack(getView(), "用户名/邮箱 或 密码 错误，请更改后重试");
+                break;
+            case EVENT.JXNUGO_LOGIN_FAILURE_SEVER_ERROR:
+                setInputAreaEnable(true);
+//                MainActivity.presenter.updateHeader(getActivity());
+                DisplayUtil.Snack(getView(), "用户名 不存在或 密码 错误，请检查");
                 break;
         }
     }

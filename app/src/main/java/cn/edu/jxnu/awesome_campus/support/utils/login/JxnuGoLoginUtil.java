@@ -118,7 +118,7 @@ public class JxnuGoLoginUtil {
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    EventBus.getDefault().post(new EventModel<String>(EVENT.JXNUGO_LOGIN_FAILURE));
+                                    EventBus.getDefault().post(new EventModel<String>(EVENT.JXNUGO_LOGIN_FAILURE_SEVER_ERROR));
                                 }
                             });
                         }

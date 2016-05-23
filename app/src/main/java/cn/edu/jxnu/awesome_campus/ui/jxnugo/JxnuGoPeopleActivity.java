@@ -19,37 +19,56 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 /**
  * Created by Thereisnospon on 16/5/14.
  * 显示用户关注的人的信息或者粉丝信息
+ *
+ * 曲线救国虽然已经解决当前bug，日后待重构（@KevinWu）
  */
 public class JxnuGoPeopleActivity extends BaseToolbarActivity {
-    public static final String TAG="JxnuGoPeopleActivity";
+    public static final String TAG = "JxnuGoPeopleActivity";
+    private int id;
+    private JxnuGoPeopleDao.MODE mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         TCAgent.onPageStart(InitApp.AppContext, TAG);
         setContentView(R.layout.activity_jxnugo_people);
         initToolbar();
+        id = getIntent().getIntExtra("id", -1);
+        Log.e(TAG,"执行初始化"+id);
         getMsg();
     }
-    void getMsg(){
-       EventModel model= EventBus.getDefault().getStickyEvent(EventModel.class);
-        if(model!=null&&model.getEventCode()== EVENT.JUMP_TO_JXNUGO_LOAD_POEPLE){
-            JxnuGoPeopleLoad data=(JxnuGoPeopleLoad)model.getData();
-            Log.d("JXNU_GO","get msg");
-            if(data.getMode() ==JxnuGoPeopleDao.MODE.FOLLOWED){
-                setToolbarTitle(getString(R.string.jxnugo_user_followed));
-            }else{
-                setToolbarTitle(getString(R.string.jxnugo_user_followers));
+
+    private void getMsg() {
+        EventModel model = EventBus.getDefault().getStickyEvent(EventModel.class);
+        if (model != null && model.getEventCode() == EVENT.JUMP_TO_JXNUGO_LOAD_POEPLE) {
+            JxnuGoPeopleLoad data = (JxnuGoPeopleLoad) model.getData();
+            Log.e(TAG, "传入的id是 ："+id);
+            Log.e(TAG,"当前事件的id是 ："+data.getId());
+            if (id == data.getId()) {
+                mode=data.getMode();
+                if (data.getMode() == JxnuGoPeopleDao.MODE.FOLLOWED) {
+                    setToolbarTitle(getString(R.string.jxnugo_user_followed));
+                } else {
+                    setToolbarTitle(getString(R.string.jxnugo_user_followers));
+                }
+                initView(mode,id);
             }
-            initView(data);
         }
     }
-    void initView(JxnuGoPeopleLoad load){
-        FragmentManager manager=getSupportFragmentManager();
-        JxnuGoPeopleFragment fragment=JxnuGoPeopleFragment.newInstance(load.getMode(),load.getId());
+
+    private void initView(JxnuGoPeopleDao.MODE mode,int id) {
+        FragmentManager manager = getSupportFragmentManager();
+        JxnuGoPeopleFragment fragment = JxnuGoPeopleFragment.newInstance(mode,id);
         manager.beginTransaction()
-                .replace(R.id.fragment_content,fragment)
+                .replace(R.id.fragment_content, fragment)
                 .commit();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        initView(mode,id);
     }
 
     @Override
