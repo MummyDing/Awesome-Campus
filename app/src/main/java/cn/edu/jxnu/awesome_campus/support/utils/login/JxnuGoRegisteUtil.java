@@ -51,7 +51,6 @@ public class JxnuGoRegisteUtil {
 
     public static boolean verifyEmail(EditText emailEt) {
         String email = emailEt.getText().toString();
-
         String regex = "\\w+@\\w+\\.(com\\.cn)|\\w+@\\w+\\.(com|cn)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
@@ -109,14 +108,25 @@ public class JxnuGoRegisteUtil {
 //
 //                                        }
 //                                    });
-                        }else if(responseCode==202){
+                        }else if(responseCode==406){
                             new Handler(Looper.getMainLooper())
                                     .post(new Runnable() {
                                         @Override
                                         public void run() {
 //                                                                EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO
 //                                                                        , entity.getUserId()));
-                                            EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_REGISTER_FAILURE_SAME));
+                                            EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_REGISTER_FAILURE_SAME_NAME));
+                                        }
+                                    });
+                        }
+                        else if(responseCode==409){
+                            new Handler(Looper.getMainLooper())
+                                    .post(new Runnable() {
+                                        @Override
+                                        public void run() {
+//                                                                EventBus.getDefault().post(new EventModel<Integer>(EVENT.JUMP_TO_JXNUGO
+//                                                                        , entity.getUserId()));
+                                            EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_REGISTER_FAILURE_SAME_EMAIL));
                                         }
                                     });
                         }

@@ -247,7 +247,6 @@
     <string name="jxnugo_user_followers">followers</string>
     <string name="jxnugo_user_locate">locate</string>
     <string name="jxnugo_user_post">post</string>
-    <string name="jxnugo_user_collect">collect</string>
     <string name="jxnugo_newgoods_name">*Goods Name</string>
     <string name="jxnugo_newgoods_buytime">Buy Time(eg. 1993 03 05)</string>
     <string name="jxnugo_newgoods_year">Year</string>
@@ -280,5 +279,8 @@
     <string name="feedback_respondent">Respondent</string>
     <string name="feedback_email">Email/QQ</string>
     <string name="feedback_body">Please write your opinions here</string>
+    <string name="jxnugo_login_user_post">Post</string>
+    <string name="jxnugo_login_user_collect">Collected</string>
+    <string name="jxnugo_user_collect">Collected</string>
 
 </resources>

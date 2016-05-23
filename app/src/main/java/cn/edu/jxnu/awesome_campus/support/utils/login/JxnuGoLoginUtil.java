@@ -41,6 +41,16 @@ public class JxnuGoLoginUtil {
     private static String userName;
     private static String passWord;
 
+    public static String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public static void setUserAvatar(String userAvatar) {
+        JxnuGoLoginUtil.userAvatar = userAvatar;
+    }
+
+    private static String userAvatar;
+
     public static String getToken() {
         return token;
     }
@@ -78,8 +88,8 @@ public class JxnuGoLoginUtil {
                                 token = entity.getToken();
                                 final int userId=entity.getUserId();
 //                                Log.d(TAG,"userId:"+userId);
-
-                                saveToSP(token, getUsername(usernameText), getPassword(passwordText),entity.getUserId());
+                                userAvatar=entity.getUserAvatar();
+                                saveToSP(userAvatar,token, getUsername(usernameText), getPassword(passwordText),entity.getUserId());
 
                                 handler.post(new Runnable() {
                                     @Override
@@ -116,8 +126,9 @@ public class JxnuGoLoginUtil {
         }
     }
 
-    private static void saveToSP(String token, String userName, String passWord,int userId) {
+    private static void saveToSP(String userAvatar,String token, String userName, String passWord,int userId) {
         SPUtil mysp = new SPUtil(InitApp.AppContext);
+        mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USER_AVATAR,userAvatar);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.TOKEN, token);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME, userName);
         mysp.putStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD, passWord);
@@ -135,7 +146,9 @@ public class JxnuGoLoginUtil {
         SPUtil sp = new SPUtil(InitApp.AppContext);
         userName=sp.getStringSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USERNAME);
         if (TextUtil.isNull(userName) == false) {
+            Log.d(TAG,"Jxnugo已登录");
             passWord=sp.getStringSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.PASSWORD);
+            userAvatar=sp.getStringSP(JxnuGoStaticKey.SP_FILE_NAME,JxnuGoStaticKey.USER_AVATAR);
             return true;
         }
         return false;

@@ -70,7 +70,7 @@ public class JxnuGoLoginFragment extends BaseLoginFragment {
             case EVENT.JXNUGO_LOGIN_SUCCESS:
                 setOnLineLayout(true);
                 setInputAreaEnable(true);
-//                MainActivity.presenter.updateHeader(getActivity());
+                MainActivity.presenter.updateHeader(getActivity());
                 DisplayUtil.Snack(getView(), InitApp.AppContext.getString(R.string.hint_login_successful));
                 break;
             case EVENT.JXNUGO_LOGIN_FAILURE:

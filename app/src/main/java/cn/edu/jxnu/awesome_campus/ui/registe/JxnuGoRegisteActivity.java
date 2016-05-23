@@ -53,7 +53,7 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
         contentLayout=(LinearLayout)findViewById(R.id.content_layout);
         finishLayout=(LinearLayout)findViewById(R.id.finish_layout);
         setupToolbar();
-        setupEditTexts();
+//        setupEditTexts();
         setupButton();
     }
 
@@ -62,49 +62,57 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
         setToolbarTitle("注册JxnuGo账号");
     }
 
-    private void setupEditTexts() {
-        TextWatcher watcher = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mUsernameEt.getText().toString().equals("") || null == mUsernameEt.getText()
-                        || mEmailEt.getText().toString().equals("")|| null == mEmailEt.getText()
-                        || mPasswordEt.getText().toString().equals("") || null == mPasswordEt.getText()
-                        || mVerityPasswordEt.getText().toString().equals("") || null == mVerityPasswordEt.getText()) {
-                    mRegisteBtn.setEnabled(false);
-                }
-                else{
-                    mRegisteBtn.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        };
-        mUsernameEt.addTextChangedListener(watcher);
-        mEmailEt.addTextChangedListener(watcher);
-        mPasswordEt.addTextChangedListener(watcher);
-        mVerityPasswordEt.addTextChangedListener(watcher);
-    }
+//    private void setupEditTexts() {
+//        TextWatcher watcher = new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (mUsernameEt.getText().toString().equals("") || null == mUsernameEt.getText()
+//                        || mEmailEt.getText().toString().equals("")|| null == mEmailEt.getText()
+//                        || mPasswordEt.getText().toString().equals("") || null == mPasswordEt.getText()
+//                        || mVerityPasswordEt.getText().toString().equals("") || null == mVerityPasswordEt.getText()) {
+//                    mRegisteBtn.setEnabled(false);
+//                }
+//                else{
+//                    mRegisteBtn.setEnabled(true);
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        };
+//        mUsernameEt.addTextChangedListener(watcher);
+//        mEmailEt.addTextChangedListener(watcher);
+//        mPasswordEt.addTextChangedListener(watcher);
+//        mVerityPasswordEt.addTextChangedListener(watcher);
+//    }
 
 
     private void setupButton() {
-        mRegisteBtn.setEnabled(false);
+//        mRegisteBtn.setEnabled(false);
         mRegisteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mRegisteBtn.isEnabled())
+                if (mUsernameEt.getText().toString().equals("") || null == mUsernameEt.getText()
+                        || mEmailEt.getText().toString().equals("")|| null == mEmailEt.getText()
+                        || mPasswordEt.getText().toString().equals("") || null == mPasswordEt.getText()
+                        || mVerityPasswordEt.getText().toString().equals("") || null == mVerityPasswordEt.getText())
+                {
+                    Snackbar.make(getCurrentFocus(), "请输入完整信息！",Snackbar.LENGTH_SHORT).show();
                     return;
+                }
                 if (!JxnuGoRegisteUtil.verifyEmail(mEmailEt)) {
+                    Snackbar.make(getCurrentFocus(), "邮箱不合法，请重新输入！",Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (!JxnuGoRegisteUtil.verifyPassword(mPasswordEt, mVerityPasswordEt)) {
+                    Snackbar.make(getCurrentFocus(), "两次密码不一致，请重新输入！",Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 Log.d("开始注册","--");
@@ -132,8 +140,11 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
             case EVENT.JXNUGO_REGISTER_FAILURE:
                 Snackbar.make(getCurrentFocus(), "注册失败，请稍后再试！",Snackbar.LENGTH_SHORT).show();
                         break;
-            case EVENT.JXNUGO_REGISTER_FAILURE_SAME:
-                Snackbar.make(getCurrentFocus(), "用户名或邮箱已被注册，请更换后重试",Snackbar.LENGTH_SHORT).show();
+            case EVENT.JXNUGO_REGISTER_FAILURE_SAME_NAME:
+                Snackbar.make(getCurrentFocus(), "用户名已被注册，请更换后重试",Snackbar.LENGTH_SHORT).show();
+                break;
+            case EVENT.JXNUGO_REGISTER_FAILURE_SAME_EMAIL:
+                Snackbar.make(getCurrentFocus(), "邮箱已被注册，请更换后重试",Snackbar.LENGTH_SHORT).show();
                 break;
         }
     }

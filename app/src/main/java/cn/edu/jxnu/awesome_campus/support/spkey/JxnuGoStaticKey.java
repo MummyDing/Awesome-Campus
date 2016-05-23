@@ -9,5 +9,6 @@ public class JxnuGoStaticKey {
     public static final String TOKEN="token";//token
     public static final String PASSWORD="password";//密码
     public static final String USERID="userId";//用户id
+    public static final String USER_AVATAR="useravatar";//用户头像
 
 }

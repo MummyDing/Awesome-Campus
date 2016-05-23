@@ -268,6 +268,8 @@
     <string name="feedback_respondent">您的稱呼</string>
     <string name="feedback_email">您的郵箱/QQ</string>
     <string name="feedback_body">請在這裏輸入您的反饋信息</string>
+    <string name="jxnugo_login_user_post">我發佈的帖子</string>
+    <string name="jxnugo_login_user_collect">我收藏的帖子</string>
 
 
 </resources>

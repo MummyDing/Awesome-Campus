@@ -302,6 +302,12 @@ public class JxnuGoUserInfoETActivity extends BaseToolbarActivity{
             case EVENT.IMAGES_UPLOAD_FAILURE:
                 break;
             case EVENT.UPDATE_USER_INFO_SUCCESS:
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_REFRESH_USERINFO_TRIGGER));
+                    }
+                });
                 this.finish();
                 break;
             case EVENT.UPDATE_USER_INFO_FAILURE:

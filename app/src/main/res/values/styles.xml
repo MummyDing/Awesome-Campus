@@ -163,7 +163,7 @@
         <item name="colorPrimaryDark">@color/brownColorPrimaryDark</item>
         <item name="colorAccent">@color/brownColorAccent</item>
         <item name="cardViewColor">@color/cardViewColor</item>
-        <item name="textColor">@color/textColor</item>
+        <item name="textColor">@color/brownTextColor</item>
         <item name="textColorHighlight">@color/textColorHighlight</item>
         <item name="backgroundColor">@color/backgroundColor</item>
         <item name="windowActionBarOverlay">true</item>-->

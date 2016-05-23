@@ -10,6 +10,15 @@ public class JxnuGoLoginBean {
     //失败返回的东西
     private String error;
 
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
+    }
+
+    private String userAvatar;
     private int userId;
 
     public int getUserId() {

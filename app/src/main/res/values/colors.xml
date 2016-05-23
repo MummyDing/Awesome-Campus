@@ -41,10 +41,15 @@
     <color name="tealColorPrimaryDark">#00796B</color>
     <color name="tealColorAccent">#536DFE</color>
 
-    <!--brown主题-->
-    <color name="brownColorPrimary">#795548</color>
-    <color name="brownColorPrimaryDark">#5D4037</color>
-    <color name="brownColorAccent">#727272</color>
+    <!--brown主题(已临时修改为JXNUGO配色主题)-->
+    <!--<color name="brownColorPrimary">#795548</color>-->
+    <!--<color name="brownColorPrimaryDark">#5D4037</color>-->
+    <!--<color name="brownColorAccent">#727272</color>-->
+    <color name="brownColorPrimary">#548A7A</color>
+    <color name="brownColorPrimaryDark">#327A6F</color>
+    <color name="brownColorAccent">#7A9A7F</color>
+    <color name="brownTextColor">#243A3C</color>
+    <color name="brownCardViewColor">#c3c3ab</color>
 
     <!--LightgreenTheme主题-->
     <color name="lightGreenColorPrimary">#8BC34A</color>

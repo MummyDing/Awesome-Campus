@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.presenter.home;
 
 import android.app.Activity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -20,6 +21,7 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.api.AvatarApi;
 import cn.edu.jxnu.awesome_campus.model.common.DrawerItem;
 import cn.edu.jxnu.awesome_campus.support.Settings;
+import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
@@ -91,7 +93,12 @@ public class HomePresenterImpl implements HomePresenter {
 
     public void updateHeader(Activity activity){
         EducationLoginUtil.isLogin();
-        buildHeader(activity, Settings.avatorID == 0 ? EducationLoginUtil.getAvatorUrl(): AvatarApi.baseAvatarUrl+Settings.avatorID+".png",EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
+        if(JxnuGoLoginUtil.isLogin()){
+            Log.d("--","使用jxnugo头像");
+            buildHeader(activity, JxnuGoLoginUtil.getUserAvatar(),EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
+        }else{
+            buildHeader(activity, Settings.avatorID == 0 ? EducationLoginUtil.getAvatorUrl(): AvatarApi.baseAvatarUrl+Settings.avatorID+".png",EducationLoginUtil.getStudentID(),EducationLoginUtil.getStudentName());
+        }
     }
 
 
@@ -111,16 +118,23 @@ public class HomePresenterImpl implements HomePresenter {
         }else {
             header.clear();
         }
+//        if(TextUtil.isNull(studentID) || TextUtil.isNull(name) || TextUtil.isNull(avatarURL)){
+//            header.addProfiles(new ProfileDrawerItem().withIcon(R.drawable.logo)
+//                    .withName(activity.getString(R.string.hint_click_to_login)));
+//        }
         if(TextUtil.isNull(studentID) || TextUtil.isNull(name) || TextUtil.isNull(avatarURL)){
             header.addProfiles(new ProfileDrawerItem().withIcon(R.drawable.logo)
                     .withName(activity.getString(R.string.hint_click_to_login)));
-        }else{
+        }
+        else{
             header.addProfiles(new ProfileDrawerItem().withIcon(avatarURL)
                     .withName(name.length() == 2 ?"    "+name :"  "+name));
         }
 
         if(EducationLoginUtil.isLogin() || LibraryLoginUtil.isLogin()|| JxnuGoLoginUtil.isLogin()){
+            Log.d("--","有一个账号登录了");
             if(drawer !=null) {
+                Log.d("","");
                 LogItem.withEnabled(true);
                 LogItem.withName(DrawerItem.LOGOUT.getItemName());
                 LogItem.withIcon(DrawerItem.LOGOUT.getItemIconID());
@@ -163,7 +177,6 @@ public class HomePresenterImpl implements HomePresenter {
         JxnugoFragment.clearChildFragments();
         LibraryFragment.clearChildFragments();
         EducationFragment.clearChildFragments();
-
     }
 
 

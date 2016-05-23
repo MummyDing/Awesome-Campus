@@ -220,8 +220,14 @@ public class EVENT {
     public static final int FEEDBACK_FAILURE=101;
 
     //JXNUGO注册补充
-    public static final int JXNUGO_REGISTER_FAILURE_SAME=102;
+    public static final int JXNUGO_REGISTER_FAILURE_SAME_NAME=102;
+    public static final int JXNUGO_REGISTER_FAILURE_SAME_EMAIL=103;
 
+    //用户信息补充
+    public static final int JXNUGO_REFRESH_USERINFO_TRIGGER=104;
+
+//    JXNUGO补充
+public static final int JXNUGO_LOGIN_FAILURE_SEVER_ERROR=105;
     /**
      * Cache Event Code
      */

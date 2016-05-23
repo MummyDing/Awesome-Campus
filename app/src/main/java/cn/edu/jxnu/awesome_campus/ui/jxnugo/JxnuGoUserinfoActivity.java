@@ -55,9 +55,11 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
     TextView userFollowingNum;
     TextView userLocate;
     ProgressBar progressBar;
+    TextView userPostText,userCollectText;
     SimpleDraweeView userImg;
     private MenuItem editUserInfoMenu;//修改个人信息菜单
     private boolean hasLogin;
+    private JxnuGoUserDAO dao;
 
     final String TAG = "JXNU_GO";
 
@@ -71,6 +73,8 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         userFollowerdNum = (TextView) findViewById(R.id.jxnugo_user_followerd);
         userFollowingNum = (TextView) findViewById(R.id.jxnugo_user_following);
         userLocate = (TextView) findViewById(R.id.jxnugo_user_locate);
+        userPostText=(TextView)findViewById(R.id.userPostText);
+        userCollectText=(TextView)findViewById(R.id.userCollectText);
         View posts = findViewById(R.id.jxnugo_user_card_posts);
         View collect = findViewById(R.id.jxnugo_user_card_collect);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -175,6 +179,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
             int userId = sp.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
             JxnuGoUserDAO dao = new JxnuGoUserDAO(userId);
             dao.loadFromNet();
+//            this.dao=dao;
         }
     }
 
@@ -227,6 +232,9 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
                 Log.d(TAG, "未关注");
                 setFollowStatus(false);
                 break;
+            case EVENT.JXNUGO_REFRESH_USERINFO_TRIGGER:
+//                dao.loadFromNet();
+                break;
             default:
                 break;
         }
@@ -243,6 +251,9 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
             editUserInfoMenu.setVisible(true);
             favorite.setVisible(false);
             favorite_select.setVisible(false);
+            userPostText.setText(InitApp.AppContext.getString(R.string.jxnugo_login_user_post));
+            userCollectText.setText(InitApp.AppContext.getString(R.string.jxnugo_login_user_collect));
+
         }
 
         return super.onCreateOptionsMenu(menu);

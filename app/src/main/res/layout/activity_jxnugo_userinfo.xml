@@ -175,6 +175,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:id="@+id/userCollectText"
                 android:gravity="left|center_vertical"
                 android:text="@string/jxnugo_user_collect"
                 android:textColor="?attr/textColor" />
@@ -228,6 +229,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:id="@+id/userPostText"
                 android:gravity="left|center_vertical"
                 android:text="@string/jxnugo_user_post"
                 android:textColor="?attr/textColor" />

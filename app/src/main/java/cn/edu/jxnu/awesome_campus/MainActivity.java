@@ -380,6 +380,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         }else if(nowDrawID==DrawerItem.JXNUGO.getId()){
             Log.d(TAG,"二手菜单切换");
+            if(JxnuGoLoginUtil.isLogin())
             newGoodsMenu.setVisible(true);
             userInfoMenu.setVisible(true);
         }}
@@ -463,7 +464,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
         if (Settings.needUpdateAvatar){
             Settings.needUpdateAvatar = false;
-            if (EducationLoginUtil.isLogin()){
+            if (JxnuGoLoginUtil.isLogin()||EducationLoginUtil.isLogin()){
                 presenter.updateHeader(this);
             }
         }
@@ -478,7 +479,6 @@ public class MainActivity extends BaseActivity implements HomeView{
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
         PollingUtils.stopPollingService(this,NotifyService.class,NotifyService.ACTION);
-
 //        TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
