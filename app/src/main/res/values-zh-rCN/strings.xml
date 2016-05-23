@@ -12,6 +12,7 @@
     <string name="theme">主题</string>
     <string name="settings">设置</string>
     <string name="logout">注销</string>
+    <string name="logout_title">请选择要注销的账号</string>
     <string name="course_table">课表</string>
     <string name="compus_news">校闻</string>
     <string name="daily">日报</string>

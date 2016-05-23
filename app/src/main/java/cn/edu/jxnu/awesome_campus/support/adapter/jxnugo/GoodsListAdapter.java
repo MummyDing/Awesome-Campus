@@ -7,24 +7,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.ramotion.foldingcell.FoldingCell;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
-import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
-import cn.edu.jxnu.awesome_campus.model.leisure.DailyModel;
-import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.GoodsDetailActivity;
 
 /**
@@ -49,11 +44,14 @@ public class GoodsListAdapter extends RecyclerView.Adapter {
         final GoodsModel model=mList.get(position);
         VH vh=(VH)holder;
         vh.time.setText(model.getTimestamp());
-        vh.goodName.setText(model.getGoodName());
-        vh.goodPrice.setText(model.getGoodPrice()+"");
-        if(model.getPhotos()!=null&&model.getPhotos().length>0)
+        vh.goodName.setText(model.getGoodsName());
+        vh.goodPrice.setText(model.getGoodsPrice()+"");
+        if(model.getPhotos()!=null&&model.getPhotos().length>0){
             vh.goodFirstImg.setImageURI(Uri.parse(JxnuGoApi.BasePicUrl+model.getPhotos()[0].getKey()));
-
+        }
+        else{
+            vh.goodFirstImg.setVisibility(View.GONE);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,8 +73,8 @@ public class GoodsListAdapter extends RecyclerView.Adapter {
 //    public void onBindViewHolder(VH holder, int position) {
 //        final GoodsModel model=getItem(position);
 //        holder.time.setText(model.getTimestamp());
-//        holder.goodName.setText(model.getGoodName());
-//        holder.goodPrice.setText(model.getGoodPrice()+"");
+//        holder.goodsName.setText(model.getGoodsName());
+//        holder.goodsPrice.setText(model.getGoodsPrice()+"");
 //        if(model.getPhoto()!=null&&model.getPhoto().length>0)
 //        holder.goodFirstImg.setImageURI(Uri.parse(model.getPhoto()[0]));
 //

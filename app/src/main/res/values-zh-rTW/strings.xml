@@ -270,6 +270,7 @@
     <string name="feedback_body">請在這裏輸入您的反饋信息</string>
     <string name="jxnugo_login_user_post">我發佈的帖子</string>
     <string name="jxnugo_login_user_collect">我收藏的帖子</string>
+    <string name="logout_title">請選擇要註銷的賬號</string>
 
 
 </resources>

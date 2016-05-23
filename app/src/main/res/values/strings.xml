@@ -282,5 +282,6 @@
     <string name="jxnugo_login_user_post">Post</string>
     <string name="jxnugo_login_user_collect">Collected</string>
     <string name="jxnugo_user_collect">Collected</string>
+    <string name="logout_title">Select Logout Acount</string>
 
 </resources>

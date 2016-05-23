@@ -24,16 +24,16 @@ public class GoodsModel implements IModel<GoodsModel>{
     protected String body;
     protected int commentsCount;
     protected String contact;
-    protected String goodBuyTime;
-    protected String goodLocation;
-    protected String goodName;
-    protected float goodPrice;
-    protected String goodQuality;
-    protected int goodTag;
+    protected String goodsBuyTime;
+    protected String goodsLocation;
+    protected String goodsName;
+    protected float goodsPrice;
+    protected String goodsQuality;
+    protected int goodsTag;
     protected PhotokeyBean[] photos;
     protected int postId;
-    protected String postUserAvator;
-    protected String postUserName;
+    protected String postUserAvatar;
+    protected String postNickName;
     protected String timestamp;
     protected String url;
 
@@ -55,34 +55,34 @@ public class GoodsModel implements IModel<GoodsModel>{
     public GoodsModel(int author_id,
                       String body,
                       String contact,
-                      String goodLocation,
-                      String goodBuyTime,
-                      String goodName,
-                      float goodPrice,
-                      String goodQuality,
-                      int goodTag,
+                      String goodsLocation,
+                      String goodsBuyTime,
+                      String goodsName,
+                      float goodsPrice,
+                      String goodsQuality,
+                      int goodsTag,
                       PhotokeyBean[] photos,
                       int postId,
-                      String postUserAvator,
-                      String postUserName,
+                      String postUserAvatar,
+                      String postNickName,
                       String timestamp,
                       String url,
                       int commentsCount){
         this.author_id=author_id;
         this.body=body;
         this.contact=contact;
-        this.goodLocation=goodLocation;
-        this.goodBuyTime=goodBuyTime;
-        this.goodName=goodName;
-        this.goodPrice=goodPrice;
-        this.goodQuality=goodQuality;
-        this.postUserName=postUserName;
-        this.goodTag=goodTag;
+        this.goodsLocation = goodsLocation;
+        this.goodsBuyTime = goodsBuyTime;
+        this.goodsName = goodsName;
+        this.goodsPrice = goodsPrice;
+        this.goodsQuality = goodsQuality;
+        this.postNickName = postNickName;
+        this.goodsTag = goodsTag;
         this.photos=photos;
         this.timestamp=timestamp;
         this.url=url;
         this.commentsCount=commentsCount;
-        this.postUserAvator=postUserAvator;
+        this.postUserAvatar = postUserAvatar;
         this.postId=postId;
     }
 
@@ -104,52 +104,52 @@ public class GoodsModel implements IModel<GoodsModel>{
         this.contact = contact;
     }
 
-    public String getGoodLocation() {
-        return goodLocation;
+    public String getGoodsLocation() {
+        return goodsLocation;
     }
 
-    public void setGoodLocation(String goodLocation) {
-        this.goodLocation = goodLocation;
+    public void setGoodsLocation(String goodsLocation) {
+        this.goodsLocation = goodsLocation;
     }
 
-    public String getGoodBuyTime() {
-        return goodBuyTime;
+    public String getGoodsBuyTime() {
+        return goodsBuyTime;
     }
 
-    public void setGoodBuyTime(String goodBuyTime) {
-        this.goodBuyTime = goodBuyTime;
+    public void setGoodsBuyTime(String goodsBuyTime) {
+        this.goodsBuyTime = goodsBuyTime;
     }
 
-    public float getGoodPrice() {
-        return goodPrice;
+    public float getGoodsPrice() {
+        return goodsPrice;
     }
 
-    public void setGoodPrice(float goodPrice) {
-        this.goodPrice = goodPrice;
+    public void setGoodsPrice(float goodsPrice) {
+        this.goodsPrice = goodsPrice;
     }
 
-    public String getGoodName() {
-        return goodName;
+    public String getGoodsName() {
+        return goodsName;
     }
 
-    public void setGoodName(String goodName) {
-        this.goodName = goodName;
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
     }
 
-    public String getGoodQuality() {
-        return goodQuality;
+    public String getGoodsQuality() {
+        return goodsQuality;
     }
 
-    public void setGoodQuality(String goodQuality) {
-        this.goodQuality = goodQuality;
+    public void setGoodsQuality(String goodsQuality) {
+        this.goodsQuality = goodsQuality;
     }
 
-    public int getGoodTag() {
-        return goodTag;
+    public int getGoodsTag() {
+        return goodsTag;
     }
 
-    public void setGoodTag(int goodTag) {
-        this.goodTag = goodTag;
+    public void setGoodsTag(int goodsTag) {
+        this.goodsTag = goodsTag;
     }
 
     public PhotokeyBean[] getPhotos() {
@@ -185,20 +185,20 @@ public class GoodsModel implements IModel<GoodsModel>{
     public void setCommentsCount(int comments_count) {
         this.commentsCount = comments_count;
     }
-    public String getPostUserAvator() {
-        return postUserAvator;
+    public String getPostUserAvatar() {
+        return postUserAvatar;
     }
 
-    public void setPostUserAvator(String postUserAvator) {
-        this.postUserAvator = postUserAvator;
+    public void setPostUserAvatar(String postUserAvatar) {
+        this.postUserAvatar = postUserAvatar;
     }
 
-    public String getPostUserName() {
-        return postUserName;
+    public String getPostNickName() {
+        return postNickName;
     }
 
-    public void setPostUserName(String postUserName) {
-        this.postUserName = postUserName;
+    public void setPostNickName(String postNickName) {
+        this.postNickName = postNickName;
     }
 
 

@@ -39,7 +39,7 @@
         android:orientation="horizontal"
         android:background="#55ffffff"
         android:layout_gravity="bottom">
-        <EditText
+        <cn.edu.jxnu.awesome_campus.view.customEdittext.ContainsEmojiEditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"

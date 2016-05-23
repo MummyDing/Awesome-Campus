@@ -44,13 +44,14 @@ import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadCommentUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
+import cn.edu.jxnu.awesome_campus.view.customEdittext.ContainsEmojiEditText;
 
 /**
  * Created by KevinWu on 16-5-13.
  */
 public class GoodsCommentActivity extends BaseToolbarActivity {
     public static final String TAG="GoodsCommentActivity";
-    private EditText commentEditText;
+    private ContainsEmojiEditText commentEditText;
     private String title="评论区";//测试用，正式版用string
     private int postID;
     private AppCompatImageButton sendCommentBT;
@@ -95,7 +96,7 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
         progressBar=(ProgressBar)findViewById(R.id.progressbar);
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        commentEditText=(EditText)findViewById(R.id.et_comment);
+        commentEditText=(ContainsEmojiEditText)findViewById(R.id.et_comment);
         sendCommentBT=(AppCompatImageButton)findViewById(R.id.bt_sendcomment);
     }
 

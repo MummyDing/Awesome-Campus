@@ -48,11 +48,14 @@ public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAd
     public void onBindViewHolder(VH holder, int position) {
         final GoodsModel model=getItem(position);
         holder.time.setText(model.getTimestamp());
-        holder.goodName.setText(model.getGoodName());
-        holder.goodPrice.setText(model.getGoodPrice()+"");
-        if(model.getPhotos()!=null&&model.getPhotos().length>0)
+        holder.goodName.setText(model.getGoodsName());
+        holder.goodPrice.setText(model.getGoodsPrice()+"");
+        if(model.getPhotos()!=null&&model.getPhotos().length>0){
             holder.goodFirstImg.setImageURI(Uri.parse(JxnuGoApi.BasePicUrl+model.getPhotos()[0].getKey()));
-
+        }
+        else{
+            holder.goodFirstImg.setVisibility(View.GONE);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -27,8 +27,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
 
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 
@@ -92,6 +95,7 @@ public class MainActivity extends BaseActivity implements HomeView{
     private Settings mSettings = Settings.getsInstance();
     private MenuItem notifyMenu,searchMenu,newGoodsMenu,userInfoMenu;
     private int nowDrawID=DrawerItem.HOME.getId();
+    private CheckBox educationCheckBox,libraryCheckBox,jxnugoCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -215,18 +219,35 @@ public class MainActivity extends BaseActivity implements HomeView{
     }
 
     private void showLogoutDialog(){
+        LayoutInflater inflater = LayoutInflater.from(this);// 渲染器
+        View view= inflater.inflate(R.layout.widget_logout_layout,
+                null);
+        initview(view);
         AlertDialog dialog =  new AlertDialog.Builder(this)
-                .setIcon(R.drawable.logo)
-                .setTitle(getString(R.string.logout))
-                .setMessage(getString(R.string.notify_sure_to_logout))
-                .setNeutralButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+//                .setIcon(R.drawable.logo)
+                .setTitle(getString(R.string.logout_title))
+//                .setMultiChoiceItems()
+//                .setMessage(getString(R.string.notify_sure_to_logout))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        EducationLoginUtil.clearCookie();
-                        LibraryLoginUtil.clearCookie();
+                        if (educationCheckBox.isChecked()){
+                            EducationLoginUtil.clearCookie();
+                            DatabaseHelper.clearUserData();
+                        }
+                        if(libraryCheckBox.isChecked()){
+                            LibraryLoginUtil.clearCookie();
+                            DatabaseHelper.clearLibraryData();
+                        }
+                        if(jxnugoCheckBox.isChecked())
                         JxnuGoLoginUtil.clearInfo();
-                        presenter.updateHeader(MainActivity.this);
-                        DatabaseHelper.clearUserData();
+
+                        if(!LibraryLoginUtil.isLogin()&&
+                                !EducationLoginUtil.isLogin()&&
+                                !LibraryLoginUtil.isLogin()){
+                            presenter.updateHeader(MainActivity.this);
+                        }
+
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -235,6 +256,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                         dialog.dismiss();
                     }
                 }).create();
+        dialog.setView(view);
         dialog.getWindow().setLayout(3*DisplayUtil.getScreenWidth(this)/4,-2);
         dialog.show();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -243,6 +265,35 @@ public class MainActivity extends BaseActivity implements HomeView{
                 presenter.updateSelectedToHome();
             }
         });
+    }
+
+    /**
+     * 设置注销对话框view
+     * @param view
+     * @return
+     */
+    private void initview(View view) {
+        educationCheckBox=(CheckBox)view.findViewById(R.id.education_checkBox);
+        libraryCheckBox=(CheckBox)view.findViewById(R.id.library_checkBox);
+        jxnugoCheckBox=(CheckBox)view.findViewById(R.id.jxnugo_checkBox);
+        if(EducationLoginUtil.isLogin()){
+            educationCheckBox.setEnabled(true);
+        }else{
+            educationCheckBox.setEnabled(false);
+        }
+        if(LibraryLoginUtil.isLogin()){
+            libraryCheckBox.setEnabled(true);
+        }else{
+            libraryCheckBox.setEnabled(false);
+        }
+        if(JxnuGoLoginUtil.isLogin()){
+            jxnugoCheckBox.setEnabled(true);
+        }else{
+            jxnugoCheckBox.setEnabled(false);
+        }
+
+
+
     }
 
     private void switchFragment(TopNavigationFragment fragment, String title){

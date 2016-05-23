@@ -152,6 +152,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         clearTable(CourseInfoTable.NAME);
         clearTable(CourseScoreTable.NAME);
         clearTable(ExamTimeTable.NAME);
+    }
+    public static void clearLibraryData(){
         clearTable(BookBorrowedTable.NAME);
     }
 

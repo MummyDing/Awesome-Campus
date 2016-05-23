@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.tendcloud.tenddata.TCAgent;
 
@@ -46,6 +47,7 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
     private ProgressBar progressBar;
     private BaseListAdapter adapter;
     private RecyclerView recyclerView;
+    private TextView tips;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +67,11 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
         switch (type){
             case 0:
                 LodingGoodsListUtil.getCGoodsList(this,userID);
+                tips.setText("暂无收藏的商品");
                 break;
             case 1:
                 LodingGoodsListUtil.getPGoodsList(this,userID);
+                tips.setText("暂无发布的商品");
                 break;
         }
     }
@@ -87,6 +91,7 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
         progressBar=(ProgressBar)findViewById(R.id.progressbar);
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tips=(TextView)findViewById(R.id.tips);
     }
     private void hideLoading() {
         progressBar.setVisibility(View.GONE);
@@ -101,16 +106,25 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
     public void onEventMainThread(EventModel eventModel) {
         switch (eventModel.getEventCode()){
             case EVENT.USERPOST_REFRESH_FAILURE:
-                //暂时不做处理
+                tips.setText("网络错误");
+                tips.setVisibility(View.VISIBLE);
                 break;
             case EVENT.USERPOST_REFRESH_SUCCESS:
             case EVENT.USERCOLLECT_REFRESH_SUCCESS:
                 Log.d(TAG,"成功");
                 List<UserCPListBean> list = (List<UserCPListBean>)eventModel.getDataList();
-                if(type==0)
-                adapter.newList(Arrays.asList(list.get(0).getCollectionPost()));
-                else if(type==1)
+                if(type==0){
+                    if(list.get(0).getCollectionPost().length>0)
+                    adapter.newList(Arrays.asList(list.get(0).getCollectionPost()));
+                    else
+                        tips.setVisibility(View.VISIBLE);
+                }
+                else if(type==1){
+                    if(list.get(0).getUserPosts().length>0)
                     adapter.newList(Arrays.asList(list.get(0).getUserPosts()));
+                    else
+                        tips.setVisibility(View.VISIBLE);
+                }
                 hideLoading();
                 break;
         }

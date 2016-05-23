@@ -1,10 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -16,11 +13,9 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
-import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.tendcloud.tenddata.TCAgent;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
@@ -33,7 +28,6 @@ import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadCollectingStatusUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseEventWebViewActivity;
-import cn.edu.jxnu.awesome_campus.view.widget.circleview.AvatarImageView;
 
 /**
  * Created by KevinWu on 16-5-12.
@@ -69,20 +63,20 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     @Override
     protected void onDataRefresh() {
         tvTime.setText(model.getTimestamp());
-        tvUserName.setText(model.getPostUserName());
-        if (model.getPostUserAvator() != null) {
-            avatarImageView.setImageURI(Uri.parse(model.getPostUserAvator()));
-            Log.d(TAG, "取得的帖子发布者头像信息" + model.getPostUserAvator());
+        tvUserName.setText(model.getPostNickName());
+        if (model.getPostUserAvatar() != null) {
+            avatarImageView.setImageURI(Uri.parse(model.getPostUserAvatar()));
+            Log.d(TAG, "取得的帖子发布者头像信息" + model.getPostUserAvatar());
         }
         data = "<div class=\"main-wrap content-wrap\">" +
                 "<h1 class=\"question-title\">"
-                + model.getGoodName() + "</h1>\n\n" +
+                + model.getGoodsName() + "</h1>\n\n" +
                 "<div class=\"answer\">"
                 + "<div class=\"content\">\n" +
-                "<p>" + goodPrice + model.getGoodPrice() + "￥</p>" +
-                "<p>" + goodBuyTime + model.getGoodBuyTime() + "</p>" +
-                "<p>" + goodQuality + model.getGoodQuality() + "</p>" +
-                "<p>" + goodLocation + model.getGoodLocation() + "</p>" +
+                "<p>" + goodPrice + model.getGoodsPrice() + "￥</p>" +
+                "<p>" + goodBuyTime + model.getGoodsBuyTime() + "</p>" +
+                "<p>" + goodQuality + model.getGoodsQuality() + "</p>" +
+                "<p>" + goodLocation + model.getGoodsLocation() + "</p>" +
                 "<p>" + goodContact + model.getContact() + "</p>" +
                 "<p>" + model.getBody() + "</p>";
 //        Log.d(TAG,"取得的图片数组大小"+model.getPhoto().length);
@@ -206,7 +200,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
      * @return
      */
     private String getShareInfo() {
-        String info="我在江西师大的专属二手市场发现了件不错的商品——【"+model.getGoodName()+"】，你也来看看吧：";
+        String info="我在江西师大的专属二手市场发现了件不错的商品——【"+model.getGoodsName()+"】，你也来看看吧：";
         info =info+JxnuGoApi.BaseTradeURL+model.getPostId();
         info = info+"(分享自 师大+)";
         return info;

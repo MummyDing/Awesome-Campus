@@ -95,7 +95,6 @@ public class GoodsListFragment  extends BaseListFragment {
     @Override
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
-
         switch (eventModel.getEventCode()){
             case EVENT.GOODS_LIST_REFRESH_SUCCESS:
                 initData(eventModel.getDataList());
@@ -103,6 +102,7 @@ public class GoodsListFragment  extends BaseListFragment {
                 break;
             case EVENT.GOODS_LIST_REFRESH_FAILURE:
                 hideLoading();
+                displayNetworkError();
                 break;
             case EVENT.FINISH_GOODS_SEND:
                 goodsModel.loadFromCache();
