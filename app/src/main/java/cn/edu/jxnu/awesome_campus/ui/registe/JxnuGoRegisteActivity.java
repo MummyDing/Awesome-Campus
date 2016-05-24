@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -33,7 +34,8 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
     private EditText mVerityPasswordEt;
     private Button mRegisteBtn;
     private AppCompatButton mBackButton;
-    private LinearLayout contentLayout,finishLayout;
+    private LinearLayout contentLayout, finishLayout;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,10 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
         mPasswordEt = (EditText) findViewById(R.id.et_password);
         mVerityPasswordEt = (EditText) findViewById(R.id.et_verifyPassword);
         mRegisteBtn = (Button) findViewById(R.id.registeBtn);
-        mBackButton=(AppCompatButton)findViewById(R.id.back_button);
-        contentLayout=(LinearLayout)findViewById(R.id.content_layout);
-        finishLayout=(LinearLayout)findViewById(R.id.finish_layout);
+        mBackButton = (AppCompatButton) findViewById(R.id.back_button);
+        contentLayout = (LinearLayout) findViewById(R.id.content_layout);
+        finishLayout = (LinearLayout) findViewById(R.id.finish_layout);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         setupToolbar();
 //        setupEditTexts();
         setupButton();
@@ -100,22 +103,23 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
             @Override
             public void onClick(View v) {
                 if (mUsernameEt.getText().toString().equals("") || null == mUsernameEt.getText()
-                        || mEmailEt.getText().toString().equals("")|| null == mEmailEt.getText()
+                        || mEmailEt.getText().toString().equals("") || null == mEmailEt.getText()
                         || mPasswordEt.getText().toString().equals("") || null == mPasswordEt.getText()
-                        || mVerityPasswordEt.getText().toString().equals("") || null == mVerityPasswordEt.getText())
-                {
-                    Snackbar.make(getCurrentFocus(), "请输入完整信息！",Snackbar.LENGTH_SHORT).show();
+                        || mVerityPasswordEt.getText().toString().equals("") || null == mVerityPasswordEt.getText()) {
+                    Snackbar.make(getCurrentFocus(), "请输入完整信息！", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (!JxnuGoRegisteUtil.verifyEmail(mEmailEt)) {
-                    Snackbar.make(getCurrentFocus(), "邮箱不合法，请重新输入！",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(getCurrentFocus(), "邮箱不合法，请重新输入！", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (!JxnuGoRegisteUtil.verifyPassword(mPasswordEt, mVerityPasswordEt)) {
-                    Snackbar.make(getCurrentFocus(), "两次密码不一致，请重新输入！",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(getCurrentFocus(), "两次密码不一致，请重新输入！", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                Log.d("开始注册","--");
+                Log.d("开始注册", "--");
+                mRegisteBtn.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 JxnuGoRegisteUtil.onRegiste(mUsernameEt.getText().toString(),
                         mEmailEt.getText().toString(),
                         mPasswordEt.getText().toString());
@@ -138,16 +142,23 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
                 finishLayout.setVisibility(View.VISIBLE);
                 break;
             case EVENT.JXNUGO_REGISTER_FAILURE:
-                Snackbar.make(getCurrentFocus(), "注册失败，请稍后再试！",Snackbar.LENGTH_SHORT).show();
-                        break;
+                Snackbar.make(getCurrentFocus(), "注册失败，请稍后再试！", Snackbar.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                mRegisteBtn.setVisibility(View.VISIBLE);
+                break;
             case EVENT.JXNUGO_REGISTER_FAILURE_SAME_NAME:
-                Snackbar.make(getCurrentFocus(), "用户名已被注册，请更换后重试",Snackbar.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                mRegisteBtn.setVisibility(View.VISIBLE);
+                Snackbar.make(getCurrentFocus(), "用户名已被注册，请更换后重试", Snackbar.LENGTH_SHORT).show();
                 break;
             case EVENT.JXNUGO_REGISTER_FAILURE_SAME_EMAIL:
-                Snackbar.make(getCurrentFocus(), "邮箱已被注册，请更换后重试",Snackbar.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                mRegisteBtn.setVisibility(View.VISIBLE);
+                Snackbar.make(getCurrentFocus(), "邮箱已被注册，请更换后重试", Snackbar.LENGTH_SHORT).show();
                 break;
         }
     }
+
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
