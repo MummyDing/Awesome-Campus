@@ -38,6 +38,7 @@ import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import br.com.mauker.materialsearchview.MaterialSearchView;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.life.WeatherInfoDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -93,9 +94,10 @@ public class MainActivity extends BaseActivity implements HomeView{
     private FragmentTransaction fragmentTransaction;
     public static HomePresenter presenter;
     private Settings mSettings = Settings.getsInstance();
-    private MenuItem notifyMenu,searchMenu,newGoodsMenu,userInfoMenu;
+    private MenuItem notifyMenu,searchMenu,newGoodsMenu,userInfoMenu,searchGoods;
     private int nowDrawID=DrawerItem.HOME.getId();
     private CheckBox educationCheckBox,libraryCheckBox,jxnugoCheckBox;
+    private MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -391,13 +393,13 @@ public class MainActivity extends BaseActivity implements HomeView{
                 nowDrawID=DrawerItem.HOME.getId();;
                 break;
         }
-        Log.d(TAG,"onEventMainThread"+eventModel.getEventCode());
+//        Log.d(TAG,"onEventMainThread"+eventModel.getEventCode());
         setMenu();
     }
 
-    private void updateNotifyMenu(int data) {
-        setNotify(data);
-    }
+//    private void updateNotifyMenu(int data) {
+//        setNotify(data);
+//    }
 
 
     @Override
@@ -409,6 +411,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         notifyMenu=menu.findItem(R.id.menu_notify);
         searchMenu=menu.findItem(R.id.menu_search);
         userInfoMenu=menu.findItem(R.id.menu_user_info);
+        searchGoods=menu.findItem(R.id.menu_search_goods);
         Log.d(TAG,"初始化菜单");
         setMenu();
         return true;
@@ -423,6 +426,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             searchMenu=menu.findItem(R.id.menu_search);
             newGoodsMenu=menu.findItem(R.id.menu_new_goods);
             userInfoMenu=menu.findItem(R.id.menu_user_info);
+            searchGoods=menu.findItem(R.id.menu_search_goods);
         if(nowDrawID==DrawerItem.HOME.getId()){
             Log.d(TAG,"主页菜单切换");
             notifyMenu.setVisible(true);
@@ -435,8 +439,14 @@ public class MainActivity extends BaseActivity implements HomeView{
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         }else if(nowDrawID==DrawerItem.JXNUGO.getId()){
             Log.d(TAG,"二手菜单切换");
-            if(JxnuGoLoginUtil.isLogin())
-            newGoodsMenu.setVisible(true);
+            if(JxnuGoLoginUtil.isLogin()){
+                newGoodsMenu.setVisible(true);
+                searchGoods.setVisible(true);
+                searchView = (MaterialSearchView) findViewById(R.id.search_view);
+
+
+            }
+
             userInfoMenu.setVisible(true);
         }}
     }
@@ -481,6 +491,10 @@ public class MainActivity extends BaseActivity implements HomeView{
                     });
                     setMenu();
                 }
+                break;
+            case R.id.menu_search_goods:
+                searchView.openSearch();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -491,7 +505,10 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     public void onBackPressed() {
-        if(presenter.isDrawerOpen()){
+        if (searchView.isOpen()) {
+            // Close the search on the back button press.
+            searchView.closeSearch();
+        }if(presenter.isDrawerOpen()){
             presenter.closeDrawer();
         }else if(canExit()){
             super.onBackPressed();
@@ -524,18 +541,14 @@ public class MainActivity extends BaseActivity implements HomeView{
             }
         }
         Log.d(TAG,"onResume");
-//        setMenu();
+        setMenu();
     }
-    private void hideAllMenu(){
-        notifyMenu.setVisible(false);
-        newGoodsMenu.setVisible(false);
-        notifyMenu.setVisible(false);
-    }
+
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
         PollingUtils.stopPollingService(this,NotifyService.class,NotifyService.ACTION);
-//        TCAgent.onPageEnd(InitApp.AppContext, TAG);
+//        TCAgent.onPageEnd(InitApp.AppContext, TAG);加用户统计会导致小部件异常
         super.onDestroy();
     }
 }

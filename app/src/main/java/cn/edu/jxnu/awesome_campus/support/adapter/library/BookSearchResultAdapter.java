@@ -66,9 +66,6 @@ public class BookSearchResultAdapter extends BaseListAdapter<BookSearchResultMod
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(mContext, SearchResultDialog.class);
-//                EventBus.getDefault().postSticky(new EventModel<BookSearchResultModel>(EVENT.BOOK_RESULT_DETAILS,model));
-//                mContext.startActivity(intent);
                 holder.fc.toggle(false);
             }
         });
