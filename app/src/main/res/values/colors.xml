@@ -79,4 +79,10 @@
     <color name="nightTextColorHighlight">#fff</color>
     <color name="nightBackgroundColor">#343434</color>
 
+
+
+    <!--searchView所用-->
+    <color name="theme_primary_text_inverted">#ffffff</color>
+    <color name="theme_secondary_text_inverted">#8affffff</color>
 </resources>
+

@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.support.utils.jxnugo;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.squareup.okhttp.Headers;
 
@@ -15,11 +16,13 @@ import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsListBean;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.SearchKeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCPListBean;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallback;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCodeCallback;
 
 /**
  * Created by KevinWu on 16-5-20.
@@ -195,4 +198,63 @@ public class LodingGoodsListUtil {
             });
         }
     }
+
+
+    /**
+     * 根据可以返回搜索结果
+     * @param context
+     * @param key
+     */
+     public static void searchByKey(Context context,String key){
+         final Handler handler = new Handler(Looper.getMainLooper());
+         SearchKeyBean bean=new SearchKeyBean(key);
+         NetManageUtil.postAuthJson(JxnuGoApi.BaseSearchUrl)
+                 .addUserName(getUserName(context))
+                 .addPassword(getPassword(context))
+                 .addJsonObject(bean)
+                 .addTag(TAG)
+                 .enqueue(new JsonCodeEntityCallback<GoodsListBean>() {
+                     @Override
+                     public void onSuccess(GoodsListBean entity, int responseCode, Headers headers) {
+                         if(responseCode==200&&entity!=null){
+                             final List<GoodsListBean> list = Arrays.asList(entity);
+                             handler.post(new Runnable() {
+                                 @Override
+                                 public void run() {
+                                     EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.JXNUGO_SEARCH_GOODS_SUCCESS,list));
+                                 }
+                             });
+                         }else{
+                             handler.post(new Runnable() {
+                                 @Override
+                                 public void run() {
+                                     EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_SEARCH_GOODS_FAILURE));
+                                 }
+                             });
+                         }
+                     }
+
+                     @Override
+                     public void onFailure(String error) {
+                         handler.post(new Runnable() {
+                             @Override
+                             public void run() {
+                                 EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_SEARCH_GOODS_FAILURE));
+                             }
+                         });
+                     }
+                 });
+//         .enqueue(new StringCodeCallback() {
+//             @Override
+//             public void onSuccess(String result, int responseCode, Headers headers) {
+//                 Log.d(TAG,"状态码为："+responseCode);
+//                 Log.d(TAG,"内容为："+result);
+//             }
+//
+//             @Override
+//             public void onFailure(String error) {
+//
+//             }
+//         });
+     }
 }

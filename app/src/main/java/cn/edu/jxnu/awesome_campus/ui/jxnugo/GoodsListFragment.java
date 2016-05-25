@@ -129,14 +129,11 @@ public class GoodsListFragment  extends BaseListFragment {
         for(int i=0;i<tempNextList.get(0).getPosts().length;i++)
             tempNextAL.add(tempNextList.get(0).getPosts()[i]);
         addItems(tempNextAL);
-//        Log.d("loadNextPage",nexPage);
-//        Log.d("loadNextPage","当前mCurrentCounter "+mCurrentCounter);
-//        Log.d(TAG,"当前TOTAL_COUNTER "+TOTAL_COUNTER);
         notifyDataSetChanged();
     }
 
     /**
-     * FrstLoad DATA
+     * FirstLoad DATA
      * @param tempList
      */
     private void initData(List<GoodsListBean> tempList) {
@@ -193,12 +190,9 @@ public class GoodsListFragment  extends BaseListFragment {
      */
     private void requestData() {
         final Handler handler = new Handler(Looper.getMainLooper());
-//        Log.d(TAG,"请求数据");
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String userName = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
         String password = spu.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.PASSWORD);
-//        mHandler.sendEmptyMessage(-1);
-//        Log.d(TAG,"正在加载的页面为："+nexPage);
         NetManageUtil.getAuth(nexPage)
                 .addUserName(userName)
                 .addPassword(password)
@@ -214,18 +208,12 @@ public class GoodsListFragment  extends BaseListFragment {
                     public void onSuccess(GoodsListBean entity, Headers headers) {
                         if (entity != null) {
                             final List<GoodsListBean> list = Arrays.asList(entity);
-//                            loadNextPage(list);
-//                            Log.d(TAG,"当前mCurrentCounter "+mCurrentCounter);
-//                            Log.d(TAG,"当前TOTAL_COUNTER "+TOTAL_COUNTER);
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-//                                    EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_NEXTPAGE_REFRESH_SUCCESS, list));
                                     loadNextPage(list);
                                 }
                             });
-                        } else {
-//                            EventBus.getDefault().post(new EventModel<GoodsListBean>(EVENT.GOODS_LIST_NEXTPAGE_REFRESH_FAILURE));
                         }
                     }
                 });

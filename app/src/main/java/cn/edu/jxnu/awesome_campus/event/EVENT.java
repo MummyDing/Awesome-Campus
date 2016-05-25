@@ -69,9 +69,9 @@ public class EVENT {
     // Education Login
     public static final int EDUCATION_LOGIN_SUCCESS = 28;
     public static final int EDUCATION_LOGIN_FAILURE_NO_ID = 29;
-    public static final int EDUCATION_LOGIN_FAILURE_PASSWORD_INCORRECT=30;
-    public static final int EDUCATION_LOGIN_FAILURE_NULL_INPUT=31;
-    public static final int EDUCATION_LOGIN_FAILURE_NETWORK_ERROR=32;
+    public static final int EDUCATION_LOGIN_FAILURE_PASSWORD_INCORRECT = 30;
+    public static final int EDUCATION_LOGIN_FAILURE_NULL_INPUT = 31;
+    public static final int EDUCATION_LOGIN_FAILURE_NETWORK_ERROR = 32;
     public static final int EDUCATION_LOGIN_SERVER_ERROR = 4433;
 
 
@@ -88,11 +88,10 @@ public class EVENT {
     public static final int FILM_DETAILS_REFRESH_FAILURE = 38;
 
     //Library Login
-    public static final int LIBRARY_LOGIN_SUCCESS=39;
-    public static final int LIBRARY_LOGIN_FAILURE=40;
-    public static final int LIBRARY_LOGIN_FAILURE_NETWORKERROR=41;
-    public static final int LIBRARY__LOGIN_FAILURE_NULL_INPUT=42;
-
+    public static final int LIBRARY_LOGIN_SUCCESS = 39;
+    public static final int LIBRARY_LOGIN_FAILURE = 40;
+    public static final int LIBRARY_LOGIN_FAILURE_NETWORKERROR = 41;
+    public static final int LIBRARY__LOGIN_FAILURE_NULL_INPUT = 42;
 
 
     //BookBorrowed
@@ -109,10 +108,10 @@ public class EVENT {
     public static final int CAMPUS_EXPRESS_FAILURE = 48;
 
     //SelfStudyRoom Login
-    public static final int SELFSTUDYROOM_LOGIN_SUCCESS=49;
-    public static final int SELFSTUDYROOM_LOGIN_FAILURE=50;
-    public static final int SELFSTUDYROOM_LOGIN_FAILURE_NETWORKERROR=51;
-    public static final int SELFSTUDYROOM_LOGIN_FAILURE_NULL_INPUT=52;
+    public static final int SELFSTUDYROOM_LOGIN_SUCCESS = 49;
+    public static final int SELFSTUDYROOM_LOGIN_FAILURE = 50;
+    public static final int SELFSTUDYROOM_LOGIN_FAILURE_NETWORKERROR = 51;
+    public static final int SELFSTUDYROOM_LOGIN_FAILURE_NULL_INPUT = 52;
 
 
     //hot search result
@@ -133,101 +132,106 @@ public class EVENT {
     public static final int SELF_STUDY_SEATS_REFRESH_FAILURE = 60;
 
 
-
     //图书续借code
-    public static final int LIBRARY_RENEW_SUCCESS=63;
-    public static final int LIBRARY_RENEW_FAILURE=64;
+    public static final int LIBRARY_RENEW_SUCCESS = 63;
+    public static final int LIBRARY_RENEW_FAILURE = 64;
 
     //商品列表加载code
-    public static final int GOODS_LIST_REFRESH_SUCCESS =65;
-    public static final int GOODS_LIST_REFRESH_FAILURE =66;
+    public static final int GOODS_LIST_REFRESH_SUCCESS = 65;
+    public static final int GOODS_LIST_REFRESH_FAILURE = 66;
 
 
     //商品详情跳转
-    public static final int GOODS_DETAIL_INTENT=67;
+    public static final int GOODS_DETAIL_INTENT = 67;
 
     //商品评论区
-    public static final int GOODS_COMMENT_REFRESH_SUCCESS=68;
-    public static final int GOODS_COMMENT_REFRESH_FAILURE=69;
+    public static final int GOODS_COMMENT_REFRESH_SUCCESS = 68;
+    public static final int GOODS_COMMENT_REFRESH_FAILURE = 69;
 
 
     //上传图片
-    public static final int GOODS_IMAGES_UPLOAD_SUCCESS=70;
-    public static final int GOODS_IMAGES_UPLOAD_FAIL=71;
+    public static final int GOODS_IMAGES_UPLOAD_SUCCESS = 70;
+    public static final int GOODS_IMAGES_UPLOAD_FAIL = 71;
 
     //上传帖子
-    public static final int POST_UPLOAD_SUCCESS=72;
-    public static final int POST_UPLOAD_FAIL=73;
+    public static final int POST_UPLOAD_SUCCESS = 72;
+    public static final int POST_UPLOAD_FAIL = 73;
 
     //帖子评论
-    public static final int POST_COMMENT_SUCCESS=76;
-    public static final int POST_COMMENT_FAILURE=77;
-    public static final int COMMENT_TRIGGER=78;//触发评论
+    public static final int POST_COMMENT_SUCCESS = 76;
+    public static final int POST_COMMENT_FAILURE = 77;
+    public static final int COMMENT_TRIGGER = 78;//触发评论
 
     //收藏帖子返回的状态码
-    public static final int POST_COLLECT_SUCCESS=79;
-    public static final int POST_COLLECT_FAILURE=80;
+    public static final int POST_COLLECT_SUCCESS = 79;
+    public static final int POST_COLLECT_FAILURE = 80;
 
     //判断帖子是否已收藏返回的状态码
-    public static final int JUDGE_COLLECT_TRUE=81;//已收藏
-    public static final int JUDGE_COLLECT_FALSE=82;//未收藏
+    public static final int JUDGE_COLLECT_TRUE = 81;//已收藏
+    public static final int JUDGE_COLLECT_FALSE = 82;//未收藏
 
     //JXNUGO登录的状态码
-    public static final int JXNUGO_LOGIN_SUCCESS=83;
-    public static final int JXNUGO_LOGIN_FAILURE=84;
+    public static final int JXNUGO_LOGIN_SUCCESS = 83;
+    public static final int JXNUGO_LOGIN_FAILURE = 84;
 
     //跳转到已经登录了的用户个人信息
-    public static final int JUMP_TO_LOGIN_JXNUGO_USERINFO=85;
+    public static final int JUMP_TO_LOGIN_JXNUGO_USERINFO = 85;
 
     //图片上传相关
-    public static final int IMAGES_UPLOAD_FAILURE=86;
-    public static final int IMAGES_UPLOAD_SUCCESS=87;
+    public static final int IMAGES_UPLOAD_FAILURE = 86;
+    public static final int IMAGES_UPLOAD_SUCCESS = 87;
 
     //个人信息修改
-    public static final int UPDATE_USER_INFO_SUCCESS=88;
-    public static final int UPDATE_USER_INFO_FAILURE=89;
+    public static final int UPDATE_USER_INFO_SUCCESS = 88;
+    public static final int UPDATE_USER_INFO_FAILURE = 89;
 
     //商品列表activity页（收藏和发布的商品）
     //商品列表加载下一页
-    public static final int USERCOLLECT_REFRESH_SUCCESS =74;
-    public static final int USERCOLLECT_REFRESH_FAILURE=75;
-    public static final int USERPOST_REFRESH_SUCCESS=90;
-    public static final int USERPOST_REFRESH_FAILURE=91;
+    public static final int USERCOLLECT_REFRESH_SUCCESS = 74;
+    public static final int USERCOLLECT_REFRESH_FAILURE = 75;
+    public static final int USERPOST_REFRESH_SUCCESS = 90;
+    public static final int USERPOST_REFRESH_FAILURE = 91;
 
     //判断用户是否被当前用户收藏返回的状态码
-    public static final int JUDGE_FOLLOW_TRUE=92;//已关注
-    public static final int JUDGE_FOLLOW_FALSE=93;//未关注
+    public static final int JUDGE_FOLLOW_TRUE = 92;//已关注
+    public static final int JUDGE_FOLLOW_FALSE = 93;//未关注
 
 
     //图书馆补充状态码
-    public static final int LIBRARY_GET_COOKIE_SUCCESS=94;
+    public static final int LIBRARY_GET_COOKIE_SUCCESS = 94;
 
     //完成商品发布
-    public static final int FINISH_GOODS_SEND=95;
+    public static final int FINISH_GOODS_SEND = 95;
 
 
     //JXNUGO注册相关状态码
-    public static final int JXNUGO_REGISTER_SUCCESS=96;
-    public static final int JXNUGO_REGISTER_FAILURE=97;
+    public static final int JXNUGO_REGISTER_SUCCESS = 96;
+    public static final int JXNUGO_REGISTER_FAILURE = 97;
 
     //JXNUGO根据标签获取货物列表相关状态码
-    public static final int JXNUGO_TAG_GOODS_LIST_REFRESH_SUCCESS=98;
-    public static final int JXNUGO_TAG_GOODS_LIST_REFRESH_FAILURE=99;
+    public static final int JXNUGO_TAG_GOODS_LIST_REFRESH_SUCCESS = 98;
+    public static final int JXNUGO_TAG_GOODS_LIST_REFRESH_FAILURE = 99;
 
 
     //反馈
-    public static final int FEEDBACK_SUCCESS=100;
-    public static final int FEEDBACK_FAILURE=101;
+    public static final int FEEDBACK_SUCCESS = 100;
+    public static final int FEEDBACK_FAILURE = 101;
 
     //JXNUGO注册补充
-    public static final int JXNUGO_REGISTER_FAILURE_SAME_NAME=102;
-    public static final int JXNUGO_REGISTER_FAILURE_SAME_EMAIL=103;
+    public static final int JXNUGO_REGISTER_FAILURE_SAME_NAME = 102;
+    public static final int JXNUGO_REGISTER_FAILURE_SAME_EMAIL = 103;
 
     //用户信息补充
-    public static final int JXNUGO_REFRESH_USERINFO_TRIGGER=104;
+    public static final int JXNUGO_REFRESH_USERINFO_TRIGGER = 104;
 
-//    JXNUGO补充
-public static final int JXNUGO_LOGIN_FAILURE_SEVER_ERROR=105;
+    //JXNUGO登录补充
+    public static final int JXNUGO_LOGIN_FAILURE_SEVER_ERROR = 105;
+
+    //根据关键字查询商品状态码
+    public static final int JXNUGO_SEARCH_GOODS_SUCCESS=106;
+    public static final int JXNUGO_SEARCH_GOODS_FAILURE =107;
+
+
     /**
      * Cache Event Code
      */
@@ -297,19 +301,18 @@ public static final int JXNUGO_LOGIN_FAILURE_SEVER_ERROR=105;
     public static final int WEATHER_INFO_LOAD_CACHE_FAILURE = 2030;
 
 
-
     //Jxnugo uerinfo
-    public  static final int JXNUGO_USERINFO_LOAD_USER=1031;
-    public  static final int JXNUGO_USERINFO_LOAD_USER_SUCCESS=1032;
-    public static final int JXNUGO_USERINFO_LOAD_USER_FALURE=1033;
-    public static final int JXNUGO_LOAD_PEOPLELIST_SUCCESS=1034;
-    public static final int JXNUGO_LOAD_PEOPLELIST_FAILURE=1035;
+    public static final int JXNUGO_USERINFO_LOAD_USER = 1031;
+    public static final int JXNUGO_USERINFO_LOAD_USER_SUCCESS = 1032;
+    public static final int JXNUGO_USERINFO_LOAD_USER_FALURE = 1033;
+    public static final int JXNUGO_LOAD_PEOPLELIST_SUCCESS = 1034;
+    public static final int JXNUGO_LOAD_PEOPLELIST_FAILURE = 1035;
 
-    public  static final  int JXNUGO_FOLLOW_SUCCESS=1036;
-    public static  final  int JXNUGO_FOLLOW_FAILURE=1037;
-    public  static  final  int JXNUGO_UNFOLLOW_SUCCESS=1038;
-    public static final int JXNUGO_UNFOLLOW_FAILURE=1039;
-    public  static final int JXNUGO_USERINFO_LOAD_LOGIN_USER=1040;
+    public static final int JXNUGO_FOLLOW_SUCCESS = 1036;
+    public static final int JXNUGO_FOLLOW_FAILURE = 1037;
+    public static final int JXNUGO_UNFOLLOW_SUCCESS = 1038;
+    public static final int JXNUGO_UNFOLLOW_FAILURE = 1039;
+    public static final int JXNUGO_USERINFO_LOAD_LOGIN_USER = 1040;
 
 
     //Common
@@ -337,12 +340,12 @@ public static final int JXNUGO_LOGIN_FAILURE_SEVER_ERROR=105;
     public static final int HAVE_COURSE = 2009;
 
     //Jump to jxnugo userinfo
-    public  static final  int JUMP_TO_JXNUGO_USERINFO=2010;
+    public static final int JUMP_TO_JXNUGO_USERINFO = 2010;
 
 
-    public static final int JUMP_TO_JXNUGO=2011;
+    public static final int JUMP_TO_JXNUGO = 2011;
 
-    public  static final int JUMP_TO_JXNUGO_LOAD_POEPLE=2012;
+    public static final int JUMP_TO_JXNUGO_LOAD_POEPLE = 2012;
     public static final int SWIPE_TO_JXNUGO_LOGIN = 2013;
     public static final int JUMP_TO_JXNUGO_LOGIN = 2014;
 
