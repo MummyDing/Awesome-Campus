@@ -33,12 +33,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-import br.com.mauker.materialsearchview.MaterialSearchView;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.life.WeatherInfoDAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -65,6 +64,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.GoodsSearchResultActivity;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnuGoUserinfoActivity;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.NewGoodsActivity;
@@ -442,9 +442,7 @@ public class MainActivity extends BaseActivity implements HomeView{
             if(JxnuGoLoginUtil.isLogin()){
                 newGoodsMenu.setVisible(true);
                 searchGoods.setVisible(true);
-                searchView = (MaterialSearchView) findViewById(R.id.search_view);
-
-
+                setGoodsSearchView();
             }
 
             userInfoMenu.setVisible(true);
@@ -493,7 +491,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                 }
                 break;
             case R.id.menu_search_goods:
-                searchView.openSearch();
+                searchView.showSearch();
                 break;
         }
 
@@ -505,10 +503,10 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     public void onBackPressed() {
-        if (searchView.isOpen()) {
+        if (searchView.isSearchOpen()) {
             // Close the search on the back button press.
             searchView.closeSearch();
-        }if(presenter.isDrawerOpen()){
+        }else if(presenter.isDrawerOpen()){
             presenter.closeDrawer();
         }else if(canExit()){
             super.onBackPressed();
@@ -550,5 +548,30 @@ public class MainActivity extends BaseActivity implements HomeView{
         PollingUtils.stopPollingService(this,NotifyService.class,NotifyService.ACTION);
 //        TCAgent.onPageEnd(InitApp.AppContext, TAG);加用户统计会导致小部件异常
         super.onDestroy();
+    }
+
+    private void setGoodsSearchView(){
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView.setVoiceSearch(false);
+        searchView.setCursorDrawable(R.drawable.custom_cursor);
+        searchView.setEllipsize(true);
+        searchView.setHint("搜索商品");
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d(TAG,"查询字符串："+query);
+                Intent intent=new Intent(MainActivity.this, GoodsSearchResultActivity.class);
+                intent.putExtra("key",query);
+                startActivity(intent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
     }
 }

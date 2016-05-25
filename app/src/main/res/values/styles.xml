@@ -1,14 +1,4 @@
 <resources>
-    <style name="MaterialSearchViewStyle">
-        <item name="searchBackground">@color/white_ish</item>
-        <item name="searchVoiceIcon">@drawable/ic_action_voice_search</item>
-        <item name="searchCloseIcon">@drawable/ic_action_navigation_close</item>
-        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back</item>
-        <item name="searchSuggestionBackground">@color/search_layover_bg</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorHint">@color/gray_50</item>
-        <item name="android:hint">@string/search_hint</item>
-    </style>
     <!--默认主题-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
