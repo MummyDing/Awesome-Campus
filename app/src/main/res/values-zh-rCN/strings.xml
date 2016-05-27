@@ -278,5 +278,6 @@
     <string name="time_util_day_ago">天前</string>
     <string name="time_util_month_ago">个月前</string>
     <string name="time_util_year_ago">年前</string>
+    <string name="notify_find_in_test">别闹，您是内测用户，肯定是最新的</string>
 
 </resources>

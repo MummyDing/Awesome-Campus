@@ -169,7 +169,7 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
                         public void onSuccess(final String result, Headers headers) {
                             if (SystemUtil.getVersionName().equals(result)) {
                                 Snackbar.make(getView(), getString(R.string.notify_current_is_latest), Snackbar.LENGTH_SHORT).show();
-                            } else {
+                            } else if(result.compareTo(SystemUtil.getVersionName())>0){
 //                                Snackbar.make(getView(), getString(R.string.notify_find_new_version) + result, Snackbar.LENGTH_SHORT).show();
                                 handler.post(new Runnable() {
                                     @Override
@@ -177,6 +177,9 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
                                         showNewVersionDialog(result);
                                     }
                                 });
+
+                            }else{
+                                Snackbar.make(getView(), getString(R.string.notify_find_in_test), Snackbar.LENGTH_SHORT).show();
 
                             }
                             hideLoading();
