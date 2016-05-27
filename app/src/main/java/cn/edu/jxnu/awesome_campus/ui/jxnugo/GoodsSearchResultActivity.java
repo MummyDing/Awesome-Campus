@@ -161,8 +161,9 @@ public class GoodsSearchResultActivity extends BaseToolbarActivity{
     public void onEventMainThread(EventModel eventModel) {
         switch (eventModel.getEventCode()){
             case EVENT.JXNUGO_SEARCH_GOODS_SUCCESS:
-                GoodsListBean list=(GoodsListBean)eventModel.getDataList();
-                if(list.getCount()>0){
+                List<GoodsListBean> list=(List<GoodsListBean>)eventModel.getDataList();
+                Log.d(TAG,"取得的结果条数："+list.get(0).getCount());
+                if(list.get(0).getCount()>0){
                     initData(eventModel.getDataList());
                 }
                 else{
