@@ -170,11 +170,14 @@ public class GoodsSearchResultActivity extends BaseToolbarActivity{
                     initData(eventModel.getDataList());
                 }
                 else{
-
+                    tips.setVisibility(View.VISIBLE);
+                    tips.setText("暂无包含关键字："+keyWord +" 的商品");
                 }
                 hideLoading();
                 break;
             case EVENT.JXNUGO_SEARCH_GOODS_FAILURE:
+                tips.setVisibility(View.VISIBLE);
+                tips.setText("网络错误");
                 hideLoading();
                 break;
         }

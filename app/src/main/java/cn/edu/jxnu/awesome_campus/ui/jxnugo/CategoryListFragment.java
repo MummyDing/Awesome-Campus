@@ -79,6 +79,7 @@ public class CategoryListFragment extends BaseListFragment {
             public void onTagChanged(int tag) {
                 selectedNum=tag;
                 LodingGoodsListUtil.getTagGoodsList(InitApp.AppContext,tag);
+                displayLoading();
             }
         });
         spinnerWrapper.build((MaterialSpinner) parentView.findViewById(R.id.spinner));

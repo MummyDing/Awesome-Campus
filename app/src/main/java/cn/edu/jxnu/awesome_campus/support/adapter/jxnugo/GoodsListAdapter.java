@@ -50,11 +50,20 @@ public class GoodsListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final GoodsModel model=mList.get(position);
         VH vh=(VH)holder;
+
         vh.time.setText(TimeUtil.getJxnuGoPassTime(model.getTimestamp()));
         Log.d(TAG,model.getTimestamp());
         android.support.v7.widget.RecyclerView.LayoutParams lp=(android.support.v7.widget.RecyclerView.LayoutParams)vh.itemView.getLayoutParams();
         lp.width= (int)(DisplayUtil.getScreenWidth(InitApp.AppContext)*0.5);
-        if(position%2!=0)lp.leftMargin=0;
+        if(position%2==0){
+            Log.d("当前的position为","--"+position);
+            Log.d("对应名称为：","--"+model.getGoodsName());
+            lp.rightMargin=0;
+            lp.leftMargin=(int)(DisplayUtil.getScreenWidth(InitApp.AppContext)*0.02);
+        }else{
+            lp.leftMargin=(int)(DisplayUtil.getScreenWidth(InitApp.AppContext)*0.02);
+            lp.rightMargin=(int)(DisplayUtil.getScreenWidth(InitApp.AppContext)*0.02);
+        }
         vh.goodsCard.setLayoutParams(lp);
         vh.goodName.setText(model.getGoodsName());
         vh.goodPrice.setText(model.getGoodsPrice()+"");
