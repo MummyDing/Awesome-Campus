@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -143,7 +144,9 @@ public class GoodsSearchResultActivity extends BaseToolbarActivity{
     private void initView() {
         progressBar=(ProgressBar)findViewById(R.id.progressbar);
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.LayoutManager layoutManager=new GridLayoutManager(InitApp.AppContext,2);
+        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         tips=(TextView)findViewById(R.id.tips);
     }
     private void hideLoading() {

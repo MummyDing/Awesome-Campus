@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.View;
 
@@ -69,6 +70,8 @@ public class GoodsListFragment  extends BaseListFragment {
 
     @Override
     public void initView() {
+        layoutManager=new GridLayoutManager(InitApp.AppContext,2);
+        recyclerView.setLayoutManager(layoutManager);
         goodsModel=new GoodsModel();
         mList=new ArrayList<>();
         setOnLineLayout(JxnuGoLoginUtil.isLogin());
@@ -124,7 +127,6 @@ public class GoodsListFragment  extends BaseListFragment {
      */
     private void loadNextPage(List<GoodsListBean> tempNextList){
         nexPage=tempNextList.get(0).getNext();
-
         ArrayList<GoodsModel> tempNextAL=new ArrayList<>();
         for(int i=0;i<tempNextList.get(0).getPosts().length;i++)
             tempNextAL.add(tempNextList.get(0).getPosts()[i]);

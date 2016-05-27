@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     android:focusable="false"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
     <include layout="@layout/widget_toolbar"/>
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
@@ -31,4 +32,5 @@
         android:visibility="gone"
         />
     <!--app:stl_indicatorColor="#33000000"-->
+
 </android.support.design.widget.AppBarLayout>

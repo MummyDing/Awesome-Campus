@@ -503,7 +503,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     @Override
     public void onBackPressed() {
-        if (searchView.isSearchOpen()) {
+        if (searchView!=null&&searchView.isSearchOpen()) {
             // Close the search on the back button press.
             searchView.closeSearch();
         }else if(presenter.isDrawerOpen()){

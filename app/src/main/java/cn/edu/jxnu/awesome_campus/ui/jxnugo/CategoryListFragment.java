@@ -2,6 +2,8 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
@@ -84,6 +86,8 @@ public class CategoryListFragment extends BaseListFragment {
 
     @Override
     public void initView() {
+        layoutManager=new GridLayoutManager(InitApp.AppContext,2);
+        recyclerView.setLayoutManager(layoutManager);
         goodsModel=new GoodsModel();
         mList=new ArrayList<>();
         setOnLineLayout(JxnuGoLoginUtil.isLogin());

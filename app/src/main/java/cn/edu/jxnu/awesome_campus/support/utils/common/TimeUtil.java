@@ -203,6 +203,17 @@ public class TimeUtil {
         return time;
     }
 
+    public static int getHour(){
+        setTime();
+        int hour=calendar.get(Calendar.HOUR_OF_DAY);
+        return hour;
+    }
+    public static int getMinute(){
+        setTime();
+        int minute=calendar.get(Calendar.MINUTE);
+        return minute;
+    }
+
     public static int getHourMinute(){
         setTime();
         int hour=calendar.get(Calendar.HOUR_OF_DAY);
@@ -245,5 +256,50 @@ public class TimeUtil {
         String T = y + "/" + m + "/1 0:00:00";
         Log.d("取得的日期为：",T);
         return T;
+    }
+
+
+    /**
+     * 根据jxnugo返回的日期算出天数
+     * eg. 2016-05-25 17:31:57
+     * @param strTime
+     * @return
+     */
+    public static String getJxnuGoPassTime(String strTime){
+        if(!TextUtil.isNull(strTime)){
+            long year=Integer.parseInt(strTime.split(" ")[0].split("-")[0]);
+            long month=Integer.parseInt(strTime.split(" ")[0].split("-")[1]);
+            long day=Integer.parseInt(strTime.split(" ")[0].split("-")[2]);
+            long hour=Integer.parseInt(strTime.split(" ")[1].split(":")[0]);
+            long minute=Integer.parseInt(strTime.split(" ")[1].split(":")[1]);
+            long nowYear=Integer.parseInt(getYear_xxxx());
+            long nowMonth=Integer.parseInt(getMonth())+1;
+            long nowDay=Integer.parseInt(getDay());
+            long nowHour=getHour();
+            long nowMinute=getMinute();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            try {
+                Date date = df.parse(strTime);
+                long fullTime=date.getTime()/1000;
+                long nowFullTime=getTimestamp()/1000;
+                long result=nowFullTime-fullTime;
+//                Log.e("原來的時間是",strTime);
+//                Log.e("原來的時間完整是",fullTime+"");
+//                Log.e("現在的時間完整是",nowFullTime+"");
+//                Log.e("時間差是",result+"");
+                if(result<=60)return InitApp.AppContext.getString(R.string.time_util_just_now);
+                else if(result<3600)return result/60+InitApp.AppContext.getString(R.string.time_util_minute_ago);
+                else if(result<86400)return (result/3600)+InitApp.AppContext.getString(R.string.time_util_hour_ago);
+                else if(nowMonth-month==0&&nowYear-year==0)return (result/86400)+InitApp.AppContext.getString(R.string.time_util_day_ago);
+                else if(nowMonth-month>0&&nowYear-year==0)return (nowMonth-month)+InitApp.AppContext.getString(R.string.time_util_month_ago);
+                else if(nowYear-year>0)return (nowYear-year)+InitApp.AppContext.getString(R.string.time_util_year_ago);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
+        return strTime;
     }
 }

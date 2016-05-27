@@ -272,6 +272,12 @@
     <string name="jxnugo_login_user_collect">我收藏的帖子</string>
     <string name="logout_title">請選擇要註銷的賬號</string>
     <string name="jxnugo_avatar">JxnuGo的头像</string>
+    <string name="time_util_just_now">剛剛</string>
+    <string name="time_util_minute_ago">分鐘前</string>
+    <string name="time_util_hour_ago">小時前</string>
+    <string name="time_util_day_ago">日前</string>
+    <string name="time_util_month_ago">個月前</string>
+    <string name="time_util_year_ago">年前</string>
 
 
 </resources>

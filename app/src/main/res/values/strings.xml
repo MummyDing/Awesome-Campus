@@ -285,5 +285,11 @@
     <string name="jxnugo_user_collect">Collected</string>
     <string name="logout_title">Select Logout Acount</string>
     <string name="jxnugo_avatar">JxnuGo Avatar</string>
+    <string name="time_util_just_now">Just Now</string>
+    <string name="time_util_minute_ago">Minutes ago</string>
+    <string name="time_util_hour_ago">Hours ago</string>
+    <string name="time_util_day_ago">Days ago</string>
+    <string name="time_util_month_ago">Months ago</string>
+    <string name="time_util_year_ago">Years ago</string>
 
 </resources>
