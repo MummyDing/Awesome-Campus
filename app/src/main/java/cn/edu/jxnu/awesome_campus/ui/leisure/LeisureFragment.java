@@ -20,7 +20,7 @@ public class LeisureFragment extends TopNavigationFragment{
         }else if(fragments.size()>0){
             fragments.clear();
         }
-        fragments.add(new DailyFragment());
+//        fragments.add(new DailyFragment());
         fragments.add(new ScienceFragment());
         fragments.add(new FilmFragment());
     }
