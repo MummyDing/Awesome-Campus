@@ -20,6 +20,7 @@ public class LeisureFragment extends TopNavigationFragment{
         }else if(fragments.size()>0){
             fragments.clear();
         }
+//        暂时注释掉侵权的日报部分
 //        fragments.add(new DailyFragment());
         fragments.add(new ScienceFragment());
         fragments.add(new FilmFragment());

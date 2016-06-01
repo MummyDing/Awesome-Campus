@@ -49,6 +49,7 @@ import cn.edu.jxnu.awesome_campus.support.CONSTANT;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.service.NotifyService;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
+import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.support.theme.ThemeConfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.NotifyUtil;
@@ -111,6 +112,17 @@ public class MainActivity extends BaseActivity implements HomeView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        TCAgent.onPageStart(InitApp.AppContext, TAG);
+
+        /**
+         * 针对1.1改变了图书馆的账号的登录方式，所以做此特殊处理
+         */
+        if(SystemUtil.getVersionCode()>1.1){
+            SPUtil spu = new SPUtil(InitApp.AppContext);
+            String id=spu.getStringSP(LibraryStaticKey.SP_FILE_NAME,LibraryStaticKey.ID);
+            if(id==null){
+                LibraryLoginUtil.clearCookie();
+            }
+        }
         if (SystemUtil.getVersionCode() != mSettings.getInt(Settings.INTRO_VERSION,0)) {
             mSettings.putInt(Settings.INTRO_VERSION,SystemUtil.getVersionCode());
             Intent intent = new Intent(MainActivity.this, AppGuideActivity.class);

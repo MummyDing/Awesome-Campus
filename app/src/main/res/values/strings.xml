@@ -125,7 +125,7 @@
     <string name="text_blog_thereisnospon">Thereisnospon\'s Blog</string>
     <string name="text_github_zpauly">zpauly\'s GitHub</string>
     <string name="text_blog_ddragon">Ddragon\'s Page</string>
-    <string name="text_github_can2studio">Can2\'s GitHub</string>
+    <string name="text_github_can2studio">Can2\'s pixiv</string>
     <string name="mummyding_blog">http://blog.csdn.net/mummyding</string>
     <string name="id_github_mummy">mummy_github</string>
     <string name="text_github">GitHub</string>
@@ -142,12 +142,12 @@
     <string name="id_thereisnospon_blog">Thereisnospon_blog</string>
     <string name="id_zpauly_github">zpauly_github</string>
     <string name="id_ddragon_blog">ddragon_blog</string>
-    <string name="id_can2studio_github">Can2studio_github</string>
+    <string name="id_can2studio_github">Can2studio_pixiv</string>
     <string name="kevin_blog">http://www.kevinwu.cn</string>
     <string name="thereisnospon_blog">http://blog.csdn.net/yzr1183739890</string>
     <string name="zpauly_github">https://github.com/zpauly</string>
     <string name="ddragon_blog">http://www.ddragonever.com</string>
-    <string name="can2studio_github">https://github.com/Can2studio</string>
+    <string name="can2studio_github">http://www.pixiv.net/member.php?id=4334017</string>
     <string name="kevin_github">https://github.com/KevinWu1993</string>
     <string name="kevin_email">wqd1993@qq.com</string>
     <string name="text_thanks">Thanks</string>

@@ -260,12 +260,12 @@
     <string name="goodscategory">分类</string>
     <string name="authors_front_end">Web前端</string>
     <string name="authors_backstage_supporter">后端支持</string>
-    <string name="can2studio_github">https://github.com/Can2studio</string>
+    <string name="can2studio_github">http://www.pixiv.net/member.php?id=4334017</string>
     <string name="ddragon_blog">http://www.ddragonever.com</string>
-    <string name="id_can2studio_github">Can2studio_github</string>
+    <string name="id_can2studio_github">Can2studio_pixiv</string>
     <string name="id_ddragon_blog">ddragon_blog</string>
     <string name="text_blog_ddragon">Ddragon的主页</string>
-    <string name="text_github_can2studio">Can2的GitHub</string>
+    <string name="text_github_can2studio">Can2的pixiv</string>
     <string name="feedback_respondent">您的称呼</string>
     <string name="feedback_email">您的邮箱/QQ</string>
     <string name="feedback_body">请在这里输入您的反馈信息</string>

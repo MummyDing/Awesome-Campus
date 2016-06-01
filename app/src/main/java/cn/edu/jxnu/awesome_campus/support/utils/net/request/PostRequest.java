@@ -36,6 +36,7 @@ public class PostRequest extends IRequest{
             params = new FormEncodingBuilder();
             isFirstParams = false;
         }
+        if(val!=null)
         params.add(key,val);
         return this;
     }
