@@ -138,7 +138,7 @@
         <activity android:name=".ui.jxnugo.JxnuGoUserInfoETActivity"></activity>
         <activity android:name=".ui.about.FeedbackActivity"></activity>
         <activity android:name=".ui.jxnugo.GoodsSearchResultActivity"></activity>
-
+        <activity android:name=".ui.jxnugo.NoticeActivity"></activity>
     </application>
 
 </manifest>

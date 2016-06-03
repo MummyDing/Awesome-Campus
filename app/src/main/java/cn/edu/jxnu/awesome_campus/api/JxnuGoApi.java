@@ -28,4 +28,5 @@ public class JxnuGoApi {
     public static final String BasePicUrl="http://7xrkww.com1.z0.glb.clouddn.com/";//图片基础url
     public static final String BaseTagGoodsUrl="http://www.jxnugo.com/api/post_category/";//根据物品标签查询相关的帖子
     public static final String BaseSearchUrl="http://www.jxnugo.com/api/query_post";
+    public static final String NoticeUrl="http://www.jxnugo.com/api/get_notice";//免责声明
 }

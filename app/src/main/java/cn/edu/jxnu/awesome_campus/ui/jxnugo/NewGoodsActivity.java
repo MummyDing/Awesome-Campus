@@ -1,5 +1,7 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -7,10 +9,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -31,6 +37,7 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsPhotoModel;
@@ -40,9 +47,13 @@ import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.ChoosePicAdapter;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.NotifyUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.UploadGoodsUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.qiniuservice.IUploadService;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 import cn.edu.jxnu.awesome_campus.view.widget.goodtagspinner.GoodTagSpinnerWrapper;
@@ -276,7 +287,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                     sendMenuItem.setVisible(false);
                     setLayoutVisible(1);//设置显示内容上传中
                     if(mPhotoList.size()>0)
-                    UploadGoodsUtil.onUploadImages(this, mPhotoList);
+                        UploadGoodsUtil.onUploadImages(NewGoodsActivity.this, mPhotoList);
                     else
                         uploadData(null);
                 }
@@ -365,4 +376,52 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         TCAgent.onPageEnd(InitApp.AppContext, TAG);
         super.onDestroy();
     }
+
+//    private void showNoticeDialog(){
+//        LayoutInflater inflater = LayoutInflater.from(this);// 渲染器
+//        View view= inflater.inflate(R.layout.widget_notice_layout,
+//                null);
+//        TextView noticeText=(TextView)view.findViewById(R.id.noticeText);
+//        CheckBox agreeCheck=(CheckBox)view.findViewById(R.id.notice_checkBox);
+//        final TextView dismissText=(TextView)view.findViewById(R.id.dismiss);
+//        final TextView agreeText=(TextView)view.findViewById(R.id.agree);
+//        noticeText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(NewGoodsActivity.this, NoticeActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        final AlertDialog dialog =  new AlertDialog.Builder(this)
+//                .setTitle("协议声明").create();
+//        agreeCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked){
+//                    agreeText.setVisibility(View.VISIBLE);
+//                }else{
+//                    agreeText.setVisibility(View.GONE);
+//                }
+//            }
+//        });
+//        dismissText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+//        agreeText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sendMenuItem.setVisible(false);
+//                setLayoutVisible(1);//设置显示内容上传中
+//                if(mPhotoList.size()>0)
+//                    UploadGoodsUtil.onUploadImages(NewGoodsActivity.this, mPhotoList);
+//                else
+//                    uploadData(null);
+//            }
+//        });
+//        dialog.setView(view);
+//        dialog.show();
+//    }
 }

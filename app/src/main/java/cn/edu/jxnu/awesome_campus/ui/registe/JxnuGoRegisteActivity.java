@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.registe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
@@ -8,9 +9,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -22,6 +25,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
 import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoRegisteUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
+import cn.edu.jxnu.awesome_campus.ui.jxnugo.NoticeActivity;
 
 /**
  * Created by zpauly on 16-5-11.
@@ -33,6 +37,8 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
     private EditText mPasswordEt;
     private EditText mVerityPasswordEt;
     private Button mRegisteBtn;
+    private TextView noticeTV;
+    private CheckBox agreeCB;
     private AppCompatButton mBackButton;
     private LinearLayout contentLayout, finishLayout;
     private ProgressBar progressBar;
@@ -55,6 +61,8 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
         contentLayout = (LinearLayout) findViewById(R.id.content_layout);
         finishLayout = (LinearLayout) findViewById(R.id.finish_layout);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        noticeTV=(TextView)findViewById(R.id.noticeText);
+        agreeCB=(CheckBox)findViewById(R.id.agreeCB);
         setupToolbar();
 //        setupEditTexts();
         setupButton();
@@ -109,6 +117,10 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
                     Snackbar.make(getCurrentFocus(), "请输入完整信息！", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
+                if(!agreeCB.isChecked()){
+                    Snackbar.make(getCurrentFocus(), "请您先仔细阅读协议并勾选同意！", Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!JxnuGoRegisteUtil.verifyEmail(mEmailEt)) {
                     Snackbar.make(getCurrentFocus(), "邮箱不合法，请重新输入！", Snackbar.LENGTH_SHORT).show();
                     return;
@@ -130,6 +142,13 @@ public class JxnuGoRegisteActivity extends BaseToolbarActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        noticeTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(JxnuGoRegisteActivity.this, NoticeActivity.class);
+                startActivity(intent);
             }
         });
     }

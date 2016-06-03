@@ -66,6 +66,24 @@
                 android:layout_height="wrap_content" />
 
         </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/noticeText"
+                android:text="JxnuGo用户协议（点击可查看详情）"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/agreeCB"
+                android:layout_height="wrap_content"
+                android:text="我接受以上协议"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/registeBtn"
