@@ -1,5 +1,6 @@
 package cn.edu.jxnu.awesome_campus.ui.base;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,7 @@ import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,8 +36,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
@@ -57,6 +61,7 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
 
     private static final String TAG="BaseDetailsActivity";
     protected Toolbar toolbar;
+    protected boolean isShowBigPic=false;
     protected WebView contentView;
     protected SimpleDraweeView topImage;
     protected NestedScrollView scrollView;
@@ -119,7 +124,6 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
         }
     }
 
-    @Override
     public void initView() {
         /**
          * 测试用 非正式代码 ---By MummyDing
@@ -184,6 +188,10 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
             }
         });
 
+        Log.d(TAG,"大图显示状态"+isShowBigPic);
+        if(isShowBigPic){
+            setBigPicConfig();
+        }
         /**
          * 网络异常就显示
          */
@@ -198,6 +206,19 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
         onDataRefresh();
     }
 
+    protected void setBigPicConfig() {
+        contentView.addJavascriptInterface(new JavascriptInterface(this),
+                "imagelistener");
+        contentView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onLoadResource(WebView view, String url) {
+                super.onLoadResource(view, url);
+                // 监听器加载这是为了防止动态加载图片时新加载的图片无法预览
+                addImageClickListener();
+            }
+        });
+    }
 
 
     /**
@@ -282,5 +303,52 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
     }
 
     protected abstract String getShareInfo();
+    // js通信接口
+    public class JavascriptInterface {
 
+        private Context context;
+
+        public JavascriptInterface(Context context) {
+            this.context = context;
+        }
+
+        @android.webkit.JavascriptInterface
+        public void openImage(String object, int position) {
+            Intent intent = new Intent();
+            String resultObj[]=object.split(",");
+            Log.d("--","图片地址为"+resultObj[position]);
+            Log.d("--","图片位置为"+position);
+//            intent.putExtra(ShowWebImageActivity.IMAGE_URLS, object);
+//            intent.putExtra(ShowWebImageActivity.POSITION, position);
+//            intent.setClass(context, ShowWebImageActivity.class);
+//            context.startActivity(intent);
+        }
+    }
+
+    // 注入js函数监听
+    private void addImageClickListener() {
+        // 这段js函数的功能就是，遍历所有的img几点，并添加onclick函数，函数的功能是在图片点击的时候调用本地java接口并传递url过去
+        String imageloadJS = getFromAssets("imageload.js");
+        Log.d("--",imageloadJS);
+        if (!TextUtils.isEmpty(imageloadJS)) {
+            contentView.loadUrl(imageloadJS);
+        }
+    }
+
+    // 读取assets中的文件
+    private String getFromAssets(String fileName) {
+        try {
+            InputStreamReader inputReader = new InputStreamReader(
+                    getResources().getAssets().open(fileName));
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line = "";
+            String Result = "";
+            while ((line = bufReader.readLine()) != null)
+                Result += line;
+            return Result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }
