@@ -131,7 +131,7 @@ public class JxnuGoUserInfoETActivity extends BaseToolbarActivity{
         functionConfigBuilder.setForceCrop(true);
         functionConfigBuilder.setEnableRotate(true);
         final FunctionConfig functionConfig = functionConfigBuilder.build();
-        File fileDir = new File("/sdcard/DICM/AwesomeCampus/");
+        File fileDir = new File("/sdcard/DCIM/AwesomeCampus/");
         CoreConfig coreConfig = new CoreConfig.Builder(JxnuGoUserInfoETActivity.this, imageLoader, themeConfig)
                 .setFunctionConfig(functionConfig)
                 .setTakePhotoFolder(fileDir)

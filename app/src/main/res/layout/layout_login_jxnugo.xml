@@ -75,6 +75,13 @@
         android:id="@+id/onLineLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:src="@drawable/jxnugo_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:layout_width="220dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="60dp"/>
         <TextView
             android:id="@+id/textNotify"
             android:text="@string/notify_already_login"

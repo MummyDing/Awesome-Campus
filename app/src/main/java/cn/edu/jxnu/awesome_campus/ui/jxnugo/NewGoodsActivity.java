@@ -172,7 +172,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
         functionConfigBuilder.setEnablePreview(true);
 //        functionConfigBuilder.setEnableRotate(true);
         final FunctionConfig functionConfig = functionConfigBuilder.build();
-        File fileDir = new File("/sdcard/DICM/AwesomeCampus/");
+        File fileDir = new File("/sdcard/DCIM/AwesomeCampus/");
         CoreConfig coreConfig = new CoreConfig.Builder(NewGoodsActivity.this, imageLoader, themeConfig)
                 .setFunctionConfig(functionConfig)
                 .setTakePhotoFolder(fileDir)

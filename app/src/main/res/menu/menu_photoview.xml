@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_download"
+        android:icon="@mipmap/ic_download_white"
+        app:showAsAction="ifRoom" android:title="下载图片" />
+</menu>

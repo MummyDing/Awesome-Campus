@@ -290,7 +290,7 @@ public class TimeUtil {
                 if(result<=60)return InitApp.AppContext.getString(R.string.time_util_just_now);
                 else if(result<3600)return result/60+InitApp.AppContext.getString(R.string.time_util_minute_ago);
                 else if(result<86400)return (result/3600)+InitApp.AppContext.getString(R.string.time_util_hour_ago);
-                else if(nowMonth-month==0&&nowYear-year==0)return (result/86400)+InitApp.AppContext.getString(R.string.time_util_day_ago);
+                else if((nowMonth-month==0||result<2678400)&&nowYear-year==0)return (result/86400)+InitApp.AppContext.getString(R.string.time_util_day_ago);
                 else if(nowMonth-month>0&&nowYear-year==0)return (nowMonth-month)+InitApp.AppContext.getString(R.string.time_util_month_ago);
                 else if(nowYear-year>0)return (nowYear-year)+InitApp.AppContext.getString(R.string.time_util_year_ago);
             } catch (ParseException e) {

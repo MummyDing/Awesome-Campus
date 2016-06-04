@@ -318,10 +318,9 @@ public abstract class BaseDetailsActivity extends SwipeBackActivity implements B
             String resultObj[]=object.split(",");
             Log.d("--","图片地址为"+resultObj[position]);
             Log.d("--","图片位置为"+position);
-//            intent.putExtra(ShowWebImageActivity.IMAGE_URLS, object);
-//            intent.putExtra(ShowWebImageActivity.POSITION, position);
-//            intent.setClass(context, ShowWebImageActivity.class);
-//            context.startActivity(intent);
+            intent.putExtra("url", resultObj[position]);
+            intent.setClass(context, BaseDialogPhotoView.class);
+            context.startActivity(intent);
         }
     }
 

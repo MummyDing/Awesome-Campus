@@ -55,6 +55,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
     protected void init() {
         title = "商品详情";
         layoutID = R.layout.activity_goods_details;
+        isShowBigPic=true;
     }
 
     /**

@@ -139,6 +139,7 @@
         <activity android:name=".ui.about.FeedbackActivity"></activity>
         <activity android:name=".ui.jxnugo.GoodsSearchResultActivity"></activity>
         <activity android:name=".ui.jxnugo.NoticeActivity"></activity>
+        <activity android:name=".ui.base.BaseDialogPhotoView"></activity>
     </application>
 
 </manifest>
