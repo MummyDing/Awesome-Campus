@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.JsPromptResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -60,6 +61,7 @@ public abstract class BaseEventWebViewActivity extends BaseToolbarActivity{
         webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setDatabaseEnabled(true);
+
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -69,27 +71,31 @@ public abstract class BaseEventWebViewActivity extends BaseToolbarActivity{
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                webView.loadUrl(url);return false;
+                webView.loadUrl(url);
+                return false;
             }
         });
 
 
-//        webView.setWebChromeClient(new WebChromeClient() {
-//            @Override
-//            public void onProgressChanged(WebView view, int newProgress) {
-//                super.onProgressChanged(view, newProgress);
-//                if (isLoading) {
-//                    progressBar.incrementProgressBy(newProgress - progressBar.getProgress());
-//                    if (newProgress > 45) {
-//                        isLoading = false;
-//                        progressBar.setVisibility(View.GONE);
-//                    }
-//                }
-//            }
-//        });
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (isLoading) {
+                    progressBar.incrementProgressBy(newProgress - progressBar.getProgress());
+                    if (newProgress > 45) {
+                        isLoading = false;
+                        progressBar.setVisibility(View.GONE);
+
+                    }
+                }
+            }
+        });
         Log.d("加载网页","---");
+
         webView.loadDataWithBaseURL("file:///android_asset/"," <link rel=\"stylesheet\" type=\"text/css\" href="+css+" />"+data, "text/html", "utf-8", null);
         if(isShowBigPic){
+            Log.d("导入图片监听设置","----");
             setBigPicConfig();
         }
     }
@@ -101,6 +107,7 @@ public abstract class BaseEventWebViewActivity extends BaseToolbarActivity{
     }
 
     protected abstract void onEventComing(EventModel eventModel);
+
     protected void setBigPicConfig() {
         webView.addJavascriptInterface(new JavascriptInterface(this),
                 "imagelistener");
@@ -110,6 +117,12 @@ public abstract class BaseEventWebViewActivity extends BaseToolbarActivity{
             public void onLoadResource(WebView view, String url) {
                 super.onLoadResource(view, url);
                 // 监听器加载这是为了防止动态加载图片时新加载的图片无法预览
+                addImageClickListener();
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
                 addImageClickListener();
             }
         });
