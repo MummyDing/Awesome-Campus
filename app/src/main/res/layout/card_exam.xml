@@ -46,6 +46,8 @@
                     android:textColor="?attr/textColor"
                     android:gravity="left|center_vertical"
                     android:text="课程：测试课程"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>

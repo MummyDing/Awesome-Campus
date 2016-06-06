@@ -92,6 +92,9 @@
         <Preference
             android:summary="@string/summary_datou"
             android:title="大头" />
+        <Preference
+            android:summary="@string/summary_mengli"
+            android:title="萌梨NERV_only" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/text_copyright">
