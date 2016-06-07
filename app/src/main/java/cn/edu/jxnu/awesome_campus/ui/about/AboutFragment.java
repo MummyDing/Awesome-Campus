@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -167,9 +168,13 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
                     .enqueue(new StringCallback() {
                         @Override
                         public void onSuccess(final String result, Headers headers) {
-                            if (SystemUtil.getVersionName().equals(result)) {
+                            Log.d("目前版本",SystemUtil.getVersionName());
+                            Log.d("远程版本",result);
+                            Log.d("对比结果","--"+result.trim().compareTo(SystemUtil.getVersionName().toString()));
+                            if (SystemUtil.getVersionName().toString().equals(result.trim())) {
                                 Snackbar.make(getView(), getString(R.string.notify_current_is_latest), Snackbar.LENGTH_SHORT).show();
-                            } else if(result.compareTo(SystemUtil.getVersionName())>0){
+                            } else if(result.trim().compareTo(SystemUtil.getVersionName().toString())>0){
+
 //                                Snackbar.make(getView(), getString(R.string.notify_find_new_version) + result, Snackbar.LENGTH_SHORT).show();
                                 handler.post(new Runnable() {
                                     @Override
