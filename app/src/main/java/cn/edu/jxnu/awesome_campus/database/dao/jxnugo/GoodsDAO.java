@@ -63,11 +63,11 @@ public class GoodsDAO implements DAO<GoodsModel> {
                         public void onSuccess(GoodsListBean entity, int responseCode, Headers headers) {
                             if (entity != null) {
                                 final List<GoodsListBean> list = Arrays.asList(entity);
-                                Log.d(TAG, "取得的条数" + entity.getCount());
-                                Log.d(TAG, "下一页" + entity.getNext());
-                                Log.d(TAG, "实际条数" + entity.getPosts().length);
-                                Log.d(TAG, "获取到的第一条信息" + entity.getPosts()[0].getBody());
-                                Log.d(TAG, "商品模型列表大小" + list.size());
+//                                Log.d(TAG, "取得的条数" + entity.getCount());
+//                                Log.d(TAG, "下一页" + entity.getNext());
+//                                Log.d(TAG, "实际条数" + entity.getPosts().length);
+//                                Log.d(TAG, "获取到的第一条信息" + entity.getPosts()[0].getBody());
+//                                Log.d(TAG, "商品模型列表大小" + list.size());
                                 handler.post(new Runnable() {
                                     @Override
                                     public void run() {

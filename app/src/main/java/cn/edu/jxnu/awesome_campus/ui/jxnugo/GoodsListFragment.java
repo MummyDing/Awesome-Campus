@@ -101,6 +101,7 @@ public class GoodsListFragment  extends BaseListFragment {
         switch (eventModel.getEventCode()){
             case EVENT.GOODS_LIST_REFRESH_SUCCESS:
                 initData(eventModel.getDataList());
+
                 hideLoading();
                 break;
             case EVENT.GOODS_LIST_REFRESH_FAILURE:
@@ -143,6 +144,11 @@ public class GoodsListFragment  extends BaseListFragment {
         GoodsModel[] g=tempList.get(0).getPosts();
         nexPage=tempList.get(0).getNext();
         TOTAL_COUNTER=tempList.get(0).getCount();
+        Log.d(TAG,"取得信息数为："+TOTAL_COUNTER);
+        if(TOTAL_COUNTER==0){
+            tip.setText("暂无二手商品");
+            tip.setVisibility(View.VISIBLE);
+        }
         ArrayList<GoodsModel> tempAL=new ArrayList<>();
         for(int i=0;i<g.length;i++)
             tempAL.add(g[i]);
