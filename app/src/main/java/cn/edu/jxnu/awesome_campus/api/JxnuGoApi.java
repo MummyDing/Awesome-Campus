@@ -29,4 +29,5 @@ public class JxnuGoApi {
     public static final String BaseTagGoodsUrl="http://www.jxnugo.com/api/post_category/";//根据物品标签查询相关的帖子
     public static final String BaseSearchUrl="http://www.jxnugo.com/api/query_post";
     public static final String NoticeUrl="http://www.jxnugo.com/api/get_notice";//免责声明
+    public static final String DeletePostUrl="http://www.jxnugo.com/api/post_delete";//删除帖子url
 }

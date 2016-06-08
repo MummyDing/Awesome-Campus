@@ -135,6 +135,7 @@ public class JxnuGoUserinfoActivity extends BaseToolbarActivity implements View.
         Intent intent = new Intent(this, JxnuGoGoodsListActivity.class);
         intent.putExtra("type", type);
         intent.putExtra("userid", id);
+        intent.putExtra("haslogin",hasLogin);
         startActivity(intent);
     }
 

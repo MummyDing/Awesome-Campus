@@ -3,10 +3,14 @@ package cn.edu.jxnu.awesome_campus.support.adapter.jxnugo;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -27,10 +31,14 @@ import cn.edu.jxnu.awesome_campus.ui.jxnugo.GoodsDetailActivity;
  */
 public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAdapter.VH> {
     public static final String TAG="CLGoodsListAdapter";
+    private boolean hasLogin=false;//为真时为自身用户
     public CLGoodsListAdapter(Context mContext, GoodsModel model) {
         super(mContext, model);
     }
-
+    public CLGoodsListAdapter(Context mContext, GoodsModel model,boolean hasLogin) {
+        super(mContext, model);
+        this.hasLogin=hasLogin;
+    }
     @Override
     protected void updateView() {
         notifyDataSetChanged();
@@ -65,6 +73,17 @@ public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAd
                 mContext.startActivity(intent);
             }
         });
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_TRIGGER_DELETE_POST));
+                    }
+                });
+            }
+        });
 
     }
 
@@ -74,6 +93,8 @@ public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAd
         TextView goodName;
         TextView goodPrice;
         SimpleDraweeView goodFirstImg;
+        LinearLayout deleteLayout;
+        ImageButton deleteButton;
 
         public VH(View itemView) {
             super(itemView);
@@ -82,6 +103,11 @@ public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAd
             goodName=(TextView)itemView.findViewById(R.id.goods_title);
             goodPrice=(TextView)itemView.findViewById(R.id.goods_price);
             goodFirstImg=(SimpleDraweeView)itemView.findViewById(R.id.goods_image);
+            deleteLayout=(LinearLayout)itemView.findViewById(R.id.delete_layout);
+            deleteButton=(ImageButton) itemView.findViewById(R.id.delete_button);
+            if(hasLogin){
+                deleteLayout.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

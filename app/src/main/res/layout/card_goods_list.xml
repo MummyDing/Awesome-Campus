@@ -21,6 +21,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/delete_layout"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/delete_button"
+                android:src="@mipmap/ic_delete"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="7"

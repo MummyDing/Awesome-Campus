@@ -1,8 +1,10 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,6 +24,7 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
@@ -29,6 +32,9 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCPListBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.CLGoodsListAdapter;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LodingGoodsListUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
@@ -48,6 +54,7 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
     private BaseListAdapter adapter;
     private RecyclerView recyclerView;
     private TextView tips;
+    private boolean hasLogin=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,7 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
         EventBus.getDefault().register(this);
         userID=getIntent().getIntExtra("userid",-1);
         type=getIntent().getIntExtra("type",0);
+        hasLogin=getIntent().getBooleanExtra("haslogin",false);
         initView();
         bindAdapter();
         initToolbar();
@@ -78,7 +86,7 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
 
     private void bindAdapter() {
         model=new GoodsModel();
-        adapter=new CLGoodsListAdapter(this,model);
+        adapter=new CLGoodsListAdapter(this,model,hasLogin);
         recyclerView.setAdapter(adapter);
         displayLoading();
     }
@@ -127,6 +135,31 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
                 }
                 hideLoading();
                 break;
+            case EVENT.JXNUGO_TRIGGER_DELETE_POST:
+                deleteDialog();
+                break;
         }
+    }
+
+    /**
+     * 删帖对话框
+     */
+    private void deleteDialog() {
+        AlertDialog dialog =  new AlertDialog.Builder(this)
+                .setTitle("提示")
+                .setMessage("确定删除该商品么？")
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+        dialog.show();
     }
 }

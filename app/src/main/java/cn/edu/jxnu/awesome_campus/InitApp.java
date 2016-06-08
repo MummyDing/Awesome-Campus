@@ -24,6 +24,7 @@ import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 import com.tendcloud.tenddata.TCAgent;
 
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ProcessUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
@@ -55,6 +56,13 @@ public class InitApp extends Application{
                 // 渠道 ID: 是渠道标识符，可通过不同渠道单独追踪数据。
                 TCAgent.init(this, "AA659C3528C62C870A16860692AD6325", "00001");
                 TCAgent.setReportUncaughtExceptions(true);
+
+
+                /**
+                 * 此处用于加载jxnugo的auth_token
+                 */
+                Settings.setJxnugoAuthToken();
+
 
                 /**
                  * 此处用于加载头像 使用了Fresco --- By MummyDing

@@ -15,9 +15,11 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.api.JxnuGoApi;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.jxnugo.DeletePostBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsListBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.SearchKeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCPListBean;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
@@ -257,4 +259,26 @@ public class LodingGoodsListUtil {
 //             }
 //         });
      }
+
+    public static void deletePost(Context context,int userID,int postID){
+        final Handler handler = new Handler(Looper.getMainLooper());
+        DeletePostBean bean=new DeletePostBean(userID,postID, Settings.getJxnugoAuthToken());
+        NetManageUtil.postAuthJson(JxnuGoApi.DeletePostUrl)
+                .addUserName(getUserName(context))
+                .addPassword(getPassword(context))
+                .addJsonObject(bean)
+                .addTag(TAG)
+         .enqueue(new StringCodeCallback() {
+             @Override
+             public void onSuccess(String result, int responseCode, Headers headers) {
+                 Log.d(TAG,"状态码为："+responseCode);
+                 Log.d(TAG,"内容为："+result);
+             }
+
+             @Override
+             public void onFailure(String error) {
+
+             }
+         });
+    }
 }

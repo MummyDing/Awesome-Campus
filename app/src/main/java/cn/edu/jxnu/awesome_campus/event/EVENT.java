@@ -232,6 +232,9 @@ public class EVENT {
     public static final int JXNUGO_SEARCH_GOODS_FAILURE =107;
 
 
+    //触发删帖
+    public static final int JXNUGO_TRIGGER_DELETE_POST=108;
+
     /**
      * Cache Event Code
      */

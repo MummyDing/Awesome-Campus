@@ -3,6 +3,10 @@ package cn.edu.jxnu.awesome_campus.support;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 
@@ -40,6 +44,9 @@ public class Settings {
     public static final String SWIPE_BACK = "swipe_back";
 
     public static final String INTRO_VERSION = "intro_version";
+
+
+    public static  String JXNUGO_AUTH_TOKEN="";
 
     private static Settings sInstance;
 
@@ -84,6 +91,35 @@ public class Settings {
     }
 
 
+    public static String getJxnugoAuthToken() {
+        return JXNUGO_AUTH_TOKEN;
+    }
 
+    public static void setJxnugoAuthToken() {
+        try {
+            InputStream in = InitApp.AppContext.getAssets().open("JxnuGoSecret");
+            JXNUGO_AUTH_TOKEN = readTextFile(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private static String readTextFile(InputStream inputStream) {
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte buf[] = new byte[1024];
+        int len;
+        try {
+            while ((len = inputStream.read(buf)) != -1) {
+                outputStream.write(buf, 0, len);
+            }
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+        }
+        return outputStream.toString();
+    }
 
 }
