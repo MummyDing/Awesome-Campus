@@ -29,8 +29,8 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCodeCallback;
 /**
  * Created by KevinWu on 16-5-20.
  */
-public class LodingGoodsListUtil {
-    public static final String TAG="LodingGoodsListUtil";
+public class LoadGoodsListUtil {
+    public static final String TAG="LoadGoodsListUtil";
     private static String getUserName(Context context){
         SPUtil sp=new SPUtil(context);
         return sp.getStringSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERNAME);
@@ -273,11 +273,35 @@ public class LodingGoodsListUtil {
              public void onSuccess(String result, int responseCode, Headers headers) {
                  Log.d(TAG,"状态码为："+responseCode);
                  Log.d(TAG,"内容为："+result);
+                 if(responseCode==200){
+                     /**
+                      * 成功删除
+                      */
+                 handler.post(new Runnable() {
+                     @Override
+                     public void run() {
+                         EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_DELETE_POST_SUCCESS));
+                     }
+                 });
+                 }else{
+                     handler.post(new Runnable() {
+                         @Override
+                         public void run() {
+                             EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_DELETE_POST_FAILURE));
+
+                         }
+                     });
+                 }
              }
 
              @Override
              public void onFailure(String error) {
-
+                 handler.post(new Runnable() {
+                     @Override
+                     public void run() {
+                         EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_DELETE_POST_FAILURE));
+                     }
+                 });
              }
          });
     }

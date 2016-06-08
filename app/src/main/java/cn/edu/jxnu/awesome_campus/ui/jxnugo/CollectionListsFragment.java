@@ -15,7 +15,7 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCPListBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.CLGoodsListAdapter;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LodingGoodsListUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LoadGoodsListUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseListFragment;
 
 /**
@@ -32,7 +32,7 @@ public class CollectionListsFragment  extends BaseListFragment {
     }
     @Override
     public void onDataRefresh() {
-        LodingGoodsListUtil.getCGoodsList(InitApp.AppContext,userId);
+        LoadGoodsListUtil.getCGoodsList(InitApp.AppContext,userId);
     }
     @Override
     public void bindAdapter() {
@@ -51,7 +51,7 @@ public class CollectionListsFragment  extends BaseListFragment {
 
     @Override
     public void initView() {
-        LodingGoodsListUtil.getCGoodsList(InitApp.AppContext,userId);
+        LoadGoodsListUtil.getCGoodsList(InitApp.AppContext,userId);
     }
     private static final Handler handler = new Handler(Looper.getMainLooper());
     @Override

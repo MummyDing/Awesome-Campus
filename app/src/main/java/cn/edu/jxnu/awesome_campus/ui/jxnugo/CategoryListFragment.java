@@ -3,7 +3,6 @@ package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
@@ -28,8 +27,8 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.GoodsListAdapter;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LoadGoodsListUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LoadingFooter;
-import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LodingGoodsListUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.RecyclerViewStateUtils;
 import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
@@ -63,7 +62,7 @@ public class CategoryListFragment extends BaseListFragment {
     @Override
     public void onDataRefresh() {
 //        goodsModel.loadFromNet();
-        LodingGoodsListUtil.getTagGoodsList(InitApp.AppContext,selectedNum);
+        LoadGoodsListUtil.getTagGoodsList(InitApp.AppContext,selectedNum);
     }
 
     @Override
@@ -78,7 +77,7 @@ public class CategoryListFragment extends BaseListFragment {
             @Override
             public void onTagChanged(int tag) {
                 selectedNum=tag;
-                LodingGoodsListUtil.getTagGoodsList(InitApp.AppContext,tag);
+                LoadGoodsListUtil.getTagGoodsList(InitApp.AppContext,tag);
                 displayLoading();
             }
         });
@@ -94,7 +93,7 @@ public class CategoryListFragment extends BaseListFragment {
         setOnLineLayout(JxnuGoLoginUtil.isLogin());
         if(JxnuGoLoginUtil.isLogin()){
 //            goodsModel.loadFromCache();
-            LodingGoodsListUtil.getTagGoodsList(InitApp.AppContext,selectedNum);
+            LoadGoodsListUtil.getTagGoodsList(InitApp.AppContext,selectedNum);
             displayLoading();
         }
         toLoginBtn.setOnClickListener(new View.OnClickListener() {

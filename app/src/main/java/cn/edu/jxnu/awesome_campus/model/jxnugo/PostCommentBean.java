@@ -8,6 +8,9 @@ public class PostCommentBean {
     private String userId;
     private String postId;
     private String body;
+    private String auth_token;
+
+
     public String getPostId() {
         return postId;
     }
@@ -15,14 +18,21 @@ public class PostCommentBean {
     public void setPostId(String postId) {
         this.postId = postId;
     }
+    public String getAuth_token() {
+        return auth_token;
+    }
+
+    public void setAuth_token(String auth_token) {
+        this.auth_token = auth_token;
+    }
 
 
 
-
-    public PostCommentBean(String userId,String postId,String body){
+    public PostCommentBean(String userId,String postId,String body,String auth_token){
         this.userId=userId;
         this.postId=postId;
         this.body=body;
+        this.auth_token=auth_token;
     }
 
 

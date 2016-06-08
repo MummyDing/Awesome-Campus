@@ -34,6 +34,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.CommentBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.CommentModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PostCommentBean;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.CommentListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.GoodsListAdapter;
@@ -85,7 +86,7 @@ public class GoodsCommentActivity extends BaseToolbarActivity {
                 if(!TextUtil.isNull(commentEditText.getText().toString())){
                     SPUtil spu = new SPUtil(InitApp.AppContext);
                     int userId = spu.getIntSP(JxnuGoStaticKey.SP_FILE_NAME, JxnuGoStaticKey.USERID);
-                    PostCommentBean pb=new PostCommentBean(userId+"",postID+"",commentEditText.getText().toString());
+                    PostCommentBean pb=new PostCommentBean(userId+"",postID+"",commentEditText.getText().toString(), Settings.getJxnugoAuthToken());
                     UploadCommentUtil.onUploadJson(pb);
                 }
             }

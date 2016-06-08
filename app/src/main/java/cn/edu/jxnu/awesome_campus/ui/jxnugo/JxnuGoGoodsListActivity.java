@@ -1,6 +1,5 @@
 package cn.edu.jxnu.awesome_campus.ui.jxnugo;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -9,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,17 +22,13 @@ import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
-import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.UserCPListBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.CLGoodsListAdapter;
-import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LodingGoodsListUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LoadGoodsListUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
 /**
@@ -45,6 +39,7 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
     private static final String CTITLE="他/她的收藏商品";
     private static final String PTITLE="他/她发布的商品";
     private int userID;
+    private int postID;
     private GoodsModel model;
     private int type=0;
     private String title[]=new String[]{
@@ -74,11 +69,11 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
     private void onDataRefresh() {
         switch (type){
             case 0:
-                LodingGoodsListUtil.getCGoodsList(this,userID);
+                LoadGoodsListUtil.getCGoodsList(this,userID);
                 tips.setText("暂无收藏的商品");
                 break;
             case 1:
-                LodingGoodsListUtil.getPGoodsList(this,userID);
+                LoadGoodsListUtil.getPGoodsList(this,userID);
                 tips.setText("暂无发布的商品");
                 break;
         }
@@ -136,7 +131,15 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
                 hideLoading();
                 break;
             case EVENT.JXNUGO_TRIGGER_DELETE_POST:
+                postID=(int)eventModel.getData();
                 deleteDialog();
+                break;
+            case EVENT.JXNUGO_DELETE_POST_SUCCESS:
+                Snackbar.make(getCurrentFocus(), "删除成功",Snackbar.LENGTH_SHORT).show();
+                onDataRefresh();
+                break;
+            case EVENT.JXNUGO_DELETE_POST_FAILURE:
+                Snackbar.make(getCurrentFocus(), "删除失败",Snackbar.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -151,7 +154,7 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
                 .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        LoadGoodsListUtil.deletePost(JxnuGoGoodsListActivity.this,userID,postID);
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {

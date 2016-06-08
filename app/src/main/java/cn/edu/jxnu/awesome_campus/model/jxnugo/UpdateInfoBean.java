@@ -11,8 +11,9 @@ public class UpdateInfoBean {
     private String contact;
     private String about_me;
     private String avatar;
+    private String auth_token;
 
-    public UpdateInfoBean(String userId,String name,String location,String sex,String contact,String about_me,String avatar){
+    public UpdateInfoBean(String userId,String name,String location,String sex,String contact,String about_me,String avatar,String auth_token){
         this.userId=userId;
         this.name=name;
         this.location=location;
@@ -20,11 +21,18 @@ public class UpdateInfoBean {
         this.contact=contact;
         this.about_me=about_me;
         this.avatar=avatar;
+        this.auth_token=auth_token;
     }
     public String getAvatar() {
         return avatar;
     }
+    public String getAuth_token() {
+        return auth_token;
+    }
 
+    public void setAuth_token(String auth_token) {
+        this.auth_token = auth_token;
+    }
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }

@@ -37,6 +37,7 @@ import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoPeopleModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoUserBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PhotokeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.UpdateInfoBean;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
@@ -285,7 +286,8 @@ public class JxnuGoUserInfoETActivity extends BaseToolbarActivity{
                 ,sexSelected
                 ,contactET.getText().toString()
                 ,aboutmeET.getText().toString()
-                ,bean.getAvatar());
+                ,bean.getAvatar()
+        , Settings.getJxnugoAuthToken());
         UploadUserETInfoUtil.uploadData(this,updateInfoBean);
     }
 

@@ -18,6 +18,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoLoginBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.JxnuGoRegisterBean;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
@@ -67,6 +68,7 @@ public class JxnuGoRegisteUtil {
         bean.setUserName(username);
         bean.setUserEmail(email);
         bean.setPassWord(password);
+        bean.setAuth_token(Settings.getJxnugoAuthToken());
 //        final PostJsonRequest request = new PostJsonRequest(JxnuGoApi.RegisterUrl);
         NetManageUtil.postJson(JxnuGoApi.RegisterUrl)
                 .addJsonObject(bean)

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.squareup.okhttp.Headers;
 import com.tendcloud.tenddata.TCAgent;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,13 +28,11 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsListBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsModel;
-import cn.edu.jxnu.awesome_campus.support.adapter.BaseListAdapter;
-import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.CLGoodsListAdapter;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.GoodsListAdapter;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LoadingFooter;
-import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LodingGoodsListUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.LoadGoodsListUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.jxnugo.RecyclerViewStateUtils;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
@@ -89,7 +85,7 @@ public class GoodsSearchResultActivity extends BaseToolbarActivity{
         goodsModel=new GoodsModel();
         mList=new ArrayList<>();
         if(keyWord!=null&&!keyWord.equals("")){
-            LodingGoodsListUtil.searchByKey(this,keyWord);
+            LoadGoodsListUtil.searchByKey(this,keyWord);
             displayLoading();
         }
 

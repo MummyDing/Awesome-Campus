@@ -235,6 +235,10 @@ public class EVENT {
     //触发删帖
     public static final int JXNUGO_TRIGGER_DELETE_POST=108;
 
+    //删除帖子状态
+    public static final int JXNUGO_DELETE_POST_SUCCESS=109;
+    public static final int JXNUGO_DELETE_POST_FAILURE=110;
+
     /**
      * Cache Event Code
      */

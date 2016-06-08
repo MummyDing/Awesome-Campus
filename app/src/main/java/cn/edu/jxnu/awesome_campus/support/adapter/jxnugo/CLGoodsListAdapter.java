@@ -79,7 +79,7 @@ public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAd
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        EventBus.getDefault().post(new EventModel<Void>(EVENT.JXNUGO_TRIGGER_DELETE_POST));
+                        EventBus.getDefault().post(new EventModel<Integer>(EVENT.JXNUGO_TRIGGER_DELETE_POST,model.getPostId()));
                     }
                 });
             }

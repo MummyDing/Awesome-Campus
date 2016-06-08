@@ -31,6 +31,7 @@ public class PublishGoodsBean {
     private String goodsBuyTime;
     private int goodsTag;
     private String contact;
+    private String auth_token;
     /**
      * key : 84BE7838-E41C-4E60-A1B8-CA95DBEE326B
      */
@@ -39,7 +40,7 @@ public class PublishGoodsBean {
 
     public PublishGoodsBean(String userId, String body, String goodsName, int goodsNum, float goodsPrice
             , String goodsLocation, String goodsQuality, String goodsBuyTime
-            , int goodsTag, String contact, List<PhotokeyBean> photos) {
+            , int goodsTag, String contact, List<PhotokeyBean> photos,String auth_token) {
         this.userId=userId;
         this.body = body;
         this.goodsName = goodsName;
@@ -51,6 +52,7 @@ public class PublishGoodsBean {
         this.goodsTag = goodsTag;
         this.contact = contact;
         this.photos = photos;
+        this.auth_token=auth_token;
     }
 
     public String getBody() {
@@ -60,7 +62,13 @@ public class PublishGoodsBean {
     public void setBody(String body) {
         this.body = body;
     }
+    public String getAuth_token() {
+        return auth_token;
+    }
 
+    public void setAuth_token(String auth_token) {
+        this.auth_token = auth_token;
+    }
     public String getGoodsName() {
         return goodsName;
     }

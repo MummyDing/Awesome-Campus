@@ -43,6 +43,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.GoodsPhotoModel;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PhotokeyBean;
 import cn.edu.jxnu.awesome_campus.model.jxnugo.PublishGoodsBean;
+import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.adapter.jxnugo.ChoosePicAdapter;
 import cn.edu.jxnu.awesome_campus.support.loader.FrescoImageLoader;
 import cn.edu.jxnu.awesome_campus.support.spkey.JxnuGoStaticKey;
@@ -316,7 +317,8 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                 dayET.getText().toString()
                 , Integer.parseInt(String.valueOf(goodTag))
                 , contactET.getText().toString()
-                , keys);
+                , keys,
+                Settings.getJxnugoAuthToken());
 
         UploadGoodsUtil.onUploadJson(bean, this);
     }
