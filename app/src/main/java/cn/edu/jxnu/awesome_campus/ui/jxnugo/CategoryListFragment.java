@@ -147,13 +147,17 @@ public class CategoryListFragment extends BaseListFragment {
      * @param tempList
      */
     private void initData(List<GoodsListBean> tempList) {
+        Log.d(TAG,"初始化分类列表");
         mList.clear();
         GoodsModel[] g=tempList.get(0).getPosts();
         nexPage=tempList.get(0).getNext();
         TOTAL_COUNTER=tempList.get(0).getCount();
+        Log.d(TAG,"取得总数为"+TOTAL_COUNTER);
         if(TOTAL_COUNTER==0){
             tip.setText("暂无该类别的二手商品");
             tip.setVisibility(View.VISIBLE);
+        }else{
+            tip.setVisibility(View.GONE);
         }
         ArrayList<GoodsModel> tempAL=new ArrayList<>();
         for(int i=0;i<g.length;i++)
