@@ -68,7 +68,7 @@ public class GoodsListAdapter extends RecyclerView.Adapter {
         vh.goodName.setText(model.getGoodsName());
         vh.goodPrice.setText(model.getGoodsPrice()+"");
         if(model.getPhotos()!=null&&model.getPhotos().length>0){
-            vh.goodFirstImg.setImageURI(Uri.parse(JxnuGoApi.BasePicUrl+model.getPhotos()[0].getKey()));
+            vh.goodFirstImg.setImageURI(Uri.parse(JxnuGoApi.BasePicUrl+model.getPhotos()[0].getKey()+"?imageMogr2/thumbnail/2000x2000"));
         }
         else{
             vh.goodFirstImg.setVisibility(View.GONE);
@@ -105,7 +105,6 @@ public class GoodsListAdapter extends RecyclerView.Adapter {
             goodPrice=(TextView)itemView.findViewById(R.id.goods_price);
             goodFirstImg=(SimpleDraweeView)itemView.findViewById(R.id.goods_image);
             goodsCard=(CardView) itemView.findViewById(R.id.card_view);
-
         }
     }
 

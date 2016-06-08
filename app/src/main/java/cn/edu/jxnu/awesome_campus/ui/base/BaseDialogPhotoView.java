@@ -3,6 +3,7 @@ package cn.edu.jxnu.awesome_campus.ui.base;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -81,6 +82,20 @@ public class BaseDialogPhotoView extends BaseToolbarActivity {
                     @Override
                     public void onSuccess(InputStream result, Headers headers) {
                         bitmap = BitmapFactory.decodeStream(result);
+                        float width=bitmap.getWidth();
+                        float height=bitmap.getHeight();
+                        while(width>2200||height>2200){
+//                            Log.d(TAG,"上传的图片大小 宽："+width+" 高："+height);
+                            float scaleWidth=0;
+                            float scaleHeight=0;
+                            scaleWidth=(float)((width/2))/width;
+                            scaleHeight=(float)((height/2))/height;
+                            Matrix matrix=new Matrix();
+                            matrix.postScale(scaleWidth,scaleHeight);
+                            bitmap=Bitmap.createBitmap(bitmap,0,0,(int)width,(int)height,matrix,true);
+                            width=bitmap.getWidth();
+                            height=bitmap.getHeight();
+                        }
                         handle.post(new Runnable() {
                             @Override
                             public void run() {
@@ -128,7 +143,6 @@ public class BaseDialogPhotoView extends BaseToolbarActivity {
         BufferedOutputStream bos = null;
         try {
             bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
-
             bm.compress(Bitmap.CompressFormat.JPEG, 100, bos);
             bos.flush();
             bos.close();

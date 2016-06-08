@@ -85,7 +85,7 @@ public class GoodsDetailActivity extends BaseEventWebViewActivity {
         if (model.getPhotos() != null){
             Log.d(TAG,"取得的图片数组大小"+model.getPhotos().length);
             for (int i = 0; i < model.getPhotos().length; i++)
-                data = data + "\r\n<p><img class=\"content-image\" src=\"" + JxnuGoApi.BasePicUrl+ model.getPhotos()[i].getKey()+ "\" /></p>\r\n";
+                data = data + "\r\n<p><img class=\"content-image\" src=\"" + JxnuGoApi.BasePicUrl+ model.getPhotos()[i].getKey()+"?imageMogr2/thumbnail/2000x2000"+ "\" /></p>\r\n";
         }
 
         data = data + "</div></div></div>";

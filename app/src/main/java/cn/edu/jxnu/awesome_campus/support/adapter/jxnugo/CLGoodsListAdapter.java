@@ -51,7 +51,7 @@ public class CLGoodsListAdapter extends BaseListAdapter<GoodsModel,CLGoodsListAd
         holder.goodName.setText(model.getGoodsName());
         holder.goodPrice.setText(model.getGoodsPrice()+"");
         if(model.getPhotos()!=null&&model.getPhotos().length>0){
-            holder.goodFirstImg.setImageURI(Uri.parse(JxnuGoApi.BasePicUrl+model.getPhotos()[0].getKey()));
+            holder.goodFirstImg.setImageURI(Uri.parse(JxnuGoApi.BasePicUrl+model.getPhotos()[0].getKey()+"?imageMogr2/thumbnail/2000x2000"));
         }
         else{
             holder.goodFirstImg.setVisibility(View.GONE);
