@@ -80,6 +80,16 @@ Fir.im体验地址：http://fir.im/AwesomeCampus
 ColorPickerDialog 已单独打包发布，详见 [ColorPickerDialog](https://github.com/MummyDing/ColorPickerDialog)
 
 
+
+##项目使用协定
+
+
+本项目为开源项目，可自由获取源码探讨交流。我们允许您获取源码后进行二次开发，鼓励向我们的
+项目贡享代码，但是您必须遵循以下协定  
+ - 不得对*师大+*及其二次开发产品进行任何形式的公开发布(例如上传至应用市场)  
+ - 未经团队允许，不得直接或间接使用*师大+*及其二次开发产品参与任何形式的竞赛活动  
+
+
 ## 
 ## LICENSE
 
