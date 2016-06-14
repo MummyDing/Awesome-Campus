@@ -53,7 +53,6 @@ public class NotifyModel implements IModel<NotifyModel>{
         this.date = date;
     }
 
-
     public int getReaded() {
         return readed;
     }
