@@ -21,7 +21,7 @@ public class GoodTagSpinnerWrapper {
     public MaterialSpinner build(MaterialSpinner spinner) {
         List<String> tagList =  Arrays.asList(GoodTagList.tag);
         spinner.setItems(tagList);
-        spinner.setSelectedIndex(4);//
+        spinner.setSelectedIndex(0);//
         if (listener != null) {
             spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 

@@ -51,7 +51,7 @@ public class CategoryListFragment extends BaseListFragment {
     private ArrayList<GoodsModel> mList;
     private GoodsListAdapter goodsListAdapter;
     private String nexPage;
-    private int selectedNum=4;
+    private int selectedNum=0;
 
 
     private HeaderAndFooterRecyclerViewAdapter mHeaderAndFooterRecyclerViewAdapter = null;

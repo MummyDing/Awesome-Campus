@@ -5,29 +5,29 @@ package cn.edu.jxnu.awesome_campus.model.jxnugo;
  * KevinWu.cn
  */
 public class DeletePostBean {
-    private int userID;
-    private int postID;
+    private int userId;
+    private int postId;
     private String auth_token;
 
     public DeletePostBean(int userID, int postID, String auth_token){
-        this.userID=userID;
-        this.postID=postID;
+        this.userId =userID;
+        this.postId =postID;
         this.auth_token=auth_token;
     }
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getPostID() {
-        return postID;
+    public int getPostId() {
+        return postId;
     }
 
-    public void setPostID(int postID) {
-        this.postID = postID;
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 
 

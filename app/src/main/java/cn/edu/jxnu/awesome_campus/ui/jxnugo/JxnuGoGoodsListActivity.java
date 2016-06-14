@@ -38,12 +38,14 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
     public static final String TAG="JxnuGoGoodsListActivity";
     private static final String CTITLE="他/她的收藏商品";
     private static final String PTITLE="他/她发布的商品";
+    private static final String CTITLE_HASLOGIN="我的收藏商品";
+    private static final String PTITLE_HASLOGIN="我发布的商品";
     private int userID;
     private int postID;
     private GoodsModel model;
     private int type=0;
     private String title[]=new String[]{
-            CTITLE,PTITLE
+            CTITLE,PTITLE,CTITLE_HASLOGIN,PTITLE_HASLOGIN
     };
     private ProgressBar progressBar;
     private BaseListAdapter adapter;
@@ -60,9 +62,17 @@ public class JxnuGoGoodsListActivity extends BaseToolbarActivity{
         type=getIntent().getIntExtra("type",0);
         hasLogin=getIntent().getBooleanExtra("haslogin",false);
         initView();
-        bindAdapter();
         initToolbar();
-        setToolbarTitle(title[type]);
+        if(hasLogin){
+            setToolbarTitle(title[type+2]);
+        }
+        else{
+            setToolbarTitle(title[type]);
+        }
+        if(type!=1){
+            hasLogin=false;
+        }
+        bindAdapter();
         onDataRefresh();
     }
 
