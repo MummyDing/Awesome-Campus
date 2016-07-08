@@ -80,6 +80,29 @@ Fir.im体验地址：http://fir.im/AwesomeCampus
 ColorPickerDialog 已单独打包发布，详见 [ColorPickerDialog](https://github.com/MummyDing/ColorPickerDialog)
 
 
+## 相关博文
+
+[师大+ 技术说明书 第一期：建立一个万能的SharedPreferences工具](http://kevinwu.cn/2016/05/05/%E5%B8%88%E5%A4%A7+%20%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6/%E5%B8%88%E5%A4%A7+%20%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6%20%E7%AC%AC%E4%B8%80%E6%9C%9F%EF%BC%9A%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E4%B8%87%E8%83%BD%E7%9A%84SharedPreferences%E5%B7%A5%E5%85%B7/)
+
+[师大+ 技术说明书 第二期：让SPUtil变得更优雅](http://kevinwu.cn/2016/05/06/%E5%B8%88%E5%A4%A7+%20%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6/%E5%B8%88%E5%A4%A7+%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6%20%E7%AC%AC%E4%BA%8C%E6%9C%9F%EF%BC%9A%E8%AE%A9SPUtil%E5%8F%98%E5%BE%97%E6%9B%B4%E4%BC%98%E9%9B%85/)
+
+[师大+ 技术说明书 第三期：与Jsoup不期而遇](http://kevinwu.cn/2016/05/07/%E5%B8%88%E5%A4%A7+%20%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6/%E5%B8%88%E5%A4%A7+%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6%20%E7%AC%AC%E4%B8%89%E6%9C%9F%EF%BC%9A%E4%B8%8EJsoup%E4%B8%8D%E6%9C%9F%E8%80%8C%E9%81%87/)
+
+[师大+ 技术说明书 第四期：Jsoup解析实战](http://kevinwu.cn/2016/05/08/%E5%B8%88%E5%A4%A7+%20%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6/%E5%B8%88%E5%A4%A7+%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6%20%E7%AC%AC%E5%9B%9B%E6%9C%9F%EF%BC%9AJsoup%E8%A7%A3%E6%9E%90%E5%AE%9E%E6%88%98/)
+
+[师大+ 技术说明书 第五期：聊聊模拟登录](http://kevinwu.cn/2016/06/23/%E5%B8%88%E5%A4%A7+%20%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6/%E5%B8%88%E5%A4%A7+%20%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E%E4%B9%A6%20%E7%AC%AC%E4%BA%94%E6%9C%9F%EF%BC%9A%E8%81%8A%E8%81%8A%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/)
+
+[对手机icon设计的浅认识](http://blog.can2.moe/2016/06/13/%E5%AF%B9%E6%89%8B%E6%9C%BAicon%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%B5%85%E8%AE%A4%E8%AF%86/)
+
+[产品体验报告——师大+](http://blog.csdn.net/lyf_somethink/article/details/51745546)
+
+[师大+演示文档](http://blog.csdn.net/lyf_somethink/article/details/51771938)
+
+[【师大+】反馈10问10答](http://kevinwu.cn/2016/05/08/%E5%B8%88%E5%A4%A7+%20%E8%BE%85%E5%8A%A9%E6%96%87%E6%A1%A3/%E3%80%90%E5%B8%88%E5%A4%A7+%E3%80%91%E5%8F%8D%E9%A6%8810%E9%97%AE10%E7%AD%94/)
+
+
+
+
 
 ##项目使用协定
 
