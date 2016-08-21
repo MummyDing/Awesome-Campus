@@ -13,6 +13,9 @@ public class GetNewsFirstPic {
     *create at 2016/2/11 21:12
     */
     public static String getPicURL(String htmlStr){
+        if (htmlStr == null ) {
+            return null;
+        }
         String firstcut[]=htmlStr.split(URL_CUT_LEFT);
         if(firstcut.length>1){
             String secondcut[]=firstcut[1].split(URL_CUT_RIGHT);

@@ -42,6 +42,9 @@ public class UploadImageUtil {
     }
     public static ByteArrayOutputStream compressImages(String imagePath) {
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+        if (bitmap == null) {
+            return null;
+        }
         float width=bitmap.getWidth();
         float height=bitmap.getHeight();
         while(width>800||height>800){
