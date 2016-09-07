@@ -15,6 +15,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
@@ -77,6 +78,7 @@ import cn.edu.jxnu.awesome_campus.ui.settings.SettingsActivity;
 import cn.edu.jxnu.awesome_campus.view.home.HomeView;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.ColorPickerDialog;
 import cn.edu.jxnu.awesome_campus.view.widget.colorpickerdialog.OnColorChangedListener;
+import cn.edu.jxnu.awesome_campus.view.widget.dialog.AppUpdateDialog;
 
 /**
  * Created by MummyDing on 16-1-24.
@@ -111,7 +113,11 @@ public class MainActivity extends BaseActivity implements HomeView{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        TCAgent.onPageStart(InitApp.AppContext, TAG);
+
+        /**
+         *  检查更新
+         */
+        SystemUtil.tryCheckUpdate();
 
         /**
          * 针对1.1改变了图书馆的账号的登录方式，所以做此特殊处理
@@ -395,24 +401,16 @@ public class MainActivity extends BaseActivity implements HomeView{
                 jumpToJxnugoUserinfo(eventModel);
                 nowDrawID=0;
                 break;
-//            case EVENT.UPDATE_MENU:
-////                Log.d(TAG,"更新主页通知menu");
-////                updateNotifyMenu((int) eventModel.getData());
-////                nowDrawID=DrawerItem.HOME.getId();
-//                break;
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
                 presenter.updateSelectedToHome();
                 nowDrawID=DrawerItem.HOME.getId();;
                 break;
+            case EVENT.VERSION_CHECK_NEED_UPDATE:
+                showNewVersionDialog((String) eventModel.getData());
+                break;
         }
-//        Log.d(TAG,"onEventMainThread"+eventModel.getEventCode());
         setMenu();
     }
-
-//    private void updateNotifyMenu(int data) {
-//        setNotify(data);
-//    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -585,5 +583,15 @@ public class MainActivity extends BaseActivity implements HomeView{
         });
 
 
+    }
+
+    private void showNewVersionDialog(final String newVersion){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                AppUpdateDialog appUpdateDialog = new AppUpdateDialog(MainActivity.this, newVersion);
+                appUpdateDialog.show();
+            }
+        });
     }
 }

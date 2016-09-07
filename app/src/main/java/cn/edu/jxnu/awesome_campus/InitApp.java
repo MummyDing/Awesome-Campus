@@ -27,6 +27,7 @@ import com.tendcloud.tenddata.TCAgent;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ImageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.ProcessUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.EducationLoginUtil;
 
 /**
@@ -44,7 +45,7 @@ public class InitApp extends Application{
         AppContext = getApplicationContext();
         String processName= ProcessUtil.getProcessName(AppContext,android.os.Process.myPid());
         Log.d("--", "进程名称"+processName);
-        if(processName!=null){
+        if(processName != null){
             boolean defaultProcess = processName
                     .equals(PACK_NAME);
             if (defaultProcess) {
@@ -120,16 +121,10 @@ public class InitApp extends Application{
 
                     @Override
                     public Drawable placeholder(Context ctx, String tag) {
-                /*if (DrawerImageLoader.Tags.PROFILE.name().equals(tag)) {
-                    return DrawerUIUtils.getPlaceHolder(ctx);
-                } else if (DrawerImageLoader.Tags.ACCOUNT_HEADER.name().equals(tag)) {
-                    return new IconicsDrawable(ctx).iconText(" ").backgroundColorRes(com.mikepenz.materialdrawer.R.color.primary).sizeDp(56);
-                } else if ("customUrlItem".equals(tag)) {
-                    return new IconicsDrawable(ctx).iconText(" ").backgroundColorRes(R.color.md_red_500).sizeDp(56);
-                }*/
                         return ContextCompat.getDrawable(ctx, R.drawable.logo);
                     }
                 });
+
             }
         }
 

@@ -22,17 +22,23 @@ import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.io.IOException;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.api.VersoinApi;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.utils.common.DisplayUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SystemUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
+import cn.edu.jxnu.awesome_campus.view.widget.dialog.AppUpdateDialog;
 
 /**
  * Created by MummyDing on 16-4-18.
@@ -41,22 +47,14 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
  */
 public class AboutFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
 
-
     private Preference mAppIntro;
     private Preference mDemoVideo;
-//    private Preference mCurrentVersion;
     private Preference mFeedback;
     private Preference mCheckUpdate;
     private Preference mStarProject;
     private Preference mShare;
     private Preference mMummyBlog;
-    private Preference mMummyGitHub;
-    private Preference mMummyEmail;
-    private Preference mMummyApp;
     private Preference mKevinBlog;
-    private Preference mKevinGitHub;
-    private Preference mKevinEmail;
-    private Preference mKevinApp;
     private Preference mzpaulyGithub;
     private Preference mThereisnosponBlog;
     private Preference mCan2Github;
@@ -66,20 +64,14 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private final String FEEDBACK=InitApp.AppContext.getString(R.string.id_feedback);;
     private final String APP_INTRO = InitApp.AppContext.getString(R.string.id_app_intro);
     private final String DEMO_VIDEO = InitApp.AppContext.getString(R.string.id_demo_video);
-    private final String CURRENT_VERSION = InitApp.AppContext.getString(R.string.id_current_version);
     private final String CHECK_UPDATE = InitApp.AppContext.getString(R.string.id_check_update);
     private final String STAR_PROJECT = InitApp.AppContext.getString(R.string.id_star_project);
     private final String SHARE = InitApp.AppContext.getString(R.string.id_share);
-    private final String MUMMY_BLOG = InitApp.AppContext.getString(R.string.id_mummy_blog);
-//    private final String MUMMY_GITHUB = InitApp.AppContext.getString(R.string.id_github_mummy);
-//    private final String MUMMY_EMAIL = InitApp.AppContext.getString(R.string.id_mummy_email);
-//    private final String MUMMY_APP = InitApp.AppContext.getString(R.string.id_mummy_app);
 
+    private final String MUMMY_BLOG = InitApp.AppContext.getString(R.string.id_mummy_blog);
     private final String KEVIN_BLOG = InitApp.AppContext.getString(R.string.id_kevin_blog);
-//    private final String KEVIN_GITHUB = InitApp.AppContext.getString(R.string.id_kevin_github);
-//    private final String KEVIN_EMAIL = InitApp.AppContext.getString(R.string.id_kevin_email);
-//    private final String KEVIN_APP = InitApp.AppContext.getString(R.string.id_kevin_app);
-private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zpauly_github);
+
+    private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zpauly_github);
     private final String Thereisnospon_BLOG = InitApp.AppContext.getString(R.string.id_thereisnospon_blog);
     private final String Can2_GITHUB=InitApp.AppContext.getString(R.string.id_can2studio_github);
     private final String Ddragon_BLOG =InitApp.AppContext.getString(R.string.id_ddragon_blog);
@@ -87,6 +79,7 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
 
     private ProgressBar progressBar;
 
+    private boolean isTouchUpdate = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,27 +88,18 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
 
         mAppIntro = findPreference(APP_INTRO);
         mDemoVideo = findPreference(DEMO_VIDEO);
-//        mCurrentVersion = findPreference(CURRENT_VERSION);
         mCheckUpdate = findPreference(CHECK_UPDATE);
         mStarProject = findPreference(STAR_PROJECT);
         mShare = findPreference(SHARE);
         mFeedback=findPreference(FEEDBACK);
         mMummyBlog = findPreference(MUMMY_BLOG);
-//        mMummyGitHub = findPreference(MUMMY_GITHUB);
-//        mMummyEmail = findPreference(MUMMY_EMAIL);
-//        mMummyApp = findPreference(MUMMY_APP);
 
         mKevinBlog = findPreference(KEVIN_BLOG);
-//        mKevinGitHub = findPreference(KEVIN_GITHUB);
-//        mKevinEmail = findPreference(KEVIN_EMAIL);
-//        mKevinApp = findPreference(KEVIN_APP);
         mzpaulyGithub=findPreference(zpauly_GITHUB);
         mThereisnosponBlog=findPreference(Thereisnospon_BLOG);
         mCan2Github=findPreference(Can2_GITHUB);
         mDdragon=findPreference(Ddragon_BLOG);
         license = findPreference(LICENSE);
-
-//        mCurrentVersion.setSummary(InitApp.AppContext.getString(R.string.summary_version)+SystemUtil.getVersionName());
 
         mFeedback.setOnPreferenceClickListener(this);
         mAppIntro.setOnPreferenceClickListener(this);
@@ -125,14 +109,8 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
         mShare.setOnPreferenceClickListener(this);
 
         mMummyBlog.setOnPreferenceClickListener(this);
-//        mMummyGitHub.setOnPreferenceClickListener(this);
-//        mMummyEmail.setOnPreferenceClickListener(this);
-//        mMummyApp.setOnPreferenceClickListener(this);
-
         mKevinBlog.setOnPreferenceClickListener(this);
-//        mKevinGitHub.setOnPreferenceClickListener(this);
-//        mKevinEmail.setOnPreferenceClickListener(this);
-//        mKevinApp.setOnPreferenceClickListener(this);
+
         mzpaulyGithub.setOnPreferenceClickListener(this);
         mThereisnosponBlog.setOnPreferenceClickListener(this);
         mCan2Github.setOnPreferenceClickListener(this);
@@ -140,6 +118,8 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
         license.setOnPreferenceClickListener(this);
 
         progressBar = (ProgressBar) getActivity().findViewById(R.id.progressbar);
+
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -155,48 +135,13 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
             startActivity(intent);
         }else if(mFeedback == preference){
             Intent intent = new Intent();
-//            intent.setAction("android.intent.action.VIEW");
-//            Uri content_url = Uri.parse("http://kevinwu.cn/2016/01/01/%E5%B8%88%E5%A4%A7+%20%E8%BE%85%E5%8A%A9%E6%96%87%E6%A1%A3/%E5%B8%88%E5%A4%A7-%E5%8F%8D%E9%A6%88%E9%A1%B5%E9%9D%A2/");
-//            intent.setData(content_url);
             intent.setClass(InitApp.AppContext,FeedbackActivity.class);
             startActivity(intent);
         }
         else if(mCheckUpdate == preference){
             progressBar.setVisibility(View.VISIBLE);
-
-            NetManageUtil.get(VersoinApi.versionUrl)
-                    .enqueue(new StringCallback() {
-                        @Override
-                        public void onSuccess(final String result, Headers headers) {
-                            Log.d("目前版本",SystemUtil.getVersionName());
-                            Log.d("远程版本",result);
-                            Log.d("对比结果","--"+result.trim().compareTo(SystemUtil.getVersionName().toString()));
-                            if (SystemUtil.getVersionName().toString().equals(result.trim())) {
-                                Snackbar.make(getView(), getString(R.string.notify_current_is_latest), Snackbar.LENGTH_SHORT).show();
-                            } else if(result.trim().compareTo(SystemUtil.getVersionName().toString())>0){
-
-//                                Snackbar.make(getView(), getString(R.string.notify_find_new_version) + result, Snackbar.LENGTH_SHORT).show();
-                                handler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        showNewVersionDialog(result);
-                                    }
-                                });
-
-                            }else{
-                                Snackbar.make(getView(), getString(R.string.notify_find_in_test), Snackbar.LENGTH_SHORT).show();
-
-                            }
-                            hideLoading();
-                        }
-
-                        @Override
-                        public void onFailure(String error) {
-                            Snackbar.make(getView(), R.string.hint_fail_check_update, Snackbar.LENGTH_SHORT).show();
-                            hideLoading();
-                        }
-                    });
-
+            isTouchUpdate = true;
+            SystemUtil.tryCheckUpdate();
         }else if(mStarProject == preference){
             TextUtil.copyToClipboard(getView(), getString(R.string.project_url));
         }else if(mShare == preference){
@@ -209,31 +154,10 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
         }else if(mMummyBlog == preference){
             TextUtil.copyToClipboard(getView(),getString(R.string.mummyding_blog));
         }
-//        else if(mMummyGitHub == preference){
-//            TextUtil.copyToClipboard(getView(),getString(R.string.mummyding_github));
-//        }else if(mMummyEmail == preference){
-//            TextUtil.copyToClipboard(getView(),getString(R.string.mummy_email));
-//        }else if (mMummyApp == preference){
-//            Intent intent = new Intent();
-//            intent.setAction("android.intent.action.VIEW");
-//            Uri content_url = Uri.parse("http://coolapk.com/apk/com.mummyding.app.leisure");
-//            intent.setData(content_url);
-//            startActivity(intent);
 //        }
         else if(mKevinBlog == preference){
             TextUtil.copyToClipboard(getView(),getString(R.string.kevin_blog));
         }
-//        else if(mKevinGitHub == preference){
-//            TextUtil.copyToClipboard(getView(),getString(R.string.kevin_github));
-//        }else if(mKevinEmail == preference){
-//            TextUtil.copyToClipboard(getView(),getString(R.string.kevin_email));
-//        }else if (mKevinApp == preference){
-//            Intent intent = new Intent();
-//            intent.setAction("android.intent.action.VIEW");
-//            Uri content_url = Uri.parse("http://coolapk.com/apk/fsyt.ytweather");
-//            intent.setData(content_url);
-//            startActivity(intent);
-//        }
 
         else if(mThereisnosponBlog == preference){
             TextUtil.copyToClipboard(getView(),getString(R.string.thereisnospon_blog));
@@ -264,28 +188,47 @@ private final String zpauly_GITHUB = InitApp.AppContext.getString(R.string.id_zp
         });
     }
 
-    private void showNewVersionDialog(String newVersion){
-        AlertDialog dialog =  new AlertDialog.Builder(getActivity())
-                .setIcon(R.drawable.logo)
-                .setTitle(InitApp.AppContext.getString(R.string.new_version)+newVersion)
-                .setMessage(InitApp.AppContext.getString(R.string.notify_new_version))
-                .setNegativeButton(InitApp.AppContext.getString(R.string.yes), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent();
-                        intent.setAction("android.intent.action.VIEW");
-                        Uri content_url = Uri.parse("http://fir.im/AwesomeCampus");
-                        intent.setData(content_url);
-                        startActivity(intent);
-                    }
-                })
-                .setNeutralButton(InitApp.AppContext.getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create();
-        dialog.getWindow().setLayout(3* DisplayUtil.getScreenWidth(getActivity())/4,-2);
-        dialog.show();
+    @Subscribe
+    public void onEventMainThread(EventModel eventModel){
+        if(eventModel != null){
+            switch (eventModel.getEventCode()){
+                case EVENT.VERSION_CHECK_ALREADY_LATEST:
+                    Snackbar.make(getView(), getString(R.string.notify_current_is_latest), Snackbar.LENGTH_SHORT).show();
+                    hideLoading();
+                    isTouchUpdate = false;
+                    break;
+                case EVENT.VERSION_CHECK_NEED_UPDATE:
+                    showNewVersionDialog((String) eventModel.getData());
+                    hideLoading();
+                    isTouchUpdate = false;
+                    break;
+                case EVENT.VERSION_CHECK_TEST_VERSION:
+                    Snackbar.make(getView(), getString(R.string.notify_find_in_test), Snackbar.LENGTH_SHORT).show();
+                    hideLoading();
+                    isTouchUpdate = false;
+                    break;
+                case EVENT.VERSION_CHECK_FAILURE:
+                    Snackbar.make(getView(), R.string.hint_fail_check_update, Snackbar.LENGTH_SHORT).show();
+                    hideLoading();
+                    isTouchUpdate = false;
+                    break;
+            }
+        }
+    }
+
+    private void showNewVersionDialog(final String newVersion){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                AppUpdateDialog appUpdateDialog = new AppUpdateDialog(getActivity(), newVersion);
+                appUpdateDialog.show();
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }

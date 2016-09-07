@@ -3,8 +3,21 @@ package cn.edu.jxnu.awesome_campus.support.utils.common;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.design.widget.Snackbar;
+import android.util.Log;
+
+import com.squareup.okhttp.Headers;
+
+import org.greenrobot.eventbus.EventBus;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
+import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.api.VersoinApi;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
+import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
+import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 
 /**
  * Created by MummyDing on 16-4-23.
@@ -34,6 +47,38 @@ public class SystemUtil {
         if (TextUtil.isNull(versionName) == false) return versionName;
         return getPackageInfo().versionName;
     }
+
+    /**
+     * 检查更新
+     * @return
+     */
+    public static void tryCheckUpdate() {
+        NetManageUtil.get(VersoinApi.versionUrl)
+                .enqueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(final String result, Headers headers) {
+                        Log.d("目前版本",SystemUtil.getVersionName());
+                        Log.d("远程版本",result);
+                        Log.d("对比结果","--"+result.trim().compareTo(SystemUtil.getVersionName().toString()));
+                        if (SystemUtil.getVersionName().toString().equals(result.trim())) {
+                            // 最新
+                            EventBus.getDefault().post(new EventModel(EVENT.VERSION_CHECK_ALREADY_LATEST));
+                        } else if(result.trim().compareTo(SystemUtil.getVersionName().toString())>0){
+                            // 要更新
+                            EventBus.getDefault().post(new EventModel<String>(EVENT.VERSION_CHECK_NEED_UPDATE, result));
+                        }else{
+                            // 测试版本
+                            EventBus.getDefault().post(new EventModel(EVENT.VERSION_CHECK_TEST_VERSION));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        EventBus.getDefault().post(new EventModel(EVENT.VERSION_CHECK_FAILURE));
+                    }
+                });
+    }
+
     /***
      * App包信息
      * @return
@@ -53,4 +98,5 @@ public class SystemUtil {
 
         return pi;
     }
+
 }
