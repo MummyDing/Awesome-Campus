@@ -6,7 +6,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Android/Sdk/gradle-2.8/caches/modules-2/files-2.1/cn.finalteam/toolsfinal/1.1.5/f3eabbef2640b1d39d252aa2c2676c180502d9fb/toolsfinal-1.1.5-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.finalteam/toolsfinal/1.1.5/f3eabbef2640b1d39d252aa2c2676c180502d9fb/toolsfinal-1.1.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -56,6 +56,7 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
             values.put(CourseTable.ONE_TWO,model.getOneTwo());
             values.put(CourseTable.THREE,model.getThree());
             values.put(CourseTable.FOUR,model.getFour());
+            values.put(CourseTable.FIVE,model.getFive());
             values.put(CourseTable.SIX_SEVEN,model.getSixSeven());
             values.put(CourseTable.EIGHT_NINE,model.getEightNine());
             values.put(CourseTable.NIGHT,model.getNight());

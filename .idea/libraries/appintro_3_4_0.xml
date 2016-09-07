@@ -6,7 +6,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Android/Sdk/gradle-2.8/caches/modules-2/files-2.1/com.github.paolorotolo/appintro/3.4.0/32d4173e4149e9c84401e587d0ce2b4ae407d34c/appintro-3.4.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.paolorotolo/appintro/3.4.0/32d4173e4149e9c84401e587d0ce2b4ae407d34c/appintro-3.4.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
