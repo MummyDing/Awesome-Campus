@@ -35,7 +35,7 @@ Fir.im体验地址：http://fir.im/AwesomeCampus
 <img src="/img/ScreenShots/Screenshot_SearchDetail.png" width="200" height="355.5"/> 
 <img src="/img/ScreenShots/Screenshot_SelfStudyRoomSeat.png" width="200" height="355.5"/> 
 <img src="/img/ScreenShots/Screenshot_Theme.png" width="200" height="355.5"/>
-
+<img src="/img/ScreenShots/Screenshot_About.png" width="200" height="355.5"/>
 ## 开发日志
 #### 2016.04.26
 
