@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.support.utils;
+package cn.edu.jxnu.awesome_campus.support.utils.job;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -9,14 +9,12 @@ import com.squareup.okhttp.Headers;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.job.JobDetailBean;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
-import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallback;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 
 /**
@@ -47,11 +45,16 @@ public class JobDetailUtil {
                         }
 
                         @Override
-                        public void onSuccess(List<JobDetailBean> entity, Headers headers) {
+                        public void onSuccess(final List<JobDetailBean> entity, Headers headers) {
                             if (entity != null) {
-                                EventBus.getDefault().post(new EventModel<JobDetailBean>(
-                                        EVENT.GET_JOB_DETAIL_SUCCESS, entity
-                                ));
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EventBus.getDefault().post(new EventModel<JobDetailBean>(
+                                                EVENT.GET_JOB_DETAIL_SUCCESS, entity
+                                        ));
+                                    }
+                                });
                             } else {
                                 handler.post(new Runnable() {
                                     @Override

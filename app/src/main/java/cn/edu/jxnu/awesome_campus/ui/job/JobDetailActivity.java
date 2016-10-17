@@ -21,8 +21,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.job.JobDetailBean;
 import cn.edu.jxnu.awesome_campus.support.adapter.BasePagerAdapter;
-import cn.edu.jxnu.awesome_campus.support.adapter.library.BookSearchResultAdapter;
-import cn.edu.jxnu.awesome_campus.support.utils.JobDetailUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.job.JobDetailUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseToolbarActivity;
 
