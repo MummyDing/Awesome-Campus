@@ -15,8 +15,12 @@ import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.model.job.JobBean;
 import cn.edu.jxnu.awesome_campus.model.job.Post;
 import cn.edu.jxnu.awesome_campus.support.recycle.NormalSwipeAdapter;
+
 import cn.edu.jxnu.awesome_campus.ui.about.AboutActivity;
 import cn.edu.jxnu.awesome_campus.ui.settings.SettingsActivity;
+
+import cn.edu.jxnu.awesome_campus.ui.job.JobDetailActivity;
+
 
 /**
  * Created by yzr on 16/10/16.
@@ -38,13 +42,19 @@ public class JobAdapter extends NormalSwipeAdapter<Post> {
 
     @Override
     public void bindNormalViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
+
         final ViewHolder vh=(ViewHolder)viewHolder;
         Post post=getItem(position);
+
+        ViewHolder vh=(ViewHolder)viewHolder;
+        final Post post=getItem(position);
+
         vh.title.setText(post.getUserId());
         vh.date.setText(post.getRecruitmentTime());
         vh.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                JobDetailActivity.launchActivity(v.getContext(), post.getLinkUrl());
             }
         });
     }

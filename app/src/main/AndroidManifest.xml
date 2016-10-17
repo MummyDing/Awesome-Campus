@@ -80,6 +80,7 @@
         <activity android:name=".AppGuideActivity" />
         <activity android:name=".ui.about.NotifyListActivity" />
         <activity android:name=".ui.registe.JxnuGoRegisteActivity" />
+        <activity android:name=".ui.job.JobDetailActivity" />
 
         <service
             android:name=".support.service.NotifyService"
