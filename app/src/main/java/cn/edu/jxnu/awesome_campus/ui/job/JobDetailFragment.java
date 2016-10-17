@@ -76,13 +76,13 @@ public class JobDetailFragment extends BaseFragment {
         mManagerTelTV.setText(jobDetailBean.getPrincipal_info());
         mManagerTV.setText(jobDetailBean.getPrincipal());
         mIntroTV.setText(introduction);
-        mProcessTV.setText(jobDetailBean.getProcess());
-        mAttentionTV.setText(jobDetailBean.getAttention());
+        mProcessTV.setText(process);
+        mAttentionTV.setText(attention);
     }
 
     @Override
     public String getTitle() {
-        return "招聘详情";
+        return getString(R.string.recruitment_detail);
     }
 
     @Override

@@ -62,7 +62,7 @@ public class JobDetailActivity extends BaseToolbarActivity {
         setContentView(R.layout.activity_job_detail);
         detailUrl = getIntent().getStringExtra(DETAIL_URL);
         initToolbar();
-        setToolbarTitle("内容简介");
+        setToolbarTitle(getString(R.string.job_detail));
         initViews();
     }
 

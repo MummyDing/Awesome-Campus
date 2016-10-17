@@ -329,6 +329,11 @@ public class EVENT {
     public static final int JOB_LOAD_SUCCESS=1043;
     public static final int JOB_LOAD_FAILURE=1044;
 
+    //Job Detail
+    public static final int GET_JOB_DETAIL_SUCCESS = 1045;
+    public static final int GET_JOB_DETAIL_FAIL = 1046;
+    public static final int NONE_JOB_DETAIL = 1047;
+
 
     //Common
 

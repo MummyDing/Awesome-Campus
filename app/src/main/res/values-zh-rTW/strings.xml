@@ -286,4 +286,29 @@
     <string name="job_title_school">校园招聘会</string>
     <string name="job_title_big">大型招聘会</string>
 
+    <string name="job_detail">内容简介</string>
+    <string name="recruitment_detail">招聘详情</string>
+    <string name="publish_time">发布时间：</string>
+    <string name="hold_place">举办地点：</string>
+    <string name="hold_time">举办时间：</string>
+    <string name="basic_company_info">单位基本信息</string>
+    <string name="company_name">单位名称：</string>
+    <string name="company_property">单位属性：</string>
+    <string name="company_tel">单位联系电话：</string>
+    <string name="company_location">单位地址：</string>
+    <string name="company_homepage">单位主页：</string>
+    <string name="recruit_principal">招聘负责人：</string>
+    <string name="recruit_principal_phone">招聘负责人电话：</string>
+    <string name="recruit_mail">招聘邮箱：</string>
+    <string name="company_introduction">单位简介</string>
+    <string name="recruitment_process">招聘流程</string>
+    <string name="recruitment_attention">注意事项</string>
+
+    <string name="job_name">岗位名称：</string>
+    <string name="job_count">岗位名额：</string>
+    <string name="majors">面向专业：</string>
+    <string name="education_background">学历要求：</string>
+    <string name="salary">工作薪资：</string>
+    <string name="job_requirements">岗位职责及要求：</string>
+
 </resources>

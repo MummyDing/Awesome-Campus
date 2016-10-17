@@ -299,4 +299,29 @@
 
     <string name="job_title_school">School job</string>
     <string name="job_title_big">Job</string>
+
+    <string name="job_detail">Content Summary</string>
+    <string name="recruitment_detail">Recruitment Detail</string>
+    <string name="publish_time">Publish Time: </string>
+    <string name="hold_place">Hole_Place: </string>
+    <string name="hold_time">Hold_Time: </string>
+    <string name="basic_company_info">Basic Company Information:</string>
+    <string name="company_name">Company Name: </string>
+    <string name="company_property">Company Property: </string>
+    <string name="company_tel">Tel: </string>
+    <string name="company_location">Location: </string>
+    <string name="company_homepage">Homepage: </string>
+    <string name="recruit_principal">Principal: </string>
+    <string name="recruit_principal_phone">Phone: </string>
+    <string name="recruit_mail">Mail to: </string>
+    <string name="company_introduction">INTRODUCTION</string>
+    <string name="recruitment_process">PROCESS</string>
+    <string name="recruitment_attention">ATTENTION</string>
+    
+    <string name="job_name">Post Name: </string>
+    <string name="job_count">Post Count: </string>
+    <string name="majors">Majors: </string>
+    <string name="education_background">Education Background: </string>
+    <string name="salary">Salary: </string>
+    <string name="job_requirements">Post Requirements: </string>
 </resources>

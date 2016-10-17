@@ -42,7 +42,7 @@
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:text="发布时间："
+                                android:text="@string/publish_time"
                                 style="@style/Base.TextAppearance.AppCompat.Body2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="举办地点："
+                            android:text="@string/hold_place"
                             style="@style/Base.TextAppearance.AppCompat.Body2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -84,7 +84,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="举办时间："
+                            android:text="@string/hold_time"
                             style="@style/Base.TextAppearance.AppCompat.Body2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -112,7 +112,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:text="单位基本信息"
+                        android:text="@string/basic_company_info"
                         style="@style/TextAppearance.AppCompat.Subhead"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -124,7 +124,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="单位名称："
+                            android:text="@string/company_name"
                             style="@style/Base.TextAppearance.AppCompat.Body1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -145,7 +145,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="单位属性："
+                            android:text="@string/company_property"
                             style="@style/Base.TextAppearance.AppCompat.Body1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -166,7 +166,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="单位联系电话："
+                            android:text="@string/company_tel"
                             style="@style/Base.TextAppearance.AppCompat.Body1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -187,7 +187,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="单位地址："
+                            android:text="@string/company_location"
                             style="@style/Base.TextAppearance.AppCompat.Body1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -208,7 +208,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="单位主页："
+                            android:text="@string/company_homepage"
                             style="@style/Base.TextAppearance.AppCompat.Body1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -229,7 +229,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="招聘负责人："
+                            android:text="@string/recruit_principal"
                             style="@style/Base.TextAppearance.AppCompat.Body1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -250,7 +250,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="招聘负责人电话："
+                            android:text="@string/recruit_principal_phone"
                             style="@style/Base.TextAppearance.AppCompat.Body1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -271,7 +271,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:text="招聘邮箱："
+                            android:text="@string/recruit_mail"
                             style="@style/Base.TextAppearance.AppCompat.Body1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -302,7 +302,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:text="单位简介"
+                        android:text="@string/company_introduction"
                         style="@style/TextAppearance.AppCompat.Subhead"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -330,7 +330,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:text="招聘流程"
+                        android:text="@string/recruitment_process"
                         style="@style/TextAppearance.AppCompat.Subhead"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -358,7 +358,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:text="注意事项"
+                        android:text="@string/recruitment_attention"
                         style="@style/TextAppearance.AppCompat.Subhead"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

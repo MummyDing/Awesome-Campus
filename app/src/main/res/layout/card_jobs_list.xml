@@ -16,7 +16,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="岗位名称："
+                android:text="@string/job_name"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="岗位名额："
+                android:text="@string/job_count"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="面向专业："
+                android:text="@string/majors"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="学历要求："
+                android:text="@string/education_background"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="工作薪资："
+                android:text="@string/salary"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="岗位职责及要求："
+                android:text="@string/job_requirements"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
