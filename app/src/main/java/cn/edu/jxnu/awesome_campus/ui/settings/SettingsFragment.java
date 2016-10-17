@@ -9,7 +9,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
+
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
+import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.presenter.home.HomePresenterImpl;
 import cn.edu.jxnu.awesome_campus.support.Settings;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SettingsUtil;
@@ -29,7 +33,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     private Preference mSwipeBack;
     private CheckBoxPreference mExitConfirm;
     private Preference mClearCache;
-    private CheckBoxPreference mCloseJobInfo;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
 
 
-        mCloseJobInfo=(CheckBoxPreference) findPreference(Settings.CLOSE_JOB_INFO);
+
 
         mAutoRefresh.setChecked(Settings.autoRefresh);
         mExitConfirm.setChecked(Settings.isExitConfirm);
@@ -63,8 +67,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         mExitConfirm.setOnPreferenceChangeListener(this);
 
 
-        mCloseJobInfo.setChecked(Settings.closeJobInfo);
-        mCloseJobInfo.setOnPreferenceChangeListener(this);
+
 
 
         mLanguage.setOnPreferenceClickListener(this);
@@ -83,10 +86,6 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             Settings.autoRefresh = Boolean.valueOf(newValue.toString());
             mSettings.putBoolean(mSettings.AUTO_REFRESH,Settings.autoRefresh);
             return true;
-        }else if(preference==mCloseJobInfo){
-            Settings.closeJobInfo=Boolean.valueOf(newValue.toString());
-            mSettings.putBoolean(mSettings.CLOSE_JOB_INFO,Settings.closeJobInfo);
-            return true;
         }
         return false;
     }
@@ -95,9 +94,14 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     public boolean onPreferenceClick(Preference preference) {
         if(preference == mLanguage){
             showLangDialog();
+
+
         }else if (preference == mAvatar){
             showAvatarSettingsDialog();
         }else if(preference == mClearCache){
+
+
+
             SettingsUtil.clearCache();
             Settings.needRecreate = true;
             Snackbar.make(getView(), R.string.text_clear_cache_successful,Snackbar.LENGTH_SHORT).show();

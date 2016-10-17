@@ -16,10 +16,6 @@ public class JobContact {
         void onRefreshJobData(List<Post>list);
         void onError(String err);
     }
-   public interface Model{
-        List<Post>moreJobData();
-        List<Post>refreshJobData();
-    }
    public interface Presenter{
         void moreJobData();
         void refreshJobData();

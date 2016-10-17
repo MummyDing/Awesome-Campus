@@ -374,5 +374,8 @@ public class EVENT {
     public static final int VERSION_CHECK_ALREADY_LATEST = 2016;
     public static final int VERSION_CHECK_TEST_VERSION = 2017;
     public static final int VERSION_CHECK_FAILURE = 2018;
+
+
+    public static final int REBUILD_MENU=2019;
 }
 

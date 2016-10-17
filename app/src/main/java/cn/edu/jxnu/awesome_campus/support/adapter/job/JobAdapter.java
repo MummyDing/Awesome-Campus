@@ -44,14 +44,14 @@ public class JobAdapter extends NormalSwipeAdapter<Post> {
     public void bindNormalViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
 
         final ViewHolder vh=(ViewHolder)viewHolder;
-        Post post=getItem(position);
-
-        ViewHolder vh=(ViewHolder)viewHolder;
         final Post post=getItem(position);
+
+
+
 
         vh.title.setText(post.getUserId());
         vh.date.setText(post.getRecruitmentTime());
-        vh.title.setOnClickListener(new View.OnClickListener() {
+        vh.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 JobDetailActivity.launchActivity(v.getContext(), post.getLinkUrl());
@@ -62,8 +62,10 @@ public class JobAdapter extends NormalSwipeAdapter<Post> {
     private static class ViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView date;
+        View view;
         public ViewHolder(View itemView) {
             super(itemView);
+            view=itemView;
             title=(TextView)itemView.findViewById(R.id.job_title);
             date=(TextView)itemView.findViewById(R.id.job_date);
         }

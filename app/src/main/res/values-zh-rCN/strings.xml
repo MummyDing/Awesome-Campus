@@ -284,8 +284,8 @@
     <string name="job_jobtitle">招聘</string>
     <string name="job_close_job_info">关闭就业信息</string>
 
-    <string name="job_title_school">校园招聘会</string>
-    <string name="job_title_big">大型招聘会</string>
+    <string name="job_title_school">校园招聘</string>
+    <string name="job_title_big">大型招聘</string>
 
     <string name="job_detail">内容简介</string>
     <string name="recruitment_detail">招聘详情</string>

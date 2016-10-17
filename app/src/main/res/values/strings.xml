@@ -294,11 +294,11 @@
     <string name="time_util_month_ago">Months ago</string>
     <string name="time_util_year_ago">Years ago</string>
 
-    <string name="job_jobtitle">Job</string>
+    <string name="job_jobtitle">Recruiting</string>
     <string name="job_close_job_info">Close Job Info</string>
 
-    <string name="job_title_school">School job</string>
-    <string name="job_title_big">Job</string>
+    <string name="job_title_school">Campus</string>
+    <string name="job_title_big">Large</string>
 
     <string name="job_detail">Content Summary</string>
     <string name="recruitment_detail">Recruitment Detail</string>

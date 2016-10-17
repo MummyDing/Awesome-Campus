@@ -136,7 +136,6 @@
         <activity android:name=".ui.jxnugo.GoodsSearchResultActivity" />
         <activity android:name=".ui.jxnugo.NoticeActivity" />
         <activity android:name=".ui.base.BaseDialogPhotoView" />
-        <activity android:name=".ui.job.JobActivity" android:exported="true"></activity>
     </application>
 
 </manifest>

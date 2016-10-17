@@ -61,27 +61,30 @@ public class HomePresenterImpl implements HomePresenter {
         homeView.initView();
     }
 
+
+
     @Override
     public void buildDrawer(Activity activity,Toolbar toolbar) {
+
         LogItem = buildSecondaryItem(DrawerItem.LOGOUT.getItemName(),DrawerItem.LOGOUT.getItemIconID(),DrawerItem.LOGOUT.getId());
         if(header == null){
             updateHeader(activity);
         }
         drawer = new DrawerBuilder().withActivity(activity).withAccountHeader(header)
                 .withToolbar(toolbar).withActionBarDrawerToggleAnimated(true).addDrawerItems(
-                buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
-                buildPrimaryItem(DrawerItem.LEISURE.getItemName(),DrawerItem.LEISURE.getItemIconID(),DrawerItem.LEISURE.getId()),
-                buildPrimaryItem(DrawerItem.LIFE.getItemName(),DrawerItem.LIFE.getItemIconID(),DrawerItem.LIFE.getId()),
-                        buildPrimaryItem(DrawerItem.JOB.getItemName(),DrawerItem.JOB.getItemIconID(),DrawerItem.JOB.getId()),
+                        buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
+                        buildPrimaryItem(DrawerItem.LEISURE.getItemName(),DrawerItem.LEISURE.getItemIconID(),DrawerItem.LEISURE.getId()),
+                        buildPrimaryItem(DrawerItem.LIFE.getItemName(),DrawerItem.LIFE.getItemIconID(),DrawerItem.LIFE.getId()),
                         buildPrimaryItem(DrawerItem.JXNUGO.getItemName(),DrawerItem.JXNUGO.getItemIconID(),DrawerItem.JXNUGO.getId()),
-                buildPrimaryItem(DrawerItem.LIBRARY.getItemName(),DrawerItem.LIBRARY.getItemIconID(),DrawerItem.LIBRARY.getId()),
-                buildPrimaryItem(DrawerItem.EDUCATION.getItemName(),DrawerItem.EDUCATION.getItemIconID(),DrawerItem.EDUCATION.getId()),
-                new DividerDrawerItem(),
+                        buildPrimaryItem(DrawerItem.LIBRARY.getItemName(),DrawerItem.LIBRARY.getItemIconID(),DrawerItem.LIBRARY.getId()),
+                        buildPrimaryItem(DrawerItem.EDUCATION.getItemName(),DrawerItem.EDUCATION.getItemIconID(),DrawerItem.EDUCATION.getId()),
+                        buildPrimaryItem(DrawerItem.JOB.getItemName(),DrawerItem.JOB.getItemIconID(),DrawerItem.JOB.getId()),
+                        new DividerDrawerItem(),
                         buildSecondaryItem(DrawerItem.THEME.getItemName(),DrawerItem.THEME.getItemIconID(),DrawerItem.THEME.getId()),
                         buildSecondaryItem(DrawerItem.SETTINGS.getItemName(),DrawerItem.SETTINGS.getItemIconID(),DrawerItem.SETTINGS.getId()),
                         buildSecondaryItem(DrawerItem.ABOUT.getItemName(),DrawerItem.ABOUT.getItemIconID(),DrawerItem.ABOUT.getId()),
                         buildSecondaryItem(DrawerItem.LOGOUT.getItemName(),DrawerItem.LOGOUT.getItemIconID(),DrawerItem.LOGOUT.getId())
-               ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         homeView.switchDrawerItem(drawerItem.getIdentifier());
@@ -90,6 +93,8 @@ public class HomePresenterImpl implements HomePresenter {
                 }).build();
         homeView.setTitle(activity.getString(R.string.home));
         updateHeader(activity);
+
+
     }
 
 

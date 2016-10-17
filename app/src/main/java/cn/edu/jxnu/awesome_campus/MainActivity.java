@@ -422,9 +422,11 @@ public class MainActivity extends BaseActivity implements HomeView{
             case EVENT.VERSION_CHECK_NEED_UPDATE:
                 showNewVersionDialog((String) eventModel.getData());
                 break;
+
         }
         setMenu();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

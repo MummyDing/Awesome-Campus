@@ -48,14 +48,6 @@ public class JobDao implements DAO<Post>,JobContact.Presenter {
         handler=new Handler(Looper.getMainLooper());
     }
 
-    private void postInMainThread(final EventModel eventModel){
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                EventBus.getDefault().post(eventModel);
-            }
-        });
-    }
 
     private void refreshError(final String error){
        handler.post(new Runnable() {
@@ -67,6 +59,7 @@ public class JobDao implements DAO<Post>,JobContact.Presenter {
     }
 
     private void refreshSuccess(final List<Post>list){
+        page=1;
       handler.post(new Runnable() {
           @Override
           public void run() {
@@ -83,6 +76,7 @@ public class JobDao implements DAO<Post>,JobContact.Presenter {
         });
     }
     private void loadSuccess(final List<Post>list){
+        page+=1;
         handler.post(new Runnable() {
             @Override
             public void run() {
