@@ -5,4 +5,5 @@ package cn.edu.jxnu.awesome_campus.api;
  */
 
 public class JobApi {
+    public static final String JOB_LIST="http://219.229.250.11:443/index.php/Home/jxnuPlus/category/type/%d/p/%d.html";
 }

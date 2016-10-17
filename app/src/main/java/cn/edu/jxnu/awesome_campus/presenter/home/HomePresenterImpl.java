@@ -29,6 +29,7 @@ import cn.edu.jxnu.awesome_campus.support.utils.login.JxnuGoLoginUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.login.LibraryLoginUtil;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.job.JobHomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
 import cn.edu.jxnu.awesome_campus.ui.leisure.LeisureFragment;
 import cn.edu.jxnu.awesome_campus.ui.library.LibraryFragment;
@@ -71,6 +72,7 @@ public class HomePresenterImpl implements HomePresenter {
                 buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
                 buildPrimaryItem(DrawerItem.LEISURE.getItemName(),DrawerItem.LEISURE.getItemIconID(),DrawerItem.LEISURE.getId()),
                 buildPrimaryItem(DrawerItem.LIFE.getItemName(),DrawerItem.LIFE.getItemIconID(),DrawerItem.LIFE.getId()),
+                        buildPrimaryItem(DrawerItem.JOB.getItemName(),DrawerItem.JOB.getItemIconID(),DrawerItem.JOB.getId()),
                         buildPrimaryItem(DrawerItem.JXNUGO.getItemName(),DrawerItem.JXNUGO.getItemIconID(),DrawerItem.JXNUGO.getId()),
                 buildPrimaryItem(DrawerItem.LIBRARY.getItemName(),DrawerItem.LIBRARY.getItemIconID(),DrawerItem.LIBRARY.getId()),
                 buildPrimaryItem(DrawerItem.EDUCATION.getItemName(),DrawerItem.EDUCATION.getItemIconID(),DrawerItem.EDUCATION.getId()),
@@ -181,6 +183,7 @@ public class HomePresenterImpl implements HomePresenter {
         JxnugoFragment.clearChildFragments();
         LibraryFragment.clearChildFragments();
         EducationFragment.clearChildFragments();
+        JobHomeFragment.clearChildFragments();
     }
 
 

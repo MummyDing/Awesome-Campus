@@ -280,6 +280,10 @@
     <string name="time_util_year_ago">年前</string>
     <string name="notify_find_in_test">別鬧，您是內測用戶，肯定是最新的</string>
     <string name="summary_mengli">師大+視頻（負責宣傳視頻）\nWeChat：Li-NERV</string>
+    <string name="job_jobtitle">招聘</string>
+    <string name="job_close_job_info">关闭就业信息</string>
 
+    <string name="job_title_school">校园招聘会</string>
+    <string name="job_title_big">大型招聘会</string>
 
 </resources>

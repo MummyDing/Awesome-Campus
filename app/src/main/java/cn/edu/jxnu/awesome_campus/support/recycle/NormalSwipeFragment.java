@@ -17,6 +17,15 @@ import cn.edu.jxnu.awesome_campus.R;
 public abstract class NormalSwipeFragment<T>extends BaseSwipeFragment<T> {
 
 
+    @Override
+    protected void init() {
+
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return 0;
+    }
 
     public View normalView(LayoutInflater inflater, @Nullable ViewGroup container,
                            @Nullable Bundle savedInstanceState){

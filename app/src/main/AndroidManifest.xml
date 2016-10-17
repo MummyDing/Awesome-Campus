@@ -3,8 +3,8 @@
     package="cn.edu.jxnu.awesome_campus">
 
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -42,9 +42,7 @@
             <meta-data
                 android:name="android.app.default_searchable2"
                 android:value=".ui.jxnugo.GoodsSearchResultActivity" />
-
         </activity>
-
         <activity
             android:name=".ui.library.BookSearchActivity"
             android:launchMode="standard">
@@ -60,9 +58,9 @@
         <activity android:name=".ui.leisure.DailyDetailsActivity" />
         <activity android:name=".ui.leisure.ScienceDetailsActivity" />
         <activity android:name=".ui.leisure.FilmDetailsActivity" />
-        <activity android:name=".ui.jxnugo.GoodsDetailActivity"/>
-        <activity android:name=".ui.jxnugo.GoodsCommentActivity"/>
-        <activity android:name=".ui.jxnugo.NewGoodsActivity"/>
+        <activity android:name=".ui.jxnugo.GoodsDetailActivity" />
+        <activity android:name=".ui.jxnugo.GoodsCommentActivity" />
+        <activity android:name=".ui.jxnugo.NewGoodsActivity" />
         <activity
             android:name=".ui.home.CourseDetailsDialog"
             android:theme="@style/BlueDialogTheme" />
@@ -129,17 +127,15 @@
             android:name="TD_CHANNEL_ID"
             android:value="00001" />
 
-        <activity android:name=".ui.jxnugo.JxnuGoUserinfoActivity"></activity>
-
-        <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity"
-            ></activity>
-        <activity android:name=".ui.jxnugo.JxnuGoGoodsListActivity"
-            ></activity>
-        <activity android:name=".ui.jxnugo.JxnuGoUserInfoETActivity"></activity>
-        <activity android:name=".ui.about.FeedbackActivity"></activity>
-        <activity android:name=".ui.jxnugo.GoodsSearchResultActivity"></activity>
-        <activity android:name=".ui.jxnugo.NoticeActivity"></activity>
-        <activity android:name=".ui.base.BaseDialogPhotoView"></activity>
+        <activity android:name=".ui.jxnugo.JxnuGoUserinfoActivity" />
+        <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity" />
+        <activity android:name=".ui.jxnugo.JxnuGoGoodsListActivity" />
+        <activity android:name=".ui.jxnugo.JxnuGoUserInfoETActivity" />
+        <activity android:name=".ui.about.FeedbackActivity" />
+        <activity android:name=".ui.jxnugo.GoodsSearchResultActivity" />
+        <activity android:name=".ui.jxnugo.NoticeActivity" />
+        <activity android:name=".ui.base.BaseDialogPhotoView" />
+        <activity android:name=".ui.job.JobActivity" android:exported="true"></activity>
     </application>
 
 </manifest>

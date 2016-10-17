@@ -16,6 +16,7 @@ public enum DrawerItem {
     JXNUGO(R.string.jxnugo, R.mipmap.ic_shopping_cart_black),
     LIBRARY(R.string.library, R.mipmap.ic_library_black),
     EDUCATION(R.string.education, R.mipmap.ic_edu_black),
+    JOB(R.string.job_jobtitle,R.drawable.ic_people_black_48dp),
     THEME(R.string.theme, R.mipmap.ic_theme_black),
     SETTINGS(R.string.settings, R.mipmap.ic_settings_black),
     ABOUT(R.string.about, R.mipmap.ic_about_black),

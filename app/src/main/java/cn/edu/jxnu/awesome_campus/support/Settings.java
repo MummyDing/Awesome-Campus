@@ -9,6 +9,7 @@ import java.io.InputStream;
 
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.support.utils.common.PollingUtils;
 
 /**
  * Created by MummyDing on 16-4-17.
@@ -29,6 +30,11 @@ public class Settings {
 
     public static int swipeID = 0;
 
+
+    public static boolean closeJobInfo=false;
+
+
+
     public static final String XML_NAME = "settings";
 
     public static final String LANGUAGE = "language";
@@ -45,6 +51,7 @@ public class Settings {
 
     public static final String INTRO_VERSION = "intro_version";
 
+    public static final String CLOSE_JOB_INFO="close_job_info";
 
     public static  String JXNUGO_AUTH_TOKEN="";
 

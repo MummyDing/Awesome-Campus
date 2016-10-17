@@ -322,6 +322,14 @@ public class EVENT {
     public static final int JXNUGO_USERINFO_LOAD_LOGIN_USER = 1040;
 
 
+    //job
+
+    public static final int JOB_REFRESH_SUCCESS=1041;
+    public static final int JOB_REFRESH_FAILURE=1042;
+    public static final int JOB_LOAD_SUCCESS=1043;
+    public static final int JOB_LOAD_FAILURE=1044;
+
+
     //Common
 
 
