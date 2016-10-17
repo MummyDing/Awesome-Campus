@@ -333,7 +333,7 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     public void switchToJob(){
         fragmentTransaction = fragmentManager.beginTransaction();
-        setTitle(R.string.job_jobtitle);
+        setTitle(getString(R.string.job_jobtitle));
         fragmentTransaction.replace(R.id.framelayout, JobHomeFragment.newInstance());
         fragmentTransaction.commit();
         if (menu != null) menu.clear();

@@ -21,13 +21,16 @@ import cn.edu.jxnu.awesome_campus.model.job.JobPage;
 import cn.edu.jxnu.awesome_campus.model.job.Post;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonCodeEntityCallback;
+import cn.edu.jxnu.awesome_campus.ui.job.JobContact;
 import cz.msebera.android.httpclient.util.NetUtils;
 
 /**
  * Created by yzr on 16/10/16.
  */
 
-public class JobDao implements DAO<Post> {
+public class JobDao implements DAO<Post>,JobContact.Presenter {
+
+
 
     private static final String TAG="Job";
 
@@ -37,8 +40,11 @@ public class JobDao implements DAO<Post> {
 
     private int type=1;
 
-    public JobDao(int type) {
+    JobContact.View view;
+
+    public JobDao(int type,JobContact.View view) {
         this.type = type;
+        this.view=view;
         handler=new Handler(Looper.getMainLooper());
     }
 
@@ -51,60 +57,52 @@ public class JobDao implements DAO<Post> {
         });
     }
 
-    private void refreshError(String error){
-        EventModel<String> eventModel=new EventModel(EVENT.JOB_REFRESH_FAILURE,error);
-        postInMainThread(eventModel);
+    private void refreshError(final String error){
+       handler.post(new Runnable() {
+           @Override
+           public void run() {
+               view.onError(error);
+           }
+       });
     }
 
-    private void refreshSuccess(JobPage jobPage){
-        EventModel<Post>eventModel=new EventModel<Post>(EVENT.JOB_REFRESH_SUCCESS,jobPage.getPosts());
-        postInMainThread(eventModel);
-        this.page=1;
+    private void refreshSuccess(final List<Post>list){
+      handler.post(new Runnable() {
+          @Override
+          public void run() {
+              view.onRefreshJobData(list);
+          }
+      });
     }
-    private void loadError(String error){
-        EventModel<String> eventModel=new EventModel(EVENT.JOB_LOAD_FAILURE,error);
-        postInMainThread(eventModel);
+    private void loadError(final String error){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                view.onError(error);
+            }
+        });
     }
-    private void loadSuccess(JobPage jobPage){
-        EventModel<Post>eventModel=new EventModel<Post>(EVENT.JOB_LOAD_SUCCESS,jobPage.getPosts());
-        postInMainThread(eventModel);
-        this.page+=1;
+    private void loadSuccess(final List<Post>list){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                view.onMoreJobData(list);
+            }
+        });
     }
 
-    public void refresh(){
-        Log.e(TAG, "refresh: "+String.format(JobApi.JOB_LIST,type,1) );
+
+    @Override
+    public void moreJobData() {
         try{
-            NetManageUtil.get(String.format(JobApi.JOB_LIST,type,1))
-                    .enqueue(new JsonCodeEntityCallback<JobPage>() {
-                        @Override
-                        public void onSuccess(JobPage entity, int responseCode, Headers headers) {
-                            if(entity==null||entity.getPosts()==null||entity.getPosts().isEmpty()){
-                                refreshError("empty");
-                            }else{
-                                refreshSuccess(entity);
-                            }
-                        }
-                        @Override
-                        public void onFailure(String error) {
-                            refreshError(error);
-                        }
-                    });
-        }catch (Exception e){
-            refreshError(e.getMessage());
-        }
-    }
-
-    public void loadMore(){
-        try{
-            Log.e(TAG, "loadMore: " +String.format(JobApi.JOB_LIST,type,page+1));
             NetManageUtil.get(String.format(JobApi.JOB_LIST,type,page+1))
                     .enqueue(new JsonCodeEntityCallback<JobPage>() {
                         @Override
                         public void onSuccess(JobPage entity, int responseCode, Headers headers) {
                             if(entity==null||entity.getPosts()==null||entity.getPosts().isEmpty()){
-                                loadError("empty");
+                               loadError("empty");
                             }else{
-                               loadSuccess(entity);
+                                loadSuccess(entity.getPosts());
                             }
                         }
                         @Override
@@ -116,6 +114,33 @@ public class JobDao implements DAO<Post> {
             loadError(e.getMessage());
         }
     }
+
+    @Override
+    public void refreshJobData() {
+
+        try{
+            NetManageUtil.get(String.format(JobApi.JOB_LIST,type,1))
+                    .enqueue(new JsonCodeEntityCallback<JobPage>() {
+                        @Override
+                        public void onSuccess(JobPage entity, int responseCode, Headers headers) {
+                            if(entity==null||entity.getPosts()==null||entity.getPosts().isEmpty()){
+                               refreshError("empty");
+                            }else{
+                               refreshSuccess(entity.getPosts());
+                            }
+                        }
+                        @Override
+                        public void onFailure(String error) {
+                            refreshError(error);
+                        }
+                    });
+        }catch (Exception e){
+            refreshError(e.getMessage());
+        }
+
+    }
+
+
 
     @Override
     public boolean cacheAll(List<Post> list) {

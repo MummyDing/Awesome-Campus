@@ -32,7 +32,7 @@ import cn.finalteam.toolsfinal.logger.Logger;
  * Created by yzr on 16/10/16.
  */
 
-public class JobFragment extends NormalSwipeFragment<Post> {
+public class JobFragment extends NormalSwipeFragment<Post> implements JobContact.View {
 
     private int type;
 
@@ -51,23 +51,6 @@ public class JobFragment extends NormalSwipeFragment<Post> {
         }
     }
 
-    @Override
-    public void onEventComing(EventModel eventModel) {
-        Log.e(TAG, "onEvent: ");
-        Log.e(TAG, "onEventComing: "+eventModel.getEventCode() );
-        switch (eventModel.getEventCode()){
-            case EVENT.JOB_LOAD_SUCCESS:
-                onLoadSuccess(eventModel);
-                break;
-            case EVENT.JOB_REFRESH_SUCCESS:
-                onRefreshSuccess(eventModel);
-                break;
-            case EVENT.JOB_LOAD_FAILURE:
-            case EVENT.JOB_REFRESH_FAILURE:
-                onRefreshCompleted();
-                break;
-        }
-    }
 
     private static String TAG="job";
     private JobDao dao;
@@ -76,7 +59,7 @@ public class JobFragment extends NormalSwipeFragment<Post> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        dao=new JobDao(1);
+        dao=new JobDao(type==1?1:2,this);
         View view= normalView(inflater,container,savedInstanceState);
         return view;
     }
@@ -88,31 +71,34 @@ public class JobFragment extends NormalSwipeFragment<Post> {
 
     @Override
     public void loadMore() {
+        dao.moreJobData();
         Log.e(TAG, "loadMore: " );
-        dao.loadMore();
+
     }
 
     @Override
     public void refresh() {
-        dao.refresh();
+        dao.refreshJobData();
         Log.e(TAG, "refresh: " );
     }
 
-    private void onLoadSuccess(EventModel eventModel){
-        Log.e(TAG, "onLoadSuccess: ");
-        onMoreData((List<Post>)eventModel.getDataList());
-        List<Post>x=eventModel.getDataList();
-        for(int i=0;i<x.size();i++){
-            Log.e(TAG, "onLoadSuccess: "+x.get(i).getId()+x.get(i).getUserId());
-        }
+    @Override
+    public void onEventComing(EventModel eventModel) {
+
     }
 
-    private void onRefreshSuccess(EventModel eventModel){
-        Log.e(TAG, "onRefreshSuccess: " );
-        onRefreshData((List<Post>)eventModel.getDataList());
-        List<Post>x=eventModel.getDataList();
-        for(int i=0;i<x.size();i++){
-            Log.e(TAG, "onLoadSuccess: "+x.get(i).getId()+x.get(i).getUserId());
-        }
+    @Override
+    public void onMoreJobData(List<Post> list) {
+        onMoreData(list);
+    }
+
+    @Override
+    public void onRefreshJobData(List<Post> list) {
+        onRefreshData(list);
+    }
+
+    @Override
+    public void onError(String err) {
+        onRefreshCompleted();
     }
 }
