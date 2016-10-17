@@ -12,12 +12,12 @@ import cn.edu.jxnu.awesome_campus.model.IModel;
  */
 
 public class JobRequirementModel implements IModel<JobRequirementModel>,Parcelable {
-    public JobRequireProfessionBean[] getProfession_id() {
-        return profession_id;
+    public JobRequireProfessionBean[] getProfessional_id() {
+        return professional_id;
     }
 
-    public void setProfession_id(JobRequireProfessionBean[] profession_id) {
-        this.profession_id = profession_id;
+    public void setProfessional_id(JobRequireProfessionBean[] profession_id) {
+        this.professional_id = profession_id;
     }
 
     public String getPosition_name_id() {
@@ -28,12 +28,12 @@ public class JobRequirementModel implements IModel<JobRequirementModel>,Parcelab
         this.position_name_id = position_name_id;
     }
 
-    public String getDegree_require() {
-        return degree_require;
+    public String getDegree_required() {
+        return degree_required;
     }
 
-    public void setDegree_require(String degree_require) {
-        this.degree_require = degree_require;
+    public void setDegree_required(String degree_require) {
+        this.degree_required = degree_require;
     }
 
     public int getPosition_number() {
@@ -44,12 +44,12 @@ public class JobRequirementModel implements IModel<JobRequirementModel>,Parcelab
         this.position_number = position_number;
     }
 
-    public String getSalary_welare() {
-        return salary_welare;
+    public String getSalary_welfare() {
+        return salary_welfare;
     }
 
-    public void setSalary_welare(String salary_welare) {
-        this.salary_welare = salary_welare;
+    public void setSalary_welfare(String salary_welare) {
+        this.salary_welfare = salary_welare;
     }
 
     public String getPosition_duty() {
@@ -60,11 +60,11 @@ public class JobRequirementModel implements IModel<JobRequirementModel>,Parcelab
         this.position_duty = position_duty;
     }
 
-    private JobRequireProfessionBean[] profession_id;
+    private JobRequireProfessionBean[] professional_id;
     private String position_name_id;
-    private String degree_require;
+    private String degree_required;
     private int position_number;
-    private String salary_welare;
+    private String salary_welfare;
     private String position_duty;
 
     @Override
@@ -94,11 +94,11 @@ public class JobRequirementModel implements IModel<JobRequirementModel>,Parcelab
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedArray(this.profession_id, flags);
+        dest.writeTypedArray(this.professional_id, flags);
         dest.writeString(this.position_name_id);
-        dest.writeString(this.degree_require);
+        dest.writeString(this.degree_required);
         dest.writeInt(this.position_number);
-        dest.writeString(this.salary_welare);
+        dest.writeString(this.salary_welfare);
         dest.writeString(this.position_duty);
     }
 
@@ -106,11 +106,11 @@ public class JobRequirementModel implements IModel<JobRequirementModel>,Parcelab
     }
 
     protected JobRequirementModel(Parcel in) {
-        this.profession_id = in.createTypedArray(JobRequireProfessionBean.CREATOR);
+        this.professional_id = in.createTypedArray(JobRequireProfessionBean.CREATOR);
         this.position_name_id = in.readString();
-        this.degree_require = in.readString();
+        this.degree_required = in.readString();
         this.position_number = in.readInt();
-        this.salary_welare = in.readString();
+        this.salary_welfare = in.readString();
         this.position_duty = in.readString();
     }
 

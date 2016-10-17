@@ -1,13 +1,19 @@
 package cn.edu.jxnu.awesome_campus.ui.job;
 
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.Spanned;
+import android.view.View;
 import android.widget.TextView;
 
+import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
+import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.job.JobDetailBean;
+import cn.edu.jxnu.awesome_campus.support.utils.job.JobDetailUtil;
 import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
 
 /**
@@ -15,6 +21,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
  */
 
 public class JobDetailFragment extends BaseFragment {
+    private NestedScrollView mLayout;
     private TextView mTitleTV;
     private TextView mPublishTimeTV;
     private TextView mHolePlaceTV;
@@ -30,20 +37,17 @@ public class JobDetailFragment extends BaseFragment {
     private TextView mIntroTV;
     private TextView mProcessTV;
     private TextView mAttentionTV;
+    private SwipeRefreshLayout mSRLayout;
 
+    private String detailUrl;
     private JobDetailBean jobDetailBean;
-
-    private void getParams() {
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            jobDetailBean = bundle.getParcelable(JobDetailActivity.JOB_DETAIL);
-        }
-    }
 
     @Override
     protected void init() {
         getParams();
 
+        mLayout = (NestedScrollView) parentView.findViewById(R.id.job_detail_layout);
+        mLayout.setVisibility(View.GONE);
         mTitleTV = (TextView) parentView.findViewById(R.id.title_TV);
         mPublishTimeTV = (TextView) parentView.findViewById(R.id.publish_time_TV);
         mHolePlaceTV = (TextView) parentView.findViewById(R.id.hold_place_TV);
@@ -59,6 +63,64 @@ public class JobDetailFragment extends BaseFragment {
         mIntroTV = (TextView) parentView.findViewById(R.id.company_intro_TV);
         mProcessTV = (TextView) parentView.findViewById(R.id.process_TV);
         mAttentionTV = (TextView) parentView.findViewById(R.id.attention_TV);
+        mSRLayout = (SwipeRefreshLayout) parentView.findViewById(R.id.srlayout);
+
+        initSRLayout();
+    }
+
+    private void initSRLayout() {
+        mSRLayout.measure(View.MEASURED_SIZE_MASK, View.MEASURED_HEIGHT_STATE_SHIFT);
+        mSRLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadJobDetail();
+            }
+        });
+        mSRLayout.setRefreshing(true);
+        loadJobDetail();
+    }
+
+    private void loadJobDetail() {
+        if (detailUrl != null) {
+            JobDetailUtil.loadJobDetail(detailUrl);
+        } else {
+            mSRLayout.setRefreshing(false);
+        }
+    }
+
+    private void getParams() {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            detailUrl = bundle.getString(JobDetailActivity.DETAIL_URL);
+        }
+    }
+
+    @Override
+    public String getTitle() {
+        return InitApp.AppContext.
+                getString(R.string.recruitment_detail);
+    }
+
+    @Override
+    public void onEventComing(EventModel eventModel) {
+        mSRLayout.setRefreshing(false);
+        switch (eventModel.getEventCode()) {
+            case EVENT.GET_JOB_DETAIL_SUCCESS:
+                jobDetailBean = (JobDetailBean) eventModel.getDataList().get(0);
+                setupViews();
+                mSRLayout.setEnabled(false);
+                break;
+            case EVENT.GET_JOB_DETAIL_FAIL:
+                break;
+            case EVENT.NONE_JOB_DETAIL:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void setupViews() {
+        mLayout.setVisibility(View.VISIBLE);
 
         Spanned introduction = Html.fromHtml(jobDetailBean.getIntroduction());
         Spanned process = Html.fromHtml(jobDetailBean.getProcess());
@@ -75,19 +137,10 @@ public class JobDetailFragment extends BaseFragment {
         mCompanyHomepageTV.setText(jobDetailBean.getHomepage());
         mManagerTelTV.setText(jobDetailBean.getPrincipal_info());
         mManagerTV.setText(jobDetailBean.getPrincipal());
+        mRecuritmentMailTV.setText(jobDetailBean.getEmail());
         mIntroTV.setText(introduction);
         mProcessTV.setText(process);
         mAttentionTV.setText(attention);
-    }
-
-    @Override
-    public String getTitle() {
-        return getString(R.string.recruitment_detail);
-    }
-
-    @Override
-    public void onEventComing(EventModel eventModel) {
-
     }
 
     @Override

@@ -24,7 +24,12 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.JsonEntityCallback;
 public class JobDetailUtil {
     private static final String TAG = JobDetailUtil.class.getName();
 
+    private static boolean loadFinished = true;
+
     public static void loadJobDetail(String detailUrl) {
+        if (!loadFinished) {
+            return;
+        }
         final Handler handler = new Handler(Looper.getMainLooper());
         Log.i(TAG, "开始请求");
         try {
@@ -34,6 +39,7 @@ public class JobDetailUtil {
                         @Override
                         public void onFailure(IOException e) {
                             e.printStackTrace();
+                            loadFinished = true;
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -46,6 +52,7 @@ public class JobDetailUtil {
 
                         @Override
                         public void onSuccess(final List<JobDetailBean> entity, Headers headers) {
+                            loadFinished = true;
                             if (entity != null) {
                                 handler.post(new Runnable() {
                                     @Override
@@ -69,6 +76,7 @@ public class JobDetailUtil {
                     });
         } catch (IllegalStateException e) {
             e.printStackTrace();
+            loadFinished = true;
             handler.post(new Runnable() {
                 @Override
                 public void run() {

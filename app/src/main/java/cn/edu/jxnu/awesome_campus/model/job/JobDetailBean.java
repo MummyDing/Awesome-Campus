@@ -24,9 +24,18 @@ public class JobDetailBean implements Parcelable {
     private String process;
     private String attention;
     private String supplement;
+    private String email;
     private int rty;
     private String type;
     private JobRequirementModel[] id;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getCompany_name() {
         return company_name;
@@ -203,6 +212,7 @@ public class JobDetailBean implements Parcelable {
         dest.writeString(this.process);
         dest.writeString(this.attention);
         dest.writeString(this.supplement);
+        dest.writeString(this.email);
         dest.writeInt(this.rty);
         dest.writeString(this.type);
         dest.writeTypedArray(this.id, flags);
@@ -228,6 +238,7 @@ public class JobDetailBean implements Parcelable {
         this.process = in.readString();
         this.attention = in.readString();
         this.supplement = in.readString();
+        this.email = in.readString();
         this.rty = in.readInt();
         this.type = in.readString();
         this.id = in.createTypedArray(JobRequirementModel.CREATOR);

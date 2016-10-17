@@ -6,14 +6,14 @@
 
     <include layout="@layout/widget_appbar" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <LinearLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/srlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/fragment_top_navigation"/>
+        <include
+            layout="@layout/fragment_top_navigation"/>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

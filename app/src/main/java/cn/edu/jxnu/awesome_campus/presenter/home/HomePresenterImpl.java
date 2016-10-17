@@ -73,12 +73,12 @@ public class HomePresenterImpl implements HomePresenter {
         drawer = new DrawerBuilder().withActivity(activity).withAccountHeader(header)
                 .withToolbar(toolbar).withActionBarDrawerToggleAnimated(true).addDrawerItems(
                         buildPrimaryItem(DrawerItem.HOME.getItemName(),DrawerItem.HOME.getItemIconID(),DrawerItem.HOME.getId()),
+                        buildPrimaryItem(DrawerItem.LIBRARY.getItemName(),DrawerItem.LIBRARY.getItemIconID(),DrawerItem.LIBRARY.getId()),
+                        buildPrimaryItem(DrawerItem.JOB.getItemName(),DrawerItem.JOB.getItemIconID(),DrawerItem.JOB.getId()),
                         buildPrimaryItem(DrawerItem.LEISURE.getItemName(),DrawerItem.LEISURE.getItemIconID(),DrawerItem.LEISURE.getId()),
                         buildPrimaryItem(DrawerItem.LIFE.getItemName(),DrawerItem.LIFE.getItemIconID(),DrawerItem.LIFE.getId()),
                         buildPrimaryItem(DrawerItem.JXNUGO.getItemName(),DrawerItem.JXNUGO.getItemIconID(),DrawerItem.JXNUGO.getId()),
-                        buildPrimaryItem(DrawerItem.LIBRARY.getItemName(),DrawerItem.LIBRARY.getItemIconID(),DrawerItem.LIBRARY.getId()),
                         buildPrimaryItem(DrawerItem.EDUCATION.getItemName(),DrawerItem.EDUCATION.getItemIconID(),DrawerItem.EDUCATION.getId()),
-                        buildPrimaryItem(DrawerItem.JOB.getItemName(),DrawerItem.JOB.getItemIconID(),DrawerItem.JOB.getId()),
                         new DividerDrawerItem(),
                         buildSecondaryItem(DrawerItem.THEME.getItemName(),DrawerItem.THEME.getItemIconID(),DrawerItem.THEME.getId()),
                         buildSecondaryItem(DrawerItem.SETTINGS.getItemName(),DrawerItem.SETTINGS.getItemIconID(),DrawerItem.SETTINGS.getId()),

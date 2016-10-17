@@ -311,4 +311,5 @@
     <string name="education_background">学历要求：</string>
     <string name="salary">工作薪资：</string>
     <string name="job_requirements">岗位职责及要求：</string>
+    <string name="no_major_limits">专业不限</string>
 </resources>
