@@ -245,7 +245,7 @@
     <string name="goodslist">JxnuGo</string>
     <string name="goodscategory">Category</string>
 
-    
+
     <string name="jxnugo_user_followed">followed</string>
     <string name="jxnugo_user_followers">followers</string>
     <string name="jxnugo_user_locate">locate</string>
@@ -294,4 +294,9 @@
     <string name="time_util_month_ago">Months ago</string>
     <string name="time_util_year_ago">Years ago</string>
 
+    <string name="job_jobtitle">Job</string>
+    <string name="job_close_job_info">Close Job Info</string>
+
+    <string name="job_title_school">School job</string>
+    <string name="job_title_big">Job</string>
 </resources>

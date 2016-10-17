@@ -281,4 +281,9 @@
     <string name="notify_find_in_test">别闹，您是内测用户，肯定是最新的</string>
     <string name="summary_mengli">师大+视频（负责宣传视频）\n微信号:Li-NERV</string>
 
+    <string name="job_jobtitle">招聘</string>
+    <string name="job_close_job_info">关闭就业信息</string>
+
+    <string name="job_title_school">校园招聘会</string>
+    <string name="job_title_big">大型招聘会</string>
 </resources>

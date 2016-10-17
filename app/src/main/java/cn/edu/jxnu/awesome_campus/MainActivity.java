@@ -66,6 +66,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.job.JobHomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.GoodsSearchResultActivity;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnuGoUserinfoActivity;
@@ -145,6 +146,8 @@ public class MainActivity extends BaseActivity implements HomeView{
         WeatherInfoDAO dao = new WeatherInfoDAO();
         dao.loadFromNet();
 
+
+
     }
 
     @Override
@@ -201,6 +204,8 @@ public class MainActivity extends BaseActivity implements HomeView{
         }
         else if(id == DrawerItem.LOGOUT.getId()){
             showLogoutDialog();
+        }else if(id==DrawerItem.JOB.getId()){
+            switchToJob();
         }
         Log.d(TAG,"switchDrawerItem");
         setMenu();
@@ -324,6 +329,15 @@ public class MainActivity extends BaseActivity implements HomeView{
         fragmentTransaction.commit();
     }
 
+
+
+    public void switchToJob(){
+        fragmentTransaction = fragmentManager.beginTransaction();
+        setTitle(R.string.job_jobtitle);
+        fragmentTransaction.replace(R.id.framelayout, JobHomeFragment.newInstance());
+        fragmentTransaction.commit();
+        if (menu != null) menu.clear();
+    }
 
 
     @Override

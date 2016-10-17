@@ -12,11 +12,13 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.jxnu.awesome_campus.ui.base.BaseFragment;
+
 /**
  * Created by yzr on 16/10/16.
  */
 
-public abstract class BaseSwipeFragment<T> extends Fragment
+public abstract class BaseSwipeFragment<T> extends BaseFragment
         implements SwipeRefreshLayout.OnRefreshListener{
 
     private SwipeRefreshLayout mSwipeRefreshLayout;

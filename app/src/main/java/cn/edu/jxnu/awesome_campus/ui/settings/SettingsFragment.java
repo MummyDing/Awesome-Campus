@@ -29,6 +29,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     private Preference mSwipeBack;
     private CheckBoxPreference mExitConfirm;
     private Preference mClearCache;
+    private CheckBoxPreference mCloseJobInfo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,10 +53,18 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
         mSwipeBack.setSummary(this.getResources().getStringArray(R.array.swipe_back)[Settings.swipeID]);
 
+
+
+        mCloseJobInfo=(CheckBoxPreference) findPreference(Settings.CLOSE_JOB_INFO);
+
         mAutoRefresh.setChecked(Settings.autoRefresh);
         mExitConfirm.setChecked(Settings.isExitConfirm);
         mAutoRefresh.setOnPreferenceChangeListener(this);
         mExitConfirm.setOnPreferenceChangeListener(this);
+
+
+        mCloseJobInfo.setChecked(Settings.closeJobInfo);
+        mCloseJobInfo.setOnPreferenceChangeListener(this);
 
 
         mLanguage.setOnPreferenceClickListener(this);
@@ -73,6 +82,10 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         }else if (preference == mAutoRefresh){
             Settings.autoRefresh = Boolean.valueOf(newValue.toString());
             mSettings.putBoolean(mSettings.AUTO_REFRESH,Settings.autoRefresh);
+            return true;
+        }else if(preference==mCloseJobInfo){
+            Settings.closeJobInfo=Boolean.valueOf(newValue.toString());
+            mSettings.putBoolean(mSettings.CLOSE_JOB_INFO,Settings.closeJobInfo);
             return true;
         }
         return false;
