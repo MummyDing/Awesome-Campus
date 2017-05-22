@@ -8,7 +8,7 @@ public class Urlconfig {
     //简书基础url
     public static final String JianShu_Base_URL="http://www.jianshu.com";
     //简书基础list的url
-    public static final String JianShu_List_URL="http://www.jianshu.com/collections/21/notes?order_by=added_at&page=1";
+    public static final String JianShu_List_URL= "http://www.jianshu.com/c/1hjajt";
 //    public static final String JianShu_List_URL="http://www.jianshu.com/collections/12142/notes?order_by=added_at&page=1";
     //教务在线基础url
     public static final String Education_Classmate_Base_URL="http://jwc.jxnu.edu.cn/MyControl/All_Display.aspx?UserControl=";
