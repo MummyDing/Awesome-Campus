@@ -69,4 +69,22 @@ public class HtmlUtil {
         }
         return resultList;
     }
+
+    /**
+     * 指定属性查找
+     * @param cssQuery
+     * @param cssAttr
+     * @return
+     */
+    public List<String> parseStringByAttr(String cssQuery, String cssAttr) {
+        List<String> resultList = new ArrayList<>();
+        Elements elements = doc.select(cssQuery);
+        if (elements == null) {
+            return resultList;
+        }
+        for (int i = 0 ; i < elements.size() ; i++) {
+            resultList.add(elements.get(i).attr(cssAttr));
+        }
+        return resultList;
+    }
 }
