@@ -16,7 +16,9 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.model.home.TermSelectInfoBean;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseTableExtraInfo;
+import cn.edu.jxnu.awesome_campus.support.htmlparse.education.TermInfoParse;
 import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -26,6 +28,7 @@ import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseTableParse;
 import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
@@ -37,7 +40,8 @@ import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
  */
 public class CourseTableDAO implements DAO<CourseTableModel> {
     public static final String TAG="CourseTableDAO";
-    final Handler handler = new Handler(Looper.getMainLooper());
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private TermInfoParse mTermInfoParse;
 
     @Override
     public boolean cacheAll(List<CourseTableModel> list) {
@@ -108,6 +112,13 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
 
     @Override
     public void loadFromNet() {
+        // 获取当前选择的学期
+        mTermInfoParse = new TermInfoParse();
+        final TermSelectInfoBean termSelectInfo = mTermInfoParse.getTermSelectInfo();
+        String currentTermString = termSelectInfo.getCurrentTermString();
+        if (TextUtil.isNull(currentTermString)) {
+            currentTermString = TimeUtil.getTerm();
+        }
 
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String cookies = "_ga=GA1.3.609810117.1451115712; ASP.NET_SessionId=" +
@@ -116,19 +127,19 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
         NetManageUtil.post(Urlconfig.CourseTable_URL)
                 .addHeader("Cookie", cookies)
+                .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36")
                 .addParams("__EVENTTARGET", CourseTableExtraInfo.__EVENTTARGET)
                 .addParams("__EVENTARGUMENT",CourseTableExtraInfo.__EVENTARGUMENT)
-                .addParams("__VIEWSTATE",CourseTableExtraInfo.__VIEWSTATE)
-                .addParams("__EVENTVALIDATION",CourseTableExtraInfo.__EVENTVALIDATION)
-                .addParams("_ctl1:ddlSterm", TimeUtil.getTerm())
-//                .addParams("_ctl1:ddlSterm", "2015/3/1 0:00:00")
+                .addParams("__VIEWSTATE",CourseTableExtraInfo.__VIEWSTATE) // 改成可配置
+                .addParams("__EVENTVALIDATION",CourseTableExtraInfo.__EVENTVALIDATION) // 改成可配置
+                .addParams("_ctl1:ddlSterm", currentTermString)
                 .addParams("_ctl1:btnSearch","确定")
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
             public void onSuccess(String result, Headers headers) {
                CourseTableParse myParse = new CourseTableParse(result);
                 final List<CourseTableModel> list = myParse.getEndList();
-                //for (int i = 0; i < list.size(); i++)
+                mTermInfoParse = new TermInfoParse(result);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -151,7 +162,6 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                     @Override
                     public void run() {
                         EventBus.getDefault().post(new EventModel<CourseScoreModel>(EVENT.COURSE_TABLE_REFRESH_FAILURE));
-
                     }
                 });
             }
