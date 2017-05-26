@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/select_term" />
+
+    <cn.edu.jxnu.awesome_campus.view.widget.CommonSpinner
+        android:id="@+id/term_year_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:gravity="center" />
+
+    <cn.edu.jxnu.awesome_campus.view.widget.CommonSpinner
+        android:id="@+id/term_order_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp" />
+
+    <ImageButton
+        android:id="@+id/select_term_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/term_order_spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/accent"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_check_circle_white" />
+
+</RelativeLayout>

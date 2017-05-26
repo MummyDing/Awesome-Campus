@@ -66,6 +66,7 @@ import cn.edu.jxnu.awesome_campus.ui.base.BaseActivity;
 import cn.edu.jxnu.awesome_campus.ui.base.TopNavigationFragment;
 import cn.edu.jxnu.awesome_campus.ui.education.EducationFragment;
 import cn.edu.jxnu.awesome_campus.ui.home.HomeFragment;
+import cn.edu.jxnu.awesome_campus.ui.home.SelectTermDialog;
 import cn.edu.jxnu.awesome_campus.ui.job.JobHomeFragment;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.GoodsSearchResultActivity;
 import cn.edu.jxnu.awesome_campus.ui.jxnugo.JxnugoFragment;
@@ -98,7 +99,18 @@ public class MainActivity extends BaseActivity implements HomeView{
     private FragmentTransaction fragmentTransaction;
     public static HomePresenter presenter;
     private Settings mSettings = Settings.getsInstance();
-    private MenuItem notifyMenu,searchMenu,newGoodsMenu,userInfoMenu,searchGoods;
+    private MenuItem selectTerm;
+    private MenuItem notifyMenu;
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        return super.onMenuOpened(featureId, menu);
+    }
+
+    private MenuItem searchMenu;
+    private MenuItem newGoodsMenu;
+    private MenuItem userInfoMenu;
+    private MenuItem searchGoods;
     private int nowDrawID=DrawerItem.HOME.getId();
     private CheckBox educationCheckBox,libraryCheckBox,jxnugoCheckBox;
     private MaterialSearchView searchView;
@@ -145,8 +157,6 @@ public class MainActivity extends BaseActivity implements HomeView{
         switchDrawerItem(DrawerItem.HOME.getId());
         WeatherInfoDAO dao = new WeatherInfoDAO();
         dao.loadFromNet();
-
-
 
     }
 
@@ -318,8 +328,6 @@ public class MainActivity extends BaseActivity implements HomeView{
             jxnugoCheckBox.setEnabled(false);
         }
 
-
-
     }
 
     private void switchFragment(TopNavigationFragment fragment, String title){
@@ -434,6 +442,7 @@ public class MainActivity extends BaseActivity implements HomeView{
         // 这里根据是否有消息进行菜单显示
         getMenuInflater().inflate(R.menu.menu_mainactivity, menu);
         newGoodsMenu=menu.findItem(R.id.menu_new_goods);
+        selectTerm = menu.findItem(R.id.menu_select_term);
         notifyMenu=menu.findItem(R.id.menu_notify);
         searchMenu=menu.findItem(R.id.menu_search);
         userInfoMenu=menu.findItem(R.id.menu_user_info);
@@ -445,9 +454,10 @@ public class MainActivity extends BaseActivity implements HomeView{
 
     private void setMenu() {
         Log.d(TAG,"当前ID为："+nowDrawID);
-        if(notifyMenu!=null&&searchMenu!=null&&newGoodsMenu!=null){
+        if(selectTerm != null && notifyMenu!=null&&searchMenu!=null&&newGoodsMenu!=null){
             menu.clear();
             getMenuInflater().inflate(R.menu.menu_mainactivity, menu);
+            selectTerm = menu.findItem(R.id.menu_select_term);
             notifyMenu=menu.findItem(R.id.menu_notify);
             searchMenu=menu.findItem(R.id.menu_search);
             newGoodsMenu=menu.findItem(R.id.menu_new_goods);
@@ -455,6 +465,9 @@ public class MainActivity extends BaseActivity implements HomeView{
             searchGoods=menu.findItem(R.id.menu_search_goods);
         if(nowDrawID==DrawerItem.HOME.getId()){
             Log.d(TAG,"主页菜单切换");
+            if (EducationLoginUtil.isLogin()) {
+                selectTerm.setVisible(true);
+            }
             notifyMenu.setVisible(true);
             setNotify();
         }else if(nowDrawID==DrawerItem.LIBRARY.getId()){
@@ -490,6 +503,10 @@ public class MainActivity extends BaseActivity implements HomeView{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
+            case R.id.menu_select_term:
+                SelectTermDialog dialog = new SelectTermDialog();
+                dialog.show(getSupportFragmentManager(), "Select Term");
+                break;
             case R.id.menu_notify:
                 Intent intent = new Intent(this, NotifyListActivity.class);
                 startActivity(intent);

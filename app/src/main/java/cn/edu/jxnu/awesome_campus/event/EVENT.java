@@ -377,5 +377,9 @@ public class EVENT {
 
 
     public static final int REBUILD_MENU=2019;
+
+    // 补充
+    // Event Code 给值不科学，拓展性弱，需重构
+    public static final int COURSE_TABLE_REQUEST_REFRESH = 3000;
 }
 

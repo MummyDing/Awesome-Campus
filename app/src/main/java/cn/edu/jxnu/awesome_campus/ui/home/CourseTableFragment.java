@@ -11,7 +11,6 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.R;
 import cn.edu.jxnu.awesome_campus.database.dao.home.CourseTableDAO;
-import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
@@ -85,6 +84,10 @@ public class CourseTableFragment extends BaseListFragment{
     public void onEventComing(EventModel eventModel) {
         super.onEventComing(eventModel);
         switch (eventModel.getEventCode()){
+            case EVENT.COURSE_TABLE_REQUEST_REFRESH:
+                displayLoading();
+                onDataRefresh();
+                break;
             case EVENT.COURSE_TABLE_REFRESH_SUCCESS:
                 courseInfoModel.loadFromNet();
                 weekCourse = eventModel.getDataList();
@@ -93,14 +96,12 @@ public class CourseTableFragment extends BaseListFragment{
             case EVENT.COURSE_TABLE_REFRESH_FAILURE:
                 hideLoading();
                 break;
-
             case EVENT.COURSE_TABLE_LOAD_CACHE_SUCCESS:
                 Log.e("---","COURSE_TABLE_LOAD_CACHE_SUCCESS");
                 weekCourse = eventModel.getDataList();
                 adapter.newList(eventModel.getDataList());
                 courseInfoModel.loadFromCache();
                 break;
-
             case EVENT.COURSE_TABLE_LOAD_CACHE_FAILURE:
                 Log.e("---","COURSE_TABLE_LOAD_CACHE_FAILURE");
                 onDataRefresh();

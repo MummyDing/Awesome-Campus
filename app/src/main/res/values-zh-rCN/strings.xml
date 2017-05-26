@@ -312,4 +312,5 @@
     <string name="salary">工作薪资：</string>
     <string name="job_requirements">岗位职责及要求：</string>
     <string name="no_major_limits">专业不限</string>
+    <string name="select_term">选择学期</string>
 </resources>

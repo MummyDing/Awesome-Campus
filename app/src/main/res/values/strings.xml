@@ -325,4 +325,5 @@
     <string name="salary">Salary: </string>
     <string name="job_requirements">Post Requirements: </string>
     <string name="no_major_limits">No major limits</string>
+    <string name="select_term">Select Term</string>
 </resources>

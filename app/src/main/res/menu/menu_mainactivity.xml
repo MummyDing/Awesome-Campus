@@ -9,6 +9,12 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/menu_select_term"
+        android:icon="@mipmap/ic_date_range_white"
+        android:title="@string/select_term"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/menu_notify"
         android:icon="@mipmap/ic_notify_none"
         android:title="@string/menu_notify"

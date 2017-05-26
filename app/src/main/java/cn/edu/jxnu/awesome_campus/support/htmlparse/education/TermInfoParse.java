@@ -45,7 +45,6 @@ public class TermInfoParse {
         saveData();
     }
 
-
     public TermSelectInfoBean getTermSelectInfo() {
         if (mTermSelectInfo.getTermList().isEmpty()) {
             try {
@@ -103,7 +102,7 @@ public class TermInfoParse {
         mTermSelectInfo.removeTermInfo();
         for (int i = mRawTermDateList.size() - 1; i >= 0 ; i--) {
             String[] tempList = mRawTermDescList.get(i).split("第");
-            TermSelectInfoBean.TermInfo termInfo = new TermSelectInfoBean.TermInfo(mRawTermDateList.get(i), tempList[0], "第" + tempList[1]);
+            TermSelectInfoBean.TermInfo termInfo = new TermSelectInfoBean.TermInfo(mRawTermDateList.get(i), tempList[0] + "学年", "第" + tempList[1]);
             mTermSelectInfo.addTermInfo(termInfo);
         }
     }
