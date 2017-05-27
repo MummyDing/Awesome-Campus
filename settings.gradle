@@ -1,1 +1,1 @@
-include ':app', ':HeaderAndFooterRecyclerView'
+include ':app', ':HeaderAndFooterRecyclerView', ':MaterialSpinner'

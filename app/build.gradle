@@ -36,7 +36,7 @@ dependencies {
         transitive = true
     }
 //    compile project(':nice-spinner-master')
-    compile 'com.jaredrummler:material-spinner:1.0.4'
+//    compile 'com.jaredrummler:material-spinner:1.0.4'
     compile 'com.android.support:cardview-v7:23.1.1'
     compile 'com.android.support:palette-v7:23.1.1'
     compile 'com.ramotion.foldingcell:folding-cell:1.0.0'
@@ -56,4 +56,5 @@ dependencies {
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     compile 'com.android.support:design:23.4.0'
 
+    compile project(path: ':MaterialSpinner')
 }

@@ -100,6 +100,9 @@ public class TermInfoParse {
     private void buildModel() {
         getTermSelectInfo();
         mTermSelectInfo.removeTermInfo();
+        if (mTermSelectInfo.getCurrentSelectIndex() == -1) {
+            mTermSelectInfo.setCurrentSelectIndex(mRawTermDateList.size() - 1);
+        }
         for (int i = mRawTermDateList.size() - 1; i >= 0 ; i--) {
             String[] tempList = mRawTermDescList.get(i).split("第");
             TermSelectInfoBean.TermInfo termInfo = new TermSelectInfoBean.TermInfo(mRawTermDateList.get(i), tempList[0] + "学年", "第" + tempList[1]);

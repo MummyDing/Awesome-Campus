@@ -504,11 +504,11 @@ public class MainActivity extends BaseActivity implements HomeView{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.menu_select_term:
-                SelectTermDialog dialog = new SelectTermDialog();
-                dialog.show(getSupportFragmentManager(), "Select Term");
+                Intent intent = new Intent(this, SelectTermDialog.class);
+                startActivity(intent);
                 break;
             case R.id.menu_notify:
-                Intent intent = new Intent(this, NotifyListActivity.class);
+                intent = new Intent(this, NotifyListActivity.class);
                 startActivity(intent);
                 break;
             case R.id.menu_new_goods:

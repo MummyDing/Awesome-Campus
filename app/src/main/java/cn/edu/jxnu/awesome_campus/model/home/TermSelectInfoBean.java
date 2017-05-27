@@ -41,6 +41,9 @@ public class TermSelectInfoBean {
     }
 
     public String getTermYearByIndex(int index) {
+        if (index < 0) {
+            return "";
+        }
         TermInfo termInfo = termList.get(index);
         if (termInfo != null) {
             return termInfo.getTermYear();

@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.ui.education;
 
 import android.util.Log;
 import android.view.View;
+
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
