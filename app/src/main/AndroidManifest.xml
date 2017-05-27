@@ -25,7 +25,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:launchMode="standard">
+            android:launchMode="standard"
+            android:windowSoftInputMode="adjustPan" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
