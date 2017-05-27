@@ -6,7 +6,6 @@
     <string name="home">主頁</string>
     <string name="leisure">課餘</string>
     <string name="life">生活</string>
-    <string name="study">自習</string>
     <string name="library">圖書</string>
     <string name="education">教務</string>
     <string name="theme">主題</string>
@@ -17,13 +16,8 @@
     <string name="daily">日報</string>
     <string name="film">影評</string>
     <string name="science">科學</string>
-    <string name="campus">校內</string>
     <string name="book_borrowed">已借</string>
-    <string name="reading">閱讀</string>
     <string name="atm">ATM</string>
-    <string name="express">宅配</string>
-    <string name="seat">座位</string>
-    <string name="my_seat">我</string>
     <string name="exam">考試</string>
     <string name="Login">登錄</string>
     <string name="studentid">學號</string>
@@ -38,12 +32,10 @@
     <string name="hint_search">輸入關鍵字查找圖書</string>
     <string name="search">查找</string>
     <string name="search_result">查找結果</string>
-    <string name="id_campusnews">id_campusnews</string>
     <string name="menu_share">分享</string>
     <string name="hint_share_to">分享到 ...</string>
     <string name="hot">熱度 ：</string>
     <string name="readingCount">瀏覽</string>
-    <string name="id_course_info">courseInfo</string>
     <string name="course_name">課程名:</string>
     <string name="course_id">課程號:</string>
     <string name="course_teacher">老師:</string>
@@ -78,7 +70,6 @@
     <string name="text_anywhere">任意位置有效</string>
     <string name="text_left_only">僅左部有效</string>
     <string name="text_clear_cache_successful">緩存清理成功!</string>
-    <string name="setting">設定</string>
     <string name="notify_exit_confirm">再按一次退出</string>
     <string name="hot_search_title">大家都在找這些書</string>
 
@@ -107,8 +98,6 @@
     <string name="summary_good_job">去GitHub( https://github.com/MummyDing/Awesome-Campus)上給顆star吧</string>
     <string name="summary_datou">師大+攝影(負責背景圖片)郵箱:dfc3333@outlook.com</string>
     <string name="summary_yingzi">師大+攝影(負責宅配圖片)\n個人微信訂閱號:ershisuizhihou</string>
-    <string name="summary_leisure">一款閱讀類Android應用</string>
-    <string name="summary_ytweather">老人機專用天氣</string>
     <string name="text_app_intro">應用簡介</string>
     <string name="text_attention">注意</string>
     <string name="text_attention_summary">該應用禁止用於商業用途</string>
@@ -118,29 +107,22 @@
     <string name="text_thanks">致謝</string>
     <string name="text_share_app">分享"師大+"</string>
     <string name="text_license">開源協議</string>
-    <string name="text_leisure">閒暇</string>
-    <string name="text_ytweather">芋头天气</string>
     <string name="text_good_job">點個贊</string>
     <string name="text_email">郵件</string>
     <string name="text_data">數據</string>
-    <string name="text_current_version">當前版本</string>
     <string name="text_copyright">版權</string>
     <string name="text_demo_video">演示視訊</string>
     <string name="text_data_summary">部分數據來自公開API,版權屬於原作者</string>
-    <string name="text_kevinwu">KevinWu</string>
-    <string name="text_mummyding">MummyDing</string>
     <string name="due_date">應還日期:</string>
     <string name="borrow_date">借閱日期:</string>
     <string name="book_location">館藏地:</string>
     <string name="book_code">書號:</string>
     <string name="author">作者:</string>
     <string name="renew_count">續借狀態:</string>
-    <string name="renew">續借</string>
     <string name="publisher">出版社:</string>
     <string name="book_count">館藏:</string>
     <string name="book_class">類別:</string>
     <string name="book_number">條形號:</string>
-    <string name="bank">銀行:</string>
     <string name="book_left">可借:</string>
     <string name="location">位置:</string>
     <string name="courseinfo">課程信息</string>
@@ -149,7 +131,6 @@
     <string name="hot_search">熱門</string>
     <string name="menu_notify">通知</string>
     <string name="no_notify">無通知</string>
-    <string name="notify_find_new_version">發現新版本　</string>
     <string name="notify_current_is_latest">已經是最新版本</string>
     <string name="notify_info_copied">資訊已經被添加至剪貼簿</string>
     <string name="hint_fail_check_update">獲取版本資訊失敗，請檢查網路設定</string>
@@ -165,41 +146,28 @@
     <string name="click_to_main">跳转至主界面</string>
     <string name="click_to_login">点击登錄</string>
     <string name="server_error">服務器錯誤</string>
-    <string name="text_github">GitHub</string>
     <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到 http://fir.im/AwesomeCampus 下载</string>
     <string name="text_share_awesome_campus">分享"师大+"</string>
     <string name="summary_version">Release Version</string>
     <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
-    <string name="mummyding_github">https://github.com/MummyDing</string>
     <string name="mummyding_blog">https://mummyding.github.io/</string>
-    <string name="mummy_email">MummyDing@outlook.com</string>
     <string name="link">link</string>
     <string name="link_data">link_data</string>
     <string name="kevin_blog">http://www.kevinwu.cn</string>
-    <string name="kevin_email">wqd1993@qq.com</string>
-    <string name="kevin_github">https://github.com/KevinWu1993</string>
     <string name="id_type">type</string>
     <string name="id_star_project">star_project</string>
     <string name="id_share">share</string>
     <string name="id_search">share</string>
     <string name="id_none">none</string>
-    <string name="id_mummy_email">mummy_email</string>
     <string name="id_mummy_blog">mummy_blog</string>
-    <string name="id_mummy_app">mummy_app</string>
     <string name="id_license">license</string>
-    <string name="id_kevin_github">kevin_github</string>
-    <string name="id_kevin_email">kevin_email</string>
     <string name="id_kevin_blog">kevin_blog</string>
-    <string name="id_kevin_app">kevin_app</string>
-    <string name="id_github_mummy">mummy_github</string>
     <string name="id_demo_video">demo_video</string>
     <string name="id_data">data</string>
-    <string name="id_current_version">current_version</string>
     <string name="id_check_update">check_update</string>
     <string name="id_avatar">avatar</string>
     <string name="id_app_intro">app_intro</string>
     <string name="data">data</string>
-    <string name="notify_sure_to_logout">確定注銷登陸嗎?</string>
     <string name="yes">確定</string>
     <string name="cancel">取消</string>
     <string name="id_title">title</string>
@@ -208,7 +176,6 @@
     <string name="notify_no_course">今天沒課\n可以好好休息喔~</string>
     <string name="app_intro">應用介紹</string>
     <string name="campus_weather">校園天氣</string>
-    <string name="search_books">查找</string>
     <string name="new_version">新版本　</string>
     <string name="notify_new_version">現在就去下載吧!</string>
     <string name="authors">Android軟體</string>
@@ -219,7 +186,6 @@
 
     <string name="jxnugo_user_followed">關註的人</string>
     <string name="jxnugo_user_followers">粉絲</string>
-    <string name="jxnugo_user_locate">地址</string>
     <string name="jxnugo_user_post">他/她發佈的物品</string>
     <string name="jxnugo_user_collect">他/她收藏的商品</string>
 
@@ -281,7 +247,6 @@
     <string name="notify_find_in_test">別鬧，您是內測用戶，肯定是最新的</string>
     <string name="summary_mengli">師大+視頻（負責宣傳視頻）\nWeChat：Li-NERV</string>
     <string name="job_jobtitle">招聘</string>
-    <string name="job_close_job_info">关闭就业信息</string>
 
     <string name="job_title_school">校园招聘</string>
     <string name="job_title_big">大型招聘</string>

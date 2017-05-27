@@ -23,10 +23,13 @@
             android:name=".support.provider.SuggestionProvider"
             android:authorities="cn.edu.jxnu.awesome_campus.support.provider.SuggestionProvider" />
 
+        <!--Common-->
+        <activity android:name=".ui.base.BaseDialogPhotoView" />
+        <activity android:name=".AppGuideActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="standard"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -44,6 +47,45 @@
                 android:name="android.app.default_searchable2"
                 android:value=".ui.jxnugo.GoodsSearchResultActivity" />
         </activity>
+
+        <!--Home-->
+        <activity android:name=".ui.home.CampusNewsDetailsActivity" />
+        <activity
+            android:name=".ui.home.CourseDetailsDialog"
+            android:theme="@style/BlueDialogTheme" />
+        <activity
+            android:name=".ui.home.SelectTermDialog"
+            android:theme="@style/DialogTheme" />
+
+        <!--Leisure-->
+        <activity android:name=".ui.leisure.DailyDetailsActivity" />
+        <activity android:name=".ui.leisure.ScienceDetailsActivity" />
+        <activity android:name=".ui.leisure.FilmDetailsActivity" />
+
+        <!--JxnuGo-->
+        <activity android:name=".ui.jxnugo.GoodsDetailActivity" />
+        <activity android:name=".ui.jxnugo.GoodsCommentActivity" />
+        <activity android:name=".ui.jxnugo.NewGoodsActivity" />
+        <activity android:name=".ui.jxnugo.JxnuGoUserinfoActivity" />
+        <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity" />
+        <activity android:name=".ui.jxnugo.JxnuGoGoodsListActivity" />
+        <activity android:name=".ui.jxnugo.JxnuGoUserInfoETActivity" />
+        <activity android:name=".ui.jxnugo.GoodsSearchResultActivity" />
+        <activity android:name=".ui.jxnugo.NoticeActivity" />
+
+        <!--Education-->
+        <activity
+            android:name=".ui.education.ScoreDetailsDialog"
+            android:theme="@style/DialogTheme" />
+
+        <!--Life-->
+        <activity android:name=".ui.life.CampusExpressDetailsActivity" />
+
+        <!--Library-->
+        <activity
+            android:name=".ui.library.BookBorrowedDialog"
+            android:theme="@style/DialogTheme" />
+        <activity android:name=".ui.library.BookSearchDetailsActivity" />
         <activity
             android:name=".ui.library.BookSearchActivity"
             android:launchMode="standard">
@@ -55,35 +97,18 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".ui.home.CampusNewsDetailsActivity" />
-        <activity android:name=".ui.leisure.DailyDetailsActivity" />
-        <activity android:name=".ui.leisure.ScienceDetailsActivity" />
-        <activity android:name=".ui.leisure.FilmDetailsActivity" />
-        <activity android:name=".ui.jxnugo.GoodsDetailActivity" />
-        <activity android:name=".ui.jxnugo.GoodsCommentActivity" />
-        <activity android:name=".ui.jxnugo.NewGoodsActivity" />
-        <activity
-            android:name=".ui.home.CourseDetailsDialog"
-            android:theme="@style/BlueDialogTheme" />
-        <activity
-            android:name=".ui.education.ScoreDetailsDialog"
-            android:theme="@style/DialogTheme" />
-        <activity
-            android:name=".ui.library.BookBorrowedDialog"
-            android:theme="@style/DialogTheme" />
-        <activity android:name=".ui.home.SelectTermDialog"
-            android:theme="@style/DialogTheme" />
-        <activity android:name=".ui.life.CampusExpressDetailsActivity" />
-        <activity android:name=".ui.settings.SettingsActivity" />
-        <activity android:name=".ui.about.AboutActivity" />
-        <activity android:name=".ui.about.AppIntroActivity" />
-        <activity android:name=".ui.library.BookSearchDetailsActivity" />
-        <activity android:name=".ui.about.NotifyActivity" />
-        <activity android:name=".ui.about.LicenseActivity" />
-        <activity android:name=".AppGuideActivity" />
-        <activity android:name=".ui.about.NotifyListActivity" />
+
         <activity android:name=".ui.registe.JxnuGoRegisteActivity" />
         <activity android:name=".ui.job.JobDetailActivity" />
+
+        <!--About-->
+        <activity android:name=".ui.about.AboutActivity" />
+        <activity android:name=".ui.about.AppIntroActivity" />
+        <activity android:name=".ui.about.NotifyActivity" />
+        <activity android:name=".ui.about.LicenseActivity" />
+        <activity android:name=".ui.about.NotifyListActivity" />
+        <activity android:name=".ui.about.FeedbackActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" />
 
         <service
             android:name=".support.service.NotifyService"
@@ -131,14 +156,6 @@
             android:name="TD_CHANNEL_ID"
             android:value="00001" />
 
-        <activity android:name=".ui.jxnugo.JxnuGoUserinfoActivity" />
-        <activity android:name=".ui.jxnugo.JxnuGoPeopleActivity" />
-        <activity android:name=".ui.jxnugo.JxnuGoGoodsListActivity" />
-        <activity android:name=".ui.jxnugo.JxnuGoUserInfoETActivity" />
-        <activity android:name=".ui.about.FeedbackActivity" />
-        <activity android:name=".ui.jxnugo.GoodsSearchResultActivity" />
-        <activity android:name=".ui.jxnugo.NoticeActivity" />
-        <activity android:name=".ui.base.BaseDialogPhotoView" />
     </application>
 
 </manifest>

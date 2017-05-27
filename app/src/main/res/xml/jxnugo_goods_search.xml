@@ -1,7 +1,0 @@
-<searchable
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:label="@string/jxnugo"
-    android:hint="搜索二手商品"
-    android:icon="@mipmap/ic_search_white"
-    android:searchSuggestIntentAction=""
-    />

@@ -6,7 +6,6 @@
     <string name="home">Home</string>
     <string name="leisure">Leisure</string>
     <string name="life">Life</string>
-    <string name="study">Study</string>
     <string name="library">Library</string>
     <string name="education">Education</string>
     <string name="theme">Theme</string>
@@ -17,14 +16,8 @@
     <string name="daily">Daily</string>
     <string name="film">Film</string>
     <string name="science">Science</string>
-    <string name="campus">Campus</string>
-    <string name="search_books">Search</string>
     <string name="book_borrowed">Borrowed</string>
-    <string name="reading">Reading</string>
     <string name="atm">ATM</string>
-    <string name="express">Express</string>
-    <string name="seat">Seat</string>
-    <string name="my_seat">Me</string>
     <string name="exam">Exam</string>
     <string name="Score">Score</string>
     <string name="Login">Login</string>
@@ -40,14 +33,12 @@
     <string name="hint_search">Search Book</string>
     <string name="search">Search</string>
     <string name="search_result">Search Result</string>
-    <string name="id_campusnews">id_campusnews</string>
     <string name="menu_share">share</string>
     <string name="hint_share_to">Share to ...</string>
     <string name="hot">hot ：</string>
     <string name="readingCount"> views</string>
     <string name="hot_search_title">Hot Tag</string>
 
-    <string name="id_course_info">courseInfo</string>
     <string name="course_name">Course:</string>
     <string name="course_id">ID:</string>
     <string name="course_teacher">Teacher:</string>
@@ -82,7 +73,6 @@
     <string name="text_anywhere">Anywhere</string>
     <string name="text_left_only">Left Only</string>
     <string name="text_clear_cache_successful">Cache Clear Successfully!</string>
-    <string name="setting">Setting</string>
     <string name="notify_exit_confirm">press again to exit</string>
     <string name="notify_press_twice_to_exit">Press back key twice to exit</string>
     <string name="text_storage">Storage</string>
@@ -106,8 +96,6 @@
     <string name="text_license">License</string>
     <string name="id_app_intro">app_intro</string>
     <string name="text_app_intro">App Introduction</string>
-    <string name="id_current_version">current_version</string>
-    <string name="text_current_version">Current Version</string>
     <string name="summary_version">Release Version </string>
     <string name="id_check_update">check_update</string>
     <string name="text_check_update">Check Update</string>
@@ -118,7 +106,6 @@
     <string name="summary_good_job">Give me a star at https://github.com/MummyDing/Awesome-Campus</string>
     <string name="id_share">share</string>
     <string name="text_share_app">Share Awesome Campus</string>
-    <string name="text_mummyding">MummyDing</string>
     <string name="id_mummy_blog">mummy_blog</string>
     <string name="text_blog_mummyding">MummyDing\'s Blog</string>
     <string name="text_blog_kevinwu">KevinWu\'s Page</string>
@@ -127,17 +114,6 @@
     <string name="text_blog_ddragon">Ddragon\'s Page</string>
     <string name="text_github_can2studio">Can2\'s pixiv</string>
     <string name="mummyding_blog">https://mummyding.github.io/</string>
-    <string name="id_github_mummy">mummy_github</string>
-    <string name="text_github">GitHub</string>
-    <string name="mummyding_github">https://github.com/MummyDing</string>
-    <string name="id_mummy_email">mummy_email</string>
-    <string name="mummy_email">MummyDing@outlook.com</string>
-    <string name="id_mummy_app">mummy_app</string>
-    <string name="text_leisure">Leisure</string>
-    <string name="text_ytweather">YTWeather</string>
-    <string name="summary_leisure">An Android app for reading</string>
-    <string name="summary_ytweather">An Weather app for Old people</string>
-    <string name="text_kevinwu">KevinWu</string>
     <string name="id_kevin_blog">kevin_blog</string>
     <string name="id_thereisnospon_blog">Thereisnospon_blog</string>
     <string name="id_zpauly_github">zpauly_github</string>
@@ -148,8 +124,6 @@
     <string name="zpauly_github">https://github.com/zpauly</string>
     <string name="ddragon_blog">http://www.ddragonever.com</string>
     <string name="can2studio_github">http://www.pixiv.net/member.php?id=4334017</string>
-    <string name="kevin_github">https://github.com/KevinWu1993</string>
-    <string name="kevin_email">wqd1993@qq.com</string>
     <string name="text_thanks">Thanks</string>
     <string name="summary_yingzi">Awesome Campus\'s Photographer(Express Image)\nWeChat Subscription Account:ershisuizhihou</string>
     <string name="summary_datou">Awesome Campus\'s Photographer(Background Image)\nE-Mail:dfc3333@outlook.com</string>
@@ -160,7 +134,6 @@
     <string name="renew_count">Renew State:</string>
     <string name="book_location">Book Location:</string>
     <string name="author">Author:</string>
-    <string name="renew">Renew</string>
     <string name="no_result">No Result</string>
     <string name="book_number">Book Number:</string>
     <string name="book_class">Book Class:</string>
@@ -168,9 +141,6 @@
     <string name="book_left">Book Left:</string>
     <string name="book_count">Book Count:</string>
     <string name="location">Location:</string>
-    <string name="bank">Bank:</string>
-    <string name="id_kevin_github">kevin_github</string>
-    <string name="id_kevin_app">kevin_app</string>
     <string name="courseinfo">CourseInfo</string>
     <string name="coursescore">CourseScore</string>
     <string name="id_search">Search</string>
@@ -183,7 +153,6 @@
     <string name="id_none">none</string>
     <string name="no_notify">No Notify</string>
     <string name="notify_current_is_latest">Current Version is the latest Version</string>
-    <string name="notify_find_new_version">"Find new Version "</string>
     <string name="notify_find_in_test">You are the beta user</string>
     <string name="hint_fail_check_update">Fail to get version info,please check your network setting</string>
     <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
@@ -226,8 +195,6 @@
     </string-array>
     <string name="text_share_awesome_campus">分享"师大+"</string>
     <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到 http://fir.im/AwesomeCampus 下载</string>
-    <string name="id_kevin_email">kevin_email</string>
-    <string name="notify_sure_to_logout">Are you sure to Logout?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="id_title">title</string>
@@ -248,7 +215,6 @@
 
     <string name="jxnugo_user_followed">followed</string>
     <string name="jxnugo_user_followers">followers</string>
-    <string name="jxnugo_user_locate">locate</string>
     <string name="jxnugo_user_post">post</string>
     <string name="jxnugo_newgoods_name">*Goods Name</string>
     <string name="jxnugo_newgoods_buytime">Buy Time(eg. 1993 03 05)</string>
@@ -295,7 +261,6 @@
     <string name="time_util_year_ago">Years ago</string>
 
     <string name="job_jobtitle">Recruiting</string>
-    <string name="job_close_job_info">Close Job Info</string>
 
     <string name="job_title_school">Campus</string>
     <string name="job_title_big">Large</string>

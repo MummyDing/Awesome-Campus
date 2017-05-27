@@ -49,7 +49,6 @@
     <color name="brownColorPrimaryDark">#327A6F</color>
     <color name="brownColorAccent">#7A9A7F</color>
     <color name="brownTextColor">#243A3C</color>
-    <color name="brownCardViewColor">#c3c3ab</color>
 
     <!--LightgreenTheme主题-->
     <color name="lightGreenColorPrimary">#8BC34A</color>
