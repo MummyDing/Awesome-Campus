@@ -2,7 +2,7 @@ package cn.edu.jxnu.awesome_campus.support.htmlparse.home;
 
 import android.util.Log;
 
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 
 /**
  * 校内新闻详情解析页

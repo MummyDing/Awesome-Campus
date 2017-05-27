@@ -21,7 +21,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.BookBorrowedParse;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;

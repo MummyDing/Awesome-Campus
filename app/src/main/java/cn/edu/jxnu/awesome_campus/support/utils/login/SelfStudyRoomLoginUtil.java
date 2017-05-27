@@ -2,21 +2,15 @@ package cn.edu.jxnu.awesome_campus.support.utils.login;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.Settings;
 import android.util.Log;
-import android.widget.EditText;
 
 import com.squareup.okhttp.Headers;
 
 import org.greenrobot.eventbus.EventBus;
 
-import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
-import cn.edu.jxnu.awesome_campus.support.spkey.SelfStudyRoomStaticKey;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
-import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;

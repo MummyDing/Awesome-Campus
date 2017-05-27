@@ -10,17 +10,12 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
-import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
-import cn.edu.jxnu.awesome_campus.model.library.BookBorrowedModel;
 import cn.edu.jxnu.awesome_campus.model.library.SelfStudySeatLeftModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.SelfStudySeatLeftParse;
-import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
-import cn.edu.jxnu.awesome_campus.support.spkey.SelfStudyRoomStaticKey;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
-import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;

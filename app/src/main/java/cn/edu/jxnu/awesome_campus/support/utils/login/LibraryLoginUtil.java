@@ -14,7 +14,7 @@ import cn.edu.jxnu.awesome_campus.support.spkey.LibraryStaticKey;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.libary.LibraryLoginInfoParse;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;

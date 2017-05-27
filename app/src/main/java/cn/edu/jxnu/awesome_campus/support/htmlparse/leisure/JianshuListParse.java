@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.model.leisure.FilmModel;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.html.HtmlUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
 

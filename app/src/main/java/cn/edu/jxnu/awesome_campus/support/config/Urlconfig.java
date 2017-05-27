@@ -1,4 +1,4 @@
-package cn.edu.jxnu.awesome_campus.support.urlconfig;
+package cn.edu.jxnu.awesome_campus.support.config;
 
 /**
  * 记录url
@@ -19,6 +19,8 @@ public class Urlconfig {
     public static final String Education_Login_URL="http://jwc.jxnu.edu.cn/Default_Login.aspx?preurl=";
     // 课程表URL
     public static final String CourseTable_URL="http://jwc.jxnu.edu.cn/User/default.aspx?&&code=111&uctl=MyControl%5cxfz_kcb.ascx&MyAction=Personal";
+    //课程表请求参数获取
+    public static final String CourseTablePostParams_URL = "https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/config/CourseTableRequestConfig.json";
     //课程信息url（其实和课程表一样）
     public static final String CourseInfo_URL  ="http://jwc.jxnu.edu.cn/User/default.aspx?&&code=111&uctl=MyControl%5cxfz_kcb.ascx&MyAction=Personal";
     //课程成绩的基础url

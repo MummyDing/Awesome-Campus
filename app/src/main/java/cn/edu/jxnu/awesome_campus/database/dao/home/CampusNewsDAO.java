@@ -2,7 +2,6 @@ package cn.edu.jxnu.awesome_campus.database.dao.home;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.media.midi.MidiOutputPort;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -20,7 +19,7 @@ import cn.edu.jxnu.awesome_campus.event.EVENT;
 import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.home.CampusNewsModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.home.CampusNewsParse;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;
 

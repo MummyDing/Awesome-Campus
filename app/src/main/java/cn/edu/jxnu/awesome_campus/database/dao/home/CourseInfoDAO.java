@@ -15,7 +15,7 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
-import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseTableExtraInfo;
+import cn.edu.jxnu.awesome_campus.support.config.CourseTableRequestConfig;
 import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseInfoTable;
 import cn.edu.jxnu.awesome_campus.event.EVENT;
@@ -23,7 +23,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseInfoModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseInfoParse;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
@@ -108,10 +108,10 @@ public class CourseInfoDAO implements DAO<CourseInfoModel>{
 //                .addHeader("Cookie", cookies)
         NetManageUtil.post(Urlconfig.CourseTable_URL)
                 .addHeader("Cookie", cookies)
-                .addParams("__EVENTTARGET", CourseTableExtraInfo.__EVENTTARGET)
-                .addParams("__EVENTARGUMENT",CourseTableExtraInfo.__EVENTARGUMENT)
-                .addParams("__VIEWSTATE",CourseTableExtraInfo.__VIEWSTATE)
-                .addParams("__EVENTVALIDATION",CourseTableExtraInfo.__EVENTVALIDATION)
+                .addParams("__EVENTTARGET", CourseTableRequestConfig.__EVENTTARGET)
+                .addParams("__EVENTARGUMENT", CourseTableRequestConfig.__EVENTARGUMENT)
+                .addParams("__VIEWSTATE", CourseTableRequestConfig.__VIEWSTATE)
+                .addParams("__EVENTVALIDATION", CourseTableRequestConfig.__EVENTVALIDATION)
                 .addParams("_ctl1:ddlSterm",TimeUtil.getTerm())
 //                .addParams("_ctl1:ddlSterm", "2015/3/1 0:00:00")
                 .addParams("_ctl1:btnSearch","确定")

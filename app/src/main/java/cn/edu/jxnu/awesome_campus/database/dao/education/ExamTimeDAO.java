@@ -2,7 +2,6 @@ package cn.edu.jxnu.awesome_campus.database.dao.education;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.opengl.ETC1Util;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -23,7 +22,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.education.ExamTimeModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.ExamTimeParse;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.NetManageUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.net.callback.StringCallback;

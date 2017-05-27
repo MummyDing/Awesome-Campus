@@ -1,13 +1,11 @@
 package cn.edu.jxnu.awesome_campus.support.htmlparse.libary;
 
-import android.util.Log;
-
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.jxnu.awesome_campus.model.library.BookSearchResultModel;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.html.HtmlUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.html.NullHtmlStringException;
 

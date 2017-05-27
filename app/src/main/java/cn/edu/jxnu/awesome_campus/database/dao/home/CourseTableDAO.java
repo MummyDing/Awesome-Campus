@@ -16,8 +16,9 @@ import java.util.List;
 import cn.edu.jxnu.awesome_campus.InitApp;
 import cn.edu.jxnu.awesome_campus.database.DatabaseHelper;
 import cn.edu.jxnu.awesome_campus.database.dao.DAO;
+import cn.edu.jxnu.awesome_campus.model.common.CourseTableRequestConfigModel;
 import cn.edu.jxnu.awesome_campus.model.home.TermSelectInfoBean;
-import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseTableExtraInfo;
+import cn.edu.jxnu.awesome_campus.support.config.CourseTableRequestConfig;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.TermInfoParse;
 import cn.edu.jxnu.awesome_campus.support.spkey.EducationStaticKey;
 import cn.edu.jxnu.awesome_campus.database.table.home.CourseTable;
@@ -26,7 +27,7 @@ import cn.edu.jxnu.awesome_campus.event.EventModel;
 import cn.edu.jxnu.awesome_campus.model.education.CourseScoreModel;
 import cn.edu.jxnu.awesome_campus.model.home.CourseTableModel;
 import cn.edu.jxnu.awesome_campus.support.htmlparse.education.CourseTableParse;
-import cn.edu.jxnu.awesome_campus.support.urlconfig.Urlconfig;
+import cn.edu.jxnu.awesome_campus.support.config.Urlconfig;
 import cn.edu.jxnu.awesome_campus.support.utils.common.SPUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TextUtil;
 import cn.edu.jxnu.awesome_campus.support.utils.common.TimeUtil;
@@ -120,6 +121,10 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
             currentTermString = TimeUtil.getTerm();
         }
 
+        // 获取请求参数
+        final CourseTableRequestConfigModel requestConfig = new CourseTableRequestConfigModel();
+        requestConfig.loadFromCache();
+
         SPUtil spu = new SPUtil(InitApp.AppContext);
         String cookies = "_ga=GA1.3.609810117.1451115712; ASP.NET_SessionId=" +
                 spu.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE) +
@@ -128,18 +133,19 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
         NetManageUtil.post(Urlconfig.CourseTable_URL)
                 .addHeader("Cookie", cookies)
                 .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36")
-                .addParams("__EVENTTARGET", CourseTableExtraInfo.__EVENTTARGET)
-                .addParams("__EVENTARGUMENT",CourseTableExtraInfo.__EVENTARGUMENT)
-                .addParams("__VIEWSTATE",CourseTableExtraInfo.__VIEWSTATE) // 改成可配置
-                .addParams("__EVENTVALIDATION",CourseTableExtraInfo.__EVENTVALIDATION) // 改成可配置
+                .addParams("__EVENTTARGET", CourseTableRequestConfig.__EVENTTARGET)
+                .addParams("__EVENTARGUMENT", CourseTableRequestConfig.__EVENTARGUMENT)
+                .addParams("__VIEWSTATE", requestConfig.get__VIEWSTATE()) // 改成可配置
+                .addParams("__EVENTVALIDATION", requestConfig.get__EVENTVALIDATION()) // 改成可配置
                 .addParams("_ctl1:ddlSterm", currentTermString)
                 .addParams("_ctl1:btnSearch","确定")
                 .addTag(TAG).enqueue(new StringCallback() {
             @Override
-            public void onSuccess(String result, Headers headers) {
+            public void onSuccess(final String result, Headers headers) {
                CourseTableParse myParse = new CourseTableParse(result);
                 final List<CourseTableModel> list = myParse.getEndList();
                 mTermInfoParse = new TermInfoParse(result);
+
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -150,6 +156,12 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                         } else {
                             Log.e(TAG,"课程表获取失败，解析结果列表为空");
                             EventBus.getDefault().post(new EventModel<CourseTableModel>(EVENT.COURSE_TABLE_REFRESH_FAILURE));
+                        }
+                        if (result.contains("运行时错误")) {
+                            //更新请求参数
+                            if (NetManageUtil.readNetworkState()) {
+                                requestConfig.loadFromNet();
+                            }
                         }
                     }
                 });
