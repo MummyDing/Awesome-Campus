@@ -24,18 +24,7 @@ Fir.im体验地址：http://fir.im/AwesomeCampus
 
 ## 应用截图
 
-<img src="/img/ScreenShots/ScreenShot_CourseTable.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_CampusNews.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_Daily.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_Film.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_ATM.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/ScreenShot_Drawer.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_HotTag.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_BookBorrowed.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_SearchDetail.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_SelfStudyRoomSeat.png" width="200" height="355.5"/> 
-<img src="/img/ScreenShots/Screenshot_Theme.png" width="200" height="355.5"/>
-<img src="/img/ScreenShots/Screenshot_About.png" width="200" height="355.5"/>
+<img src="/img/ScreenShots/ScreenShot_CourseTable.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_CampusNews.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_Daily.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_Film.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_ATM.png" width="200" height="355.5"/> <img src="/img/ScreenShots/ScreenShot_Drawer.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_HotTag.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_BookBorrowed.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_SearchDetail.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_SelfStudyRoomSeat.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_Theme.png" width="200" height="355.5"/> <img src="/img/ScreenShots/Screenshot_About.png" width="200" height="355.5"/>
 ## 开发日志
 #### 2016.04.26
 
@@ -50,11 +39,7 @@ Fir.im体验地址：http://fir.im/AwesomeCampus
 
 #### Build Version 1.0
 
-<img src="/img/home-v1.0.png" width="160" height="330"/> 
-<img src="/img/life-v1.0.png" width="160" height="330"/> 
-<img src="/img/leisure-v1.0.png" width="160" height="330"/> 
-<img src="/img/libary-v1.0.png" width="160" height="330"/> 
-<img src="/img/eduction-v1.0.png" width="160" height="330"/> 
+<img src="/img/home-v1.0.png" width="160" height="330"/> <img src="/img/life-v1.0.png" width="160" height="330"/> <img src="/img/leisure-v1.0.png" width="160" height="330"/> <img src="/img/libary-v1.0.png" width="160" height="330"/> <img src="/img/eduction-v1.0.png" width="160" height="330"/> 
 
 
 #### Build Version 1.1
