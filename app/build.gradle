@@ -8,12 +8,12 @@ android {
         applicationId "cn.edu.jxnu.awesome_campus"
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 8
-        versionName "1.4.0"
+        versionCode 9
+        versionName "1.4.1"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

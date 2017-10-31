@@ -50,7 +50,7 @@ public class InitApp extends Application{
                     .equals(PACK_NAME);
             if (defaultProcess) {
                 Fresco.initialize(AppContext);
-
+                AppConfig.updateConfig();
 
                 TCAgent.LOG_ON=true;
                 // App ID: 在TalkingData创建应用后，进入数据报表页中，在“系统设置”-“编辑应用”页面里查看App ID。

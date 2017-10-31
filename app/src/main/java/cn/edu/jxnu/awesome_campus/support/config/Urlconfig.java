@@ -71,4 +71,9 @@ public class Urlconfig {
 
     //自习室剩余座位查询url
     public static final String SelfStudyRoom_Seat_Left_URL="http://zwfp.jxnu.jadl.net/ReadingRoomInfos/ReadingRoomState.aspx";
+
+
+    //应用配置参数请求url
+    //课程表请求参数获取
+    public static final String AppConfig_URL = "https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/config/Config.json";
 }
