@@ -16,7 +16,12 @@ public abstract class JsonEntityCallback<T> extends NetCallback{
     public abstract void onSuccess(T entity, Headers headers);
     @Override
     public void onResponse(Response response) throws IOException {
-        T entity = new Gson().fromJson(response.body().string(),((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
-        onSuccess(entity,response.headers());
+        try {
+            T entity = new Gson().fromJson(response.body().string(),((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+            onSuccess(entity,response.headers());
+        } catch (Exception e) {
+            onSuccess(null, null);
+            e.printStackTrace();
+        }
     }
 }
