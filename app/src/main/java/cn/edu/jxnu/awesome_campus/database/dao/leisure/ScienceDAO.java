@@ -113,7 +113,7 @@ public class ScienceDAO implements DAO<ScienceModel> {
                     @Override
                     public void onSuccess(final ScienceBean entity, Headers headers) {
                        if(entity!=null){
-                           final List<ScienceModel> list = Arrays.asList(entity.getResult());
+                           final List<ScienceModel> list = entity.getResult();
                            cacheAll(list);
                            handler.post(new Runnable() {
                                @Override
