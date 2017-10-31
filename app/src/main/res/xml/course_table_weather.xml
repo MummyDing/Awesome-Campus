@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/widget_4x2_course_table_weather"
+    android:minHeight="130dp"
+    android:minWidth="250dp"
+    android:previewImage="@drawable/w_course_table_weather"
+    android:updatePeriodMillis="0"></appwidget-provider>

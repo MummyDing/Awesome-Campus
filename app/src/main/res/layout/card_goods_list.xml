@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--商品列表-->
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/card_margin"
+    android:layout_marginLeft="@dimen/card_margin"
+    android:layout_marginRight="@dimen/card_margin"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="8dp"
+    app:cardBackgroundColor="?attr/cardViewColor"
+    card_view:contentPadding="10dp"
+    card_view:cardPreventCornerOverlap="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/delete_layout"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/delete_button"
+                android:src="@mipmap/ic_delete"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:padding="10dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/goods_time"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:textColor="?attr/textColor"
+                android:layout_width="wrap_content"
+                android:text="2016-05-11"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/goods_title"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:textColor="?attr/textColor"
+                android:layout_width="wrap_content"
+                android:text="测试标题"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="16sp"
+                    android:layout_gravity="bottom"
+                    android:text="￥"
+                    />
+                <!--价格-->
+                <TextView
+                    android:id="@+id/goods_price"
+                    android:paddingLeft="5dp"
+                    android:text="300"
+                    android:textSize="16sp"
+                    android:textColor="?attr/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/readingCount"-->
+                    <!--android:textColor="?attr/textColor"-->
+                    <!--android:layout_marginLeft="5dp"/>-->
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/goods_image"
+            android:layout_weight="3.2"
+            android:layout_width="0dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_height="120dp" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

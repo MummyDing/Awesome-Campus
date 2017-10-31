@@ -1,6 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="text_enabled">#FFFFFFFF</color>
+    <color name="text_disabled">#4DFFFFFF</color>
+    <!--默认主题-->
+    <color name="colorPrimary">#A52F2F</color>
+    <color name="colorPrimaryDark">#8c2222</color>
+    <color name="colorAccent">#FFC107</color>
+    <color name="cardViewColor">#fff</color>
+    <color name="textColor">#75787B</color>
+    <color name="textColorHighlight">#000</color>
+    <color name="backgroundColor">#E0E5EA</color>
+
+    <!--cyan主题-->
+    <color name="cyanColorPrimary">#00BCD4</color>
+    <color name="cyanColorPrimaryDark">#0097A7</color>
+    <color name="cyanColorAccent">#FF9800</color>
+
+    <!--purple主题-->
+    <color name="purpleColorPrimary">#9C27B0</color>
+    <color name="purpleColorPrimaryDark">#7B1FA2</color>
+    <color name="purpleColorAccent">#03A9F4</color>
+
+    <!--blue主题-->
+    <color name="blueColorPrimary">#2196F3</color>
+    <color name="blueColorPrimaryDark">#1976D2</color>
+    <color name="blueColorAccent">#303F9F</color>
+
+    <!--blueGrey主题-->
+    <color name="blueGreyColorPrimary">#607D8B</color>
+    <color name="blueGreyColorPrimaryDark">#455A64</color>
+    <color name="blueGreyColorAccent">#FF9800</color>
+
+    <!--orange主题-->
+    <color name="orangeColorPrimary">#FF9800</color>
+    <color name="orangeColorPrimaryDark">#F57C00</color>
+    <color name="orangeColorAccent">#FFC107</color>
+
+    <!--teal主题-->
+    <color name="tealColorPrimary">#009688</color>
+    <color name="tealColorPrimaryDark">#00796B</color>
+    <color name="tealColorAccent">#536DFE</color>
+
+    <!--brown主题(已临时修改为JXNUGO配色主题)-->
+    <!--<color name="brownColorPrimary">#795548</color>-->
+    <!--<color name="brownColorPrimaryDark">#5D4037</color>-->
+    <!--<color name="brownColorAccent">#727272</color>-->
+    <color name="brownColorPrimary">#548A7A</color>
+    <color name="brownColorPrimaryDark">#327A6F</color>
+    <color name="brownColorAccent">#7A9A7F</color>
+    <color name="brownTextColor">#243A3C</color>
+
+    <!--LightgreenTheme主题-->
+    <color name="lightGreenColorPrimary">#8BC34A</color>
+    <color name="lightGreenColorPrimaryDark">#689F38</color>
+    <color name="lightGreenColorAccent">#CDDC39</color>
+
+    <!--马卡龙草莓奶霜主题-->
+    <color name="mklColorPrimary">#f16d7a</color>
+    <color name="mklColorPrimaryDark">#ef5461</color>
+    <color name="mklColorAccent">#e27386</color>
+
+    <!--黑金Black Golden主题-->
+    <color name="bgColorPrimary">#223</color>
+    <color name="bgColorPrimaryDark">#000</color>
+    <color name="bgColorAccent">#FFB44a</color>
+    <color name="bgCardViewColor">#ffd191</color>
+    <color name="bgTextColor">#ff9500</color>
+    <color name="bgTextColorHighlight">#ffb44a</color>
+    <color name="bgBackgroundColor">#fff1de</color>
+
+    <!--夜间模式-->
+    <color name="nightColorPrimary">#222222</color>
+    <color name="nightColorPrimaryDark">#232323</color>
+    <color name="nightColorAccent">#A52F2F</color>
+    <color name="nightCardViewColor">#404040</color>
+    <color name="nightTextColor">#ECECEC</color>
+    <color name="nightTextColorHighlight">#fff</color>
+    <color name="nightBackgroundColor">#343434</color>
+
+
+
+    <!--searchView所用-->
+    <color name="theme_primary_text_inverted">#ffffff</color>
+    <color name="theme_secondary_text_inverted">#8affffff</color>
 </resources>
+

@@ -1,3 +1,294 @@
 <resources>
-    <string name="app_name">Awesome-Campus</string>
+    <!--<string name="app_name">Awesome-Campus</string>-->
+    <!--暂时这么命名-->
+    <string name="app_name">Awesome Campus</string>
+    <string name="hint_click_to_login">Click to Login</string>
+    <string name="home">Home</string>
+    <string name="leisure">Leisure</string>
+    <string name="life">Life</string>
+    <string name="library">Library</string>
+    <string name="education">Education</string>
+    <string name="theme">Theme</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="course_table">CourseTable</string>
+    <string name="compus_news">CampusNews</string>
+    <string name="daily">Daily</string>
+    <string name="film">Film</string>
+    <string name="science">Science</string>
+    <string name="book_borrowed">Borrowed</string>
+    <string name="atm">ATM</string>
+    <string name="exam">Exam</string>
+    <string name="Score">Score</string>
+    <string name="Login">Login</string>
+    <string name="studentid">StudentID</string>
+    <string name="password">Password</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thusday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="hint_search">Search Book</string>
+    <string name="search">Search</string>
+    <string name="search_result">Search Result</string>
+    <string name="menu_share">share</string>
+    <string name="hint_share_to">Share to ...</string>
+    <string name="hot">hot ：</string>
+    <string name="readingCount"> views</string>
+    <string name="hot_search_title">Hot Tag</string>
+
+    <string name="course_name">Course:</string>
+    <string name="course_id">ID:</string>
+    <string name="course_teacher">Teacher:</string>
+    <string name="course_class">Class:</string>
+    <string name="classmate_list">ClassMate:</string>
+    <string name="course_forum">CourseForum</string>
+    <string name="course_credit">CourseCredit</string>
+    <string name="course_score">CourseScore</string>
+    <string name="standard_score">StandardScore</string>
+    <string name="text_share_from">"share from "</string>
+    <string name="campus_express">CampusExpress</string>
+    <string name="hint_login_successful">Login Successful!!!</string>
+    <string name="hint_network_error">Network Error!!!</string>
+    <string name="hint_login_failed">Login Failed!!!</string>
+    <string name="hint_null_input">Input cannot be null</string>
+    <string name="hint_wrong_studentid">Wrong Student ID!!!</string>
+    <string name="hint_wrong_password">Wrong Password!!!</string>
+    <string name="all_courses_are_over">All courses are over</string>
+    <string name="no_course_today">No course today!</string>
+    <string name="initializing">Initializing...</string>
+    <string name="need_login_education_first">Please login educational system first!</string>
+    <string name="text_preference">Preference</string>
+    <string name="id_language">language</string>
+    <string name="text_language">Language</string>
+    <string name="id_swipe_back">swipe_back</string>
+    <string name="text_swipe_to_return">Swipe to Return</string>
+    <string name="id_exit_confirm">exit_confirm</string>
+    <string name="text_exit_confirm">Exit Confirm</string>
+    <string name="id_clear_cache">clear_cache</string>
+    <string name="text_clear_cache">Clear Cache</string>
+    <string name="text_clear_cache_summary">Clear Awesome Campus\'s Cache</string>
+    <string name="text_anywhere">Anywhere</string>
+    <string name="text_left_only">Left Only</string>
+    <string name="text_clear_cache_successful">Cache Clear Successfully!</string>
+    <string name="notify_exit_confirm">press again to exit</string>
+    <string name="notify_press_twice_to_exit">Press back key twice to exit</string>
+    <string name="text_storage">Storage</string>
+    <string name="notify_need_login">Need Login</string>
+    <string name="notify_already_login">Already Login!</string>
+    <string name="text_username">Username</string>
+    <string name="text_course_name">"Course Name: "</string>
+    <string name="text_exam_time">"Exam Time : "</string>
+    <string name="text_exam_room">"Exam Room : "</string>
+    <string name="text_exam_seat">"Exam Seat :  "</string>
+    <string name="text_remark">"Remark :   "</string>
+    <string name="about">About</string>
+
+    <string name="text_copyright">Copyright</string>
+    <string name="text_data">Data</string>
+    <string name="text_email">E-Mail</string>
+
+    <string name="text_data_summary">Some data are from public API,all rights belong to original author</string>
+    <string name="text_attention">Attention</string>
+    <string name="text_attention_summary">This app is not allowed for COMMERCIAL Purposes</string>
+    <string name="text_license">License</string>
+    <string name="id_app_intro">app_intro</string>
+    <string name="text_app_intro">App Introduction</string>
+    <string name="summary_version">Release Version </string>
+    <string name="id_check_update">check_update</string>
+    <string name="text_check_update">Check Update</string>
+    <string name="id_demo_video">demo_video</string>
+    <string name="text_demo_video">Demo Video</string>
+    <string name="id_star_project">star_project</string>
+    <string name="text_good_job">Good Job</string>
+    <string name="summary_good_job">Give me a star at https://github.com/MummyDing/Awesome-Campus</string>
+    <string name="id_share">share</string>
+    <string name="text_share_app">Share Awesome Campus</string>
+    <string name="id_mummy_blog">mummy_blog</string>
+    <string name="text_blog_mummyding">MummyDing\'s Blog</string>
+    <string name="text_blog_kevinwu">KevinWu\'s Page</string>
+    <string name="text_blog_thereisnospon">Thereisnospon\'s Blog</string>
+    <string name="text_github_zpauly">zpauly\'s GitHub</string>
+    <string name="text_blog_ddragon">Ddragon\'s Page</string>
+    <string name="text_github_can2studio">Can2\'s pixiv</string>
+    <string name="mummyding_blog">https://mummyding.github.io/</string>
+    <string name="id_kevin_blog">kevin_blog</string>
+    <string name="id_thereisnospon_blog">Thereisnospon_blog</string>
+    <string name="id_zpauly_github">zpauly_github</string>
+    <string name="id_ddragon_blog">ddragon_blog</string>
+    <string name="id_can2studio_github">Can2studio_pixiv</string>
+    <string name="kevin_blog">http://www.kevinwu.cn</string>
+    <string name="thereisnospon_blog">http://blog.csdn.net/yzr1183739890</string>
+    <string name="zpauly_github">https://github.com/zpauly</string>
+    <string name="ddragon_blog">http://www.ddragonever.com</string>
+    <string name="can2studio_github">http://www.pixiv.net/member.php?id=4334017</string>
+    <string name="text_thanks">Thanks</string>
+    <string name="summary_yingzi">Awesome Campus\'s Photographer(Express Image)\nWeChat Subscription Account:ershisuizhihou</string>
+    <string name="summary_datou">Awesome Campus\'s Photographer(Background Image)\nE-Mail:dfc3333@outlook.com</string>
+    <string name="book_code">Book Code:</string>
+    <string name="summary_mengli">Awesome Campus\'s Video\nWeChat:Li-NERV</string>
+    <string name="borrow_date">Borrow Date:</string>
+    <string name="due_date">Due Date:</string>
+    <string name="renew_count">Renew State:</string>
+    <string name="book_location">Book Location:</string>
+    <string name="author">Author:</string>
+    <string name="no_result">No Result</string>
+    <string name="book_number">Book Number:</string>
+    <string name="book_class">Book Class:</string>
+    <string name="publisher">Publisher:</string>
+    <string name="book_left">Book Left:</string>
+    <string name="book_count">Book Count:</string>
+    <string name="location">Location:</string>
+    <string name="courseinfo">CourseInfo</string>
+    <string name="coursescore">CourseScore</string>
+    <string name="id_search">Search</string>
+    <string name="hot_search">Hot</string>
+    <string name="menu_notify">Notify</string>
+    <string name="id_type">type</string>
+    <string name="id_data">data</string>
+    <string name="link">link</string>
+    <string name="data">data</string>
+    <string name="id_none">none</string>
+    <string name="no_notify">No Notify</string>
+    <string name="notify_current_is_latest">Current Version is the latest Version</string>
+    <string name="notify_find_in_test">You are the beta user</string>
+    <string name="hint_fail_check_update">Fail to get version info,please check your network setting</string>
+    <string name="project_url">https://github.com/MummyDing/Awesome-Campus</string>
+    <string name="notify_info_copied">Info copied to Clipboard! You can paste it to an edit area</string>
+    <string name="id_license">license</string>
+    <string name="text_auto_refresh">Auto Refresh</string>
+    <string name="text_auto_refresh_summary">Load data from network automatically if WIFI is connected</string>
+    <string name="id_avatar">avatar</string>
+    <string name="avatar">Avatar</string>
+    <string name="text_default">Default</string>
+    <string name="seats">Seats</string>
+    <string name="total_seat">Total Seat:</string>
+    <string name="be_present">Be Present:</string>
+    <string name="temporary_leave">Temporary Leave:</string>
+    <string name="free_seat">Free Seat:</string>
+    <string name="click_to_main">Click To Main</string>
+    <string name="click_to_login">Click To Login</string>
+    <string name="server_error">Server Error</string>
+    <string name="link_data">link_data</string>
+
+    <string-array name="langs">
+        <item>English</item>
+        <item>简体中文</item>
+        <item>繁體中文</item>
+    </string-array>
+
+    <string-array name="avatars" translatable="false">
+        <item>@string/text_default</item>
+        <item>@string/jxnugo_avatar</item>
+        <item>AC1</item>
+        <item>AC2</item>
+        <item>AC3</item>
+        <item>AC4</item>
+        <item>AC5</item>
+    </string-array>
+
+    <string-array name="swipe_back">
+        <item>@string/text_anywhere</item>
+        <item>@string/text_left_only</item>
+    </string-array>
+    <string name="text_share_awesome_campus">分享"师大+"</string>
+    <string name="text_share_info">欢迎使用“师大+”,它是江西师大Android客户端,包含课表、课程表桌面小部件、校内新闻、阅读资讯、快递查询、考试安排、成绩查询、图书借阅等功能模块,并采用卡片式设计遵循Material Design，支持主题切换等功能。你可以到 http://fir.im/AwesomeCampus 下载</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="id_title">title</string>
+    <string name="notify_list">Notify</string>
+    <string name="no_message">No Message!!!!</string>
+    <string name="notify_no_course">No Course !!! \nYou can have a rest today</string>
+    <string name="app_intro">App Intro</string>
+    <string name="campus_weather">Campus Weather</string>
+    <string name="new_version">"New Version "</string>
+    <string name="notify_new_version">Found New Version!\nDo you want to download it?</string>
+    <string name="authors">Android</string>
+    <string name="feedback">Feedback</string>
+    <string name="id_feedback">id_feedback</string>
+    <string name="jxnugo">JxnuGo</string>
+    <string name="goodslist">JxnuGo</string>
+    <string name="goodscategory">Category</string>
+
+
+    <string name="jxnugo_user_followed">followed</string>
+    <string name="jxnugo_user_followers">followers</string>
+    <string name="jxnugo_user_post">post</string>
+    <string name="jxnugo_newgoods_name">*Goods Name</string>
+    <string name="jxnugo_newgoods_buytime">Buy Time(eg. 1993 03 05)</string>
+    <string name="jxnugo_newgoods_year">Year</string>
+    <string name="jxnugo_newgoods_month">Month</string>
+    <string name="jxnugo_newgoods_day">Day</string>
+    <string name="jxnugo_newgoods_price">*Price</string>
+    <string name="jxnugo_newgoods_amount">Amount</string>
+    <string name="jxnugo_newgoods_ps">PS</string>
+    <string name="jxnugo_newgoods_position">Position</string>
+    <string name="jxnugo_newgoods_contactinformation">*Contact Information</string>
+    <string name="jxnugo_newgoods_description">*Description</string>
+    <string name="jxnugo_newgoods_goodspic">Goods Picture(At least 1)</string>
+    <string name="jxnugo_newgoods_edit">Edit</string>
+    <string name="jxnugo_newgoods_postnewgood">Post New</string>
+    <string name="jxnugo_newgoods_inputillegal">Please Input Necessary Info.</string>
+    <string name="jxnugo_comment_reply">ReplyTo:</string>
+    <string name="jxnugo_collect_success">Collect Success</string>
+    <string name="jxnugo_collect_failure">Collect Failure</string>
+    <string name="jxnugo_comment_failure">Comment Failure!!!</string>
+    <string name="jxnugo_newgoods_quality">Quality</string>
+    <string name="jxnugo_jump_to_personal_info">Check the Personal Information</string>
+    <string name="jxnugo_user_nickname">Nickname</string>
+    <string name="jxnugo_user_location">Location</string>
+    <string name="jxnugo_user_sex">Sex</string>
+    <string name="jxnugo_user_contact">Contact</string>
+    <string name="jxnugo_user_about_me">About Me</string>
+    <string name="text_username_or_email">Username/Email</string>
+    <string name="authors_front_end">Front-end</string>
+    <string name="authors_backstage_supporter">Backstage Supporter</string>
+    <string name="feedback_respondent">Respondent</string>
+    <string name="feedback_email">Email/QQ</string>
+    <string name="feedback_body">Please write your opinions here</string>
+    <string name="jxnugo_login_user_post">Post</string>
+    <string name="jxnugo_login_user_collect">Collected</string>
+    <string name="jxnugo_user_collect">Collected</string>
+    <string name="logout_title">Select Logout Acount</string>
+    <string name="jxnugo_avatar">JxnuGo Avatar</string>
+    <string name="time_util_just_now">Just Now</string>
+    <string name="time_util_minute_ago">Minutes ago</string>
+    <string name="time_util_hour_ago">Hours ago</string>
+    <string name="time_util_day_ago">Days ago</string>
+    <string name="time_util_month_ago">Months ago</string>
+    <string name="time_util_year_ago">Years ago</string>
+
+    <string name="job_jobtitle">Recruiting</string>
+
+    <string name="job_title_school">Campus</string>
+    <string name="job_title_big">Large</string>
+
+    <string name="job_detail">Content Summary</string>
+    <string name="recruitment_detail">Recruitment Detail</string>
+    <string name="publish_time">Publish Time: </string>
+    <string name="hold_place">Hole_Place: </string>
+    <string name="hold_time">Hold_Time: </string>
+    <string name="basic_company_info">Basic Company Information:</string>
+    <string name="company_name">Company Name: </string>
+    <string name="company_property">Company Property: </string>
+    <string name="company_tel">Tel: </string>
+    <string name="company_location">Location: </string>
+    <string name="company_homepage">Homepage: </string>
+    <string name="recruit_principal">Principal: </string>
+    <string name="recruit_principal_phone">Phone: </string>
+    <string name="recruit_mail">Mail to: </string>
+    <string name="company_introduction">INTRODUCTION</string>
+    <string name="recruitment_process">PROCESS</string>
+    <string name="recruitment_attention">ATTENTION</string>
+    
+    <string name="job_name">Post Name: </string>
+    <string name="job_count">Post Count: </string>
+    <string name="majors">Majors: </string>
+    <string name="education_background">Education Background: </string>
+    <string name="salary">Salary: </string>
+    <string name="job_requirements">Post Requirements: </string>
+    <string name="no_major_limits">No major limits</string>
+    <string name="select_term">Select Term</string>
 </resources>

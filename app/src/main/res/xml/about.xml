@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/app_name">
+        <Preference
+            android:key="@string/id_app_intro"
+            android:title="@string/text_app_intro" />
+        <!--<Preference-->
+        <!--android:key="@string/id_current_version"-->
+        <!--android:title="@string/text_current_version"-->
+        <!--android:summary="@string/summary_version"/>-->
+        <Preference
+            android:key="@string/id_check_update"
+            android:title="@string/text_check_update" />
+        <Preference
+            android:key="@string/id_demo_video"
+            android:title="@string/text_demo_video" />
+        <Preference
+            android:key="@string/id_feedback"
+            android:title="@string/feedback"></Preference>
+        <Preference
+            android:key="@string/id_share"
+            android:title="@string/text_share_app" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/authors">
+        <Preference
+            android:key="@string/id_mummy_blog"
+            android:icon="@drawable/ic_mummy"
+            android:summary="@string/mummyding_blog"
+            android:title="@string/text_blog_mummyding" />
+        <!--<Preference-->
+        <!--android:key="@string/id_github_mummy"-->
+        <!--android:title="@string/text_github"-->
+        <!--android:summary="@string/mummyding_github"/>-->
+        <!--<Preference-->
+        <!--android:key="@string/id_mummy_email"-->
+        <!--android:title="@string/text_email"-->
+        <!--android:summary="@string/mummy_email"/>-->
+        <!--<Preference-->
+        <!--android:key="@string/id_mummy_app"-->
+        <!--android:title="@string/text_leisure"-->
+        <!--android:summary="@string/summary_leisure"/>-->
+        <!--</PreferenceCategory>-->
+
+        <!--<PreferenceCategory-->
+        <!--android:title="@string/text_kevinwu">-->
+        <Preference
+            android:key="@string/id_kevin_blog"
+            android:summary="@string/kevin_blog"
+            android:icon="@drawable/ic_kevin"
+            android:title="@string/text_blog_kevinwu" />
+        <!--<Preference-->
+        <!--android:key="@string/id_kevin_github"-->
+        <!--android:title="GitHub"-->
+        <!--android:summary="@string/kevin_github"/>-->
+        <!--<Preference-->
+        <!--android:key="@string/id_kevin_email"-->
+        <!--android:title="@string/text_email"-->
+        <!--android:summary="@string/kevin_email"/>-->
+        <!--<Preference-->
+        <!--android:key="@string/id_kevin_app"-->
+        <!--android:title="@string/text_ytweather"-->
+        <!--android:summary="@string/summary_ytweather"/>-->
+        <Preference
+            android:key="@string/id_zpauly_github"
+            android:summary="@string/zpauly_github"
+            android:icon="@drawable/ic_zpauly"
+            android:title="@string/text_github_zpauly" />
+        <Preference
+            android:key="@string/id_thereisnospon_blog"
+            android:summary="@string/thereisnospon_blog"
+            android:icon="@drawable/ic_thereisnospon"
+            android:title="@string/text_blog_thereisnospon" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/authors_backstage_supporter">
+        <Preference
+            android:key="@string/id_ddragon_blog"
+            android:icon="@drawable/ic_ddragon"
+            android:summary="@string/ddragon_blog"
+            android:title="@string/text_blog_ddragon" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/authors_front_end">
+        <Preference
+            android:key="@string/id_can2studio_github"
+            android:icon="@drawable/ic_can2studio"
+            android:summary="@string/can2studio_github"
+            android:title="@string/text_github_can2studio" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/text_thanks">
+        <Preference
+            android:summary="@string/summary_yingzi"
+            android:title="英子酱" />
+        <Preference
+            android:summary="@string/summary_datou"
+            android:title="大头" />
+        <Preference
+            android:summary="@string/summary_mengli"
+            android:title="萌梨NERV_only" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/text_copyright">
+        <Preference
+            android:summary="@string/text_data_summary"
+            android:title="@string/text_data" />
+        <Preference
+            android:summary="@string/text_attention_summary"
+            android:title="@string/text_attention" />
+        <Preference
+            android:key="@string/id_license"
+            android:title="@string/text_license" />
+        <Preference
+            android:key="@string/id_star_project"
+            android:summary="@string/summary_good_job"
+            android:title="@string/text_good_job" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

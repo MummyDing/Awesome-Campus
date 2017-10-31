@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/jxnugo_follow"
+        android:icon="@mipmap/ic_star_outline_white"
+        app:showAsAction="ifRoom"
+        android:title=""></item>
+    <item
+        android:id="@+id/jxnugo_follow_selector"
+        android:icon="@mipmap/ic_star_white"
+        android:visible="false"
+        app:showAsAction="ifRoom"></item>
+    <!--修改个人信息菜单项-->
+    <item
+        android:id="@+id/jxnugo_userinfo_edit"
+        android:icon="@mipmap/ic_edit_white"
+        android:visible="false"
+        android:title=""
+        app:showAsAction="ifRoom"></item>
+
+
+</menu>

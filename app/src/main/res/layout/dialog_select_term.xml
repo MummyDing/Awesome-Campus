@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/backgroundColor">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/select_term"
+        android:textColor="@color/textColorHighlight"
+        android:textSize="@dimen/content_title" />
+
+    <cn.edu.jxnu.awesome_campus.view.widget.CommonSpinner
+        android:id="@+id/term_year_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="60dp" />
+
+    <cn.edu.jxnu.awesome_campus.view.widget.CommonSpinner
+        android:id="@+id/term_order_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/term_year_spinner"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp" />
+
+    <Button
+        android:id="@+id/select_term_button"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/term_order_spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="30dp"
+        android:background="?attr/dialogCardColor"
+        android:text="@string/yes"
+        android:textColor="@color/md_white_1000" />
+
+</RelativeLayout>

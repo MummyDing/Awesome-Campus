@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/loginLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:src="@drawable/jxnugo_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/inputArea"
+            android:layout_width="220dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="60dp"/>
+        <RelativeLayout
+            android:id="@+id/inputArea"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/usernameLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/et_username"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/studentPassword"
+                android:layout_below="@id/usernameLayout"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/et_password"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:text="@string/Login"
+            android:layout_below="@id/inputArea"
+            android:textColor="@color/md_white_1000"
+            android:background="?attr/colorPrimary"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_width="240dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/tips"
+            android:layout_below="@+id/loginBtn"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/onLineLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@drawable/jxnugo_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:layout_width="220dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="60dp"/>
+        <TextView
+            android:id="@+id/textNotify"
+            android:text="@string/notify_already_login"
+            android:textColor="?attr/textColor"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/jumpBtn"
+            android:layout_below="@id/textNotify"
+            android:layout_marginTop="10dp"
+            android:padding="8dp"
+            android:text="@string/jxnugo_jump_to_personal_info"
+            android:textColor="?attr/textColorHighlight"
+            android:background="?attr/cardViewColor"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</FrameLayout>

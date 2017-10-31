@@ -1,0 +1,36 @@
+
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/appbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:focusable="false"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <include layout="@layout/widget_toolbar"/>
+
+    <com.ogaclejapan.smarttablayout.SmartTabLayout
+        android:id="@+id/tab_layout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:paddingBottom="4dp"
+        app:stl_customTabTextLayoutId="@layout/custom_tab"
+        app:stl_customTabTextViewId="@id/custom_text"
+        app:stl_indicatorColor="#fff"
+        app:stl_dividerColor="#00000000"
+        app:stl_indicatorThickness="3dp"
+        app:stl_defaultTabTextColor="#fff"
+        app:stl_defaultTabTextHorizontalPadding="24dp"
+        app:stl_indicatorCornerRadius="1.5dp"
+        app:stl_underlineColor="#00000000"
+        android:visibility="gone"
+        />
+    <!--app:stl_indicatorColor="#33000000"-->
+
+</android.support.design.widget.AppBarLayout>

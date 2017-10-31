@@ -36,3 +36,7 @@ captures/
 
 # Android Studio work workspace.xml file
 workspace.xml
+.idea/
+
+#.iml Files
+*.iml

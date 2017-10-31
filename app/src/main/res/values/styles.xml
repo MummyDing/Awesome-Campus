@@ -1,11 +1,355 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--默认主题-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="DialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/colorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
     </style>
 
+    <!--Cyan主题-->
+    <style name="CyanTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/cyanColorPrimary</item>
+        <item name="colorPrimaryDark">@color/cyanColorPrimaryDark</item>
+        <item name="colorAccent">@color/cyanColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="CyanDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/cyanColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
+    <!--Blue主题-->
+    <style name="BlueTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blueColorPrimary</item>
+        <item name="colorPrimaryDark">@color/blueColorPrimaryDark</item>
+        <item name="colorAccent">@color/blueColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="BlueDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/blueColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
+    <!--Blue主题-->
+    <style name="BlueGreyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blueGreyColorPrimary</item>
+        <item name="colorPrimaryDark">@color/blueGreyColorPrimaryDark</item>
+        <item name="colorAccent">@color/blueGreyColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="BlueGreyDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/blueGreyColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
+    <!--Purple主题-->
+    <style name="PurpleTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/purpleColorPrimary</item>
+        <item name="colorPrimaryDark">@color/purpleColorPrimaryDark</item>
+        <item name="colorAccent">@color/purpleColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="PurpleDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/purpleColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
+    <!--Orange主题-->
+    <style name="OrangeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/orangeColorPrimary</item>
+        <item name="colorPrimaryDark">@color/orangeColorPrimaryDark</item>
+        <item name="colorAccent">@color/orangeColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="OrangeDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/orangeColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
+    <!--Brown主题-->
+    <style name="BrownTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/brownColorPrimary</item>
+        <item name="colorPrimaryDark">@color/brownColorPrimaryDark</item>
+        <item name="colorAccent">@color/brownColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/brownTextColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="BrownDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/brownColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
+
+    <!--Teal主题-->
+    <style name="TealTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/tealColorPrimary</item>
+        <item name="colorPrimaryDark">@color/tealColorPrimaryDark</item>
+        <item name="colorAccent">@color/tealColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="TealDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/tealColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
+    <!--Lightgreen主题-->
+    <style name="LightgreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/lightGreenColorPrimary</item>
+        <item name="colorPrimaryDark">@color/lightGreenColorPrimaryDark</item>
+        <item name="colorAccent">@color/lightGreenColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="LightgreenDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/lightGreenColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+    <!--Mkl主题-->
+    <style name="MklTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/mklColorPrimary</item>
+        <item name="colorPrimaryDark">@color/mklColorPrimaryDark</item>
+        <item name="colorAccent">@color/mklColorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="MklDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/mklColorPrimary</item>
+        <item name="textColor">@color/textColor</item>
+        <item name="textColorHighlight">@color/textColorHighlight</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+    </style>
+
+    <!--黑金主题-->
+    <style name="BgTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/bgColorPrimary</item>
+        <item name="colorPrimaryDark">@color/bgColorPrimaryDark</item>
+        <item name="colorAccent">@color/bgColorAccent</item>
+        <item name="cardViewColor">@color/bgCardViewColor</item>
+        <item name="textColor">@color/bgTextColor</item>
+        <item name="textColorHighlight">@color/bgTextColorHighlight</item>
+        <item name="backgroundColor">@color/bgBackgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="BgDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/bgColorPrimary</item>
+        <item name="textColor">@color/bgTextColor</item>
+        <item name="textColorHighlight">@color/bgTextColorHighlight</item>
+        <item name="backgroundColor">@color/bgBackgroundColor</item>
+    </style>
+
+    <!--夜间模式-->
+    <style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/nightColorPrimary</item>
+        <item name="colorPrimaryDark">@color/nightColorPrimaryDark</item>
+        <item name="colorAccent">@color/nightColorAccent</item>
+        <item name="cardViewColor">@color/nightCardViewColor</item>
+        <item name="textColor">@color/nightTextColor</item>
+        <item name="textColorHighlight">@color/nightTextColorHighlight</item>
+        <item name="backgroundColor">@color/nightBackgroundColor</item>
+        <item name="windowActionBarOverlay">true</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="DarkDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+        <item name="android:theme">@style/Theme.AppCompat.Light.NoActionBar</item>
+        <item name="android:windowBackground">@drawable/transparent_pic</item>
+        <item name="dialogCardColor">@color/nightColorPrimary</item>
+        <item name="textColor">@color/nightTextColor</item>
+        <item name="textColorHighlight">@color/nightTextColorHighlight</item>
+        <item name="backgroundColor">@color/nightBackgroundColor</item>
+    </style>
+
+
+    <!--<style name="BlankTheme" parent="AppTheme">-->
+    <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+    <!--<item name="android:windowIsTranslucent">true</item>-->
+    <!--</style>-->
+
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:titleTextStyle">@style/Theme.YourTheme.Styled.ActionBar.TitleTextStyle
+        </item>
+        <!-- Support library compatibility -->
+        <item name="background">@android:color/transparent</item>
+        <item name="titleTextStyle">@style/Theme.YourTheme.Styled.ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="Theme.YourTheme.Styled.ActionBar.TitleTextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="MaterialSearchViewStyle">
+        <!-- Background for the search bar-->
+        <item name="searchBackground">?attr/colorPrimary</item>
+        <!-- Change voice icon-->
+        <item name="searchVoiceIcon">@drawable/ic_action_voice_search_inverted</item>
+        <!-- Change clear text icon-->
+        <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>
+        <!-- Change up icon-->
+        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
+        <!-- Change icon for the suggestions-->
+        <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
+        <!-- Change background for the suggestions list view-->
+        <item name="searchSuggestionBackground">@android:color/white</item>
+        <!-- Change text color for edit text. This will also be the color of the cursor-->
+        <item name="android:textColor">@color/theme_primary_text_inverted</item>
+        <!-- Change hint text color for edit text-->
+        <item name="android:textColorHint">@color/theme_secondary_text_inverted</item>
+        <!-- Hint for edit text-->
+        <item name="android:hint">@string/search_hint</item>
+    </style>
 </resources>
