@@ -39,3 +39,5 @@ captures/
 
 #.iml Files
 *.iml
+
+.DS_Store
