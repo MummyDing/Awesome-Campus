@@ -157,7 +157,7 @@ public class CourseTableDAO implements DAO<CourseTableModel> {
                             Log.e(TAG,"课程表获取失败，解析结果列表为空");
                             EventBus.getDefault().post(new EventModel<CourseTableModel>(EVENT.COURSE_TABLE_REFRESH_FAILURE));
                         }
-                        if (result.contains("运行时错误")) {
+                        if (result.contains("运行时错误") || result.contains("Runtime Error")) {
                             //更新请求参数
                             if (NetManageUtil.readNetworkState()) {
                                 requestConfig.loadFromNet();

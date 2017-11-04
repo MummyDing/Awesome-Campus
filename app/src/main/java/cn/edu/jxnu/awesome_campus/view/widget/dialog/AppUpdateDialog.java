@@ -40,7 +40,7 @@ public class AppUpdateDialog extends AlertDialog {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent();
                             intent.setAction("android.intent.action.VIEW");
-                            Uri content_url = Uri.parse("http://fir.im/AwesomeCampus");
+                            Uri content_url = Uri.parse("https://coding.net/u/MummyDing/p/Awesome-Campus-Data/git/raw/master/download/AwesomeCampus.apk");
                             intent.setData(content_url);
                             context.startActivity(intent);
                         }
