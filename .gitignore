@@ -12,7 +12,6 @@
 bin/
 gen/
 
-
 # Gradle files
 .gradle/
 build/
@@ -35,6 +34,8 @@ captures/
 # Swap Files
 *~
 
+# Android Studio work workspace.xml file
+workspace.xml
 .idea/
 
 #.iml Files
