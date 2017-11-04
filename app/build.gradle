@@ -8,8 +8,8 @@ android {
         applicationId "cn.edu.jxnu.awesome_campus"
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 9
-        versionName "1.4.1"
+        versionCode 11
+        versionName "1.4.3"
     }
     buildTypes {
 //        release {
