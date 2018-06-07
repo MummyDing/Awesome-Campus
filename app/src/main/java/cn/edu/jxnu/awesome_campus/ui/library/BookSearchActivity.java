@@ -57,7 +57,7 @@ public class BookSearchActivity extends BaseToolbarActivity {
          * 测使用　非正式代码　　---- By MummyDing
          */
         Intent intent = getIntent();
-        if( intent.ACTION_SEARCH.equals(intent.getAction())){
+        if( Intent.ACTION_SEARCH.equals(intent.getAction())){
             keyword = intent.getStringExtra(SearchManager.QUERY);
         }else {
             keyword = intent.getStringExtra(getString(R.string.id_search));

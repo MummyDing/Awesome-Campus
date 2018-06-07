@@ -38,7 +38,7 @@ public class JxnuGoPeopleDao implements DAO<JxnuGoPeopleModel> {
 
 
     private int userId;
-    public static enum MODE{
+    public enum MODE{
         FOLLOWED,FOLLOWERS
     }
     public JxnuGoPeopleDao(){

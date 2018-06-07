@@ -26,7 +26,7 @@ public enum DrawerItem {
     private int itemIconID;
     private int id;
 
-    private DrawerItem(int stringID, int itemIconID) {
+    DrawerItem(int stringID, int itemIconID) {
         this.itemName = InitApp.AppContext.getString(stringID);
         this.itemIconID = itemIconID;
         this.id = stringID;

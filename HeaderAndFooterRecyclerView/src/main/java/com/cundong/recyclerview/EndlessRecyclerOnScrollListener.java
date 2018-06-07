@@ -103,7 +103,7 @@ public class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListen
     public void onLoadNextPage(final View view) {
     }
 
-    public static enum LayoutManagerType {
+    public enum LayoutManagerType {
         LinearLayout,
         StaggeredGridLayout,
         GridLayout

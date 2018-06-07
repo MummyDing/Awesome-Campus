@@ -83,10 +83,7 @@ public class FrescoImageLoader implements cn.finalteam.galleryfinal.ImageLoader 
 
             @Override
             public boolean verifyDrawable(Drawable dr) {
-                if (dr == draweeHolder.getHierarchy().getTopLevelDrawable()) {
-                    return true;
-                }
-                return false;
+                return dr == draweeHolder.getHierarchy().getTopLevelDrawable();
             }
 
             @Override

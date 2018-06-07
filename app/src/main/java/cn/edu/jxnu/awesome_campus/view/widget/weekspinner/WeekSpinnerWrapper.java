@@ -55,7 +55,7 @@ public class WeekSpinnerWrapper{
 
 
         index = TimeUtil.getDayOfWeek() - 1;
-        spinner.setSelectedIndex(index);  ;
+        spinner.setSelectedIndex(index);
         listener.onDayChanged(index);
         if(listener != null) {
             spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {

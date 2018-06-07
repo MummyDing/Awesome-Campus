@@ -46,8 +46,8 @@ public class UploadGoodsUtil {
             Log.d(TAG,"上传的图片大小 宽："+width+" 高："+height);
             float scaleWidth=0;
             float scaleHeight=0;
-            scaleWidth=(float)((width/2))/width;
-            scaleHeight=(float)((height/2))/height;
+            scaleWidth= (width/2) /width;
+            scaleHeight= (height/2) /height;
             Matrix matrix=new Matrix();
             matrix.postScale(scaleWidth,scaleHeight);
             bitmap=Bitmap.createBitmap(bitmap,0,0,(int)width,(int)height,matrix,true);

@@ -80,11 +80,11 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if(preference == mExitConfirm){
             Settings.isExitConfirm = Boolean.valueOf(newValue.toString());
-            mSettings.putBoolean(mSettings.EXIT_CONFIRM, Settings.isExitConfirm);
+            mSettings.putBoolean(Settings.EXIT_CONFIRM, Settings.isExitConfirm);
             return true;
         }else if (preference == mAutoRefresh){
             Settings.autoRefresh = Boolean.valueOf(newValue.toString());
-            mSettings.putBoolean(mSettings.AUTO_REFRESH,Settings.autoRefresh);
+            mSettings.putBoolean(Settings.AUTO_REFRESH,Settings.autoRefresh);
             return true;
         }
         return false;

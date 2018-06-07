@@ -145,7 +145,7 @@ public class EducationLoginUtil {
         String cookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);
         if (TextUtil.isNull(cookie) == false) {
             Log.d("已登录","--");
-            baseCookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);;
+            baseCookie = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.BASE_COOKIE);
             specialCookies = sp.getStringSP(EducationStaticKey.SP_FILE_NAME, EducationStaticKey.SPECIAL_COOKIE);
             studentID = sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NUM);
             studentName = sp.getStringSP(EducationStaticKey.SP_FILE_NAME,EducationStaticKey.STUDENT_NAME);

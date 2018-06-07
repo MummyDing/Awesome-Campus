@@ -119,10 +119,10 @@ public class MainActivity extends BaseActivity implements HomeView{
     protected void onCreate(Bundle savedInstanceState) {
 
 
-        mSettings.autoRefresh = mSettings.getBoolean(Settings.AUTO_REFRESH,true);
-        mSettings.swipeID = mSettings.getInt(Settings.SWIPE_BACK,0);
-        mSettings.isExitConfirm = mSettings.getBoolean(Settings.EXIT_CONFIRM,true);
-        mSettings.avatorID = mSettings.getInt(Settings.AVATAR,0);
+        Settings.autoRefresh = mSettings.getBoolean(Settings.AUTO_REFRESH,true);
+        Settings.swipeID = mSettings.getInt(Settings.SWIPE_BACK,0);
+        Settings.isExitConfirm = mSettings.getBoolean(Settings.EXIT_CONFIRM,true);
+        Settings.avatorID = mSettings.getInt(Settings.AVATAR,0);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -425,7 +425,7 @@ public class MainActivity extends BaseActivity implements HomeView{
                 break;
             case EVENT.UPDATE_SELECTED_MENU_TO_HOME:
                 presenter.updateSelectedToHome();
-                nowDrawID=DrawerItem.HOME.getId();;
+                nowDrawID=DrawerItem.HOME.getId();
                 break;
             case EVENT.VERSION_CHECK_NEED_UPDATE:
                 showNewVersionDialog((String) eventModel.getData());

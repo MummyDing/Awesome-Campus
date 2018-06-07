@@ -189,11 +189,10 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
      * @return
      */
     private boolean completeInput(){
-        if(mPhotoList.size()>0&&!TextUtil.isNull(goodNameET.getText().toString())
-                &&!TextUtil.isNull(contactET.getText().toString())
-                &&!TextUtil.isNull(priceET.getText().toString())
-                &&!TextUtil.isNull(discribtionET.getText().toString()))return true;
-        return false;
+        return mPhotoList.size() > 0 && !TextUtil.isNull(goodNameET.getText().toString())
+                && !TextUtil.isNull(contactET.getText().toString())
+                && !TextUtil.isNull(priceET.getText().toString())
+                && !TextUtil.isNull(discribtionET.getText().toString());
     }
 
     /**
@@ -214,7 +213,7 @@ public class NewGoodsActivity extends BaseToolbarActivity implements View.OnClic
                     .setCropControlColor(array.getColor(0, 0x000000)).build();
             array.recycle();
         } else {
-            theme = theme.DARK;
+            theme = ThemeConfig.DARK;
         }
         return theme;
     }

@@ -258,7 +258,7 @@ public class JxnuGoUserInfoETActivity extends BaseToolbarActivity{
                     .setCropControlColor(array.getColor(0, 0x000000)).build();
             array.recycle();
         } else {
-            theme = theme.DARK;
+            theme = ThemeConfig.DARK;
         }
         return theme;
     }

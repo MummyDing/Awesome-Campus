@@ -52,11 +52,11 @@ public class UploadImageUtil {
             float scaleWidth=0;
             float scaleHeight=0;
             if(width>height){
-                scaleWidth=(float)((width/2))/width;
-                scaleHeight=(float)((height/2))/height;
+                scaleWidth= (width/2) /width;
+                scaleHeight= (height/2) /height;
             }else{
-                scaleWidth=(float)((width/2))/height;
-                scaleHeight=(float)((height/2))/width;
+                scaleWidth= (width/2) /height;
+                scaleHeight= (height/2) /width;
             }
             Matrix matrix=new Matrix();
             matrix.postScale(scaleWidth,scaleHeight);

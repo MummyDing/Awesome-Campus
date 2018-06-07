@@ -23,7 +23,7 @@ public abstract class BaseWidgetPrivider extends AppWidgetProvider {
         intent.setClass(context, (Class<BaseWidgetService>) object);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
         //定时更新
-        AlarmManager alarm = (AlarmManager)context.getSystemService(context.ALARM_SERVICE);
+        AlarmManager alarm = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         alarm.setRepeating(AlarmManager.RTC, TimeUtil.getTimestamp(), reFreshTime, pendingIntent);
         Log.d("测试","--"+this.getClass());
     }

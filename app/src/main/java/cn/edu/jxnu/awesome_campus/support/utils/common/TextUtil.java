@@ -2,6 +2,7 @@ package cn.edu.jxnu.awesome_campus.support.utils.common;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
@@ -15,13 +16,11 @@ import cn.edu.jxnu.awesome_campus.R;
  */
 public class TextUtil {
     public static boolean isNull(String str){
-        if(str == null || str.replaceAll("\\s*", "").equals("")){
-            return true;
-        }
-        return false;
+        return str == null || str.replaceAll("\\s*", "").equals("");
     }
     public static void copyToClipboard(View view, String info) {
-        ClipboardManager cm = (ClipboardManager) InitApp.AppContext.getSystemService(InitApp.AppContext.CLIPBOARD_SERVICE);
+        ClipboardManager cm = (ClipboardManager) InitApp.AppContext.getSystemService(
+                Context.CLIPBOARD_SERVICE);
         ClipData cd = ClipData.newPlainText("msg", info);
         cm.setPrimaryClip(cd);
         Snackbar.make(view, R.string.notify_info_copied,Snackbar.LENGTH_SHORT).show();

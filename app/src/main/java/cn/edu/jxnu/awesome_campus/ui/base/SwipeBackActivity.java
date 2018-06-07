@@ -44,7 +44,7 @@ public class SwipeBackActivity extends BaseActivity {
     protected boolean swipeAnyWhere = false;
 
     public SwipeBackActivity() {
-        setSwipeAnyWhere(Settings.swipeID == 0 ? true:false );
+        setSwipeAnyWhere(Settings.swipeID == 0);
     }
 
     @Override

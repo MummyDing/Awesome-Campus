@@ -40,7 +40,7 @@ public class HotSearchDAO implements DAO<HotSearchModel> {
         for (int i=0 ; i<list.size() ;i++){
             HotSearchModel model = list.get(i);
             ContentValues values = new ContentValues();
-            values.put(HotSearchTable.TAG,model.getTag());;
+            values.put(HotSearchTable.TAG,model.getTag());
             DatabaseHelper.insert(HotSearchTable.NAME,values);
         }
         return true;

@@ -61,7 +61,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
     private Preference mDdragon;
     private Preference license;
 
-    private final String FEEDBACK=InitApp.AppContext.getString(R.string.id_feedback);;
+    private final String FEEDBACK=InitApp.AppContext.getString(R.string.id_feedback);
     private final String APP_INTRO = InitApp.AppContext.getString(R.string.id_app_intro);
     private final String DEMO_VIDEO = InitApp.AppContext.getString(R.string.id_demo_video);
     private final String CHECK_UPDATE = InitApp.AppContext.getString(R.string.id_check_update);
